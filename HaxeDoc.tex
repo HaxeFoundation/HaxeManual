@@ -413,7 +413,7 @@ The code above is very similar to the original \type{Point} class, with two new 
  \item \expr{extends Point} denotes that this class inherits from class \type{Point}
  \item \expr{super(x, y)} is the call to the constructor of the parent class, in this case \expr{Point.new}
 \end{itemize}
-It is not necessary for child classes to define their own constructors, but if they do a call to \expr{super()} is mandatory. Unlike some other object-oriented languages, this call can appear anywhere in the constructor code and must not be the first expression.
+It is not necessary for child classes to define their own constructors, but if they do a call to \expr{super()} is mandatory. Unlike some other object-oriented languages, this call can appear anywhere in the constructor code and does not have to be the first expression.
 
 A class may override \fullref{Method} of its base class, which requires the explicit \expr{override} keyword. The effects and restrictions of this are detailed in \fullref{Overriding Fields}.
 
@@ -1428,7 +1428,7 @@ With haxe 3 it is no longer necessary to manually concatenate parts of a string 
 
 \begin{lstlisting}
 var x = 12;
-trace('The value of x is x'); // The value of x is 12
+trace('The value of x is $x'); // The value of x is 12
 \end{lstlisting}
 %TODO: add $
 Furthermore, it is possible to include whole expressions in the string by using \expr{\$$\left\{expr\right\}$}, with \expr{expr} being any valid haxe expression:
