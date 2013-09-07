@@ -1,4 +1,4 @@
-We briefly looked at typedefs while talking about [[manual/Anonymous_Structure]] and saw how we could shorten a complex structure type by giving it a name. This is precisely what typedefs are good for, and giving names to structure types might even be considered their primary use. In fact, it is so common that the distinction appears somewhat blurry and many haxe users consider typedefs to actually **be** the structure.
+We briefly looked at typedefs while talking about [manual/Anonymous_Structure] and saw how we could shorten a complex structure type by giving it a name. This is precisely what typedefs are good for, and giving names to structure types might even be considered their primary use. In fact, it is so common that the distinction appears somewhat blurry and many haxe users consider typedefs to actually **be** the structure.
 
 A typedef can give a name to any other type:
 
@@ -13,7 +13,7 @@ typedef User = {
     var name : String;
 }
 ```
-A typedef is not a textual replacement, but actually a real type. It can even have [[manual/Type_Parameters]] as the `Iterable` type from the standard library demonstrates:
+A typedef is not a textual replacement, but actually a real type. It can even have [manual/Type_Parameters] as the `Iterable` type from the standard library demonstrates:
 
 ```
 typedef Iterable<T> = {

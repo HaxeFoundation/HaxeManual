@@ -29,14 +29,14 @@ C# & Sourcecode & Desktop, Mobile, Server
  
 
 
-The remainder of section [[manual/Introduction]] gives a brief overview of what a haxe program looks like, and how haxe has developed since its inception in 2005.
+The remainder of section [manual/Introduction] gives a brief overview of what a haxe program looks like, and how haxe has developed since its inception in 2005.
 
-[[manual/Types]] introduces the seven kinds of types in haxe and how they interact with each other. Type discussion is continued in [[manual/Type_System]], where features such as **unification**, **type parameters** and **type inference** are explained.
+[manual/Types] introduces the seven kinds of types in haxe and how they interact with each other. Type discussion is continued in [manual/Type_System], where features such as **unification**, **type parameters** and **type inference** are explained.
 
-[[manual/Class_Fields]] is all about the structure of haxe classes and, among other topics, deals with **properties**, **inline fields** and **generic functions**.
+[manual/Class_Fields] is all about the structure of haxe classes and, among other topics, deals with **properties**, **inline fields** and **generic functions**.
 
-In [[manual/Expressions]] we see how to actually get programs to do something by using **expressions**, plenty of which are used in the Haxe Standard Library described in [[manual/Standard_Library]].
+In [manual/Expressions] we see how to actually get programs to do something by using **expressions**, plenty of which are used in the Haxe Standard Library described in [manual/Standard_Library].
 
-[[manual/Miscallaneous_Features]] describes some of the haxe features in detail, such as **pattern matching**, **string interpolation** and **dead code elimination**.
+[manual/Miscallaneous_Features] describes some of the haxe features in detail, such as **pattern matching**, **string interpolation** and **dead code elimination**.
 
-Finally, we will venture to the exciting land of **haxe macros** in [[manual/Macros]] to see how some common tasks can be simplified greatly.
+Finally, we will venture to the exciting land of **haxe macros** in [manual/Macros] to see how some common tasks can be simplified greatly.

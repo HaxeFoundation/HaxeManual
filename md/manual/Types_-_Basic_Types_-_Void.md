@@ -8,7 +8,7 @@ class HelloWorld {
 	}
 }
 ```
-The function type will be explored in detail in [[manual/Function]], but a quick preview helps here: The type of function `main` in above example can be considered to be `Void->Void`, which reads as "it has no arguments and returns nothing".
+The function type will be explored in detail in [manual/Function], but a quick preview helps here: The type of function `main` in above example can be considered to be `Void->Void`, which reads as "it has no arguments and returns nothing".
 Haxe does not allow fields and variables of type `Void`, and will complain if an attempt is made at declaring such:
 
 ```

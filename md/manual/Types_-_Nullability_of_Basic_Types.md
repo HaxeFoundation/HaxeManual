@@ -26,7 +26,7 @@ if( a == null ) { ... } // error on static platforms
 var b : Null<Int> = 0;
 if( b != null ) { ... } // allowed
 ```
-This restriction extends to all situations where [[manual/Unification]] is performed.
+This restriction extends to all situations where [manual/Unification] is performed.
 
 If a `null`-value is "hidden" in `Null$<$T$>$` or `Dynamic` and assigned to a basic type, the default value is used:
 

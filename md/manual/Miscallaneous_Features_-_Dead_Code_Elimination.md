@@ -9,7 +9,7 @@ DCE has three modes which are set when invoking the command line:
 * All classes are affected by DCE. This is the default setting when targeting Javascript.
 
 
-The DCE-algorithm works well with typed code, but may fail when [[manual/Dynamic]] or [[manual/Reflection]] is involved. This may require explicit marking of fields or classes as being used by attributing the following metadata:
+The DCE-algorithm works well with typed code, but may fail when [manual/Dynamic] or [manual/Reflection] is involved. This may require explicit marking of fields or classes as being used by attributing the following metadata:
 
 
 
@@ -18,4 +18,4 @@ The DCE-algorithm works well with typed code, but may fail when [[manual/Dynamic
 * Usually, a class which had all fields removed by DCE (or is empty to begin with) is removed from the output. By using this metadata, empty classes are kept.
 
 
-The compiler automatically defines the flag `dce` with a value of either `"std"`, `"no"` or `"full"` depending on the active mode. This can be used in [[manual/Conditional_Compilation]].
+The compiler automatically defines the flag `dce` with a value of either `"std"`, `"no"` or `"full"` depending on the active mode. This can be used in [manual/Conditional_Compilation].

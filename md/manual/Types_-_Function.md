@@ -1,4 +1,4 @@
-The function type, along with the [[manual/Monomorph]], is a type which is usually well-hidden from haxe users, yet present everywhere. We can make it surface by using `$type`, a special haxe identifier which outputs during compilation the type its expression has:
+The function type, along with the [manual/Monomorph], is a type which is usually well-hidden from haxe users, yet present everywhere. We can make it surface by using `$type`, a special haxe identifier which outputs during compilation the type its expression has:
 
 ```
 class FunctionType {

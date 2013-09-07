@@ -18,7 +18,7 @@ class Constraints {
 	}
 }
 ```
-Type parameter `T` of method `test` is constrained to the types `Iterable$<$String$>$` and `Measurable`. The latter is defined using a [[manual/Typedef]] for convenience and requires compatible types to have a read-only [[manual/Property]] named `length` of type `Int`. The constraints then say that a type is compatible if
+Type parameter `T` of method `test` is constrained to the types `Iterable$<$String$>$` and `Measurable`. The latter is defined using a [manual/Typedef] for convenience and requires compatible types to have a read-only [manual/Property] named `length` of type `Int`. The constraints then say that a type is compatible if
 
 
 

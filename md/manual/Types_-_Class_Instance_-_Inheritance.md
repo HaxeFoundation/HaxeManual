@@ -20,4 +20,4 @@ The code above is very similar to the original `Point` class, with two new const
 
 It is not necessary for child classes to define their own constructors, but if they do a call to `super()` is mandatory. Unlike some other object-oriented languages, this call can appear anywhere in the constructor code and does not have to be the first expression.
 
-A class may override [[manual/Method]] of its base class, which requires the explicit `override` keyword. The effects and restrictions of this are detailed in [[manual/Overriding_Fields]].
+A class may override [manual/Method] of its base class, which requires the explicit `override` keyword. The effects and restrictions of this are detailed in [manual/Overriding_Fields].

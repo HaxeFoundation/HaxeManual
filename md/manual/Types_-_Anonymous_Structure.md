@@ -18,7 +18,7 @@ The general syntactic rules follow:
 5. value, which can be any valid expression.
 
 
-Rule [[manual/Anonymous_Structure]] implies that structures can be nested and complex, e.g.:
+Rule [manual/Anonymous_Structure] implies that structures can be nested and complex, e.g.:
 
 ```
 var user = {
@@ -44,7 +44,7 @@ point.z; // { y : Float, x : Float } has no field z
 }
 ```
 The error message indicates that the compiler knows the type of `point`: It is a structure with fields `x` and `y` of type `Float`, so it has no field `z` and the access fails.
-The fact that type of `point` is known is courtesy of [[manual/Type_Inference]], which thankfully saves us from using explicit types for local variables. However, if `point` was a field, explicit typing would be necessary:
+The fact that type of `point` is known is courtesy of [manual/Type_Inference], which thankfully saves us from using explicit types for local variables. However, if `point` was a field, explicit typing would be necessary:
 
 ```
 class Path {
@@ -53,7 +53,7 @@ class Path {
     var current : { x : Int, y : Int };
 }
 ```
-To avoid this kind of redundant type declaration, especially for more complex structures, it is advised to use a [[manual/Typedef]]:
+To avoid this kind of redundant type declaration, especially for more complex structures, it is advised to use a [manual/Typedef]:
 
 ```
 typedef Point = { x : Int, y : Int }

@@ -1,4 +1,4 @@
-Similar to many object-oriented languages, classes in haxe are the primary data structure for the majority of programs. Each haxe class has an explicit name, an implied path and zero or more class fields. Here we will focus on the general structure of classes and their relations, while leaving the details of class fields for [[manual/Class_Fields]].
+Similar to many object-oriented languages, classes in haxe are the primary data structure for the majority of programs. Each haxe class has an explicit name, an implied path and zero or more class fields. Here we will focus on the general structure of classes and their relations, while leaving the details of class fields for [manual/Class_Fields].
 
 The following code example serves as basis for the remainder of this section:
 

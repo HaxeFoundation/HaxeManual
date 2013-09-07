@@ -8,4 +8,4 @@ key2:value2,
 keyN:valueN
 }
 ```
-Further details of object declaration are described in the section about anonymous structures ([[manual/Anonymous_Structure]]).
+Further details of object declaration are described in the section about anonymous structures ([manual/Anonymous_Structure]).

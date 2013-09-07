@@ -18,7 +18,7 @@ class Main {
 
 Access to field `available` of class `MyClass` is allowed from within `Main` is allowed because it is denoted as being `public`. However, while access to field `unavailable` is allowed from within class `MyClass`, it is not allowed from within class `Main` because it is `private` (explicitly, although this identifier is redundant here).
 
-The example demonstrates visibility through **static** fields, but the rules for member fields are equivalent. The following example demonstrates visibility behavior for when [[manual/Inheritance]] is involved.
+The example demonstrates visibility through **static** fields, but the rules for member fields are equivalent. The following example demonstrates visibility behavior for when [manual/Inheritance] is involved.
 
 ```
 class Base {
@@ -45,4 +45,4 @@ class Main {
 
 We can see that access to `child1.baseField()` is allowed from within `Child2` even though `child1` is of a different type, `Child1`. This is because the field is defined on their common ancestor class `Base`, contrary to field `child1Field` which can not be accessed from within `Child2`.
 
-More fine-grained control of access can be achieved using [[manual/Access_Control]].
+More fine-grained control of access can be achieved using [manual/Access_Control].

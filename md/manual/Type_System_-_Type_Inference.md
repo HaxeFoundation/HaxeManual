@@ -10,14 +10,14 @@ class TypeInference {
 	}
 }
 ```
-The special construct `$type` was previously mentioned in order to simplify the explanation of the [[manual/Function]] type, so let us introduce it officially now:
+The special construct `$type` was previously mentioned in order to simplify the explanation of the [manual/Function] type, so let us introduce it officially now:
 
 %TODO: $type
 
 
-In the example above, the first `$type` prints `Unknown<0>`. This is a [[manual/Monomorph]], a type that is not yet known. The next line `x = "foo"` assigns a `String` literal to `x`, which causes the [[manual/Unification]] of the monomorph with `String`. We then see that the type of `x` indeed has changed to `String`.
+In the example above, the first `$type` prints `Unknown<0>`. This is a [manual/Monomorph], a type that is not yet known. The next line `x = "foo"` assigns a `String` literal to `x`, which causes the [manual/Unification] of the monomorph with `String`. We then see that the type of `x` indeed has changed to `String`.
 
-Whenever a type other than [[manual/Dynamic]] is unified with a monomorph, that monomorph **becomes** that type: it **morphs** into that type. Therefore it cannot morph into a different type afterwards, a property expressed in the **mono** part of its name.
+Whenever a type other than [manual/Dynamic] is unified with a monomorph, that monomorph **becomes** that type: it **morphs** into that type. Therefore it cannot morph into a different type afterwards, a property expressed in the **mono** part of its name.
 
 Following the rules of unification, type inference can occur in compound types:
 
@@ -31,4 +31,4 @@ class TypeInference2 {
 	}
 }
 ```
-Variable `x` is first initialized to an empty [[manual/Array]]. At this point we can tell that the type of `x` is an array, but we do not yet know the type of the array elements. Consequentially, the type of `x` is `Array<Unknown<0>>`. It is only after pushing a `String` onto the array that we know the type to be `Array<String>`.
+Variable `x` is first initialized to an empty [manual/Array]. At this point we can tell that the type of `x` is an array, but we do not yet know the type of the array elements. Consequentially, the type of `x` is `Array<Unknown<0>>`. It is only after pushing a `String` onto the array that we know the type to be `Array<String>`.

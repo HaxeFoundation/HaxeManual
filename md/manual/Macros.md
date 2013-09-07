@@ -1,3 +1,3 @@
 Macros are without a doubt the most advanced feature in haxe. They are often perceived as dark magic that only a select few are capable of mastering, yet there is nothing magical (and certainly nothing dark) about them.
 
-A basic macro is a **syntax-transformation**. It receives zero or more [[manual/Expressions]] and also returns an expression. If a macro is called, it effectively inserts code at the place it was called from. In that respect, it could be compared to a preprocessor like `#define` in C++, but a haxe macro is not a textual replacement tool.
+A basic macro is a **syntax-transformation**. It receives zero or more [manual/Expressions] and also returns an expression. If a macro is called, it effectively inserts code at the place it was called from. In that respect, it could be compared to a preprocessor like `#define` in C++, but a haxe macro is not a textual replacement tool.

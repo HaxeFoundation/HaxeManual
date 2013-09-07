@@ -11,4 +11,4 @@ private enum E { ... }
 private typedef T { ... }
 private abstract A { ... }
 ```
-The accessibility can be controlled more fine-grained by using [[manual/Access_Control]].
+The accessibility can be controlled more fine-grained by using [manual/Access_Control].

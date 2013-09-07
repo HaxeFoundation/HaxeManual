@@ -1,1 +1,1 @@
-Using structures and by extension [[manual/Structural_Subtyping]] has no impact on performance when compiling to dynamic targets (def:Dynamic target). However, on static targets (def:Static target) a dynamic lookup has to be performed, which is typically slower than a static field access.
+Using structures and by extension [manual/Structural_Subtyping] has no impact on performance when compiling to dynamic targets (def:Dynamic target). However, on static targets (def:Static target) a dynamic lookup has to be performed, which is typically slower than a static field access.

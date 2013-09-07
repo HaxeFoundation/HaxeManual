@@ -8,6 +8,6 @@ a.push(1);
 a.push(2);
 a.push(3);
 ```
-This should be considered when deciding if a function should be inlined ([[manual/Inline]]) as it may inline more code than visible in the syntax.
+This should be considered when deciding if a function should be inlined ([manual/Inline]) as it may inline more code than visible in the syntax.
 
-Advanced initialization techniques are described in [[manual/Array_Comprehension]].
+Advanced initialization techniques are described in [manual/Array_Comprehension].

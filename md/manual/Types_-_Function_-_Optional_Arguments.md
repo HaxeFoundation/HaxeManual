@@ -26,6 +26,6 @@ This example program calls `test` four times and prints its return value.
 4. the fourth call is made with a singular argument `"foo"`
 
 
-The output shows that optional arguments which are omitted from the call have a value of `null`. This implies that the type of these arguments must admit `null` as value, which raises the question of its [[manual/Nullability_of_Basic_Types]]. The haxe compiler ensures that optional basic type arguments are nullable by inferring their type as `Null<T>` when compiling to a static target (compare def:Static target).
+The output shows that optional arguments which are omitted from the call have a value of `null`. This implies that the type of these arguments must admit `null` as value, which raises the question of its [manual/Nullability_of_Basic_Types]. The haxe compiler ensures that optional basic type arguments are nullable by inferring their type as `Null<T>` when compiling to a static target (compare def:Static target).
 
 While the first three calls are intuitive, the fourth one might come as a surprise: It is indeed allowed to skip optional arguments if the supplied value is assignable to a later argument.

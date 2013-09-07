@@ -1,4 +1,4 @@
-Since the compiler promotes abstract member functions to static functions, it is possible to define static functions by hand and use them on an abstract instance. The semantics here are similar to those of [[manual/Using-Mixins]], where the type of the first function argument determines for which types a function is defined:
+Since the compiler promotes abstract member functions to static functions, it is possible to define static functions by hand and use them on an abstract instance. The semantics here are similar to those of [manual/Using-Mixins], where the type of the first function argument determines for which types a function is defined:
 
 ```
 abstract MyAbstract<T>(T) from T {

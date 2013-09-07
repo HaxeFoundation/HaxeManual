@@ -26,7 +26,7 @@ By defining `@:op(A * B)`, the function `repeat` serves as operator method for t
 ```
 console.log(_AbstractOperatorOverload.MyAbstract_Impl_.repeat(a,3));
 ```
-Similar to implicit casts with class fields ([[manual/Implicit_Casts]]), a call to the overload method is inserted where required.
+Similar to implicit casts with class fields ([manual/Implicit_Casts]), a call to the overload method is inserted where required.
 
 Note that the example `repeat` function is not commutative: While `MyAbstract * Int` works, `Int * MyAbstract` does not. If this should be allowed as well, the `@:commutative` metadata can be added. If it should work **only** for `Int * MyAbstract`, but not for `MyAbstract * Int`, the overload method can be made static, accepting `Int` and `MyAbstract` as first and second type respectively.
 

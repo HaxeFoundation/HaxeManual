@@ -7,4 +7,4 @@ Expression reification is used to create instances of `haxe.macro.Expr` in a con
 *: `Array<Expr> -> Expr` Generates a block expression from the given expression array.
 *: `String -> Expr` Generates an identifier from the given string.
 *: `Array<String> -> Expr` Generates a field expression from the given string array.
-*: `Dynamic -> Expr` Generates an expression depending on the type of its argument. This is only guaranteed to work for [[manual/Basic_Types]] and [[manual/Enum_Instance]].
+*: `Dynamic -> Expr` Generates an expression depending on the type of its argument. This is only guaranteed to work for [manual/Basic_Types] and [manual/Enum_Instance].
