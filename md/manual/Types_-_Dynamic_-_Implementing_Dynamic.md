@@ -1,4 +1,4 @@
-Classes can **implement** ([manual/Interfaces]) `Dynamic` and `Dynamic$<$T$>$`, which enables arbitrary field access. In the former case, fields can have any type, in the latter they are constrained to be compatible with the parameter type:
+Classes can **implement** ([manual/Interfaces]) `Dynamic` and `Dynamic<T>`, which enables arbitrary field access. In the former case, fields can have any type, in the latter they are constrained to be compatible with the parameter type:
 
 ```
 class ImplementsDynamic implements Dynamic<String> {

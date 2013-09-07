@@ -5,7 +5,7 @@ A typedef can give a name to any other type:
 ```
 typedef IA = Array<Int>;
 ```
-This enables us to use `IA` in places where we would normally use `Array$<$Int$>$`. While this saves only a few keystrokes in this particular case, it can make a difference for more complex, compound types. Again, this is why typedef and structures seem so connected:
+This enables us to use `IA` in places where we would normally use `Array<Int>`. While this saves only a few keystrokes in this particular case, it can make a difference for more complex, compound types. Again, this is why typedef and structures seem so connected:
 
 ```
 typedef User = {

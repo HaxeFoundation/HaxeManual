@@ -21,7 +21,7 @@ Semantically, this class represents a point in discrete 2-dimensional space, but
 
 * The keyword `class` denotes that we are declaring a class.
 * `Point` is the name of the class and could be anything conforming to the rules for type identifiers.
-* Enclosed in curly braces `${}$` are the class fields,
+* Enclosed in curly braces `{}` are the class fields,
 * which consist of two **variable** fields `x` and `y` of type `Int`
 * followed by a special **function** field named `new`, which is the **constructor** of the class,
 * as well as a normal function `toString`
@@ -30,7 +30,7 @@ Semantically, this class represents a point in discrete 2-dimensional space, but
 There is a special type in haxe which is compatible with all classes:
 
 ```
-Define: Class$<$T$>$
+Define: Class<T>
 
 This type is compatible with all class types. At compile-time, `Class<T>` can be considered to be the common base type of all class types. However, this relation is not reflected in generated code.
 ```

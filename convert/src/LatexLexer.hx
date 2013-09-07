@@ -22,6 +22,8 @@ class LatexLexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 			TNewline;
 		},
 		"\t" => TTab,
+		"$" => TDollar,
+		"\\\\$" => TText("$"),
 		"\\\\\\\\" => TNewline,
 		"``" => TText('"'),
 		"''" => TText('"'),
@@ -29,7 +31,7 @@ class LatexLexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"`" => TText("`"),
 		"\\\\[^\\\\]" => TText(lexer.current.substr(1)),
 		"\\\\^{e}" => TText("ê"),
-		"[^\\\\{}\\[\\]\n\r\t\\`']+" => TText(lexer.current),
+		"[^\\\\{}\\[\\]\n\r\t$\\`']+" => TText(lexer.current),
 		"" => TEof,
 	];
 }

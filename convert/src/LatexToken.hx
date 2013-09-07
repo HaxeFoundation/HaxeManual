@@ -10,5 +10,6 @@ enum LatexToken {
 	TBkClose;
 	TNewline;
 	TTab;
+	TDollar;
 	TEof;
 }

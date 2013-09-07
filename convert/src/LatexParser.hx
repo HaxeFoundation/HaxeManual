@@ -156,6 +156,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 			case [TText(s)]: s;
 			case [TTab]:
 				codeMode ? "\t" : "";
+			case [TDollar]: "";
 			case [TCommand(CTextasciitilde)]: "~";
 			case [TCommand(CEmph), TBrOpen, s = text(), TBrClose]: '**$s**';
 			case [TCommand(CIt), TBrOpen, s = text(), TBrClose]: '*$s*';

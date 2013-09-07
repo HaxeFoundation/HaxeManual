@@ -20,7 +20,7 @@ class SelectiveFunction {
 	}
 }
 ```
-The method `getString` of abstract `MyAbstract` is defined to accept a first argument of `MyAbstract$<$String$>$`. This causes it to be available on variable `a` on line 14 (because the type of `a` is `MyAbstract$<$String$>$`), but not on variable `b` whose type is `MyAbstract$<$Int$>$`.
+The method `getString` of abstract `MyAbstract` is defined to accept a first argument of `MyAbstract<String>`. This causes it to be available on variable `a` on line 14 (because the type of `a` is `MyAbstract<String>`), but not on variable `b` whose type is `MyAbstract<Int>`.
 
 ```
 Trivia: Accidental Feature

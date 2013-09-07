@@ -11,7 +11,7 @@ The general syntactic rules follow:
 
 
 
-1. A structure is enclosed in curly braces `${}$` and
+1. A structure is enclosed in curly braces `{}` and
 2. has a **comma-separated** list of
 3. key-value-pairs, with a **double dot** separating the
 4. key, which must be a valid haxe field-name, from the

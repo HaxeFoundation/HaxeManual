@@ -26,7 +26,7 @@ There is nothing to worry about when working with `null` on dynamic targets, but
 * `false`
 
 
-As a consequence, the haxe compiler does not allow assigning `null` to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as `Null$<$T$>$`:
+As a consequence, the haxe compiler does not allow assigning `null` to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as `Null<T>`:
 
 ```
 var a:Int = null; // error on static platforms
@@ -42,7 +42,7 @@ if( b != null ) { ... } // allowed
 ```
 This restriction extends to all situations where [manual/Unification] is performed.
 
-If a `null`-value is "hidden" in `Null$<$T$>$` or `Dynamic` and assigned to a basic type, the default value is used:
+If a `null`-value is "hidden" in `Null<T>` or `Dynamic` and assigned to a basic type, the default value is used:
 
 ```
 var n : Null<Int> = null;

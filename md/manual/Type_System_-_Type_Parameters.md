@@ -1,4 +1,4 @@
-Haxe allows parametrization of a number of types, as well as class fields ([manual/Class_Fields]) and enum constructors ([manual/Enum_Constructors]). Type parameters are defined by enclosing comma-separated type parameter names in angle brackets `$<>$`. A simple example from the standard library is [manual/Array]:
+Haxe allows parametrization of a number of types, as well as class fields ([manual/Class_Fields]) and enum constructors ([manual/Enum_Constructors]). Type parameters are defined by enclosing comma-separated type parameter names in angle brackets `<>`. A simple example from the standard library is [manual/Array]:
 
 ```
 class Array<T> {
@@ -9,7 +9,7 @@ Whenever an instance of `Array` is created, its type parameter `T` becomes a [ma
 
 
 
-* by invoking the constructor with explicit types (`new Array$<$String$>$()`) or
+* by invoking the constructor with explicit types (`new Array<String>()`) or
 * by [manual/Type_Inference], e.g. when invoking `arrayInstance.push("foo")`.
 
 
