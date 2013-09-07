@@ -1,0 +1,33 @@
+enum LatexCommand {
+	CDocumentclass;
+	CUsepackage;
+	CDefinecolor;
+	CNewcommand;
+	CDef;
+	CNewenvironment;
+	CBegin;
+	CEnd;
+	CTitle;
+	CAuthor;
+	CDate;
+	CMaketitle;
+	CClearpage;
+	CTableofcontents;
+	CLabel;
+	CSection;
+	CSubsection;
+	CSubsubsection;
+	CItem;
+	CEmph;
+	CIt;
+	CToday;
+	CFootnote;
+	CHline;
+	CRef;
+	CTextasciitilde;
+	CMulticolumn;
+	CLeft;
+	CRight;
+	CTexttt;
+	CUrl;
+}
