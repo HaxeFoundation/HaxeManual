@@ -19,3 +19,15 @@ The DCE-algorithm works well with typed code, but may fail when [manual/Dynamic]
 
 
 The compiler automatically defines the flag `dce` with a value of either `"std"`, `"no"` or `"full"` depending on the active mode. This can be used in [manual/Conditional_Compilation].
+
+```
+Trivia: DCE-rewrite
+
+DCE was originally implemented in haxe 2.07. This implementation considered a function to be used when it was explicitly typed. The problem with that was that several features, most importantly interfaces, would cause all class fields to be typed in order to verify type-safety. This effectively subverted DCE completely, prompting the rewrite for haxe 2.10.
+```
+
+```
+Trivia: DCE and try.haxe.org
+
+DCE for the `Javascript` target saw vast improvements when the website [http://try.haxe.org](http://try.haxe.org) was published. Initial reception of the generated Javascript code was mixed, leading to a more fine-grained selection of which code to eliminate.
+```

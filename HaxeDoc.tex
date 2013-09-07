@@ -1226,7 +1226,6 @@ The generated \target{Javascript} output reveals the effect of inline:
 
 \begin{lstlisting}
 (function () { "use strict";
-(function () { "use strict";
 var Main = function() { }
 Main.main = function() {
 	var a = 1;
@@ -1235,7 +1234,6 @@ Main.main = function() {
 }
 Main.main();
 })();
-
 \end{lstlisting}
 
 As evident, the function body \expr{s1 + s2} of field \expr{mid} was generated in place of the call to \expr{add(a, b)}, with \expr{s1} being replaced by \expr{a} and \expr{s2} being replaced by \expr{b}. This avoids a function call which, depending on the target and frequency of occurrences, may yield noticeable performance improvements.

@@ -21,3 +21,9 @@ class SelectiveFunction {
 }
 ```
 The method `getString` of abstract `MyAbstract` is defined to accept a first argument of `MyAbstract$<$String$>$`. This causes it to be available on variable `a` on line 14 (because the type of `a` is `MyAbstract$<$String$>$`), but not on variable `b` whose type is `MyAbstract$<$Int$>$`.
+
+```
+Trivia: Accidental Feature
+
+Selective functions were never actually designed, but rather discovered. After the idea was first mentioned, it required only minor adjustments in the compiler to make them work. Their discovery also lead to the introduction of multi-type abstracts, such as Map. 
+```

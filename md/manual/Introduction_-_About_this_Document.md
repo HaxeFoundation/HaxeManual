@@ -9,6 +9,16 @@ haxe code here
 Occasionally, we demonstrate how certain haxe code is generated, for which we usually show the Javascript target.
 
 Furthermore, we define a set of terms in this document. This is mostly done when introducing a new type, or when a term is specific to haxe. We do not define every new aspect we introduce, e.g. what a class or a class field is, in order to not clutter the text. A definition looks like this:
+```
+Define: Name
 
+Description
+```
 
 In a few places, this document has **trivia**-boxes. These include off-the-record information such as why certain decisions were made while developing haxe, or how a particular feature has changed in past haxe versions. This information is generally not important and can be skipped, it is only meant to convey trivia:
+
+```
+Trivia: About Trivia
+
+This is trivia.
+```

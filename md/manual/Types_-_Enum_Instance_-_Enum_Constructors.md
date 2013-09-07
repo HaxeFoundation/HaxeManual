@@ -8,7 +8,11 @@ var c = Rgb(255, 255, 0);
 In this code, the type of variables `a`, `b` and `c` is instance of enum `Color`. Variable `c` is initialized using the `Rgb` constructor with arguments.
 
 All enum instances can be assigned to a special type named `EnumValue`.
+```
+Define: EnumValue
 
+EnumValue is a special type which unifies with all enum instances. It is used by the standard library to provide some operations for all enum instances, and can be employed in user-code accordingly.
+```
 
 It is important to distinguish enum types and enum constructors, as this example demonstrates:
 

@@ -46,3 +46,9 @@ class Main {
 We can see that access to `child1.baseField()` is allowed from within `Child2` even though `child1` is of a different type, `Child1`. This is because the field is defined on their common ancestor class `Base`, contrary to field `child1Field` which can not be accessed from within `Child2`.
 
 More fine-grained control of access can be achieved using [manual/Access_Control].
+
+```
+Trivia: Protected
+
+Haxe has no notion of a `protected` keyword known from Java, C++ and other object-oriented languages. However, its `private` behavior is equal to those language's protected behavior, so Haxe actually lacks their real private behavior.
+```

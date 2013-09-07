@@ -24,3 +24,9 @@ The `implements` keyword here denotes that `Point` has a "is-a" relationship to 
 The compiler checks if the `implements` assumption holds. That is, it makes sure the class actually does implement all the fields required by the interface. A field is considered implemented if the class or any of its parent classes provide an implementation.
 
 Interface fields are not limited to methods, they can be variables and properties as well.
+
+```
+Trivia: Implements Syntax
+
+Haxe versions prior to 3.0 required multiple `implements` keywords to be separated by a comma. We decided to adhere to the de-facto standard of Java and got rid of the comma. This was one of the breaking changes between haxe 2 and 3.
+```

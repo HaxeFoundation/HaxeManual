@@ -1,3 +1,9 @@
+```
+Define: Module
+
+All haxe code is organized in modules, which are addressed using paths. In essence, each .hx file represents a module which may contain several types.
+```
+
 The distinction of a module and its containing type of the same name is blurry by design. In fact, addressing `haxe.ds.StringMap<Int>` can be considered shorthand for `haxe.ds.StringMap.StringMap<Int>`. The latter version consists of four parts:
 
 

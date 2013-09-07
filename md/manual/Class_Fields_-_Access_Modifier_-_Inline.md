@@ -18,7 +18,6 @@ The generated Javascript output reveals the effect of inline:
 
 ```
 (function () { "use strict";
-(function () { "use strict";
 var Main = function() { }
 Main.main = function() {
 	var a = 1;
@@ -27,7 +26,6 @@ Main.main = function() {
 }
 Main.main();
 })();
-
 ```
 
 As evident, the function body `s1 + s2` of field `mid` was generated in place of the call to `add(a, b)`, with `s1` being replaced by `a` and `s2` being replaced by `b`. This avoids a function call which, depending on the target and frequency of occurrences, may yield noticeable performance improvements.

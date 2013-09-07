@@ -39,6 +39,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 	public function parse() {
 		header();
 		document();
+		lastSection.content = buffer.toString();
 		return sections;
 	}
 	
@@ -120,7 +121,15 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 				
 				// custom
 				case [TCustomCommand("define"), subject = popt(bracketArg), TBrOpen, s = text(), TBrClose, TBrOpen, s2 = text(), TBrClose]:
+					buffer.add("```\n");
+					buffer.add('Define: $s\n\n');
+					buffer.add(s2);
+					buffer.add("\n```");
 				case [TCustomCommand("trivia"), title = popt(bracketArg), TBrOpen, s = text(), TBrClose, TBrOpen, s2 = text(), TBrClose]:
+					buffer.add("```\n");
+					buffer.add('Trivia: $s\n\n');
+					buffer.add(s2);
+					buffer.add("\n```");
 				case [TCustomCommand("todo"), TBrOpen, s = text(), TBrClose]:
 					
 					
@@ -138,7 +147,6 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 				
 				case [TEnd("document")]: break;
 				case [TEof]: throw "Found eof before \\end{document}";
-				//case _: junk();
 			}
 		}
 	}

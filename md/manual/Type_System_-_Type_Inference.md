@@ -13,7 +13,11 @@ class TypeInference {
 The special construct `$type` was previously mentioned in order to simplify the explanation of the [manual/Function] type, so let us introduce it officially now:
 
 %TODO: $type
+```
+Define: type
 
+type is a compile-time mechanism being called like a function, with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.
+```
 
 In the example above, the first `$type` prints `Unknown<0>`. This is a [manual/Monomorph], a type that is not yet known. The next line `x = "foo"` assigns a `String` literal to `x`, which causes the [manual/Unification] of the monomorph with `String`. We then see that the type of `x` indeed has changed to `String`.
 

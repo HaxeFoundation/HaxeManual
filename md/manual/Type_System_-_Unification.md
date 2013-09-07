@@ -1,6 +1,10 @@
 Unification is the heart of the type system and contributes immensely to the robustness of haxe programs. It describes the process of checking if a type is compatible to another type.
 
+```
+Define: Unification
 
+Unification between two types A and B is a directional process which answers the question if A **can be assigned to** B. It may **mutate** either type if it is or has a [manual/Monomorph].
+```
 
 Unification errors are very easy to trigger:
 

@@ -16,8 +16,18 @@ d.foo;
 ```
 Trying to run a compiled program in the Flash Player yields an error `Property foo not found on Number and there is no default value`. Without `Dynamic`, this would have been detected at compile-time.
 
+```
+Trivia: Dynamic Inference before haxe 3
 
+The haxe 3 compiler never infers a type to `Dynamic`, so users must be explicit about it. Previous haxe versions used to infer arrays of mixed types, e.g. `[1, true, "foo"]`, as `Array<Dynamic>`. We found that this behavior introduced too many type problems and thus removed it for haxe 3.
+```
 
 Use of `Dynamic` should be minimized as there are better options in many situations, but sometimes it is just practical to use it. Parts of the haxe [manual/Reflection] API use it, and it is sometimes the best option when dealing with custom data structures that are not known at compile-time.
 
 Dynamic behaves in a special way when being unified ([manual/Unification]) with a [manual/Monomorph], which is described in [manual/Monomorphs].
+
+```
+Trivia: Dynamic in the Standard Library
+
+Dynamic was quite frequent in the haxe standard library before haxe 3. With the continuous improvements of the haxe type system, the occurences of Dynamic were reduced over the releases leading to haxe 3.
+```
