@@ -1,4 +1,3 @@
-% TODO: move to structures? %
 Extensions are used to express that a structure has all the fields of a given type in addition to some more:
 
 ```

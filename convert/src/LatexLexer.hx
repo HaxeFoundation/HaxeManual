@@ -24,6 +24,8 @@ class LatexLexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"\t" => TTab,
 		"$" => TDollar,
 		"\\\\$" => TText("$"),
+		"%" => lexer.token(comment),
+		"\\\\$" => TText("%"),
 		"\\\\\\\\" => TNewline,
 		"``" => TText('"'),
 		"''" => TText('"'),
@@ -31,7 +33,12 @@ class LatexLexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"`" => TText("`"),
 		"\\\\[^\\\\]" => TText(lexer.current.substr(1)),
 		"\\\\^{e}" => TText("ê"),
-		"[^\\\\{}\\[\\]\n\r\t$\\`']+" => TText(lexer.current),
+		"[^\\\\{}\\[\\]\n\r\t$%\\`']+" => TText(lexer.current),
 		"" => TEof,
+	];
+	
+	static public var comment = @:rule [
+		"(\n|\r\n)" => lexer.token(tok),
+		"[^\n\r]" => lexer.token(comment)
 	];
 }

@@ -16,5 +16,3 @@ class Main {
 }
 ```
 Implementing `Dynamic` does not satisfy the requirements of other implemented interfaces. The expected fields still have to be implemented explicitly.
-
-%TOOD: resolve field

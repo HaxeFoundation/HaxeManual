@@ -12,7 +12,6 @@ class TypeInference {
 ```
 The special construct `$type` was previously mentioned in order to simplify the explanation of the [manual/Function] type, so let us introduce it officially now:
 
-%TODO: type
 ```
 Define: type
 

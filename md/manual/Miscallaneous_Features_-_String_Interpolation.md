@@ -4,7 +4,6 @@ With haxe 3 it is no longer necessary to manually concatenate parts of a string 
 var x = 12;
 trace('The value of x is x'); // The value of x is 12
 ```
-%TODO: add 
 Furthermore, it is possible to include whole expressions in the string by using `${expr}`, with `expr` being any valid haxe expression:
 
 ```
