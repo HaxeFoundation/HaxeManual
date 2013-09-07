@@ -18,7 +18,8 @@ enum ListMode {
 
 class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxparse.ParserBuilder {
 	public var labelMap:Map<String, Section>;
-
+	public var definitionMap:Map<String, String>;
+	
 	var sections:Array<Section>;
 	var lastSection:Section;
 	var buffer:StringBuf;
@@ -31,6 +32,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 		buffer = new StringBuf();
 		sections = [];
 		labelMap = new Map();
+		definitionMap = new Map();
 		listMode = new GenericStack<ListMode>();
 		codeMode = false;
 		exprMode = false;
@@ -121,6 +123,8 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 				
 				// custom
 				case [TCustomCommand("define"), subject = popt(bracketArg), TBrOpen, s = text(), TBrClose, TBrOpen, s2 = text(), TBrClose]:
+					definitionMap[s] = s2;
+					labelMap['def:$s'] = lastSection;
 					buffer.add('> Define: $s\n\n');
 					buffer.add('>\n');
 					buffer.add('> $s2');

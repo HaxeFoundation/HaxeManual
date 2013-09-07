@@ -1,6 +1,7 @@
 import LatexParser;
 
 using StringTools;
+using Lambda;
 
 class Main{
 	static function main() {
@@ -35,5 +36,9 @@ class Main{
 		for (sec in sections) {
 			write(sec);
 		}
+		
+		var a = [for (k in parser.definitionMap.keys()) {k:k, v:parser.definitionMap[k]}];
+		a.sort(function(v1, v2) return Reflect.compare(v1.k.toLowerCase(), v2.k.toLowerCase()));
+		sys.io.File.saveContent('$out/dictionary.md', a.map(function(v) return '##### ${v.k}\n${v.v}').join("\n\n"));
 	}
 }
