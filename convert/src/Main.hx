@@ -19,18 +19,18 @@ class Main{
 					trace('Warning: No such label $i');
 					return i;
 				}
-				return '[[manual/${escapeFileName(parser.labelMap[i].title)}]]';
+				return '[manual/${escapeFileName(parser.labelMap[i].title)}]';
 			});
 		}
 		sys.FileSystem.createDirectory(out);
 		function write(sec:Section, ?parentTitle:String) {
-			var title = escapeFileName(sec.title);
+			var title = (parentTitle == null ? "" : parentTitle + "_-_") + escapeFileName(sec.title);
 			for (sub in sec.sub) {
 				write(sub, title);
 			}
 			var content = process(sec.content.trim());
 			if (content.length == 0) return;
-			sys.io.File.saveContent('$out/${parentTitle == null ? "" : parentTitle + "_-_"}$title.md', content);
+			sys.io.File.saveContent('$out/$title.md', content);
 		}
 		for (sec in sections) {
 			write(sec);
