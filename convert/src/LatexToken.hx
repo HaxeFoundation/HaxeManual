@@ -9,5 +9,6 @@ enum LatexToken {
 	TBkOpen;
 	TBkClose;
 	TNewline;
+	TTab;
 	TEof;
 }

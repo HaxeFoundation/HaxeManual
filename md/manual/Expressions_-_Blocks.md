@@ -2,10 +2,10 @@ A block in haxe starts with an opening curly brace `{` and ends with a closing c
 
 ```
 {
-expr1;
-expr2;
-...
-exprN;
+	expr1;
+	expr2;
+	...
+	exprN;
 }
 ```
 The value and by extension the type of a block-expression is equal to the value and the type of the last sub-expression.
@@ -14,13 +14,13 @@ Blocks can contain local variables declared by `var`-expression ([manual/var]), 
 
 ```
 {
-a; // error, a is not declared yet
-var a = 1; // declare a
-a; // ok, a was declared
-{
-a; // ok, a is available in sub-blocks
-}
-a; // ok, a is still available after sub-blocks
+	a; // error, a is not declared yet
+	var a = 1; // declare a
+	a; // ok, a was declared
+	{
+		a; // ok, a is available in sub-blocks
+	}
+	a; // ok, a is still available after sub-blocks
 }
 a; // error, a is not available outside
 ```

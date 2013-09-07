@@ -21,9 +21,9 @@ The generated Javascript output reveals the effect of inline:
 (function () { "use strict";
 var Main = function() { }
 Main.main = function() {
-var a = 1;
-var b = 2;
-var c = (a + b) / 2;
+	var a = 1;
+	var b = 2;
+	var c = (a + b) / 2;
 }
 Main.main();
 })();

@@ -3,8 +3,8 @@ Array access describes the particular syntax traditionally used to access the va
 ```
 @:arrayAccess public inline function get(key:K) return this.get(key);
 @:arrayAccess public inline function arrayWrite(k:K, v:V):V {
-this.set(k, v);
-return v;
+	this.set(k, v);
+	return v;
 }
 ```
 There are two kinds of array access methods:
@@ -19,11 +19,11 @@ The methods `get` and `arrayWrite` seen above then allow the following usage:
 
 ```
 class ArrayAccessUsage {
-public static function main(){
-var map = new Map();
-map["foo"] = 1;
-trace(map["foo"]);
-}
+	public static function main(){
+		var map = new Map();
+		map["foo"] = 1;
+		trace(map["foo"]);
+	}
 }
 ```
 At this point it should not be surprising to see that calls to the array access fields are inserted in the output:

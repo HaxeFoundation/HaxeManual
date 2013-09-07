@@ -6,9 +6,9 @@ Unification errors are very easy to trigger:
 
 ```
 class Main {
-static public function main() {
-var s:String = 1; // Int should be String
-}
+	static public function main() {
+		var s:String = 1; // Int should be String
+	}
 }
 ```
 We try to assign a value of type `Int` to a variable of type `String`, which causes the compiler to try and **unify Int with String**. This is, of course, not allowed and makes the compiler emit the error `Int should be String`.

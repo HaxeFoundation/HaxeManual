@@ -2,7 +2,7 @@ An interface can be understood as the signature of a class because it describes 
 
 ```
 interface Printable {
-public function toString():String;
+	public function toString():String;
 }
 ```
 The syntax is similar to classes, with the following exceptions:

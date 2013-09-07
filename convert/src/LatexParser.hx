@@ -146,6 +146,8 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 	function text() {
 		var s = switch stream {
 			case [TText(s)]: s;
+			case [TTab]:
+				codeMode ? "\t" : "";
 			case [TCommand(CTextasciitilde)]: "~";
 			case [TCommand(CEmph), TBrOpen, s = text(), TBrClose]: '**$s**';
 			case [TCommand(CIt), TBrOpen, s = text(), TBrClose]: '*$s*';

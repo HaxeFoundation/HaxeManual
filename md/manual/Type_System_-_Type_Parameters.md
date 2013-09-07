@@ -2,7 +2,7 @@ Haxe allows parametrization of a number of types, as well as class fields ([manu
 
 ```
 class Array<T> {
-function push(x : T) : Int;
+	function push(x : T) : Int;
 }
 ```
 Whenever an instance of `Array` is created, its type parameter `T` becomes a [manual/Monomorph]. That is, it can be bound to any type, but only one at a time. This binding can happen

@@ -2,10 +2,10 @@ Object declaration begins with an opening curly brace `{` after which `key:value
 
 ```
 {
-key1:value1,
-key2:value2,
-...
-keyN:valueN
+	key1:value1,
+	key2:value2,
+	...
+	keyN:valueN
 }
 ```
 Further details of object declaration are described in the section about anonymous structures ([manual/Anonymous_Structure]).

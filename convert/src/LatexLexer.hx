@@ -21,7 +21,7 @@ class LatexLexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 			lexer.line++;
 			TNewline;
 		},
-		"\t" => lexer.token(tok),
+		"\t" => TTab,
 		"\\\\\\\\" => TNewline,
 		"``" => TText('"'),
 		"''" => TText('"'),

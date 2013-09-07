@@ -13,7 +13,7 @@ The DCE-algorithm works well with typed code, but may fail when [manual/Dynamic]
 
 
 
-*: If used on a class, the class along with all fields is unaffected by DCE. If used on a field, that field is unaffected by DCE.
+* If used on a class, the class along with all fields is unaffected by DCE. If used on a field, that field is unaffected by DCE.
 * If used on a class, it works like `@:keep` on the annotated class as well as all subclasses.
 * Usually, a class which had all fields removed by DCE (or is empty to begin with) is removed from the output. By using this metadata, empty classes are kept.
 

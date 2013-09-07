@@ -1539,7 +1539,7 @@ DCE has three modes which are set when invoking the command line:
 The DCE-algorithm works well with typed code, but may fail when \Fullref{Dynamic} or \Fullref{Reflection} is involved. This may require explicit marking of fields or classes as being used by attributing the following metadata:
 
 \begin{description}
-	\item[\expr{@:keep}]: If used on a class, the class along with all fields is unaffected by DCE. If used on a field, that field is unaffected by DCE.
+	\item[\expr{@:keep}:] If used on a class, the class along with all fields is unaffected by DCE. If used on a field, that field is unaffected by DCE.
 	\item[\expr{@:keepSub}:] If used on a class, it works like \expr{@:keep} on the annotated class as well as all subclasses.
 	\item[\expr{@:keepInit}:] Usually, a class which had all fields removed by DCE (or is empty to begin with) is removed from the output. By using this metadata, empty classes are kept.
 \end{description}

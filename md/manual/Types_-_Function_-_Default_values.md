@@ -21,10 +21,10 @@ This example is very similar to the one from [manual/Optional_Arguments], with t
 
 Default values in haxe are not part of the type and are not replaced at call-site (unless the function is inlined ([manual/Inline])), which might be considered a more typical approach. On some targets, the compiler may still pass `null` for omitted argument values and generate code into the function which is similar to this:
 ```
-static function test(i = 12, s = "bar") {
-if (i == null) i = 12;
-if (s == null) s = "bar";
-return "i: " +i + ", s: " +s;
-}
+	static function test(i = 12, s = "bar") {
+		if (i == null) i = 12;
+		if (s == null) s = "bar";
+		return "i: " +i + ", s: " +s;
+	}
 ```
 This should be considered in performance-critical code, where a solution without default values may sometimes be more viable.

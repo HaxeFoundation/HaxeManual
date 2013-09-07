@@ -17,6 +17,6 @@ A typedef is not a textual replacement, but actually a real type. It can even ha
 
 ```
 typedef Iterable<T> = {
-function iterator() : Iterator<T>;
+	function iterator() : Iterator<T>;
 }
 ```
