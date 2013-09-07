@@ -1244,6 +1244,16 @@ It is not always easy to judge if a function qualifies for being inline. Short f
 \subsubsection{Dynamic}
 \label{Dynamic}
 
+Methods can be denoted with the \expr{dynamic} keyword to make them (re-)bindable:
+
+\lstinputlisting{assets/DynamicFunction.hx}
+
+The first call to \expr{test()} invokes the original function which returns the \type{String} \expr{"original"}. In the next line, \expr{test} is \emph{assigned} a new function. This is precisely what \expr{dynamic} allows: Function fields can be assigned a new function. As a result, the next invocation of \expr{test()} returns the \type{String} \expr{"new"}.
+
+Dynamic fields cannot be \expr{inline} for obvious reasons: While inlining is done at compile-time, dynamic functions necessarily have to be resolved at runtime.
+
+%TODO: performance estimation %
+
 \subsubsection{Override}
 \label{Override}
 
