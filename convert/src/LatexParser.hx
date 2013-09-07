@@ -121,15 +121,13 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 				
 				// custom
 				case [TCustomCommand("define"), subject = popt(bracketArg), TBrOpen, s = text(), TBrClose, TBrOpen, s2 = text(), TBrClose]:
-					buffer.add("```\n");
-					buffer.add('Define: $s\n\n');
-					buffer.add(s2);
-					buffer.add("\n```");
+					buffer.add('> Define: $s\n\n');
+					buffer.add('>\n');
+					buffer.add('> $s2');
 				case [TCustomCommand("trivia"), title = popt(bracketArg), TBrOpen, s = text(), TBrClose, TBrOpen, s2 = text(), TBrClose]:
-					buffer.add("```\n");
-					buffer.add('Trivia: $s\n\n');
-					buffer.add(s2);
-					buffer.add("\n```");
+					buffer.add('> Trivia: $s\n');
+					buffer.add('>\n');
+					buffer.add('> $s2');
 				case [TCustomCommand("todo"), TBrOpen, s = text(), TBrClose]:
 					
 					

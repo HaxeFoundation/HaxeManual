@@ -1,8 +1,7 @@
-```
-Define: Structural Subtyping
+> Define: Structural Subtyping
 
-Structural subtyping defines an implicit relation between types that have the same structure.
-```
+>
+> Structural subtyping defines an implicit relation between types that have the same structure.
 
 In haxe, structural subtyping is only possible when assigning a class instance to a structure. The following example is part of the [manual/Lambda] class of the Haxe standard library ([manual/Standard_Library]):
 

@@ -17,8 +17,6 @@ trace("The sum of " +x+ " and 3 is " + (x + 3));
 ```
 Of course the use of single-quote enclosed strings without any interpolation remains valid, but care has to be taken regarding the $ character as it triggers interpolation. If an actual dollar-sign should be used in the string, `$$` can be used.
 
-```
-Trivia: String Interpolation before haxe 3
-
-String Interpolation has been a haxe feature since version 2.09. Back then, the macro `Std.format` had to be used, being both slower and less comfortable than the new string interpolation syntax.
-```
+> Trivia: String Interpolation before haxe 3
+>
+> String Interpolation has been a haxe feature since version 2.09. Back then, the macro `Std.format` had to be used, being both slower and less comfortable than the new string interpolation syntax.

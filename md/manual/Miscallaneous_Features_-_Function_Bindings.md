@@ -20,10 +20,8 @@ A call to `f(1)` then actually invokes `map.set(1, "12")`, the calls to `f(2)` a
 
 The underscore `_` can be skipped for trailing arguments, so the the first argument could be bound through `map.set.bind(1)`, yielding a `String->Void` function that sets a new value for index `1` on invocation.
 
-```
-Trivia: Callback
-
-Prior to haxe 3, haxe used to know a `callback`-keyword which could be called with a function argument followed by any number of binding arguments. The name originated from a common usage were a callback-function is created with the this-object being bound.
+> Trivia: Callback
+>
+> Prior to haxe 3, haxe used to know a `callback`-keyword which could be called with a function argument followed by any number of binding arguments. The name originated from a common usage were a callback-function is created with the this-object being bound.
 
 Callback would allow binding of arguments only from left to right as there was no support for the underscore `_`. The choice to use an underscore was controversial and several other suggestions were made, none of which were considered superior. After all, the underscore `_` at least looks like it's saying "fill value in here", which nicely describes its semantics.
-```

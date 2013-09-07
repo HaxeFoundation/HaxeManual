@@ -1,8 +1,7 @@
-```
-Define: Bool
+> Define: Bool
 
-Represents a value which can be either **true** or **false**
-```
+>
+> Represents a value which can be either **true** or **false**
 Values of type `Bool` appear commonly in **conditions** such as `if` (section [manual/if]) and `while` (section [manual/while]). The following **operators** accept and return `Bool` values:
 
 

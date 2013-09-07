@@ -47,8 +47,6 @@ We can see that access to `child1.baseField()` is allowed from within `Child2` e
 
 More fine-grained control of access can be achieved using [manual/Access_Control].
 
-```
-Trivia: Protected
-
-Haxe has no notion of a `protected` keyword known from Java, C++ and other object-oriented languages. However, its `private` behavior is equal to those language's protected behavior, so Haxe actually lacks their real private behavior.
-```
+> Trivia: Protected
+>
+> Haxe has no notion of a `protected` keyword known from Java, C++ and other object-oriented languages. However, its `private` behavior is equal to those language's protected behavior, so Haxe actually lacks their real private behavior.

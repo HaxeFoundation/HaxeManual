@@ -1,5 +1,4 @@
-```
-Define: String
+> Define: String
 
-A String is a sequence of characters.
-```
+>
+> A String is a sequence of characters.

@@ -25,8 +25,6 @@ The compiler checks if the `implements` assumption holds. That is, it makes sure
 
 Interface fields are not limited to methods, they can be variables and properties as well.
 
-```
-Trivia: Implements Syntax
-
-Haxe versions prior to 3.0 required multiple `implements` keywords to be separated by a comma. We decided to adhere to the de-facto standard of Java and got rid of the comma. This was one of the breaking changes between haxe 2 and 3.
-```
+> Trivia: Implements Syntax
+>
+> Haxe versions prior to 3.0 required multiple `implements` keywords to be separated by a comma. We decided to adhere to the de-facto standard of Java and got rid of the comma. This was one of the breaking changes between haxe 2 and 3.

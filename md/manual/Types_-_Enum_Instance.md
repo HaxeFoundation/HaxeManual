@@ -20,8 +20,7 @@ Semantically, this enum describes a color which is either red, green, blue or a 
 
 The haxe type system provides a type which unifies with all enum types:
 
-```
-Define: Enum
+> Define: Enum
 
-This type is compatible with all enum types. At compile-time, `Enum<T>` can be considered to be the common base type of all enum types. However, this relation is not reflected in generated code.
-```
+>
+> This type is compatible with all enum types. At compile-time, `Enum<T>` can be considered to be the common base type of all enum types. However, this relation is not reflected in generated code.
