@@ -1197,6 +1197,23 @@ It should be noted that the explicit type is not required if there is an initial
 
 \subsubsection{Visibility}
 \label{Visibility}
+
+Fields are by default \emph{private}, meaning that only the class and its sub-classes may access them. They can be made \emph{public} by using the \expr{public} access modifier, allowing access from anywhere.
+
+\lstinputlisting{assets/Visibility.hx}
+
+Access to field \expr{available} of class \type{MyClass} is allowed from within \type{Main} is allowed because it is denoted as being \expr{public}. However, while access to field \expr{unavailable} is allowed from within class \type{MyClass}, it is not allowed from within class \type{Main} because it is \expr{private} (explicitly, although this identifier is redundant here).
+
+The example demonstrates visibility through \emph{static} fields, but the rules for member fields are equivalent. The following example demonstrates visibility behavior for when \fullref{Inheritance} is involved.
+
+\lstinputlisting{assets/Visibility2.hx}
+
+We can see that access to \expr{child1.baseField()} is allowed from within \type{Child2} even though \expr{child1} is of a different type, \type{Child1}. This is because the field is defined on their common ancestor class \type{Base}, contrary to field \expr{child1Field} which can not be accessed from within \type{Child2}.
+
+More fine-grained control of access can be achieved using \fullref{Access Control}.
+
+\trivia{Protected}{Haxe has no notion of a \expr{protected} keyword known from Java, C++ and other object-oriented languages. However, its \expr{private} behavior is equal to those language's protected behavior, so Haxe actually lacks their real private behavior.}
+
 \subsubsection{Inline}
 \label{Inline}
 
