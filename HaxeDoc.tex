@@ -396,7 +396,7 @@ Instances of classes are created by calling the class constructor, a process com
 \begin{lstlisting}
 var p = new Point(-1, 65);
 \end{lstlisting}
-This will yield an instance of class \type{Point}, which is assigned to a variable named \expr{p}. The constructor of \type{Point} receives the two arguments \expr{-1} and \expr{65} and assigns them to the instance variables \expr{x} and \expr{y} respectively (compare its definition in \fullref{Class Instance})). We will revisit the exact meaning of the new-expression later in section \ref{new}, for now we just consider it calling the class constructor and returning the appropriate object.
+This will yield an instance of class \type{Point}, which is assigned to a variable named \expr{p}. The constructor of \type{Point} receives the two arguments \expr{-1} and \expr{65} and assigns them to the instance variables \expr{x} and \expr{y} respectively (compare its definition in \fullref{Class Instance}). We will revisit the exact meaning of the new-expression later in section \ref{new}, for now we just consider it calling the class constructor and returning the appropriate object.
 
 
 
@@ -651,7 +651,7 @@ While haxe has a static type system, this type system can effectively be turned 
 \begin{itemize}
 	\item The compiler can no longer type-check assignments, function calls and other constructs where specific types are expected.
 	\item Certain optimizations, in particular when compiling to static targets, can no longer be employed.
-	\item Some common errors, e.g. a typo in a field access, can not be caught at compile-time and likely causes an error at runtime.
+	\item Some common errors, e.g. a typo in a field access, can not be caught at compile-time and likely cause an error at runtime.
 	\item \Fullref{Dead Code Elimination} cannot detect used fields if they are used through \type{Dynamic}.
 \end{itemize}
 It is very easy to come up with examples where the usage of \type{Dynamic} can cause problems at runtime. Consider compiling the following two lines to a static target:
@@ -695,6 +695,7 @@ Implementing \type{Dynamic} does not satisfy the requirements of other implement
 
 
 \subsection{Abstract}
+\label{Abstract}
 
 An abstract type is a type which is, at runtime, actually a different type. It is a compile-time feature which defines types ``over'' concrete types in order to modify or augment their behavior:
 
@@ -755,7 +756,7 @@ When using this kind of cast, calls to that functions are inserted were required
 var a = _ImplicitCastField.MyAbstract_Impl_.fromString("3");
 var b = _ImplicitCastField.MyAbstract_Impl_.toArray(a);
 \end{lstlisting}
-This can be further optimize by inlining (\cref{Inline}) both cast functions, turning the output to this:
+This can be further optimized by inlining (\cref{Inline}) both cast functions, turning the output to this:
 
 \begin{lstlisting}
 var a = Std.parseInt("3");
@@ -1472,6 +1473,7 @@ An exhaustive list of all built-in defines can be obtained by invoking the haxe 
 \label{Using-Mixins}
 
 \subsection{Pattern Matching}
+\label{Pattern Matching}
 
 \subsection{String Interpolation}
 
@@ -1528,6 +1530,7 @@ The compiler automatically defines the flag \expr{dce} with a value of either \e
 
 
 \subsection{Function Bindings}
+\label{Function Bindings}
 
 Haxe 3 allows binding functions with partially applied arguments. Each function type can be considered to have a \expr{bind} field, which can be called with the desired number of arguments in order to create a new function. This is demonstrated here:
 
