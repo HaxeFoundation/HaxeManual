@@ -9,8 +9,8 @@ Whenever an instance of `Array` is created, its type parameter `T` becomes a [ma
 
 
 
-* by invoking the constructor with explicit types (`new Array<String>()`) or
-* by [manual/Type_Inference], e.g. when invoking `arrayInstance.push("foo")`.
+* explicitly by invoking the constructor with explicit types (`new Array<String>()`) or
+* implicitly by [manual/Type_Inference], e.g. when invoking `arrayInstance.push("foo")`.
 
 
 Inside the definition of a class with type parameters, these type parameters are an unspecific type. Unless [manual/Constraints] are added, the compiler has to assume that the type parameters could be used with any type. As a consequence, it is not possible to access fields of type parameters or [manual/cast] to a a type parameter type. It is also not possible to create a new instance of a type parameter type, unless the type parameter is [manual/Generic] and constrained accordingly. 

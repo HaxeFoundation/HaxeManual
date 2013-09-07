@@ -15,10 +15,10 @@ We will explore type inference in detail later in [manual/Type_Inference]. For n
 
 
 
- * an object of a given class or interface
- * a value of a haxe enumeration
- * an anonymous structure, i.e. a collection of named fields
- * a compound type of several arguments and one return
- * a wildcard type which is compatible to any type
- * an abstract value type
- * an unknown type, which may later become a different type
+ * Class instance: an object of a given class or interface
+ * Enum instance: a value of a haxe enumeration
+ * Structure: an anonymous structure, i.e. a collection of named fields
+ * Function: a compound type of several arguments and one return
+ * Dynamic: a wildcard type which is compatible to any type
+ * Abstract: an abstract value type
+ * Monomorph: an unknown type, which may later become a different type

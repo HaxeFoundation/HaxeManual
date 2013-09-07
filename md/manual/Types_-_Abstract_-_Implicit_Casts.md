@@ -2,8 +2,8 @@ Unlike classes, abstracts allow defining implicit casts. There are two kinds of 
 
 
 
-* Allows direct casting of the abstract type to or from another type. This is defined by adding `to` and `from` rules to the abstract type, and is only allowed for types which unify with the underlying type of the abstract.
-* Allows casting via calls to special cast functions. These functions are defined using `@:to` and `@:from` metadata. This kind of cast is allowed for all types.
+* Direct: Allows direct casting of the abstract type to or from another type. This is defined by adding `to` and `from` rules to the abstract type, and is only allowed for types which unify with the underlying type of the abstract.
+* Class field: Allows casting via calls to special cast functions. These functions are defined using `@:to` and `@:from` metadata. This kind of cast is allowed for all types.
 
 
 The following code example shows an example of **direct** casting:

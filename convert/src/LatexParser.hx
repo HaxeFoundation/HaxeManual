@@ -107,7 +107,9 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 							listMode.pop();
 							listMode.add(Enumerate(c + 1));
 							'$c.';
-						case _:
+						case Description:
+							'* $subject';
+						case Itemize:
 							"*";
 					}
 					buffer.add('$bullet$s');
