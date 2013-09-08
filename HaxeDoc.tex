@@ -1494,6 +1494,129 @@ An exhaustive list of all built-in defines can be obtained by invoking the haxe 
 \subsection{Pattern Matching}
 \label{Pattern Matching}
 
+\subsubsection{Introduction}
+
+Haxe 3 comes with improved options for pattern matching. Here we will explore the syntax for different patterns using this data structure as running example:
+
+\lstinputlisting[firstline=1,lastline=4]{assets/PatternMatching.hx}
+
+Some pattern matcher basics include:
+
+\begin{itemize}
+	\item Patterns will always be matched from top to bottom.
+	\item The topmost pattern that matches the input value has its expression executed.
+	\item A \expr{_} pattern matches anything, so \expr{case _}: is equal to \expr{default:}
+\end{itemize}
+
+\subsubsection{Enum matching}
+
+As with haxe 2, enums can be matched by their constructors in a natural way. With haxe 3 pattern matching, this match can now be "deep":
+
+\lstinputlisting[firstline=8,lastline=19]{assets/PatternMatching.hx}
+
+The pattern matcher will check each case from top to bottom and pick the first one that matches the input value. If you are not too familiar with pattern matching, the following manual interpretation of each case rule might help:
+
+\begin{description}
+	\item[\expr{case Leaf(_)}:] matching fails because \expr{myTree} is a \expr{Node}
+	\item[\expr{case Node(_, Leaf(_))}:] matching fails because the right sub-tree of \expr{myTree} is not a \expr{Leaf}, but another \expr{Node}
+	\item[\expr{case Node(_, Node(Leaf("bar"), _))}:] matching succeeds
+	\item[\expr{case _}:] this is not checked here because the previous line matched
+\end{description}
+
+\subsubsection{Variable capture}
+
+It is possible to catch any value of a sub-pattern by matching it against an identifier:
+
+\lstinputlisting[firstline=22,lastline=28]{assets/PatternMatching.hx}
+
+This would return one of the following:
+
+\begin{itemize}
+	\item If \expr{myTree} is a \expr{Leaf}, its name is returned.
+	\item If \expr{myTree} is a \expr{Node} whose left sub-tree is a \expr{Leaf}, its name is returned (this will apply here, returning \expr{"foo"}).
+	\item Otherwise \expr{"none"} is returned.
+\end{itemize}
+
+It is also possible to use = to capture values which are further matched:
+
+\lstinputlisting[firstline=30,lastline=34]{assets/PatternMatching.hx}
+
+Here, \expr{leafNode} is bound to \expr{Leaf("foo")} if the input matches that. In all other cases, \expr{myTree} itself is returned: \expr{case x} works similar to \expr{case _} in that it matches anything, but with an identifier name like \expr{x} it also binds the matched value to that variable.
+
+\subsubsection{Structure matching}
+
+It is now also possible to match against the fields of anonymous structures and instances:
+
+\lstinputlisting[firstline=36,lastline=32]{assets/PatternMatching.hx}
+
+Note that in the second case, we bind the matched \expr{name} field to identifier \expr{n} if \expr{rating} matches \expr{"awesome"}. Of course you could also put this structure into the \type{Tree} from the previous example and combine structure and enum matching.
+
+A limitation with regards to class instances is that you cannot match against fields of their parent class.
+
+\subsubsection{Array matching}
+
+Arrays can be matched on fixed length:
+
+\lstinputlisting[firstline=45,lastline=53]{assets/PatternMatching.hx}
+
+This will trace \expr{1} because \expr{array[1]} matches \expr{6}, and \expr{array[0]} is allowed to be anything.
+
+\subsubsection{Or patterns}
+
+The \expr{|} operator can be used anywhere within patterns to describe multiple accepted patterns:
+
+\lstinputlisting[firstline=56,lastline=61]{assets/PatternMatching.hx}
+
+If there's a captured variable in an or-pattern, it must appear in both its sub-patterns.
+
+\subsubsection{Guards}
+
+It is also possible to further restrict patterns with the \expr{case ... if(condition):} syntax:
+
+\lstinputlisting[firstline=64,lastline=72]{assets/PatternMatching.hx}
+
+Note how the first case has an additional guard condition \expr{if (b > a)}. It will only be selected if that condition holds, otherwise matching continues with the next case.
+
+\subsubsection{Match on multiple values}
+
+Array syntax can also be used to match on multiple values:
+
+\lstinputlisting[firstline=75,lastline=80]{assets/PatternMatching.hx}
+
+This is quite similar to usual array matching, but there are differences:
+
+\begin{itemize}
+	\item The number of elements is fixed, so patterns of different array length will not be accepted.
+	\item It is not possible to capture the switch value in a variable, i.e. \expr{case x} is not allowed (\expr{case _} still is).
+\end{itemize}
+
+\subsubsection{Exhaustiveness checks}
+
+The compiler ensures that you do not forget a possible case for non value-only switches:
+
+\begin{lstlisting}
+switch(true) {
+    case false:
+} // This match is not exhaustive, these patterns are not matched: true
+\end{lstlisting}
+
+The matched type \type{Bool} admits two values \expr{true} and \expr{false}, but only \expr{false} is checked. 
+
+\subsubsection{Useless pattern checks}
+
+In a similar fashion, the compiler detects patterns which will never match the input value:
+
+\begin{lstlisting}
+switch(Leaf("foo")) {
+    case Leaf(_)
+       | Leaf("foo"): // This pattern is unused
+    case Node(l,r):
+    case _: // This pattern is unused
+}
+\end{lstlisting}
+
+
+
 \subsection{String Interpolation}
 
 With haxe 3 it is no longer necessary to manually concatenate parts of a string due to the introduction of \emph{String Interpolation}. Special identifiers, denoted by the dollar sign \expr{\$} within a String enclosed by single-quote \expr{'} characters, are evaluated as if they were concatenated identifiers:
@@ -1568,6 +1691,7 @@ Callback would allow binding of arguments only from left to right as there was n
 
 \subsection{Access Control}
 \label{Access Control}
+
 
 \subsection{Remoting}
 
