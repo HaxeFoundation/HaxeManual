@@ -28,6 +28,9 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 	var buffer:StringBuf;
 	var codeMode:Bool;
 	var exprMode:Bool;
+	var tableMode:Bool;
+	var hlineCount:Int;
+	var tableFieldCount:Int;
 	var listMode:GenericStack<ListMode>;
 	
 	public function new(input, sourceName) {
@@ -39,6 +42,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 		listMode = new GenericStack<ListMode>();
 		codeMode = false;
 		exprMode = false;
+		tableMode = false;
 	}
 	
 	public function parse() {
@@ -78,8 +82,11 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 				case [TBegin("center")]:
 				case [TEnd("center")]:
 				case [TBegin("tabular"), _ = popt(tableFormat)]:
+					tableMode = true;
+					hlineCount = 0;
+					tableFieldCount = 0;
 				case [TEnd("tabular")]:
-				case [TCommand(CHline)]:
+					tableMode = false;
 					
 				// code
 				case [TBegin("lstlisting")]:
@@ -180,7 +187,9 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 					sec.push(mkSection(s, sec.length));
 									
 				// misc
-				case [TCommand(CMulticolumn), TBrOpen, _ = text(), TBrClose, TBrOpen, _ = text(), TBrClose, TBrOpen, _ = text(), TBrClose]:
+				case [TCommand(CMulticolumn), TBrOpen, _ = text(), TBrClose, TBrOpen, _ = text(), TBrClose, TBrOpen, s = text(), TBrClose]:
+					buffer.add('\n##### $s\n');
+					hlineCount = 0;
 				
 				case [TEnd("document")]: break;
 				case [TEof]: throw "Found eof before \\end{document}";
@@ -194,6 +203,13 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 			case [TTab]:
 				codeMode ? "\t" : "";
 			case [TDollar]: codeMode ? "$" : "";
+			case [TAmp]:
+				if (tableMode && !exprMode) {
+					if (hlineCount == 1) tableFieldCount++;
+					" |";
+				} else {
+					"&";
+				}
 			case [TCommand(CTextasciitilde)]: "~";
 			case [TCommand(CEmph), TBrOpen, s = text(), TBrClose]: '**$s**';
 			case [TCommand(CIt), TBrOpen, s = text(), TBrClose]: '*$s*';
@@ -207,7 +223,13 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 			case [TCustomCommand("expr")]:
 				exprMode = true;
 				var s = switch stream {
-					case [TBrOpen, s = text(), TBrClose]: '`$s`';
+					case [TBrOpen, s = text(), TBrClose]:
+						if (tableMode) {
+							s = s.htmlEscape().replace("|", "&#124;");
+							'<code>$s</code>';
+						} else {
+							'`$s`';
+						}
 					case _: unexpected();
 				}
 				exprMode = false;
@@ -221,7 +243,19 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 				lastSection.label = s;
 				labelMap[s] = lastSection;
 				"";
-			case [TNewline]: "\n";
+			case [TCommand(CHline)]:
+				if (tableMode) {
+					hlineCount++;
+					if (hlineCount == 2) {
+						[for (i in 0...tableFieldCount + 1) "---"].join(" | ") + "\n";
+					} else {
+						"";
+					}
+				} else {
+					"---\n";
+				}
+			case [TNewline]: tableMode ? "" : "\n";
+			case [TDoubleBackslash]: "\n";
 		}
 		if (s == null) noMatch();
 		var s2 = popt(text);
@@ -235,7 +269,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 			case [TCustomCommand("fullref"), TBrOpen, s = text(), TBrClose]: s;
 			case [TCustomCommand("cref"), TBrOpen, s = text(), TBrClose]: s;
 		}
-		return '##$s##';
+		return '~~~$s~~~';
 	}
 	
 	function tableFormat() {

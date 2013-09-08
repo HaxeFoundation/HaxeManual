@@ -9,7 +9,9 @@ enum LatexToken {
 	TBkOpen;
 	TBkClose;
 	TNewline;
+	TDoubleBackslash;
 	TTab;
 	TDollar;
+	TAmp;
 	TEof;
 }

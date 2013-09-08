@@ -14,7 +14,7 @@ class Main{
 			return s.replace("?", "").replace("/", "_").replace(" ", "_");
 		}
 		function process(s:String):String {
-			return ~/##([^#]+)##/g.map(s, function(r) {
+			return ~/~~~([^~]+)~~~/g.map(s, function(r) {
 				var i = r.matched(1);
 				if (!parser.labelMap.exists(i)) {
 					trace('Warning: No such label $i');
