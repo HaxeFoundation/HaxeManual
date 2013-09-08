@@ -136,7 +136,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 							listMode.add(Enumerate(c + 1));
 							'$c.';
 						case Description:
-							'* $subject';
+							'* **$subject**';
 						case Itemize:
 							"*";
 					}

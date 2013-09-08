@@ -18,9 +18,9 @@ There is nothing to worry about when working with `null` on dynamic targets, but
 
 
 
-* `Int`: `0`
-* `Float`: `NaN` on Flash 9, `0.0` on other static targets
-* `Bool`: `false`
+* **`Int`:** `0`
+* **`Float`:** `NaN` on Flash 9, `0.0` on other static targets
+* **`Bool`:** `false`
 
 
 As a consequence, the haxe compiler does not allow assigning `null` to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as `Null<T>`:

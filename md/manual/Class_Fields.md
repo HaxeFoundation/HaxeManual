@@ -4,9 +4,9 @@ There are three kinds of class fields:
 
 
 
-* Variable: A [manual/Variable] class field holds a value of a certain type, which can be read or written.
-* Property: A [manual/Property] class field defines a custom access behavior for something that, outside the class, looks like a variable field.
-* Method: A [manual/Method] is a function which can be called to execute code.
+* **Variable:** A [manual/Variable] class field holds a value of a certain type, which can be read or written.
+* **Property:** A [manual/Property] class field defines a custom access behavior for something that, outside the class, looks like a variable field.
+* **Method:** A [manual/Method] is a function which can be called to execute code.
 
 
 Strictly speaking, a variable could be considered to be a property with certain access modifiers. Indeed, the haxe compiler does not distinguish variables and properties during its typing phase, but they remain separated at syntax level.

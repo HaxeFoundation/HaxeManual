@@ -11,6 +11,6 @@ We can identify different kinds of macros, which are run at specific compilation
 
 
 
-* Initialization Macros: These are provided by command line using the `--macro` compiler parameter. They are executed after the compiler arguments were processed and the **typer context** has been created, but before any typing was done (see [manual/Compiler_Configuration]).
-* Build Macros: These are defined for classes, enums and abstracts through the `@:build` or `@:autoBuild` metadata. They are executed per-type, after the type has been set up (including its relation to other types, such as inheritance for classes) but before its fields are typed (see [manual/Type_Building]).
-* Expression Macros: These are normal functions which are executed as soon as they are typed.
+* **Initialization Macros:** These are provided by command line using the `--macro` compiler parameter. They are executed after the compiler arguments were processed and the **typer context** has been created, but before any typing was done (see [manual/Compiler_Configuration]).
+* **Build Macros:** These are defined for classes, enums and abstracts through the `@:build` or `@:autoBuild` metadata. They are executed per-type, after the type has been set up (including its relation to other types, such as inheritance for classes) but before its fields are typed (see [manual/Type_Building]).
+* **Expression Macros:** These are normal functions which are executed as soon as they are typed.
