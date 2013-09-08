@@ -3,6 +3,8 @@ import haxe.ds.GenericStack;
 import LatexToken;
 import LatexCommand;
 
+using StringTools;
+
 typedef Section = {
 	title: String,
 	label: String,
@@ -85,8 +87,34 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 				case [TEnd("lstlisting")]:
 					codeMode = false;
 					buffer.add("```");
-				case [TCustomCommand("lstinputlisting"), title = popt(bracketArg), TBrOpen, s = text(), TBrClose]:
+				case [TCustomCommand("lstinputlisting"), options = popt(bracketArg), TBrOpen, s = text(), TBrClose]:
 					var f = sys.io.File.getContent(s);
+					var f = if (options == null) {
+						f;
+					} else {
+						var config = options.split(",");
+						var firstline = 0;
+						var lastline = 0;
+						for (cfg in config) {
+							var kv = cfg.split("=");
+							switch(kv[0]) {
+								case "firstline": firstline = Std.parseInt(kv[1]);
+								case "lastline": lastline = Std.parseInt(kv[1]);
+							}
+						}
+						if (firstline > 0 && lastline > 0) {
+							f = f.replace("\r", "");
+							var lines = f.split("\n");
+							var tcount = 0;
+							while(true) {
+								if (lines[firstline].charCodeAt(tcount) != "\t".code) break;
+								tcount++;
+							}
+							[for (i in firstline...lastline) lines[i].substr(tcount)].join("\n");
+						} else {
+							f;
+						}
+					}
 					buffer.add("```\n");
 					buffer.add(f);
 					buffer.add("\n```");
