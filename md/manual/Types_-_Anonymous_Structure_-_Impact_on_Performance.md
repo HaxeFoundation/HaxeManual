@@ -1,1 +1,0 @@
-Using structures and by extension [manual/Structural_Subtyping] has no impact on performance when compiling to dynamic targets ([manual/Nullability_of_Basic_Types]). However, on static targets ([manual/Nullability_of_Basic_Types]) a dynamic lookup has to be performed, which is typically slower than a static field access.

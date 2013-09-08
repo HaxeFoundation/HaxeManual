@@ -1,1 +1,0 @@
-Unification of types having or being a [manual/Monomorph] are detailed in [manual/Type_Inference].

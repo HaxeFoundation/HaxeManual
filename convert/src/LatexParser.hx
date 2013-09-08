@@ -9,7 +9,8 @@ typedef Section = {
 	title: String,
 	label: String,
 	content: String,
-	sub: Array<Section>
+	sub: Array<Section>,
+	index: Int
 }
 
 enum ListMode {
@@ -167,12 +168,14 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 					
 				// section
 				case [TCommand(CSection), TBrOpen, s = text(), TBrClose]:
-					sections.push(mkSection(s));
+					sections.push(mkSection(s, sections.length));
 				case [TCommand(CSubsection), TBrOpen, s = text(), TBrClose]:
-					sections[sections.length - 1].sub.push(mkSection(s));
+					var sec = sections[sections.length - 1].sub;
+					sec.push(mkSection(s, sec.length));
 				case [TCommand(CSubsubsection), TBrOpen, s = text(), TBrClose]:
 					var sec = sections[sections.length - 1].sub;
-					sec[sec.length - 1].sub.push(mkSection(s));
+					var sec = sec[sec.length - 1].sub;
+					sec.push(mkSection(s, sec.length));
 									
 				// misc
 				case [TCommand(CMulticolumn), TBrOpen, _ = text(), TBrClose, TBrOpen, _ = text(), TBrClose, TBrOpen, _ = text(), TBrClose]:
@@ -253,12 +256,12 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 		}
 	}
 	
-	function mkSection(title:String) {
+	function mkSection(title:String, index:Int) {
 		if (lastSection != null) {
 			lastSection.content = buffer.toString();
 			buffer = new StringBuf();
 		}
-		lastSection = {title: title, label: null, content: "", sub: []};
+		lastSection = {title: title, label: null, content: "", sub: [], index:index};
 		return lastSection;
 	}
 }

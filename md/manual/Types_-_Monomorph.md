@@ -1,1 +1,0 @@
-A monomorph is a type which may, through [manual/Unification], morph into a different type later. We shall see details about this type when talking about [manual/Type_Inference].

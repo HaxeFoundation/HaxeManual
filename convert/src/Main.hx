@@ -24,13 +24,15 @@ class Main{
 			});
 		}
 		sys.FileSystem.createDirectory(out);
-		function write(sec:Section, ?parentTitle:String) {
-			var title = (parentTitle == null ? "" : parentTitle + "_-_") + escapeFileName(sec.title);
+		function write(sec:Section, ?parentIndex:String) {
+			var index = (parentIndex == null ? "" : parentIndex + ".") + (sec.index + 1);
+			var title = index + "-" + escapeFileName(sec.title);
 			for (sub in sec.sub) {
-				write(sub, title);
+				write(sub, index);
 			}
 			var content = process(sec.content.trim());
 			if (content.length == 0) return;
+			content = '## $index ${sec.title}\n\n' + content;
 			sys.io.File.saveContent('$out/$title.md', content);
 		}
 		for (sec in sections) {
