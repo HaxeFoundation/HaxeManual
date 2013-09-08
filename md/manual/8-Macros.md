@@ -19,6 +19,6 @@ We can identify different kinds of macros, which are run at specific compilation
 
 ---
 
-Previous section: [Function Bindings](https://github.com/Simn/HaxeManual/tree/master/md/manual/7.7-Function_Bindings.md)
+Previous section: [Completion](https://github.com/Simn/HaxeManual/tree/master/md/manual/7.13-Completion.md)
 
 Next section: [Macro Context](https://github.com/Simn/HaxeManual/tree/master/md/manual/8.1-Macro_Context.md)

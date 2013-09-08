@@ -29,4 +29,4 @@ We will explore type inference in detail later in [Type Inference](https://githu
 
 Previous section: [History](https://github.com/Simn/HaxeManual/tree/master/md/manual/1.4-History.md)
 
-Next section: [Numeric types](https://github.com/Simn/HaxeManual/tree/master/md/manual/2.1.1-Numeric_types.md)
+Next section: [Basic Types](https://github.com/Simn/HaxeManual/tree/master/md/manual/2.1-Basic_Types.md)

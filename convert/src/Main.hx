@@ -34,7 +34,11 @@ class Main{
 		var allSections = [];
 		function add(sec:Section) {
 			sec.content = process(sec.content.trim());
-			if(sec.content.length != 0) allSections.push(sec);
+			if(sec.content.length == 0) {
+				if (sec.sub.length == 0) return;
+				sec.content = sec.sub.map(function(sec) return sec.id + ": " +link(sec)).join("\n\n");
+			}
+			allSections.push(sec);
 			for (sec in sec.sub) {
 				add(sec);
 			}
