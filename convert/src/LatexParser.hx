@@ -107,10 +107,10 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 							var lines = f.split("\n");
 							var tcount = 0;
 							while(true) {
-								if (lines[firstline].charCodeAt(tcount) != "\t".code) break;
+								if (lines[firstline - 1].charCodeAt(tcount) != "\t".code) break;
 								tcount++;
 							}
-							[for (i in firstline...lastline) lines[i].substr(tcount)].join("\n");
+							[for (i in firstline - 1...lastline) lines[i].substr(tcount)].join("\n");
 						} else {
 							f;
 						}

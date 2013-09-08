@@ -1,6 +1,7 @@
 Haxe 3 comes with improved options for pattern matching. Here we will explore the syntax for different patterns using this data structure as running example:
 
 ```
+enum Tree<T> {
     Leaf(v:T);
     Node(l:Tree<T>, r:Tree<T>);
 }

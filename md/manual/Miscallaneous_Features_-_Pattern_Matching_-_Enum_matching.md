@@ -1,6 +1,7 @@
 As with haxe 2, enums can be matched by their constructors in a natural way. With haxe 3 pattern matching, this match can now be "deep":
 
 ```
+var myTree = Node(Leaf("foo"), Node(Leaf("bar"), Leaf("foobar")));
 var match = switch(myTree) {
 	// matches any Leaf
 	case Leaf(_): "0";

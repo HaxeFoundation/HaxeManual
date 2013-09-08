@@ -1,6 +1,7 @@
 It is also possible to further restrict patterns with the `case ... if(condition):` syntax:
 
 ```
+var myArray = [7, 6];
 var s = switch(myArray) {
 	case [a, b] if (b > a):
 		b + ">" +a;

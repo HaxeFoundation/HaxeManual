@@ -1,6 +1,7 @@
 Arrays can be matched on fixed length:
 
 ```
+var myArray = [1, 6];
 var match = switch(myArray) {
 	case [2, _]: "0";
 	case [_, 6]: "1";

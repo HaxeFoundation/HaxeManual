@@ -1,11 +1,12 @@
 Array syntax can also be used to match on multiple values:
 
 ```
-case [1, false, "bar"]: "0";
-case [_, true, _]: "1";
-case [_, false, _]: "2";
-
-race(s); // 2
+var s = switch [1, false, "foo"] {
+	case [1, false, "bar"]: "0";
+	case [_, true, _]: "1";
+	case [_, false, _]: "2";
+}
+trace(s); // 2
 ```
 
 This is quite similar to usual array matching, but there are differences:
