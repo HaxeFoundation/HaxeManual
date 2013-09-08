@@ -1591,9 +1591,31 @@ Callback would allow binding of arguments only from left to right as there was n
 
 Macros are without a doubt the most advanced feature in haxe. They are often perceived as dark magic that only a select few are capable of mastering, yet there is nothing magical (and certainly nothing dark) about them.
 
+\define{Abstract Syntax Tree (AST)}{The AST is the result of \emph{parsing} Haxe code into a typed structure. This structure is exposed to macros through the types defined in the file \expr{haxe/macro/Expr.hx} of the Haxe standard library.}
+
 A basic macro is a \emph{syntax-transformation}. It receives zero or more \fullref{Expressions} and also returns an expression. If a macro is called, it effectively inserts code at the place it was called from. In that respect, it could be compared to a preprocessor like \expr{\#define} in C++, but a haxe macro is not a textual replacement tool.
 
-\subsection{Context}
+We can identify different kinds of macros, which are run at specific compilation stages:
+
+\begin{description}
+	\item[Initialization Macros:] These are provided by command line using the \ic{--macro} compiler parameter. They are executed after the compiler arguments were processed and the \emph{typer context} has been created, but before any typing was done (see \fullref{Compiler Configuration}).
+	\item[Build Macros:] These are defined for classes, enums and abstracts through the \expr{@:build} or \expr{@:autoBuild} metadata. They are executed per-type, after the type has been set up (including its relation to other types, such as inheritance for classes) but before its fields are typed (see \fullref{Type Building}).
+	\item[Expression Macros:] These are normal functions which are executed as soon as they are typed.
+\end{description}
+	
+\subsection{Macro Context}
+
+\define{Macro Context}{The macro context is the environment in which the macro is executed. Depending on the macro type, it can be considered to be a class being built or a function being typed. Contextual information can be obtained through the \ic{haxe.macro.Context} API.}
+
+Haxe macros have access to different contextual information depending on the macro type. Other than querying such information, the context also allows some modifications such as defining a new type or registering certain callbacks. It is important to understand that not all information is available for all macro kinds, as the following examples demonstrate:
+
+\begin{itemize}
+	\item Initialization macros will find that the \expr{Context.getLocal*()} methods return \expr{null}. There is no local type or method in the context of an initialization macro.
+	\item Only build macros get a proper return value from \expr{Context.getBuildFields()}. There are no fields being built for the other macro kinds.
+	\item Build macros have a local type (if incomplete), but no local method, so \expr{Context.getLocalMethod()} returns \expr{null}.
+\end{itemize}
+
+The context API is complemented by the \expr{haxe.macro.Compiler} API detailed in \fullref{Compiler Configuration}. While this API is available to all macro kinds, care has to be taken for any modification outside of initialization macros. This stems from the natural limitation of undefined build order (see \ref{Build Order}), which could cause e.g. a flag definition through \expr{Compiler.define()} to take effect before or after a conditional compilation (\ref{Conditional Compilation}) check against that flag.
 
 \subsection{Arguments}
 
@@ -1625,14 +1647,18 @@ Expression reification is used to create instances of \type{haxe.macro.Expr} in 
 \subsection{Tools}
 
 \subsection{Type Building}
+\label{Type Building}
 
 \subsection{Limitations}
 
 \subsubsection{Macro-in-Macro}
 \subsubsection{Using}
+\subsubsection{Build Order}
+\label{Build Order}
 
 \subsubsection{Type Parameters}
 
 \subsection{Compiler Configuration}
+\label{Compiler Configuration}
 
 \end{document}
