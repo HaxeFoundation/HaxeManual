@@ -6,9 +6,9 @@ There are three kinds of class fields:
 
 
 
-* **Variable:** A [Variable](https://github.com/Simn/HaxeManual/tree/master/md/manual/4.1-Variable.md) class field holds a value of a certain type, which can be read or written.
-* **Property:** A [Property](https://github.com/Simn/HaxeManual/tree/master/md/manual/4.2-Property.md) class field defines a custom access behavior for something that, outside the class, looks like a variable field.
-* **Method:** A [Method](https://github.com/Simn/HaxeManual/tree/master/md/manual/4.3-Method.md) is a function which can be called to execute code.
+* Variable: A [Variable](https://github.com/Simn/HaxeManual/tree/master/md/manual/4.1-Variable.md) class field holds a value of a certain type, which can be read or written.
+* Property: A [Property](https://github.com/Simn/HaxeManual/tree/master/md/manual/4.2-Property.md) class field defines a custom access behavior for something that, outside the class, looks like a variable field.
+* Method: A [Method](https://github.com/Simn/HaxeManual/tree/master/md/manual/4.3-Method.md) is a function which can be called to execute code.
 
 
 Strictly speaking, a variable could be considered to be a property with certain access modifiers. Indeed, the haxe compiler does not distinguish variables and properties during its typing phase, but they remain separated at syntax level.
