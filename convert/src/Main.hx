@@ -10,8 +10,12 @@ class Main{
 		var parser = new LatexParser(input, "HaxeDoc.tex");
 		var sections = parser.parse();
 		var out = "md/manual";
+		var linkBase = "https://github.com/Simn/HaxeManual/tree/master/";
 		function escapeFileName(s:String) {
 			return s.replace("?", "").replace("/", "_").replace(" ", "_");
+		}
+		function url(sec:Section) {
+			return sec.id + "-" +(escapeFileName(sec.title)) + ".md";
 		}
 		function process(s:String):String {
 			return ~/~~~([^~]+)~~~/g.map(s, function(r) {
@@ -20,20 +24,19 @@ class Main{
 					trace('Warning: No such label $i');
 					return i;
 				}
-				return '[manual/${escapeFileName(parser.labelMap[i].title)}]';
+				var sec = parser.labelMap[i];
+				return '[${sec.title}]($linkBase$out/${url(sec)})';
 			});
 		}
 		sys.FileSystem.createDirectory(out);
-		function write(sec:Section, ?parentIndex:String) {
-			var index = (parentIndex == null ? "" : parentIndex + ".") + (sec.index + 1);
-			var title = index + "-" + escapeFileName(sec.title);
+		function write(sec:Section) {
 			for (sub in sec.sub) {
-				write(sub, index);
+				write(sub);
 			}
 			var content = process(sec.content.trim());
 			if (content.length == 0) return;
-			content = '## $index ${sec.title}\n\n' + content;
-			sys.io.File.saveContent('$out/$title.md', content);
+			content = '## ${sec.id} ${sec.title}\n\n' + content;
+			sys.io.File.saveContent('$out/${url(sec)}', content);
 		}
 		for (sec in sections) {
 			write(sec);

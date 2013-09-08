@@ -13,7 +13,7 @@ The explicit type annotations are not required in haxe, because the compiler can
 ```
 var myButton = new MySpecialButton(); // haxe
 ```
-We will explore type inference in detail later in [manual/Type_Inference]. For now, it is sufficient to say that variable `myButton` in above code is known to be an **instance of class** `MySpecialButton`. A class instance is one of seven type groups:
+We will explore type inference in detail later in [Type Inference](https://github.com/Simn/HaxeManual/tree/master/md/manual/3.4-Type_Inference.md). For now, it is sufficient to say that variable `myButton` in above code is known to be an **instance of class** `MySpecialButton`. A class instance is one of seven type groups:
 
 
 
