@@ -24,3 +24,9 @@ We will explore type inference in detail later in [Type Inference](https://githu
  * **Dynamic:** a wildcard type which is compatible to any type
  * **Abstract:** an abstract value type
  * **Monomorph:** an unknown type, which may later become a different type
+
+---
+
+Previous section: [History](https://github.com/Simn/HaxeManual/tree/master/md/manual/1.4-History.md)
+
+Next section: [Numeric types](https://github.com/Simn/HaxeManual/tree/master/md/manual/2.1.1-Numeric_types.md)

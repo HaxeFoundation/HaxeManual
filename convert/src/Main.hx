@@ -17,6 +17,9 @@ class Main{
 		function url(sec:Section) {
 			return sec.id + "-" +(escapeFileName(sec.title)) + ".md";
 		}
+		function link(sec:Section) {
+			return '[${sec.title}]($linkBase$out/${url(sec)})';
+		}
 		function process(s:String):String {
 			return ~/~~~([^~]+)~~~/g.map(s, function(r) {
 				var i = r.matched(1);
@@ -24,24 +27,29 @@ class Main{
 					trace('Warning: No such label $i');
 					return i;
 				}
-				var sec = parser.labelMap[i];
-				return '[${sec.title}]($linkBase$out/${url(sec)})';
+				return link(parser.labelMap[i]);
 			});
 		}
 		sys.FileSystem.createDirectory(out);
-		function write(sec:Section) {
-			for (sub in sec.sub) {
-				write(sub);
+		var allSections = [];
+		function add(sec:Section) {
+			sec.content = process(sec.content.trim());
+			if(sec.content.length != 0) allSections.push(sec);
+			for (sec in sec.sub) {
+				add(sec);
 			}
-			var content = process(sec.content.trim());
-			if (content.length == 0) return;
-			content = '## ${sec.id} ${sec.title}\n\n' + content;
-			sys.io.File.saveContent('$out/${url(sec)}', content);
 		}
 		for (sec in sections) {
-			write(sec);
+			add(sec);
 		}
-		
+		for (i in 0...allSections.length) {
+			var sec = allSections[i];
+			var content = '## ${sec.id} ${sec.title}\n\n' + sec.content;
+			content += "\n\n---";
+			if (i != 0) content += '\n\nPrevious section: ${link(allSections[i - 1])}';
+			if (i != allSections.length - 1) content += '\n\nNext section: ${link(allSections[i + 1])}';
+			sys.io.File.saveContent('$out/${url(sec)}', content);
+		}
 		var a = [for (k in parser.definitionMap.keys()) {k:k, v:parser.definitionMap[k]}];
 		a.sort(function(v1, v2) return Reflect.compare(v1.k.toLowerCase(), v2.k.toLowerCase()));
 		sys.io.File.saveContent('$out/dictionary.md', a.map(function(v) return '##### ${v.k}\n${process(v.v)}').join("\n\n"));

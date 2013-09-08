@@ -5,3 +5,9 @@ We learned about the different kinds of types in [Types](https://github.com/Simn
 A lot of type-safety is achieved by checking if two given types of above type groups are compatible. That is, the compiler tries to perform **unification** between them, as detailed in [Unification](https://github.com/Simn/HaxeManual/tree/master/md/manual/3.3-Unification.md).
 
 All types are organized in **modules** and can be addressed through **paths**. [Modules and Paths](https://github.com/Simn/HaxeManual/tree/master/md/manual/3.5-Modules_and_Paths.md) will give a detailed explanation of the related mechanics.
+
+---
+
+Previous section: [Monomorph](https://github.com/Simn/HaxeManual/tree/master/md/manual/2.9-Monomorph.md)
+
+Next section: [Typedef](https://github.com/Simn/HaxeManual/tree/master/md/manual/3.1-Typedef.md)

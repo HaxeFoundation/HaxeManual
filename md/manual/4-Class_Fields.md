@@ -14,3 +14,9 @@ There are three kinds of class fields:
 Strictly speaking, a variable could be considered to be a property with certain access modifiers. Indeed, the haxe compiler does not distinguish variables and properties during its typing phase, but they remain separated at syntax level.
 
 Regarding terminology, a method is a (static or non-static) function belonging to a class. Other functions, such as a [Closure](https://github.com/Simn/HaxeManual/tree/master/md/manual/5.9-Closure.md) in expressions, are not considered methods.
+
+---
+
+Previous section: [Module Sub-Types](https://github.com/Simn/HaxeManual/tree/master/md/manual/3.5.1-Module_Sub-Types.md)
+
+Next section: [Variable](https://github.com/Simn/HaxeManual/tree/master/md/manual/4.1-Variable.md)
