@@ -1,4 +1,4 @@
-## 7 Miscallaneous Features
+## 7 Miscellaneous Features
 
 7.1: [Conditional Compilation](https://github.com/Simn/HaxeManual/tree/master/md/manual/7.1-Conditional_Compilation.md)
 
