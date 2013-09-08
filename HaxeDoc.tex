@@ -842,7 +842,7 @@ console.log(map.get("foo"));
 \subsubsection{Selective Functions}
 \label{Selective Functions}
 
-Since the compiler promotes abstract member functions to static functions, it is possible to define static functions by hand and use them on an abstract instance. The semantics here are similar to those of \fullref{Using-Mixins}, where the type of the first function argument determines for which types a function is defined:
+Since the compiler promotes abstract member functions to static functions, it is possible to define static functions by hand and use them on an abstract instance. The semantics here are similar to those of \fullref{Static Extension}, where the type of the first function argument determines for which types a function is defined:
 
 \lstinputlisting{assets/SelectiveFunction.hx}
 The method \expr{getString} of abstract \type{MyAbstract} is defined to accept a first argument of \type{MyAbstract$<$String$>$}. This causes it to be available on variable \expr{a} on line 14 (because the type of \expr{a} is \type{MyAbstract$<$String$>$}), but not on variable \expr{b} whose type is \type{MyAbstract$<$Int$>$}.
@@ -1488,8 +1488,54 @@ The conditions after \expr{\#if} and \expr{\#elseif} allow the following express
 \end{itemize}
 An exhaustive list of all built-in defines can be obtained by invoking the haxe compiler with the \expr{--help-defines} argument.
 
-\subsection{Using-Mixins}
-\label{Using-Mixins}
+
+\subsection{Static Extension}
+\label{Static Extension}
+
+\define{Static Extension}{A static extension allows pseudo-extending existing types without modifying their source. In Haxe this is achieved by declaring a static method with a first argument of the extending type and then bringing the defining class into context through \expr{using}.}
+
+Static extensions can be a powerful tool which allows augmenting types without actually changing them. The following example demonstrates the usage:
+
+\lstinputlisting{assets/StaticExtension.hx}
+
+Clearly, \type{Int} does not natively provide a \expr{triple} method, yet this program compiles and outputs \expr{36} as expected. This is because the call to \expr{12.triple()} is transformed into \expr{IntExtender.triple(12)}. There are three requirements for this:
+
+\begin{enumerate}
+	\item Both the literal \expr{12} and the first argument of \expr{triple} are of type \type{Int}.
+	\item The class \type{IntExtender} is brought into context through \expr{using Main.IntExtender}.
+	\item \type{Int} does not have a \expr{triple} field by itself (if it had, that field would take priority over the static extension).
+\end{enumerate}
+
+Static extensions are usually considered syntactic sugar and indeed they are, but it is worth noting that they can have a dramatic effect on code readability: Instead of nested calls in the form of \expr{f1(f2(f3(f4(x))))}, chained calls in the form of \expr{x.f4().f3().f2().f1()} can be used.
+
+Several classes in the Haxe Standard Library are suitable for static extension usage. The next example shows the usage of \type{StringTools}:
+
+\lstinputlisting{assets/StaticExtension2.hx}
+
+While \type{String} does not have a \expr{replace} functionality by itself, the \expr{using StringTools} static extension provides one. As usual, the \target{Javascript} output nicely shows the transformation:
+
+\begin{lstlisting}
+Main.main = function() {
+	StringTools.replace("adc","d","b");
+}
+\end{lstlisting}
+
+\subsubsection{In the Haxe Standard Library}
+
+The following classes from the Haxe Standard Library are designed to be used as static extensions:
+
+\begin{description}
+	\item[\type{StringTools}:] Provides extended functionality on strings, such as replacing or trimming.
+	\item[\type{Lambda}:] Provides functional methods on iterables.
+	\item[\type{haxe.EnumTools}:] Provides type information functionality on enums and their instances.
+	\item[\type{haxe.macro.Tools}:] Provides different extensions for working with macros.
+\end{description}
+
+
+
+\trivia{``using'' using}{Since the \expr{using} keyword was added to the language, it has been common to talk about certain problems with ``using using'' or the effect of ``using using''. This makes for awkward English in many cases, so the author of this manual decided to call the feature by what it actually is: Static extension.}
+
+
 
 \subsection{Pattern Matching}
 \label{Pattern Matching}
