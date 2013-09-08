@@ -1508,6 +1508,8 @@ Clearly, \type{Int} does not natively provide a \expr{triple} method, yet this p
 
 Static extensions are usually considered syntactic sugar and indeed they are, but it is worth noting that they can have a dramatic effect on code readability: Instead of nested calls in the form of \expr{f1(f2(f3(f4(x))))}, chained calls in the form of \expr{x.f4().f3().f2().f1()} can be used.
 
+\subsubsection{In the Haxe Standard Library}
+
 Several classes in the Haxe Standard Library are suitable for static extension usage. The next example shows the usage of \type{StringTools}:
 
 \lstinputlisting{assets/StaticExtension2.hx}
@@ -1519,8 +1521,6 @@ Main.main = function() {
 	StringTools.replace("adc","d","b");
 }
 \end{lstlisting}
-
-\subsubsection{In the Haxe Standard Library}
 
 The following classes from the Haxe Standard Library are designed to be used as static extensions:
 
