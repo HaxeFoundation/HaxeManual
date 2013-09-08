@@ -1,18 +1,10 @@
 An abstract type is a type which is, at runtime, actually a different type. It is a compile-time feature which defines types "over" concrete types in order to modify or augment their behavior:
 
 ```
-abstract Abstract(Int) {
-	inline public function new(i:Int) {
-		this = i;
-	}
+inline public function new(i:Int) {
+	this = i;
 }
 
-class MyAbstract {
-	static public function main() {
-		var a = new Abstract(12);
-		trace(a);
-	}
-}
 ```
 We can derive the following from this example:
 
@@ -34,18 +26,11 @@ We can derive the following from this example:
 The syntax is reminiscent of classes and the semantics are indeed similar. In fact, everything in the "body" of an abstract (that is everything after the opening curly brace) is parsed as class fields. Furthermore, abstracts can be instantiated and used just like classes:
 
 ```
-abstract Abstract(Int) {
-	inline public function new(i:Int) {
-		this = i;
-	}
+static public function main() {
+	var a = new Abstract(12);
+	trace(a);
 }
 
-class MyAbstract {
-	static public function main() {
-		var a = new Abstract(12);
-		trace(a);
-	}
-}
 ```
 As mentioned before, abstracts are a compile-time feature, so it is interesting to see what the above actually generates. A suitable target for this is Javascript, which tends to generate concise and clean code. Compiling the above (using `haxe -main MyAbstract -js myabstract.js`) shows this Javascript code:
 

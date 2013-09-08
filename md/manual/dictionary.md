@@ -1,3 +1,6 @@
+##### Abstract Syntax Tree (AST)
+The AST is the result of **parsing** Haxe code into a typed structure. This structure is exposed to macros through the types defined in the file `haxe/macro/Expr.hx` of the Haxe standard library.
+
 ##### Bool
 Represents a value which can be either **true** or **false**
 
@@ -22,6 +25,9 @@ Represents a double-precision IEEE 64bit floating point number.
 ##### Int
 Represents a 32bit integral number.
 
+##### Macro Context
+The macro context is the environment in which the macro is executed. Depending on the macro type, it can be considered to be a class being built or a function being typed. Contextual information can be obtained through the `haxe.macro.Context` API.
+
 ##### Module
 All haxe code is organized in modules, which are addressed using paths. In essence, each .hx file represents a module which may contain several types.
 
@@ -30,6 +36,9 @@ Description
 
 ##### nullable
 A type in haxe is considered **nullable** if `null` is a valid value for it.
+
+##### Static Extension
+A static extension allows pseudo-extending existing types without modifying their source. In Haxe this is achieved by declaring a static method with a first argument of the extending type and then bringing the defining class into context through `using`.
 
 ##### Static target
 Static targets employ their own type system where `null` is not a valid value for basic types. This is true for the Flash 9+, C++, Java and C# targets.
