@@ -98,9 +98,9 @@
 
 \subsection{What is haxe?}
 
-Haxe is a high-level language programming language and compiler for that language. It allows compilation of programs written using an ECMAScript\footnote{http://www.ecma-international.org/publications/standards/Ecma-327.htm}-oriented syntax to multiple target languages. Employing proper abstraction, it it is possible to maintain a single code-base which compiles to multiple targets.
+Haxe is a high-level programming language and compiler for that language. It allows compilation of programs written using an ECMAScript\footnote{http://www.ecma-international.org/publications/standards/Ecma-327.htm}-oriented syntax to multiple target languages. Employing proper abstraction, it it is possible to maintain a single code-base which compiles to multiple targets.
 
-Haxe is strongly typed, but the typing system can be subverted where required. Utilizing type information, the Haxe type system can detect during compilation errors that in the target language would only be noticable at runtime. Furthermore, type information can be used by the target generators to generate optimized and robust code.
+Haxe is strongly typed, but the typing system can be subverted where required. Utilizing type information, the Haxe type system can detect errors at compile-time which would only be noticeable at runtime in the target language. Furthermore, type information can be used by the target generators to generate optimized and robust code.
 
 There are currently nine supported target languages which allow different use-cases:
 
@@ -121,7 +121,7 @@ There are currently nine supported target languages which allow different use-ca
 \end{center}
 The remainder of section \ref{Introduction} gives a brief overview of what a haxe program looks like, and how haxe has developed since its inception in 2005.
 
-\Fullref{Types} introduces the seven kinds of types in haxe and how they interact with each other. Type discussion is continued in \fullref{Type System}, where features such as \emph{unification}, \emph{type parameters} and \emph{type inference} are explained.
+\Fullref{Types} introduces the seven kinds of types in haxe and how they interact with each other. The discussion of types is continued in \fullref{Type System}, where features such as \emph{unification}, \emph{type parameters} and \emph{type inference} are explained.
 
 \Fullref{Class Fields} is all about the structure of haxe classes and, among other topics, deals with \emph{properties}, \emph{inline fields} and \emph{generic functions}.
 
@@ -168,7 +168,7 @@ This can be tested by saving above code to a file named \ic{HelloWorld.hx} and i
 
 \subsection{History}
 
-The haxe project started on October 22nd 2005 as a successor to the \emph{Motion-Twin Action Script Compiler}, MTASC. French developer \emph{Motion-Twin}\footnote{http://motion-twin.org} had developed MTASC as a popular ActionScript 2 compiler, and the next logical step for them was to design their very own programming language, thus giving birth to haxe.
+The haxe project started on 22 October 2005 as a successor to the \emph{Motion-Twin Action Script Compiler}, MTASC. French developer \emph{Motion-Twin}\footnote{http://motion-twin.org} had developed MTASC as a popular ActionScript 2 compiler, and the next logical step for them was to design their very own programming language, thus giving birth to haxe.
 
 Being spelled \emph{haXe} back then, its beta was released in February 2006 with the first supported targets being AVM\footnote{Adobe Virtual Machine}-bytecode and Motion-Twin's own \emph{Neko} virtual machine\footnote{http://nekovm.org}.
 
@@ -1217,7 +1217,7 @@ Omitting the visibility modifier usually defaults the visibility to \expr{privat
 
 \begin{enumerate}
 	\item If the class is declared as \expr{extern}.
-	\item If the field id declared on an interce (\ref{Interfaces}).
+	\item If the field id declared on an interface (\ref{Interfaces}).
 	\item If the field overrides (\ref{Overriding Fields}) a public field.
 \end{enumerate}
 
@@ -1727,6 +1727,8 @@ Of course the use of single-quote enclosed strings without any interpolation rem
 
 \subsection{Array Comprehension}
 \label{Array Comprehension}
+
+
 
 \subsection{Dead Code Elimination}
 \label{Dead Code Elimination}
