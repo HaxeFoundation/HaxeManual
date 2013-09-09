@@ -952,7 +952,6 @@ Both arguments \expr{expected} and \expr{actual} of the \expr{equals} function h
 \subsubsection{Constraints}
 \label{Constraints}
 
-
 Type parameters can be constrained to multiple types:
 
 \lstinputlisting{assets/Constraints.hx}
@@ -1341,6 +1340,7 @@ are evaluated.
 
 
 \subsection{Constants}
+\label{Constants}
 
 The haxe syntax supports the following constants:
 
@@ -1852,16 +1852,49 @@ Haxe macros have access to different contextual information depending on the mac
 The context API is complemented by the \expr{haxe.macro.Compiler} API detailed in \fullref{Compiler Configuration}. While this API is available to all macro kinds, care has to be taken for any modification outside of initialization macros. This stems from the natural limitation of undefined build order (see \ref{Build Order}), which could cause e.g. a flag definition through \expr{Compiler.define()} to take effect before or after a conditional compilation (\ref{Conditional Compilation}) check against that flag.
 
 \subsection{Arguments}
+\label{Macro Arguments}
+
+Most of the time, arguments to macros are expressions represented as an instance of enum \type{Expr}. As such they are parsed but not typed, meaning they can be anything conforming to Haxe's syntax rules. The macro can then inspect their structure, or (try to) get their type using \expr{haxe.macro.Context.typeof()}.
+
+It is important to understand that arguments to macros are not guaranteed to be evaluated, so any intended side-effect is not guaranteed to occur. On the other hand, it is also important to understand that an argument expression may be duplicated by a macro and used multiple times in the returned expression:
+
+\lstinputlisting{assets/MacroArguments.hx}
+
+The macro \expr{add} is called with \expr{x++} as argument and thus returns \expr{x++ + x++} using expression reification (\ref{Expression Reification}), causing \expr{x} to be incremented twice.
 
 \subsubsection{ExprOf}
+
+Since \type{Expr} is compatible with any possible input, Haxe provides the type \type{haxe.macro.ExprOf<T>}. For the most part, this type is identical to \type{Expr}, but it allows constraining the type of accepted expressions. This is useful when combining macros with static extensions (\ref{Static Extension}):
+
+\lstinputlisting{assets/ExprOf.hx}
+
+The two direct calls to \expr{identity} are accepted, even though the argument is declared as \expr{ExprOf<String>}. It might come as a surprise that the \type{Int} \expr{1} is accepted, but it is a logical consequence of what was explained about macro arguments (\ref{Macro Arguments}): The argument expressions are never typed, so it is not possible for the compiler to check their compatibility by unifying (\ref{Unification}).
+
+This is different for the next two lines which are using static extensions (note the \expr{using Main}): For these it is mandatory to type the left side (\expr{"foo"} and \expr{1}) first in order to make sense of the \expr{identity} field access. This makes it possible to check the types against the argument types, which causes \expr{1.identity()} to not consider \expr{Main.identity()} as a suitable field.
+
 \subsubsection{Constant Expressions}
+
+A macro can be declared to expect constant (\ref{Constants}) arguments:
+
+\lstinputlisting{assets/MacroArgumentsConst.hx}
+
+With these it is not necessary to detour over expressions as the compiler can use the provided constants directly.
+
 \subsubsection{Rest Argument}
+
+If the final argument of a macro is of type \type{Array<Expr>}, the macro accepts an arbitrary number of extra arguments which are available from that array:
+
+\lstinputlisting{assets/MacroArgumentsRest.hx}
+
+
+
 
 \subsection{Reification}
 
 The Haxe Compiler allows \emph{reification} of expressions, types and classes to simplify working with macros. The syntax for reification is \expr{macro expr}, where \expr{expr} is any valid haxe expression.
 
 \subsubsection{Expression Reification}
+\label{Expression Reification}
 
 Expression reification is used to create instances of \type{haxe.macro.Expr} in a convenient way. The Haxe Compiler accepts the usual Haxe syntax and translates it to an expression object. It supports several escaping mechanisms, all of which are triggered by the \expr{\$} character:
 
@@ -1877,6 +1910,10 @@ Expression reification is used to create instances of \type{haxe.macro.Expr} in 
 \subsubsection{Type Reification}
 
 \subsubsection{Class Reification}
+
+
+
+
 
 \subsection{Tools}
 
