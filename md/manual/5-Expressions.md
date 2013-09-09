@@ -4,6 +4,6 @@ Expressions in haxe define what a program **does**. Most expressions are found i
 
 ---
 
-Previous section: [Dynamic](https://github.com/Simn/HaxeManual/tree/master/md/manual/4.4.3-Dynamic.md)
+Previous section: [Effects of variance and access modifiers](https://github.com/Simn/HaxeManual/tree/master/md/manual/4.5.1-Effects_of_variance_and_access_modifiers.md)
 
 Next section: [Blocks](https://github.com/Simn/HaxeManual/tree/master/md/manual/5.1-Blocks.md)

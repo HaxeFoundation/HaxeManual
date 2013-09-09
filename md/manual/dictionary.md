@@ -4,6 +4,9 @@ The AST is the result of **parsing** Haxe code into a typed structure. This stru
 ##### Bool
 Represents a value which can be either **true** or **false**
 
+##### Class Field
+A class field is a variable, property or method of a class which can either be static or non-static. Non-static fields are referred to as **member** fields, so we speak of e.g. a **static method** or a **member variable**.
+
 ##### Class<T>
 This type is compatible with all class types. At compile-time, `Class<T>` can be considered to be the common base type of all class types. However, this relation is not reflected in generated code.
 
