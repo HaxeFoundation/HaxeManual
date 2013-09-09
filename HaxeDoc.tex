@@ -1358,6 +1358,7 @@ The haxe syntax supports the following constants:
 \subsection{Unary Operators}
 
 \subsection{Array Declaration}
+\label{Array Declaration}
 
 Arrays are initialized by enclosing comma \expr{,} separated values in brackets \expr{[]}. A plain \expr{[]} represents the empty array, whereas \expr{[1, 2, 3]} initializes an array with three elements \expr{1}, \expr{2} and \expr{3}.
 
@@ -1375,6 +1376,7 @@ Advanced initialization techniques are described in \fullref{Array Comprehension
 
 
 \subsection{Object Declaration}
+\label{Object Declaration}
 
 Object declaration begins with an opening curly brace \expr{\{} after which \expr{key:value}-pairs separated by comma \expr{,} follow, and which ends in a closing curly brace \expr{\}}.
 
@@ -1795,7 +1797,46 @@ The underscore \expr{_} can be skipped for trailing arguments, so the the first 
 \trivia{Callback}{Prior to haxe 3, haxe used to know a \expr{callback}-keyword which could be called with a function argument followed by any number of binding arguments. The name originated from a common usage were a callback-function is created with the this-object being bound.\\
 Callback would allow binding of arguments only from left to right as there was no support for the underscore \expr{_}. The choice to use an underscore was controversial and several other suggestions were made, none of which were considered superior. After all, the underscore \expr{_} at least looks like it's saying ``fill value in here'', which nicely describes its semantics.}
 
+
+
 \subsection{Metadata}
+
+Several constructs can be attributed with custom metadata:
+
+\begin{itemize}
+	\item \expr{class} and \expr{enum} declarations
+	\item Class fields
+	\item Enum constructors
+	\item Expressions
+\end{itemize}
+
+These metadata information can be obtained at runtime through the \type{haxe.rtti.Meta} API:
+
+\lstinputlisting{assets/Meta.hx}
+
+We can easily identify metadata by the leading \expr{@} character, followed by the metadata name and, optionally, by a number of comma-separated constant arguments enclosed in parentheses.
+
+\begin{itemize}
+	\item Class \type{MyClass} has an \expr{author} metadata with a single String argument \expr{"Nicolas"}, as well as a \expr{debug} metadata without arguments.
+	\item The member variable \expr{value} has a \expr{range} metadata with two Int arguments \expr{1} and \expr{8}.
+	\item The static method \expr{method} has a \expr{broken} metadata without arguments, as well as a \expr{:noCompletion} metadata without arguments.
+\end{itemize}
+
+The \expr{main} method accesses these metadata values using their API. The output reveals the structure of the obtained data:
+
+\begin{itemize}
+	\item There is a field for each metadata, with the field name being the metadata name.
+	\item The field values correspond to the metadata arguments. If there are no arguments, the field value is \expr{null}. Otherwise the field value is an array with one element per argument.
+	\item Metadata starting with \expr{:} is omitted. This kind of metadata is known as \emph{compiler metadata}.
+\end{itemize}
+
+Allowed values for metadata arguments are:
+
+\begin{itemize}
+	\item Constants (\ref{Constants})
+	\item Arrays declarations (\ref{Array Declaration}) (if all their elements qualify)
+	\item Object declarations (\ref{Object Declaration}) (if all their field values qualify)
+\end{itemize}
 
 \subsubsection{Compiler Metadata}
 
@@ -1910,9 +1951,6 @@ Expression reification is used to create instances of \type{haxe.macro.Expr} in 
 \subsubsection{Type Reification}
 
 \subsubsection{Class Reification}
-
-
-
 
 
 \subsection{Tools}
