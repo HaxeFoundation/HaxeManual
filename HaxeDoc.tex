@@ -1728,6 +1728,30 @@ Of course the use of single-quote enclosed strings without any interpolation rem
 \subsection{Array Comprehension}
 \label{Array Comprehension}
 
+Array comprehension in Haxe uses existing syntax to allow concise initialization of arrays. It is identified by \expr{[for} or \expr{[while} constructs:
+
+\lstinputlisting{assets/ArrayComprehension.hx}
+
+Variable \expr{a} is initialized to an array holding the numbers 0 to 9. The compiler generates code which adds the value of each loop iteration to the array, so the following code would be equivalent:
+
+\begin{lstlisting}
+var a = [];
+for (i in 0...10) a.push(i);
+\end{lstlisting}
+
+Variable \expr{b} is initialized to an array with the same values, but through a different comprehension style using \expr{while} instead of \expr{for}. Again, the following code would be equivalent:
+
+\begin{lstlisting}
+var i = 0;
+var a = [];
+while(i < 10) a.push(i++);
+\end{lstlisting}
+
+The loop expression can be anything, including conditions and nested loops, so the following works as expected:
+
+\lstinputlisting{assets/ArrayComprehension2.hx}
+
+
 
 
 \subsection{Dead Code Elimination}
