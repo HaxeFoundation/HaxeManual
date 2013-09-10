@@ -470,8 +470,8 @@ The haxe type system provides a type which unifies with all enum types:
 
 \define[Type]{Enum}{This type is compatible with all enum types. At compile-time, \type{Enum<T>} can be considered to be the common base type of all enum types. However, this relation is not reflected in generated code.} 
 
-\subsubsection{Enum Constructors}
-\label{Enum Constructors}
+\subsubsection{Enum Constructor}
+\label{Enum Constructor}
 
 Similar to classes and their constructors, enums provide a way of instantiating them by using one of their constructors. However, unlike classes, enums provide multiple constructors which can easily be used through their name:
 
@@ -918,7 +918,7 @@ There may only be a single extension on a structure, so extensions can be unders
 \subsection{Type Parameters}
 \label{Type Parameters}
 
-Haxe allows parametrization of a number of types, as well as \tref{class fields}{Class Fields} and \tref{enum constructors}{Enum Constructors}. Type parameters are defined by enclosing comma-separated type parameter names in angle brackets \expr{$<>$}. A simple example from the standard library is \type{Array}:
+Haxe allows parametrization of a number of types, as well as \tref{class fields}{Class Fields} and \tref{enum constructors}{Enum Constructor}. Type parameters are defined by enclosing comma-separated type parameter names in angle brackets \expr{$<>$}. A simple example from the standard library is \type{Array}:
 
 \begin{lstlisting}
 class Array<T> {
@@ -1139,8 +1139,39 @@ private abstract A { ... }
 \end{lstlisting}
 The accessibility can be controlled more fine-grained by using \tref{access control}{Access Control}.
 
+
+
+
 \subsubsection{Import}
 \label{Import}
+
+If a type path is used multiple times in a .hx file, it might make sense to use an \expr{import} to shorten it. This allows omitting the package when using the type:
+
+\lstinputlisting{assets/Import.hx}
+
+With \expr{haxe.ds.StringMap} being imported in the first line, the compiler is able to resolve the unqualified identifier \expr{StringMap} in the \expr{main} function to this package. The module \type{StringMap} is said to be \emph{imported} into the current file.
+
+In this example, we are actually importing a \emph{module}, not just a specific type within that module. This means that all types defined within the imported module are available:
+
+\lstinputlisting{assets/Import2.hx}
+
+The type \type{Binop} is an \tref{enum}{Enum Instance} declared in the module \type{haxe.macro.Expr}, and thus available after the import of said module. If we were to import only a specific type of that module, e.g. \expr{import haxe.macro.Expr.ExprDef}, the program would fail to compile with \expr{Class not found : Binop}.
+
+There several aspects worth knowing about importing:
+
+\begin{itemize}
+	\item The bottommost import takes priority (detailed in \Fullref{Resolution Order}).
+	\item The \tref{static extension}{Static Extension} keyword \expr{using} implies the effect of \expr{import}.
+	\item If an enum is imported (directly or as part of a module import), all its \tref{enum constructors}{Enum Constructor} are also imported (this is what allows the \expr{OpAdd} usage in above example).
+\end{itemize}
+
+Furthermore, it is also possible to import \tref{static fields}{Class Fields} of a class and use them unqualified:
+
+\lstinputlisting{assets/Import3.hx}
+
+%TODO: figure out if import a.* actually works as intended
+
+Special care has to be taken with field names or local variable names that conflict with a package name: Since they take priority over packages, a local variable named \expr{haxe} blocks off usage the entire \expr{haxe} package.
 
 
 
