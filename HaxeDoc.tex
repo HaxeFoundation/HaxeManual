@@ -1220,7 +1220,7 @@ Given an identifier \expr{i}, the algorithm is as follows:
 	\item If the current field is static, go to \ref{resolution:static-lookup}.
 	\item If the current class or any of its parent classes has a field named \expr{i}, resolve to it and halt.
 	\item\label{resolution:static-extension} If a static extension with a first argument of the type of the current class is available, resolve to it and halt.
-	\item\label{resolution:static-lookup}If the current class has a static field named \expr{i}, resolve to it and halt.
+	\item\label{resolution:static-lookup} If the current class has a static field named \expr{i}, resolve to it and halt.
 	\item\label{resolution:enum-ctor} If an enum constructor named \expr{i} is declared on an imported enum, resolve to it and halt.
 	\item If a static named \expr{i} is explicitly imported, resolve to it and halt.
 	\item If \expr{i} starts with a lower-case character, go to \ref{resolution:untyped}.
