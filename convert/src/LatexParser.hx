@@ -92,7 +92,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 				// code
 				case [TBegin("lstlisting")]:
 					codeMode = true;
-					buffer.add("```");
+					buffer.add("```haxe");
 				case [TEnd("lstlisting")]:
 					codeMode = false;
 					buffer.add("```");
@@ -124,7 +124,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 							f;
 						}
 					}
-					buffer.add("```\n");
+					buffer.add("```haxe\n");
 					buffer.add(f);
 					buffer.add("\n```");
 					
