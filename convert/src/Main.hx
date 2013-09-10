@@ -18,7 +18,7 @@ class Main{
 			return sec.id + "-" +(escapeFileName(sec.title)) + ".md";
 		}
 		function link(sec:Section) {
-			return '[${sec.title}]($linkBase$out/${url(sec)})';
+			return '[${sec.title}](${url(sec)})';
 		}
 		function process(s:String):String {
 			return ~/~~~([^~]+)~~~/g.map(s, function(r) {
