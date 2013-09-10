@@ -648,6 +648,7 @@ This should be considered in performance-critical code, where a solution without
 
 
 \subsection{Dynamic}
+\label{Dynamic Type}
 
 While haxe has a static type system, this type system can effectively be turned off by using the \type{Dynamic} type. A \emph{dynamic value} can be assigned to anything, and anything can be assigned to it. This has several drawbacks:
 
@@ -1092,6 +1093,26 @@ Following the rules of unification, type inference can occur in compound types:
 \lstinputlisting{assets/TypeInference2.hx}
 Variable \expr{x} is first initialized to an empty \type{Array}. At this point we can tell that the type of \expr{x} is an array, but we do not yet know the type of the array elements. Consequentially, the type of \expr{x} is \type{Array<Unknown<0>>}. It is only after pushing a \type{String} onto the array that we know the type to be \type{Array<String>}.
 
+
+\subsubsection{Top-down Inference}
+\label{Top-down Inference}
+
+Most of the time, types are inferred on their own and may then be unified with an expected type. In a few places, however, an expected type may be used to influence inference. We then speak of \emph{top-down inference}.
+
+\define{Expected Type}{Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is argument to a function call. They can influence typing of that expression through what is called \tref{top-down inference}{Top-down Inference}.}
+
+A good example are arrays of mixed types. As mentioned in \Fullref{Dynamic Type}, the compiler refuses \expr{[1, "foo"]} because it cannot determine an element type. Employing top-down inference, this can be overcome:
+
+\lstinputlisting{assets/TopDownInference.hx}
+
+Here, the compiler knows while typing \expr{[1, "foo"]} that the expected type is \type{Array<Dynamic>}, so the element type is \type{Dynamic}. Instead of the usual unification behavior where the compiler would attempt (and fail) to determine a \tref{common base type}{Common Base Type}, the individual elements are typed against and unified with \type{Dynamic}.
+
+% this is not really top down inference
+%Top-down inference is also utilized when dealing with \tref{enum constructors}{Enum Constructor}:
+
+%\lstinputlisting{assets/TopDownInference2.hx}
+
+%The constructors \expr{TObject} and \expr{TFunction} of type \expr{ValueType} are recognized even though their containing module \type{Type} is not \tref{imported}{Import}. This is possible because the return type of \expr{Type.typeof("foo")} is known to be \expr{ValueType}.
 
 
 \subsubsection{Limitations}
