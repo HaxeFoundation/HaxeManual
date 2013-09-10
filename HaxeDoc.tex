@@ -147,7 +147,7 @@ haxe code here
 \end{lstlisting}
 Occasionally, we demonstrate how certain haxe code is generated, for which we usually show the \target{Javascript} target.
 
-Furthermore, we define a set of terms in this document. This is mostly done when introducing a new type, or when a term is specific to haxe. We do not define every new aspect we introduce, e.g. what a class or a class field is, in order to not clutter the text. A definition looks like this:
+Furthermore, we define a set of terms in this document. This is mostly done when introducing a new type, or when a term is specific to haxe. We do not define every new aspect we introduce, e.g. what a class is, in order to not clutter the text. A definition looks like this:
 \define{Name}{Description}
 
 In a few places, this document has \emph{trivia}-boxes. These include off-the-record information such as why certain decisions were made while developing haxe, or how a particular feature has changed in past haxe versions. This information is generally not important and can be skipped, it is only meant to convey trivia:
@@ -332,7 +332,7 @@ var x:Void; // Arguments and variables of type Void are not allowed
 It is common for programming languages to have a single, clean definition for nullability, but haxe has to find a compromise in this regard. The reason for this is obvious when looking at the nature of haxe's target languages: While some of them allow and, in fact, default to \expr{null} for anything, others do not even allow \expr{null} for certain types. This necessitates the distinction of two types of target languages:
 
 \define{Static target}{Static targets employ their own type system where \expr{null} is not a valid value for basic types. This is true for the \target{Flash 9+}, \target{C++}, \target{Java} and \target{C\#} targets.}
-\define{Dynamic target}{Dynamic targets are more lenient with their types and allow \it{null} values for basic types. They const is \target{JavaScript}, \target{PHP}, \target{neko} and \target{Flash 6-8}.}
+\define{Dynamic target}{Dynamic targets are more lenient with their types and allow \it{null} values for basic types. They consist of \target{JavaScript}, \target{PHP}, \target{neko} and \target{Flash 6-8}.}
 
 There is nothing to worry about when working with \expr{null} on dynamic targets, but static ones may require some thought. For starters, basic types are initialized to these values:
 
