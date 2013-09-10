@@ -393,6 +393,7 @@ There is a special type in haxe which is compatible with all classes:
 
 
 \subsubsection{Class constructor}
+\label{Class Constructor}
 
 Instances of classes are created by calling the class constructor, a process commonly referred to as \emph{instantiation}. Another name for class instances is \emph{object}, but we prefer the term class instance to emphasize the analogy between classes/class instances and \tref{enums/enum instances}{Enum Instance}. 
 
@@ -968,8 +969,85 @@ Type parameter \type{T} of method \expr{test} is constrained to the types \type{
 We can see that invoking \expr{test} with an empty array in line 7 and an \type{Array$<$String$>$} in line 8 works fine. This is because \type{Array} has both a \expr{length}-property and an \expr{iterator}-method. However, passing a \type{String} as argument in line 9 fails the constraint check, because \type{String} is not compatible with \type{Iterable$<$T$>$}. 
 
 
-\subsubsection{Generic}
+\subsection{Generic}
 \label{Generic}
+
+Usually, the Haxe compiler generates only a single class or function, even if it has type parameters. This results in a natural abstraction, where the code generator for the target language has to assume that a type parameter could be of any type. The generated code then might have to perform some type checks, which can be detrimental to performance.
+
+A class or function can be made \emph{generic} by attributing it with the \expr{:generic} \tref{metadata}{Metadata}. This causes the compiler to emit a distinct class/function per type parameter combination with mangled names. A specification like this can yield a boost in performance-critical code portions on \tref{static targets}{def:Static target} at the cost of a larger output size:
+
+\lstinputlisting{assets/GenericClass.hx}
+
+It seems unusual to see the explicit type \type{MyArray<String>} here as we usually let \tref{type inference}{Type Inference} deal with this, but here it is indeed required. The compiler has to know the exact type of a generic class upon construction. The \target{Javascript} output shows the result:
+
+\begin{lstlisting}
+(function () { "use strict";
+var Main = function() { }
+Main.main = function() {
+	var a = new MyArray_String();
+	var b = new MyArray_Int();
+}
+var MyArray_Int = function() {
+};
+var MyArray_String = function() {
+};
+Main.main();
+})();
+\end{lstlisting}
+
+We can identify that \type{MyArray<String>} and \type{MyArray<Int>} have become \type{MyArray_String} and \type{MyArray_Int} respectively. This is similar for generic functions:
+
+\lstinputlisting{assets/GenericFunction.hx}
+
+Again, the \target{Javascript} output makes it obvious:
+
+\begin{lstlisting}
+(function () { "use strict";
+var Main = function() { }
+Main.method_Int = function(t) {
+}
+Main.method_String = function(t) {
+}
+Main.main = function() {
+	Main.method_String("foo");
+	Main.method_Int(1);
+}
+Main.main();
+})();
+\end{lstlisting}
+
+\subsubsection{Construction of generic type parameters}
+\label{Construction of generic type parameters}
+
+\define{Generic Type Parameter}{A type parameter is said to be generic if its containing class or method is generic.}
+
+With normal type parameter, it is not possible to construct them, i.e. \expr{new T()} is a compiler error. This is because haxe generates only a single function and the construct then makes no sense. This is different when the type parameter is generic: Since we know that the compiler will generate a distinct function for each type parameter combination, it is possible to replace the \type{T} \expr{new T()} with the real type.
+
+\lstinputlisting{assets/GenericTypeParameter.hx} 
+
+It should be noted that \tref{top-down inference}{Top-down Inference} is used here to determine the actual type of \type{T}. There are two requirements for this kind of type parameter construction to work. The constructed type parameter must be
+
+\begin{enumerate}
+	\item generic and
+	\item be explicitly \tref{constrained}{Constraints} to having a \tref{constructor}{Class Constructor}.
+\end{enumerate}
+
+Here, 1. is given by \expr{make} having the \expr{@:generic} metadata, and 2. by \type{T} being constrained to \type{Constructible}. The constraint holds for both \type{String} and \type{haxe.Template} as both have a constructor accepting a singular \type{String} argument. Sure enough, the relevant \target{Javascript} output looks as expected:
+
+\begin{lstlisting}
+var Main = function() { }
+Main.__name__ = true;
+Main.make_haxe_Template = function() {
+	return new haxe.Template("foo");
+}
+Main.make_String = function() {
+	return new String("foo");
+}
+Main.main = function() {
+	var s = Main.make_String();
+	var t = Main.make_haxe_Template();
+}
+\end{lstlisting}
 
 \subsection{Variance}
 \label{Variance}
@@ -1126,6 +1204,12 @@ A good example are arrays of mixed types. As mentioned in \Fullref{Dynamic Type}
 \lstinputlisting{assets/TopDownInference.hx}
 
 Here, the compiler knows while typing \expr{[1, "foo"]} that the expected type is \type{Array<Dynamic>}, so the element type is \type{Dynamic}. Instead of the usual unification behavior where the compiler would attempt (and fail) to determine a \tref{common base type}{Common Base Type}, the individual elements are typed against and unified with \type{Dynamic}.
+
+We have seen another interesting use of top-down inference when \tref{construction of generic type parameters}{Construction of generic type parameters} was introduced:
+
+\lstinputlisting{assets/GenericTypeParameter.hx}
+
+The explicit types \type{String} and \type{haxe.Template} are used here to determine the return type of \expr{make}. This works because the method is invoked as \expr{make()}, so we know the return type will be assigned to the variables. Utilizing this information, it is possible to bind the unknown type \type{T} to \type{String} and \type{haxe.Template} respectively.
 
 % this is not really top down inference
 %Top-down inference is also utilized when dealing with \tref{enum constructors}{Enum Constructor}:
@@ -1925,6 +2009,7 @@ Callback would allow binding of arguments only from left to right as there was n
 
 
 \subsection{Metadata}
+\label{Metadata}
 
 Several constructs can be attributed with custom metadata:
 
