@@ -1194,13 +1194,60 @@ Furthermore, it is also possible to import \tref{static fields}{Class Fields} of
 
 Special care has to be taken with field names or local variable names that conflict with a package name: Since they take priority over packages, a local variable named \expr{haxe} blocks off usage the entire \expr{haxe} package.
 
-
-
 \subsubsection{Resolution Order}
 \label{Resolution Order}
 
+Resolution order comes into play as soon as unqualified identifiers are involved. These are \tref{expressions}{Expressions} in the form of \expr{foo()}, \expr{foo = 1} and \expr{foo.field}. The last one in particular includes module paths such as \expr{haxe.ds.StringMap}, where \expr{haxe} is an unqualified identifier.  
 
+We describe the resolution order algorithm here, which depends on the following state:
 
+\begin{itemize}
+	\item the delared \tref{local variables}{var}
+	\item the \tref{imported}{Import} modules, types and statics
+	\item the available \tref{static extensions}{Static Extension}
+	\item the kind (static or member) of the current field
+	\item the declared member fields on the current class and its parent classes
+	\item the declared static fields on the current class
+	\item the \tref{expected type}{def:Expected Type}
+	\item the expression being \expr{untyped} or not
+\end{itemize}
+
+Given an identifier \expr{i}, the algorithm is as follows:
+
+\begin{enumerate}
+	\item If i is \expr{true}, \expr{false}, \expr{this}, \expr{super} or \expr{null}, resolve to the matching constant and halt.
+	\item If a local variable named \expr{i} is accessible, resolve to it and halt.
+	\item If the current field is static, go to \ref{resolution:static-lookup}.
+	\item If the current class or any of its parent classes has a field named \expr{i}, resolve to it and halt.
+	\item\label{resolution:static-extension} If a static extension with a first argument of the type of the current class is available, resolve to it and halt.
+	\item\label{resolution:static-lookup}If the current class has a static field named \expr{i}, resolve to it and halt.
+	\item\label{resolution:enum-ctor} If an enum constructor named \expr{i} is declared on an imported enum, resolve to it and halt.
+	\item If a static named \expr{i} is explicitly imported, resolve to it and halt.
+	\item If \expr{i} starts with a lower-case character, go to \ref{resolution:untyped}.
+	\item\label{resolution:type} If a type named \expr{i} is available, resolve to it and halt.
+	\item\label{resolution:untyped} If the expression is not in untyped mode, go to \ref{resolution:failure}
+	\item If \expr{i} equals \expr{__this__}, resolve to the \expr{this} constant and halt.
+	\item Generate a local variable named \expr{i}, resolve to it and halt.
+	\item\label{resolution:failure} Fail
+\end{enumerate}
+
+For step \ref{resolution:type}, it is also necessary to define the resolution order of types:
+
+\begin{enumerate}
+	\item\label{resolution:import} If a type named \expr{i} is imported (directly or as part of a module), resolve to it and halt.
+	\item If the current package contains a module named \expr{i} with a type named \expr{i}, resolve to it and halt.
+	\item If a type named \expr{i} is available at top-level, resolve to it and halt.
+	\item Fail
+\end{enumerate}
+
+For step \ref{resolution:import} of this algorithm as well as steps \ref{resolution:static-extension} and \ref{resolution:enum-ctor} of the previous one, the order of import resolution is important:
+
+\begin{itemize}
+	\item Imported modules and static extensions are checked from bottom to top with the first match being picked.
+	\item Within a given module, types are checked from top to bottom.
+	\item For imports, a match is made if the name equals.
+	\item For \tref{static extensions}{Static Extension}, a match is made if the name equals and the first argument \tref{unifies}{Unification}. Within a given type being used as static extension, the fields are checked from top to bottom.
+\end{itemize}
 
 
 \section{Class Fields}
@@ -1600,6 +1647,9 @@ Clearly, \type{Int} does not natively provide a \expr{triple} method, yet this p
 \end{enumerate}
 
 Static extensions are usually considered syntactic sugar and indeed they are, but it is worth noting that they can have a dramatic effect on code readability: Instead of nested calls in the form of \expr{f1(f2(f3(f4(x))))}, chained calls in the form of \expr{x.f4().f3().f2().f1()} can be used.
+
+Following the rules previously described in \Fullref{Resolution Order}, multiple \expr{using} expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom.
+
 
 \subsubsection{In the Haxe Standard Library}
 
