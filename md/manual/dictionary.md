@@ -14,7 +14,7 @@ This type is compatible with all class types. At compile-time, `Class<T>` can be
 A compiler flag is a configurable value which may influence the compilation process. Such a flag can be set by invoking the command line with `-D key=value` or just `-D key`, in which case the value defaults to `"1"`. The compiler also sets several flags internally to pass information between different compilation steps.
 
 ##### Dynamic target
-Dynamic targets are more lenient with their types and allow *null* values for basic types. They const is JavaScript, PHP, neko and Flash 6-8.
+Dynamic targets are more lenient with their types and allow *null* values for basic types. They consist of JavaScript, PHP, neko and Flash 6-8.
 
 ##### Enum
 This type is compatible with all enum types. At compile-time, `Enum<T>` can be considered to be the common base type of all enum types. However, this relation is not reflected in generated code.
@@ -59,7 +59,7 @@ type is a compile-time mechanism being called like a function, with a single arg
 The underlying type of an abstract is the type which is used to represent said abstract at runtime. It is usually a concrete (i.e. non-abstract) type, but could be another abstract type as well.
 
 ##### Unification
-Unification between two types A and B is a directional process which answers the question if A **can be assigned to** B. It may **mutate** either type if it is or has a [Monomorph](2.9-Monomorph.md).
+Unification between two types A and B is a directional process which answers the question if A **can be assigned to** B. It may **mutate** either type if it is or has a [monomorph](2.9-Monomorph.md).
 
 ##### Void
 Void denote the absence of a type. It is used to express that something (usually a function) has no value.
