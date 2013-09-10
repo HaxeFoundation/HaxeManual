@@ -216,7 +216,7 @@ We will explore type inference in detail later in \Fullref{Type Inference}. For 
  \item[Monomorph:] an unknown type, which may later become a different type
 \end{description}
 
-
+\define{Compound Type}{A compound type is a type which has sub-types. This includes any type with \tref{type parameters}{Type Parameters} and the \tref{function}{Function} type.}
 
 
 \subsection{Basic Types}
@@ -968,11 +968,31 @@ Type parameter \type{T} of method \expr{test} is constrained to the types \type{
 We can see that invoking \expr{test} with an empty array in line 7 and an \type{Array$<$String$>$} in line 8 works fine. This is because \type{Array} has both a \expr{length}-property and an \expr{iterator}-method. However, passing a \type{String} as argument in line 9 fails the constraint check, because \type{String} is not compatible with \type{Iterable$<$T$>$}. 
 
 
-\subsubsection{Variance}
-\label{Variance}
-
 \subsubsection{Generic}
 \label{Generic}
+
+\subsection{Variance}
+\label{Variance}
+
+While variance is relevant in other places, it occurs particularly often with type parameters and often comes as a surprise in this context. It is also very easy to trigger variance errors:
+
+\lstinputlisting{assets/Variance.hx}
+
+Apparently, an \type{Array<Child>} cannot be assigned to an \type{Array<Base>}, even though \type{Child} can be assigned to \type{Base}. The reason for this might be somewhat unexpected: It is not allowed because arrays can be written to, e.g. via their \expr{push()} method. It is easy to generate problems by ignoring variance errors:
+
+\lstinputlisting{assets/Variance2.hx}
+
+What happens here is that we subvert the type checker by using a \tref{cast}{Cast}, thus allowing the assignment in line 12. With that we hold a reference \expr{bases} to the original array, typed as \type{Array<Base>}. This allows pushing another type compatible with \type{Base}, \type{OtherChild}, onto that array. However, our original reference \expr{children} is still of type \type{Array<Child>}, and things go bad when we encounter the \type{OtherChild} instance in one of its elements while iterating.
+
+If \type{Array} had no \expr{push()} method and no other means of modification, the assignment would be safe because no incompatible type could be added to it. We can achieve this in Haxe by restricting the type accordingly using \tref{structural subtyping}{Structural Subtyping}:
+
+\lstinputlisting{assets/Variance3.hx}
+
+With \expr{b} being typed as \type{MyArray<Base>} and \type{MyArray} only having a \expr{pop()} method, we can safely assign. There is no method defined on \type{MyArray} which could be used to add incompatible types, it is thus said to be \emph{covariant}.
+
+\define{Covariance}{A \tref{compound type}{def:Compound Type} is considered covariant if its component types can be assigned to less specific components, i.e. if they are only read, but never written.}
+
+\define{Contravariance}{A \tref{compound type}{def:Compound Type} is considered contravariant if its component types can be assigned to less generic components, i.e. if they are only written, but never read.}
 
 
 
@@ -1248,6 +1268,8 @@ For step \ref{resolution:import} of this algorithm as well as steps \ref{resolut
 	\item For imports, a match is made if the name equals.
 	\item For \tref{static extensions}{Static Extension}, a match is made if the name equals and the first argument \tref{unifies}{Unification}. Within a given type being used as static extension, the fields are checked from top to bottom.
 \end{itemize}
+
+
 
 
 \section{Class Fields}
