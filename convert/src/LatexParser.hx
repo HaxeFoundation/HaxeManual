@@ -265,13 +265,11 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 	}
 	
 	function ref() {
-		var s = switch stream {
-			case [TCommand(CRef), TBrOpen, s = text(), TBrClose]: s;
-			case [TCustomCommand("Fullref"), TBrOpen, s = text(), TBrClose]: s;
-			case [TCustomCommand("fullref"), TBrOpen, s = text(), TBrClose]: s;
-			case [TCustomCommand("cref"), TBrOpen, s = text(), TBrClose]: s;
+		return switch stream {
+			case [TCommand(CRef), TBrOpen, s = text(), TBrClose]: '~~~$s~~~';
+			case [TCustomCommand("Fullref"), TBrOpen, s = text(), TBrClose]: '~~~$s~~~';
+			case [TCustomCommand("tref"), TBrOpen, s1 = text(), TBrClose, TBrOpen, s2 = text(), TBrClose]: '[$s1](~~$s2~~)';
 		}
-		return '~~~$s~~~';
 	}
 	
 	function tableFormat() {

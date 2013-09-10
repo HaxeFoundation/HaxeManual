@@ -21,14 +21,16 @@ class Main{
 			return '[${sec.title}](${url(sec)})';
 		}
 		function process(s:String):String {
-			return ~/~~~([^~]+)~~~/g.map(s, function(r) {
+			function map(r, f) {
 				var i = r.matched(1);
 				if (!parser.labelMap.exists(i)) {
 					trace('Warning: No such label $i');
 					return i;
 				}
-				return link(parser.labelMap[i]);
-			});
+				return f(parser.labelMap[i]);
+			}
+			var s1 = ~/~~~([^~]+)~~~/g.map(s, map.bind(_, link));
+			return ~/~~([^~]+)~~/g.map(s1, map.bind(_, url));
 		}
 		sys.FileSystem.createDirectory(out);
 		var allSections = [];
