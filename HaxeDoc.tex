@@ -1202,7 +1202,7 @@ Resolution order comes into play as soon as unqualified identifiers are involved
 We describe the resolution order algorithm here, which depends on the following state:
 
 \begin{itemize}
-	\item the delared \tref{local variables}{var}
+	\item the delared \tref{local variables}{var} (including function arguments)
 	\item the \tref{imported}{Import} modules, types and statics
 	\item the available \tref{static extensions}{Static Extension}
 	\item the kind (static or member) of the current field
