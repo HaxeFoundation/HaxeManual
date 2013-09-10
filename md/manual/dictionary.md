@@ -22,6 +22,9 @@ This type is compatible with all enum types. At compile-time, `Enum<T>` can be c
 ##### EnumValue
 EnumValue is a special type which unifies with all enum instances. It is used by the standard library to provide some operations for all enum instances, and can be employed in user-code accordingly.
 
+##### Expected Type
+Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is argument to a function call. They can influence typing of that expression through what is called [top-down inference](3.4.1-Top-down_Inference.md).
+
 ##### Float
 Represents a double-precision IEEE 64bit floating point number.
 
