@@ -53,9 +53,11 @@ class Main{
 			if (i != 0) content += '\n\nPrevious section: ${link(allSections[i - 1])}';
 			if (i != allSections.length - 1) content += '\n\nNext section: ${link(allSections[i + 1])}';
 			sys.io.File.saveContent('$out/${url(sec)}', content);
+			Reflect.deleteField(sec, "content");
 		}
 		var a = [for (k in parser.definitionMap.keys()) {k:k, v:parser.definitionMap[k]}];
 		a.sort(function(v1, v2) return Reflect.compare(v1.k.toLowerCase(), v2.k.toLowerCase()));
 		sys.io.File.saveContent('$out/dictionary.md', a.map(function(v) return '##### ${v.k}\n${process(v.v)}').join("\n\n"));
+		sys.io.File.saveContent('$out/sections.txt', haxe.Json.stringify(sections));
 	}
 }
