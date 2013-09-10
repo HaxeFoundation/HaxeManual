@@ -14,6 +14,9 @@ class Main{
 		function escapeFileName(s:String) {
 			return s.replace("?", "").replace("/", "_").replace(" ", "_");
 		}
+		function escapeAnchor(s:String) {
+			return s.toLowerCase().replace(" ", "-");
+		}
 		function url(sec:Section) {
 			return sec.id + "-" +(escapeFileName(sec.title)) + ".md";
 		}
@@ -21,6 +24,20 @@ class Main{
 			return '[${sec.title}](${url(sec)})';
 		}
 		function process(s:String):String {
+			function labelUrl(label:Label) {
+				return switch(label.kind) {
+					case Section(sec): url(sec);
+					case Definition: 'dictionary.md#${escapeAnchor(label.name)}';
+					case Item(i): "" + i;
+				}
+			}
+			function labelLink(label:Label) {
+				return switch(label.kind) {
+					case Section(sec): link(sec);
+					case Definition: '[${label.name}](escapeAnchor(dictionary.md#${label.name}))';
+					case Item(i): "" + i;
+				}
+			}
 			function map(r, f) {
 				var i = r.matched(1);
 				if (!parser.labelMap.exists(i)) {
@@ -29,8 +46,8 @@ class Main{
 				}
 				return f(parser.labelMap[i]);
 			}
-			var s1 = ~/~~~([^~]+)~~~/g.map(s, map.bind(_, link));
-			return ~/~~([^~]+)~~/g.map(s1, map.bind(_, url));
+			var s1 = ~/~~~([^~]+)~~~/g.map(s, map.bind(_, labelLink));
+			return ~/~~([^~]+)~~/g.map(s1, map.bind(_, labelUrl));
 		}
 		sys.FileSystem.createDirectory(out);
 		var allSections = [];

@@ -20,8 +20,19 @@ enum ListMode {
 	Description;
 }
 
+enum LabelKind {
+	Section(sec:Section);
+	Item(i:Int);
+	Definition;
+}
+
+typedef Label = {
+	name: String,
+	kind: LabelKind
+}
+
 class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxparse.ParserBuilder {
-	public var labelMap:Map<String, Section>;
+	public var labelMap:Map<String, Label>;
 	public var definitionMap:Map<String, String>;
 	
 	var sections:Array<Section>;
@@ -33,6 +44,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 	var hlineCount:Int;
 	var tableFieldCount:Int;
 	var listMode:GenericStack<ListMode>;
+	var lastLabelTarget:LabelKind;
 	
 	public function new(input, sourceName) {
 		super(new LatexLexer(input, sourceName), LatexLexer.tok);
@@ -143,6 +155,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 						case Enumerate(c):
 							listMode.pop();
 							listMode.add(Enumerate(c + 1));
+							lastLabelTarget = Item(c + 1);
 							'$c.';
 						case Description:
 							'* $subject';
@@ -163,7 +176,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 				// custom
 				case [TCustomCommand("define"), subject = popt(bracketArg), TBrOpen, s = text(), TBrClose, TBrOpen, s2 = text(), TBrClose]:
 					definitionMap[s] = s2;
-					labelMap['def:$s'] = lastSection;
+					labelMap['def:$s'] = mkLabel(s, Definition);
 					buffer.add('> ##### Define: $s\n');
 					buffer.add('>\n');
 					s2 = s2.replace("\r", "").split("\n").join("\n> ");
@@ -242,8 +255,16 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 			case [s = ref()]: s;
 			case [TCommand(CUrl), TBrOpen, s = text(), TBrClose]: '[$s]($s)';
 			case [TCommand(CLabel), TBrOpen, s = text(), TBrClose]:
-				lastSection.label = s;
-				labelMap[s] = lastSection;
+				var name = switch(lastLabelTarget) {
+					case Section(sec):
+						lastSection.label = s;
+						sec.title;
+					case Item(i):
+						"" + i;
+					case Definition:
+						throw false;
+				}
+				labelMap[s] = mkLabel(name, lastLabelTarget);
 				"";
 			case [TCommand(CHline)]:
 				if (tableMode) {
@@ -299,6 +320,14 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 		}
 		var id = (parent != null ? parent.id + "." : "") + index;
 		lastSection = {title: title, label: null, content: "", sub: [], index:index, id: id};
+		lastLabelTarget = Section(lastSection);
 		return lastSection;
+	}
+	
+	function mkLabel(name:String, kind:LabelKind) {
+		return {
+			name: name,
+			kind: kind
+		}
 	}
 }
