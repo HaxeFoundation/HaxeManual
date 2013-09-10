@@ -149,6 +149,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 					buffer.add("\n");
 				case [TBegin("enumerate")]:
 					listMode.add(Enumerate(1));
+					lastLabelTarget = Item(1);
 					buffer.add("\n");
 				case [TCommand(CItem), subject = popt(bracketArg), s = text()]:
 					var bullet = switch(listMode.first()) {
