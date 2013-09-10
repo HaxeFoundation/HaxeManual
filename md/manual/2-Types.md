@@ -4,16 +4,16 @@ The haxe compiler employs a sophisticated typing system which helps detecting ty
 
 In some languages, this additional safety comes at a price because programmers are forced to explicitly assign types to syntactic constructs:
 
-```
+```haxe
 var myButton:MySpecialButton = new MySpecialButton(); // As3
 MySpecialButton* myButton = new MySpecialButton(); // C++ 
 ```
 The explicit type annotations are not required in haxe, because the compiler can **infer** the type:
 
-```
+```haxe
 var myButton = new MySpecialButton(); // haxe
 ```
-We will explore type inference in detail later in [Type Inference](https://github.com/Simn/HaxeManual/tree/master/md/manual/3.4-Type_Inference.md). For now, it is sufficient to say that variable `myButton` in above code is known to be an **instance of class** `MySpecialButton`. A class instance is one of seven type groups:
+We will explore type inference in detail later in [Type Inference](3.4-Type_Inference.md). For now, it is sufficient to say that variable `myButton` in above code is known to be an **instance of class** `MySpecialButton`. A class instance is one of seven type groups:
 
 
 
@@ -27,6 +27,6 @@ We will explore type inference in detail later in [Type Inference](https://githu
 
 ---
 
-Previous section: [History](https://github.com/Simn/HaxeManual/tree/master/md/manual/1.4-History.md)
+Previous section: [History](1.4-History.md)
 
-Next section: [Basic Types](https://github.com/Simn/HaxeManual/tree/master/md/manual/2.1-Basic_Types.md)
+Next section: [Basic Types](2.1-Basic_Types.md)

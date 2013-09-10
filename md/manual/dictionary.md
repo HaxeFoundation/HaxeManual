@@ -59,7 +59,7 @@ type is a compile-time mechanism being called like a function, with a single arg
 The underlying type of an abstract is the type which is used to represent said abstract at runtime. It is usually a concrete (i.e. non-abstract) type, but could be another abstract type as well.
 
 ##### Unification
-Unification between two types A and B is a directional process which answers the question if A **can be assigned to** B. It may **mutate** either type if it is or has a [Monomorph](https://github.com/Simn/HaxeManual/tree/master/md/manual/2.9-Monomorph.md).
+Unification between two types A and B is a directional process which answers the question if A **can be assigned to** B. It may **mutate** either type if it is or has a [Monomorph](2.9-Monomorph.md).
 
 ##### Void
 Void denote the absence of a type. It is used to express that something (usually a function) has no value.
