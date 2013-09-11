@@ -2247,14 +2247,18 @@ Allowed values for metadata arguments are:
 \subsection{Access Control}
 \label{Access Control}
 
+Access control can be used if the basic \tref{visibility}{Visibility} options are not sufficient. It is applicable at \emph{class-level} and at \emph{field-level} and knows two directions:
+
+\begin{description}
+	\item[Allowing access:] The target is granted access to the given class or field by using the \expr{:allow(target)} \tref{metadata}{Metadata}.
+	\item[Forcing access:] A target is forced to allow access to the given class or field by using the \expr{:access(target)} \tref{metadata}{Metadata}.
+\end{description}
+
+%TODO: blocked by #2162
 
 \subsection{Remoting}
 
 \subsection{Runtime Type Information}
-
-\subsection{Generic Type Parameters}
-
-\subsubsection{Construction}
 
 
 \subsection{Completion}
