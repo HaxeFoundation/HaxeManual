@@ -504,7 +504,7 @@ The general syntactic rules follow:
 \begin{enumerate}
 	\item A structure is enclosed in curly braces \expr{$\left\{\right\}$} and
 	\item has a \emph{comma-separated} list of
-	\item key-value-pairs, with a \emph{double dot} separating the
+	\item key-value-pairs, with a \emph{colon} separating the
 	\item key, which must be a valid haxe field-name, from the
 	\item\label{valueanytype} value, which can be any valid expression.
 \end{enumerate}
@@ -2352,7 +2352,22 @@ Expression reification is used to create instances of \type{haxe.macro.Expr} in 
 	\item[\expr{\$v\{\}}:] \type{Dynamic -> Expr} Generates an expression depending on the type of its argument. This is only guaranteed to work for \tref{basic types}{Basic Types} and \tref{enum instances}{Enum Instance}.
 \end{description}
 
+
+
 \subsubsection{Type Reification}
+
+Type reification is used to create instances of \type{haxe.macro.Expr.ComplexType} in a convenient way. It is identified by a \expr{macro : Type}, where \expr{Type} can be any valid type path expression. This is similar to explicit type hints in normal code, e.g. for variables in the form of \expr{var x:Type}.
+
+Each constructor of \type{ComplexType} has a distinct syntax:
+
+\begin{description}
+	\item[\expr{TPath}:] \expr{macro : pack.Type}
+	\item[\expr{TFunction}:] \expr{macro : Arg1 -> Arg2 -> Return}
+	\item[\expr{TAnonymous}:] \expr{macro : \{ field: Type \}}
+	\item[\expr{TParent}:] \expr{macro : (Type)}
+	\item[\expr{TExtend}:] \expr{macro : \{> Type, field: Type \}}
+	\item[\expr{TOptional}:] \expr{macro : ?Type}
+\end{description}
 
 \subsubsection{Class Reification}
 

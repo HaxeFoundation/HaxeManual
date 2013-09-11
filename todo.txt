@@ -41,7 +41,6 @@ Miscellaneous Features - Access Control
 Miscellaneous Features - Remoting
 Miscellaneous Features - RTTI
 Miscellaneous Features - Completion
-Macros - Type Reification
 Macros - Class Reification
 Macros - Tools
 Macros - Type Building
