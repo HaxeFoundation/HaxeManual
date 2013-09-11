@@ -17,12 +17,8 @@ Expressions - Closure
 Expressions - var
 Expressions - new
 Expressions - while
-Expressions - if
 Expressions - switch
 Expressions - try/catch
-Expressions - return
-Expressions - break
-Expressions - continue
 Expressions - throw
 Expressions - cast
 Standard Library - String

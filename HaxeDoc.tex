@@ -400,7 +400,7 @@ Instances of classes are created by calling the class constructor, a process com
 \begin{lstlisting}
 var p = new Point(-1, 65);
 \end{lstlisting}
-This will yield an instance of class \type{Point}, which is assigned to a variable named \expr{p}. The constructor of \type{Point} receives the two arguments \expr{-1} and \expr{65} and assigns them to the instance variables \expr{x} and \expr{y} respectively (compare its definition in \Fullref{Class Instance}). We will revisit the exact meaning of the new-expression later in section \ref{new}, for now we just consider it calling the class constructor and returning the appropriate object.
+This will yield an instance of class \type{Point}, which is assigned to a variable named \expr{p}. The constructor of \type{Point} receives the two arguments \expr{-1} and \expr{65} and assigns them to the instance variables \expr{x} and \expr{y} respectively (compare its definition in \Fullref{Class Instance}). We will revisit the exact meaning of the \expr{new} expression later in section \ref{new}, for now we just consider it calling the class constructor and returning the appropriate object.
 
 
 
@@ -597,13 +597,13 @@ The function type, along with the \tref{monomorph}{Monomorph}, is a type which i
 
 \lstinputlisting{assets/FunctionType.hx}
 
-There is a strong resemblance between the declaration of function \expr{test} and the output of the first \expr{\$type}-expression, yet also a subtle difference:
+There is a strong resemblance between the declaration of function \expr{test} and the output of the first \expr{\$type} expression, yet also a subtle difference:
 
 \begin{itemize}
 	\item \emph{Function arguments} are separated by the special arrow token \expr{->} instead of commas, and
 	\item the \emph{function return type} appears at the end after another \expr{->}.
 \end{itemize}
-In either notation, it is obvious that the function \expr{test} accepts a first argument of type \type{Int}, a second argument of type \type{String} and returns a value of type \type{Bool}. If a call to this function is made, such as \expr{test(1, "foo")} within the second \expr{\$type}-expression, the haxe typer checks if \expr{1} can be assigned to \type{Int} and if \expr{"foo"} can be assigned to \type{String}. The type of the call is then equal to the type of the value \expr{test} returns, which is \type{Bool}.
+In either notation, it is obvious that the function \expr{test} accepts a first argument of type \type{Int}, a second argument of type \type{String} and returns a value of type \type{Bool}. If a call to this function is made, such as \expr{test(1, "foo")} within the second \expr{\$type} expression, the haxe typer checks if \expr{1} can be assigned to \type{Int} and if \expr{"foo"} can be assigned to \type{String}. The type of the call is then equal to the type of the value \expr{test} returns, which is \type{Bool}.
 
 
 \subsubsection{Optional Arguments}
@@ -1098,7 +1098,7 @@ In this particular case, the unification is triggered by an \emph{assignment}, a
 \begin{description}
 	\item[Assignment:] If \expr{a} is assigned to \expr{b}, the type of \expr{a} is unified with the type of \expr{b}.
 	\item[Function call:] We have briefly seen this one while introducing the \tref{function}{Function} type. In general, the compiler tries to unify the first given argument type with the first expected argument type, the second given argument type with the second expected argument type and so on until all argument types are handled.
-	\item[Function return:] Whenever a function has a \expr{return e} expression, the type of \expr{e} is unified with the function return type. If the function has no explicit return type, it is infered to the type of \expr{e} and subsequent \expr{return}-expressions are infered against it.
+	\item[Function return:] Whenever a function has a \expr{return e} expression, the type of \expr{e} is unified with the function return type. If the function has no explicit return type, it is infered to the type of \expr{e} and subsequent \expr{return} expressions are infered against it.
 	\item[Array declaration:] The compiler tries to find a minimal type between all given types in an array declaration. Refer to \Fullref{Common Base Type} for details.
 	\item[Object declaration:] If an object is declared ``against'' a given type, the compiler unifies each given field type with each expected field type.
 	\item[Operator unification:] Certain operators expect certain types which given types are unified against. For instance, the expression \expr{a \&\& b} unifies both \expr{a} and \expr{b} with \type{Bool} and the expression \expr{a == b} unifies \expr{a} with \expr{b}.
@@ -1625,6 +1625,7 @@ It is not possible to override fields which are declared as \tref{\expr{inline}}
 Expressions in haxe define what a program \emph{does}. Most expressions are found in the body of a \tref{method}{Method}, where they are combined to express what that method should do. This section explains the different kinds of expressions.
 
 
+
 \subsection{Blocks}
 
 A block in haxe starts with an opening curly brace \expr{\{} and ends with a closing curly brace \expr{\}}. A block may contain several expressions, each of which is followed by a semicolon \expr{;}. The general syntax is thus:
@@ -1639,7 +1640,7 @@ A block in haxe starts with an opening curly brace \expr{\{} and ends with a clo
 \end{lstlisting}
 The value and by extension the type of a block-expression is equal to the value and the type of the last sub-expression.
 
-Blocks can contain local variables declared by \tref{\expr{var}-expression}{var}, as well as local closures declared by \tref{\expr{function}-expressions}{function}. These are available within the block and within sub-blocks, but not outside the block. Also, they are available only after their declaration. The following example uses \expr{var}, but the same rules apply to \expr{function} usage:
+Blocks can contain local variables declared by \tref{\expr{var} expression}{var}, as well as local closures declared by \tref{\expr{function} expressions}{function}. These are available within the block and within sub-blocks, but not outside the block. Also, they are available only after their declaration. The following example uses \expr{var}, but the same rules apply to \expr{function} usage:
 
 \begin{lstlisting}
 {
@@ -1653,7 +1654,7 @@ Blocks can contain local variables declared by \tref{\expr{var}-expression}{var}
 }
 a; // error, a is not available outside
 \end{lstlisting}
-At runtime, blocks are evaluated from top to bottom. Control flow (e.g. \tref{exceptions}{try/catch} or \tref{return-expressions}{return}) may leave a block before all expressions 
+At runtime, blocks are evaluated from top to bottom. Control flow (e.g. \tref{exceptions}{try/catch} or \tref{return expressions}{return}) may leave a block before all expressions 
 are evaluated.
 
 
@@ -1756,7 +1757,7 @@ The typer ensures that the type of \expr{e1} can be iterated over, which is typi
 
 Variable \expr{v} is then available within loop body \expr{e2} and holds the value of the individual elements of collection \expr{e1}.
 
-The type of a \expr{for}-expression is always \type{Void}, meaning it has no value and cannot be used as right-side expression.
+The type of a \expr{for} expression is always \type{Void}, meaning it has no value and cannot be used as right-side expression.
 
 \subsection{while}
 \label{while}
@@ -1776,7 +1777,7 @@ Optionally, \expr{expression} may be followed by the \expr{else} keyword as well
 if (condition) expression1 else expression2;
 \end{lstlisting}
 
-Here, \expr{expression2} may consist of another \expr{if}-expression:
+Here, \expr{expression2} may consist of another \expr{if} expression:
 
 \begin{lstlisting}
 if (condition1) expression1
@@ -1784,10 +1785,11 @@ else if(condition2) expression2
 else expression3
 \end{lstlisting}
 
-If the value of an \expr{if}-expression is required, e.g. for \expr{var x = if(condition) expression1 else expression2}, the typer ensures that the types of \expr{expression1} and \expr{expression2} \tref{unify}{Unification}. If no \expr{else}-expression is given, the type is inferred to be \type{Void}.
+If the value of an \expr{if} expression is required, e.g. for \expr{var x = if(condition) expression1 else expression2}, the typer ensures that the types of \expr{expression1} and \expr{expression2} \tref{unify}{Unification}. If no \expr{else} expression is given, the type is inferred to be \type{Void}.
 
 
 \subsection{switch}
+\label{switch}
 
 \subsection{try/catch}
 \label{try/catch}
@@ -1795,9 +1797,63 @@ If the value of an \expr{if}-expression is required, e.g. for \expr{var x = if(c
 \subsection{return}
 \label{return}
 
+A \expr{return} expression can come with or without an value expression:
+
+\begin{lstlisting}
+return;
+return expression;
+\end{lstlisting}
+
+It leaves the control-flow of the innermost function it is declared in, which has to be distinguished when \tref{closures}{Closure} are involved:
+
+\begin{lstlisting}
+function f1() {
+	function f2() {
+		return;
+	}
+	f2();
+	expression;
+}
+\end{lstlisting}
+
+The \expr{return} leaves closure \expr{f2}, but not \expr{f1}, meaning \expr{expression} is still evaluated.
+
+If \expr{return} is used without a value expression, the typer ensures that the return type of the function it returns from is of \type{Void}. If it has a value expression, the typer \tref{unifies}{Unification} its type with the return type (explicitly given or inferred by previous \expr{return} expressions) of the function it returns from.
+
+
 \subsection{break}
 
+The \expr{break} keyword leaves the control flow of the innermost loop (\expr{for} or \expr{while}) it is declared in, stopping further iterations:
+
+\begin{lstlisting}
+while(true) {
+	expression1;
+	if (condition) break;
+	expression2;
+}
+\end{lstlisting}
+
+Here, \expr{expression1} is evaluated for each iteration, but as soon as \expr{condition} holds, \expr{expression2} is not evaluated anymore.
+
+The typer ensures that it appears only within a loop. The \expr{break} keyword in \tref{\expr{switch} cases}{switch} is not supported in Haxe.
+
+
 \subsection{continue}
+
+The \expr{continue} keyword ends the current iteration of the innermost loop (\expr{for} or \expr{while}) it is declared in, causing the loop condition to be checked for the next iteration:
+
+\begin{lstlisting}
+while(true) {
+	expression1;
+	if(condition) continue;
+	expression2;
+}
+\end{lstlisting}
+
+Here, \expr{expression1} is evaluated for each iteration, but if \expr{condition} holds, \expr{expression2} is not evaluated for the current iteration. Unlike \expr{break}, iterations continue.
+
+The typer ensures that it appears only within a loop.
+
 
 \subsection{throw}
 
