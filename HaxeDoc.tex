@@ -1461,7 +1461,7 @@ var Main = function() {
 
 As specified, the read access generates a call to \expr{get_x()}, while the write access generates a call to \expr{set_x(2)} where \expr{2} is the value being assigned to \expr{x}. The way the \expr{+=} is being generated might look a little odd at first, but can easily be justified by the following example:
 
-\lstinputlisting{assets/Property.hx}
+\lstinputlisting{assets/Property3.hx}
 
 What happens here is that the expression part of the field access to \expr{x} in the \expr{main} method is \emph{complex}: It has potential side-effects, such as the construction of \type{Main} in this case. Thus, the compiler cannot generate the \expr{+=} operation as \expr{new Main().x = new Main().x + 1} and has to cache the complex expression in a local variable:
 
