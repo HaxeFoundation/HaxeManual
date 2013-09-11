@@ -22,6 +22,6 @@ Regarding terminology, a method is a (static or non-static) function belonging t
 
 ---
 
-Previous section: [Resolution Order](3.5.3-Resolution_Order.md)
+Previous section: [Resolution Order](3.7.3-Resolution_Order.md)
 
 Next section: [Variable](4.1-Variable.md)

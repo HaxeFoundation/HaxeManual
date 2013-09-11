@@ -13,7 +13,7 @@ The explicit type annotations are not required in haxe, because the compiler can
 ```haxe
 var myButton = new MySpecialButton(); // haxe
 ```
-We will explore type inference in detail later in [Type Inference](3.4-Type_Inference.md). For now, it is sufficient to say that variable `myButton` in above code is known to be an **instance of class** `MySpecialButton`. A class instance is one of seven type groups:
+We will explore type inference in detail later in [Type Inference](3.6-Type_Inference.md). For now, it is sufficient to say that variable `myButton` in above code is known to be an **instance of class** `MySpecialButton`. A class instance is one of seven type groups:
 
 
 
@@ -24,6 +24,12 @@ We will explore type inference in detail later in [Type Inference](3.4-Type_Infe
  * Dynamic: a wildcard type which is compatible to any type
  * Abstract: an abstract value type
  * Monomorph: an unknown type, which may later become a different type
+
+
+
+> ##### Define: Compound Type
+>
+> A compound type is a type which has sub-types. This includes any type with [type parameters](3.2-Type_Parameters.md) and the [function](2.6-Function.md) type.
 
 ---
 
