@@ -1,0 +1,53 @@
+Numeric types: overflow
+Basic types: complete nullability
+Structures: optional fields
+Extensions: where should these go?
+Import: figure out what import a.* does exactly
+Dynamic functions: performance impact
+Field expressions: say something
+
+Missing:
+Abstracts - @:fakeEnum
+Abstracts - @:expose
+Modules and Paths - private types
+ClassFields - Method
+Expressions - Binop
+Expressions - Unop
+Expressions - Closure
+Expressions - var
+Expressions - new
+Expressions - while
+Expressions - if
+Expressions - switch
+Expressions - try/catch
+Expressions - return
+Expressions - break
+Expressions - continue
+Expressions - throw
+Expressions - cast
+Standard Library - String
+Standard Library - Array
+Standard Library - List
+Standard Library - GenericStack
+Standard Library - Map
+Standard Library - Option
+Standard Library - Regular expressions
+Standard Library - Math
+Standard Library - Lambda
+Standard Library - Reflection
+Standard Library - Serialization
+Standard Library - Json
+Standard Library - Xml
+Standard Library - Input/Output
+Standard Library - Sys/sys
+Miscellaneous Features - Compiler Metadata
+Miscellaneous Features - Access Control
+Miscellaneous Features - Remoting
+Miscellaneous Features - RTTI
+Miscellaneous Features - Completion
+Macros - Type Reification
+Macros - Class Reification
+Macros - Tools
+Macros - Type Building
+Macros - Limitations
+Macros - Compiler Configuration
