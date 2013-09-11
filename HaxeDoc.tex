@@ -1016,6 +1016,7 @@ Main.main();
 })();
 \end{lstlisting}
 
+
 \subsubsection{Construction of generic type parameters}
 \label{Construction of generic type parameters}
 
@@ -1231,7 +1232,7 @@ There are also some cases involving recursion where type inference has limitatio
 \subsection{Modules and Paths}
 \label{Modules and Paths}
 
-\define{Module}{All haxe code is organized in modules, which are addressed using paths. In essence, each .hx file represents a module which may contain several types.}
+\define{Module}{All haxe code is organized in modules, which are addressed using paths. In essence, each .hx file represents a module which may contain several types. A type may be \expr{private}, in which case only its containing module can access it.}
 
 The distinction of a module and its containing type of the same name is blurry by design. In fact, addressing \expr{haxe.ds.StringMap<Int>} can be considered shorthand for \expr{haxe.ds.StringMap.StringMap<Int>}. The latter version consists of four parts:
 
@@ -2268,6 +2269,9 @@ Access control can be used if the basic \tref{visibility}{Visibility} options ar
 \subsubsection{Usage}
 \subsubsection{Position}
 \subsubsection{Metadata}
+
+
+
 
 \section{Macros}
 \label{Macros}

@@ -9,7 +9,6 @@ Field expressions: say something
 Missing:
 Abstracts - @:fakeEnum
 Abstracts - @:expose
-Modules and Paths - private types
 ClassFields - Method
 Expressions - Binop
 Expressions - Unop
