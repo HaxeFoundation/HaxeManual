@@ -1756,11 +1756,36 @@ The typer ensures that the type of \expr{e1} can be iterated over, which is typi
 
 Variable \expr{v} is then available within loop body \expr{e2} and holds the value of the individual elements of collection \expr{e1}.
 
+The type of a \expr{for}-expression is always \type{Void}, meaning it has no value and cannot be used as right-side expression.
+
 \subsection{while}
 \label{while}
 
 \subsection{if}
 \label{if}
+
+Conditional expressions come in the form of a leading \expr{if} keyword, a condition expression enclosed in parentheses \expr{()} and a expression to be evaluated in case the condition holds:
+
+\begin{lstlisting}
+if (condition) expression;
+\end{lstlisting}
+
+Optionally, \expr{expression} may be followed by the \expr{else} keyword as well as another expression to be evaluated if the condition does not hold:
+
+\begin{lstlisting}
+if (condition) expression1 else expression2;
+\end{lstlisting}
+
+Here, \expr{expression2} may consist of another \expr{if}-expression:
+
+\begin{lstlisting}
+if (condition1) expression1
+else if(condition2) expression2
+else expression3
+\end{lstlisting}
+
+If the value of an \expr{if}-expression is required, e.g. for \expr{var x = if(condition) expression1 else expression2}, the typer ensures that the types of \expr{expression1} and \expr{expression2} \tref{unify}{Unification}. If no \expr{else}-expression is given, the type is inferred to be \type{Void}.
+
 
 \subsection{switch}
 
