@@ -58,6 +58,17 @@ Description
 ##### nullable
 A type in haxe is considered **nullable** if `null` is a valid value for it.
 
+##### Physical field
+A field is considered to be **physical** if it is either
+
+
+* a [variable](4.1-Variable.md)
+* a [property](4.2-Property.md) with the read-access or write-access identifier being `default` or `null`
+* a [property](4.2-Property.md) with `:isVar` [metadata](7.8-Metadata.md)
+
+
+
+
 ##### Read Access
 A read access to a field occurs when a right-hand side [field access expression](5.7-Field_Access.md) is used. This includes calls in the form of `obj.field()`, where `field` is accessed to be read.
 
