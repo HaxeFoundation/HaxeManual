@@ -2106,7 +2106,7 @@ Extractors are identified by the \expr{extractorExpression => match} expression.
 
 \begin{itemize}
 	\item any identifier \expr{i}, the generated code is equal to \expr{matchedValue.i()},
-	\item otherwise it is equal to \expr{i(matchedValue)}.
+	\item otherwise for arbitrary expressions \expr{e}, it is equal to \expr{e(matchedValue)}.
 \end{itemize}
 
 The distinction is made because interpreting a plain identifier like that can be quite convenient, as the \expr{toLowerCase()} example above demonstrated. It also allows bringing extractors into context through \tref{static extensions}{Static Extension}.
