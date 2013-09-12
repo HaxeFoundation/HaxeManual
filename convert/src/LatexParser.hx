@@ -189,7 +189,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 					s2 = s2.replace("\r", "").split("\n").join("\n> ");
 					buffer.add('> $s2');
 				case [TCustomCommand("todo"), TBrOpen, s = text(), TBrClose]:
-					
+				case [TCustomCommand("since"), TBrOpen, s = text(), TBrClose]: buffer.add('##### since Haxe $s\n\n');
 					
 				// section
 				case [TCommand(CSection), TBrOpen, s = text(), TBrClose]:
