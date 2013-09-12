@@ -22,12 +22,10 @@
 
 7.11: [Runtime Type Information](7.11-Runtime_Type_Information.md)
 
-7.12: [Generic Type Parameters](7.12-Generic_Type_Parameters.md)
-
-7.13: [Completion](7.13-Completion.md)
+7.12: [Completion](7.12-Completion.md)
 
 ---
 
-Previous section: [Data Structures](6.2-Data_Structures.md)
+Previous section: [Map](6.2.4-Map.md)
 
 Next section: [Conditional Compilation](7.1-Conditional_Compilation.md)

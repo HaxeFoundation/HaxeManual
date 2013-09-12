@@ -4,6 +4,6 @@ Standard library
 
 ---
 
-Previous section: [for](5.12-for.md)
+Previous section: [continue](5.19-continue.md)
 
 Next section: [String](6.1-String.md)

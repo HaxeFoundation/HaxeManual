@@ -50,7 +50,7 @@ Represents a 32bit integral number.
 The macro context is the environment in which the macro is executed. Depending on the macro type, it can be considered to be a class being built or a function being typed. Contextual information can be obtained through the `haxe.macro.Context` API.
 
 ##### Module
-All haxe code is organized in modules, which are addressed using paths. In essence, each .hx file represents a module which may contain several types.
+All haxe code is organized in modules, which are addressed using paths. In essence, each .hx file represents a module which may contain several types. A type may be `private`, in which case only its containing module can access it.
 
 ##### Name
 Description
