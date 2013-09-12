@@ -719,7 +719,9 @@ We can derive the following from this example:
 
 \define{Underlying Type}{The underlying type of an abstract is the type which is used to represent said abstract at runtime. It is usually a concrete (i.e. non-abstract) type, but could be another abstract type as well.}
 
-The syntax is reminiscent of classes and the semantics are indeed similar. In fact, everything in the ``body'' of an abstract (that is everything after the opening curly brace) is parsed as class fields. Furthermore, abstracts can be instantiated and used just like classes:
+The syntax is reminiscent of classes and the semantics are indeed similar. In fact, everything in the ``body'' of an abstract (that is everything after the opening curly brace) is parsed as class fields. Abstracts may have \tref{method}{Method} fields and non-\tref{physical}{def:Physical field} \tref{property}{Property} fields.
+
+Furthermore, abstracts can be instantiated and used just like classes:
 
 \lstinputlisting[firstline=7,lastline=12]{assets/MyAbstract.hx}
 As mentioned before, abstracts are a compile-time feature, so it is interesting to see what the above actually generates. A suitable target for this is \target{Javascript}, which tends to generate concise and clean code. Compiling the above (using \texttt{haxe -main MyAbstract -js myabstract.js}) shows this \target{Javascript} code:
@@ -732,7 +734,12 @@ The abstract type \type{Abstract} completely disappeared from the output and all
 
 A good question at this point is what happens if a member function is not declared inline, because the code obviously has to go somewhere. Haxe creates a private class, known to be the \emph{implementation class}, which has all the abstract member functions as static functions accepting an additional first argument \expr{this} of the underlying type. While this technically is an implementation detail, it can be used for \tref{selective functions}{Selective Functions}.
 
+
+
 \trivia{Basic Types and abstracts}{Before the advent of abstract types, all basic types were implemented as extern classes or enums. While this nicely took care of some aspects such as \type{Int} being a ``child class'' of \type{Float}, it caused issues elsewhere. For instance, with \type{Float} being an extern class, it would unify with the empty structure \expr{\{\}}, making it impossible to constrain a type to accepting only real objects.}
+
+
+
 
 \subsubsection{Implicit Casts}
 \label{Implicit Casts}
@@ -1501,13 +1508,24 @@ Both getter and setter may access their physical field for data storage. The com
 
 \lstinputlisting{assets/GetterSetter.hx}
 
-However, the compiler assumes that a physical field exists only if at least one of the access identifiers is \expr{default} or \expr{null}. If this is not the case, access to the field from within an accessor method causes a compilation error:
+However, the compiler assumes that a physical field exists only if at least one of the access identifiers is \expr{default} or \expr{null}.
+
+\define{Physical field}{A field is considered to be \emph{physical} if it is either
+	\begin{itemize}
+		\item a \tref{variable}{Variable}
+		\item a \tref{property}{Property} with the read-access or write-access identifier being \expr{default} or \expr{null}
+		\item a \tref{property}{Property} with \expr{:isVar} \tref{metadata}{Metadata}
+	\end{itemize}
+}
+
+If this is not the case, access to the field from within an accessor method causes a compilation error:
 
 \lstinputlisting{assets/GetterSetter2.hx}
 
 If a physical field is indeed intended, it can be forced by attributing the field in question with the \expr{:isVar} \tref{metadata}{Metadata}:
 
 \lstinputlisting{assets/GetterSetter3.hx}
+
 
 \trivia{Property setter type}{It is not uncommon for new Haxe users to be surprised by the type of a setter being required to be \type{T->T} instead of the seemingly more natural \type{T->Void}. After all, why would a \emph{setter} have to return something?\\
 The rationale is that we still want to be able to use field assignments using setters as right-side expressions. Given a chain like \expr{x = y = 1}, it is evaluated as \expr{x = (y = 1)}. In order to assign the result of \expr{y = 1} to \expr{x}, the former must have a value. If \expr{y} had a setter returning \type{Void}, this would not be possible.}
