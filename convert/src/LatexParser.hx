@@ -78,7 +78,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 	function document() {
 		while(true) {
 			switch stream {
-				case [s = text()]: buffer.add(s);
+				case [s = text2()]: buffer.add(s);
 				
 				// skip
 				case [TCommand(CTitle), TBrOpen, s = text(), TBrClose]:
@@ -139,43 +139,9 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 					buffer.add("```haxe\n");
 					buffer.add(f);
 					buffer.add("\n```");
-					
-				// list
-				case [TBegin("itemize")]:
-					listMode.add(Itemize);
-					buffer.add("\n");
-				case [TBegin("description")]:
-					listMode.add(Description);
-					buffer.add("\n");
-				case [TBegin("enumerate")]:
-					listMode.add(Enumerate(1));
-					lastLabelTarget = Item(1);
-					buffer.add("\n");
-				case [TCommand(CItem), subject = popt(bracketArg), s = text()]:
-					var bullet = switch(listMode.first()) {
-						case Enumerate(c):
-							listMode.pop();
-							listMode.add(Enumerate(c + 1));
-							lastLabelTarget = Item(c + 1);
-							'$c.';
-						case Description:
-							'* $subject';
-						case Itemize:
-							"*";
-					}
-					buffer.add('$bullet$s');
-				case [TEnd("itemize")]:
-					listMode.pop();
-					buffer.add("\n");
-				case [TEnd("description")]:
-					listMode.pop();
-					buffer.add("\n");
-				case [TEnd("enumerate")]:
-					listMode.pop();
-					buffer.add("\n");
-				
+									
 				// custom
-				case [TCustomCommand("define"), subject = popt(bracketArg), TBrOpen, s = text(), TBrClose, TBrOpen, s2 = text(), TBrClose]:
+				case [TCustomCommand("define"), subject = popt(bracketArg), TBrOpen, s = text(), TBrClose, TBrOpen, s2 = text2(), TBrClose]:
 					definitionMap[s] = s2;
 					labelMap['def:$s'] = mkLabel(s, Definition);
 					buffer.add('> ##### Define: $s\n');
@@ -183,7 +149,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 					s2 = s2.replace("\r", "").split("\n").join("\n> ");
 					buffer.add('> $s2');
 					buffer.add("\n");
-				case [TCustomCommand("trivia"), title = popt(bracketArg), TBrOpen, s = text(), TBrClose, TBrOpen, s2 = text(), TBrClose]:
+				case [TCustomCommand("trivia"), title = popt(bracketArg), TBrOpen, s = text(), TBrClose, TBrOpen, s2 = text2(), TBrClose]:
 					buffer.add('> ##### Trivia: $s\n');
 					buffer.add('>\n');
 					s2 = s2.replace("\r", "").split("\n").join("\n> ");
@@ -214,7 +180,14 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 	}
 	
 	function text() {
-		var s = switch stream {
+		var s = _text();
+		if (s == null) noMatch();
+		var s2 = popt(text);
+		return if (s2 == null) s else s + s2;
+	}
+	
+	function _text() {
+		return switch stream {
 			case [TText(s)]: s;
 			case [TTab]:
 				codeMode ? "\t" : "";
@@ -281,9 +254,53 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 			case [TNewline]: tableMode ? "" : "\n";
 			case [TDoubleBackslash]: "\n";
 		}
+	}
+	
+	function text2() {
+		var s = _text2();
 		if (s == null) noMatch();
-		var s2 = popt(text);
+		var s2 = popt(text2);
 		return if (s2 == null) s else s + s2;
+	}
+	
+	function _text2() {
+		return switch stream {
+			// list
+			case [TBegin("itemize")]:
+				listMode.add(Itemize);
+				"\n";
+			case [TBegin("description")]:
+				listMode.add(Description);
+				"\n";
+			case [TBegin("enumerate")]:
+				listMode.add(Enumerate(1));
+				lastLabelTarget = Item(1);
+				"\n";
+			case [TCommand(CItem), subject = popt(bracketArg), s = text()]:
+				var bullet = switch(listMode.first()) {
+					case Enumerate(c):
+						listMode.pop();
+						listMode.add(Enumerate(c + 1));
+						lastLabelTarget = Item(c + 1);
+						'$c.';
+					case Description:
+						'* $subject';
+					case Itemize:
+						"*";
+				}
+				'$bullet$s';
+			case [TEnd("itemize")]:
+				listMode.pop();
+				"\n";
+			case [TEnd("description")]:
+				listMode.pop();
+				"\n";
+			case [TEnd("enumerate")]:
+				listMode.pop();
+				"\n";
+			case [t = _text()]:
+				t;
+		}
 	}
 	
 	function ref() {
