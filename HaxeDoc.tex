@@ -41,6 +41,8 @@
 
 \newcommand{\todo}[1]{TODO: #1}
 
+\newcommand{\since}[1]{\emph{Since haxe #1}}
+
 \lstdefinelanguage{haxe}{
   keywords={function, class, var, if, else, while, do, for, break, continue, return, extends, implements, import, switch, case, default, static, public, private, try, catch, new, this, throw, extern, enum, in, interface, untyped, cast, override, typedef, dynamic, package, inline, using, null, true, false, abstract, macro},
   sensitive=true,
@@ -1879,8 +1881,13 @@ Standard library
 
 \subsubsection{List}
 \subsubsection{GenericStack}
+
+
 \subsubsection{Map}
 \label{Map}
+
+A \type{Map} is a container which associates keys with values. 
+
 \subsubsection{Option}
 
 \subsection{Regular Expressions}
@@ -2060,6 +2067,7 @@ The \expr{|} operator can be used anywhere within patterns to describe multiple 
 If there's a captured variable in an or-pattern, it must appear in both its sub-patterns.
 
 \subsubsection{Guards}
+\label{Guards}
 
 It is also possible to further restrict patterns with the \expr{case ... if(condition):} syntax:
 
@@ -2080,6 +2088,38 @@ This is quite similar to usual array matching, but there are differences:
 	\item It is not possible to capture the switch value in a variable, i.e. \expr{case x} is not allowed (\expr{case _} still is).
 \end{itemize}
 
+
+
+
+\subsubsection{Extractors}
+\since{3.1.0}
+
+Extractors allow applying transformations to values being matched. This is often useful when a small operation is required on a matched value before matching can continue:
+
+\lstinputlisting{assets/Extractor2.hx}
+
+Here we have to capture the argument value of the \expr{TString} enum constructor in a variable \expr{temp} and use a nested switch on \expr{temp.toLowerCase()}. Obviously, we want matching to succeed if \expr{TString} holds a value of \expr{"foo"} regardless of its casing. This can be simplified with extractors:
+
+\lstinputlisting{assets/Extractor.hx}
+
+Extractors are identified by the \expr{extractorExpression => match} expression. The compiler generates code which is similar to the previous example, but the original syntax was greatly simplified. The way extractors are treated depends on the expression left of the \expr{=>} operator. If it is
+
+\begin{itemize}
+	\item any identifier \expr{i}, the generated code is equal to \expr{matchedValue.i()},
+	\item otherwise it is equal to \expr{i(matchedValue)}.
+\end{itemize}
+
+The distinction is made because interpreting a plain identifier like that can be quite convenient, as the \expr{toLowerCase()} example above demonstrated. It also allows bringing extractors into context through \tref{static extensions}{Static Extension}.
+
+Any expression can be used as extractor expression and the typer ensures that it is of function type \type{S->T}, where \type{S} is the type of the currently matched value and \type{T} is equal to the type of the expression right of the \expr{=>} operator. With that, extractors can be combined with other features such as \tref{function binding}{Function Bindings}:
+
+\lstinputlisting{assets/Extractor3.hx}
+
+In this particular case, the extractor is called as \expr{lessThan(4, 5)}, yielding true.
+
+A lcurrent imitation with regards to extractors is that they disable \tref{useless pattern checks}{Useless pattern checks}.
+
+
 \subsubsection{Exhaustiveness checks}
 
 The compiler ensures that you do not forget a possible case for non value-only switches:
@@ -2092,7 +2132,9 @@ switch(true) {
 
 The matched type \type{Bool} admits two values \expr{true} and \expr{false}, but only \expr{false} is checked. 
 
+
 \subsubsection{Useless pattern checks}
+\label{Useless pattern checks}
 
 In a similar fashion, the compiler detects patterns which will never match the input value:
 
