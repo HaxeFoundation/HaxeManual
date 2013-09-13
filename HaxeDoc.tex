@@ -72,7 +72,8 @@
 	captionpos=b,
 }
 \newcommand{\haxe}[2][]{%
-    \lstinputlisting[label={\detokenize{#2}},#1]{#2}%
+    %\lstinputlisting[label={\detokenize{#2}},#1]{#2}%
+    \lstinputlisting[#1]{#2}%
 }
 
 \renewcommand{\maketitle}{
@@ -162,7 +163,7 @@ In a few places, this document has \emph{trivia}-boxes. These include off-the-re
 
 The following program prints ``Hello World'' after being compiled and run:
 
-\lstinputlisting{assets/HelloWorld.hx}
+\haxe{assets/HelloWorld.hx}
 This can be tested by saving above code to a file named \ic{HelloWorld.hx} and invoking the haxe compiler like so: \ic{haxe -main HelloWorld --interp}. This outputs \ic{HelloWorld.hx:3: Hello world}. There are several things to learn from this:
 
 \begin{itemize}
@@ -315,7 +316,7 @@ Accessing \expr{object.field} if \expr{object} is \expr{null} would lead to a ru
 \type{Void} is a special case in the type system because it is not actually a type. It is used to express the absence of a type, which applies mostly to function arguments and return types.
 We have already ``seen'' Void in the initial ``Hello World'' example:
 
-\lstinputlisting{assets/HelloWorld.hx}
+\haxe{assets/HelloWorld.hx}
 The function type will be explored in detail in section \Fullref{Function}, but a quick preview helps here: The type of function \expr{main} in above example can be considered to be \type{Void->Void}, which reads as ``it has no arguments and returns nothing''.
 Haxe does not allow fields and variables of type \type{Void}, and will complain if an attempt is made at declaring such:
 
@@ -377,7 +378,7 @@ Similar to many object-oriented languages, classes in haxe are the primary data 
 
 The following code example serves as basis for the remainder of this section:
 
-\lstinputlisting{assets/Point.hx}
+\haxe{assets/Point.hx}
 Semantically, this class represents a point in discrete 2-dimensional space, but this is not important here. Let us instead describe the structure:
 
 \begin{itemize}
@@ -411,7 +412,7 @@ This will yield an instance of class \type{Point}, which is assigned to a variab
 
 Classes may inherit from other classes, which in haxe is denoted by the \expr{extends} keyword:
 
-\lstinputlisting{assets/Point3.hx}
+\haxe{assets/Point3.hx}
 This relation is often described as "is-a": Any instance of class \type{Point3} is also an instance of \type{Point}. \type{Point} is then known as the \emph{parent class} of \type{Point3}, which is a \emph{child class} of \type{Point}. A class may have many child classes, but only one parent class. The term ``a parent class of class X'' usually refers to its direct parent class, the parent class of its parent class and so on.
 
 The code above is very similar to the original \type{Point} class, with two new constructs being shown:
@@ -460,7 +461,7 @@ Interface fields are not limited to methods, they can be variables and propertie
 
 Haxe provides powerful enumeration (short: enum) types, which are actually an \emph{algebraic data type} (ADT). While they cannot have any expressions, they are very useful for describing the structure of code logic:
 
-\lstinputlisting{assets/Color.hx}
+\haxe{assets/Color.hx}
 Semantically, this enum describes a color which is either red, green, blue or a specified RGB value. The syntactic structure is as follows:
 \begin{itemize}
 	\item The keyword \expr{enum} denotes that we are declaring an enum.
@@ -490,7 +491,7 @@ All enum instances can be assigned to a special type named \type{EnumValue}.
 
 It is important to distinguish enum types and enum constructors, as this example demonstrates:
 
-\lstinputlisting{assets/EnumUnification.hx}
+\haxe{assets/EnumUnification.hx}
 If line 7 is uncommented, the program does not compile because \expr{Red} (an enum constructor) cannot be assigned to a variable of type \type{Enum<Color>} (an enum type). The relation is analogous to a class and its instance.
 
 
@@ -500,7 +501,7 @@ If line 7 is uncommented, the program does not compile because \expr{Red} (an en
 
 Anonymous structures can be used to group data without explicitly creating a type. The following example creates a structure with two fields \expr{x} and \expr{name}, and initializes their values to \expr{12} and \expr{"foo"} respectively:
 
-\lstinputlisting{assets/Structure.hx}
+\haxe{assets/Structure.hx}
 The general syntactic rules follow:
 
 \begin{enumerate}
@@ -597,7 +598,7 @@ Using structures and by extension \tref{structural subtyping}{Structural Subtypi
 
 The function type, along with the \tref{monomorph}{Monomorph}, is a type which is usually well-hidden from haxe users, yet present everywhere. We can make it surface by using \expr{\$type}, a special haxe identifier which outputs during compilation the type its expression has:
 
-\lstinputlisting{assets/FunctionType.hx}
+\haxe{assets/FunctionType.hx}
 
 There is a strong resemblance between the declaration of function \expr{test} and the output of the first \expr{\$type} expression, yet also a subtle difference:
 
@@ -613,7 +614,7 @@ In either notation, it is obvious that the function \expr{test} accepts a first 
 
 Optional arguments are declared by prefixing an argument identifier with a question mark \expr{?}:
 
-\lstinputlisting[label=assets/OptionalArguments.hx]{assets/OptionalArguments.hx}
+\haxe[label=assets/OptionalArguments.hx]{assets/OptionalArguments.hx}
 Function \expr{test} has two optional arguments \expr{i} of type \type{Int} and \expr{s} of \type{String}. This is directly reflected in the function type, which line 3 outputs. 
 This example program calls \expr{test} four times and prints its return value.
 
@@ -632,7 +633,7 @@ While the first three calls are intuitive, the fourth one might come as a surpri
 
 Haxe allows default values for arguments by assigning a \emph{constant value} to them:
 
-\lstinputlisting{assets/DefaultValues.hx}
+\haxe{assets/DefaultValues.hx}
 This example is very similar to the one from \Fullref{Optional Arguments}, with the only difference being that the values \expr{12} and \expr{"bar"} are assigned to the function arguments \expr{i} and \expr{s} respectively. The effect is that, instead of \expr{null}, the default values are used should an argument be omitted from the call.
 
 %TODO: Default values do not imply nullability, even if the value is \expr{null}. 
@@ -693,7 +694,7 @@ att.income = 0; // error, value is not a String
 
 Classes can \tref{implement}{Interfaces} \type{Dynamic} and \type{Dynamic$<$T$>$}, which enables arbitrary field access. In the former case, fields can have any type, in the latter they are constrained to be compatible with the parameter type:
 
-\lstinputlisting{assets/ImplementsDynamic.hx}
+\haxe{assets/ImplementsDynamic.hx}
 Implementing \type{Dynamic} does not satisfy the requirements of other implemented interfaces. The expected fields still have to be implemented explicitly.
 
 %TOOD: resolve field
@@ -706,7 +707,7 @@ Implementing \type{Dynamic} does not satisfy the requirements of other implement
 
 An abstract type is a type which is, at runtime, actually a different type. It is a compile-time feature which defines types ``over'' concrete types in order to modify or augment their behavior:
 
-\lstinputlisting[firstline=1,lastline=5]{assets/MyAbstract.hx}
+\haxe[firstline=1,lastline=5]{assets/MyAbstract.hx}
 We can derive the following from this example:
 
 \begin{itemize}
@@ -723,7 +724,7 @@ The syntax is reminiscent of classes and the semantics are indeed similar. In fa
 
 Furthermore, abstracts can be instantiated and used just like classes:
 
-\lstinputlisting[firstline=7,lastline=12]{assets/MyAbstract.hx}
+\haxe[firstline=7,lastline=12]{assets/MyAbstract.hx}
 As mentioned before, abstracts are a compile-time feature, so it is interesting to see what the above actually generates. A suitable target for this is \target{Javascript}, which tends to generate concise and clean code. Compiling the above (using \texttt{haxe -main MyAbstract -js myabstract.js}) shows this \target{Javascript} code:
 
 \begin{lstlisting}
@@ -752,12 +753,12 @@ Unlike classes, abstracts allow defining implicit casts. There are two kinds of 
 \end{description}
 The following code example shows an example of \emph{direct} casting:
 
-\lstinputlisting{assets/ImplicitCastDirect.hx}
+\haxe{assets/ImplicitCastDirect.hx}
 We declare \type{MyAbstract} as being \expr{from Int} and \expr{to Int}, meaning it can be assigned from \type{Int} and assigned to \type{Int}. This is shown in lines 9 and 10, where we first assign the \type{Int} \expr{12} to variable \expr{a} of type \type{MyAbstract} (this works due to the \expr{from Int} declaration) and then that abstract back to variable \expr{b} of type \type{Int} (this works due to the \expr{to Int} declaration).
 
 Class field casts have the same semantic, but are defined completely differently:
 
-\lstinputlisting{assets/ImplicitCastField.hx}
+\haxe{assets/ImplicitCastField.hx}
 By adding \expr{@:from} to a static function, that function qualifies as implicit cast function from its argument type to the abstract. These functions must return a value of the abstract type. They must also be declared \expr{static}.
 
 Similarly, adding \expr{@:to} to a function qualifies it as implicit cast function from the abstract to its return type. These functions are typically member-functions, but they can be made \expr{static} and then serve as \tref{selective function}{Selective Functions}.
@@ -788,7 +789,7 @@ The \emph{selection algorithm} when assigning a type \expr{A} to a type \expr{B}
 \end{enumerate}
 By design, implicit casts are \emph{not transitive}, as the following example shows:
 
-\lstinputlisting{assets/ImplicitTransitiveCast.hx}
+\haxe{assets/ImplicitTransitiveCast.hx}
 While the individual casts from \type{A} to \type{B} and from \type{B} to \type{C} are allowed, a transitive cast from \type{A} to \type{C} is not. This is to avoid ambiguous cast-paths and retain a simple selection algorithm. 
 
 
@@ -798,7 +799,7 @@ While the individual casts from \type{A} to \type{B} and from \type{B} to \type{
 
 Abstracts allow overloading of unary and binary operators by adding the \expr{@:op} metadata to class fields:
 
-\lstinputlisting{assets/AbstractOperatorOverload.hx}
+\haxe{assets/AbstractOperatorOverload.hx}
 By defining \expr{@:op(A * B)}, the function \expr{repeat} serves as operator method for the multiplication \expr{*} operator when the type of the left value is \type{MyAbstract} and the type of the right value is \type{Int}. The usage is shown in line 17, which turns into this when compiled to \target{Javascript}:
 
 \begin{lstlisting}
@@ -810,7 +811,7 @@ Note that the example \expr{repeat} function is not commutative: While \expr{MyA
 
 Overloading unary operators is analogous:
 
-\lstinputlisting{assets/AbstractUnopOverload.hx}
+\haxe{assets/AbstractUnopOverload.hx}
 Note that both binary and unary operator overloads can return any type.
 
 It is also possible to omit the method body of a \expr{@:op} function, but only if the underlying type of the abstract allows the operation in question and if the resulting type can be assigned back to the abstract.
@@ -858,7 +859,7 @@ console.log(map.get("foo"));
 
 Since the compiler promotes abstract member functions to static functions, it is possible to define static functions by hand and use them on an abstract instance. The semantics here are similar to those of \tref{static extensions}{Static Extension}, where the type of the first function argument determines for which types a function is defined:
 
-\lstinputlisting{assets/SelectiveFunction.hx}
+\haxe{assets/SelectiveFunction.hx}
 The method \expr{getString} of abstract \type{MyAbstract} is defined to accept a first argument of \type{MyAbstract$<$String$>$}. This causes it to be available on variable \expr{a} on line 14 (because the type of \expr{a} is \type{MyAbstract$<$String$>$}), but not on variable \expr{b} whose type is \type{MyAbstract$<$Int$>$}.
 
 \trivia{Accidental Feature}{Selective functions were never actually designed, but rather discovered. After the idea was first mentioned, it required only minor adjustments in the compiler to make them work. Their discovery also lead to the introduction of multi-type abstracts, such as Map. }
@@ -916,7 +917,7 @@ typedef Iterable<T> = {
 % TODO: move to structures? %
 Extensions are used to express that a structure has all the fields of a given type in addition to some more:
 
-\lstinputlisting{assets/Extension.hx}
+\haxe{assets/Extension.hx}
 The greater-than operator \expr{>} denotes that an extension of \type{Iterable$<$T$>$} is being created, with the additional class fields following. In this case, a read-only \tref{property}{Property} \expr{length} of type \type{Int} is required.
 
 In order to be compatible with \type{IterableWithLength$<$T$>$}, a type then must be compatible with \type{Iterable$<$T$>$} and also provide a read-only \expr{length} property of type \type{Int}. The example assigns an \type{Array}, which happens to fulfill these requirements.
@@ -959,7 +960,7 @@ The following table shows where type parameters are allowed:
 \end{center}
 With function type parameters being bound upon invocation, such a type parameter (if unconstrained) accepts any type. However, only one type per invocation is accepted, which can be utilized if a function has multiple arguments:
 
-\lstinputlisting{assets/FunctionTypeParameter.hx}
+\haxe{assets/FunctionTypeParameter.hx}
 Both arguments \expr{expected} and \expr{actual} of the \expr{equals} function have type \type{T}. This implies that for each invocation of \expr{equals}, the two arguments must be of the same type. The compiler admits the first call (both arguments being of \type{Int}) and the second call (both arguments being of \type{String}), but the third attempts causes a compiler error.
 
 
@@ -968,7 +969,7 @@ Both arguments \expr{expected} and \expr{actual} of the \expr{equals} function h
 
 Type parameters can be constrained to multiple types:
 
-\lstinputlisting{assets/Constraints.hx}
+\haxe{assets/Constraints.hx}
 Type parameter \type{T} of method \expr{test} is constrained to the types \type{Iterable$<$String$>$} and \type{Measurable}. The latter is defined using a \tref{typedef}{Typedef} for convenience and requires compatible types to have a read-only \tref{property}{Property} named \expr{length} of type \type{Int}. The constraints then say that a type is compatible if
 
 \begin{itemize}
@@ -985,7 +986,7 @@ Usually, the Haxe compiler generates only a single class or function, even if it
 
 A class or function can be made \emph{generic} by attributing it with the \expr{:generic} \tref{metadata}{Metadata}. This causes the compiler to emit a distinct class/function per type parameter combination with mangled names. A specification like this can yield a boost in performance-critical code portions on \tref{static targets}{def:Static target} at the cost of a larger output size:
 
-\lstinputlisting{assets/GenericClass.hx}
+\haxe{assets/GenericClass.hx}
 
 It seems unusual to see the explicit type \type{MyArray<String>} here as we usually let \tref{type inference}{Type Inference} deal with this, but here it is indeed required. The compiler has to know the exact type of a generic class upon construction. The \target{Javascript} output shows the result:
 
@@ -1006,7 +1007,7 @@ Main.main();
 
 We can identify that \type{MyArray<String>} and \type{MyArray<Int>} have become \type{MyArray_String} and \type{MyArray_Int} respectively. This is similar for generic functions:
 
-\lstinputlisting{assets/GenericFunction.hx}
+\haxe{assets/GenericFunction.hx}
 
 Again, the \target{Javascript} output makes it obvious:
 
@@ -1033,7 +1034,7 @@ Main.main();
 
 With normal type parameter, it is not possible to construct them, i.e. \expr{new T()} is a compiler error. This is because haxe generates only a single function and the construct then makes no sense. This is different when the type parameter is generic: Since we know that the compiler will generate a distinct function for each type parameter combination, it is possible to replace the \type{T} \expr{new T()} with the real type.
 
-\lstinputlisting{assets/GenericTypeParameter.hx} 
+\haxe{assets/GenericTypeParameter.hx} 
 
 It should be noted that \tref{top-down inference}{Top-down Inference} is used here to determine the actual type of \type{T}. There are two requirements for this kind of type parameter construction to work. The constructed type parameter must be
 
@@ -1064,17 +1065,17 @@ Main.main = function() {
 
 While variance is relevant in other places, it occurs particularly often with type parameters and often comes as a surprise in this context. It is also very easy to trigger variance errors:
 
-\lstinputlisting{assets/Variance.hx}
+\haxe{assets/Variance.hx}
 
 Apparently, an \type{Array<Child>} cannot be assigned to an \type{Array<Base>}, even though \type{Child} can be assigned to \type{Base}. The reason for this might be somewhat unexpected: It is not allowed because arrays can be written to, e.g. via their \expr{push()} method. It is easy to generate problems by ignoring variance errors:
 
-\lstinputlisting{assets/Variance2.hx}
+\haxe{assets/Variance2.hx}
 
 What happens here is that we subvert the type checker by using a \tref{cast}{Cast}, thus allowing the assignment in line 12. With that we hold a reference \expr{bases} to the original array, typed as \type{Array<Base>}. This allows pushing another type compatible with \type{Base}, \type{OtherChild}, onto that array. However, our original reference \expr{children} is still of type \type{Array<Child>}, and things go bad when we encounter the \type{OtherChild} instance in one of its elements while iterating.
 
 If \type{Array} had no \expr{push()} method and no other means of modification, the assignment would be safe because no incompatible type could be added to it. We can achieve this in Haxe by restricting the type accordingly using \tref{structural subtyping}{Structural Subtyping}:
 
-\lstinputlisting{assets/Variance3.hx}
+\haxe{assets/Variance3.hx}
 
 With \expr{b} being typed as \type{MyArray<Base>} and \type{MyArray} only having a \expr{pop()} method, we can safely assign. There is no method defined on \type{MyArray} which could be used to add incompatible types, it is thus said to be \emph{covariant}.
 
@@ -1169,7 +1170,7 @@ The right-hand function clearly is of type \type{Void->String}, yet we can assig
 
 Given a set of multiple types, a \emph{common base type} is a type which all types of the set unify against:
 
-\lstinputlisting{assets/UnifyMin.hx}
+\haxe{assets/UnifyMin.hx}
 Although \type{Base} is not mentioned, the haxe compiler manages to infer it as the common type of \type{Child1} and \type{Child2}. The haxe compiler employs this kind of unification in the following situations:
 
 \begin{itemize}
@@ -1186,7 +1187,7 @@ Although \type{Base} is not mentioned, the haxe compiler manages to infer it as 
 
 The effects of type inference have been seen throughout this document and will continue to be important. A simple example shows type inference at work:
 
-\lstinputlisting{assets/TypeInference.hx}
+\haxe{assets/TypeInference.hx}
 The special construct \expr{\$type} was previously mentioned in order to simplify the explanation of the \Fullref{Function} type, so let us introduce it officially now:
 
 %TODO: $type
@@ -1198,7 +1199,7 @@ Whenever a type other than \Fullref{Dynamic} is unified with a monomorph, that m
 
 Following the rules of unification, type inference can occur in compound types:
 
-\lstinputlisting{assets/TypeInference2.hx}
+\haxe{assets/TypeInference2.hx}
 Variable \expr{x} is first initialized to an empty \type{Array}. At this point we can tell that the type of \expr{x} is an array, but we do not yet know the type of the array elements. Consequentially, the type of \expr{x} is \type{Array<Unknown<0>>}. It is only after pushing a \type{String} onto the array that we know the type to be \type{Array<String>}.
 
 
@@ -1211,20 +1212,20 @@ Most of the time, types are inferred on their own and may then be unified with a
 
 A good example are arrays of mixed types. As mentioned in \Fullref{Dynamic Type}, the compiler refuses \expr{[1, "foo"]} because it cannot determine an element type. Employing top-down inference, this can be overcome:
 
-\lstinputlisting{assets/TopDownInference.hx}
+\haxe{assets/TopDownInference.hx}
 
 Here, the compiler knows while typing \expr{[1, "foo"]} that the expected type is \type{Array<Dynamic>}, so the element type is \type{Dynamic}. Instead of the usual unification behavior where the compiler would attempt (and fail) to determine a \tref{common base type}{Common Base Type}, the individual elements are typed against and unified with \type{Dynamic}.
 
 We have seen another interesting use of top-down inference when \tref{construction of generic type parameters}{Construction of generic type parameters} was introduced:
 
-\lstinputlisting{assets/GenericTypeParameter.hx}
+\haxe{assets/GenericTypeParameter.hx}
 
 The explicit types \type{String} and \type{haxe.Template} are used here to determine the return type of \expr{make}. This works because the method is invoked as \expr{make()}, so we know the return type will be assigned to the variables. Utilizing this information, it is possible to bind the unknown type \type{T} to \type{String} and \type{haxe.Template} respectively.
 
 % this is not really top down inference
 %Top-down inference is also utilized when dealing with \tref{enum constructors}{Enum Constructor}:
 
-%\lstinputlisting{assets/TopDownInference2.hx}
+%\haxe{assets/TopDownInference2.hx}
 
 %The constructors \expr{TObject} and \expr{TFunction} of type \expr{ValueType} are recognized even though their containing module \type{Type} is not \tref{imported}{Import}. This is possible because the return type of \expr{Type.typeof("foo")} is known to be \expr{ValueType}.
 
@@ -1284,13 +1285,13 @@ The accessibility can be controlled more fine-grained by using \tref{access cont
 
 If a type path is used multiple times in a .hx file, it might make sense to use an \expr{import} to shorten it. This allows omitting the package when using the type:
 
-\lstinputlisting{assets/Import.hx}
+\haxe{assets/Import.hx}
 
 With \expr{haxe.ds.StringMap} being imported in the first line, the compiler is able to resolve the unqualified identifier \expr{StringMap} in the \expr{main} function to this package. The module \type{StringMap} is said to be \emph{imported} into the current file.
 
 In this example, we are actually importing a \emph{module}, not just a specific type within that module. This means that all types defined within the imported module are available:
 
-\lstinputlisting{assets/Import2.hx}
+\haxe{assets/Import2.hx}
 
 The type \type{Binop} is an \tref{enum}{Enum Instance} declared in the module \type{haxe.macro.Expr}, and thus available after the import of said module. If we were to import only a specific type of that module, e.g. \expr{import haxe.macro.Expr.ExprDef}, the program would fail to compile with \expr{Class not found : Binop}.
 
@@ -1304,7 +1305,7 @@ There several aspects worth knowing about importing:
 
 Furthermore, it is also possible to import \tref{static fields}{Class Fields} of a class and use them unqualified:
 
-\lstinputlisting{assets/Import3.hx}
+\haxe{assets/Import3.hx}
 
 %TODO: figure out if import a.* actually works as intended
 
@@ -1392,7 +1393,7 @@ Regarding terminology, a method is a (static or non-static) function belonging t
 
 We have already seen variable fields in several code examples of previous sections. Variable fields hold values, a characteristic which they share with most (but not all) properties:
 
-\lstinputlisting{assets/VariableField.hx}
+\haxe{assets/VariableField.hx}
 We can learn from this that a variable
 
 \begin{enumerate}
@@ -1427,7 +1428,7 @@ When dealing with properties, it is important to understand the two kinds of acc
 
 Read access and write access are directly reflected in the syntax, as the following example shows:
 
-\lstinputlisting{assets/Property.hx}
+\haxe{assets/Property.hx}
 
 For the most part, the syntax is similar to variable syntax, and the same rules indeed apply. Properties are identified by
 
@@ -1458,7 +1459,7 @@ We disallowed these identifiers and went for the \expr{get_} and \expr{set_} nam
 
 The next example shows common access identifier combinations for properties:
 
-\lstinputlisting{assets/Property2.hx}
+\haxe{assets/Property2.hx}
 
 The \target{Javascript} output helps understand what the field access in the \expr{main}-method is compiled to:
 
@@ -1473,7 +1474,7 @@ var Main = function() {
 
 As specified, the read access generates a call to \expr{get_x()}, while the write access generates a call to \expr{set_x(2)} where \expr{2} is the value being assigned to \expr{x}. The way the \expr{+=} is being generated might look a little odd at first, but can easily be justified by the following example:
 
-\lstinputlisting{assets/Property3.hx}
+\haxe{assets/Property3.hx}
 
 What happens here is that the expression part of the field access to \expr{x} in the \expr{main} method is \emph{complex}: It has potential side-effects, such as the construction of \type{Main} in this case. Thus, the compiler cannot generate the \expr{+=} operation as \expr{new Main().x = new Main().x + 1} and has to cache the complex expression in a local variable:
 
@@ -1492,11 +1493,11 @@ The presence of properties has several consequences on the type system. Most imp
 
 When using \expr{get} or \expr{set} access identifier, the compiler ensures that the getter and setter actually exists. The following problem does not compile:
 
-\lstinputlisting{assets/Property4.hx}
+\haxe{assets/Property4.hx}
 
 The method \expr{get_x} is missing, but it need not be declared on the class defining the property itself as long as a parent class defines it:
 
-\lstinputlisting{assets/Property5.hx}
+\haxe{assets/Property5.hx}
 
 The \expr{dynamic} access modifier works exactly like \expr{get} or \expr{set}, but does not check for the existence
 
@@ -1508,7 +1509,7 @@ Visibility of accessor methods has no effect on the accessibility of its propert
 
 Both getter and setter may access their physical field for data storage. The compiler ensures that this kind of field access does not go through the accessor method if made from within the accessor method itself, thus avoiding infinite recursion:
 
-\lstinputlisting{assets/GetterSetter.hx}
+\haxe{assets/GetterSetter.hx}
 
 However, the compiler assumes that a physical field exists only if at least one of the access identifiers is \expr{default} or \expr{null}.
 
@@ -1522,11 +1523,11 @@ However, the compiler assumes that a physical field exists only if at least one 
 
 If this is not the case, access to the field from within an accessor method causes a compilation error:
 
-\lstinputlisting{assets/GetterSetter2.hx}
+\haxe{assets/GetterSetter2.hx}
 
 If a physical field is indeed intended, it can be forced by attributing the field in question with the \expr{:isVar} \tref{metadata}{Metadata}:
 
-\lstinputlisting{assets/GetterSetter3.hx}
+\haxe{assets/GetterSetter3.hx}
 
 
 \trivia{Property setter type}{It is not uncommon for new Haxe users to be surprised by the type of a setter being required to be \type{T->T} instead of the seemingly more natural \type{T->Void}. After all, why would a \emph{setter} have to return something?\\
@@ -1545,13 +1546,13 @@ The rationale is that we still want to be able to use field assignments using se
 
 Fields are by default \emph{private}, meaning that only the class and its sub-classes may access them. They can be made \emph{public} by using the \expr{public} access modifier, allowing access from anywhere.
 
-\lstinputlisting{assets/Visibility.hx}
+\haxe{assets/Visibility.hx}
 
 Access to field \expr{available} of class \type{MyClass} is allowed from within \type{Main} is allowed because it is denoted as being \expr{public}. However, while access to field \expr{unavailable} is allowed from within class \type{MyClass}, it is not allowed from within class \type{Main} because it is \expr{private} (explicitly, although this identifier is redundant here).
 
 The example demonstrates visibility through \emph{static} fields, but the rules for member fields are equivalent. The following example demonstrates visibility behavior for when \tref{inheritance}{Inheritance} is involved.
 
-\lstinputlisting{assets/Visibility2.hx}
+\haxe{assets/Visibility2.hx}
 
 We can see that access to \expr{child1.baseField()} is allowed from within \type{Child2} even though \expr{child1} is of a different type, \type{Child1}. This is because the field is defined on their common ancestor class \type{Base}, contrary to field \expr{child1Field} which can not be accessed from within \type{Child2}.
 
@@ -1570,7 +1571,7 @@ Omitting the visibility modifier usually defaults the visibility to \expr{privat
 
 The \expr{inline} keyword allows function bodies to be directly inserted in place of calls to them. This can be a powerful optimization tool, but should be used judiciously as not all functions are good candidates for inline behavior. The following example demonstrates the basic usage:
 
-\lstinputlisting{assets/Inline.hx}
+\haxe{assets/Inline.hx}
 
 The generated \target{Javascript} output reveals the effect of inline:
 
@@ -1595,7 +1596,7 @@ It is not always easy to judge if a function qualifies for being inline. Short f
 
 Methods can be denoted with the \expr{dynamic} keyword to make them (re-)bindable:
 
-\lstinputlisting{assets/DynamicFunction.hx}
+\haxe{assets/DynamicFunction.hx}
 
 The first call to \expr{test()} invokes the original function which returns the \type{String} \expr{"original"}. In the next line, \expr{test} is \emph{assigned} a new function. This is precisely what \expr{dynamic} allows: Function fields can be assigned a new function. As a result, the next invocation of \expr{test()} returns the \type{String} \expr{"new"}.
 
@@ -1617,7 +1618,7 @@ The effects of overriding fields are detailed in \Fullref{Overriding Fields}.
 
 Overriding fields is instrumental for creating class hierarchies. Many design patterns utilize it, but here we will explore only the basic functionality. In order to use overrides in a class, it is required that this class has a \tref{parent class}{Inheritance}. Let us consider the following example:
 
-\lstinputlisting{assets/Override.hx}
+\haxe{assets/Override.hx}
 
 The important components here are
 
@@ -1633,7 +1634,7 @@ The variable \expr{child} is explicitly typed as \type{Base} to highlight an imp
 
 Overriding adheres to the rules of \tref{variance}{Variance}. That is, their argument types allow \emph{contravariance} (less specific types) while their return type allows \emph{covariance} (more specific types):
 
-\lstinputlisting{assets/OverrideVariance.hx}
+\haxe{assets/OverrideVariance.hx}
 
 Intuitively, this follows from the fact that arguments are ``written to'' the function and the return value is ``read from'' it.
 
@@ -1942,7 +1943,7 @@ Haxe allows conditional compilation by using \expr{\#if}, \expr{\#elseif} and \e
 
 This example demonstrates usage of conditional compilation:
 
-\lstinputlisting{assets/ConditionalCompilation.hx}
+\haxe{assets/ConditionalCompilation.hx}
 Compiling this without any flags will leave only the \expr{trace("ok");} line in the body of the \expr{main} method. The other branches are discarded while parsing the file. As a consequence, these branches must still contain valid haxe syntax, but the code is not type-checked.
 
 The conditions after \expr{\#if} and \expr{\#elseif} allow the following expressions:
@@ -1964,7 +1965,7 @@ An exhaustive list of all built-in defines can be obtained by invoking the haxe 
 
 Static extensions can be a powerful tool which allows augmenting types without actually changing them. The following example demonstrates the usage:
 
-\lstinputlisting{assets/StaticExtension.hx}
+\haxe{assets/StaticExtension.hx}
 
 Clearly, \type{Int} does not natively provide a \expr{triple} method, yet this program compiles and outputs \expr{36} as expected. This is because the call to \expr{12.triple()} is transformed into \expr{IntExtender.triple(12)}. There are three requirements for this:
 
@@ -1983,7 +1984,7 @@ Following the rules previously described in \Fullref{Resolution Order}, multiple
 
 Several classes in the Haxe Standard Library are suitable for static extension usage. The next example shows the usage of \type{StringTools}:
 
-\lstinputlisting{assets/StaticExtension2.hx}
+\haxe{assets/StaticExtension2.hx}
 
 While \type{String} does not have a \expr{replace} functionality by itself, the \expr{using StringTools} static extension provides one. As usual, the \target{Javascript} output nicely shows the transformation:
 
@@ -2015,7 +2016,7 @@ The following classes from the Haxe Standard Library are designed to be used as 
 
 Haxe 3 comes with improved options for pattern matching. Here we will explore the syntax for different patterns using this data structure as running example:
 
-\lstinputlisting[firstline=1,lastline=4]{assets/PatternMatching.hx}
+\haxe[firstline=1,lastline=4]{assets/PatternMatching.hx}
 
 Some pattern matcher basics include:
 
@@ -2029,7 +2030,7 @@ Some pattern matcher basics include:
 
 As with haxe 2, enums can be matched by their constructors in a natural way. With haxe 3 pattern matching, this match can now be "deep":
 
-\lstinputlisting[firstline=8,lastline=19]{assets/PatternMatching.hx}
+\haxe[firstline=8,lastline=19]{assets/PatternMatching.hx}
 
 The pattern matcher will check each case from top to bottom and pick the first one that matches the input value. If you are not too familiar with pattern matching, the following manual interpretation of each case rule might help:
 
@@ -2044,7 +2045,7 @@ The pattern matcher will check each case from top to bottom and pick the first o
 
 It is possible to catch any value of a sub-pattern by matching it against an identifier:
 
-\lstinputlisting[firstline=22,lastline=28]{assets/PatternMatching.hx}
+\haxe[firstline=22,lastline=28]{assets/PatternMatching.hx}
 
 This would return one of the following:
 
@@ -2056,7 +2057,7 @@ This would return one of the following:
 
 It is also possible to use = to capture values which are further matched:
 
-\lstinputlisting[firstline=30,lastline=34]{assets/PatternMatching.hx}
+\haxe[firstline=30,lastline=34]{assets/PatternMatching.hx}
 
 Here, \expr{leafNode} is bound to \expr{Leaf("foo")} if the input matches that. In all other cases, \expr{myTree} itself is returned: \expr{case x} works similar to \expr{case _} in that it matches anything, but with an identifier name like \expr{x} it also binds the matched value to that variable.
 
@@ -2064,7 +2065,7 @@ Here, \expr{leafNode} is bound to \expr{Leaf("foo")} if the input matches that. 
 
 It is now also possible to match against the fields of anonymous structures and instances:
 
-\lstinputlisting[firstline=36,lastline=42]{assets/PatternMatching.hx}
+\haxe[firstline=36,lastline=42]{assets/PatternMatching.hx}
 
 Note that in the second case, we bind the matched \expr{name} field to identifier \expr{n} if \expr{rating} matches \expr{"awesome"}. Of course you could also put this structure into the \type{Tree} from the previous example and combine structure and enum matching.
 
@@ -2074,7 +2075,7 @@ A limitation with regards to class instances is that you cannot match against fi
 
 Arrays can be matched on fixed length:
 
-\lstinputlisting[firstline=45,lastline=53]{assets/PatternMatching.hx}
+\haxe[firstline=45,lastline=53]{assets/PatternMatching.hx}
 
 This will trace \expr{1} because \expr{array[1]} matches \expr{6}, and \expr{array[0]} is allowed to be anything.
 
@@ -2082,7 +2083,7 @@ This will trace \expr{1} because \expr{array[1]} matches \expr{6}, and \expr{arr
 
 The \expr{|} operator can be used anywhere within patterns to describe multiple accepted patterns:
 
-\lstinputlisting[firstline=56,lastline=61]{assets/PatternMatching.hx}
+\haxe[firstline=56,lastline=61]{assets/PatternMatching.hx}
 
 If there's a captured variable in an or-pattern, it must appear in both its sub-patterns.
 
@@ -2091,7 +2092,7 @@ If there's a captured variable in an or-pattern, it must appear in both its sub-
 
 It is also possible to further restrict patterns with the \expr{case ... if(condition):} syntax:
 
-\lstinputlisting[firstline=64,lastline=72]{assets/PatternMatching.hx}
+\haxe[firstline=64,lastline=72]{assets/PatternMatching.hx}
 
 Note how the first case has an additional guard condition \expr{if (b > a)}. It will only be selected if that condition holds, otherwise matching continues with the next case.
 
@@ -2099,7 +2100,7 @@ Note how the first case has an additional guard condition \expr{if (b > a)}. It 
 
 Array syntax can also be used to match on multiple values:
 
-\lstinputlisting[firstline=75,lastline=80]{assets/PatternMatching.hx}
+\haxe[firstline=75,lastline=80]{assets/PatternMatching.hx}
 
 This is quite similar to usual array matching, but there are differences:
 
@@ -2116,11 +2117,11 @@ This is quite similar to usual array matching, but there are differences:
 
 Extractors allow applying transformations to values being matched. This is often useful when a small operation is required on a matched value before matching can continue:
 
-\lstinputlisting{assets/Extractor2.hx}
+\haxe{assets/Extractor2.hx}
 
 Here we have to capture the argument value of the \expr{TString} enum constructor in a variable \expr{temp} and use a nested switch on \expr{temp.toLowerCase()}. Obviously, we want matching to succeed if \expr{TString} holds a value of \expr{"foo"} regardless of its casing. This can be simplified with extractors:
 
-\lstinputlisting{assets/Extractor.hx}
+\haxe{assets/Extractor.hx}
 
 Extractors are identified by the \expr{extractorExpression => match} expression. The compiler generates code which is similar to the previous example, but the original syntax was greatly simplified. The way extractors are treated depends on the expression left of the \expr{=>} operator. If it is
 
@@ -2133,7 +2134,7 @@ The distinction is made because interpreting a plain identifier like that can be
 
 Any expression can be used as extractor expression and the typer ensures that it is of function type \type{S->T}, where \type{S} is the type of the currently matched value and \type{T} is equal to the type of the expression right of the \expr{=>} operator. With that, extractors can be combined with other features such as \tref{function binding}{Function Bindings}:
 
-\lstinputlisting{assets/Extractor3.hx}
+\haxe{assets/Extractor3.hx}
 
 In this particular case, the extractor is called as \expr{lessThan(4, 5)}, yielding true.
 
@@ -2198,7 +2199,7 @@ Of course the use of single-quote enclosed strings without any interpolation rem
 
 Array comprehension in Haxe uses existing syntax to allow concise initialization of arrays. It is identified by \expr{[for} or \expr{[while} constructs:
 
-\lstinputlisting{assets/ArrayComprehension.hx}
+\haxe{assets/ArrayComprehension.hx}
 
 Variable \expr{a} is initialized to an array holding the numbers 0 to 9. The compiler generates code which adds the value of each loop iteration to the array, so the following code would be equivalent:
 
@@ -2217,7 +2218,7 @@ while(i < 10) a.push(i++);
 
 The loop expression can be anything, including conditions and nested loops, so the following works as expected:
 
-\lstinputlisting{assets/ArrayComprehension2.hx}
+\haxe{assets/ArrayComprehension2.hx}
 
 
 
@@ -2253,7 +2254,7 @@ The compiler automatically defines the flag \expr{dce} with a value of either \e
 
 Haxe 3 allows binding functions with partially applied arguments. Each function type can be considered to have a \expr{bind} field, which can be called with the desired number of arguments in order to create a new function. This is demonstrated here:
 
-\lstinputlisting{assets/Bind.hx}
+\haxe{assets/Bind.hx}
 Line 4 binds the function \expr{map.set} to a variable named \expr{f}, and applies \expr{12} as second argument. The underscore \expr{_} is used to denote that this argument is not bound, which is shown by comparing the types of \expr{map.set} and \expr{f}: The bound \type{String} argument is effectively cut from the type, turning a \expr{Int->String->Void} type into \expr{Int->Void}.
 
 A call to \expr{f(1)} then actually invokes \expr{map.set(1, "12")}, the calls to \expr{f(2)} and \expr{f(3)} are analogous. The last line proves that all three indices indeed are mapped to the value \expr{"12"}.
@@ -2279,7 +2280,7 @@ Several constructs can be attributed with custom metadata:
 
 These metadata information can be obtained at runtime through the \type{haxe.rtti.Meta} API:
 
-\lstinputlisting{assets/Meta.hx}
+\haxe{assets/Meta.hx}
 
 We can easily identify metadata by the leading \expr{@} character, followed by the metadata name and, optionally, by a number of comma-separated constant arguments enclosed in parentheses.
 
@@ -2327,15 +2328,15 @@ In this context, a \emph{target} can be the \tref{dot-path}{def:Type path} to
 
 If it is a class or abstract type, access modification extends to all fields of that type. Likewise, if it is a package, access modification extends to all types of that package and recursively to all fields of these types.
 
-\lstinputlisting{assets/ACL.hx}
+\haxe{assets/ACL.hx}
 
 Here, \expr{MyClass.foo} can be accessed from the \expr{main}-method because \type{MyClass} is annotated with \expr{@:allow(Main)}. This would also work with \expr{@:allow(Main.main)} and both versions could alternatively be annotated to the field \expr{foo} instead of the class \type{MyClass}:
 
-\lstinputlisting{assets/ACL2.hx}
+\haxe{assets/ACL2.hx}
 
 If a type cannot be modified to allow this kind of access, the accessing method may force access:
 
-\lstinputlisting{assets/ACL3.hx}
+\haxe{assets/ACL3.hx}
 
 The \expr{@:access(MyClass.foo)} annotation effectively subverts the visibility of the \expr{foo} field within the \expr{main}-method. 
 
@@ -2352,7 +2353,7 @@ Of course, the main drawback of using metadata syntax is that you get no error r
 
 If access is allowed to an \tref{interface}{Interfaces}, it extends to all classes implementing that interface:
 
-\lstinputlisting{assets/ACL4.hx}
+\haxe{assets/ACL4.hx}
 
 This is also true for access granted to parent classes, in which case it extends to all child classes.
 
@@ -2413,7 +2414,7 @@ Most of the time, arguments to macros are expressions represented as an instance
 
 It is important to understand that arguments to macros are not guaranteed to be evaluated, so any intended side-effect is not guaranteed to occur. On the other hand, it is also important to understand that an argument expression may be duplicated by a macro and used multiple times in the returned expression:
 
-\lstinputlisting{assets/MacroArguments.hx}
+\haxe{assets/MacroArguments.hx}
 
 The macro \expr{add} is called with \expr{x++} as argument and thus returns \expr{x++ + x++} using \tref{expression reification}{Expression Reification}, causing \expr{x} to be incremented twice.
 
@@ -2421,7 +2422,7 @@ The macro \expr{add} is called with \expr{x++} as argument and thus returns \exp
 
 Since \type{Expr} is compatible with any possible input, Haxe provides the type \type{haxe.macro.ExprOf<T>}. For the most part, this type is identical to \type{Expr}, but it allows constraining the type of accepted expressions. This is useful when combining macros with \tref{static extensions}{Static Extension}:
 
-\lstinputlisting{assets/ExprOf.hx}
+\haxe{assets/ExprOf.hx}
 
 The two direct calls to \expr{identity} are accepted, even though the argument is declared as \expr{ExprOf<String>}. It might come as a surprise that the \type{Int} \expr{1} is accepted, but it is a logical consequence of what was explained about \tref{macro arguments}{Macro Arguments}: The argument expressions are never typed, so it is not possible for the compiler to check their compatibility by \tref{unifying}{Unification}.
 
@@ -2431,7 +2432,7 @@ This is different for the next two lines which are using static extensions (note
 
 A macro can be declared to expect \tref{constant}{Constants} arguments:
 
-\lstinputlisting{assets/MacroArgumentsConst.hx}
+\haxe{assets/MacroArgumentsConst.hx}
 
 With these it is not necessary to detour over expressions as the compiler can use the provided constants directly.
 
@@ -2439,7 +2440,7 @@ With these it is not necessary to detour over expressions as the compiler can us
 
 If the final argument of a macro is of type \type{Array<Expr>}, the macro accepts an arbitrary number of extra arguments which are available from that array:
 
-\lstinputlisting{assets/MacroArgumentsRest.hx}
+\haxe{assets/MacroArgumentsRest.hx}
 
 
 
@@ -2526,7 +2527,7 @@ The concepts or \tref{static extensions}{Static Extension} and macros are somewh
 
 The combination of static extensions and macros was reworked for the 3.1.0 release. The Haxe Compiler does not even try to find the original expression for the macro argument and instead passes a special \expr{@:this this} expression. While the structure of this expression conveys no information, the expression can still be typed correctly:
 
-\lstinputlisting{assets/MacroStaticExtension.hx}
+\haxe{assets/MacroStaticExtension.hx}
 
 
 
@@ -2535,12 +2536,14 @@ The combination of static extensions and macros was reworked for the 3.1.0 relea
 
 The build order of types is unspecified and this extends to the execution order of \tref{build-macros}{Type Building}. While certain rules can be determined, we strongly recommend to not rely on the execution order of build-macros. If type building requires multiple passes, this should be reflected directly in the macro code. In order to avoid multiple build-macro execution on the same type, state can be stored in static variables or added as \tref{metadata}{Metadata} to the type in question:
 
-\lstinputlisting{assets/MacroBuildOrder.hx}
+\haxe{assets/MacroBuildOrder.hx}
 
 With both interfaces \type{I1} and \type{I2} having \expr{:autoBuild} metadata, the build macro is executed twice for class \type{C}. We guard against duplicate processing by adding a custom \expr{:processed} metadata to the class, which can be checked during the second macro execution.
 
 
 \subsubsection{Type Parameters}
+
+
 
 \subsection{Compiler Configuration}
 \label{Compiler Configuration}

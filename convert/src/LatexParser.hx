@@ -105,8 +105,9 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 				case [TEnd("lstlisting")]:
 					codeMode = false;
 					buffer.add("```");
-				case [TCustomCommand("lstinputlisting"), options = popt(bracketArg), TBrOpen, s = text(), TBrClose]:
+				case [TCustomCommand("haxe"), options = popt(bracketArg), TBrOpen, s = text(), TBrClose]:
 					var f = sys.io.File.getContent(s);
+					var validate = false;
 					var f = if (options == null) {
 						f;
 					} else {
@@ -118,6 +119,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 							switch(kv[0]) {
 								case "firstline": firstline = Std.parseInt(kv[1]);
 								case "lastline": lastline = Std.parseInt(kv[1]);
+								case "nocompile": validate = false;
 							}
 						}
 						if (firstline > 0 && lastline > 0) {
@@ -133,6 +135,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 							f;
 						}
 					}
+					if (validate) testCompile(s);
 					buffer.add("```haxe\n");
 					buffer.add(f);
 					buffer.add("\n```");
@@ -346,5 +349,14 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 			name: name,
 			kind: kind
 		}
+	}
+	
+	function testCompile(path:String) {
+		var path = new haxe.io.Path(path);
+		var p = new sys.io.Process("haxe", ["-main", path.file, "-cp", "assets", "-x", "test"]);
+		p.stdout.readAll();
+		var err = p.stderr.readAll();
+		if (p.exitCode() != 0) trace('Failed: $path\n$err');
+		
 	}
 }
