@@ -87,6 +87,9 @@ Structural subtyping defines an implicit relation between types that have the sa
 ##### type
 type is a compile-time mechanism being called like a function, with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.
 
+##### Type path
+The (dot-)path to a type consists of the package, the module name and the type name. Its general form is `pack1.pack2.packN.ModuleName.TypeName`.
+
 ##### Underlying Type
 The underlying type of an abstract is the type which is used to represent said abstract at runtime. It is usually a concrete (i.e. non-abstract) type, but could be another abstract type as well.
 

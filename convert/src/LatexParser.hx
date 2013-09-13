@@ -88,9 +88,6 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 				case [TCommand(CTableofcontents)]:
 				case [TCommand(CMaketitle)]:
 				
-				// todo
-				case [TCommand(CFootnote), TBrOpen, s = text(), TBrClose]:
-					
 				// format
 				case [TBegin("center")]:
 				case [TEnd("center")]:
@@ -298,6 +295,8 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 			case [TEnd("enumerate")]:
 				listMode.pop();
 				"\n";
+			// TODO
+			case [TCommand(CFootnote), TBrOpen, s = text(), TBrClose]: "";
 			case [t = _text()]:
 				t;
 		}
