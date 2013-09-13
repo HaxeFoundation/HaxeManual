@@ -1976,7 +1976,7 @@ Clearly, \type{Int} does not natively provide a \expr{triple} method, yet this p
 
 Static extensions are usually considered syntactic sugar and indeed they are, but it is worth noting that they can have a dramatic effect on code readability: Instead of nested calls in the form of \expr{f1(f2(f3(f4(x))))}, chained calls in the form of \expr{x.f4().f3().f2().f1()} can be used.
 
-Following the rules previously described in \Fullref{Resolution Order}, multiple \expr{using} expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom.
+Following the rules previously described in \Fullref{Resolution Order}, multiple \expr{using} expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see \Fullref{Modules and Paths}) as static extension brings all its types into context.
 
 
 \subsubsection{In the Haxe Standard Library}
@@ -1999,7 +1999,7 @@ The following classes from the Haxe Standard Library are designed to be used as 
 	\item[\type{StringTools}:] Provides extended functionality on strings, such as replacing or trimming.
 	\item[\type{Lambda}:] Provides functional methods on iterables.
 	\item[\type{haxe.EnumTools}:] Provides type information functionality on enums and their instances.
-	\item[\type{haxe.macro.Tools}:] Provides different extensions for working with macros.
+	\item[\type{haxe.macro.Tools}:] Provides different extensions for working with macros (see \Fullref{Macro Tools}).
 \end{description}
 
 
@@ -2409,7 +2409,7 @@ The context API is complemented by the \expr{haxe.macro.Compiler} API detailed i
 \subsection{Arguments}
 \label{Macro Arguments}
 
-Most of the time, arguments to macros are expressions represented as an instance of enum \type{Expr}. As such they are parsed but not typed, meaning they can be anything conforming to Haxe's syntax rules. The macro can then inspect their structure, or (try to) get their type using \expr{haxe.macro.Context.typeof()}.
+Most of the time, arguments to macros are expressions represented as an instance of enum \type{Expr}. As such, they are parsed but not typed, meaning they can be anything conforming to Haxe's syntax rules. The macro can then inspect their structure, or (try to) get their type using \expr{haxe.macro.Context.typeof()}.
 
 It is important to understand that arguments to macros are not guaranteed to be evaluated, so any intended side-effect is not guaranteed to occur. On the other hand, it is also important to understand that an argument expression may be duplicated by a macro and used multiple times in the returned expression:
 
@@ -2483,6 +2483,21 @@ Each constructor of \type{ComplexType} has a distinct syntax:
 
 
 \subsection{Tools}
+\label{Macro Tools}
+
+The Haxe Standard Library comes with a set of tool-classes to simplify working with macros. These classes work best as \tref{static extensions}{Static Extension} and can be brought into context either individually or as a whole through \expr{using haxe.macro.Tools}. These classes are:
+
+\begin{description}
+	\item[\type{ComplexTypeTools}:] Allows printing \type{ComplexType} instances in a human-readable way. Also allows determining the \type{Type} corresponding to a \type{ComplexType}.
+	\item[\type{ExprTools}:] Allows printing \type{Expr} instances in a human-readable way. Also allows iterating and mapping expressions.
+	\item[\type{MacroStringTools}:] Offers useful operations on strings and string expressions in macro context.
+	\item[\type{TypeTools}:] Allows printing \type{Type} instances in a human-readable way. Also offers several useful operations on types, such as \tref{unifying}{Unification} them or getting their corresponding \type{ComplexType}.
+\end{description}
+
+\trivia{The tinkerbell library and why Tools.hx works}{We learned about static extensions that using a \emph{module} implies that all its types are brought into static extension context. As it turns out, such a type can also be a \tref{typedef}{Typedef} to another type. The compiler then considers this type part of the module, and extends static extension accordingly.\\
+This ``trick'' was first used in Juraj Kirchheim's \emph{tinkerbell}\footnote{https://github.com/back2dos/tinkerbell} library for exactly the same purpose. Tinkerbell provided many useful macro tools long before they made it into the Haxe compiler and Haxe Standard Library. It remains the primary library for additional macro tools and offers other useful functionality as well.} 
+
+
 
 \subsection{Type Building}
 \label{Type Building}

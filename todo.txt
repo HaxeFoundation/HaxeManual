@@ -43,7 +43,6 @@ Miscellaneous Features - Remoting
 Miscellaneous Features - RTTI
 Miscellaneous Features - Completion
 Macros - Class Reification
-Macros - Tools
 Macros - Type Building
 Macros - Limitations
 Macros - Compiler Configuration
