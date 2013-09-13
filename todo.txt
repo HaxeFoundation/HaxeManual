@@ -7,8 +7,11 @@ Dynamic functions: performance impact
 Field expressions: say something
 
 Missing:
+toString()
+Type system - conversion to String
 Abstracts - @:fakeEnum
 Abstracts - @:expose
+Dynamic - resolve()
 ClassFields - Method
 Expressions - Binop
 Expressions - Unop
@@ -36,7 +39,6 @@ Standard Library - Xml
 Standard Library - Input/Output
 Standard Library - Sys/sys
 Miscellaneous Features - Compiler Metadata
-Miscellaneous Features - Access Control
 Miscellaneous Features - Remoting
 Miscellaneous Features - RTTI
 Miscellaneous Features - Completion
