@@ -2462,6 +2462,18 @@ Expression reification is used to create instances of \type{haxe.macro.Expr} in 
 	\item[\expr{\$v\{\}}:] \type{Dynamic -> Expr} Generates an expression depending on the type of its argument. This is only guaranteed to work for \tref{basic types}{Basic Types} and \tref{enum instances}{Enum Instance}.
 \end{description}
 
+This kind of reification only works in places where the internal structure expects an expression. This disallows \expr{object.\$\{fieldName\}}, but \expr{object.\$fieldName} works. This is true for all places where the internal structure expects a string:
+
+\begin{itemize}
+	\item field access \expr{object.\$name}
+	\item variable name \expr{var \$name = 1;}
+\end{itemize}
+\since{3.1.0}
+\begin{itemize}
+	\item field name \expr{\{ \$name: 1\} }
+	\item function name \expr{function \$name() \{ \}}
+	\item catch variable name \expr{try e() catch(\$name:Dynamic) \{\}}
+\end{itemize}
 
 
 \subsubsection{Type Reification}
