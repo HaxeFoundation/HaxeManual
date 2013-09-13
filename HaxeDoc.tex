@@ -2506,8 +2506,16 @@ This ``trick'' was first used in Juraj Kirchheim's \emph{tinkerbell}\footnote{ht
 
 \subsubsection{Macro-in-Macro}
 \subsubsection{Using}
+
 \subsubsection{Build Order}
 \label{Build Order}
+
+The build order of types is unspecified and this extends to the execution order of \tref{build-macros}{Type Building}. While certain rules can be determined, we strongly recommend to not rely on the execution order of build-macros. If type building requires multiple passes, this should be reflected directly in the macro code. In order to avoid multiple build-macro execution on the same type, state can be stored in static variables or added as \tref{metadata}{Metadata} to the type in question:
+
+\lstinputlisting{assets/MacroBuildOrder.hx}
+
+With both interfaces \type{I1} and \type{I2} having \expr{:autoBuild} metadata, the build macro is executed twice for class \type{C}. We guard against duplicate processing by adding a custom \expr{:processed} metadata to the class, which can be checked during the second macro execution.
+
 
 \subsubsection{Type Parameters}
 
