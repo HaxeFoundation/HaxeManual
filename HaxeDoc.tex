@@ -2505,7 +2505,18 @@ This ``trick'' was first used in Juraj Kirchheim's \emph{tinkerbell}\footnote{ht
 \subsection{Limitations}
 
 \subsubsection{Macro-in-Macro}
-\subsubsection{Using}
+
+\subsubsection{Static extension}
+
+The concepts or \tref{static extensions}{Static Extension} and macros are somewhat conflicting: While the former requires a known type in order to determine used functions, macros execute before typing on plain syntax. It is thus not surprising that combining these two features can lead to issues. Haxe 3.0 would try to convert the typed expression back to a syntax expression, which is not always possible and may lose important information. We recommend that it is used with caution.
+
+\since{3.1.0}
+
+The combination of static extensions and macros was reworked for the 3.1.0 release. The Haxe Compiler does not even try to find the original expression for the macro argument and instead passes a special \expr{@:this this} expression. While the structure of this expression conveys no information, the expression can still be typed correctly:
+
+\lstinputlisting{assets/MacroStaticExtension.hx}
+
+
 
 \subsubsection{Build Order}
 \label{Build Order}
