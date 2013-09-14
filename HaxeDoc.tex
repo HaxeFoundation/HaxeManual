@@ -1548,7 +1548,7 @@ Fields are by default \emph{private}, meaning that only the class and its sub-cl
 
 \haxe{assets/Visibility.hx}
 
-Access to field \expr{available} of class \type{MyClass} is allowed from within \type{Main} is allowed because it is denoted as being \expr{public}. However, while access to field \expr{unavailable} is allowed from within class \type{MyClass}, it is not allowed from within class \type{Main} because it is \expr{private} (explicitly, although this identifier is redundant here).
+Access to field \expr{available} of class \type{MyClass} is allowed from within \type{Main} because it is denoted as being \expr{public}. However, while access to field \expr{unavailable} is allowed from within class \type{MyClass}, it is not allowed from within class \type{Main} because it is \expr{private} (explicitly, although this identifier is redundant here).
 
 The example demonstrates visibility through \emph{static} fields, but the rules for member fields are equivalent. The following example demonstrates visibility behavior for when \tref{inheritance}{Inheritance} is involved.
 
