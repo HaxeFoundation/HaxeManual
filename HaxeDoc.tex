@@ -962,7 +962,7 @@ With function type parameters being bound upon invocation, such a type parameter
 
 \haxe{assets/FunctionTypeParameter.hx}
 
-Both arguments \expr{expected} and \expr{actual} of the \expr{equals} function have type \type{T}. This implies that for each invocation of \expr{equals}, the two arguments must be of the same type. The compiler admits the first call (both arguments being of \type{Int}) and the second call (both arguments being of \type{String}), but the third attempts causes a compiler error.
+Both arguments \expr{expected} and \expr{actual} of the \expr{equals} function have type \type{T}. This implies that for each invocation of \expr{equals}, the two arguments must be of the same type. The compiler admits the first call (both arguments being of \type{Int}) and the second call (both arguments being of \type{String}), but the third attempt causes a compiler error.
 
 \trivia{Type parameters in expression syntax}{We often get the question why a method with type parameters cannot be called as \expr{method<String>()}. The error messages the compiler gives are not quite helpful, but there is a simple reason for that: The above code is parsed as if both \expr{<} and \expr{>} were binary operators, yielding \expr{(method < String) > ()}.}
 
