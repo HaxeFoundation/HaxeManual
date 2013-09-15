@@ -151,7 +151,7 @@ haxe code here
 Occasionally, we demonstrate how certain haxe code is generated, for which we usually show the \target{Javascript} target.
 
 Furthermore, we define a set of terms in this document. This is mostly done when introducing a new type, or when a term is specific to haxe. We do not define every new aspect we introduce, e.g. what a class is, in order to not clutter the text. A definition looks like this:
-\define{Name}{Description}
+\define{Definition name}{Definition description}
 
 In a few places, this document has \emph{trivia}-boxes. These include off-the-record information such as why certain decisions were made while developing haxe, or how a particular feature has changed in past haxe versions. This information is generally not important and can be skipped, it is only meant to convey trivia:
 
@@ -1646,7 +1646,22 @@ It is not possible to override fields which are declared as \tref{\expr{inline}}
 \section{Expressions}
 \label{Expressions}
 
-Expressions in haxe define what a program \emph{does}. Most expressions are found in the body of a \tref{method}{Method}, where they are combined to express what that method should do. This section explains the different kinds of expressions.
+Expressions in haxe define what a program \emph{does}. Most expressions are found in the body of a \tref{method}{Method}, where they are combined to express what that method should do. This section explains the different kinds of expressions. Some definitions help here:
+
+\define{Name}{A general name may refer to
+\begin{itemize}
+	\item a type,
+	\item a local variable,
+	\item a local function or
+	\item a field.
+\end{itemize}}
+
+\define{Identifier}{Haxe identifiers start with an underscore \expr{_}, a dollar \expr{\$}, a lower-case character \expr{a-z} or an upper-case character \expr{A-Z}. After that, any combination and number of \expr{_}, \expr{A-Z}, \expr{a-z} and \expr{0-9} may follow.\\
+Further limitations follow from the usage context, which are checked upon typing:
+\begin{itemize}
+	\item Type names must start with an upper-case letter \expr{A-Z} or an underscore \expr{_}.
+	\item Leading dollars are not allowed for any kind of \tref{name}{def:Name} (dollar-names are mostly used for \tref{macro reification}{Reification}).
+\end{itemize}}
 
 
 
@@ -1695,6 +1710,8 @@ The haxe syntax supports the following constants:
 	\item[null:] The null value.
 \end{description}
 
+Furthermore, the internal syntax structure treats \tref{identifiers}{def:Identifier} as constants, which may be relevant when working with \tref{macros}{Macros}.
+
 
 \subsection{Binary Operators}
 
@@ -1742,7 +1759,10 @@ Field access is expressed by using the dot \expr{.} followed by the name of the 
 \begin{lstlisting}
 object.fieldName
 \end{lstlisting}
-\todo{I don't know what else to say}
+
+This syntax is also used to access types within packages in the form of \expr{pack.Type}. 
+
+The typer ensures that an accessed field actually exist and may apply transformations depending on the nature of the field. If a field access is ambiguous, understanding the \tref{resolution order}{Resolution Order} may help.
 
 
 \subsection{Function Call}
@@ -1883,6 +1903,9 @@ The typer ensures that it appears only within a loop.
 
 \subsection{cast}
 \label{Cast}
+
+
+
 
 \section{Standard Library}
 \label{Standard Library}
@@ -2446,6 +2469,7 @@ If the final argument of a macro is of type \type{Array<Expr>}, the macro accept
 
 
 \subsection{Reification}
+\label{Reification}
 
 The Haxe Compiler allows \emph{reification} of expressions, types and classes to simplify working with macros. The syntax for reification is \expr{macro expr}, where \expr{expr} is any valid haxe expression.
 
