@@ -25,6 +25,9 @@ A [compound type](dictionary.md#compound-type) is considered contravariant if it
 ##### Covariance
 A [compound type](dictionary.md#compound-type) is considered covariant if its component types can be assigned to less specific components, i.e. if they are only read, but never written.
 
+##### Definition name
+Definition description
+
 ##### Dynamic target
 Dynamic targets are more lenient with their types and allow *null* values for basic types. They consist of JavaScript, PHP, neko and Flash 6-8.
 
@@ -43,6 +46,17 @@ Represents a double-precision IEEE 64bit floating point number.
 ##### Generic Type Parameter
 A type parameter is said to be generic if its containing class or method is generic.
 
+##### Identifier
+Haxe identifiers start with an underscore `_`, a dollar `$`, a lower-case character `a-z` or an upper-case character `A-Z`. After that, any combination and number of `_`, `A-Z`, `a-z` and `0-9` may follow.
+
+Further limitations follow from the usage context, which are checked upon typing:
+
+
+* Type names must start with an upper-case letter `A-Z` or an underscore `_`.
+* Leading dollars are not allowed for any kind of [name](dictionary.md#name) (dollar-names are mostly used for [macro reification](8.3-Reification.md)).
+
+
+
 ##### Int
 Represents a 32bit integral number.
 
@@ -53,7 +67,15 @@ The macro context is the environment in which the macro is executed. Depending o
 All haxe code is organized in modules, which are addressed using paths. In essence, each .hx file represents a module which may contain several types. A type may be `private`, in which case only its containing module can access it.
 
 ##### Name
-Description
+A general name may refer to
+
+
+* a type,
+* a local variable,
+* a local function or
+* a field.
+
+
 
 ##### nullable
 A type in haxe is considered **nullable** if `null` is a valid value for it.
