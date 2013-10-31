@@ -1,7 +1,7 @@
 HaxeManual
 ==========
 
-Haxe is a high level, open source programming language.  See <http://.haxe.org> for more information
+Haxe is a high level, open source programming language.  See <http://haxe.org> for more information
 
 This is a fork of the official Haxe manual, currently under development:
 <https://github.com/Simn/HaxeManual>
