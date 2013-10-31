@@ -10,6 +10,9 @@
 \usepackage{palatino}
 \usepackage{graphicx}
 \usepackage{underscore}
+\usepackage{todonotes}
+
+\setlength{\marginparwidth}{4cm}
 
 \definecolor{bgcolor}{gray}{0.85}
 \definecolor{kwdcolor}{HTML}{0000FF}
@@ -39,7 +42,7 @@
 \newcommand{\Fullref}[1]{\nameref{#1} (\Cref{#1})}
 \newcommand{\tref}[2]{#1 (\ref{#2})}
 
-\newcommand{\todo}[1]{TODO: #1}
+%\newcommand{\todo}[1]{TODO: #1}
 
 \newcommand{\since}[1]{\noindent\textbf{Since haxe #1}\\}
 
@@ -94,6 +97,12 @@
 \author{Haxe Foundation}
 \date{\today}
 \maketitle
+
+
+\clearpage
+\todototoc
+\listoftodos
+\clearpage
 
 \clearpage
 \tableofcontents
@@ -189,7 +198,6 @@ Just as with haxe 1, what followed were several month of stability releases. In 
 After the release of 2.09, \emph{Simon Krajewski} joined the team and work began towards haxe 3. Furthermore, \emph{Cau\^{e} Waneck}'s \target{Java} and \target{C\#} targets found their way into the haxe builds. It was then decided to make a final haxe 2 release, which happened in July 2012 with the release of haxe 2.10.
 
 In late 2012, the haxe 3 switch was flipped and the haxe compiler team, now backed by the newly established \emph{Haxe Foundation}\footnote{http://haxe-foundation.org}, focused on this next major version. Haxe 3 was subsequently released in May 2013.
-
 
 \section{Types}
 \label{Types}
