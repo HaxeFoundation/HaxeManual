@@ -712,13 +712,13 @@ This should be considered in performance-critical code, where a solution without
 \subsection{Dynamic}
 \label{Dynamic Type}
 
-While haxe has a static type system, this type system can effectively be turned off by using the \type{Dynamic} type. A \emph{dynamic value} can be assigned to anything, and anything can be assigned to it. This has several drawbacks:
+While Haxe has a static type system, this type system can be bypassed by using the \type{Dynamic} type. A \emph{dynamic value} can be assigned to anything, and anything can be assigned to it. This has several drawbacks:
 
 \begin{itemize}
 	\item The compiler can no longer type-check assignments, function calls and other constructs where specific types are expected.
 	\item Certain optimizations, in particular when compiling to static targets, can no longer be employed.
-	\item Some common errors, e.g. a typo in a field access, can not be caught at compile-time and likely cause an error at runtime.
-	\item \Fullref{Dead Code Elimination} cannot detect used fields if they are used through \type{Dynamic}.
+	\item Some common errors (e.g. a typo in a field access) can not be caught at compile-time and.
+        \item \Fullref{Dead Code Elimination} cannot detect if a \type{Dynamic} fields is used..
 \end{itemize}
 It is very easy to come up with examples where the usage of \type{Dynamic} can cause problems at runtime. Consider compiling the following two lines to a static target:
 
@@ -726,18 +726,18 @@ It is very easy to come up with examples where the usage of \type{Dynamic} can c
 var d:Dynamic = 1;
 d.foo;
 \end{lstlisting}
-Trying to run a compiled program in the Flash Player yields an error \texttt{Property foo not found on Number and there is no default value}. Without \type{Dynamic}, this would have been detected at compile-time.
+Compiling and running this program for the \target{Flash} \todo{do you have to indicate Flash is a trademark?} target yields an error \texttt{Property foo not found on Number and there is no default value}. Without \type{Dynamic}, this would have been detected at compile-time.
 
-\trivia{Dynamic Inference before haxe 3}{The haxe 3 compiler never infers a type to \type{Dynamic}, so users must be explicit about it. Previous haxe versions used to infer arrays of mixed types, e.g. \expr{[1, true, "foo"]}, as \type{Array<Dynamic>}. We found that this behavior introduced too many type problems and thus removed it for haxe 3.}
+\trivia{Dynamic Inference before haxe 3}{The haxe 3 compiler never infers a type to \type{Dynamic}, so users must be explicit about it. Previous haxe versions used to infer arrays of mixed types (e.g. \expr{[1, true, "foo"]}) as \type{Array<Dynamic>}. We found that this behavior introduced problems and thus removed it for haxe 3.}
 
-Use of \type{Dynamic} should be minimized as there are better options in many situations, but sometimes it is just practical to use it. Parts of the haxe \Fullref{Reflection} API use it, and it is sometimes the best option when dealing with custom data structures that are not known at compile-time.
+Use of \type{Dynamic} should be minimized as there are better options in many situations, but sometimes it is practical. Parts of the haxe \Fullref{Reflection} API use it, and it is sometimes the best option when dealing with custom data structures that are not known at compile-time.
 
-Dynamic behaves in a special way when being \tref{unified}{Unification} with a \tref{monomorph}{Monomorph}, which is described in \Fullref{Monomorphs}.
+\type{Dynamic} behaves in a special way when being \tref{unified}{Unification} with a \tref{monomorph}{Monomorph}, which is described in \Fullref{Monomorphs}.
 
 \trivia{Dynamic in the Standard Library}{Dynamic was quite frequent in the haxe standard library before haxe 3. With the continuous improvements of the haxe type system, the occurences of Dynamic were reduced over the releases leading to haxe 3.}
 
 \subsubsection{Dynamic with Type Parameter}
-
+\todo{I don't get the value of this?  Can you have two disjointed types, like String, Int?  If so, maybe include that in this code snippet}
 \type{Dynamic} is a special type because it allows explicit declaration with and without a \tref{type parameter}{Type Parameters}. If such a type parameter is provided, the semantics described in \Fullref{Dynamic} are constrained to all fields being compatible with the parameter type:
 
 \begin{lstlisting}
@@ -762,7 +762,7 @@ Implementing \type{Dynamic} does not satisfy the requirements of other implement
 
 \subsection{Abstract}
 \label{Abstract}
-
+\todo{slightly confusing b/c very different from abstract classes in other languages}
 An abstract type is a type which is, at runtime, actually a different type. It is a compile-time feature which defines types ``over'' concrete types in order to modify or augment their behavior:
 
 \haxe[firstline=1,lastline=5]{assets/MyAbstract.hx}
@@ -837,6 +837,7 @@ var b = [a];
 \end{lstlisting}
 The \emph{selection algorithm} when assigning a type \expr{A} to a type \expr{B} with at least one of them being an abstract is simple:
 
+\missingfigure{Make this a flow chart}
 \begin{enumerate}
 	\item If \expr{A} is not an abstract, go to 3.
 	\item If \expr{A} defines a \emph{to}-conversions that admits \expr{B}, go to 6.
@@ -874,7 +875,7 @@ Note that both binary and unary operator overloads can return any type.
 
 It is also possible to omit the method body of a \expr{@:op} function, but only if the underlying type of the abstract allows the operation in question and if the resulting type can be assigned back to the abstract.
 
-
+\todo{part of operator overloading?}
 \subsubsection{Array Access}
 
 Array access describes the particular syntax traditionally used to access the value in an array at a certain offset. This is usually only allowed with arguments of type \type{Int}, but with abstracts it is possible to define custom array access methods. The \tref{Haxe Standard Library}{Standard Library} uses this in its \type{Map} type, where the following two methods can be found:
@@ -915,9 +916,10 @@ console.log(map.get("foo"));
 \subsubsection{Selective Functions}
 \label{Selective Functions}
 
-Since the compiler promotes abstract member functions to static functions, it is possible to define static functions by hand and use them on an abstract instance. The semantics here are similar to those of \tref{static extensions}{Static Extension}, where the type of the first function argument determines for which types a function is defined:
+Since the compiler converts abstract methods to static functions, it is possible to define static functions by hand and use them on an abstract instance. The semantics here are similar to those of \tref{static extensions}{Static Extension}, where the type of the first function argument determines for which types a function is defined:
 
 \haxe{assets/SelectiveFunction.hx}
+\todo{The formatting is wrong here.  maybe the $<$..$>$ is confusing it?}
 The method \expr{getString} of abstract \type{MyAbstract} is defined to accept a first argument of \type{MyAbstract$<$String$>$}. This causes it to be available on variable \expr{a} on line 14 (because the type of \expr{a} is \type{MyAbstract$<$String$>$}), but not on variable \expr{b} whose type is \type{MyAbstract$<$Int$>$}.
 
 \trivia{Accidental Feature}{Selective functions were never actually designed, but rather discovered. After the idea was first mentioned, it required only minor adjustments in the compiler to make them work. Their discovery also lead to the introduction of multi-type abstracts, such as Map. }
@@ -936,9 +938,9 @@ A monomorph is a type which may, through \tref{unification}{Unification}, morph 
 \section{Type System}
 \label{Type System}
 
-We learned about the different kinds of types in \Fullref{Types} and it is now time to see how they interact with each other. We start off easy by introducing \tref{typedef}{Typedef}, a mechanism to give a name (or alias) to a more complex type. Among other things, this will come in handy when working with types having \tref{type parameters}{Type Parameters}.
+We learned about the different kinds of types in \Fullref{Types} and it is now time to see how they interact. We start off easy by introducing \tref{typedef}{Typedef}, a mechanism to give a name (or alias) to a more complex type. Among other things, this will come in handy when working with types having \tref{type parameters}{Type Parameters}.
 
-A lot of type-safety is achieved by checking if two given types of above type groups are compatible. That is, the compiler tries to perform \emph{unification} between them, as detailed in \Fullref{Unification}.
+A lot of type-safety is achieved by checking if two given types are compatible. That is, the compiler tries to perform \emph{unification} between them, as detailed in \Fullref{Unification}.
 
 All types are organized in \emph{modules} and can be addressed through \emph{paths}. \Fullref{Modules and Paths} will give a detailed explanation of the related mechanics.
 
@@ -952,6 +954,7 @@ A typedef can give a name to any other type:
 \begin{lstlisting}
 typedef IA = Array<Int>;
 \end{lstlisting}
+\todo{discourage this kind of aliasing.  Can make code hard to understand}
 This enables us to use \expr{IA} in places where we would normally use \expr{Array$<$Int$>$}. While this saves only a few keystrokes in this particular case, it can make a difference for more complex, compound types. Again, this is why typedef and structures seem so connected:
 
 \begin{lstlisting}
@@ -960,7 +963,7 @@ typedef User = {
     var name : String;
 }
 \end{lstlisting}
-A typedef is not a textual replacement, but actually a real type. It can even have \tref{type parameters}{Type Parameters} as the \type{Iterable} type from the standard library demonstrates:
+A typedef is not a textual replacement, but rather a real type. It can even have \tref{type parameters}{Type Parameters} as the \type{Iterable} type from the standard library demonstrates:
 
 \begin{lstlisting}
 typedef Iterable<T> = {
@@ -972,7 +975,7 @@ typedef Iterable<T> = {
 
 \subsubsection{Extensions}
 
-% TODO: move to structures? %
+\todo{move to structures?}
 Extensions are used to express that a structure has all the fields of a given type in addition to some more:
 
 \haxe{assets/Extension.hx}
