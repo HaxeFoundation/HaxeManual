@@ -426,7 +426,7 @@ There is a special type in haxe which is compatible with all classes:
 \define[Type]{Class$<$T$>$}{This type is compatible with all class types. At compile-time, \type{Class<T>} can be considered the common base type of all class types. However, this relation is not reflected in generated code.}
 
 
-\subsubsection{Class constructor}
+\subsubsection{Class Constructor}
 \label{Class Constructor}
 
 Instances of classes are created by calling the class constructor, a process commonly referred to as \emph{instantiation}. Another name for class instances is \emph{object}, but we prefer the term class instance to emphasize the analogy between classes/class instances and \tref{enums/enum instances}{Enum Instance}. 
@@ -1304,7 +1304,7 @@ There are also some cases involving recursion where type inference has limitatio
 
 \subsection{Modules and Paths}
 \label{Modules and Paths}
-
+\todo{Be more explicit about modules, packages, paths and impact on the file structure.  Maybe this is a Java thing?}
 \define{Module}{All haxe code is organized in modules, which are addressed using paths. In essence, each .hx file represents a module which may contain several types. A type may be \expr{private}, in which case only its containing module can access it.}
 
 The distinction of a module and its containing type of the same name is blurry by design. In fact, addressing \expr{haxe.ds.StringMap<Int>} can be considered shorthand for \expr{haxe.ds.StringMap.StringMap<Int>}. The latter version consists of four parts:
@@ -1315,9 +1315,9 @@ The distinction of a module and its containing type of the same name is blurry b
 	\item the type name \type{StringMap}
 	\item the type parameter \type{Int}
 \end{enumerate}
-If the module and type name are equal, the duplicate can be removed, leading to the \expr{haxe.ds.StringMap<Int>} short version. However, knowing about the extended version helps with understanding how \tref{module sub-types}{Module Sub-Types} are addressed.
+If the module and type name are equal, the duplicate can be removed, leading to the \expr{haxe.ds.StringMap<Int>}\todo{expr fuction doesn't handle line wraps well} short version. However, knowing about the extended version helps with understanding how \tref{module sub-types}{Module Sub-Types} are addressed.
 
-Paths can be shortened further by using an \tref{import}{Import}, which typically allows omitting the package part of a path. This may lead to usage of unqualified identifiers, for which understanding the \tref{resolution order}{Resolution Order} is required.
+Paths can be shortened further by using an \tref{import}{Import}, which allows omitting the package part of a path. However, This may lead to usage of unqualified identifiers, for which understanding the \tref{resolution order}{Resolution Order} is required.
 
 \define{Type path}{The (dot-)path to a type consists of the package, the module name and the type name. Its general form is \expr{pack1.pack2.packN.ModuleName.TypeName}.} 
 
@@ -1338,7 +1338,7 @@ private enum E { ... }
 private typedef T { ... }
 private abstract A { ... }
 \end{lstlisting}
-The accessibility can be controlled more fine-grained by using \tref{access control}{Access Control}.
+More fine-grained control of a modules sub-types can be accomplished by using \tref{access control}{Access Control}.
 
 
 
@@ -1352,7 +1352,7 @@ If a type path is used multiple times in a .hx file, it might make sense to use 
 
 With \expr{haxe.ds.StringMap} being imported in the first line, the compiler is able to resolve the unqualified identifier \expr{StringMap} in the \expr{main} function to this package. The module \type{StringMap} is said to be \emph{imported} into the current file.
 
-In this example, we are actually importing a \emph{module}, not just a specific type within that module. This means that all types defined within the imported module are available:
+In this example, we are actually importing a \emph{module}, not just a specific type within that module. This means that all non-private types defined within the imported module are available:
 
 \haxe{assets/Import2.hx}
 
@@ -1372,7 +1372,7 @@ Furthermore, it is also possible to import \tref{static fields}{Class Fields} of
 
 %TODO: figure out if import a.* actually works as intended
 
-Special care has to be taken with field names or local variable names that conflict with a package name: Since they take priority over packages, a local variable named \expr{haxe} blocks off usage the entire \expr{haxe} package.
+Special care has to be taken with field names or local variable names that conflict with a package name: Since they take priority over packages, a local variable named \expr{haxe} blocks the entire \expr{haxe} package.\todo{is there a compiler warning about conflicts like this?}
 
 \subsubsection{Resolution Order}
 \label{Resolution Order}
@@ -1394,6 +1394,7 @@ We describe the resolution order algorithm here, which depends on the following 
 
 Given an identifier \expr{i}, the algorithm is as follows:
 
+\todo{probably better with a flow chart}
 \begin{enumerate}
 	\item If i is \expr{true}, \expr{false}, \expr{this}, \expr{super} or \expr{null}, resolve to the matching constant and halt.
 	\item If a local variable named \expr{i} is accessible, resolve to it and halt.
@@ -1434,7 +1435,7 @@ For step \ref{resolution:import} of this algorithm as well as steps \ref{resolut
 
 \section{Class Fields}
 \label{Class Fields}
-
+\todo{A little different than the 'standard' OOP definitions. For instance, a thing contained in an object is usually called a 'member.'  Redefining is fine, but it would be easier for people transitioning.`}
 \define{Class Field}{A class field is a variable, property or method of a class which can either be static or non-static. Non-static fields are referred to as \emph{member} fields, so we speak of e.g. a \emph{static method} or a \emph{member variable}.}
 
 So far we have seen how types and haxe programs in general are structured. This section about class fields concludes the structural part and at the same time bridges to the behavioral part of haxe. This is because class fields are the place where \tref{expressions}{Expressions} are at home.
@@ -1449,7 +1450,7 @@ There are three kinds of class fields:
 Strictly speaking, a variable could be considered to be a property with certain access modifiers. Indeed, the haxe compiler does not distinguish variables and properties during its typing phase, but they remain separated at syntax level.
 
 Regarding terminology, a method is a (static or non-static) function belonging to a class. Other functions, such as a \tref{closure}{Closure} in expressions, are not considered methods.
-
+\todo{I think it makes sense to talk about flags here (static, dynamic, override, public, and private)}
 
 \subsection{Variable}
 \label{Variable}
@@ -1552,9 +1553,9 @@ Main.main = function() {
 
 \subsubsection{Impact on the type system}
 
-The presence of properties has several consequences on the type system. Most importantly, it is necessary to understand that properties are a compile-time feature and thus \emph{require the types to be known}. If we were to assign a class with properties to \type{Dynamic}, field access would \emph{not} respect accessor methods. Likewise, access restrictions no longer apply and all access is virtually public.
+The presence of properties has several consequences on the type system. Most importantly, properties are a compile-time feature and thus \emph{require the types to be known}. If we were to assign a class with properties of \todo{Confused by this.  Are they saying the fields are of type dynamic, or the access identifier is dynamic?} \type{Dynamic}, field access would \emph{not} respect accessor methods. Likewise, access restrictions no longer apply and all access is public.
 
-When using \expr{get} or \expr{set} access identifier, the compiler ensures that the getter and setter actually exists. The following problem does not compile:
+When using \expr{get} or \expr{set} access identifiers, the compiler ensures that the getter and setter methods actually exists. The following programs does not compile:
 
 \haxe{assets/Property4.hx}
 
@@ -1562,15 +1563,14 @@ The method \expr{get_x} is missing, but it need not be declared on the class def
 
 \haxe{assets/Property5.hx}
 
-The \expr{dynamic} access modifier works exactly like \expr{get} or \expr{set}, but does not check for the existence
-
+The \expr{dynamic} access modifier works exactly like \expr{get} or \expr{set}, but does not check for the existence of the getter or setter methods.  \todo{Does anyone have a good example of when you'd want to do this?}
 
 
 \subsubsection{Rules for getter and setter}
 
-Visibility of accessor methods has no effect on the accessibility of its property. That is, if a property is \expr{public} an defined to have a getter, that getter may me defined as \expr{private} regardless.
+The visibility of an accessor method has no effect on the accessibility of its property. That is, if a property is \expr{public} and defined to have a getter, definig the getter as \expr{private} will have no effect on accessing the property. \todo{Does the compiler throw a warning when protection levels get crossed like this?  I would almost want this to be a compile error if I understand correctly.}
 
-Both getter and setter may access their physical field for data storage. The compiler ensures that this kind of field access does not go through the accessor method if made from within the accessor method itself, thus avoiding infinite recursion:
+Both getter and setter methods may access their physical field for data storage. The compiler ensures that this kind of field access does not go through the accessor method if made from within the accessor method itself, thus avoiding infinite recursion:
 
 \haxe{assets/GetterSetter.hx}
 
@@ -1585,7 +1585,7 @@ However, the compiler assumes that a physical field exists only if at least one 
 }
 
 If this is not the case, access to the field from within an accessor method causes a compilation error:
-
+\todo{I don't understand why this would throw an error.  Why would you ever want a field that wasn't a physical field?}
 \haxe{assets/GetterSetter2.hx}
 
 If a physical field is indeed intended, it can be forced by attributing the field in question with the \expr{:isVar} \tref{metadata}{Metadata}:
@@ -1594,19 +1594,41 @@ If a physical field is indeed intended, it can be forced by attributing the fiel
 
 
 \trivia{Property setter type}{It is not uncommon for new Haxe users to be surprised by the type of a setter being required to be \type{T->T} instead of the seemingly more natural \type{T->Void}. After all, why would a \emph{setter} have to return something?\\
-The rationale is that we still want to be able to use field assignments using setters as right-side expressions. Given a chain like \expr{x = y = 1}, it is evaluated as \expr{x = (y = 1)}. In order to assign the result of \expr{y = 1} to \expr{x}, the former must have a value. If \expr{y} had a setter returning \type{Void}, this would not be possible.}
+Remember, there are no statements in Haxe, only expressions.  We still want to be able to use field assignments using setters as right-side expressions. Given a chain like \expr{x = y = 1}, it is evaluated as \expr{x = (y = 1)}. In order to assign the result of \expr{y = 1} to \expr{x}, the former must have a value. If \expr{y} had a setter returning \type{Void}, this would not be possible.}
 
 
 \subsection{Method}
 \label{Method}
 
+\todo{I wrote this part, so it might need some tweeking ~C}
+Methods are \tref{functions}{Function} that belong to a class.  They have optional input parameters and optional return values.  A typical method is a convenient means of bundling and reusing a piece of code.
+
+\todo{Method Examples.hx}
+
+
+\subsubsection{Class Initializer}
+\label{Class Initializer}
+Each class can optionally specify a static initializer method.  This initializer is executed before any other fields of the class are initialized.  The initializer method must be defined as follows:
+\begin{lstlisting}
+  static function __init__()
+  {
+    ...
+  }
+\end{lstlisting}
+
+\subsubsection{Constructor}
+The \emph{constructor} of a class is another special method.  It is discussed in the \tref{class constructor}{Class Constructor} section.
+
+\subsubsection{Overloading}
+\label{Method Overloading}
+Some other popular object oriented programming languages allow \emph{Method Overloading}.  However, this paradigm does not play well with type inference or dynamic typing, and is therefore not permitted in Haxe.
 
 \subsection{Access Modifier}
 \label{Access Modifier}
 
 \subsubsection{Visibility}
 \label{Visibility}
-
+\todo{Is vocabulary consistent: visibility vs. accessibility?}
 Fields are by default \emph{private}, meaning that only the class and its sub-classes may access them. They can be made \emph{public} by using the \expr{public} access modifier, allowing access from anywhere.
 
 \haxe{assets/Visibility.hx}
@@ -1632,7 +1654,7 @@ Omitting the visibility modifier usually defaults the visibility to \expr{privat
 \subsubsection{Inline}
 \label{Inline}
 
-The \expr{inline} keyword allows function bodies to be directly inserted in place of calls to them. This can be a powerful optimization tool, but should be used judiciously as not all functions are good candidates for inline behavior. The following example demonstrates the basic usage:
+The \expr{inline} keyword allows function bodies to be directly inserted in place of calls to them. This can be a powerful optimization tool, but should be used carefully, as not all functions are good candidates for inline behavior. The following example demonstrates the basic usage:
 
 \haxe{assets/Inline.hx}
 
@@ -1651,9 +1673,9 @@ Main.main();
 \end{lstlisting}
 
 As evident, the function body \expr{s1 + s2} of field \expr{mid} was generated in place of the call to \expr{add(a, b)}, with \expr{s1} being replaced by \expr{a} and \expr{s2} being replaced by \expr{b}. This avoids a function call which, depending on the target and frequency of occurrences, may yield noticeable performance improvements.
-
-It is not always easy to judge if a function qualifies for being inline. Short functions that have no writing expressions (such as a \expr{=} assignment) are usually a good choice, but even more complex functions can be candidates. However, in some cases inlining can actually be detrimental to performance, e.g. because the compiler has to create temporary variables for complex expressions.
-
+\todo{which targets suffer the most from function calls? Guessing flash}
+It is not always easy to judge if a function should be inlined. Short functions that have no writing expressions (such as a \expr{=} assignment) are usually a good choice, but even more complex functions can be candidates. However, in some cases inlining can actually be detrimental to performance, e.g. because the compiler has to create temporary variables for complex expressions. Inlining also increases the size of code produced.
+\todo{So how do we tell if a function is more performant inline?  Use a code profiler?}
 \subsubsection{Dynamic}
 \label{Dynamic}
 
@@ -1663,14 +1685,14 @@ Methods can be denoted with the \expr{dynamic} keyword to make them (re-)bindabl
 
 The first call to \expr{test()} invokes the original function which returns the \type{String} \expr{"original"}. In the next line, \expr{test} is \emph{assigned} a new function. This is precisely what \expr{dynamic} allows: Function fields can be assigned a new function. As a result, the next invocation of \expr{test()} returns the \type{String} \expr{"new"}.
 
-Dynamic fields cannot be \expr{inline} for obvious reasons: While inlining is done at compile-time, dynamic functions necessarily have to be resolved at runtime.
+Dynamic methods cannot be \expr{inline} for obvious reasons: While inlining is done at compile-time, dynamic functions must be resolved at runtime.
 
 %TODO: performance estimation %
 
 \subsubsection{Override}
 \label{Override}
 
-The access modifier \expr{override} is required when a field is declared which also exists on a \tref{parent class}{Inheritance}. Its purpose is to ensure that the author of a class is aware of the override as this may not always be obvious in large class hierarchies. Likewise, having \expr{override} on a field which does not actually override anything (e.g. due to a misspelled field name) triggers an error as well.
+The access modifier \expr{override} is required when a child class declares a field which also exists in a \tref{parent class}{Inheritance}. The purpose is to ensure that overrides are obvious, even in large class hierarchies. Likewise, having \expr{override} on a field which does not actually override anything (e.g. due to a misspelled field name) will cause a compile time error, as well.
 
 The effects of overriding fields are detailed in \Fullref{Overriding Fields}.
 
@@ -1678,9 +1700,9 @@ The effects of overriding fields are detailed in \Fullref{Overriding Fields}.
 
 \subsection{Overriding Fields}
 \label{Overriding Fields}
-
-Overriding fields is instrumental for creating class hierarchies. Many design patterns utilize it, but here we will explore only the basic functionality. In order to use overrides in a class, it is required that this class has a \tref{parent class}{Inheritance}. Let us consider the following example:
-
+\todo{This only talks about overriding methods.  What about overriding variables?}
+Overriding fields is instrumental for creating class hierarchies. Many design patterns utilize overrides, but here we will explore only the basic functionality. In order to use overrides a class must inherit from a \tref{parent class}{Inheritance}. Consider the following example:
+\todo{change the source to use ``myMethod''}
 \haxe{assets/Override.hx}
 
 The important components here are
@@ -1693,7 +1715,7 @@ The important components here are
 
 The variable \expr{child} is explicitly typed as \type{Base} to highlight an important difference: At compile-time the type is known to be \type{Base}, but the runtime still finds the correct field \expr{method} on class \type{Child}. It is then obvious that the field access is resolved dynamically at runtime.
 
-\subsubsection{Effects of variance and access modifiers}
+\subsubsection{Effects of Variance and Access Modifiers}
 
 Overriding adheres to the rules of \tref{variance}{Variance}. That is, their argument types allow \emph{contravariance} (less specific types) while their return type allows \emph{covariance} (more specific types):
 
