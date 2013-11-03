@@ -1600,7 +1600,7 @@ Remember, there are no statements in Haxe, only expressions.  We still want to b
 \subsection{Method}
 \label{Method}
 
-\todo{I wrote this part, so it might need some tweeking ~C}
+\todo{I wrote this part, so it might need some tweaking ~C}
 Methods are \tref{functions}{Function} that belong to a class.  They have optional input parameters and optional return values.  A typical method is a convenient means of bundling and reusing a piece of code.
 
 \todo{Method Examples.hx}
@@ -1730,7 +1730,7 @@ It is not possible to override fields which are declared as \tref{\expr{inline}}
 
 \section{Expressions}
 \label{Expressions}
-
+\todo{I feel like this section should come sooner in the manual.}
 Expressions in haxe define what a program \emph{does}. Most expressions are found in the body of a \tref{method}{Method}, where they are combined to express what that method should do. This section explains the different kinds of expressions. Some definitions help here:
 
 \define{Name}{A general name may refer to
@@ -1762,7 +1762,7 @@ A block in haxe starts with an opening curly brace \expr{\{} and ends with a clo
 	exprN;
 }
 \end{lstlisting}
-The value and by extension the type of a block-expression is equal to the value and the type of the last sub-expression.
+The value and by extension the type of a block-expression is equal to the value and the type of the last enclosed expression.
 
 Blocks can contain local variables declared by \tref{\expr{var} expression}{var}, as well as local closures declared by \tref{\expr{function} expressions}{function}. These are available within the block and within sub-blocks, but not outside the block. Also, they are available only after their declaration. The following example uses \expr{var}, but the same rules apply to \expr{function} usage:
 
@@ -1799,7 +1799,7 @@ Furthermore, the internal syntax structure treats \tref{identifiers}{def:Identif
 
 
 \subsection{Binary Operators}
-
+\todo{talked about these with a table in the ``Basic Types'' section.  Reproduce that conversation here?}
 \subsection{Unary Operators}
 
 \subsection{Array Declaration}
@@ -1822,7 +1822,7 @@ Advanced initialization techniques are described in \Fullref{Array Comprehension
 
 \subsection{Object Declaration}
 \label{Object Declaration}
-
+\todo{Anonymous Objects are synonymous with Anonymous Structures?  Objects are the same as structures?}
 Object declaration begins with an opening curly brace \expr{\{} after which \expr{key:value}-pairs separated by comma \expr{,} follow, and which ends in a closing curly brace \expr{\}}.
 
 \begin{lstlisting}
@@ -1867,12 +1867,50 @@ subject(e1, ..., eN); // call with multiple arguments
 \subsection{Closure}
 \label{Closure}
 \label{function}
+\todo{I wrote this section, may need tweaked, ~C}
+A closure is function coupled with it's referencing environment.  A closure has access to variables that were in scope when the closure was created, even if those variables are no longer in scope.  They are useful for writing \emph{event drive code} and are commonly found in JavaScript \emph{callback} funtions.  
+
+Closures are implemented in Haxe using \emph{local functions}.
+
+\define{Local Function}{A local function is declared using the \emph{function} keyword without a name.  Local functions are values like literal integers or strings and can access local and static variables from their defining class}
+
+This is an example of declaring and calling a local function:
+\begin{lstlisting}
+var func = function{ ... };
+f(); //call the function
+\end{lstlisting}
+
+Local functions can have parameters, just like a typical method.  However, they can also access static fields of their defining class and local variables defined prior to the function.
+
+\begin{lstlisting}
+var x = 10;
+var add = function(n) { x += n; };
+add(2);
+add(3);
+//the value of x is now 15
+\end{lstlisting}
+
+Local functions can't access the \emph{this} value.  To access \emph{this}, it needs to be assiged to a local variable, typically called \emph{me}
+
+\haxe{assets/LocalFunction.hx}
+
+
 
 \subsection{var}
 \label{var}
 
+Local variables are declared using the \emph{var} keyword
+\begin{lstlisting}
+var x;
+var y = 3;
+var w : String = ``Hello World!'';
+\end{lstlisting}
+
+The \tref{type}{Types} of the variable and the value are both optional.  If no value is given, the variable defaults to \tref{Null}{Nullability}.  If no type is given, the variable type is of type \emph{Unknown}, but is still strictly typed. It's actual type will later be decided by \tref{type inference}{Type Inference}.
 \subsection{new}
 \label{new}
+
+The \emph{new} keyword is used to create an instance of a \tref{class}{Class Instance}.  It informs the class to use the \tref{class constructor}{Class Constructor} to \emph{instantiate} a new instance of the class. 
 
 \subsection{for}
 
@@ -1890,7 +1928,22 @@ The type of a \expr{for} expression is always \type{Void}, meaning it has no val
 
 \subsection{while}
 \label{while}
+\emph{while} is a standard loop that executes as long as \emph{precondition} is true.  A \emph{do-while} loop is a very similar construct, but operates with a \emph{postcondition}.
+\begin{lstlisting}
+while ( precondition ){ 
+  //loop
+}
 
+do{
+  //loop 
+} while ( postcondition );
+\end{lstlisting}
+
+For instance, here is a simple counter written as both a \emph{while} and \emph{do-while} loop:
+
+\haxe{assets/WhileLoop.hx}
+
+The \tref{break}{break} and \tref{continue}{continue} keywords can be used to further control the flow of a loop.
 \subsection{if}
 \label{if}
 
@@ -1951,6 +2004,7 @@ If \expr{return} is used without a value expression, the typer ensures that the 
 
 
 \subsection{break}
+\label{break}
 
 The \expr{break} keyword leaves the control flow of the innermost loop (\expr{for} or \expr{while}) it is declared in, stopping further iterations:
 
@@ -1968,7 +2022,7 @@ The typer ensures that it appears only within a loop. The \expr{break} keyword i
 
 
 \subsection{continue}
-
+\label{continue}
 The \expr{continue} keyword ends the current iteration of the innermost loop (\expr{for} or \expr{while}) it is declared in, causing the loop condition to be checked for the next iteration:
 
 \begin{lstlisting}
