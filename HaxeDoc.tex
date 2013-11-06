@@ -2060,6 +2060,7 @@ The typer ensures that it appears only within a loop.
 
 \section{Standard Library}
 \label{Standard Library}
+\todo{Is this section going to overlap with the API documentation.  Would it make sense to just pull in that information?}
 
 Standard library
 
@@ -2169,23 +2170,23 @@ Main.main = function() {
 \end{lstlisting}
 
 The following classes from the Haxe Standard Library are designed to be used as static extensions:
-
+\todo{There are more static extensions, like DateTools.  Should this list all of the static extensions, or just the most used for example purposes?}
 \begin{description}
-	\item[\type{StringTools}:] Provides extended functionality on strings, such as replacing or trimming.
-	\item[\type{Lambda}:] Provides functional methods on iterables.
-	\item[\type{haxe.EnumTools}:] Provides type information functionality on enums and their instances.
-	\item[\type{haxe.macro.Tools}:] Provides different extensions for working with macros (see \Fullref{Macro Tools}).
+  \item[\type{StringTools}:] Provides extended functionality on \tref{strings}{String}, such as replacing or trimming.
+  \item[\type{Lambda}:] Provides functional methods on \tref{iterables}{Iterables}\todo[inline]{A section on Iterables?}.
+  \item[\type{haxe.EnumTools}:] Provides type information functionality on \tref{enums}{Enum Instance} and their instances.
+  \item[\type{haxe.macro.Tools}:] Provides different extensions for working with macros (see \Fullref{Macro Tools}).\todo{Fullref vs tref, when to use which}
 \end{description}
 
 
 
-\trivia{``using'' using}{Since the \expr{using} keyword was added to the language, it has been common to talk about certain problems with ``using using'' or the effect of ``using using''. This makes for awkward English in many cases, so the author of this manual decided to call the feature by what it actually is: Static extension.}
+\trivia{``using'' using}{Since the \expr{using} keyword was added to the language, it has been common to talk about certain problems with ``using using'' or the effect of ``using using''. This makes for awkward English in many cases, so the author of this manual decided to call the feature by its proper name: Static extension.}
 
 
 
 \subsection{Pattern Matching}
 \label{Pattern Matching}
-
+\todo{Better integrate this with the enum sections}
 \subsubsection{Introduction}
 
 Haxe 3 comes with improved options for pattern matching. Here we will explore the syntax for different patterns using this data structure as running example:
@@ -2346,24 +2347,22 @@ switch(Leaf("foo")) {
 
 \subsection{String Interpolation}
 
-With haxe 3 it is no longer necessary to manually concatenate parts of a string due to the introduction of \emph{String Interpolation}. Special identifiers, denoted by the dollar sign \expr{\$} within a String enclosed by single-quote \expr{'} characters, are evaluated as if they were concatenated identifiers:
+With \emph{String Interpolation}, it is no longer necessary to concatenate values into a string. In a String enlosed by single-quotes, Variables preceeded by a dollar sign ( {\$} ) are replaced by their value (\emph{expanded} in PHP lingo).  
 
-\begin{lstlisting}
-var x = 12;
-trace('The value of x is $x'); // The value of x is 12
-\end{lstlisting}
-Furthermore, it is possible to include whole expressions in the string by using \expr{\$$\left\{expr\right\}$}, with \expr{expr} being any valid haxe expression:
+\haxe{assets/StringInterpolation.hx}
+
+Furthermore, it is possible to include whole expressions in the string by using \expr{\$\{expr\}}, with \expr{expr} being any valid haxe expression:
 
 \begin{lstlisting}
 var x = 12;
 trace('The sum of $x and 3 is ${x + 3}'); // The sum of x and 3 is 15
 \end{lstlisting} 
-String interpolation is a compile-time feature and has no impact on the runtime. The above example is equivalent to manual concatenation, which is exactly what the compiler generates:
+String interpolation is a compile-time feature and has no impact on runtime. The above example is equivalent to manual concatenation, which is exactly what the compiler generates:
 
 \begin{lstlisting}
 trace("The sum of " +x+ " and 3 is " + (x + 3));
 \end{lstlisting}
-Of course the use of single-quote enclosed strings without any interpolation remains valid, but care has to be taken regarding the \$ character as it triggers interpolation. If an actual dollar-sign should be used in the string, \expr{\$\$} can be used.
+Of course the use of single-quote enclosed strings without any interpolation remains valid, but care has to be taken regarding the \$ character as it triggers interpolation. If an actual dollar-sign should be used in the string, \expr{\$\$} \todo{I think \textbackslash would be more inuitive as an escape sequence than \$ Just curious about the design decision.} can be used.
 
 \trivia{String Interpolation before haxe 3}{String Interpolation has been a haxe feature since version 2.09. Back then, the macro \expr{Std.format} had to be used, being both slower and less comfortable than the new string interpolation syntax.}
 
@@ -2392,6 +2391,7 @@ while(i < 10) a.push(i++);
 
 The loop expression can be anything, including conditions and nested loops, so the following works as expected:
 
+\todo{maybe change this example around so it's easier to follow.}
 \haxe{assets/ArrayComprehension2.hx}
 
 
@@ -2421,6 +2421,7 @@ The compiler automatically defines the flag \expr{dce} with a value of either \e
 \trivia{DCE-rewrite}{DCE was originally implemented in haxe 2.07. This implementation considered a function to be used when it was explicitly typed. The problem with that was that several features, most importantly interfaces, would cause all class fields to be typed in order to verify type-safety. This effectively subverted DCE completely, prompting the rewrite for haxe 2.10.}
 
 \trivia{DCE and try.haxe.org}{DCE for the \type{Javascript} target saw vast improvements when the website \url{http://try.haxe.org} was published. Initial reception of the generated \target{Javascript} code was mixed, leading to a more fine-grained selection of which code to eliminate.}
+
 
 
 \subsection{Function Bindings}
