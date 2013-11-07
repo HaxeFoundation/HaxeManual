@@ -87,6 +87,9 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 				case [TCommand(CClearpage)]:
 				case [TCommand(CTableofcontents)]:
 				case [TCommand(CMaketitle)]:
+				case [TCustomCommand("todototoc")]:
+				case [TCustomCommand("listoftodos")]:
+
 				
 				// format
 				case [TBegin("center")]:
@@ -154,7 +157,8 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 					buffer.add('>\n');
 					s2 = s2.replace("\r", "").split("\n").join("\n> ");
 					buffer.add('> $s2');
-				case [TCustomCommand("todo"), TBrOpen, s = text(), TBrClose]:
+				case [TCustomCommand("todo"), options = popt(bracketArg), TBrOpen, s = text(), TBrClose]: buffer.add('> $s');
+				case [TCustomCommand("missingfigure"), TBrOpen, s = text(), TBrClose]: buffer.add('> $s'); 
 				case [TCustomCommand("since"), TBrOpen, s = text(), TBrClose]: buffer.add('##### since Haxe $s\n\n');
 					
 				// section
@@ -191,6 +195,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 			case [TText(s)]: s;
 			case [TTab]:
 				codeMode ? "\t" : "";
+			case [TDollarLiteral]: "$";
 			case [TDollar]: codeMode ? "$" : "";
 			case [TAmp]:
 				if (tableMode && !exprMode) {
@@ -200,8 +205,13 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 					"&";
 				}
 			case [TCommand(CTextasciitilde)]: "~";
+			case [TCommand(CTextbackslash)]: "\\\\";
 			case [TCommand(CEmph), TBrOpen, s = text(), TBrClose]: '**$s**';
-			case [TCommand(CIt), TBrOpen, s = text(), TBrClose]: '*$s*';
+			//I think \it{} is obsolete.  Added \textit{}
+			case [TCommand(CTextit), TBrOpen, s = text(), TBrClose]:'*$s*';
+			case [TCommand(CIt), TBrOpen, s = text(), TBrClose]: '*$s*'; 
+			case [TCommand(CTextbf), TBrOpen, s = text(), TBrClose]:'**$s**';
+			case [TCommand(CTextsuperscript), TBrOpen, s = text(), TBrClose]:'<sup>$s<sup>'; 
 			case [TBrOpen && codeMode]: "{";
 			case [TBrClose && codeMode]: "}";
 			case [TBkOpen && (codeMode || exprMode)]: "[";
@@ -253,6 +263,9 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 				}
 			case [TNewline]: tableMode ? "" : "\n";
 			case [TDoubleBackslash]: "\n";
+			case [TCommand(CTextless)]: "<";
+			case [TCommand(CTextgreater)]: ">";
+			case [TCommand(CLdots)]: "...";
 		}
 	}
 	

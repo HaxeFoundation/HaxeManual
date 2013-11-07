@@ -11,7 +11,7 @@ Represents a value which can be either **true** or **false**
 A class field is a variable, property or method of a class which can either be static or non-static. Non-static fields are referred to as **member** fields, so we speak of e.g. a **static method** or a **member variable**.
 
 ##### Class<T>
-This type is compatible with all class types. At compile-time, `Class<T>` can be considered to be the common base type of all class types. However, this relation is not reflected in generated code.
+This type is compatible with all class types. At compile-time, `Class<T>` can be considered the common base type of all class types. However, this relation is not reflected in generated code.
 
 ##### Compiler Flag
 A compiler flag is a configurable value which may influence the compilation process. Such a flag can be set by invoking the command line with `-D key=value` or just `-D key`, in which case the value defaults to `"1"`. The compiler also sets several flags internally to pass information between different compilation steps.
@@ -29,7 +29,7 @@ A [compound type](dictionary.md#compound-type) is considered covariant if its co
 Definition description
 
 ##### Dynamic target
-Dynamic targets are more lenient with their types and allow *null* values for basic types. They consist of JavaScript, PHP, neko and Flash 6-8.
+Dynamic targets are more lenient with their types and allow null values for basic types. They consist of JavaScript, PHP, neko and Flash 6-8.
 
 ##### Enum
 This type is compatible with all enum types. At compile-time, `Enum<T>` can be considered to be the common base type of all enum types. However, this relation is not reflected in generated code.
@@ -59,6 +59,9 @@ Further limitations follow from the usage context, which are checked upon typing
 
 ##### Int
 Represents a 32bit integral number.
+
+##### Local Function
+A local function is declared using the **function** keyword without a name.  Local functions are values like literal integers or strings and can access local and static variables from their defining class
 
 ##### Macro Context
 The macro context is the environment in which the macro is executed. Depending on the macro type, it can be considered to be a class being built or a function being typed. Contextual information can be obtained through the `haxe.macro.Context` API.
@@ -98,7 +101,7 @@ A read access to a field occurs when a right-hand side [field access expression]
 A static extension allows pseudo-extending existing types without modifying their source. In Haxe this is achieved by declaring a static method with a first argument of the extending type and then bringing the defining class into context through `using`.
 
 ##### Static target
-Static targets employ their own type system where `null` is not a valid value for basic types. This is true for the Flash 9+, C++, Java and C# targets.
+`null` is not a valid value for basic types. This is true for the Flash 9+, C++, Java and C# targets.
 
 ##### String
 A String is a sequence of characters.

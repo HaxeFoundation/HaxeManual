@@ -23,10 +23,11 @@ class LatexLexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		},
 		"\t" => TTab,
 		"$" => TDollar,
+		"\\\\$" => TDollarLiteral,
 		"&" => TAmp,
 		"\\\\&" => TText("&"),
-		"\\\\$" => TText("$"),
 		"%" => lexer.token(comment),
+                //"\\\\$" => TText("$"), //added TDollarLiteral, couldn't figure this out.
 		"\\\\$" => TText("%"),
 		"\\\\\\\\" => TDoubleBackslash,
 		"``" => TText('"'),

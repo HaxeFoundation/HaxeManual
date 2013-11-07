@@ -241,21 +241,21 @@ We will explore type inference in detail later in \Fullref{Type Inference}. For 
 \define[Type]{Float}{Represents a double-precision IEEE 64bit floating point number.}
 \define[Type]{Int}{Represents a 32bit integral number.}
 While every \type{Int} can be used where a \type{Float} is expected (that is, \type{Int} \emph{is assignable to} or \emph{unifies with} \type{Float}), the reverse is not true: Assigning a \type{Float} to an \type{Int} might lose precision and is not implicitly allowed.
-\\
-\\
-\textbf{Overflows:}\\
-\todo{Took the ideas from old manual.  Still Haxe 3 relevant?}For performance reasons, the Haxe compiler does not enforce any overflow behavior.  The burden of checking for overflows falls to the target platform.  Here are some platform specific notes on overflow behavior:
+
+\subsubsection{Overflows}
+\emph{Overflows:}
+\todo{Took the ideas from old manual.  Still Haxe 3 relevant?}For performance reasons, the Haxe compiler does not enforce any overflow behavior.  The burden of checking for overflows falls to the target platform. Here are some platform specific notes on overflow behavior:
 
 \begin{description}
  \item[C++, Java, C\#, Neko:] 32-bit integers, with usual overflow practices 
  \item[Flash, AVM2:] 32-bit integers, but higher integers are memory boxed
- \item[PHP JS Flash 8:] No native \emph{Int} type.  Overflows will occur if they reach their float limit ($2^{52}$).
+ \item[PHP JS Flash 8:] No native \emph{Int} type.  Overflows will occur if they reach their float limit (2\textsuperscript{52}).
 \end{description}
 
 Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used to ensure correct overflow behavior regardless of the platform.  \todo{Is there a performance hit for this?}
 \\
 \\
-\textbf{Numeric Operators:}
+\emph{Numeric Operators:}
 
 \todo{make sure the types are right for inc, dec, negate, and bitwise negate}
 \begin{center}
@@ -355,7 +355,7 @@ var x:Void; // Arguments and variables of type Void are not allowed
 It is common for programming languages to have a single, clean definition for nullability, but haxe has to find a compromise in this regard. Som target languages allow and, in fact, default to \expr{null} for everything, other do not allow \expr{null} for certain types. This necessitates the distinction of two types of target languages:
 
 \define{Static target}{\expr{null} is not a valid value for basic types. This is true for the \target{Flash 9+}, \target{C++}, \target{Java} and \target{C\#} targets.}
-\define{Dynamic target}{Dynamic targets are more lenient with their types and allow \textit{null} values for basic types. They consist of \target{JavaScript}, \target{PHP}, \target{neko} and \target{Flash 6-8}.}
+\define{Dynamic target}{Dynamic targets are more lenient with their types and allow null values for basic types. They consist of \target{JavaScript}, \target{PHP}, \target{neko} and \target{Flash 6-8}.}
 
 There is nothing to worry about when working with \expr{null} on dynamic targets, but static ones may require some thought. For starters, basic types are initialized to these values:
 
@@ -388,7 +388,7 @@ var a : Int = n;
 trace(a); // 0 on static platforms
 \end{lstlisting}
 
-\textbf{Optional Parameters and Nullability:}
+\emph{Optional Parameters and Nullability:}
 Optional parameters also have to be accounted when considering nullability.
 In particular, there must be a distinction between \emph{native} optional parameters which are not nullable and Haxe optional parameters which might be.  The distinction is make by using the question-mark optional parameter:
 
@@ -481,7 +481,7 @@ The \expr{implements} keyword here denotes that \type{Point} has a "is-a" relati
 
 The compiler checks if the \expr{implements} assumption holds. That is, it makes sure the class actually does implement all the fields required by the interface. A field is considered implemented if the class or any of its parent classes provide an implementation.
 
-Interface fields are not limited to methods, they can be variables and properties \todo{referred to as \textit{variable fields} instead of properties before.  What convention is preferred?} as well.
+Interface fields are not limited to methods, they can be variables and properties \todo{referred to as variable fields instead of properties before.  What convention is preferred?} as well.
 
 Unlike inheritance, where a child can have only a single parent, a class may implement any number of interfaces.  In this manner, interfaces are a safer, cleaner alternative to multiple inheritance.
 
@@ -630,9 +630,10 @@ foo({x : 1});
 var tmp = {};
 foo(tmp);
 \end{lstlisting}
+\textless
 
-Optional fields are \emph{nullable} ({\bfseries \textless Null\textgreater Int} in the example).  Please note that optional fields only work for \emph{anonymouse} structure values (i.e. structures that are not explicitly typed).
-\\*[2pt] %TODO, come back to this
+Optional fields are \emph{nullable} (\emph{ \textless Null\textgreater Int} in the example).  Please note that optional fields only work for \emph{anonymouse} structure values (i.e. structures that are not explicitly typed).
+%\\*[2pt] %TODO, come back to this
 Since fields can be hidden, allowing arbitrary structures would break type safety.  As the example below demonstrates, it would be possible to pass in an incorrectly typed field:
 
 \todo{What is the failure here?  The compiler complains about the call to foo?}
@@ -2173,7 +2174,7 @@ The following classes from the Haxe Standard Library are designed to be used as 
 \todo{There are more static extensions, like DateTools.  Should this list all of the static extensions, or just the most used for example purposes?}
 \begin{description}
   \item[\type{StringTools}:] Provides extended functionality on \tref{strings}{String}, such as replacing or trimming.
-  \item[\type{Lambda}:] Provides functional methods on \tref{iterables}{Iterables}\todo[inline]{A section on Iterables?}.
+  \item[\type{Lambda}:] Provides functional methods on iterables\todo[inline]{A section on Iterables?}.
   \item[\type{haxe.EnumTools}:] Provides type information functionality on \tref{enums}{Enum Instance} and their instances.
   \item[\type{haxe.macro.Tools}:] Provides different extensions for working with macros (see \Fullref{Macro Tools}).\todo{Fullref vs tref, when to use which}
 \end{description}
@@ -2347,7 +2348,7 @@ switch(Leaf("foo")) {
 
 \subsection{String Interpolation}
 
-With \emph{String Interpolation}, it is no longer necessary to concatenate values into a string. In a String enlosed by single-quotes, Variables preceeded by a dollar sign ( {\$} ) are replaced by their value (\emph{expanded} in PHP lingo).  
+With \emph{String Interpolation}, it is no longer necessary to concatenate values into a string. In a String enlosed by single-quotes, Variables preceeded by a dollar sign ( \$ ) are replaced by their value (\emph{expanded} in PHP lingo).  
 
 \haxe{assets/StringInterpolation.hx}
 

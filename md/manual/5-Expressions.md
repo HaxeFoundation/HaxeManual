@@ -1,5 +1,6 @@
 ## 5 Expressions
 
+> I feel like this section should come sooner in the manual.
 Expressions in haxe define what a program **does**. Most expressions are found in the body of a [method](4.3-Method.md), where they are combined to express what that method should do. This section explains the different kinds of expressions. Some definitions help here:
 
 > ##### Define: Name
@@ -29,6 +30,6 @@ Expressions in haxe define what a program **does**. Most expressions are found i
 
 ---
 
-Previous section: [Effects of variance and access modifiers](4.5.1-Effects_of_variance_and_access_modifiers.md)
+Previous section: [Effects of Variance and Access Modifiers](4.5.1-Effects_of_Variance_and_Access_Modifiers.md)
 
 Next section: [Blocks](5.1-Blocks.md)
