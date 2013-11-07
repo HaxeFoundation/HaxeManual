@@ -264,8 +264,8 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 			case [TNewline]: tableMode ? "" : "\n";
 			case [TDoubleBackslash]: "\n";
 			//These commands can have optional, empy braces after them (for spacing purposes).
-			case [TCommand(CTextless), dummy = popt(emptyBraces)]: "<";
-			case [TCommand(CTextgreater), dummy = popt(emptyBraces)]: ">";
+			case [TCommand(CTextless), dummy = popt(emptyBraces)]: "&lt;";
+			case [TCommand(CTextgreater), dummy = popt(emptyBraces)]: "&gt;";
 			case [TCommand(CLdots), dummy = popt(emptyBraces)]: "...";
 		}
 	}
