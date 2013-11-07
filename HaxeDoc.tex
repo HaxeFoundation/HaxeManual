@@ -367,7 +367,7 @@ There is nothing to worry about when working with \expr{null} on dynamic targets
 	\item[\type{Float}:] \expr{NaN} on \target{Flash 9}, \expr{0.0} on other static targets
 	\item[\type{Bool}:] \expr{false}
 \end{description}
-As a consequence, the haxe compiler does not allow assigning \expr{null} to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as \type{Null\textless{}T\textgreater}.  The \emph{\textless{}T\textgreater} is a type parameter.  See \Fullref{Type Parameters} for more details. 
+As a consequence, the haxe compiler does not allow assigning \expr{null} to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as \type{Null<T>}.  The \emph{\textless{}T\textgreater} is a type parameter.  See \Fullref{Type Parameters} for more details. 
 
 \begin{lstlisting}
 var a:Int = null; // error on static platforms
