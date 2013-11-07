@@ -10,7 +10,7 @@ I'll eventually figure the qustions out, but I'd be grateful for any answers you
 Since this fork of the manual **is** under development, sections are liable to change... or possibly even be completely wrong!  
 
 Official Repository
-===================
+-------------------
 
 Hopefully this fork will, eventually, get merged back into the official Haxe Manual.  It lives here:
 <https://github.com/Simn/HaxeManual>

@@ -30,12 +30,12 @@ enum LatexCommand {
 	CRight;
 	CTexttt;
 	CUrl;
-        
-        CTextless;
-        CTextgreater;
-        CTextbackslash;
-        CLdots;
-        CTextsuperscript;
-        CTextit;
-        CTextbf;
+	
+	CTextless;
+	CTextgreater;
+	CTextbackslash;
+	CLdots;
+	CTextsuperscript;
+	CTextit;
+	CTextbf;
 }

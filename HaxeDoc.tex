@@ -44,6 +44,7 @@
 \newcommand{\Fullref}[1]{\nameref{#1} (\Cref{#1})}
 \newcommand{\tref}[2]{#1 (\ref{#2})}
 
+%added the todonotes package instead
 %\newcommand{\todo}[1]{TODO: #1}
 
 \newcommand{\since}[1]{\noindent\textbf{Since haxe #1}\\}
@@ -104,6 +105,7 @@
 \clearpage
 \todototoc
 \listoftodos
+\todo{Pull a vocabulary page out of the definitions?}
 \clearpage
 
 \clearpage
@@ -204,9 +206,9 @@ In late 2012, the haxe 3 switch was flipped and the haxe compiler team, now back
 \section{Types}
 \label{Types}
 
-The haxe compiler employs a sophisticated typing system which helps detecting type-related errors in a program at compile-time. A type error is an invalid operation on a given type, such as dividing by a String, trying to access a field of an Integer or calling a function with not enough (or too many) arguments.
+The haxe compiler employs a sophisticated typing system which detects type-related errors at \emph{compile-time} instead of \emph{run-time}.  Thanks to the type system, a nasty, hard to detect run-time type error turns into a compiler error.  A type error is an invalid operation on a given type, such as dividing by a String, trying to access a field of an Integer or calling a function with not enough (or too many) arguments.
 
-In some languages, this additional safety comes at a price, forcing programmers to explicitly assign types to syntactic constructs:
+In some other languages, this additional type safety comes at a price, forcing programmers to explicitly assign types to syntactic constructs:
 
 \begin{lstlisting}
 var myButton:MySpecialButton = new MySpecialButton(); // As3
@@ -219,7 +221,7 @@ var myButton = new MySpecialButton(); // haxe
 \end{lstlisting}
 We will explore type inference in detail later in \Fullref{Type Inference}. For now, it is sufficient to say that the variable \expr{myButton} in the code above is known to be an \emph{class instance} of type \type{MySpecialButton}. A \emph{class instance} is one of seven type groups:
 
-\todo{Is ``Basic Type'' not a type group?}
+\todo{Is ``2.1 Basic Type'' not a type group?}
 \begin{description}
  \item[Class instance:] an object of a given class or interface
  \item[Enum instance:] a value of a haxe enumeration
@@ -244,7 +246,7 @@ While every \type{Int} can be used where a \type{Float} is expected (that is, \t
 
 \subsubsection{Overflows}
 \emph{Overflows:}
-\todo{Took the ideas from old manual.  Still Haxe 3 relevant?}For performance reasons, the Haxe compiler does not enforce any overflow behavior.  The burden of checking for overflows falls to the target platform. Here are some platform specific notes on overflow behavior:
+\todo{Took the ideas from old manual, but moved Neko in with C++ and co.  Still Haxe 3 relevant?}For performance reasons, the Haxe compiler does not enforce any overflow behavior.  The burden of checking for overflows falls to the target platform. Here are some platform specific notes on overflow behavior:
 
 \begin{description}
  \item[C++, Java, C\#, Neko:] 32-bit integers, with usual overflow practices 
@@ -252,7 +254,7 @@ While every \type{Int} can be used where a \type{Float} is expected (that is, \t
  \item[PHP JS Flash 8:] No native \emph{Int} type.  Overflows will occur if they reach their float limit (2\textsuperscript{52}).
 \end{description}
 
-Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used to ensure correct overflow behavior regardless of the platform.  \todo{Is there a performance hit for this?}
+Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used to ensure correct overflow behavior regardless of the platform.  \todo{I'm guessing there is a performance hit?  ball park of the cost (extra object references, etc)?}
 \\
 \\
 \emph{Numeric Operators:}
@@ -263,10 +265,10 @@ Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used t
 	\hline
 	\multicolumn{5}{|c|}{Arithmetic} \\ \hline
 	Operator & Operation & Argument 1 & Argument 2 & Return \\ \hline
-        \expr{++}& increment & \type{Int} & NA & \type{Int}\\
-        & & \type{Float} & NA & \type{Float}\\
-        \expr{--} & decrement & \type{Int} & NA & \type{Int}\\
-        & & \type{Float} & NA & \type{Float}\\
+        \expr{++}& increment & \type{Int} & N/A & \type{Int}\\
+        & & \type{Float} & N/A & \type{Float}\\
+        \expr{--} & decrement & \type{Int} & N/A & \type{Int}\\
+        & & \type{Float} & N/A & \type{Float}\\
 	\expr{+} & addition & \type{Float} & \type{Float} & \type{Float} \\
 	& & \type{Float} & \type{Int} & \type{Float} \\
 	& & \type{Int} & \type{Float} & \type{Float} \\
@@ -289,7 +291,7 @@ Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used t
 	& & \type{Int} & \type{Int} & \type{Int} \\	 \hline
 	\multicolumn{5}{|c|}{Comparison} \\ \hline
 	Operator & Operation & Argument 1 & Argument 2 & Return \\ \hline
-        \expr{\textasciitilde} & negation & Float/Int & NA & Bool \\
+        \expr{\textasciitilde} & negation & Float/Int & N/A & Bool \\
 	\expr{==} & equal & Float/Int & Float/Int & Bool \\
 	\expr{!=} & not equal & Float/Int & Float/Int & Bool \\
 	\expr{<} & less than & Float/Int & Float/Int & Bool \\
@@ -298,7 +300,7 @@ Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used t
 	\expr{>=} & great than or equal & Float/Int & Float/Int & Bool \\ \hline
 	\multicolumn{5}{|c|}{Bitwise} \\ \hline
 	Operator & Operation & Argument 1 & Argument 2 & Return \\ \hline
-	\expr{!} & bitwise negation & \type{Int} & NA & \type{Int} \\	
+	\expr{!} & bitwise negation & \type{Int} & N/A & \type{Int} \\	
 	\expr{\&} & bitwise and & \type{Int} & \type{Int} & \type{Int} \\	
 	\expr{|} & bitwise or & \type{Int} & \type{Int} & \type{Int} \\	
 	\expr{\^} & bitwise xor & \type{Int} & \type{Int} & \type{Int} \\	
@@ -352,7 +354,7 @@ var x:Void; // Arguments and variables of type Void are not allowed
 
 \define{nullable}{A type in haxe is considered \emph{nullable} if \expr{null} is a valid value for it.}
 
-It is common for programming languages to have a single, clean definition for nullability, but haxe has to find a compromise in this regard. Som target languages allow and, in fact, default to \expr{null} for everything, other do not allow \expr{null} for certain types. This necessitates the distinction of two types of target languages:
+It is common for programming languages to have a single, clean definition for nullability, but haxe has to find a compromise in this regard. Some target languages allow and, in fact, default to \expr{null} for everything, other do not allow \expr{null} for certain types. This necessitates the distinction of two types of target languages:
 
 \define{Static target}{\expr{null} is not a valid value for basic types. This is true for the \target{Flash 9+}, \target{C++}, \target{Java} and \target{C\#} targets.}
 \define{Dynamic target}{Dynamic targets are more lenient with their types and allow null values for basic types. They consist of \target{JavaScript}, \target{PHP}, \target{neko} and \target{Flash 6-8}.}
@@ -364,7 +366,7 @@ There is nothing to worry about when working with \expr{null} on dynamic targets
 	\item[\type{Float}:] \expr{NaN} on \target{Flash 9}, \expr{0.0} on other static targets
 	\item[\type{Bool}:] \expr{false}
 \end{description}
-As a consequence, the haxe compiler does not allow assigning \expr{null} to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as \type{Null$<$T$>$}: \todo{reference to generics?}
+As a consequence, the haxe compiler does not allow assigning \expr{null} to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as \type{Null\textless T\textgreater}.  The \emph{\textless T\textgreater} is a type parameter.  See \Fullref{Type Parameters} for more details. 
 
 \begin{lstlisting}
 var a:Int = null; // error on static platforms
@@ -389,18 +391,17 @@ trace(a); // 0 on static platforms
 \end{lstlisting}
 
 \emph{Optional Parameters and Nullability:}
-Optional parameters also have to be accounted when considering nullability.
-In particular, there must be a distinction between \emph{native} optional parameters which are not nullable and Haxe optional parameters which might be.  The distinction is make by using the question-mark optional parameter:
+\todo{Optional parameters is referred to as ``optional Arguments'' later in the manual.  For consistency sake, do we prefer parameter or argument?}Optional parameters also have to be accounted when considering nullability.
+In particular, there must be a distinction between \emph{native} optional parameters which are not nullable and Haxe optional parameters which might be.  The distinction is made by using the question-mark optional parameter:
 
 \begin{lstlisting}
-// x is an Int (not nullable)
-function foo(x : Int = 0) {\ldots}
+// x is a native Int (not nullable)
+function foo(x : Int = 0) {...}
 // y is Null<Int> (nullable)
-function bar( ?y : Int) {\ldots}
+function bar( ?y : Int) {...}
 // z is also Null<Int>
-function opt( ?z : Int = -1) {\ldots}
+function opt( ?z : Int = -1) {...}
 \end{lstlisting}
-\todo{rather confusing, could use a concrete example}
 
 
 \subsection{Class Instance}
@@ -420,8 +421,9 @@ Semantically, this class represents a point in discrete 2-dimensional space, but
 	\item which consist of two \emph{variable} fields \expr{x} and \expr{y} of type \type{Int}
 	\item followed by a special \emph{function} field named \expr{new}, which is the \emph{constructor} of the class,
 	\item as well as a normal function \expr{toString}
+\todo{Later the manual uses ``method'' instead of ``function.''  I think they're generally understood to be interchangeable, but for consistency, I think it should use one or the other throughout}
 \end{itemize}
-There is a special type in haxe which is compatible with all classes:
+See \Fullref{Class Fields} for more details on the structure of classes.  There is a special type in haxe which is compatible with all classes:
 
 \define[Type]{Class$<$T$>$}{This type is compatible with all class types. At compile-time, \type{Class<T>} can be considered the common base type of all class types. However, this relation is not reflected in generated code.}
 
@@ -481,11 +483,11 @@ The \expr{implements} keyword here denotes that \type{Point} has a "is-a" relati
 
 The compiler checks if the \expr{implements} assumption holds. That is, it makes sure the class actually does implement all the fields required by the interface. A field is considered implemented if the class or any of its parent classes provide an implementation.
 
-Interface fields are not limited to methods, they can be variables and properties \todo{referred to as variable fields instead of properties before.  What convention is preferred?} as well.
+Interface fields are not limited to methods, they can be variables and properties as well.
 
-Unlike inheritance, where a child can have only a single parent, a class may implement any number of interfaces.  In this manner, interfaces are a safer, cleaner alternative to multiple inheritance.
+Unlike inheritance, where a child can have only a single parent, a class may implement any number of interfaces.  In this manner, interfaces are generally considered a safer, cleaner alternative to multiple inheritance.
 
-\trivia{Implements Syntax}{Haxe versions prior to 3.0 required multiple \expr{implements} keywords to be separated by a comma. We decided to adhere to the de-facto standard, Java,  and got rid of the comma. This was one of the breaking changes between Haxe 2 and 3.}
+\trivia{Implements Syntax}{Haxe versions prior to 3.0 required multiple \expr{implements} keywords to be separated by a comma. We decided to adhere to the de-facto standard (Java)  and got rid of the comma. This was one of the breaking changes between Haxe 2 and 3.}
 
 
 \subsection{Enum Instance}
@@ -524,12 +526,12 @@ All enum instances can be assigned to a special type named \type{EnumValue}.
 It is important to distinguish enum types and enum constructors, as this example demonstrates:
 
 \haxe{assets/EnumUnification.hx}
-\todo{The comment on line 7 is confusing, maybe wrong?}
+\todo{The comment on line 7 is confusing, maybe it should read ``//Red is type enumValue not Enum<Color>''?}
 If line 7 is uncommented, the program does not compile because \expr{Red} (an enum constructor) cannot be assigned to a variable of type \type{Enum<Color>} (an enum type). The relation is analogous to a class and its instance.
 
 
 
-\subsection{Anonymous Structure}
+\subsection{Anonymous Structure}z
 \label{Anonymous Structure}
 
 Anonymous structures can be used to group data without explicitly creating a type. The following example creates a structure with two fields \expr{x} and \expr{name}, and initializes their values to \expr{12} and \expr{"foo"} respectively:
@@ -537,11 +539,10 @@ Anonymous structures can be used to group data without explicitly creating a typ
 \haxe{assets/Structure.hx}
 The general syntactic rules follow:
 
-\todo{What is valid haxe field-name?}
 \begin{enumerate}
 	\item A structure is enclosed in curly braces \expr{$\left\{\right\}$} 
 	\item Has a \emph{comma-separated} list of key-value-pairs
-	\item A \emph{colon} separates the key (which must be a valid haxe field-name), from the value
+	\item A \emph{colon} separates the key (which must be a valid haxe \todo{What is a valid field-name?} field-name), from the value
 	\item\label{valueanytype} The value can be any valid expression
 \end{enumerate}
 Rule \ref{valueanytype} implies that structures can be nested and complex, e.g.:
@@ -569,8 +570,8 @@ class Test {
 	}
 }
 \end{lstlisting}
-The error message indicates that the compiler knows the type of \expr{point}: It is a structure with fields \expr{x} and \expr{y} of type \type{Float}, so it has no field \expr{z} and the access fails.
-The fact that type of \expr{point} is known is courtesy of \tref{type inference}{Type Inference}, which thankfully saves us from using explicit types for local variables. However, if \expr{point} was a field, explicit typing would be necessary:
+The error message indicates that the compiler knows the type of \expr{point}: It is a structure with fields \expr{x} and \expr{y} of type \type{Float}. Since it has no field \expr{z} the access fails.
+The type of \expr{point} is known through \tref{type inference}{Type Inference}, which thankfully saves us from using explicit types for local variables. However, if \expr{point} was a field, explicit typing would be necessary:
 
 \begin{lstlisting}
 class Path {
@@ -617,12 +618,12 @@ typedef Point = {
 
 \subsubsection{Optional Fields}
 
-\todo{I took a stab at it -- C.}
+\todo{I filled out this part, may need corrected.  -- C}
 
 A structure field can be made optional by placing a question mark before its name:
 \begin{lstlisting}
 function foo( pt : {?x : Int, ?y : Int}){
-  //\ldots
+  //...
 }
 // all valid calls to foo()
 foo({x : 1, y : 1});
@@ -630,7 +631,6 @@ foo({x : 1});
 var tmp = {};
 foo(tmp);
 \end{lstlisting}
-\textless
 
 Optional fields are \emph{nullable} (\emph{ \textless Null\textgreater Int} in the example).  Please note that optional fields only work for \emph{anonymouse} structure values (i.e. structures that are not explicitly typed).
 %\\*[2pt] %TODO, come back to this
@@ -697,7 +697,7 @@ This example is very similar to the one from \Fullref{Optional Arguments}, with 
 %TODO: Default values do not imply nullability, even if the value is \expr{null}. 
 
 Default values in haxe are not part of the type and are not replaced at call-site (unless the function is \tref{inlined}{Inline}, which might be considered a more typical approach). On some targets, the compiler may still pass \expr{null} for omitted argument values and generate code into the function which is similar to this:
-\todo{Is this right, with defaults and null checking?  which targets make this code, JS?}
+\todo{I'm gussing it's the non-static targets (JS, php) that make code like this?}
 \begin{lstlisting}
 	static function test(i = 12, s = "bar") {
 		if (i == null) i = 12;
@@ -705,7 +705,7 @@ Default values in haxe are not part of the type and are not replaced at call-sit
 		return "i: " +i + ", s: " +s;
 	}
 \end{lstlisting}
-This should be considered in performance-critical code, where a solution without default values may sometimes be more viable.
+This should be considered in performance-critical code, where a solution without default values may sometimes be more performant.
 
 
 
@@ -727,18 +727,17 @@ It is very easy to come up with examples where the usage of \type{Dynamic} can c
 var d:Dynamic = 1;
 d.foo;
 \end{lstlisting}
-Compiling and running this program for the \target{Flash} \todo{do you have to indicate Flash is a trademark?} target yields an error \texttt{Property foo not found on Number and there is no default value}. Without \type{Dynamic}, this would have been detected at compile-time.
+Compiling and running this program for the \target{Flash} target yields an error \texttt{Property foo not found on Number and there is no default value}. Without \type{Dynamic}, this would have been detected at compile-time.
 
-\trivia{Dynamic Inference before haxe 3}{The haxe 3 compiler never infers a type to \type{Dynamic}, so users must be explicit about it. Previous haxe versions used to infer arrays of mixed types (e.g. \expr{[1, true, "foo"]}) as \type{Array<Dynamic>}. We found that this behavior introduced problems and thus removed it for haxe 3.}
+\trivia{Dynamic Inference before haxe 3}{The haxe 3 compiler never infers a type to \type{Dynamic}, so users must be explicit about it. Previous haxe versions used to infer arrays of mixed types (e.g. \expr{[1, true, "foo"]}) as \type{Array<Dynamic>}. We found that this behavior introduced problems and thus removed it for haxe 3.}\todo{So what is the type of that array, or is it a compile error now?}
 
-Use of \type{Dynamic} should be minimized as there are better options in many situations, but sometimes it is practical. Parts of the haxe \Fullref{Reflection} API use it, and it is sometimes the best option when dealing with custom data structures that are not known at compile-time.
+Use of \type{Dynamic} should be minimized.  There are usually better options, but sometimes it is practical. Parts of the haxe \Fullref{Reflection} API use it, and it is sometimes the best option when dealing with custom data structures that are not known at compile-time.
 
 \type{Dynamic} behaves in a special way when being \tref{unified}{Unification} with a \tref{monomorph}{Monomorph}, which is described in \Fullref{Monomorphs}.
 
 \trivia{Dynamic in the Standard Library}{Dynamic was quite frequent in the haxe standard library before haxe 3. With the continuous improvements of the haxe type system, the occurences of Dynamic were reduced over the releases leading to haxe 3.}
 
 \subsubsection{Dynamic with Type Parameter}
-\todo{I don't get the value of this?  Can you have two disjointed types, like String, Int?  If so, maybe include that in this code snippet}
 \type{Dynamic} is a special type because it allows explicit declaration with and without a \tref{type parameter}{Type Parameters}. If such a type parameter is provided, the semantics described in \Fullref{Dynamic} are constrained to all fields being compatible with the parameter type:
 
 \begin{lstlisting}
@@ -763,7 +762,7 @@ Implementing \type{Dynamic} does not satisfy the requirements of other implement
 
 \subsection{Abstract}
 \label{Abstract}
-\todo{slightly confusing b/c very different from abstract classes in other languages}
+\todo{Different from abstract classes in other languages.  Maybe we should mention that explicitly.}
 An abstract type is a type which is, at runtime, actually a different type. It is a compile-time feature which defines types ``over'' concrete types in order to modify or augment their behavior:
 
 \haxe[firstline=1,lastline=5]{assets/MyAbstract.hx}
@@ -838,7 +837,7 @@ var b = [a];
 \end{lstlisting}
 The \emph{selection algorithm} when assigning a type \expr{A} to a type \expr{B} with at least one of them being an abstract is simple:
 
-\missingfigure{Make this a flow chart}
+\todo{Change this to a flow chart?}
 \begin{enumerate}
 	\item If \expr{A} is not an abstract, go to 3.
 	\item If \expr{A} defines a \emph{to}-conversions that admits \expr{B}, go to 6.
@@ -876,8 +875,8 @@ Note that both binary and unary operator overloads can return any type.
 
 It is also possible to omit the method body of a \expr{@:op} function, but only if the underlying type of the abstract allows the operation in question and if the resulting type can be assigned back to the abstract.
 
-\todo{part of operator overloading?}
 \subsubsection{Array Access}
+\todo{Shoudl array access be part of the operator overloading? Are brackets considered an operator?}
 
 Array access describes the particular syntax traditionally used to access the value in an array at a certain offset. This is usually only allowed with arguments of type \type{Int}, but with abstracts it is possible to define custom array access methods. The \tref{Haxe Standard Library}{Standard Library} uses this in its \type{Map} type, where the following two methods can be found:
 
@@ -920,7 +919,7 @@ console.log(map.get("foo"));
 Since the compiler converts abstract methods to static functions, it is possible to define static functions by hand and use them on an abstract instance. The semantics here are similar to those of \tref{static extensions}{Static Extension}, where the type of the first function argument determines for which types a function is defined:
 
 \haxe{assets/SelectiveFunction.hx}
-\todo{The formatting is wrong here.  maybe the $<$..$>$ is confusing it?}
+\todo{The formatting of the pdf is wrong here.  Possibly due to how lessthan and greaterthen are set in the .tex file?}
 The method \expr{getString} of abstract \type{MyAbstract} is defined to accept a first argument of \type{MyAbstract$<$String$>$}. This causes it to be available on variable \expr{a} on line 14 (because the type of \expr{a} is \type{MyAbstract$<$String$>$}), but not on variable \expr{b} whose type is \type{MyAbstract$<$Int$>$}.
 
 \trivia{Accidental Feature}{Selective functions were never actually designed, but rather discovered. After the idea was first mentioned, it required only minor adjustments in the compiler to make them work. Their discovery also lead to the introduction of multi-type abstracts, such as Map. }
@@ -955,7 +954,6 @@ A typedef can give a name to any other type:
 \begin{lstlisting}
 typedef IA = Array<Int>;
 \end{lstlisting}
-\todo{discourage this kind of aliasing.  Can make code hard to understand}
 This enables us to use \expr{IA} in places where we would normally use \expr{Array$<$Int$>$}. While this saves only a few keystrokes in this particular case, it can make a difference for more complex, compound types. Again, this is why typedef and structures seem so connected:
 
 \begin{lstlisting}
@@ -976,11 +974,10 @@ typedef Iterable<T> = {
 
 \subsubsection{Extensions}
 
-\todo{move to structures?}
 Extensions are used to express that a structure has all the fields of a given type in addition to some more:
 
 \haxe{assets/Extension.hx}
-The greater-than operator \expr{>} denotes that an extension of \type{Iterable$<$T$>$} is being created, with the additional class fields following. In this case, a read-only \tref{property}{Property} \expr{length} of type \type{Int} is required.
+The greater-than operator ( \expr{>} ) denotes that an extension of \type{Iterable$<$T$>$} is being created, with the additional class fields following. In this case, a read-only \tref{property}{Property} \expr{length} of type \type{Int} is required.
 
 In order to be compatible with \type{IterableWithLength$<$T$>$}, a type then must be compatible with \type{Iterable$<$T$>$} and also provide a read-only \expr{length} property of type \type{Int}. The example assigns an \type{Array}, which happens to fulfill these requirements.
 
@@ -1305,7 +1302,7 @@ There are also some cases involving recursion where type inference has limitatio
 
 \subsection{Modules and Paths}
 \label{Modules and Paths}
-\todo{Be more explicit about modules, packages, paths and impact on the file structure.  Maybe this is a Java thing?}
+\todo{Could be more explicit about modules, packages, paths and impact on the file structure.  On that same vein, should probably talk about ``static public function main'' somewhere, probably earlier in the manual?}
 \define{Module}{All haxe code is organized in modules, which are addressed using paths. In essence, each .hx file represents a module which may contain several types. A type may be \expr{private}, in which case only its containing module can access it.}
 
 The distinction of a module and its containing type of the same name is blurry by design. In fact, addressing \expr{haxe.ds.StringMap<Int>} can be considered shorthand for \expr{haxe.ds.StringMap.StringMap<Int>}. The latter version consists of four parts:
@@ -1316,7 +1313,7 @@ The distinction of a module and its containing type of the same name is blurry b
 	\item the type name \type{StringMap}
 	\item the type parameter \type{Int}
 \end{enumerate}
-If the module and type name are equal, the duplicate can be removed, leading to the \expr{haxe.ds.StringMap<Int>}\todo{expr fuction doesn't handle line wraps well} short version. However, knowing about the extended version helps with understanding how \tref{module sub-types}{Module Sub-Types} are addressed.
+If the module and type name are equal, the duplicate can be removed, leading to the \expr{haxe.ds.StringMap<Int>}\todo{In the pdf, the expr fuction doesn't handle line wraps well} short version. However, knowing about the extended version helps with understanding how \tref{module sub-types}{Module Sub-Types} are addressed.
 
 Paths can be shortened further by using an \tref{import}{Import}, which allows omitting the package part of a path. However, This may lead to usage of unqualified identifiers, for which understanding the \tref{resolution order}{Resolution Order} is required.
 
@@ -1373,7 +1370,7 @@ Furthermore, it is also possible to import \tref{static fields}{Class Fields} of
 
 %TODO: figure out if import a.* actually works as intended
 
-Special care has to be taken with field names or local variable names that conflict with a package name: Since they take priority over packages, a local variable named \expr{haxe} blocks the entire \expr{haxe} package.\todo{is there a compiler warning about conflicts like this?}
+Special care has to be taken with field names or local variable names that conflict with a package name: Since they take priority over packages, a local variable named \expr{haxe} blocks the entire \expr{haxe} package.\todo{I hope there is there a compiler warning about conflicts like this?}
 
 \subsubsection{Resolution Order}
 \label{Resolution Order}
@@ -1395,7 +1392,7 @@ We describe the resolution order algorithm here, which depends on the following 
 
 Given an identifier \expr{i}, the algorithm is as follows:
 
-\todo{probably better with a flow chart}
+\todo{Make this into a flow chart.}
 \begin{enumerate}
 	\item If i is \expr{true}, \expr{false}, \expr{this}, \expr{super} or \expr{null}, resolve to the matching constant and halt.
 	\item If a local variable named \expr{i} is accessible, resolve to it and halt.
@@ -1436,10 +1433,10 @@ For step \ref{resolution:import} of this algorithm as well as steps \ref{resolut
 
 \section{Class Fields}
 \label{Class Fields}
-\todo{A little different than the 'standard' OOP definitions. For instance, a thing contained in an object is usually called a 'member.'  Redefining is fine, but it would be easier for people transitioning.`}
-\define{Class Field}{A class field is a variable, property or method of a class which can either be static or non-static. Non-static fields are referred to as \emph{member} fields, so we speak of e.g. a \emph{static method} or a \emph{member variable}.}
+\todo{A little different than the 'standard' OOP definitions. A thing contained in an object is usually called a 'member.'  Might be worth pointing out the difference to other 'OOP' languages.}  
+\define{Class Field}{A class field is a variable, property or method of a class.  It can either be static or non-static. Non-static fields are referred to as \emph{member} fields, so we speak of e.g. a \emph{static method} or a \emph{member variable}.}
 
-So far we have seen how types and haxe programs in general are structured. This section about class fields concludes the structural part and at the same time bridges to the behavioral part of haxe. This is because class fields are the place where \tref{expressions}{Expressions} are at home.
+So far we have seen how types and haxe programs in general are structured. This section about class fields concludes the structural part and bridges to the behavioral part of haxe: \tref{expressions}{Expressions} live in class fields!
 
 There are three kinds of class fields:
 
@@ -1450,7 +1447,7 @@ There are three kinds of class fields:
 \end{description}
 Strictly speaking, a variable could be considered to be a property with certain access modifiers. Indeed, the haxe compiler does not distinguish variables and properties during its typing phase, but they remain separated at syntax level.
 
-Regarding terminology, a method is a (static or non-static) function belonging to a class. Other functions, such as a \tref{closure}{Closure} in expressions, are not considered methods.
+Regarding terminology, a method is a (static or non-static) function belonging to a class. Other functions, such as \tref{closures}{Closure} in expressions, are not considered methods.
 \todo{I think it makes sense to talk about flags here (static, dynamic, override, public, and private)}
 
 \subsection{Variable}
@@ -1569,7 +1566,7 @@ The \expr{dynamic} access modifier works exactly like \expr{get} or \expr{set}, 
 
 \subsubsection{Rules for getter and setter}
 
-The visibility of an accessor method has no effect on the accessibility of its property. That is, if a property is \expr{public} and defined to have a getter, definig the getter as \expr{private} will have no effect on accessing the property. \todo{Does the compiler throw a warning when protection levels get crossed like this?  I would almost want this to be a compile error if I understand correctly.}
+The visibility of an accessor method has no effect on the accessibility of its property. That is, if a property is \expr{public} and defined to have a getter, definig the getter as \expr{private} will have no effect on accessing the property. \todo{Does the compiler throw a warning when protection levels get crossed like this?  I would almost want this to be a compile error I think...}
 
 Both getter and setter methods may access their physical field for data storage. The compiler ensures that this kind of field access does not go through the accessor method if made from within the accessor method itself, thus avoiding infinite recursion:
 
@@ -1586,7 +1583,7 @@ However, the compiler assumes that a physical field exists only if at least one 
 }
 
 If this is not the case, access to the field from within an accessor method causes a compilation error:
-\todo{I don't understand why this would throw an error.  Why would you ever want a field that wasn't a physical field?}
+\todo{I don't understand.  If it isn't a 'physical field' then what is it?  Why would you ever want a field that wasn't a physical field?}
 \haxe{assets/GetterSetter2.hx}
 
 If a physical field is indeed intended, it can be forced by attributing the field in question with the \expr{:isVar} \tref{metadata}{Metadata}:
@@ -1601,10 +1598,10 @@ Remember, there are no statements in Haxe, only expressions.  We still want to b
 \subsection{Method}
 \label{Method}
 
-\todo{I wrote this part, so it might need some tweaking ~C}
+\todo{I wrote this part, so it might need some tweaking. --C}
 Methods are \tref{functions}{Function} that belong to a class.  They have optional input parameters and optional return values.  A typical method is a convenient means of bundling and reusing a piece of code.
 
-\todo{Method Examples.hx}
+\todo{Include some sample code here?}
 
 
 \subsubsection{Class Initializer}
@@ -1629,7 +1626,7 @@ Some other popular object oriented programming languages allow \emph{Method Over
 
 \subsubsection{Visibility}
 \label{Visibility}
-\todo{Is vocabulary consistent: visibility vs. accessibility?}
+\todo{Is vocabulary consistent: visibility vs. accessibility? If so, what's the difference?}
 Fields are by default \emph{private}, meaning that only the class and its sub-classes may access them. They can be made \emph{public} by using the \expr{public} access modifier, allowing access from anywhere.
 
 \haxe{assets/Visibility.hx}
@@ -1674,9 +1671,9 @@ Main.main();
 \end{lstlisting}
 
 As evident, the function body \expr{s1 + s2} of field \expr{mid} was generated in place of the call to \expr{add(a, b)}, with \expr{s1} being replaced by \expr{a} and \expr{s2} being replaced by \expr{b}. This avoids a function call which, depending on the target and frequency of occurrences, may yield noticeable performance improvements.
-\todo{which targets suffer the most from function calls? Guessing flash}
+\todo{which targets suffer the most from function calls? Guessing flash?}
 It is not always easy to judge if a function should be inlined. Short functions that have no writing expressions (such as a \expr{=} assignment) are usually a good choice, but even more complex functions can be candidates. However, in some cases inlining can actually be detrimental to performance, e.g. because the compiler has to create temporary variables for complex expressions. Inlining also increases the size of code produced.
-\todo{So how do we tell if a function is more performant inline?  Use a code profiler?}
+\todo{So how do we tell if a function performs better inline?  Use a code profiler?}
 \subsubsection{Dynamic}
 \label{Dynamic}
 
@@ -1701,9 +1698,9 @@ The effects of overriding fields are detailed in \Fullref{Overriding Fields}.
 
 \subsection{Overriding Fields}
 \label{Overriding Fields}
-\todo{This only talks about overriding methods.  What about overriding variables?}
+\todo{What about overriding variables?  Something I can easily check when I have the time...}
 Overriding fields is instrumental for creating class hierarchies. Many design patterns utilize overrides, but here we will explore only the basic functionality. In order to use overrides a class must inherit from a \tref{parent class}{Inheritance}. Consider the following example:
-\todo{change the source to use ``myMethod''}
+\todo{change the source to use ``myMethod'', or even a different name, since function and method are almost interchangeable.}
 \haxe{assets/Override.hx}
 
 The important components here are
@@ -1731,7 +1728,7 @@ It is not possible to override fields which are declared as \tref{\expr{inline}}
 
 \section{Expressions}
 \label{Expressions}
-\todo{I feel like this section should come sooner in the manual.}
+\todo{I feel like a quick intro to expressions should come sooner in the manual.}
 Expressions in haxe define what a program \emph{does}. Most expressions are found in the body of a \tref{method}{Method}, where they are combined to express what that method should do. This section explains the different kinds of expressions. Some definitions help here:
 
 \define{Name}{A general name may refer to
@@ -1823,7 +1820,7 @@ Advanced initialization techniques are described in \Fullref{Array Comprehension
 
 \subsection{Object Declaration}
 \label{Object Declaration}
-\todo{Anonymous Objects are synonymous with Anonymous Structures?  Objects are the same as structures?}
+\todo{Anonymous Objects are synonymous with Anonymous Structures?  Objects are the same as structures? Want to be sure to use consistent vocab.}
 Object declaration begins with an opening curly brace \expr{\{} after which \expr{key:value}-pairs separated by comma \expr{,} follow, and which ends in a closing curly brace \expr{\}}.
 
 \begin{lstlisting}
@@ -1868,7 +1865,7 @@ subject(e1, ..., eN); // call with multiple arguments
 \subsection{Closure}
 \label{Closure}
 \label{function}
-\todo{I wrote this section, may need tweaked, ~C}
+\todo{I wrote this section, may need adjusted --C}
 A closure is function coupled with it's referencing environment.  A closure has access to variables that were in scope when the closure was created, even if those variables are no longer in scope.  They are useful for writing \emph{event drive code} and are commonly found in JavaScript \emph{callback} funtions.  
 
 Closures are implemented in Haxe using \emph{local functions}.
@@ -1972,13 +1969,13 @@ If the value of an \expr{if} expression is required, e.g. for \expr{var x = if(c
 
 
 \subsection{switch}
-\todo{This is wrong!  Haxe 3 does some pattern matching magic.  Look at the pattern matching page on haxe.org}
+\todo{I pulled a lot of this from the Haxe 2 manual, but I see that it has changed in Haxe 3. So it basically needs reworked, and needs to  better integrate with the Pattern Matching section later on.}
 \label{switch}
 A \emph{switch} statement is an alternative to multiple \emph{if \ldots else} blocks.\haxe{assets/SwitchStatement.hx}
 
 Switches in Haxe behave differently than traditional C-style switches.  All \emph{cases} are separate expressions; after one \emph{case} is executed, the switch block is automatically exited.  Consequently, \emph{break} statements are not used in switch blocks, the position of the \emph{default} case is not important, and there is no case \emph{fall through}.
 
-On some platforms, switches on constant values (especially integers) might be optomized for speed \todo{which platforms?}
+On some platforms, switches on constant values (especially integers) might be optomized for speed \todo{Still true in Haxe 3?  If so, which platforms?}
 
 Switching on an \tref{enum instance}{Enum Instance} produces special behavior.  If no \emph{default} case is specified, the compiler checks that all of the enum's constructors are covered.  If constructors are missing, the compiler will generate a warning.
 
@@ -2171,12 +2168,12 @@ Main.main = function() {
 \end{lstlisting}
 
 The following classes from the Haxe Standard Library are designed to be used as static extensions:
-\todo{There are more static extensions, like DateTools.  Should this list all of the static extensions, or just the most used for example purposes?}
+\todo{There are more static extensions, like DateTools.  Should this list all of the static extensions, or just some exapmles?}
 \begin{description}
   \item[\type{StringTools}:] Provides extended functionality on \tref{strings}{String}, such as replacing or trimming.
-  \item[\type{Lambda}:] Provides functional methods on iterables\todo[inline]{A section on Iterables?}.
+  \item[\type{Lambda}:] Provides functional methods on iterables\todo{There should probably be a whole section on Iterables?}.
   \item[\type{haxe.EnumTools}:] Provides type information functionality on \tref{enums}{Enum Instance} and their instances.
-  \item[\type{haxe.macro.Tools}:] Provides different extensions for working with macros (see \Fullref{Macro Tools}).\todo{Fullref vs tref, when to use which}
+  \item[\type{haxe.macro.Tools}:] Provides different extensions for working with macros (see \Fullref{Macro Tools}).\todo{Just a stlye question:  When to use Fullref vs tref?}
 \end{description}
 
 
@@ -2187,7 +2184,6 @@ The following classes from the Haxe Standard Library are designed to be used as 
 
 \subsection{Pattern Matching}
 \label{Pattern Matching}
-\todo{Better integrate this with the enum sections}
 \subsubsection{Introduction}
 
 Haxe 3 comes with improved options for pattern matching. Here we will explore the syntax for different patterns using this data structure as running example:
@@ -2537,6 +2533,7 @@ This is also true for access granted to parent classes, in which case it extends
 
 
 \subsection{Remoting}
+\todo{This section needs completed}
 
 \subsection{Runtime Type Information}
 
@@ -2691,6 +2688,7 @@ This ``trick'' was first used in Juraj Kirchheim's \emph{tinkerbell}\footnote{ht
 
 \subsection{Type Building}
 \label{Type Building}
+\todo{Some missing sections here}
 
 \subsection{Limitations}
 
@@ -2724,5 +2722,6 @@ With both interfaces \type{I1} and \type{I2} having \expr{:autoBuild} metadata, 
 
 \subsection{Compiler Configuration}
 \label{Compiler Configuration}
+\todo{This section needs filled out}
 
 \end{document}
