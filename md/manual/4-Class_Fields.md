@@ -1,6 +1,7 @@
 ## 4 Class Fields
 
 >TODO: A little different than the 'standard' OOP definitions. A thing contained in an object is usually called a 'member.'  Might be worth pointing out the difference to other 'OOP' languages.
+
   
 > ##### Define: Class Field
 >
