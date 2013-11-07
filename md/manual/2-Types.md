@@ -18,6 +18,7 @@ We will explore type inference in detail later in [Type Inference](3.6-Type_Infe
 >TODO: Is "2.1 Basic Type" not a type group?
 
 
+
  * Class instance: an object of a given class or interface
  * Enum instance: a value of a haxe enumeration
  * Structure: an anonymous structure, i.e. a collection of named fields

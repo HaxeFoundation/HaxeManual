@@ -1,6 +1,7 @@
 ## 4 Class Fields
 
->TODO: A little different than the 'standard' OOP definitions. A thing contained in an object is usually called a 'member.'  Might be worth pointing out the difference to other 'OOP' languages.  
+>TODO: A little different than the 'standard' OOP definitions. A thing contained in an object is usually called a 'member.'  Might be worth pointing out the difference to other 'OOP' languages.
+  
 > ##### Define: Class Field
 >
 > A class field is a variable, property or method of a class.  It can either be static or non-static. Non-static fields are referred to as **member** fields, so we speak of e.g. a **static method** or a **member variable**.
