@@ -367,7 +367,7 @@ There is nothing to worry about when working with \expr{null} on dynamic targets
 	\item[\type{Float}:] \expr{NaN} on \target{Flash 9}, \expr{0.0} on other static targets
 	\item[\type{Bool}:] \expr{false}
 \end{description}
-As a consequence, the haxe compiler does not allow assigning \expr{null} to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as \type{Null\textless T\textgreater}.  The \emph{\textless T\textgreater} is a type parameter.  See \Fullref{Type Parameters} for more details. 
+As a consequence, the haxe compiler does not allow assigning \expr{null} to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as \type{Null\textless{}T\textgreater}.  The \emph{\textless{}T\textgreater} is a type parameter.  See \Fullref{Type Parameters} for more details. 
 
 \begin{lstlisting}
 var a:Int = null; // error on static platforms
@@ -633,7 +633,7 @@ var tmp = {};
 foo(tmp);
 \end{lstlisting}
 
-Optional fields are \emph{nullable} (\emph{ \textless Null\textgreater Int} in the example).  Please note that optional fields only work for \emph{anonymouse} structure values (i.e. structures that are not explicitly typed).
+Optional fields are \emph{nullable} (\emph{ \textless{}Null\textgreater Int} in the example).  Please note that optional fields only work for \emph{anonymouse} structure values (i.e. structures that are not explicitly typed).
 %\\*[2pt] %TODO, come back to this
 Since fields can be hidden, allowing arbitrary structures would break type safety.  As the example below demonstrates, it would be possible to pass in an incorrectly typed field:
 

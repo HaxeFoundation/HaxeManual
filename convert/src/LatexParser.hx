@@ -157,7 +157,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 					buffer.add('>\n');
 					s2 = s2.replace("\r", "").split("\n").join("\n> ");
 					buffer.add('> $s2');
-                                case [TCustomCommand("todo"), options = popt(bracketArg), TBrOpen, s = text(), TBrClose]: buffer.add('>TODO: $s\n\n');
+				case [TCustomCommand("todo"), options = popt(bracketArg), TBrOpen, s = text(), TBrClose]: buffer.add('\n>TODO: $s\n\n');
 				case [TCustomCommand("missingfigure"), TBrOpen, s = text(), TBrClose]: buffer.add('> $s'); 
 				case [TCustomCommand("since"), TBrOpen, s = text(), TBrClose]: buffer.add('##### since Haxe $s\n\n');
 					
@@ -263,9 +263,10 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 				}
 			case [TNewline]: tableMode ? "" : "\n";
 			case [TDoubleBackslash]: "\n";
-			case [TCommand(CTextless)]: "<";
-			case [TCommand(CTextgreater)]: ">";
-			case [TCommand(CLdots)]: "...";
+			//These commands can have optional, empy braces after them (for spacing purposes).
+			case [TCommand(CTextless), dummy = popt(emptyBraces)]: "<";
+			case [TCommand(CTextgreater), dummy = popt(emptyBraces)]: ">";
+			case [TCommand(CLdots), dummy = popt(emptyBraces)]: "...";
 		}
 	}
 	
@@ -338,6 +339,13 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 			case [TBkOpen, s = text(), TBkClose]: s;
 		}
 	}
+
+	function emptyBraces(){
+		return switch stream {
+			case [TBrOpen, TBrClose]: "";
+		}
+	}
+
 	
 	function popt<T>(f:Void->T):Null<T> {
 		return switch stream {

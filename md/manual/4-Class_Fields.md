@@ -22,6 +22,7 @@ There are three kinds of class fields:
 Strictly speaking, a variable could be considered to be a property with certain access modifiers. Indeed, the haxe compiler does not distinguish variables and properties during its typing phase, but they remain separated at syntax level.
 
 Regarding terminology, a method is a (static or non-static) function belonging to a class. Other functions, such as [closures](5.9-Closure.md) in expressions, are not considered methods.
+
 >TODO: I think it makes sense to talk about flags here (static, dynamic, override, public, and private)
 
 ---
