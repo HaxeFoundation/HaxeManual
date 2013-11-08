@@ -46,17 +46,6 @@ Represents a double-precision IEEE 64bit floating point number.
 ##### Generic Type Parameter
 A type parameter is said to be generic if its containing class or method is generic.
 
-##### Identifier
-Haxe identifiers start with an underscore `_`, a dollar `$`, a lower-case character `a-z` or an upper-case character `A-Z`. After that, any combination and number of `_`, `A-Z`, `a-z` and `0-9` may follow.
-
-Further limitations follow from the usage context, which are checked upon typing:
-
-
-* Type names must start with an upper-case letter `A-Z` or an underscore `_`.
-* Leading dollars are not allowed for any kind of [name](dictionary.md#name) (dollar-names are mostly used for [macro reification](8.3-Reification.md)).
-
-
-
 ##### Int
 Represents a 32bit integral number.
 
@@ -95,7 +84,7 @@ A field is considered to be **physical** if it is either
 
 
 ##### Read Access
-A read access to a field occurs when a right-hand side [field access expression](5.7-Field_Access.md) is used. This includes calls in the form of `obj.field()`, where `field` is accessed to be read.
+A read access to a field occurs when a right-hand side [field access expression](5.8-Field_Access.md) is used. This includes calls in the form of `obj.field()`, where `field` is accessed to be read.
 
 ##### Static Extension
 A static extension allows pseudo-extending existing types without modifying their source. In Haxe this is achieved by declaring a static method with a first argument of the extending type and then bringing the defining class into context through `using`.
@@ -116,13 +105,24 @@ type is a compile-time mechanism being called like a function, with a single arg
 The (dot-)path to a type consists of the package, the module name and the type name. Its general form is `pack1.pack2.packN.ModuleName.TypeName`.
 
 ##### Underlying Type
-The underlying type of an abstract is the type which is used to represent said abstract at runtime. It is usually a concrete (i.e. non-abstract) type, but could be another abstract type as well.
+The underlying type is the type which is used to represent said an abstract at runtime. It is usually a concrete (i.e. non-abstract) type, but could be another abstract type as well.
 
 ##### Unification
 Unification between two types A and B is a directional process which answers the question if A **can be assigned to** B. It may **mutate** either type if it is or has a [monomorph](2.9-Monomorph.md).
+
+##### Valid Identifier
+a valid Haxe identifier must start with an underscore `_`, a dollar `$`, a lower-case character `a-z` or an upper-case character `A-Z`. After that, any combination and number of `_`, `A-Z`, `a-z` and `0-9` may follow.
+
+Further limitations follow from the usage context, which is checked upon typing:
+
+
+* Type names must start with an upper-case letter `A-Z` or an underscore `_`.
+* Leading dollars are not allowed for any kind of [name](dictionary.md#name) (dollar-names are mostly used for [macro reification](8.3-Reification.md)).
+
+
 
 ##### Void
 Void denote the absence of a type. It is used to express that something (usually a function) has no value.
 
 ##### Write Access
-A write access to a field occurs when a [field access expression](5.7-Field_Access.md) is assigned a value in the form of `obj.field = value`. It may also occur in combination with [read access](dictionary.md#read-access) for special assignment operators such as `+=` in expressions like `obj.field += value`.
+A write access to a field occurs when a [field access expression](5.8-Field_Access.md) is assigned a value in the form of `obj.field = value`. It may also occur in combination with [read access](dictionary.md#read-access) for special assignment operators such as `+=` in expressions like `obj.field += value`.

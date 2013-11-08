@@ -164,8 +164,6 @@ Occasionally, we demonstrate how certain haxe code is generated, for which we us
 
 Furthermore, we define a set of terms in this document. This is mostly done when introducing a new type, or when a term is specific to haxe. We do not define every new aspect we introduce, e.g. what a class is, in order to not clutter the text. A definition looks like this:
 \define{Definition name}{Definition description}
-\todo{Pull a vocabulary page out of the definitions?}
-
 
 In a few places, this document has \emph{trivia}-boxes. These include off-the-record information such as why certain decisions were made while developing haxe, or how a particular feature has changed in past haxe versions. This information is generally not important and can be skipped, it is only meant to convey trivia:
 
@@ -238,6 +236,8 @@ We will explore type inference in detail later in \Fullref{Type Inference}. For 
 
 \subsection{Basic Types}
 \label{Basic Types}
+
+\emph{Basic Types} include the \emph{Bool, Float, Int} types.  These types are specia
 \subsubsection{Numeric types}
 \label{Numeric types}
 
@@ -391,9 +391,11 @@ var a : Int = n;
 trace(a); // 0 on static platforms
 \end{lstlisting}
 
-\emph{Optional Parameters and Nullability:}
-\todo{Optional parameters is referred to as ``optional Arguments'' later in the manual.  For consistency sake, do we prefer parameter or argument?}Optional parameters also have to be accounted when considering nullability.
-In particular, there must be a distinction between \emph{native} optional parameters which are not nullable and Haxe optional parameters which might be.  The distinction is made by using the question-mark optional parameter:
+\emph{Optional Arguments and Nullability:}
+Optional arguments also have to be accounted when considering nullability.
+In particular, there must be a distinction between \emph{native} optional arguments which are not nullable and Haxe optional arguments which might be.  The distinction is made by using the question-mark optional argument:
+
+\trivia{Argument vs Parameter}{In some other programming languages, \emph{argument} and \emph{parameter} are used interchangably.  In Haxe, \emph{argument} is used when referring to methods, and \emph{parameter} refers to \Fullref{Type Parameters}.}
 
 \begin{lstlisting}
 // x is a native Int (not nullable)
@@ -403,6 +405,8 @@ function bar( ?y : Int) {...}
 // z is also Null<Int>
 function opt( ?z : Int = -1) {...}
 \end{lstlisting}
+
+
 
 
 \subsection{Class Instance}
@@ -420,9 +424,8 @@ Semantically, this class represents a point in discrete 2-dimensional space, but
 	\item \type{Point} is the name of the class and could be anything conforming to the rules for type identifiers.
 	\item Enclosed in curly braces \expr{$\left\{\right\}$} are the class fields,
 	\item which consist of two \emph{variable} fields \expr{x} and \expr{y} of type \type{Int}
-	\item followed by a special \emph{function} field named \expr{new}, which is the \emph{constructor} of the class,
-	\item as well as a normal function \expr{toString}
-\todo{Later the manual uses ``method'' instead of ``function.''  I think they're generally understood to be interchangeable, but for consistency, I think it should use one or the other throughout}
+	\item followed by a special \emph{method} field named \expr{new}, which is the \emph{constructor} of the class,
+	\item as well as a normal method \expr{toString}
 \end{itemize}
 See \Fullref{Class Fields} for more details on the structure of classes.  There is a special type in haxe which is compatible with all classes:
 
@@ -541,10 +544,10 @@ Anonymous structures can be used to group data without explicitly creating a typ
 The general syntactic rules follow:
 
 \begin{enumerate}
-	\item A structure is enclosed in curly braces \expr{$\left\{\right\}$} 
-	\item Has a \emph{comma-separated} list of key-value-pairs
-	\item A \emph{colon} separates the key (which must be a valid haxe \todo{What is a valid field-name?} field-name), from the value
-	\item\label{valueanytype} The value can be any valid expression
+	\item A structure is enclosed in curly braces \expr{$\left\{\right\}$}. 
+	\item Has a \emph{comma-separated} list of key-value-pairs.
+	\item A \emph{colon} separates the key, which must be a \Fullref{Valid Identifier}, from the value.
+	\item\label{valueanytype} The value can be any Haxe expression.
 \end{enumerate}
 Rule \ref{valueanytype} implies that structures can be nested and complex, e.g.:
 
@@ -730,7 +733,7 @@ d.foo;
 \end{lstlisting}
 Compiling and running this program for the \target{Flash} target yields an error \texttt{Property foo not found on Number and there is no default value}. Without \type{Dynamic}, this would have been detected at compile-time.
 
-\trivia{Dynamic Inference before haxe 3}{The haxe 3 compiler never infers a type to \type{Dynamic}, so users must be explicit about it. Previous haxe versions used to infer arrays of mixed types (e.g. \expr{[1, true, "foo"]}) as \type{Array<Dynamic>}. We found that this behavior introduced problems and thus removed it for haxe 3.}\todo{So what is the type of that array, or is it a compile error now?}
+\trivia{Dynamic Inference before haxe 3}{The haxe 3 compiler never infers a type to \type{Dynamic}, so users must be explicit about it. Previous haxe versions used to infer arrays of mixed types (e.g. \expr{[1, true, "foo"]}) as \type{Array<Dynamic>}. We found that this behavior introduced problems and thus removed it for Haxe 3. A mixed type array will now produce a compile-time error.}
 
 Use of \type{Dynamic} should be minimized.  There are usually better options, but sometimes it is practical. Parts of the haxe \Fullref{Reflection} API use it, and it is sometimes the best option when dealing with custom data structures that are not known at compile-time.
 
@@ -763,21 +766,23 @@ Implementing \type{Dynamic} does not satisfy the requirements of other implement
 
 \subsection{Abstract}
 \label{Abstract}
-\todo{Different from abstract classes in other languages.  Maybe we should mention that explicitly.}
-An abstract type is a type which is, at runtime, actually a different type. It is a compile-time feature which defines types ``over'' concrete types in order to modify or augment their behavior:
 
+\trivia{Abstractions}{The abstract type in Haxe is very different from abstract classes found in other languages.  If you are coming from a C\# or Java background, don't glance at the word ``abstract'' and skip over this section!}   
+\emph{Abstract types} are a compile-time feature.  They define a new type on top of an existing type, and at compile-time, the abstract type is replaced with the underlying type.  Abstract types are typically used to modify or augment the behavior of a ``concrete'' type.  
+Here is an example that defines a new \emph{abstract type}:
+\todo{I think changing the name from ``Abstract'' would make the example more clear.  The file is called MyAbstract.hx}
 \haxe[firstline=1,lastline=5]{assets/MyAbstract.hx}
 We can derive the following from this example:
 
 \begin{itemize}
 	\item The keyword \expr{abstract} denotes that we are declaring an abstract type.
-	\item \type{Abstract} is the name of the abstract and could be anything conforming to the rules for type identifiers.
+	\item \type{Abstract} is the name of the abstract and could be anything conforming to the rules for \tref{valid identifiers}{Valid Identifier}.
 	\item Enclosed in parenthesis \expr{()} is the \emph{underlying type} \type{Int}.
 	\item Enclosed in curly braces \expr{$\left\{\right\}$} are the fields,
 	\item which is a constructor function \expr{new} accepting one argument \expr{i} of type \type{Int}.
 \end{itemize}
 
-\define{Underlying Type}{The underlying type of an abstract is the type which is used to represent said abstract at runtime. It is usually a concrete (i.e. non-abstract) type, but could be another abstract type as well.}
+\define{Underlying Type}{The underlying type is the type which is used to represent said an abstract at runtime. It is usually a concrete (i.e. non-abstract) type, but could be another abstract type as well.}
 
 The syntax is reminiscent of classes and the semantics are indeed similar. In fact, everything in the ``body'' of an abstract (that is everything after the opening curly brace) is parsed as class fields. Abstracts may have \tref{method}{Method} fields and non-\tref{physical}{def:Physical field} \tref{property}{Property} fields.
 
@@ -1371,7 +1376,7 @@ Furthermore, it is also possible to import \tref{static fields}{Class Fields} of
 
 %TODO: figure out if import a.* actually works as intended
 
-Special care has to be taken with field names or local variable names that conflict with a package name: Since they take priority over packages, a local variable named \expr{haxe} blocks the entire \expr{haxe} package.\todo{I hope there is there a compiler warning about conflicts like this?}
+Special care has to be taken with field names or local variable names that conflict with a package name: Since they take priority over packages, a local variable named \expr{haxe} blocks the entire \expr{haxe} package.
 
 \subsubsection{Resolution Order}
 \label{Resolution Order}
@@ -1434,7 +1439,7 @@ For step \ref{resolution:import} of this algorithm as well as steps \ref{resolut
 
 \section{Class Fields}
 \label{Class Fields}
-\todo{A little different than the 'standard' OOP definitions. A thing contained in an object is usually called a 'member.'  Might be worth pointing out the difference to other 'OOP' languages.}  
+\trivia{OOPs!}{Titles like ``member'' and ``field'' can vary from language to language and even from programmer to programmer!  The following definitions are specific to Haxe, and may or may not be your familiar lingo.}
 \define{Class Field}{A class field is a variable, property or method of a class.  It can either be static or non-static. Non-static fields are referred to as \emph{member} fields, so we speak of e.g. a \emph{static method} or a \emph{member variable}.}
 
 So far we have seen how types and haxe programs in general are structured. This section about class fields concludes the structural part and bridges to the behavioral part of haxe: \tref{expressions}{Expressions} live in class fields!
@@ -1552,7 +1557,7 @@ Main.main = function() {
 
 \subsubsection{Impact on the type system}
 
-The presence of properties has several consequences on the type system. Most importantly, properties are a compile-time feature and thus \emph{require the types to be known}. If we were to assign a class with properties of \todo{Confused by this.  Are they saying the fields are of type dynamic, or the access identifier is dynamic?} \type{Dynamic}, field access would \emph{not} respect accessor methods. Likewise, access restrictions no longer apply and all access is public.
+The presence of properties has several consequences on the type system. Most importantly, properties are a compile-time feature and thus \emph{require the types to be known}. If we were to assign a class with properties to \type{Dynamic}, field access would \emph{not} respect accessor methods. Likewise, access restrictions no longer apply and all access is public.
 
 When using \expr{get} or \expr{set} access identifiers, the compiler ensures that the getter and setter methods actually exists. The following programs does not compile:
 
@@ -1673,8 +1678,8 @@ Main.main();
 
 As evident, the function body \expr{s1 + s2} of field \expr{mid} was generated in place of the call to \expr{add(a, b)}, with \expr{s1} being replaced by \expr{a} and \expr{s2} being replaced by \expr{b}. This avoids a function call which, depending on the target and frequency of occurrences, may yield noticeable performance improvements.
 \todo{which targets suffer the most from function calls? Guessing flash?}
-It is not always easy to judge if a function should be inlined. Short functions that have no writing expressions (such as a \expr{=} assignment) are usually a good choice, but even more complex functions can be candidates. However, in some cases inlining can actually be detrimental to performance, e.g. because the compiler has to create temporary variables for complex expressions. Inlining also increases the size of code produced.
-\todo{So how do we tell if a function performs better inline?  Use a code profiler?}
+
+It is not always easy to judge if a function should be inlined. Short functions that have no writing expressions (such as a \expr{=} assignment) are usually a good choice, but even more complex functions can be candidates. However, in some cases inlining can actually be detrimental to performance, e.g. because the compiler has to create temporary variables for complex expressions. Inlining also increases the size of code produced. So, in short, evaluate carefully and test your inline functions.
 \subsubsection{Dynamic}
 \label{Dynamic}
 
@@ -1692,6 +1697,7 @@ Dynamic methods cannot be \expr{inline} for obvious reasons: While inlining is d
 \label{Override}
 
 The access modifier \expr{override} is required when a child class declares a field which also exists in a \tref{parent class}{Inheritance}. The purpose is to ensure that overrides are obvious, even in large class hierarchies. Likewise, having \expr{override} on a field which does not actually override anything (e.g. due to a misspelled field name) will cause a compile time error, as well.
+\emph{Overrides} are limited to methods and properties.  \emph{Overriding} variablies is not allowed in Haxe.
 
 The effects of overriding fields are detailed in \Fullref{Overriding Fields}.
 
@@ -1699,7 +1705,6 @@ The effects of overriding fields are detailed in \Fullref{Overriding Fields}.
 
 \subsection{Overriding Fields}
 \label{Overriding Fields}
-\todo{What about overriding variables?  Something I can easily check when I have the time...}
 Overriding fields is instrumental for creating class hierarchies. Many design patterns utilize overrides, but here we will explore only the basic functionality. In order to use overrides a class must inherit from a \tref{parent class}{Inheritance}. Consider the following example:
 \todo{change the source to use ``myMethod'', or even a different name, since function and method are almost interchangeable.}
 \haxe{assets/Override.hx}
@@ -1740,8 +1745,10 @@ Expressions in haxe define what a program \emph{does}. Most expressions are foun
 	\item a field.
 \end{itemize}}
 
-\define{Identifier}{Haxe identifiers start with an underscore \expr{_}, a dollar \expr{\$}, a lower-case character \expr{a-z} or an upper-case character \expr{A-Z}. After that, any combination and number of \expr{_}, \expr{A-Z}, \expr{a-z} and \expr{0-9} may follow.\\
-Further limitations follow from the usage context, which are checked upon typing:
+\subsection{Valid Identifier}
+\label{Valid Identifier}
+\define{Valid Identifier}{a valid Haxe identifier must start with an underscore \expr{_}, a dollar \expr{\$}, a lower-case character \expr{a-z} or an upper-case character \expr{A-Z}. After that, any combination and number of \expr{_}, \expr{A-Z}, \expr{a-z} and \expr{0-9} may follow.\\
+Further limitations follow from the usage context, which is checked upon typing:
 \begin{itemize}
 	\item Type names must start with an upper-case letter \expr{A-Z} or an underscore \expr{_}.
 	\item Leading dollars are not allowed for any kind of \tref{name}{def:Name} (dollar-names are mostly used for \tref{macro reification}{Reification}).
@@ -1819,10 +1826,9 @@ This should be considered when deciding if a function should be \tref{inlined}{I
 Advanced initialization techniques are described in \Fullref{Array Comprehension}.
 
 
-\subsection{Object Declaration}
-\label{Object Declaration}
-\todo{Anonymous Objects are synonymous with Anonymous Structures?  Objects are the same as structures? Want to be sure to use consistent vocab.}
-Object declaration begins with an opening curly brace \expr{\{} after which \expr{key:value}-pairs separated by comma \expr{,} follow, and which ends in a closing curly brace \expr{\}}.
+\subsection{Structure Declaration}
+\label{Structure Declaration}
+Structure declaration begins with an opening curly brace \expr{\{} after which \expr{key:value}-pairs separated by comma \expr{,} follow, and which ends in a closing curly brace \expr{\}}.
 
 \begin{lstlisting}
 {
@@ -1832,7 +1838,7 @@ Object declaration begins with an opening curly brace \expr{\{} after which \exp
 	keyN:valueN
 }
 \end{lstlisting}
-Further details of object declaration are described in the section about \tref{anonymous structures}{Anonymous Structure}.
+Further details of structure declaration are described in the section about \tref{anonymous structures}{Anonymous Structure}.
 
 
 \subsection{Field Access}
@@ -2360,7 +2366,7 @@ String interpolation is a compile-time feature and has no impact on runtime. The
 \begin{lstlisting}
 trace("The sum of " +x+ " and 3 is " + (x + 3));
 \end{lstlisting}
-Of course the use of single-quote enclosed strings without any interpolation remains valid, but care has to be taken regarding the \$ character as it triggers interpolation. If an actual dollar-sign should be used in the string, \expr{\$\$} \todo{I think \textbackslash would be more inuitive as an escape sequence than \$ Just curious about the design decision.} can be used.
+Of course the use of single-quote enclosed strings without any interpolation remains valid, but care has to be taken regarding the \$ character as it triggers interpolation. If an actual dollar-sign should be used in the string, \expr{\$\$} 
 
 \trivia{String Interpolation before haxe 3}{String Interpolation has been a haxe feature since version 2.09. Back then, the macro \expr{Std.format} had to be used, being both slower and less comfortable than the new string interpolation syntax.}
 
@@ -2476,7 +2482,7 @@ Allowed values for metadata arguments are:
 \begin{itemize}
 	\item \tref{Constants}{Constants}
 	\item \tref{Arrays declarations}{Array Declaration} (if all their elements qualify)
-	\item \tref{Object declarations}{Object Declaration} (if all their field values qualify)
+	\item \tref{Structure declarations}{Structure Declaration} (if all their field values qualify)
 \end{itemize}
 
 \subsubsection{Compiler Metadata}

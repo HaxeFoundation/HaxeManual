@@ -8,6 +8,6 @@ Standard library
 
 ---
 
-Previous section: [continue](5.19-continue.md)
+Previous section: [continue](5.20-continue.md)
 
 Next section: [String](6.1-String.md)
