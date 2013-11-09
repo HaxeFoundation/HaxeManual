@@ -1,7 +1,6 @@
 ## 6 Standard Library
 
->TODO: Is this section going to overlap with the API documentation.  Would it make sense to just pull in that information?
-
+>TODO: The Standard Library section needs filled in
 
 
 Standard library

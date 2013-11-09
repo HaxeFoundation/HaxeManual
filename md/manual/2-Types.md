@@ -16,10 +16,6 @@ var myButton = new MySpecialButton(); // haxe
 We will explore type inference in detail later in [Type Inference](3.6-Type_Inference.md). For now, it is sufficient to say that the variable `myButton` in the code above is known to be an **class instance** of type `MySpecialButton`. A **class instance** is one of seven type groups:
 
 
->TODO: Is "2.1 Basic Type" not a type group?
-
-
-
 
  * Class instance: an object of a given class or interface
  * Enum instance: a value of a haxe enumeration

@@ -19,6 +19,6 @@ We can identify different kinds of macros, which are run at specific compilation
 
 ---
 
-Previous section: [Completion](7.12-Completion.md)
+Previous section: [Completion](7.13-Completion.md)
 
 Next section: [Macro Context](8.1-Macro_Context.md)

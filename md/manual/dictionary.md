@@ -73,12 +73,12 @@ A general name may refer to
 A type in haxe is considered **nullable** if `null` is a valid value for it.
 
 ##### Physical field
-A field is considered to be **physical** if it is either
+A **physical field** means there is an actual variable for data storage.  A field is considered to be **physical** if it is:
 
 
 * a [variable](4.1-Variable.md)
 * a [property](4.2-Property.md) with the read-access or write-access identifier being `default` or `null`
-* a [property](4.2-Property.md) with `:isVar` [metadata](7.8-Metadata.md)
+* a [property](4.2-Property.md) with `:isVar` [metadata](7.9-Metadata.md)
 
 
 
@@ -105,7 +105,7 @@ type is a compile-time mechanism being called like a function, with a single arg
 The (dot-)path to a type consists of the package, the module name and the type name. Its general form is `pack1.pack2.packN.ModuleName.TypeName`.
 
 ##### Underlying Type
-The underlying type is the type which is used to represent said an abstract at runtime. It is usually a concrete (i.e. non-abstract) type, but could be another abstract type as well.
+The underlying type is the type which is used to represent an abstract at runtime. It is usually a concrete (i.e. non-abstract) type, but could be another abstract type as well.
 
 ##### Unification
 Unification between two types A and B is a directional process which answers the question if A **can be assigned to** B. It may **mutate** either type if it is or has a [monomorph](2.9-Monomorph.md).

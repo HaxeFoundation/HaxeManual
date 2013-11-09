@@ -1,12 +1,12 @@
 class Base {
 	public function new() { }
-	public function method() {
+	public function myMethod() {
 		return "Base";
 	}
 }
 
 class Child extends Base {
-	public override function method() {
+	public override function myMethod() {
 		return "Child";
 	}
 }
@@ -14,6 +14,6 @@ class Child extends Base {
 class Main {
 	static public function main() {
 		var child:Base = new Child();
-		trace(child.method()); // Child
+		trace(child.myMethod()); // Child
 	}
 }
