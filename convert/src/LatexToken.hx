@@ -12,6 +12,7 @@ enum LatexToken {
 	TDoubleBackslash;
 	TTab;
 	TDollar;
+	TDollarLiteral;
 	TAmp;
 	TEof;
 }

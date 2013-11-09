@@ -12,23 +12,10 @@ Expressions in haxe define what a program **does**. Most expressions are found i
 > * a local function or
 > * a field.
 > 
-> 
-
-
-> ##### Define: Identifier
->
-> Haxe identifiers start with an underscore `_`, a dollar `$`, a lower-case character `a-z` or an upper-case character `A-Z`. After that, any combination and number of `_`, `A-Z`, `a-z` and `0-9` may follow.
-> 
-> Further limitations follow from the usage context, which are checked upon typing:
-> 
-> 
-> * Type names must start with an upper-case letter `A-Z` or an underscore `_`.
-> * Leading dollars are not allowed for any kind of [name](dictionary.md#name) (dollar-names are mostly used for [macro reification](8.3-Reification.md)).
-> 
 >
 
 ---
 
-Previous section: [Effects of variance and access modifiers](4.5.1-Effects_of_variance_and_access_modifiers.md)
+Previous section: [Effects of Variance and Access Modifiers](4.5.1-Effects_of_Variance_and_Access_Modifiers.md)
 
-Next section: [Blocks](5.1-Blocks.md)
+Next section: [Valid Identifier](5.1-Valid_Identifier.md)
