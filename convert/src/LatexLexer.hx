@@ -18,7 +18,7 @@ class LatexLexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 			else TCustomCommand(kwd);
 		},
 		"(\n|\r\n)" => {
-			lexer.line++;
+			//lexer.line++;
 			TNewline;
 		},
 		"\t" => TTab,

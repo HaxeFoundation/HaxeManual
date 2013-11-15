@@ -14,6 +14,8 @@ enum LatexCommand {
 	CClearpage;
 	CTableofcontents;
 	CLabel;
+	CChapter;
+	CPart;
 	CSection;
 	CSubsection;
 	CSubsubsection;

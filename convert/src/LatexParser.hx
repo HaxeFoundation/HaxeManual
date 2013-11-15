@@ -158,16 +158,18 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 					s2 = s2.replace("\r", "").split("\n").join("\n> ");
 					buffer.add('> $s2');
 				case [TCustomCommand("todo"), options = popt(bracketArg), TBrOpen, s = text(), TBrClose]: buffer.add('\n>TODO: $s\n\n');
-				case [TCustomCommand("missingfigure"), TBrOpen, s = text(), TBrClose]: buffer.add('> $s'); 
+				case [TCustomCommand("missingfigure"), TBrOpen, s = text(), TBrClose]: buffer.add('> $s');
 				case [TCustomCommand("since"), TBrOpen, s = text(), TBrClose]: buffer.add('##### since Haxe $s\n\n');
 					
 				// section
-				case [TCommand(CSection), TBrOpen, s = text(), TBrClose]:
+				case [TCommand(CPart), TBrOpen, s = text(), TBrClose]:
+					// TODO: handle this
+				case [TCommand(CChapter), TBrOpen, s = text(), TBrClose]:
 					sections.push(mkSection(s, null, sections.length + 1));
-				case [TCommand(CSubsection), TBrOpen, s = text(), TBrClose]:
+				case [TCommand(CSection), TBrOpen, s = text(), TBrClose]:
 					var sec = sections[sections.length - 1];
 					sec.sub.push(mkSection(s, sec, sec.sub.length + 1));
-				case [TCommand(CSubsubsection), TBrOpen, s = text(), TBrClose]:
+				case [TCommand(CSubsection), TBrOpen, s = text(), TBrClose]:
 					var sec = sections[sections.length - 1].sub;
 					var sec = sec[sec.length - 1];
 					sec.sub.push(mkSection(s, sec, sec.sub.length + 1));
@@ -209,9 +211,9 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 			case [TCommand(CEmph), TBrOpen, s = text(), TBrClose]: '**$s**';
 			//I think \it{} is obsolete.  Added \textit{}
 			case [TCommand(CTextit), TBrOpen, s = text(), TBrClose]:'*$s*';
-			case [TCommand(CIt), TBrOpen, s = text(), TBrClose]: '*$s*'; 
+			case [TCommand(CIt), TBrOpen, s = text(), TBrClose]: '*$s*';
 			case [TCommand(CTextbf), TBrOpen, s = text(), TBrClose]:'**$s**';
-			case [TCommand(CTextsuperscript), TBrOpen, s = text(), TBrClose]:'<sup>$s<sup>'; 
+			case [TCommand(CTextsuperscript), TBrOpen, s = text(), TBrClose]:'<sup>$s<sup>';
 			case [TBrOpen && codeMode]: "{";
 			case [TBrClose && codeMode]: "}";
 			case [TBkOpen && (codeMode || exprMode)]: "[";
