@@ -18,7 +18,10 @@ class Main{
 			return s.toLowerCase().replace(" ", "-");
 		}
 		function url(sec:Section) {
-			return sec.id + "-" +(escapeFileName(sec.title)) + ".md";
+			if (sec.label == null) {
+				throw 'Missing label: ${sec.title}';
+			}
+			return escapeFileName(sec.label).toLowerCase() + ".md";
 		}
 		function link(sec:Section) {
 			return '[${sec.title}](${url(sec)})';
