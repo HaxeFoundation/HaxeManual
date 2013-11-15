@@ -18,10 +18,7 @@ class Main{
 			return s.toLowerCase().replace(" ", "-");
 		}
 		function url(sec:Section) {
-			if (sec.label == null) {
-				throw 'Missing label: ${sec.title}';
-			}
-			return escapeFileName(sec.label).toLowerCase() + ".md";
+			return sec.label + ".md";
 		}
 		function link(sec:Section) {
 			return '[${sec.title}](${url(sec)})';
@@ -56,6 +53,9 @@ class Main{
 		sys.FileSystem.createDirectory(out);
 		var allSections = [];
 		function add(sec:Section) {
+			if (sec.label == null) {
+				throw 'Missing label: ${sec.title}';
+			}
 			sec.content = process(sec.content.trim());
 			if(sec.content.length == 0) {
 				if (sec.sub.length == 0) return;
