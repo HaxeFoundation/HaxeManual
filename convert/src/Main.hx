@@ -49,6 +49,7 @@ class Main{
 			var s1 = ~/~~~([^~]+)~~~/g.map(s, map.bind(_, labelLink));
 			return ~/~~([^~]+)~~/g.map(s1, map.bind(_, labelUrl));
 		}
+		unlink(out);
 		sys.FileSystem.createDirectory(out);
 		var allSections = [];
 		function add(sec:Section) {
@@ -78,5 +79,19 @@ class Main{
 		a.sort(function(v1, v2) return Reflect.compare(v1.k.toLowerCase(), v2.k.toLowerCase()));
 		sys.io.File.saveContent('$out/dictionary.md', a.map(function(v) return '##### ${v.k}\n${process(v.v)}').join("\n\n"));
 		sys.io.File.saveContent('$out/sections.txt', haxe.Json.stringify(sections));
+	}
+	
+	public static function unlink(path:String) {
+		if(sys.FileSystem.exists(path)) {
+			if(sys.FileSystem.isDirectory(path)) {
+				for(entry in sys.FileSystem.readDirectory(path))  {
+					unlink( path + "/" + entry );
+				}
+				sys.FileSystem.deleteDirectory(path);
+			}
+			else {
+				sys.FileSystem.deleteFile(path);
+			}
+		}
 	}
 }
