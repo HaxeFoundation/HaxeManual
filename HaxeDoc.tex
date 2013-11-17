@@ -2670,6 +2670,109 @@ A \type{Map} is a container which associates keys with values.
 \section{Regular Expressions}
 \label{std-regex}
 
+Haxe has built-in support for \emph{Regular Expressions}. They can be used to verify the format of a string or extract some regular data from a given text. A regular expression starts with \expr{\textasciitilde/} and ends with a single \expr{/}:
+
+\begin{lstlisting}
+var r = ~/world/;
+var str = "hello world";
+trace(r.match(str)); // true : 'world' was found in the string
+trace(r.match("hello !")); // false
+\end{lstlisting}
+
+You can use standard Regular Expressions patterns such as (not exclusively):
+\begin{itemize}
+    \item \expr{.} any character
+    \item \expr{*} repeat zero-or-more
+    \item \expr{+} repeat one-or-more
+    \item \expr{?} optional zero-or-one
+    \item \expr{[A-Z0-9]} character ranges
+    \item \expr{[\textasciicircum\textbackslash r\textbackslash n\textbackslash t]} character not-in-range
+    \item \expr{(...)} parenthesis to match groups of characters
+    \item \expr{\textasciicircum} beginning of the string (beginning of a line in multiline matching mode)
+    \item \expr{\$} end of the string (end of a line in multiline matching mode)
+    \item \expr{|} "OR" statement.
+\end{itemize}
+
+
+For example, the following regular expression match a valid email address:
+\begin{lstlisting}
+~/[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z][A-Z][A-Z]?/i;
+\end{lstlisting}
+
+Please notice that the \expr{i} at the end of the regular expression is a \emph{Flag} that enable case-insensitive matching.
+
+\todo{check whether target restriction info is relevant}
+The possible flags are the following:
+\begin{itemize}
+    \item \expr{i} case insensitive matching
+    \item \expr{g} global replace or split, see below
+    \item \expr{m} multiline matching, \expr{\textasciicircum} and \expr{\$} represent the beginning and end of a line
+    \item \expr{s} the dot \expr{.} will match also newlines \emph{(Neko, C++, PHP and Java targets only)}
+    \item \expr{u} use UTF-8 matching \emph{(Neko and C++ targets only)}
+\end{itemize}
+
+\subsection{Groups}
+You can extract some informations by using \emph{groups}:
+
+\begin{lstlisting}
+var str = "Nicolas is 26 years old";
+var r = ~/([A-Za-z]+) is ([0-9]+) years old/;
+r.match(str);
+trace(r.matched(1)); // "Nicolas"
+trace(r.matched(2)); // "26"
+\end{lstlisting}
+
+The \expr{r.matched(0)} result will always return the whole matched substring, and \expr{r.matchedPos()} will return the position of this substring in the original string:
+
+
+\begin{lstlisting}
+var str = "abcdeeeeefghi";
+var r = ~/e+/;
+r.match(str);
+trace(r.matched(0)); // "eeeee"
+trace(r.matchedPos()); // { pos : 4, len : 5 }
+\end{lstlisting}
+
+\subsection{Replace}
+
+A regular expression can also be used to replace a part of the string:
+
+\begin{lstlisting}
+var str = "aaabcbcbcbz";
+var r = ~/b[^c]/g; // g : replace all instances
+trace(r.replace(str,"xx")); // "aaabcbcbcxx"
+\end{lstlisting}
+
+You can use \expr{\$X} to reuse a matched group in the replacement:
+
+\begin{lstlisting}
+var str = "{hello} {0} {again}";
+var r = ~/{([a-z]+)}/g;
+trace(r.replace(str,"*$1*")); // "*hello* {0} *again*"
+\end{lstlisting}
+
+\subsection{Split}
+A regular expression can also be used to split a string into several substrings. In that case, the delimiter used to split is not a constant string but a regular expression:
+
+\begin{lstlisting}
+var str = "XaaaYababZbbbW";
+var r = ~/[ab]+/g;
+trace(r.split(str)); // ["X","Y","Z","W"]
+\end{lstlisting}
+
+\subsection{Implementation Details}
+
+Regular Expressions are implemented:
+\begin{itemize}
+    \item in Javascript, the Browser is providing the implementation with the object RegExp.
+    \item in Neko and C++, the PCRE library is used
+    \item in Flash9, the native implementation is used
+    \item \todo{?} in Flash 6/8, the implementation is not yet available but will a pure Haxe version (hence very slow since it's not native, but compatible)
+\end{itemize}
+
+\todo{review, reword, add info about "map" feature}
+
+
 \section{Math}
 \label{std-Math}
 
