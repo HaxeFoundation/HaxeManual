@@ -2732,16 +2732,23 @@ A \type{Map} is a container which associates keys with values.
 \section{Regular Expressions}
 \label{std-regex}
 
-Haxe has built-in support for \emph{Regular Expressions}\footnote{http://en.wikipedia.org/wiki/Regular_expression}. They can be used to verify the format of a string or extract some regular data from a given text. A regular expression starts with \expr{\textasciitilde/} and ends with a single \expr{/}:
+Haxe has built-in support for \emph{regular expressions}\footnote{http://en.wikipedia.org/wiki/Regular_expression}. They can be used to verify the format of a string, transform a string or extract some regular data from a given text.
+
+Haxe has special syntax for creating regular expressions. You can create a regular expression object by typing it between the \expr{\textasciitilde/} combination and a single \expr{/} character:
 
 \begin{lstlisting}
-var r = ~/world/;
-var str = "hello world";
-trace(r.match(str)); // true : 'world' was found in the string
-trace(r.match("hello !")); // false
+var r = ~/haxe/i;
 \end{lstlisting}
 
-You can use standard Regular Expressions patterns such as (not exclusively):
+Alternatively, you can create regular expression with regular syntax:
+
+\begin{lstlisting}
+var r = new EReg("haxe", "i");
+\end{lstlisting}
+
+First argument is a string with regular expression pattern, second one is a string with \emph{flags} (see below).
+
+You can use standard regular expression patterns such as:
 \begin{itemize}
     \item \expr{.} any character
     \item \expr{*} repeat zero-or-more
@@ -2760,7 +2767,7 @@ For example, the following regular expression match a valid email address:
 ~/[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z][A-Z][A-Z]?/i;
 \end{lstlisting}
 
-Please notice that the \expr{i} at the end of the regular expression is a \emph{Flag} that enable case-insensitive matching.
+Please notice that the \expr{i} at the end of the regular expression is a \emph{flag} that enable case-insensitive matching.
 
 The possible flags are the following:
 \begin{itemize}
@@ -2771,82 +2778,55 @@ The possible flags are the following:
     \item \expr{u} use UTF-8 matching \emph{(Neko and C++ targets only)}
 \end{itemize}
 
+\subsection{Matching}
+\label{std-regex-match}
+
+Probably one of the most common uses for regular expressions is checking whether a string matches the specific pattern. You can use the \expr{match} method of a regular expression object to do that:
+\haxe{assets/ERegMatch.hx}
+
 \subsection{Groups}
 \label{std-regex-groups}
 
-You can extract some informations by using \emph{groups}:
+You can extract specific information from a matched string by using \emph{groups}. If \expr{match()} returns true, you can extract groups using the \expr{matched(X)} method, where X is the number of a group defined by regular expression pattern:
 
-\begin{lstlisting}
-var str = "Nicolas is 26 years old";
-var r = ~/([A-Za-z]+) is ([0-9]+) years old/;
-r.match(str);
-trace(r.matched(1)); // "Nicolas"
-trace(r.matched(2)); // "26"
-\end{lstlisting}
+\haxe{assets/ERegGroups.hx}
 
-The \expr{r.matched(0)} result will always return the whole matched substring, and \expr{r.matchedPos()} will return the position of this substring in the original string:
+Note that group numbers start with 1 and \expr{r.matched(0)} will always return the whole matched substring.
 
-\begin{lstlisting}
-var str = "abcdeeeeefghi";
-var r = ~/e+/;
-r.match(str);
-trace(r.matched(0)); // "eeeee"
-trace(r.matchedPos()); // { pos : 4, len : 5 }
-\end{lstlisting}
+The \expr{r.matchedPos()} will return the position of this substring in the original string:
 
-You can use \expr{r.matchedLeft()} and \expr{r.matchedRight()} to get substrings to the left and to the right of the matched substring:
+\haxe{assets/ERegMatchPos.hx}
 
-\begin{lstlisting}
-var r = ~/b/;
-r.match("abc");
-trace(r.matchedLeft()); // a
-trace(r.matched(0)); // b
-trace(r.matchedRight()); // c
-\end{lstlisting}
+Additionally, you can use \expr{r.matchedLeft()} and \expr{r.matchedRight()} to get substrings to the left and to the right of the matched substring:
+
+\haxe{assets/ERegMatchLeftRight.hx}
 
 \subsection{Replace}
 \label{std-regex-replace}
 
 A regular expression can also be used to replace a part of the string:
 
-\begin{lstlisting}
-var str = "aaabcbcbcbz";
-var r = ~/b[^c]/g; // g : replace all instances
-trace(r.replace(str,"xx")); // "aaabcbcbcxx"
-\end{lstlisting}
+\haxe{assets/ERegReplace.hx}
 
 You can use \expr{\$X} to reuse a matched group in the replacement:
 
-\begin{lstlisting}
-var str = "{hello} {0} {again}";
-var r = ~/{([a-z]+)}/g;
-trace(r.replace(str,"*$1*")); // "*hello* {0} *again*"
-\end{lstlisting}
+\haxe{assets/ERegReplaceGroups.hx}
 
 \subsection{Split}
 \label{std-regex-split}
 
-A regular expression can also be used to split a string into several substrings. In that case, the delimiter used to split is not a constant string but a regular expression:
+A regular expression can also be used to split a string into several substrings:
 
-\begin{lstlisting}
-var str = "XaaaYababZbbbW";
-var r = ~/[ab]+/g;
-trace(r.split(str)); // ["X","Y","Z","W"]
-\end{lstlisting}
+\haxe{assets/ERegSplit.hx}
 
 \subsection{Map}
 \label{std-regex-map}
 
 The \expr{map} method of a regular expression object can be used to replace matched substrings using a custom function:
 
-\begin{lstlisting}
-var r = ~/world/;
-var s = "Hello, world!";
-trace(r.map(s, function(r) { return "Haxe"; })); // Hello, Haxe!
-\end{lstlisting}
+\haxe{assets/ERegMap.hx}
 
-This function takes a regular expression object as its first argument in case you
-need additional info about the match being done.
+This function takes a regular expression object as its first argument so you may use it to get additional information about the match being done.
 
 \subsection{Implementation Details}
 \label{std-regex-implementation-details}
@@ -2855,7 +2835,7 @@ Regular Expressions are implemented:
 \begin{itemize}
     \item in JavaScript, the runtime is providing the implementation with the object RegExp.
     \item in Neko and C++, the PCRE library is used
-    \item in Flash9, PHP, C\# and Java, the native implementation is used
+    \item in Flash9, PHP, C\# and Java, native implementations are used
     \item in Flash 6/8, the implementation is not available
 \end{itemize}
 
