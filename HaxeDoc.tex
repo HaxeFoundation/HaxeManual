@@ -2732,9 +2732,21 @@ A \type{Map} is a container which associates keys with values.
 \section{Regular Expressions}
 \label{std-regex}
 
-Haxe has built-in support for \emph{regular expressions}\footnote{http://en.wikipedia.org/wiki/Regular_expression}. They can be used to verify the format of a string or extract some regular data from a given text. A regular expression starts with \expr{\textasciitilde/} and ends with a single \expr{/}:
+Haxe has built-in support for \emph{regular expressions}\footnote{http://en.wikipedia.org/wiki/Regular_expression}. They can be used to verify the format of a string, transform a string or extract some regular data from a given text.
 
-\haxe{assets/ERegMatch.hx}
+Haxe has special syntax for creating regular expressions. You can create a regular expression object by typing it between the \expr{\textasciitilde/} combination and a single \expr{/} character:
+
+\begin{lstlisting}
+var r = ~/haxe/i;
+\end{lstlisting}
+
+Alternatively, you can create regular expression with regular syntax:
+
+\begin{lstlisting}
+var r = new EReg("haxe", "i");
+\end{lstlisting}
+
+First argument is a string with regular expression pattern, second one is a string with \emph{flags} (see below).
 
 You can use standard regular expression patterns such as:
 \begin{itemize}
@@ -2755,7 +2767,7 @@ For example, the following regular expression match a valid email address:
 ~/[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z][A-Z][A-Z]?/i;
 \end{lstlisting}
 
-Please notice that the \expr{i} at the end of the regular expression is a \emph{Flag} that enable case-insensitive matching.
+Please notice that the \expr{i} at the end of the regular expression is a \emph{flag} that enable case-insensitive matching.
 
 The possible flags are the following:
 \begin{itemize}
@@ -2766,18 +2778,26 @@ The possible flags are the following:
     \item \expr{u} use UTF-8 matching \emph{(Neko and C++ targets only)}
 \end{itemize}
 
+\subsection{Matching}
+\label{std-regex-match}
+
+Probably one of the most common uses for regular expressions is checking whether a string matches the specific pattern. You can use the \expr{match} method of a regular expression object to do that:
+\haxe{assets/ERegMatch.hx}
+
 \subsection{Groups}
 \label{std-regex-groups}
 
-You can extract some informations by using \emph{groups}:
+You can extract specific information from a matched string by using \emph{groups}. If \expr{match()} returns true, you can extract groups using the \expr{matched(X)} method, where X is the number of a group defined by regular expression pattern:
 
 \haxe{assets/ERegGroups.hx}
 
-The \expr{r.matched(0)} result will always return the whole matched substring, and \expr{r.matchedPos()} will return the position of this substring in the original string:
+Note that group numbers start with 1 and \expr{r.matched(0)} will always return the whole matched substring.
+
+The \expr{r.matchedPos()} will return the position of this substring in the original string:
 
 \haxe{assets/ERegMatchPos.hx}
 
-You can use \expr{r.matchedLeft()} and \expr{r.matchedRight()} to get substrings to the left and to the right of the matched substring:
+Additionally, you can use \expr{r.matchedLeft()} and \expr{r.matchedRight()} to get substrings to the left and to the right of the matched substring:
 
 \haxe{assets/ERegMatchLeftRight.hx}
 
@@ -2815,7 +2835,7 @@ Regular Expressions are implemented:
 \begin{itemize}
     \item in JavaScript, the runtime is providing the implementation with the object RegExp.
     \item in Neko and C++, the PCRE library is used
-    \item in Flash9, PHP, C\# and Java, the native implementation is used
+    \item in Flash9, PHP, C\# and Java, native implementations are used
     \item in Flash 6/8, the implementation is not available
 \end{itemize}
 
