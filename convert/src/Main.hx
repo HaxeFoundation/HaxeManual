@@ -8,7 +8,11 @@ class Main{
 		Sys.setCwd("../");
 		var input = byte.ByteData.ofString(sys.io.File.getContent("HaxeDoc.tex"));
 		var parser = new LatexParser(input, "HaxeDoc.tex");
-		var sections = parser.parse();
+		var sections = try {
+			parser.parse();
+		} catch(e:hxparse.NoMatch<Dynamic>) {
+			throw e.pos.format(input) + ": Unexpected " +e.token;
+		}
 		var out = "md/manual";
 		var linkBase = "https://github.com/Simn/HaxeManual/tree/master/";
 		function escapeFileName(s:String) {
