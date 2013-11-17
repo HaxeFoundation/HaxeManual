@@ -2873,39 +2873,28 @@ Regular Expressions are implemented:
 \section{Json}
 \label{std-Json}
 
-Haxe provides a built-in support for (de-)serializing \emph{JSON}\footnote{http://en.wikipedia.org/wiki/JSON} data via \type{haxe.Json} class.
+Haxe provides built-in support for (de-)serializing \emph{JSON}\footnote{http://en.wikipedia.org/wiki/JSON} data via \type{haxe.Json} class.
 
 \subsection{Parsing JSON}
 
-Use \expr{haxe.Json.parse} static method to parse \emph{JSON} data into Haxe value:
-\begin{lstlisting}
-var s = '{"rating": 5}';
-var o = haxe.Json.parse(s);
-trace(o); // { rating: 5 }
-\end{lstlisting}
+Use the \expr{haxe.Json.parse} static method to parse \emph{JSON} data and obtain a Haxe value from it:
+\haxe{assets/JsonParse.hx}
 
 Note that the type of the object returned by \expr{haxe.Json.parse} is \expr{Dynamic}, so you may want to specify a type if you know the structure of your data, using \tref{anonymous structures}{types-anonymous-structure}. This way you provide compile-time checks for accessing your data and most likely more optimal code generation, because compiler knows about types in a structure:
-\begin{lstlisting}
-var s = '{"name": "Haxe", "tags": ["awesome"]}';
-var o:{name:String, tags:Array<String>} = haxe.Json.parse(s);
-trace(o.name); // Haxe (a string)
-trace(o.tags[0]); // awesome (a string in an array)
-\end{lstlisting}
+\haxe{assets/JsonParseTyped.hx}
 
 \subsection{Encoding JSON}
 
-Use \expr{haxe.Json.stringify} static method encode Haxe value into a \emph{JSON} string:
-\begin{lstlisting}
-var o = {rating: 5};
-var s = haxe.Json.stringify(o);
-trace(s); // {"rating":5}
-\end{lstlisting}
+Use the \expr{haxe.Json.stringify} static method to encode a Haxe value into a \emph{JSON} string:
+\haxe{assets/JsonStringify.hx}
 
 \subsection{Implementation details}
 
-\type{haxe.Json} API automatically uses native implementation on platforms where it is available, i.e. \emph{JavaScript}, \emph{Flash} and \emph{PHP} and provides its own implementation for all other platforms.
+\type{haxe.Json} API automatically uses native implementation on targets where it is available, i.e. \emph{JavaScript}, \emph{Flash} and \emph{PHP} and provides its own implementation for other targets.
 
 You can force usage of Haxe own implementation with \expr{-D haxeJSON} compiler argument. This will also provide serialization of \tref{enums}{types-enum-instance} by their index, \tref{maps}{std-Map} with string keys and class instances.
+
+Older browsers (Internet Explorer 7, for instance) may not have native \emph{JSON} implementation. In case you need to support them, you can include in your HTML page one of the JSON implementations available on the internet or use \expr{-D old_browser} compiler argument that will make \type{haxe.Json} try to use native JSON and fallback to its own implementation in case it's not available.
 
 \section{Xml}
 \label{std-Xml}
