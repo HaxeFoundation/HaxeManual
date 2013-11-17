@@ -2766,7 +2766,8 @@ For example, the following regular expression match a valid email address:
 
 Please notice that the \expr{i} at the end of the regular expression is a \emph{Flag} that enable case-insensitive matching.
 
-\todo{check whether target restriction info is relevant}
+\bigskip
+
 The possible flags are the following:
 \begin{itemize}
     \item \expr{i} case insensitive matching
@@ -2797,7 +2798,15 @@ trace(r.matched(0)); // "eeeee"
 trace(r.matchedPos()); // { pos : 4, len : 5 }
 \end{lstlisting}
 
-\todo{add info on matchedLeft/matchedRight here}
+You can use \expr{r.matchedLeft()} and \expr{r.matchedRight()} to get substrings to the left and to the right of the matched substring:
+
+\begin{lstlisting}
+var r = ~/b/;
+r.match("abc");
+trace(r.matchedLeft()); // a
+trace(r.matched(0)); // b
+trace(r.matchedRight()); // c
+\end{lstlisting}
 
 \subsection{Replace}
 
@@ -2842,10 +2851,10 @@ need additional info about the match being done.
 
 Regular Expressions are implemented:
 \begin{itemize}
-    \item in Javascript, the Browser is providing the implementation with the object RegExp.
+    \item in JavaScript, the runtime is providing the implementation with the object RegExp.
     \item in Neko and C++, the PCRE library is used
-    \item in Flash9, the native implementation is used
-    \item \todo{?} in Flash 6/8, the implementation is not yet available but will a pure Haxe version (hence very slow since it's not native, but compatible)
+    \item in Flash9, PHP, C\# and Java, the native implementation is used
+    \item in Flash 6/8, the implementation is not available
 \end{itemize}
 
 
