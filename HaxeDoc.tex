@@ -2732,16 +2732,11 @@ A \type{Map} is a container which associates keys with values.
 \section{Regular Expressions}
 \label{std-regex}
 
-Haxe has built-in support for \emph{Regular Expressions}\footnote{http://en.wikipedia.org/wiki/Regular_expression}. They can be used to verify the format of a string or extract some regular data from a given text. A regular expression starts with \expr{\textasciitilde/} and ends with a single \expr{/}:
+Haxe has built-in support for \emph{regular expressions}\footnote{http://en.wikipedia.org/wiki/Regular_expression}. They can be used to verify the format of a string or extract some regular data from a given text. A regular expression starts with \expr{\textasciitilde/} and ends with a single \expr{/}:
 
-\begin{lstlisting}
-var r = ~/world/;
-var str = "hello world";
-trace(r.match(str)); // true : 'world' was found in the string
-trace(r.match("hello !")); // false
-\end{lstlisting}
+\haxe{assets/ERegMatch.hx}
 
-You can use standard Regular Expressions patterns such as (not exclusively):
+You can use standard regular expression patterns such as:
 \begin{itemize}
     \item \expr{.} any character
     \item \expr{*} repeat zero-or-more
@@ -2776,77 +2771,42 @@ The possible flags are the following:
 
 You can extract some informations by using \emph{groups}:
 
-\begin{lstlisting}
-var str = "Nicolas is 26 years old";
-var r = ~/([A-Za-z]+) is ([0-9]+) years old/;
-r.match(str);
-trace(r.matched(1)); // "Nicolas"
-trace(r.matched(2)); // "26"
-\end{lstlisting}
+\haxe{assets/ERegGroups.hx}
 
 The \expr{r.matched(0)} result will always return the whole matched substring, and \expr{r.matchedPos()} will return the position of this substring in the original string:
 
-\begin{lstlisting}
-var str = "abcdeeeeefghi";
-var r = ~/e+/;
-r.match(str);
-trace(r.matched(0)); // "eeeee"
-trace(r.matchedPos()); // { pos : 4, len : 5 }
-\end{lstlisting}
+\haxe{assets/ERegMatchPos.hx}
 
 You can use \expr{r.matchedLeft()} and \expr{r.matchedRight()} to get substrings to the left and to the right of the matched substring:
 
-\begin{lstlisting}
-var r = ~/b/;
-r.match("abc");
-trace(r.matchedLeft()); // a
-trace(r.matched(0)); // b
-trace(r.matchedRight()); // c
-\end{lstlisting}
+\haxe{assets/ERegMatchLeftRight.hx}
 
 \subsection{Replace}
 \label{std-regex-replace}
 
 A regular expression can also be used to replace a part of the string:
 
-\begin{lstlisting}
-var str = "aaabcbcbcbz";
-var r = ~/b[^c]/g; // g : replace all instances
-trace(r.replace(str,"xx")); // "aaabcbcbcxx"
-\end{lstlisting}
+\haxe{assets/ERegReplace.hx}
 
 You can use \expr{\$X} to reuse a matched group in the replacement:
 
-\begin{lstlisting}
-var str = "{hello} {0} {again}";
-var r = ~/{([a-z]+)}/g;
-trace(r.replace(str,"*$1*")); // "*hello* {0} *again*"
-\end{lstlisting}
+\haxe{assets/ERegReplaceGroups.hx}
 
 \subsection{Split}
 \label{std-regex-split}
 
-A regular expression can also be used to split a string into several substrings. In that case, the delimiter used to split is not a constant string but a regular expression:
+A regular expression can also be used to split a string into several substrings:
 
-\begin{lstlisting}
-var str = "XaaaYababZbbbW";
-var r = ~/[ab]+/g;
-trace(r.split(str)); // ["X","Y","Z","W"]
-\end{lstlisting}
+\haxe{assets/ERegSplit.hx}
 
 \subsection{Map}
 \label{std-regex-map}
 
 The \expr{map} method of a regular expression object can be used to replace matched substrings using a custom function:
 
-\begin{lstlisting}
-var r = ~/world/;
-var s = "Hello, world!";
-trace(r.map(s, function(r) { return "Haxe"; })); // Hello, Haxe!
-\end{lstlisting}
+\haxe{assets/ERegMap.hx}
 
-This function takes a regular expression object as its first argument in case you
-need additional info about the match being done.
+This function takes a regular expression object as its first argument so you may use it to get additional information about the match being done.
 
 \subsection{Implementation Details}
 \label{std-regex-implementation-details}
