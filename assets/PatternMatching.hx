@@ -72,7 +72,7 @@ class Main {
 		trace(s); // 6<=7
 		
 		
-		var s = switch [1, false, "foo"] {
+		var s : Array<Dynamic> = switch [1, false, "foo"] {
 			case [1, false, "bar"]: "0";
 			case [_, true, _]: "1";
 			case [_, false, _]: "2";

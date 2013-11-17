@@ -2701,6 +2701,20 @@ Standard library
 \subsection{Array}
 \label{std-Array}
 
+An \emph{Array} is a \emph{collection} for storing elements.  It has one \Fullref{type-systemtype-parameters} and all elements of the array must be of the specified type.  Alternatively, arrays of mixed types are allowed if the type parameter is \Fullref{types-dynamic}.  
+\haxe[firstline=5,lastline=9]{assets/ArrayTest.hx}
+\trivia{Dynamic Arrays}{In Haxe 2, mixed type array declarations were allowed.  In Haxe 3, arrays can have mixed types ONLY if they are explicitly declared as \emph{Array$<$Dynamic$>$}}
+
+In Haxe, arrays are unbounded:  accessing or assigning an index outside the current size of the array does NOT result in an exception.  When assigning, the array grows and the inbetween elements are assigned \emph{null}.  When accessing, \emph{null} is returned.  Accessing a negative index in an array also returns \emph{null}.
+\haxe[firstline=21,lastline=25]{assets/ArrayTest.hx}
+
+Arrays have constant access time for every element.  However, adding or removing elements from an array causes a new copy of the array to be created and can negatively impact performance.  If elements are frequently added to or removed from an array, a \Fullref{std-List} implementation is probably a better choice.  
+
+Arrays can be \emph{iterated over} using a \Fullref{expression-for} loop.  However removing elements while iterating over an array is error prone (but just fine with a \emph{List}).
+
+See \Fullref{expression-array-declaration} for array initialization.  New arrays can also be created by \Fullref{lf-array-comprehension}.  The Array API \url{http://api.haxe.org/Array.html} has details about Array methods.
+
+
 \subsection{List}
 \label{std-List}
 
