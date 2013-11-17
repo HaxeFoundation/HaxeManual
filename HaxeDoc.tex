@@ -2670,7 +2670,7 @@ A \type{Map} is a container which associates keys with values.
 \section{Regular Expressions}
 \label{std-regex}
 
-Haxe has built-in support for \emph{Regular Expressions}. They can be used to verify the format of a string or extract some regular data from a given text. A regular expression starts with \expr{\textasciitilde/} and ends with a single \expr{/}:
+Haxe has built-in support for \emph{Regular Expressions}\footnote{http://en.wikipedia.org/wiki/Regular_expression}. They can be used to verify the format of a string or extract some regular data from a given text. A regular expression starts with \expr{\textasciitilde/} and ends with a single \expr{/}:
 
 \begin{lstlisting}
 var r = ~/world/;
@@ -2678,6 +2678,8 @@ var str = "hello world";
 trace(r.match(str)); // true : 'world' was found in the string
 trace(r.match("hello !")); // false
 \end{lstlisting}
+
+\bigskip
 
 You can use standard Regular Expressions patterns such as (not exclusively):
 \begin{itemize}
@@ -2693,6 +2695,7 @@ You can use standard Regular Expressions patterns such as (not exclusively):
     \item \expr{|} "OR" statement.
 \end{itemize}
 
+\bigskip
 
 For example, the following regular expression match a valid email address:
 \begin{lstlisting}
@@ -2724,7 +2727,6 @@ trace(r.matched(2)); // "26"
 
 The \expr{r.matched(0)} result will always return the whole matched substring, and \expr{r.matchedPos()} will return the position of this substring in the original string:
 
-
 \begin{lstlisting}
 var str = "abcdeeeeefghi";
 var r = ~/e+/;
@@ -2732,6 +2734,8 @@ r.match(str);
 trace(r.matched(0)); // "eeeee"
 trace(r.matchedPos()); // { pos : 4, len : 5 }
 \end{lstlisting}
+
+\todo{add info on matchedLeft/matchedRight here}
 
 \subsection{Replace}
 
@@ -2760,6 +2764,18 @@ var r = ~/[ab]+/g;
 trace(r.split(str)); // ["X","Y","Z","W"]
 \end{lstlisting}
 
+\subsection{Map}
+The \expr{map} method of a regular expression object can be used to replace matched substrings using a custom function:
+
+\begin{lstlisting}
+var r = ~/world/;
+var s = "Hello, world!";
+trace(r.map(s, function(r) { return "Haxe"; })); // Hello, Haxe!
+\end{lstlisting}
+
+This function takes a regular expression object as its first argument in case you
+need additional info about the match being done.
+
 \subsection{Implementation Details}
 
 Regular Expressions are implemented:
@@ -2769,8 +2785,6 @@ Regular Expressions are implemented:
     \item in Flash9, the native implementation is used
     \item \todo{?} in Flash 6/8, the implementation is not yet available but will a pure Haxe version (hence very slow since it's not native, but compatible)
 \end{itemize}
-
-\todo{review, reword, add info about "map" feature}
 
 
 \section{Math}
