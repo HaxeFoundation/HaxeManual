@@ -2461,7 +2461,7 @@ We can identify different kinds of macros, which are run at specific compilation
 
 \begin{description}
 	\item[Initialization Macros:] These are provided by command line using the \ic{--macro} compiler parameter. They are executed after the compiler arguments were processed and the \emph{typer context} has been created, but before any typing was done (see \Fullref{macro-compiler-configuration}).
-	\item[Build Macros:] These are defined for classes, enums and abstracts through the \expr{@:build} or \expr{@:autoBuild} metadata. They are executed per-type, after the type has been set up (including its relation to other types, such as inheritance for classes) but before its fields are typed (see \Fullref{macro-type-building}).
+	\item[Build Macros:] These are defined for classes, enums and abstracts through the \expr{@:build} or \expr{@:autoBuild} \tref{metadata}{lf-metadata}. They are executed per-type, after the type has been set up (including its relation to other types, such as inheritance for classes) but before its fields are typed (see \Fullref{macro-type-building}).
 	\item[Expression Macros:] These are normal functions which are executed as soon as they are typed.
 \end{description}
 	
@@ -2600,6 +2600,47 @@ This ``trick'' was first used in Juraj Kirchheim's \emph{tinkerbell}\footnote{ht
 
 \section{Type Building}
 \label{macro-type-building}
+
+Type-building macros are different from expression macros in several ways:
+
+\begin{itemize}
+	\item They do not return expressions, but an array of class fields. Their return type must be set explicitly to \type{Array<haxe.macro.Expr.Field>}.
+	\item Their \tref{context}{macro-context} has no local method and no local variables.
+	\item Their context does have build fields, available from \expr{haxe.macro.Context.getBuildFields()}.
+	\item They are not called directly, but are argument to a \expr{@:build} or \expr{@:autoBuild} \tref{metadata}{lf-metadata} on a \tref{class}{types-class-instance} or \tref{enum}{types-enum-instance} declaration.
+\end{itemize}
+
+The following example demonstrates type building. Note that it is split up into two files for a reason: If a module contains a \expr{macro} function, it has to be typed into macro context as well. This is often a problem for type-building macros because the type to be built could only be loaded in its incomplete state, before the building macro has run. We recommend to always define type-building macros in their own module.
+
+\haxe{assets/TypeBuildingMacro.hx}
+\haxe{assets/TypeBuilding.hx}
+
+The \expr{build} method of \type{TestBuildingMacro} performs three steps:
+
+\begin{enumerate}
+	\item It obtains the build fields using \expr{Context.getBuildFields()}.
+	\item It declares a new \type{haxe.macro.expr.Field} field using the \expr{funcName} macro argument as field name. This field is a \type{String} \tref{variable}{class-field-variable} with a default value \expr{"my default"} (from the \expr{kind} field) and is public and static (from the \expr{access} field).
+	\item It adds the new field to the build field array and returns it.
+\end{enumerate}
+
+This macro is argument to the \expr{@:build} metadata on the \type{Main} class. As soon as this type is required, the compiler does the following:
+
+\begin{enumerate}
+	\item It parses the module file, including the class fields.
+	\item It sets up the type, including its relation to other types through \tref{inheritance}{types-class-inheritance} and \tref{interfaces}{types-interfaces}.
+	\item It executes the type-building macro according to the \expr{@:build} metadata.
+	\item It continues typing the class normally with the fields returned by the type-building macro.
+\end{enumerate}
+
+This allows adding and modifying class fields at will in a type-building macro. In our example, the macro is called with a \expr{"myFunc"} argument, making \expr{Main.myFunc} a valid field access.
+
+\subsection{enum building}
+\label{macro-enum-building}
+
+\subsection{@:autoBuild}
+\label{macro-auto-build}
+
+
 
 \section{Limitations}
 \label{macro-limitations}
