@@ -27,8 +27,7 @@ class LatexLexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"&" => TAmp,
 		"\\\\&" => TText("&"),
 		"%" => lexer.token(comment),
-                //"\\\\$" => TText("$"), //added TDollarLiteral, couldn't figure this out.
-		"\\\\$" => TText("%"),
+		"\\\\%" => TText("%"),
 		"\\\\\\\\" => TDoubleBackslash,
 		"``" => TText('"'),
 		"''" => TText('"'),
