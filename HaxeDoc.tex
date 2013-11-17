@@ -2573,6 +2573,13 @@ Each constructor of \type{ComplexType} has a distinct syntax:
 \subsection{Class Reification}
 \label{macro-reification-class}
 
+It is also possible to use reification to obtain an instance of \type{haxe.macro.Expr.TypeDefinition}. This is indicated by the \expr{macro class} syntax as shown here:
+
+\haxe{assets/ClassReification.hx}
+
+The generated \type{TypeDefinition} instance is typically passed to \expr{haxe.macro.Context.defineType} in order to add a new type to the calling context (not the macro context itself).
+
+This kind of reification can also be useful to obtain instances of \expr{haxe.macro.Expr.Field}, which are available from the \expr{fields} array of the generated \type{TypeDefinition}. 
 
 \section{Tools}
 \label{macro-tools}
