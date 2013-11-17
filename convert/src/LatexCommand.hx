@@ -40,4 +40,5 @@ enum LatexCommand {
 	CTextsuperscript;
 	CTextit;
 	CTextbf;
+	CTextasciicircum;
 }

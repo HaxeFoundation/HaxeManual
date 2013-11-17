@@ -269,6 +269,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 			case [TCommand(CTextless), dummy = popt(emptyBraces)]: "&lt;";
 			case [TCommand(CTextgreater), dummy = popt(emptyBraces)]: "&gt;";
 			case [TCommand(CLdots), dummy = popt(emptyBraces)]: "...";
+			case [TCommand(CTextasciicircum)]: "^";
 		}
 	}
 	

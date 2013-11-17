@@ -2741,8 +2741,6 @@ trace(r.match(str)); // true : 'world' was found in the string
 trace(r.match("hello !")); // false
 \end{lstlisting}
 
-\bigskip
-
 You can use standard Regular Expressions patterns such as (not exclusively):
 \begin{itemize}
     \item \expr{.} any character
@@ -2757,16 +2755,12 @@ You can use standard Regular Expressions patterns such as (not exclusively):
     \item \expr{|} "OR" statement.
 \end{itemize}
 
-\bigskip
-
 For example, the following regular expression match a valid email address:
 \begin{lstlisting}
 ~/[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z][A-Z][A-Z]?/i;
 \end{lstlisting}
 
 Please notice that the \expr{i} at the end of the regular expression is a \emph{Flag} that enable case-insensitive matching.
-
-\bigskip
 
 The possible flags are the following:
 \begin{itemize}
@@ -2778,6 +2772,8 @@ The possible flags are the following:
 \end{itemize}
 
 \subsection{Groups}
+\label{std-regex-groups}
+
 You can extract some informations by using \emph{groups}:
 
 \begin{lstlisting}
@@ -2809,6 +2805,7 @@ trace(r.matchedRight()); // c
 \end{lstlisting}
 
 \subsection{Replace}
+\label{std-regex-replace}
 
 A regular expression can also be used to replace a part of the string:
 
@@ -2827,6 +2824,8 @@ trace(r.replace(str,"*$1*")); // "*hello* {0} *again*"
 \end{lstlisting}
 
 \subsection{Split}
+\label{std-regex-split}
+
 A regular expression can also be used to split a string into several substrings. In that case, the delimiter used to split is not a constant string but a regular expression:
 
 \begin{lstlisting}
@@ -2836,6 +2835,8 @@ trace(r.split(str)); // ["X","Y","Z","W"]
 \end{lstlisting}
 
 \subsection{Map}
+\label{std-regex-map}
+
 The \expr{map} method of a regular expression object can be used to replace matched substrings using a custom function:
 
 \begin{lstlisting}
@@ -2848,6 +2849,7 @@ This function takes a regular expression object as its first argument in case yo
 need additional info about the match being done.
 
 \subsection{Implementation Details}
+\label{std-regex-implementation-details}
 
 Regular Expressions are implemented:
 \begin{itemize}
@@ -2876,6 +2878,7 @@ Regular Expressions are implemented:
 Haxe provides built-in support for (de-)serializing \emph{JSON}\footnote{http://en.wikipedia.org/wiki/JSON} data via \type{haxe.Json} class.
 
 \subsection{Parsing JSON}
+\label{std-Json-parsing}
 
 Use the \expr{haxe.Json.parse} static method to parse \emph{JSON} data and obtain a Haxe value from it:
 \haxe{assets/JsonParse.hx}
@@ -2884,11 +2887,13 @@ Note that the type of the object returned by \expr{haxe.Json.parse} is \expr{Dyn
 \haxe{assets/JsonParseTyped.hx}
 
 \subsection{Encoding JSON}
+\label{std-Json-encoding}
 
 Use the \expr{haxe.Json.stringify} static method to encode a Haxe value into a \emph{JSON} string:
 \haxe{assets/JsonStringify.hx}
 
 \subsection{Implementation details}
+\label{std-Json-implementation-details}
 
 \type{haxe.Json} API automatically uses native implementation on targets where it is available, i.e. \emph{JavaScript}, \emph{Flash} and \emph{PHP} and provides its own implementation for other targets.
 
