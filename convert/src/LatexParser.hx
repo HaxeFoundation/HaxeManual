@@ -239,6 +239,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 			case [TCustomCommand("type"), TBrOpen, s = text(), TBrClose]: '`$s`';
 			case [TCustomCommand("ic"), TBrOpen, s = text(), TBrClose]: '`$s`';
 			case [s = ref()]: s;
+			case [TCustomCommand("href"), TBrOpen, s1 = text(), TBrClose, TBrOpen, s2 = text(), TBrClose]: '[$s1]($s2)';
 			case [TCommand(CUrl), TBrOpen, s = text(), TBrClose]: '[$s]($s)';
 			case [TCommand(CLabel), TBrOpen, s = text(), TBrClose]:
 				var name = switch(lastLabelTarget) {
