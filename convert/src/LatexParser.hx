@@ -5,13 +5,33 @@ import LatexCommand;
 
 using StringTools;
 
+enum State {
+	/**
+		Section is not meant to have any content (for aggregating chapters/sections).
+	**/
+	NoContent;
+	/**
+		Section is new and was not edited yet (default)
+	**/
+	New;
+	/**
+		Section was edited in the past but got modified afterwards.
+	**/
+	Modified;
+	/**
+		Section is edited.
+	**/
+	Edited;
+}
+
 typedef Section = {
 	title: String,
 	label: String,
 	content: String,
 	sub: Array<Section>,
 	index: Int,
-	id: String
+	id: String,
+	state: State
 }
 
 enum ListMode {
@@ -34,6 +54,7 @@ typedef Label = {
 class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxparse.ParserBuilder {
 	public var labelMap:Map<String, Label>;
 	public var definitionMap:Map<String, String>;
+	public var todos:Array<String>;
 	
 	var sections:Array<Section>;
 	var lastSection:Section;
@@ -49,6 +70,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 	public function new(input, sourceName) {
 		super(new LatexLexer(input, sourceName), LatexLexer.tok);
 		buffer = new StringBuf();
+		todos = [];
 		sections = [];
 		labelMap = new Map();
 		definitionMap = new Map();
@@ -157,10 +179,19 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 					buffer.add('>\n');
 					s2 = s2.replace("\r", "").split("\n").join("\n> ");
 					buffer.add('> $s2');
-				case [TCustomCommand("todo"), options = popt(bracketArg), TBrOpen, s = text(), TBrClose]: buffer.add('\n>TODO: $s\n\n');
+				case [TCustomCommand("todo"), options = popt(bracketArg), TBrOpen, s = text(), TBrClose]:
+					todos.push('${lastSection.id} - ${lastSection.title}: $s');
+					buffer.add('\n>TODO: $s\n\n');
 				case [TCustomCommand("missingfigure"), TBrOpen, s = text(), TBrClose]: buffer.add('> $s');
 				case [TCustomCommand("since"), TBrOpen, s = text(), TBrClose]: buffer.add('##### since Haxe $s\n\n');
-					
+				case [TCustomCommand("state"), TBrOpen, s = text(), TBrClose]:
+					var state = switch(s) {
+						case "Modified": Modified;
+						case "Edited": Edited;
+						case "NoContent": NoContent;
+						case _: throw 'Invalid state string: $s';
+					}
+					lastSection.state = state;
 				// section
 				case [TCommand(CPart), TBrOpen, s = text(), TBrClose]:
 					// TODO: handle this
@@ -364,7 +395,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 			buffer = new StringBuf();
 		}
 		var id = (parent != null ? parent.id + "." : "") + index;
-		lastSection = {title: title, label: null, content: "", sub: [], index:index, id: id};
+		lastSection = {title: title, label: null, content: "", sub: [], index:index, id: id, state: New};
 		lastLabelTarget = Section(lastSection);
 		return lastSection;
 	}

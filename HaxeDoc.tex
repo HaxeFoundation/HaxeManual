@@ -47,6 +47,8 @@
 %added the todonotes package instead
 %\newcommand{\todo}[1]{TODO: #1}
 
+\newcommand{\state}[1]{}
+
 \newcommand{\since}[1]{\noindent\textbf{Since haxe #1}\\}
 
 \lstdefinelanguage{haxe}{
@@ -113,6 +115,7 @@
 
 \chapter{Introduction}
 \label{introduction}
+\state{NoContent}
 
 \section{What is Haxe?}
 \label{introduction-what-is-haxe}
@@ -189,6 +192,7 @@ This can be tested by saving the above code to a file named \ic{HelloWorld.hx} a
 
 \section{History}
 \label{introduction-haxe-history}
+\state{Edited}
 
 The Haxe project started on 22 October 2005 as a successor to the \emph{Motion-Twin Action Script Compiler}, MTASC. French developer \emph{Motion-Twin}\footnote{http://motion-twin.org} had developed MTASC as a popular ActionScript 2 compiler, and the next logical step for them was to design their very own programming language; thus, giving birth to haxe.
 
@@ -746,13 +750,15 @@ Classes can \tref{implement}{types-interfaces} \type{Dynamic} and \type{Dynamic$
 \haxe{assets/ImplementsDynamic.hx}
 Implementing \type{Dynamic} does not satisfy the requirements of other implemented interfaces. The expected fields still have to be implemented explicitly.
 
-%TOOD: resolve field
+\todo{resolve()}
 
 
 
 
 \section{Abstract}
 \label{types-abstract}
+
+\todo{@:enum and @:expose}
 
 An abstract type is a type which is, at runtime, actually a different type. It is a compile-time feature which defines types ``over'' concrete types in order to modify or augment their behavior:
 
@@ -1143,6 +1149,8 @@ With \expr{b} being typed as \type{MyArray<Base>} and \type{MyArray} only having
 \section{Unification}
 \label{type-systemunification}
 
+\todo{Mention toString()/String conversion somewhere in this chapter.}
+
 Unification is the heart of the type system and contributes immensely to the robustness of haxe programs. It describes the process of checking if a type is compatible to another type.
 
 \define{Unification}{Unification between two types A and B is a directional process which answers the question if A \emph{can be assigned to} B. It may \emph{mutate} either type if it is or has a \tref{monomorph}{types-monomorph}.}
@@ -1364,7 +1372,7 @@ Furthermore, it is also possible to import \tref{static fields}{class-field} of 
 
 \haxe{assets/Import3.hx}
 
-%TODO: figure out if import a.* actually works as intended
+\todo{Describe import a.*}
 
 Special care has to be taken with field names or local variable names that conflict with a package name: Since they take priority over packages, a local variable named \expr{haxe} blocks off usage the entire \expr{haxe} package.
 
@@ -1978,6 +1986,7 @@ The typer ensures that it appears only within a loop.
 
 \chapter{Language Features}
 \label{lf}
+\state{NoContent}
 
 \section{Conditional Compilation}
 \label{lf-condition-compliation}
@@ -2685,6 +2694,7 @@ With both interfaces \type{I1} and \type{I2} having \expr{:autoBuild} metadata, 
 
 \chapter{Standard Library}
 \label{std}
+\state{NoContent}
 
 Standard library
 
@@ -2697,6 +2707,7 @@ Standard library
 
 \section{Data Structures}
 \label{std-ds}
+\state{NoContent}
 
 \subsection{Array}
 \label{std-Array}

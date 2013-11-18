@@ -56,14 +56,24 @@ class Main{
 		unlink(out);
 		sys.FileSystem.createDirectory(out);
 		var allSections = [];
+		var unreviewed = [];
+		var modified = [];
+		var noContent = [];
 		function add(sec:Section) {
 			if (sec.label == null) {
 				throw 'Missing label: ${sec.title}';
 			}
 			sec.content = process(sec.content.trim());
 			if(sec.content.length == 0) {
+				if (sec.state != NoContent) {
+					noContent.push('${sec.id} - ${sec.title}');
+				}
 				if (sec.sub.length == 0) return;
 				sec.content = sec.sub.map(function(sec) return sec.id + ": " +link(sec)).join("\n\n");
+			} else switch(sec.state) {
+				case New: unreviewed.push('${sec.id} - ${sec.title}');
+				case Modified: modified.push('${sec.id} - ${sec.title}');
+				case Edited | NoContent:
 			}
 			allSections.push(sec);
 			for (sec in sec.sub) {
@@ -73,6 +83,7 @@ class Main{
 		for (sec in sections) {
 			add(sec);
 		}
+
 		for (i in 0...allSections.length) {
 			var sec = allSections[i];
 			var content = '## ${sec.id} ${sec.title}\n\n' + sec.content;
@@ -85,7 +96,14 @@ class Main{
 		var a = [for (k in parser.definitionMap.keys()) {k:k, v:parser.definitionMap[k]}];
 		a.sort(function(v1, v2) return Reflect.compare(v1.k.toLowerCase(), v2.k.toLowerCase()));
 		sys.io.File.saveContent('$out/dictionary.md', a.map(function(v) return '##### ${v.k}\n${process(v.v)}').join("\n\n"));
+		var todo = "This file is generated, do not edit!\n\n"
+			+ "Todo:\n" + parser.todos.join("\n") + "\n\n"
+			+ "Missing Content:\n" + noContent.join("\n") + "\n\n"
+			+ "Unreviewed:\n" + unreviewed.join("\n") + "\n\n"
+			+ "Modified:\n" + modified.join("\n");
+		sys.io.File.saveContent('todo.txt', todo);
 		sys.io.File.saveContent('$out/sections.txt', haxe.Json.stringify(sections));
+		
 	}
 	
 	public static function unlink(path:String) {
