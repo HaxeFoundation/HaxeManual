@@ -14,7 +14,6 @@ Todo:
 
 Missing Content:
 4.3 - Method
-4.4 - Access Modifier
 5.3 - Binary Operators
 5.4 - Unary Operators
 5.9 - Closure
@@ -25,12 +24,10 @@ Missing Content:
 5.16 - try/catch
 5.20 - throw
 5.21 - cast
-6.3 - Pattern Matching
 6.9 - Remoting
 6.10 - Runtime Type Information
 7 - Compiler Reference
 7.1 - Compiler Metadata
-8 - Compiler Features
 8.2 - Completion
 8.2.1 - Field Access
 8.2.2 - Call Arguments
@@ -39,7 +36,6 @@ Missing Content:
 8.2.5 - Metadata
 9.5.1 - enum building
 9.5.2 - @:autoBuild
-9.6 - Limitations
 9.6.1 - Macro-in-Macro
 9.6.4 - Type Parameters
 9.7 - Compiler Configuration
