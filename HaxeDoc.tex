@@ -244,6 +244,8 @@ We will explore type inference in detail later in \Fullref{type-systemtype-infer
 \section{Basic Types}
 \label{types-basic-types}
 
+\todo{Check wording here (we don't want to address ``you'')}
+
 \emph{Basic Types} include \emph{Bool, Float, and Int}.  The basic types are \emph{abstract types} tagged with \emph{:coreType} metadata.  This means is they get replaced by platform specific types at compile-time.  Don't worry about all of the implmentation details at the moment, but feel free to see \Fullref{types-abstract} and \Fullref{lf-metadata} for more details.  Just be aware that this abstraction can cause the \Fullref{types-overflow} and \Fullref{types-nullability} of Basic Types to behave differently on different target platforms.  To reiterate: \textbf{basic types can behave differently depending on the target platform.}
 
 \subsection{Numeric types}
@@ -2081,6 +2083,7 @@ The following classes from the Haxe Standard Library are designed to be used as 
 \section{Pattern Matching}
 \label{lf-pattern-matching}
 \state{NoContent}
+\todo{Check ``you'' wording.}
 
 \subsection{Introduction}
 \label{lf-pattern-matching-introduction}
@@ -2787,6 +2790,8 @@ So, at runtime, the \type{Map} type does not exist, and has been replaced with o
 
 \section{Regular Expressions}
 \label{std-regex}
+
+\todo{Check ``you'' wording.}
 
 Haxe has built-in support for \emph{regular expressions}\footnote{http://en.wikipedia.org/wiki/Regular_expression}. They can be used to verify the format of a string, transform a string or extract some regular data from a given text.
 
