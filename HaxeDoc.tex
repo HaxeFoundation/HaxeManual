@@ -920,6 +920,22 @@ The method \expr{getString} of abstract \type{MyAbstract} is defined to accept a
 \trivia{Accidental Feature}{Selective functions were never actually designed, but rather discovered. After the idea was first mentioned, it required only minor adjustments in the compiler to make them work. Their discovery also lead to the introduction of multi-type abstracts, such as Map. }
 
 
+\subsection{Core-type}
+\label{types-abstract-core-type}
+
+The Haxe Standard Library defines a set of basic types as core-type abstracts. They are identified by the \expr{:coreType} metadata and the lack of an underlying type declaration. These abstracts can still be understood to represent a different type, but that type is native to the Haxe target. 
+
+Introducing custom core-type abstracts is rarely necessary in user code as it requires the target Haxe target to be able to make sense of it. However, there could be interesting use-cases for authors of macros and new Haxe targets.
+
+In contrast to opaque abstracts, core-type abstracts have the following properties:
+
+\begin{itemize}
+	\item They have no underlying type.
+	\item They are considered nullable unless they are annotated with \expr{:notNull} metadata.
+	\item They are allowed to declare \tref{array access}{types-abstract-array-access} functions without expressions.
+	\item \tref{Operator overloading fields}{types-abstract-operator-overloading} that have no expression are not forced to adhere to the Haxe type semantics.
+\end{itemize}
+
 
 
 \section{Monomorph}
