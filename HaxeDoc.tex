@@ -955,7 +955,35 @@ This is similar to accessing \tref{variables declared as inline}{class-field-inl
 	\item Defining fields requires less syntax.
 \end{itemize}
 
-\subsection{Core-type}
+\subsection{Exposing abstracts}
+\label{types-abstract-expose}
+\since{3.1.0}
+
+When wrapping an underlying type, it is sometimes desirable to ``keep'' parts of its functionality. Because writing forwarding functions by hand is cumbersome, Haxe allows adding the \expr{:expose} metadata to an abstract type:
+
+\haxe{assets/AbstractExpose.hx}
+
+The \type{MyArray} abstract in this example wraps \type{Array}. Its \expr{:expose} metadata has two arguments which demonstrate the two allowed ways of specifying exposed fields:
+
+\begin{itemize}
+	\item With a plain identifier (here: \expr{push}) to expose the field as is.
+	\item Using the \expr{=>} notation (here: \expr{pop => read}) to expose the underlying field on the left side (here: \expr{pop}) as the field name on the right side (here: \expr{read}).
+\end{itemize}
+
+In this example, the \expr{main} function instantiates \type{MyArray} and accesses its \expr{pop} and \expr{read} function. As usual we can look at the \target{Javascript} output to see how the code is being generated:
+
+\begin{lstlisting}
+Main.main = function() {
+	var myArray = [];
+	myArray.push(12);
+	myArray.pop();
+};
+\end{lstlisting}
+
+\trivia{Implemented as macro}{Both the \expr{:enum} and \expr{:expose} functionality are implemented using \tref{macros}{macro}. The implementations can be found in the file \expr{haxe/macro/Build.hx}. The compiler rewrites both metadata as a \expr{:build} metadata which calls the implementations. See \tref{type building}{macro-type-building} for details.}
+
+
+\subsection{Core-type abstracts}
 \label{types-abstract-core-type}
 
 The Haxe Standard Library defines a set of basic types as core-type abstracts. They are identified by the \expr{:coreType} metadata and the lack of an underlying type declaration. These abstracts can still be understood to represent a different type, but that type is native to the Haxe target. 
@@ -2948,6 +2976,7 @@ Regular Expressions are implemented:
 
 \section{Json}
 \label{std-Json}
+\todo{Check ``you'' wording.}
 
 Haxe provides built-in support for (de-)serializing \emph{JSON}\footnote{http://en.wikipedia.org/wiki/JSON} data via \type{haxe.Json} class.
 
