@@ -2701,30 +2701,57 @@ Standard library
 \subsection{Array}
 \label{std-Array}
 
-An \emph{Array} is a \emph{collection} for storing elements.  It has one \Fullref{type-systemtype-parameters} and all elements of the array must be of the specified type.  Alternatively, arrays of mixed types are allowed if the type parameter is \Fullref{types-dynamic}.  
-\haxe[firstline=5,lastline=9]{assets/ArrayTest.hx}
-\trivia{Dynamic Arrays}{In Haxe 2, mixed type array declarations were allowed.  In Haxe 3, arrays can have mixed types ONLY if they are explicitly declared as \emph{Array$<$Dynamic$>$}}
+An \type{Array} is a \emph{collection} for storing elements.  It has one \Fullref{type-systemtype-parameters} and all elements of the array must be of the specified type.  Alternatively, arrays of mixed types are allowed if the type parameter is \Fullref{types-dynamic}.  See the below code snippet for an example. 
+\trivia{Dynamic Arrays}{In Haxe 2, mixed type array declarations were allowed.  In Haxe 3, arrays can have mixed types ONLY if they are explicitly declared as \emph{Array$<$Dynamic$>$}.}
+The following example shows some basic examples of working with arrays:
+\haxe{assets/ArrayExample.hx}
 
-In Haxe, arrays are unbounded:  accessing or assigning an index outside the current size of the array does NOT result in an exception.  When assigning, the array grows and the inbetween elements are assigned \emph{null}.  When accessing, \emph{null} is returned.  Accessing a negative index in an array also returns \emph{null}.
-\haxe[firstline=21,lastline=25]{assets/ArrayTest.hx}
-
-Arrays have constant access time for every element.  However, adding or removing elements from an array causes a new copy of the array to be created and can negatively impact performance.  If elements are frequently added to or removed from an array, a \Fullref{std-List} implementation is probably a better choice.  
+\todo{make sure this is true about static targets}
+In Haxe, arrays are unbounded:  accessing or assigning an index outside the current size of the array does NOT result in an exception.  When assigning, the array grows and the inbetween elements are assigned \emph{null} (or the \emph{static target} alternative: see \Fullref{types-nullability} for more details).  When accessing, \emph{null} is returned.  Accessing a negative index in an array also returns \emph{null}.
 
 Arrays can be \emph{iterated over} using a \Fullref{expression-for} loop.  However removing elements while iterating over an array is error prone (but just fine with a \emph{List}).
 
-See \Fullref{expression-array-declaration} for array initialization.  New arrays can also be created by \Fullref{lf-array-comprehension}.  The Array API \url{http://api.haxe.org/Array.html} has details about Array methods.
+See \Fullref{expression-array-declaration} for array initialization.  New arrays can also be created by \Fullref{lf-array-comprehension}.  The \href{http://api.haxe.org/Array.html}{Array API} has details about Array methods.
 
 
 \subsection{List}
 \label{std-List}
+A \type{List} is a \emph{collection} for storing elements.  On the surface, a list is similar to an \Fullref{std-Array}.  However, the underlying implementation is very different.  This results in several functional differences:
+\todo{I hope none of these are lies -C }
+\begin{enumerate}
+	\item A list can not be indexed using square brackets, i.e. [0].
+	\item A list can not be initialized.
+	\item There are no list comprehensions.
+	\item A list can freely modify/add/remove elements while iterating over them.
+\end{enumerate}
+
+See the \href{http://api.haxe.org/List.html}{List API} for details about the list methods.  A simple example for working with lists:
+\haxe{assets/ListExample.hx}
 
 \subsection{GenericStack}
 \label{std-GenericStack}
-
+A \type{GenericStack}, like \type{Array} and \type{List} is a container for storing elements.  It has one \Fullref{type-systemtype-parameters} and all elements of the array must be of the specified type. See the \href{http://api.haxe.org/haxe/ds/GenericStack.html}{GenericStack API} for details about its methods.  Here is a small example program for initializing and working with a \type{GenericStack}.
+\haxe{assets/GenericStackExample.hx}
+\trivia{FastList}{In Haxe 2, the GenericStack class was known as FastList.  Since it's behavior more closesly resembled a typical stack, the name was changed for Haxe 3.
+}
+The \emph{Generic} in \type{GenericStack} is literal.  It is attributed with the \expr{:generic} metadata.  Depending on the target, this can lead to improved performance on static targets.  See \Fullref{type-systemgeneric} for more details.
 \subsection{Map}
 \label{std-Map}
 
-A \type{Map} is a container which associates keys with values. 
+A \type{Map} is a container composed of \emph{key}, \emph{value} pairs.  A \type{Map} is also commonly referred to as an associative array, dictionary, or symbol table.  The following code gives a short example of working with maps:
+
+\haxe{assets/MapExample.hx}
+
+See the \href{http://api.haxe.org/haxe/Map.html}{Map API} for details of its methods.
+
+Under the hood, a \type{Map} is an \Fullref{types-abstract} type.  At compile time, it gets converted to one of several specialized types depending on the \emph{key} type:
+\begin{itemize}
+	\item haxe.ds.StringMap
+	\item haxe.ds.IntMap
+	\item haxe.ds.EnumValueMap
+	\item haxe.ds.ObjectMap
+\end{itemize}
+So, at runtime, the \type{Map} type does not exist, and has been replaced with one of the above objects.  
 
 \subsection{Option}
 \label{std-Option}
