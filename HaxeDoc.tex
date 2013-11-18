@@ -922,6 +922,39 @@ The method \expr{getString} of abstract \type{MyAbstract} is defined to accept a
 \trivia{Accidental Feature}{Selective functions were never actually designed, but rather discovered. After the idea was first mentioned, it required only minor adjustments in the compiler to make them work. Their discovery also lead to the introduction of multi-type abstracts, such as Map. }
 
 
+\subsection{Enum abstracts}
+\label{types-abstract-enum}
+\since{3.1.0}
+
+By adding the \expr{:enum} metadata to an abstract definition, that abstract can be used to define finite value sets:
+
+\haxe{assets/AbstractEnum.hx}
+
+The Haxe compiler replaces all field access to the \type{HttpStatus} abstract with their values, as evident in the \target{Javascript} output:
+
+\begin{lstlisting}
+Main.main = function() {
+	var status = 404;
+	var msg = Main.printStatus(status);
+};
+Main.printStatus = function(status) {
+	switch(status) {
+	case 404:
+		return "Not found";
+	case 405:
+		return "Method not allowed";
+	}
+};
+\end{lstlisting}
+
+This is similar to accessing \tref{variables declared as inline}{class-field-inline}, but has several advantages:
+
+\begin{itemize}
+	\item The typer can ensure that all values of the set are typed correctly.
+	\item When \tref{matching}{lf-pattern-matching} an enum abstract, the pattern matcher checks for \tref{exhaustiveness}{lf-pattern-matching-exhaustiveness}.
+	\item Defining fields requires less syntax.
+\end{itemize}
+
 \subsection{Core-type}
 \label{types-abstract-core-type}
 
