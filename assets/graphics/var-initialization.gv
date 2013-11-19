@@ -1,0 +1,27 @@
+digraph {
+	node[fontname=Palatino];
+	root [label="Which initialization values are allowed if a variable field is:"];
+	i [label="inline", shape=diamond, fontname=Courier];
+	i_s [label="static", shape=diamond, fontname=Courier];
+	ni_e [label="extern", shape=diamond, fontname=Courier];
+	ni_ne_s [label="static", shape=diamond, fontname=Courier]
+
+	none [label="None", fillcolor=red, style=filled];
+	no_this [label="No `this`", fillcolor=yellow, style=filled];
+	anything [label="Anything", fillcolor=green, style=filled];
+	invalid [label="Invalid", fillcolor=red, style=filled];
+	constants [ label="Constants only", fillcolor=yellow, style=filled];
+
+	root -> i;
+	i -> i_s [label="Yes"];
+	i_s -> invalid [label="No"];
+	i_s -> constants [label="Yes"];
+
+	i -> ni_e [label="No"];
+	
+	ni_e -> none [label="Yes"];
+	ni_e -> ni_ne_s [label="No"];
+
+	ni_ne_s -> no_this [label="No"];
+	ni_ne_s -> anything [label="Yes"];
+}  
