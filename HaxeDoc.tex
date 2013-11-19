@@ -2965,7 +2965,42 @@ Regular Expressions are implemented:
 
 
 \section{Math}
-\label{std-Math}
+\label{std-math}
+
+Haxe includes a floating point math library for some common mathematical operations.  Most of the fuctions operate on and return \type{floats}.  However, a \type{Int} can be used where a \type{Float} is expected, and Haxe also converts \type{Int} to \type{Float} during most numeric operations.  See \Fullref{types-numeric-operators} for more details on when operators convert \type{Int} to \type{Float}.
+
+Here are some example uses of the math library.  See the \href{http://api.haxe.org/Math.html}{Math API} for all available functions.
+
+\haxe{assets/MathExample.hx}
+
+\subsection{Special Numbers}
+\label{std-math-special-numbers}
+The math library has defitions for several special numbers:
+\begin{itemize}
+	\item NaN (Not A Number): returned when a mathmatically incorrect operation is executed e.g. Math.sqrt(-1)
+	\item POSITIVE_INFINITY: e.g. divide a positive number by zero
+	\item NEGATIVE_INFINITY: e.g. divide a negative number by zero
+	\item PI : 3.1415...
+\end{itemize}
+
+\subsection{Mathematical Errors}
+\label{std-math-mathematical-errors}
+Although neko can fluidly handle mathematical errors, like division by zero, this is not true for all target.  Depending on the target, mathematical errors may produce exceptions and ultimately errors.
+
+\subsection{Integer Math}
+\label{std-math-integer-math}
+If you are targetting a platform that can utilize integer operations, e.g. integer division, for performance gains, wrap the operation in \emph{Std.int()}.  The Haxe compiler can then optimize for integer operations.  An example:
+\begin{lstlisting}
+	var intDivision = Std.int(6.2/4.7);
+\end{lstlisting}
+\todo{I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?}
+
+\subsection{Extensions}
+\label{std-math-extensions}
+It is common to see \Fullref{types-structure-class-notation} used with the math library.  This code shows a simple example:  
+\haxe{assets/MathStaticExtension.hx}
+\haxe{assets/MathExtensionUsage.hx}
+
 
 \section{Lambda}
 \label{std-Lambda}

@@ -1,6 +1,6 @@
 class MapExample{
 	static public function main(){
-		//Maps are initialized similar to arrays, but use the '=>' operator
+		//Maps are initialized like arrays, but use '=>' operator
 		//Maps can have their key value types defined explicity
 		var map1 : Map<Int, String> = [1 => "one", 2=>"two"];
 
@@ -13,14 +13,14 @@ class MapExample{
 
 		//Maps values can be accessed using array accessors "[]"
 		var map4 = ["M"=>"Monday", "T"=>"Tuesday"];
-		trace(map4["M"]);
+		trace(map4["M"]); //Monday
 
 		//Maps iterate over their values by default 
 		var valueSum;
 		for (value in map4)
 			trace(value); //Monday \n Tuesday 
 
-		//But can iterate over their keys by using the keys() method
+		//Can iterate over keys by using the keys() method
 		for (key in map4.keys())
 			trace(key);//M \n T 
 
