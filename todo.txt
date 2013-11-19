@@ -13,8 +13,7 @@ Todo:
 10.2.1 - Array: make sure this is true about static targets
 10.2.1 - Array: Maybe we should introduce \\ api{type name}
 10.2.2 - List: I hope none of these are lies -C 
-10.3 - Regular Expressions: Check "you" wording.
-10.8 - Json: Check "you" wording.
+10.4.3 - Integer Math: I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?
 
 Missing Content:
 4.3 - Method
@@ -44,7 +43,6 @@ Missing Content:
 9.6.4 - Type Parameters
 9.7 - Compiler Configuration
 10.2.5 - Option
-10.4 - Math
 10.5 - Lambda
 10.6 - Reflection
 10.7 - Serialization
@@ -183,6 +181,11 @@ Unreviewed:
 10.3.4 - Split
 10.3.5 - Map
 10.3.6 - Implementation Details
+10.4 - Math
+10.4.1 - Special Numbers
+10.4.2 - Mathematical Errors
+10.4.3 - Integer Math
+10.4.4 - Extensions
 10.8 - Json
 10.8.1 - Parsing JSON
 10.8.2 - Encoding JSON
