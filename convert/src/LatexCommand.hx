@@ -32,6 +32,10 @@ enum LatexCommand {
 	CRight;
 	CTexttt;
 	CUrl;
+	CCentering;
+	CIncludegraphics;
+	CTextwidth;
+	CCaption;
 	
 	CTextless;
 	CTextgreater;

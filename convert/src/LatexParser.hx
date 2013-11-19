@@ -130,6 +130,15 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 				case [TEnd("lstlisting")]:
 					codeMode = false;
 					buffer.add("```");
+				case [TBegin("figure")]:
+					// TODO
+				case [TEnd("figure")]:
+					// TODO
+				case [TCommand(CCentering)]:
+				case [TCommand(CIncludegraphics), options = popt(bracketArg), TBrOpen, s = text(), TBrClose]:
+					// TODO
+				case [TCommand(CCaption), TBrOpen, s = text(), TBrClose]:
+					// TODO
 				case [TCustomCommand("haxe"), options = popt(bracketArg), TBrOpen, s = text(), TBrClose]:
 					var f = sys.io.File.getContent(s);
 					var validate = false;
@@ -240,6 +249,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 			case [TCommand(CTextasciitilde)]: "~";
 			case [TCommand(CTextbackslash)]: "\\\\";
 			case [TCommand(CEmph), TBrOpen, s = text(), TBrClose]: '**$s**';
+			case [TCommand(CTextwidth)]: "";
 			//I think \it{} is obsolete.  Added \textit{}
 			case [TCommand(CTextit), TBrOpen, s = text(), TBrClose]:'*$s*';
 			case [TCommand(CIt), TBrOpen, s = text(), TBrClose]: '*$s*';
