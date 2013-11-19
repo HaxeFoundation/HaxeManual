@@ -103,7 +103,23 @@ class Main{
 			+ "Modified:\n" + modified.join("\n");
 		sys.io.File.saveContent('todo.txt', todo);
 		sys.io.File.saveContent('$out/sections.txt', haxe.Json.stringify(sections));
-		
+		function buildDotSections(sections:Array<Section>) {
+			var graph = new dot.Graph();
+			graph.global([FontName("Palatino")]);
+			var root = graph.node([Label("Haxe Manual")]);
+			function connect(source:dot.Node, target:Section) {
+				var node = graph.node([Label(target.title), Href(url(target))]);
+				source.connect(node, []);
+				for (sub in target.sub) {
+					connect(node, sub);
+				}
+			}
+			for (sec in sections) {
+				connect(root, sec);
+			}
+			return graph.getDotCode();
+		}
+		sys.io.File.saveContent('toc.sv', buildDotSections(sections));
 	}
 	
 	public static function unlink(path:String) {
