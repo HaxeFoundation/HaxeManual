@@ -2989,7 +2989,7 @@ Although neko can fluidly handle mathematical errors, like division by zero, thi
 
 \subsection{Integer Math}
 \label{std-math-integer-math}
-If you are targetting a platform that can utilize integer operations, e.g. integer division, for performance gains, wrap the operation in \emph{Std.int()}.  The Haxe compiler can then optimize for integer operations.  An example:
+If you are targeting a platform that can utilize integer operations, e.g. integer division, for performance gains, wrap the operation in \emph{Std.int()}.  The Haxe compiler can then optimize for integer operations.  An example:
 \begin{lstlisting}
 	var intDivision = Std.int(6.2/4.7);
 \end{lstlisting}
@@ -2997,7 +2997,7 @@ If you are targetting a platform that can utilize integer operations, e.g. integ
 
 \subsection{Extensions}
 \label{std-math-extensions}
-It is common to see \Fullref{types-structure-class-notation} used with the math library.  This code shows a simple example:  
+It is common to see \Fullref{lf-static-extension} used with the math library.  This code shows a simple example:  
 \haxe{assets/MathStaticExtension.hx}
 \haxe{assets/MathExtensionUsage.hx}
 
