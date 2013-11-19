@@ -2852,17 +2852,15 @@ So, at runtime, the \type{Map} type does not exist, and has been replaced with o
 \section{Regular Expressions}
 \label{std-regex}
 
-\todo{Check ``you'' wording.}
-
 Haxe has built-in support for \emph{regular expressions}\footnote{http://en.wikipedia.org/wiki/Regular_expression}. They can be used to verify the format of a string, transform a string or extract some regular data from a given text.
 
-Haxe has special syntax for creating regular expressions. You can create a regular expression object by typing it between the \expr{\textasciitilde/} combination and a single \expr{/} character:
+Haxe has special syntax for creating regular expressions. We can create a regular expression object by typing it between the \expr{\textasciitilde/} combination and a single \expr{/} character:
 
 \begin{lstlisting}
 var r = ~/haxe/i;
 \end{lstlisting}
 
-Alternatively, you can create regular expression with regular syntax:
+Alternatively, we can create regular expression with regular syntax:
 
 \begin{lstlisting}
 var r = new EReg("haxe", "i");
@@ -2870,7 +2868,7 @@ var r = new EReg("haxe", "i");
 
 First argument is a string with regular expression pattern, second one is a string with \emph{flags} (see below).
 
-You can use standard regular expression patterns such as:
+We can use standard regular expression patterns such as:
 \begin{itemize}
     \item \expr{.} any character
     \item \expr{*} repeat zero-or-more
@@ -2903,13 +2901,13 @@ The possible flags are the following:
 \subsection{Matching}
 \label{std-regex-match}
 
-Probably one of the most common uses for regular expressions is checking whether a string matches the specific pattern. You can use the \expr{match} method of a regular expression object to do that:
+Probably one of the most common uses for regular expressions is checking whether a string matches the specific pattern. The \expr{match} method of a regular expression object can be used to do that:
 \haxe{assets/ERegMatch.hx}
 
 \subsection{Groups}
 \label{std-regex-groups}
 
-You can extract specific information from a matched string by using \emph{groups}. If \expr{match()} returns true, you can extract groups using the \expr{matched(X)} method, where X is the number of a group defined by regular expression pattern:
+Specific information can be extracted from a matched string by using \emph{groups}. If \expr{match()} returns true, we can get groups using the \expr{matched(X)} method, where X is the number of a group defined by regular expression pattern:
 
 \haxe{assets/ERegGroups.hx}
 
@@ -2919,7 +2917,7 @@ The \expr{r.matchedPos()} will return the position of this substring in the orig
 
 \haxe{assets/ERegMatchPos.hx}
 
-Additionally, you can use \expr{r.matchedLeft()} and \expr{r.matchedRight()} to get substrings to the left and to the right of the matched substring:
+Additionally, \expr{r.matchedLeft()} and \expr{r.matchedRight()} can be used to get substrings to the left and to the right of the matched substring:
 
 \haxe{assets/ERegMatchLeftRight.hx}
 
@@ -2930,7 +2928,7 @@ A regular expression can also be used to replace a part of the string:
 
 \haxe{assets/ERegReplace.hx}
 
-You can use \expr{\$X} to reuse a matched group in the replacement:
+We can use \expr{\$X} to reuse a matched group in the replacement:
 
 \haxe{assets/ERegReplaceGroups.hx}
 
@@ -2948,7 +2946,7 @@ The \expr{map} method of a regular expression object can be used to replace matc
 
 \haxe{assets/ERegMap.hx}
 
-This function takes a regular expression object as its first argument so you may use it to get additional information about the match being done.
+This function takes a regular expression object as its first argument so we may use it to get additional information about the match being done.
 
 \subsection{Implementation Details}
 \label{std-regex-implementation-details}
@@ -2976,7 +2974,6 @@ Regular Expressions are implemented:
 
 \section{Json}
 \label{std-Json}
-\todo{Check ``you'' wording.}
 
 Haxe provides built-in support for (de-)serializing \emph{JSON}\footnote{http://en.wikipedia.org/wiki/JSON} data via \type{haxe.Json} class.
 
@@ -2986,7 +2983,7 @@ Haxe provides built-in support for (de-)serializing \emph{JSON}\footnote{http://
 Use the \expr{haxe.Json.parse} static method to parse \emph{JSON} data and obtain a Haxe value from it:
 \haxe{assets/JsonParse.hx}
 
-Note that the type of the object returned by \expr{haxe.Json.parse} is \expr{Dynamic}, so you may want to specify a type if you know the structure of your data, using \tref{anonymous structures}{types-anonymous-structure}. This way you provide compile-time checks for accessing your data and most likely more optimal code generation, because compiler knows about types in a structure:
+Note that the type of the object returned by \expr{haxe.Json.parse} is \expr{Dynamic}, so if the structure of our data is well-known, we may want to specify a type using \tref{anonymous structures}{types-anonymous-structure}. This way we provide compile-time checks for accessing our data and most likely more optimal code generation, because compiler knows about types in a structure:
 \haxe{assets/JsonParseTyped.hx}
 
 \subsection{Encoding JSON}
@@ -3000,9 +2997,9 @@ Use the \expr{haxe.Json.stringify} static method to encode a Haxe value into a \
 
 \type{haxe.Json} API automatically uses native implementation on targets where it is available, i.e. \emph{JavaScript}, \emph{Flash} and \emph{PHP} and provides its own implementation for other targets.
 
-You can force usage of Haxe own implementation with \expr{-D haxeJSON} compiler argument. This will also provide serialization of \tref{enums}{types-enum-instance} by their index, \tref{maps}{std-Map} with string keys and class instances.
+Usage of Haxe own implementation can be forced with \expr{-D haxeJSON} compiler argument. This will also provide serialization of \tref{enums}{types-enum-instance} by their index, \tref{maps}{std-Map} with string keys and class instances.
 
-Older browsers (Internet Explorer 7, for instance) may not have native \emph{JSON} implementation. In case you need to support them, you can include in your HTML page one of the JSON implementations available on the internet or use \expr{-D old_browser} compiler argument that will make \type{haxe.Json} try to use native JSON and fallback to its own implementation in case it's not available.
+Older browsers (Internet Explorer 7, for instance) may not have native \emph{JSON} implementation. In case it's required to support them, we can include in the HTML page one of the JSON implementations available on the internet or use \expr{-D old_browser} compiler argument that will make \type{haxe.Json} try to use native JSON and fallback to its own implementation in case it's not available.
 
 \section{Xml}
 \label{std-Xml}
