@@ -2752,6 +2752,10 @@ This macro is argument to the \expr{@:build} metadata on the \type{Main} class. 
 
 This allows adding and modifying class fields at will in a type-building macro. In our example, the macro is called with a \expr{"myFunc"} argument, making \expr{Main.myFunc} a valid field access.
 
+If a type-building macro should not modify anything, the macro can return \expr{null}. This indicates to the compiler that no changes are intended and is preferable to returning \expr{Context.getBuildFields()}.
+
+
+
 \subsection{Enum building}
 \label{macro-enum-building}
 
