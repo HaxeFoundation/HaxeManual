@@ -10,13 +10,13 @@ Todo:
 3.5 - Unification: Mention toString()/String conversion somewhere in this chapter.
 3.7.2 - Import: Describe import a.*
 6.3 - Pattern Matching: Check "you" wording.
+9.5.1 - Enum building: Check if we can build GADTs this way.
 10.2.1 - Array: make sure this is true about static targets
 10.2.1 - Array: Maybe we should introduce \\ api{type name}
 10.2.2 - List: I hope none of these are lies -C 
 10.4.3 - Integer Math: I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?
 
 Missing Content:
-4.3 - Method
 5.3 - Binary Operators
 5.4 - Unary Operators
 5.9 - Closure
@@ -37,8 +37,6 @@ Missing Content:
 8.2.3 - Usage
 8.2.4 - Position
 8.2.5 - Metadata
-9.5.1 - enum building
-9.5.2 - @:autoBuild
 9.6.1 - Macro-in-Macro
 9.6.4 - Type Parameters
 9.7 - Compiler Configuration
@@ -117,12 +115,13 @@ Unreviewed:
 4.2.1 - Common accessor identifier combinations
 4.2.2 - Impact on the type system
 4.2.3 - Rules for getter and setter
+4.3 - Method
+4.3.1 - Overriding Methods
+4.3.2 - Effects of variance and access modifiers
 4.4.1 - Visibility
 4.4.2 - Inline
 4.4.3 - Dynamic
 4.4.4 - Override
-4.5 - Overriding Fields
-4.5.1 - Effects of variance and access modifiers
 5 - Expressions
 5.1 - Blocks
 5.2 - Constants
@@ -167,6 +166,8 @@ Unreviewed:
 9.3.3 - Class Reification
 9.4 - Tools
 9.5 - Type Building
+9.5.1 - Enum building
+9.5.2 - @:autoBuild
 9.6.2 - Static extension
 9.6.3 - Build Order
 10.1 - String

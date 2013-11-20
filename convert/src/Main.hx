@@ -12,6 +12,8 @@ class Main{
 			parser.parse();
 		} catch(e:hxparse.NoMatch<Dynamic>) {
 			throw e.pos.format(input) + ": Unexpected " +e.token;
+		} catch(e:hxparse.Unexpected<Dynamic>) {
+			throw e.pos.format(input) + ": Unexpected " +e.token;
 		}
 		var out = "md/manual";
 		var linkBase = "https://github.com/Simn/HaxeManual/tree/master/";

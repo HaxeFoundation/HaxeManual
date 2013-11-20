@@ -2752,11 +2752,50 @@ This macro is argument to the \expr{@:build} metadata on the \type{Main} class. 
 
 This allows adding and modifying class fields at will in a type-building macro. In our example, the macro is called with a \expr{"myFunc"} argument, making \expr{Main.myFunc} a valid field access.
 
-\subsection{enum building}
+\subsection{Enum building}
 \label{macro-enum-building}
+
+Building \tref{enums}{types-enum-instance} is analogous to building classes with a simple mapping:
+
+\begin{itemize}
+	\item Enum constructors without arguments are variable fields \expr{FVar}.
+	\item Enum constructors with arguments are method fields \expr{FFun}.
+\end{itemize}
+
+\todo{Check if we can build GADTs this way.}
+
+\haxe{assets/EnumBuildingMacro.hx}
+\haxe{assets/EnumBuilding.hx}
+
+Because enum \type{E} is annotated with a \expr{:build} metadata, the called macro builds two constructors \expr{A} and \expr{B} ``into'' it. The former is added with the kind being \expr{FVar(null, null)}, meaning it is a constructor without argument. For the latter, we use \tref{reification}{macro-reification-expression} to obtain an instance of \type{haxe.macro.Expr.Function} with a singular \type{Int} argument.
+
+The \expr{main} method proves the structure of our generated enum by \tref{matching}{lf-pattern-matching} it. We can see that the generated type is equivalent to this:
+
+\begin{lstlisting}
+enum E {
+	A;
+	B(value:Int);
+}
+\end{lstlisting}
+
 
 \subsection{@:autoBuild}
 \label{macro-auto-build}
+
+If a class has the \expr{:autoBuild} metadata, the compiler generates \expr{:build} metadata on all extending classes. If an interface has the \expr{:autoBuild} metadata, the compiler generates \expr{:build} metadata on all implementing classes and all extending interfaces. Note that \expr{:autoBuild} does not imply \expr{:build} on the class/interface itself.
+
+\haxe{assets/AutoBuildingMacro.hx}
+\haxe{assets/AutoBuilding.hx}
+
+This outputs during compilation:
+
+\begin{lstlisting}
+AutoBuildingMacro.hx:6: fromInterface: TInst(I2,[])
+AutoBuildingMacro.hx:6: fromInterface: TInst(Main,[])
+AutoBuildingMacro.hx:11: fromBaseClass: TInst(Main,[])
+\end{lstlisting}
+
+It is important to keep in mind that the order of these macro executions is undefined, which is detailed in \Fullref{macro-limitations-build-order}.
 
 
 
