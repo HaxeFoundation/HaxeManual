@@ -254,7 +254,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 			case [TCommand(CTextit), TBrOpen, s = text(), TBrClose]:'*$s*';
 			case [TCommand(CIt), TBrOpen, s = text(), TBrClose]: '*$s*';
 			case [TCommand(CTextbf), TBrOpen, s = text(), TBrClose]:'**$s**';
-			case [TCommand(CTextsuperscript), TBrOpen, s = text(), TBrClose]:'<sup>$s<sup>';
+			case [TCommand(CTextsuperscript), TBrOpen, s = text(), TBrClose]:'<sup>$s</sup>';
 			case [TBrOpen && codeMode]: "{";
 			case [TBrClose && codeMode]: "}";
 			case [TBkOpen && (codeMode || exprMode)]: "[";

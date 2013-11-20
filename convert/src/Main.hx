@@ -40,7 +40,7 @@ class Main{
 			function labelLink(label:Label) {
 				return switch(label.kind) {
 					case Section(sec): link(sec);
-					case Definition: '[${label.name}](escapeAnchor(dictionary.md#${label.name}))';
+					case Definition: '[${label.name}](${escapeAnchor("dictionary.md#" + label.name)})';
 					case Item(i): "" + i;
 				}
 			}
