@@ -175,7 +175,7 @@ In a few places, this document has \emph{trivia}-boxes. These include off-the-re
 
 
 \section{Hello World}
-\label{introduction-hello-World}
+\label{introduction-hello-world}
 
 The following program prints ``Hello World'' after having been compiled and run:
 
@@ -226,7 +226,7 @@ The explicit type annotations are not required in Haxe, because the compiler can
 \begin{lstlisting}
 var myButton = new MySpecialButton(); // haxe
 \end{lstlisting}
-We will explore type inference in detail later in \Fullref{type-systemtype-inference}. For now, it is sufficient to say that the variable \expr{myButton} in the above code is known to be an \emph{instance of class} \type{MySpecialButton}. A class instance is one of seven type groups:
+We will explore type inference in detail later in \Fullref{type-system-type-inference}. For now, it is sufficient to say that the variable \expr{myButton} in the above code is known to be an \emph{instance of class} \type{MySpecialButton}. A class instance is one of seven type groups:
 
 \begin{description}
  \item[Class instance:] an object of a given class or interface
@@ -238,7 +238,7 @@ We will explore type inference in detail later in \Fullref{type-systemtype-infer
  \item[Monomorph:] an unknown type, which may later become a different type
 \end{description}
 
-\define{Compound Type}{A compound type is a type which has sub-types. This includes any type with \tref{type parameters}{type-systemtype-parameters} and the \tref{function}{types-function} type.}
+\define{Compound Type}{A compound type is a type which has sub-types. This includes any type with \tref{type parameters}{type-system-type-parameters} and the \tref{function}{types-function} type.}
 
 
 \section{Basic Types}
@@ -393,7 +393,7 @@ if( a == null ) { ... } // error on static platforms
 var b : Null<Int> = 0;
 if( b != null ) { ... } // allowed
 \end{lstlisting}
-This restriction extends to all situations where \tref{unification}{type-systemunification} is performed.
+This restriction extends to all situations where \tref{unification}{type-system-unification} is performed.
 
 If a \expr{null}-value is ``hidden'' in \type{Null$<$T$>$} or \type{Dynamic} and assigned to a basic type, the default value is used:
 
@@ -407,7 +407,7 @@ trace(a); // 0 on static platforms
 Optional arguments also have to be accounted when considering nullability.
 In particular, there must be a distinction between \emph{native} optional arguments which are not nullable and Haxe optional arguments which might be.  The distinction is made by using the question-mark optional argument:
 
-\trivia{Argument vs Parameter}{In some other programming languages, \emph{argument} and \emph{parameter} are used interchangably.  In Haxe, \emph{argument} is used when referring to methods, and \emph{parameter} refers to \Fullref{type-systemtype-parameters}.}
+\trivia{Argument vs Parameter}{In some other programming languages, \emph{argument} and \emph{parameter} are used interchangably.  In Haxe, \emph{argument} is used when referring to methods, and \emph{parameter} refers to \Fullref{type-system-type-parameters}.}
 
 \begin{lstlisting}
 // x is a native Int (not nullable)
@@ -586,7 +586,7 @@ class Test {
 }
 \end{lstlisting}
 The error message indicates that the compiler knows the type of \expr{point}: It is a structure with fields \expr{x} and \expr{y} of type \type{Float}. Since it has no field \expr{z} the access fails.
-The type of \expr{point} is known through \tref{type inference}{type-systemtype-inference}, which thankfully saves us from using explicit types for local variables. However, if \expr{point} was a field, explicit typing would be necessary:
+The type of \expr{point} is known through \tref{type inference}{type-system-type-inference}, which thankfully saves us from using explicit types for local variables. However, if \expr{point} was a field, explicit typing would be necessary:
 
 \begin{lstlisting}
 class Path {
@@ -595,7 +595,7 @@ class Path {
     var current : { x : Int, y : Int };
 }
 \end{lstlisting}
-To avoid this kind of redundant type declaration, especially for more complex structures, it is advised to use a \tref{typedef}{type-systemtypedef}:
+To avoid this kind of redundant type declaration, especially for more complex structures, it is advised to use a \tref{typedef}{type-system-typedef}:
 
 \begin{lstlisting}
 typedef Point = { x : Int, y : Int }
@@ -622,7 +622,7 @@ While any string literal is allowed, the field is only considered part of the ty
 \subsection{Class Notation for Structure Types}
 \label{types-structure-class-notation}
 
-When defining a structure type, haxe allows using the same syntax as described in \Fullref{class-field}. The following \tref{typedef}{type-systemtypedef} declares a \type{Point} type with variable fields \expr{x} and \expr{y} of type \type{Int}:
+When defining a structure type, haxe allows using the same syntax as described in \Fullref{class-field}. The following \tref{typedef}{type-system-typedef} declares a \type{Point} type with variable fields \expr{x} and \expr{y} of type \type{Int}:
 
 \begin{lstlisting}
 typedef Point = {
@@ -639,7 +639,7 @@ typedef Point = {
 \subsection{Impact on Performance}
 \label{types-structure-performance}
 
-Using structures and by extension \tref{structural subtyping}{type-systemstructural-subtyping} has no impact on performance when compiling to \tref{dynamic targets}{def:Dynamic target}. However, on \tref{static targets}{def:Static target} a dynamic lookup has to be performed, which is typically slower than a static field access.
+Using structures and by extension \tref{structural subtyping}{type-system-structural-subtyping} has no impact on performance when compiling to \tref{dynamic targets}{def:Dynamic target}. However, on \tref{static targets}{def:Static target} a dynamic lookup has to be performed, which is typically slower than a static field access.
 
 
 
@@ -725,14 +725,14 @@ Trying to run a compiled program in the Flash Player yields an error \texttt{Pro
 
 Use of \type{Dynamic} should be minimized as there are better options in many situations, but sometimes it is just practical to use it. Parts of the haxe \Fullref{std-reflection} API use it, and it is sometimes the best option when dealing with custom data structures that are not known at compile-time.
 
-Dynamic behaves in a special way when being \tref{unified}{type-systemunification} with a \tref{monomorph}{types-monomorph}, which is described in \Fullref{type-systemmonomorphs}.
+Dynamic behaves in a special way when being \tref{unified}{type-system-unification} with a \tref{monomorph}{types-monomorph}, which is described in \Fullref{type-system-monomorphs}.
 
 \trivia{Dynamic in the Standard Library}{Dynamic was quite frequent in the haxe standard library before haxe 3. With the continuous improvements of the haxe type system, the occurences of Dynamic were reduced over the releases leading to haxe 3.}
 
 \subsection{Dynamic with Type Parameter}
 \label{types-dynamic-with-type-parameter}
 
-\type{Dynamic} is a special type because it allows explicit declaration with and without a \tref{type parameter}{type-systemtype-parameters}. If such a type parameter is provided, the semantics described in \Fullref{types-dynamic} are constrained to all fields being compatible with the parameter type:
+\type{Dynamic} is a special type because it allows explicit declaration with and without a \tref{type parameter}{type-system-type-parameters}. If such a type parameter is provided, the semantics described in \Fullref{types-dynamic} are constrained to all fields being compatible with the parameter type:
 
 \begin{lstlisting}
 var att : Dynamic<String> = xml.attributes;
@@ -1004,7 +1004,7 @@ In contrast to opaque abstracts, core-type abstracts have the following properti
 \section{Monomorph}
 \label{types-monomorph}
 
-A monomorph is a type which may, through \tref{unification}{type-systemunification}, morph into a different type later. We shall see details about this type when talking about \tref{type inference}{type-systemtype-inference}.
+A monomorph is a type which may, through \tref{unification}{type-system-unification}, morph into a different type later. We shall see details about this type when talking about \tref{type inference}{type-system-type-inference}.
 
 
 
@@ -1012,14 +1012,14 @@ A monomorph is a type which may, through \tref{unification}{type-systemunificati
 \chapter{Type System}
 \label{type-system}
 
-We learned about the different kinds of types in \Fullref{types} and it is now time to see how they interact with each other. We start off easy by introducing \tref{typedef}{type-systemtypedef}, a mechanism to give a name (or alias) to a more complex type. Among other things, this will come in handy when working with types having \tref{type parameters}{type-systemtype-parameters}.
+We learned about the different kinds of types in \Fullref{types} and it is now time to see how they interact with each other. We start off easy by introducing \tref{typedef}{type-system-typedef}, a mechanism to give a name (or alias) to a more complex type. Among other things, this will come in handy when working with types having \tref{type parameters}{type-system-type-parameters}.
 
-A lot of type-safety is achieved by checking if two given types of above type groups are compatible. That is, the compiler tries to perform \emph{unification} between them, as detailed in \Fullref{type-systemunification}.
+A lot of type-safety is achieved by checking if two given types of above type groups are compatible. That is, the compiler tries to perform \emph{unification} between them, as detailed in \Fullref{type-system-unification}.
 
-All types are organized in \emph{modules} and can be addressed through \emph{paths}. \Fullref{type-systemmodules-and-paths} will give a detailed explanation of the related mechanics.
+All types are organized in \emph{modules} and can be addressed through \emph{paths}. \Fullref{type-system-modules-and-paths} will give a detailed explanation of the related mechanics.
 
 \section{Typedef}
-\label{type-systemtypedef}
+\label{type-system-typedef}
 
 We briefly looked at typedefs while talking about \tref{anonymous structures}{types-anonymous-structure} and saw how we could shorten a complex structure type by giving it a name. This is precisely what typedefs are good for, and giving names to structure types might even be considered their primary use. In fact, it is so common that the distinction appears somewhat blurry and many haxe users consider typedefs to actually \emph{be} the structure.
 
@@ -1036,7 +1036,7 @@ typedef User = {
     var name : String;
 }
 \end{lstlisting}
-A typedef is not a textual replacement, but actually a real type. It can even have \tref{type parameters}{type-systemtype-parameters} as the \type{Iterable} type from the standard library demonstrates:
+A typedef is not a textual replacement, but actually a real type. It can even have \tref{type parameters}{type-system-type-parameters} as the \type{Iterable} type from the standard library demonstrates:
 
 \begin{lstlisting}
 typedef Iterable<T> = {
@@ -1047,7 +1047,7 @@ typedef Iterable<T> = {
 
 
 \subsection{Extensions}
-\label{type-systemextensions}
+\label{type-system-extensions}
 
 % TODO: move to structures? %
 Extensions are used to express that a structure has all the fields of a given type in addition to some more:
@@ -1063,7 +1063,7 @@ There may only be a single extension on a structure, so extensions can be unders
 
 
 \section{Type Parameters}
-\label{type-systemtype-parameters}
+\label{type-system-type-parameters}
 
 Haxe allows parametrization of a number of types, as well as \tref{class fields}{class-field} and \tref{enum constructors}{types-enum-constructor}. Type parameters are defined by enclosing comma-separated type parameter names in angle brackets \expr{$<>$}. A simple example from the standard library is \type{Array}:
 
@@ -1076,9 +1076,9 @@ Whenever an instance of \type{Array} is created, its type parameter \type{T} bec
 
 \begin{description}
 	\item[explicitly] by invoking the constructor with explicit types (\expr{new Array$<$String$>$()}) or
-	\item[implicitly] by \tref{type inference}{type-systemtype-inference}, e.g. when invoking \expr{arrayInstance.push("foo")}.
+	\item[implicitly] by \tref{type inference}{type-system-type-inference}, e.g. when invoking \expr{arrayInstance.push("foo")}.
 \end{description}
-Inside the definition of a class with type parameters, these type parameters are an unspecific type. Unless \tref{constraints}{type-systemtype-parameter-constraints} are added, the compiler has to assume that the type parameters could be used with any type. As a consequence, it is not possible to access fields of type parameters or \tref{cast}{expression-cast} to a a type parameter type. It is also not possible to create a new instance of a type parameter type, unless the type parameter is \tref{generic}{type-systemgeneric} and constrained accordingly. 
+Inside the definition of a class with type parameters, these type parameters are an unspecific type. Unless \tref{constraints}{type-system-type-parameter-constraints} are added, the compiler has to assume that the type parameters could be used with any type. As a consequence, it is not possible to access fields of type parameters or \tref{cast}{expression-cast} to a a type parameter type. It is also not possible to create a new instance of a type parameter type, unless the type parameter is \tref{generic}{type-system-generic} and constrained accordingly. 
 
 The following table shows where type parameters are allowed:
 
@@ -1102,12 +1102,12 @@ Both arguments \expr{expected} and \expr{actual} of the \expr{equals} function h
 \trivia{Type parameters in expression syntax}{We often get the question why a method with type parameters cannot be called as \expr{method<String>()}. The error messages the compiler gives are not quite helpful, but there is a simple reason for that: The above code is parsed as if both \expr{<} and \expr{>} were binary operators, yielding \expr{(method < String) > ()}.}
 
 \subsection{Constraints}
-\label{type-systemtype-parameter-constraints}
+\label{type-system-type-parameter-constraints}
 
 Type parameters can be constrained to multiple types:
 
 \haxe{assets/Constraints.hx}
-Type parameter \type{T} of method \expr{test} is constrained to the types \type{Iterable$<$String$>$} and \type{Measurable}. The latter is defined using a \tref{typedef}{type-systemtypedef} for convenience and requires compatible types to have a read-only \tref{property}{class-field-property} named \expr{length} of type \type{Int}. The constraints then say that a type is compatible if
+Type parameter \type{T} of method \expr{test} is constrained to the types \type{Iterable$<$String$>$} and \type{Measurable}. The latter is defined using a \tref{typedef}{type-system-typedef} for convenience and requires compatible types to have a read-only \tref{property}{class-field-property} named \expr{length} of type \type{Int}. The constraints then say that a type is compatible if
 
 \begin{itemize}
 	\item it is compatible with \type{Iterable$<$String$>$} and
@@ -1117,7 +1117,7 @@ We can see that invoking \expr{test} with an empty array in line 7 and an \type{
 
 
 \section{Generic}
-\label{type-systemgeneric}
+\label{type-system-generic}
 
 Usually, the Haxe compiler generates only a single class or function, even if it has type parameters. This results in a natural abstraction, where the code generator for the target language has to assume that a type parameter could be of any type. The generated code then might have to perform some type checks, which can be detrimental to performance.
 
@@ -1125,7 +1125,7 @@ A class or function can be made \emph{generic} by attributing it with the \expr{
 
 \haxe{assets/GenericClass.hx}
 
-It seems unusual to see the explicit type \type{MyArray<String>} here as we usually let \tref{type inference}{type-systemtype-inference} deal with this, but here it is indeed required. The compiler has to know the exact type of a generic class upon construction. The \target{Javascript} output shows the result:
+It seems unusual to see the explicit type \type{MyArray<String>} here as we usually let \tref{type inference}{type-system-type-inference} deal with this, but here it is indeed required. The compiler has to know the exact type of a generic class upon construction. The \target{Javascript} output shows the result:
 
 \begin{lstlisting}
 (function () { "use strict";
@@ -1165,7 +1165,7 @@ Main.main();
 
 
 \subsection{Construction of generic type parameters}
-\label{type-systemgeneric-type-parameter-construction}
+\label{type-system-generic-type-parameter-construction}
 
 \define{Generic Type Parameter}{A type parameter is said to be generic if its containing class or method is generic.}
 
@@ -1173,11 +1173,11 @@ With normal type parameter, it is not possible to construct them, i.e. \expr{new
 
 \haxe{assets/GenericTypeParameter.hx} 
 
-It should be noted that \tref{top-down inference}{type-systemtop-down-inference} is used here to determine the actual type of \type{T}. There are two requirements for this kind of type parameter construction to work. The constructed type parameter must be
+It should be noted that \tref{top-down inference}{type-system-top-down-inference} is used here to determine the actual type of \type{T}. There are two requirements for this kind of type parameter construction to work. The constructed type parameter must be
 
 \begin{enumerate}
 	\item generic and
-	\item be explicitly \tref{constrained}{type-systemtype-parameter-constraints} to having a \tref{constructor}{types-class-constructor}.
+	\item be explicitly \tref{constrained}{type-system-type-parameter-constraints} to having a \tref{constructor}{types-class-constructor}.
 \end{enumerate}
 
 Here, 1. is given by \expr{make} having the \expr{@:generic} metadata, and 2. by \type{T} being constrained to \type{Constructible}. The constraint holds for both \type{String} and \type{haxe.Template} as both have a constructor accepting a singular \type{String} argument. Sure enough, the relevant \target{Javascript} output looks as expected:
@@ -1198,7 +1198,7 @@ Main.main = function() {
 \end{lstlisting}
 
 \section{Variance}
-\label{type-systemvariance}
+\label{type-system-variance}
 
 While variance is relevant in other places, it occurs particularly often with type parameters and often comes as a surprise in this context. It is also very easy to trigger variance errors:
 
@@ -1210,7 +1210,7 @@ Apparently, an \type{Array<Child>} cannot be assigned to an \type{Array<Base>}, 
 
 What happens here is that we subvert the type checker by using a \tref{cast}{expression-cast}, thus allowing the assignment in line 12. With that we hold a reference \expr{bases} to the original array, typed as \type{Array<Base>}. This allows pushing another type compatible with \type{Base}, \type{OtherChild}, onto that array. However, our original reference \expr{children} is still of type \type{Array<Child>}, and things go bad when we encounter the \type{OtherChild} instance in one of its elements while iterating.
 
-If \type{Array} had no \expr{push()} method and no other means of modification, the assignment would be safe because no incompatible type could be added to it. We can achieve this in Haxe by restricting the type accordingly using \tref{structural subtyping}{type-systemstructural-subtyping}:
+If \type{Array} had no \expr{push()} method and no other means of modification, the assignment would be safe because no incompatible type could be added to it. We can achieve this in Haxe by restricting the type accordingly using \tref{structural subtyping}{type-system-structural-subtyping}:
 
 \haxe{assets/Variance3.hx}
 
@@ -1224,7 +1224,7 @@ With \expr{b} being typed as \type{MyArray<Base>} and \type{MyArray} only having
 
 
 \section{Unification}
-\label{type-systemunification}
+\label{type-system-unification}
 
 \todo{Mention toString()/String conversion somewhere in this chapter.}
 
@@ -1249,14 +1249,14 @@ In this particular case, the unification is triggered by an \emph{assignment}, a
 	\item[Assignment:] If \expr{a} is assigned to \expr{b}, the type of \expr{a} is unified with the type of \expr{b}.
 	\item[Function call:] We have briefly seen this one while introducing the \tref{function}{types-function} type. In general, the compiler tries to unify the first given argument type with the first expected argument type, the second given argument type with the second expected argument type and so on until all argument types are handled.
 	\item[Function return:] Whenever a function has a \expr{return e} expression, the type of \expr{e} is unified with the function return type. If the function has no explicit return type, it is infered to the type of \expr{e} and subsequent \expr{return} expressions are infered against it.
-	\item[Array declaration:] The compiler tries to find a minimal type between all given types in an array declaration. Refer to \Fullref{type-systemunification-common-base-type} for details.
+	\item[Array declaration:] The compiler tries to find a minimal type between all given types in an array declaration. Refer to \Fullref{type-system-unification-common-base-type} for details.
 	\item[Object declaration:] If an object is declared ``against'' a given type, the compiler unifies each given field type with each expected field type.
 	\item[Operator unification:] Certain operators expect certain types which given types are unified against. For instance, the expression \expr{a \&\& b} unifies both \expr{a} and \expr{b} with \type{Bool} and the expression \expr{a == b} unifies \expr{a} with \expr{b}.
 \end{description}
 
 
 \subsection{Between Class/Interface}
-\label{type-systemunification-between-classes-and-interfaces}
+\label{type-system-unification-between-classes-and-interfaces}
 
 When defining unification behavior between classes, it is important to remember that unification is directional: We can assign a more specialized class (e.g. a child class) to a generic class (e.g. a base class), but the reverse is not valid.
 
@@ -1271,7 +1271,7 @@ These rules are transitive, meaning that a child class can also be assigned to t
 
 
 \subsection{Structural Subtyping}
-\label{type-systemstructural-subtyping}
+\label{type-system-structural-subtyping}
 
 \define{Structural Subtyping}{Structural subtyping defines an implicit relation between types that have the same structure.}
 
@@ -1288,13 +1288,13 @@ This kind of typing can be very convenient, but extensive use may be detrimental
 
 
 \subsection{Monomorphs}
-\label{type-systemmonomorphs}
+\label{type-system-monomorphs}
 
-Unification of types having or being a \tref{monomorph}{types-monomorph} is detailed in \Fullref{type-systemtype-inference}.
+Unification of types having or being a \tref{monomorph}{types-monomorph} is detailed in \Fullref{type-system-type-inference}.
 
 
 \subsection{Function Return}
-\label{type-systemunification-function-return}
+\label{type-system-unification-function-return}
 
 Unification of function return types may involve the \tref{\type{Void}-type}{types-void} and require a clear definition of what unifies with \type{Void}. With \type{Void} describing the absence of a type, it is not assignable to any other type, not even \type{Dynamic}. This means that if a function is explicitly declared as returning \type{Dynamic}, it must not return \type{Void}.
 
@@ -1307,7 +1307,7 @@ The right-hand function clearly is of type \type{Void->String}, yet we can assig
 
 
 \subsection{Common Base Type}
-\label{type-systemunification-common-base-type}
+\label{type-system-unification-common-base-type}
 
 Given a set of multiple types, a \emph{common base type} is a type which all types of the set unify against:
 
@@ -1324,7 +1324,7 @@ Although \type{Base} is not mentioned, the haxe compiler manages to infer it as 
 
 
 \section{Type Inference}
-\label{type-systemtype-inference}
+\label{type-system-type-inference}
 
 The effects of type inference have been seen throughout this document and will continue to be important. A simple example shows type inference at work:
 
@@ -1334,7 +1334,7 @@ The special construct \expr{\$type} was previously mentioned in order to simplif
 %TODO: $type
 \define[Construct]{type}{type is a compile-time mechanism being called like a function, with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.}
 
-In the example above, the first \expr{\$type} prints \expr{Unknown<0>}. This is a \tref{monomorph}{types-monomorph}, a type that is not yet known. The next line \expr{x = "foo"} assigns a \type{String} literal to \expr{x}, which causes the \tref{unification}{type-systemunification} of the monomorph with \type{String}. We then see that the type of \expr{x} indeed has changed to \type{String}.
+In the example above, the first \expr{\$type} prints \expr{Unknown<0>}. This is a \tref{monomorph}{types-monomorph}, a type that is not yet known. The next line \expr{x = "foo"} assigns a \type{String} literal to \expr{x}, which causes the \tref{unification}{type-system-unification} of the monomorph with \type{String}. We then see that the type of \expr{x} indeed has changed to \type{String}.
 
 Whenever a type other than \Fullref{types-dynamic} is unified with a monomorph, that monomorph \emph{becomes} that type: it \emph{morphs} into that type. Therefore it cannot morph into a different type afterwards, a property expressed in the \emph{mono} part of its name.
 
@@ -1345,19 +1345,19 @@ Variable \expr{x} is first initialized to an empty \type{Array}. At this point w
 
 
 \subsection{Top-down Inference}
-\label{type-systemtop-down-inference}
+\label{type-system-top-down-inference}
 
 Most of the time, types are inferred on their own and may then be unified with an expected type. In a few places, however, an expected type may be used to influence inference. We then speak of \emph{top-down inference}.
 
-\define{Expected Type}{Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is argument to a function call. They can influence typing of that expression through what is called \tref{top-down inference}{type-systemtop-down-inference}.}
+\define{Expected Type}{Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is argument to a function call. They can influence typing of that expression through what is called \tref{top-down inference}{type-system-top-down-inference}.}
 
 A good example are arrays of mixed types. As mentioned in \Fullref{types-dynamic}, the compiler refuses \expr{[1, "foo"]} because it cannot determine an element type. Employing top-down inference, this can be overcome:
 
 \haxe{assets/TopDownInference.hx}
 
-Here, the compiler knows while typing \expr{[1, "foo"]} that the expected type is \type{Array<Dynamic>}, so the element type is \type{Dynamic}. Instead of the usual unification behavior where the compiler would attempt (and fail) to determine a \tref{common base type}{type-systemunification-common-base-type}, the individual elements are typed against and unified with \type{Dynamic}.
+Here, the compiler knows while typing \expr{[1, "foo"]} that the expected type is \type{Array<Dynamic>}, so the element type is \type{Dynamic}. Instead of the usual unification behavior where the compiler would attempt (and fail) to determine a \tref{common base type}{type-system-unification-common-base-type}, the individual elements are typed against and unified with \type{Dynamic}.
 
-We have seen another interesting use of top-down inference when \tref{construction of generic type parameters}{type-systemgeneric-type-parameter-construction} was introduced:
+We have seen another interesting use of top-down inference when \tref{construction of generic type parameters}{type-system-generic-type-parameter-construction} was introduced:
 
 \haxe{assets/GenericTypeParameter.hx}
 
@@ -1372,7 +1372,7 @@ The explicit types \type{String} and \type{haxe.Template} are used here to deter
 
 
 \subsection{Limitations}
-\label{type-systeminference-limitations}
+\label{type-system-inference-limitations}
 
 Type inference saves a lot of manual type hints when working with local variables, but sometimes the type system still needs some help. In fact, it does not even try to infer the type of a \tref{variable}{class-field-variable} or \tref{property}{class-field-property} field unless it has a direct initialization.
 
@@ -1382,7 +1382,7 @@ There are also some cases involving recursion where type inference has limitatio
 
 
 \section{Modules and Paths}
-\label{type-systemmodules-and-paths}
+\label{type-system-modules-and-paths}
 
 \define{Module}{All haxe code is organized in modules, which are addressed using paths. In essence, each .hx file represents a module which may contain several types. A type may be \expr{private}, in which case only its containing module can access it.}
 
@@ -1394,15 +1394,15 @@ The distinction of a module and its containing type of the same name is blurry b
 	\item the type name \type{StringMap}
 	\item the type parameter \type{Int}
 \end{enumerate}
-If the module and type name are equal, the duplicate can be removed, leading to the \expr{haxe.ds.StringMap<Int>} short version. However, knowing about the extended version helps with understanding how \tref{module sub-types}{type-systemmodule-sub-types} are addressed.
+If the module and type name are equal, the duplicate can be removed, leading to the \expr{haxe.ds.StringMap<Int>} short version. However, knowing about the extended version helps with understanding how \tref{module sub-types}{type-system-module-sub-types} are addressed.
 
-Paths can be shortened further by using an \tref{import}{type-systemimport}, which typically allows omitting the package part of a path. This may lead to usage of unqualified identifiers, for which understanding the \tref{resolution order}{type-systemresolution-order} is required.
+Paths can be shortened further by using an \tref{import}{type-system-import}, which typically allows omitting the package part of a path. This may lead to usage of unqualified identifiers, for which understanding the \tref{resolution order}{type-systemresolution-order} is required.
 
 \define{Type path}{The (dot-)path to a type consists of the package, the module name and the type name. Its general form is \expr{pack1.pack2.packN.ModuleName.TypeName}.} 
 
 
 \subsection{Module Sub-Types}
-\label{type-systemmodule-sub-types}
+\label{type-system-module-sub-types}
 
 A module sub-type is a type declared in a module with a different name than that module. This allows a single .hx file to contain multiple types, which can be accessed unqualified from within the module, and by using \expr{package.Module.Type} from other modules:
 
@@ -1423,7 +1423,7 @@ The accessibility can be controlled more fine-grained by using \tref{access cont
 
 
 \subsection{Import}
-\label{type-systemimport}
+\label{type-system-import}
 
 If a type path is used multiple times in a .hx file, it might make sense to use an \expr{import} to shorten it. This allows omitting the package when using the type:
 
@@ -1462,7 +1462,7 @@ We describe the resolution order algorithm here, which depends on the following 
 
 \begin{itemize}
 	\item the delared \tref{local variables}{expression-var} (including function arguments)
-	\item the \tref{imported}{type-systemimport} modules, types and statics
+	\item the \tref{imported}{type-system-import} modules, types and statics
 	\item the available \tref{static extensions}{lf-static-extension}
 	\item the kind (static or member) of the current field
 	\item the declared member fields on the current class and its parent classes
@@ -1505,7 +1505,7 @@ For step \ref{resolution:import} of this algorithm as well as steps \ref{resolut
 	\item Imported modules and static extensions are checked from bottom to top with the first match being picked.
 	\item Within a given module, types are checked from top to bottom.
 	\item For imports, a match is made if the name equals.
-	\item For \tref{static extensions}{lf-static-extension}, a match is made if the name equals and the first argument \tref{unifies}{type-systemunification}. Within a given type being used as static extension, the fields are checked from top to bottom.
+	\item For \tref{static extensions}{lf-static-extension}, a match is made if the name equals and the first argument \tref{unifies}{type-system-unification}. Within a given type being used as static extension, the fields are checked from top to bottom.
 \end{itemize}
 
 
@@ -1544,9 +1544,10 @@ We can learn from this that a variable
 	\item may have a constant initialization (here: \expr{"bar"}) and
 	\item may have \tref{access modifiers}{class-field-access-modifier} (here: \expr{static})
 \end{enumerate}
+
 The example first prints the initialization value of \expr{member}, then sets it to \expr{"foo"} before printing its new value. The effect of access modifiers is shared by all three class field kinds and explained in a separate section.
 
-It should be noted that the explicit type is not required if there is an initialization value. The compiler will \tref{infer}{type-systemtype-inference} it in this case.
+It should be noted that the explicit type is not required if there is an initialization value. The compiler will \tref{infer}{type-system-type-inference} it in this case.
 
 \begin{figure}
 	\centering
@@ -1783,7 +1784,7 @@ The variable \expr{child} is explicitly typed as \type{Base} to highlight an imp
 \subsection{Effects of variance and access modifiers}
 \label{class-field-override-effects}
 
-Overriding adheres to the rules of \tref{variance}{type-systemvariance}. That is, their argument types allow \emph{contravariance} (less specific types) while their return type allows \emph{covariance} (more specific types):
+Overriding adheres to the rules of \tref{variance}{type-system-variance}. That is, their argument types allow \emph{contravariance} (less specific types) while their return type allows \emph{covariance} (more specific types):
 
 \haxe{assets/OverrideVariance.hx}
 
@@ -1984,7 +1985,7 @@ else if(condition2) expression2
 else expression3
 \end{lstlisting}
 
-If the value of an \expr{if} expression is required, e.g. for \expr{var x = if(condition) expression1 else expression2}, the typer ensures that the types of \expr{expression1} and \expr{expression2} \tref{unify}{type-systemunification}. If no \expr{else} expression is given, the type is inferred to be \type{Void}.
+If the value of an \expr{if} expression is required, e.g. for \expr{var x = if(condition) expression1 else expression2}, the typer ensures that the types of \expr{expression1} and \expr{expression2} \tref{unify}{type-system-unification}. If no \expr{else} expression is given, the type is inferred to be \type{Void}.
 
 
 \section{switch}
@@ -2017,7 +2018,7 @@ function f1() {
 
 The \expr{return} leaves closure \expr{f2}, but not \expr{f1}, meaning \expr{expression} is still evaluated.
 
-If \expr{return} is used without a value expression, the typer ensures that the return type of the function it returns from is of \type{Void}. If it has a value expression, the typer \tref{unifies}{type-systemunification} its type with the return type (explicitly given or inferred by previous \expr{return} expressions) of the function it returns from.
+If \expr{return} is used without a value expression, the typer ensures that the return type of the function it returns from is of \type{Void}. If it has a value expression, the typer \tref{unifies}{type-system-unification} its type with the return type (explicitly given or inferred by previous \expr{return} expressions) of the function it returns from.
 
 
 \section{break}
@@ -2113,7 +2114,7 @@ Clearly, \type{Int} does not natively provide a \expr{triple} method, yet this p
 
 Static extensions are usually considered syntactic sugar and indeed they are, but it is worth noting that they can have a dramatic effect on code readability: Instead of nested calls in the form of \expr{f1(f2(f3(f4(x))))}, chained calls in the form of \expr{x.f4().f3().f2().f1()} can be used.
 
-Following the rules previously described in \Fullref{type-systemresolution-order}, multiple \expr{using} expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see \Fullref{type-systemmodules-and-paths}) as static extension brings all its types into context.
+Following the rules previously described in \Fullref{type-systemresolution-order}, multiple \expr{using} expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see \Fullref{type-system-modules-and-paths}) as static extension brings all its types into context.
 
 \subsection{In the Haxe Standard Library}
 \label{lf-static-extension-in-std}
@@ -2592,7 +2593,7 @@ Since \type{Expr} is compatible with any possible input, Haxe provides the type 
 
 \haxe{assets/ExprOf.hx}
 
-The two direct calls to \expr{identity} are accepted, even though the argument is declared as \expr{ExprOf<String>}. It might come as a surprise that the \type{Int} \expr{1} is accepted, but it is a logical consequence of what was explained about \tref{macro arguments}{macro-arguments}: The argument expressions are never typed, so it is not possible for the compiler to check their compatibility by \tref{unifying}{type-systemunification}.
+The two direct calls to \expr{identity} are accepted, even though the argument is declared as \expr{ExprOf<String>}. It might come as a surprise that the \type{Int} \expr{1} is accepted, but it is a logical consequence of what was explained about \tref{macro arguments}{macro-arguments}: The argument expressions are never typed, so it is not possible for the compiler to check their compatibility by \tref{unifying}{type-system-unification}.
 
 This is different for the next two lines which are using static extensions (note the \expr{using Main}): For these it is mandatory to type the left side (\expr{"foo"} and \expr{1}) first in order to make sense of the \expr{identity} field access. This makes it possible to check the types against the argument types, which causes \expr{1.identity()} to not consider \expr{Main.identity()} as a suitable field.
 
@@ -2684,10 +2685,10 @@ The Haxe Standard Library comes with a set of tool-classes to simplify working w
 	\item[\type{ComplexTypeTools}:] Allows printing \type{ComplexType} instances in a human-readable way. Also allows determining the \type{Type} corresponding to a \type{ComplexType}.
 	\item[\type{ExprTools}:] Allows printing \type{Expr} instances in a human-readable way. Also allows iterating and mapping expressions.
 	\item[\type{MacroStringTools}:] Offers useful operations on strings and string expressions in macro context.
-	\item[\type{TypeTools}:] Allows printing \type{Type} instances in a human-readable way. Also offers several useful operations on types, such as \tref{unifying}{type-systemunification} them or getting their corresponding \type{ComplexType}.
+	\item[\type{TypeTools}:] Allows printing \type{Type} instances in a human-readable way. Also offers several useful operations on types, such as \tref{unifying}{type-system-unification} them or getting their corresponding \type{ComplexType}.
 \end{description}
 
-\trivia{The tinkerbell library and why Tools.hx works}{We learned about static extensions that using a \emph{module} implies that all its types are brought into static extension context. As it turns out, such a type can also be a \tref{typedef}{type-systemtypedef} to another type. The compiler then considers this type part of the module, and extends static extension accordingly.\\
+\trivia{The tinkerbell library and why Tools.hx works}{We learned about static extensions that using a \emph{module} implies that all its types are brought into static extension context. As it turns out, such a type can also be a \tref{typedef}{type-system-typedef} to another type. The compiler then considers this type part of the module, and extends static extension accordingly.\\
 This ``trick'' was first used in Juraj Kirchheim's \emph{tinkerbell}\footnote{https://github.com/back2dos/tinkerbell} library for exactly the same purpose. Tinkerbell provided many useful macro tools long before they made it into the Haxe compiler and Haxe Standard Library. It remains the primary library for additional macro tools and offers other useful functionality as well.} 
 
 
@@ -2798,7 +2799,7 @@ Standard library
 \subsection{Array}
 \label{std-Array}
 
-An \type{Array} is a \emph{collection} for storing elements.  It has one \Fullref{type-systemtype-parameters} and all elements of the array must be of the specified type.  Alternatively, arrays of mixed types are allowed if the type parameter is \Fullref{types-dynamic}.  See the below code snippet for an example. 
+An \type{Array} is a \emph{collection} for storing elements.  It has one \Fullref{type-system-type-parameters} and all elements of the array must be of the specified type.  Alternatively, arrays of mixed types are allowed if the type parameter is \Fullref{types-dynamic}.  See the below code snippet for an example. 
 \trivia{Dynamic Arrays}{In Haxe 2, mixed type array declarations were allowed.  In Haxe 3, arrays can have mixed types ONLY if they are explicitly declared as \emph{Array$<$Dynamic$>$}.}
 The following example shows some basic examples of working with arrays:
 \haxe{assets/ArrayExample.hx}
@@ -2828,10 +2829,10 @@ See the \href{http://api.haxe.org/List.html}{List API} for details about the lis
 
 \subsection{GenericStack}
 \label{std-GenericStack}
-A \type{GenericStack}, like \type{Array} and \type{List} is a container for storing elements.  It has one \Fullref{type-systemtype-parameters} and all elements of the array must be of the specified type. See the \href{http://api.haxe.org/haxe/ds/GenericStack.html}{GenericStack API} for details about its methods.  Here is a small example program for initializing and working with a \type{GenericStack}.
+A \type{GenericStack}, like \type{Array} and \type{List} is a container for storing elements.  It has one \Fullref{type-system-type-parameters} and all elements of the array must be of the specified type. See the \href{http://api.haxe.org/haxe/ds/GenericStack.html}{GenericStack API} for details about its methods.  Here is a small example program for initializing and working with a \type{GenericStack}.
 \haxe{assets/GenericStackExample.hx}
 \trivia{FastList}{In Haxe 2, the GenericStack class was known as FastList.  Since its behavior more closely resembled a typical stack, the name was changed for Haxe 3.}
-The \emph{Generic} in \type{GenericStack} is literal.  It is attributed with the \expr{:generic} metadata.  Depending on the target, this can lead to improved performance on static targets.  See \Fullref{type-systemgeneric} for more details.
+The \emph{Generic} in \type{GenericStack} is literal.  It is attributed with the \expr{:generic} metadata.  Depending on the target, this can lead to improved performance on static targets.  See \Fullref{type-system-generic} for more details.
 \subsection{Map}
 \label{std-Map}
 
