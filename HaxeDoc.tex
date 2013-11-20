@@ -1687,7 +1687,60 @@ The rationale is that we still want to be able to use field assignments using se
 \section{Method}
 \label{class-field-method}
 
+While \tref{variables}{class-field-variable} hold data, methods are defining behavior of a program by hosting \tref{expressions}{expression}. We have seen method fields in every code example of this document with even the initial \tref{Hello World}{introduction-hello-world} example containing a \expr{main} method:
 
+\haxe{assets/HelloWorld.hx}
+
+Methods are identified by the \expr{function} keyword. We can also learn that they
+
+\begin{enumerate}
+	\item have a name (here: \expr{main}),
+	\item have an argument list (here: empty \expr{()}),
+	\item have a return type (here: \type{Void}),
+	\item may have \tref{access modifiers}{class-field-access-modifier} (here: \expr{static} and \expr{public}) and
+	\item may have an expression (here: \expr{\{trace(trace("Hello World");)\}}).
+\end{enumerate}
+
+We can also look at the next example to learn more about arguments and return types:
+
+\haxe{assets/MethodField.hx}
+
+Arguments are given by an opening parenthesis \expr{(} after the field name, a comma \expr{,} separated list of argument specifications and a closing parenthesis \expr{)}. Additional information on the argument specification is described in \Fullref{types-function}.
+
+The example demonstrates how \tref{type inference}{type-system-type-inference} can be used for both argument and return types. The method \expr{myFunc} has two arguments but only explicitly gives the type of the first one, \expr{f}, as \type{String}. The second one, \expr{i}, is not type-hinted and it is left to the compiler to infer its type from calls made to it. Likewise, the return type of the method is inferred from the \expr{return true} expression as \type{Bool}.
+
+\subsection{Overriding Methods}
+\label{class-field-overriding}
+
+Overriding fields is instrumental for creating class hierarchies. Many design patterns utilize it, but here we will explore only the basic functionality. In order to use overrides in a class, it is required that this class has a \tref{parent class}{types-class-inheritance}. Let us consider the following example:
+
+\haxe{assets/Override.hx}
+
+The important components here are
+
+\begin{itemize}
+	\item the class \type{Base} which has a field \expr{method} and a constructor,
+	\item the class \type{Child} which \expr{extends Base} and also has a field \expr{method} being declared with \expr{override}, and
+	\item the \type{Main} class whose \expr{main} method creates an instance of \expr{Child}, assigns it to a variable \expr{child} of explicit type \type{Base} and calls \expr{method()} on it.
+\end{itemize}
+
+The variable \expr{child} is explicitly typed as \type{Base} to highlight an important difference: At compile-time the type is known to be \type{Base}, but the runtime still finds the correct field \expr{method} on class \type{Child}. It is then obvious that the field access is resolved dynamically at runtime.
+
+\subsection{Effects of variance and access modifiers}
+\label{class-field-override-effects}
+
+Overriding adheres to the rules of \tref{variance}{type-system-variance}. That is, their argument types allow \emph{contravariance} (less specific types) while their return type allows \emph{covariance} (more specific types):
+
+\haxe{assets/OverrideVariance.hx}
+
+Intuitively, this follows from the fact that arguments are ``written to'' the function and the return value is ``read from'' it.
+
+The example also demonstrates how \tref{visibility}{class-field-visibility} may be changed: An overriding field may be \expr{public} if the overridden field is \expr{private}, but not the other way around.
+
+It is not possible to override fields which are declared as \tref{\expr{inline}}{class-field-inline}. This is due to the conflicting concepts: While inlining is done at compile-time by replacing a call with the function body, overriding fields necessarily have to be resolved at runtime.
+	
+	
+	
 \section{Access Modifier}
 \label{class-field-access-modifier}
 \state{NoContent}
@@ -1760,39 +1813,9 @@ Dynamic fields cannot be \expr{inline} for obvious reasons: While inlining is do
 
 The access modifier \expr{override} is required when a field is declared which also exists on a \tref{parent class}{types-class-inheritance}. Its purpose is to ensure that the author of a class is aware of the override as this may not always be obvious in large class hierarchies. Likewise, having \expr{override} on a field which does not actually override anything (e.g. due to a misspelled field name) triggers an error as well.
 
-The effects of overriding fields are detailed in \Fullref{class-field-overriding}.
+The effects of overriding fields are detailed in \Fullref{class-field-overriding}. This modifier is only allowed on \tref{method}{class-field-method} fields.
 
 
-
-\section{Overriding Fields}
-\label{class-field-overriding}
-
-Overriding fields is instrumental for creating class hierarchies. Many design patterns utilize it, but here we will explore only the basic functionality. In order to use overrides in a class, it is required that this class has a \tref{parent class}{types-class-inheritance}. Let us consider the following example:
-
-\haxe{assets/Override.hx}
-
-The important components here are
-
-\begin{itemize}
-	\item the class \type{Base} which has a field \expr{method} and a constructor,
-	\item the class \type{Child} which \expr{extends Base} and also has a field \expr{method} being declared with \expr{override}, and
-	\item the \type{Main} class whose \expr{main} method creates an instance of \expr{Child}, assigns it to a variable \expr{child} of explicit type \type{Base} and calls \expr{method()} on it.
-\end{itemize}
-
-The variable \expr{child} is explicitly typed as \type{Base} to highlight an important difference: At compile-time the type is known to be \type{Base}, but the runtime still finds the correct field \expr{method} on class \type{Child}. It is then obvious that the field access is resolved dynamically at runtime.
-
-\subsection{Effects of variance and access modifiers}
-\label{class-field-override-effects}
-
-Overriding adheres to the rules of \tref{variance}{type-system-variance}. That is, their argument types allow \emph{contravariance} (less specific types) while their return type allows \emph{covariance} (more specific types):
-
-\haxe{assets/OverrideVariance.hx}
-
-Intuitively, this follows from the fact that arguments are ``written to'' the function and the return value is ``read from'' it.
-
-The example also demonstrates how \tref{visibility}{class-field-visibility} may be changed: An overriding field may be \expr{public} if the overridden field is \expr{private}, but not the other way around.
-
-It is not possible to override fields which are declared as \tref{\expr{inline}}{class-field-inline}. This is due to the conflicting concepts: While inlining is done at compile-time by replacing a call with the function body, overriding fields necessarily have to be resolved at runtime.
 
 
 \chapter{Expressions}
