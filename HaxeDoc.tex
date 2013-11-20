@@ -66,7 +66,7 @@ Currently, there are eight supported target languages which allow different use-
 	C\# & Sourcecode & Desktop, Mobile, Server \\ \hline
 \end{tabular}
 \end{center}
-The remainder of section \ref{introduction} gives a brief overview of what a Haxe program looks like, and how haxe evolved since its inception in 2005.
+The remainder of section \ref{introduction} gives a brief overview of what a Haxe program looks like, and how Haxe evolved since its inception in 2005.
 
 \Fullref{types} introduces the seven different kinds of types in Haxe and how they interact with each other. The discussion of types is continued in \Fullref{type-system}, where features like \emph{unification}, \emph{type parameters} and \emph{type inference} are explained.
 
@@ -95,7 +95,7 @@ Occasionally, we demonstrate how Haxe code is generated, for which we usually sh
 Furthermore, we define a set of terms in this document. Most often, this is done when introducing a new type or when a term is specific to Haxe. We not define every new aspect we introduce, e.g. what a class is, in order to not clutter the text. A definition looks like this:
 \define{Definition name}{Definition description}
 
-In a few places, this document has \emph{trivia}-boxes. These include off-the-record information such as why certain decisions were made during Haxe's development or how a particular feature has been changed in past haxe versions. This information is generally not important and can be skipped as it is only meant to convey trivia:
+In a few places, this document has \emph{trivia}-boxes. These include off-the-record information such as why certain decisions were made during Haxe's development or how a particular feature has been changed in past Haxe versions. This information is generally not important and can be skipped as it is only meant to convey trivia:
 
 \trivia{About Trivia}{This is trivia.}
 
@@ -106,11 +106,11 @@ In a few places, this document has \emph{trivia}-boxes. These include off-the-re
 The following program prints ``Hello World'' after having been compiled and run:
 
 \haxe{assets/HelloWorld.hx}
-This can be tested by saving the above code to a file named \ic{HelloWorld.hx} and invoking the Haxe compiler like so: \ic{haxe -main HelloWorld --interp}. This generates the following output: \ic{HelloWorld.hx:3: Hello world}. There are several things to learn from this:
+This can be tested by saving the above code to a file named \ic{HelloWorld.hx} and invoking the Haxe Compiler like so: \ic{haxe -main HelloWorld --interp}. This generates the following output: \ic{HelloWorld.hx:3: Hello world}. There are several things to learn from this:
 
 \begin{itemize}
 	\item Haxe programs are saved in files with an extension of \ic{.hx}.
-	\item The Haxe compiler is a command-line tool which can be invoked with parameters such as \ic{-main HelloWorld} and \ic{--interp}.
+	\item The Haxe Compiler is a command-line tool which can be invoked with parameters such as \ic{-main HelloWorld} and \ic{--interp}.
 	\item Haxe programs have classes (\type{HelloWorld}, upper-case), which have functions (\expr{main}, lower-case). 
 \end{itemize}
 
@@ -118,7 +118,7 @@ This can be tested by saving the above code to a file named \ic{HelloWorld.hx} a
 \label{introduction-haxe-history}
 \state{Edited}
 
-The Haxe project started on 22 October 2005 as a successor to the \emph{Motion-Twin Action Script Compiler}, MTASC. French developer \emph{Motion-Twin}\footnote{http://motion-twin.org} had developed MTASC as a popular ActionScript 2 compiler, and the next logical step for them was to design their very own programming language; thus, giving birth to haxe.
+The Haxe project started on 22 October 2005 as a successor to the \emph{Motion-Twin Action Script Compiler}, MTASC. French developer \emph{Motion-Twin}\footnote{http://motion-twin.org} had developed MTASC as a popular ActionScript 2 compiler, and the next logical step for them was to design their very own programming language; thus, giving birth to Haxe.
 
 Being spelled \emph{haXe} back then, its beta was released in February 2006 with the first supported targets being AVM\footnote{Adobe Virtual Machine}-bytecode and Motion-Twin's own \emph{Neko} virtual machine\footnote{http://nekovm.org}.
 
@@ -132,14 +132,14 @@ Just as with Haxe 1, what followed were several months of stability releases. In
 
 After the release of 2.09, \emph{Simon Krajewski} joined the team and work towards Haxe 3 began. Furthermore, \emph{Cau\^{e} Waneck}'s \target{Java} and \target{C\#} targets found their way into the Haxe builds. It was then decided to make one final Haxe 2 release, which happened in July 2012 with the release of Haxe 2.10.
 
-In late 2012, the haxe 3 switch was flipped and the Haxe compiler team, now backed by the newly established \emph{Haxe Foundation}\footnote{http://haxe-foundation.org}, focused on this next major version. Haxe 3 was subsequently released in May 2013.
+In late 2012, the Haxe 3 switch was flipped and the Haxe Compiler team, now backed by the newly established \emph{Haxe Foundation}\footnote{http://haxe-foundation.org}, focused on this next major version. Haxe 3 was subsequently released in May 2013.
 
 \part{Language Reference}
 
 \chapter{Types}
 \label{types}
 
-The Haxe compiler employs a sophisticated typing system which helps detecting type-related errors in a program at compile-time. A type error is an invalid operation on a given type, such as dividing by a String, trying to access a field of an Integer or calling a function with not enough (or too many) arguments.
+The Haxe Compiler employs a sophisticated typing system which helps detecting type-related errors in a program at compile-time. A type error is an invalid operation on a given type, such as dividing by a String, trying to access a field of an Integer or calling a function with not enough (or too many) arguments.
 
 In some languages this additional safety comes at a price because programmers are forced to explicitly assign types to syntactic constructs:
 
@@ -150,7 +150,7 @@ MySpecialButton* myButton = new MySpecialButton(); // C++
 The explicit type annotations are not required in Haxe, because the compiler can \emph{infer} the type:
 
 \begin{lstlisting}
-var myButton = new MySpecialButton(); // haxe
+var myButton = new MySpecialButton(); // Haxe
 \end{lstlisting}
 We will explore type inference in detail later in \Fullref{type-system-type-inference}. For now, it is sufficient to say that the variable \expr{myButton} in the above code is known to be an \emph{instance of class} \type{MySpecialButton}. A class instance is one of seven type groups:
 
@@ -172,24 +172,24 @@ We will explore type inference in detail later in \Fullref{type-system-type-infe
 
 \todo{Check wording here (we don't want to address ``you'')}
 
-\emph{Basic Types} include \emph{Bool, Float, and Int}.  The basic types are \emph{abstract types} tagged with \emph{:coreType} metadata.  This means is they get replaced by platform specific types at compile-time.  Don't worry about all of the implmentation details at the moment, but feel free to see \Fullref{types-abstract} and \Fullref{lf-metadata} for more details.  Just be aware that this abstraction can cause the \Fullref{types-overflow} and \Fullref{types-nullability} of Basic Types to behave differently on different target platforms.  To reiterate: \textbf{basic types can behave differently depending on the target platform.}
+\emph{Basic Types} include \emph{Bool, Float, and Int}.  The basic types are \emph{abstract types} tagged with \emph{:coreType} metadata.  This means is they get replaced by platform specific types at compile-time.  Don't worry about all of the implementation details at the moment, but feel free to see \Fullref{types-abstract} and \Fullref{lf-metadata} for more details.  Just be aware that this abstraction can cause the \Fullref{types-overflow} and \Fullref{types-nullability} of Basic Types to behave differently on different target platforms.  To reiterate: \textbf{basic types can behave differently depending on the target platform.}
 
 \subsection{Numeric types}
 \label{types-numeric-types}
 
-\define[Type]{Float}{Represents a double-precision IEEE 64bit floating point number.}
+\define[Type]{Float}{Represents a double-precision IEEE 64-bit floating point number.}
 \define[Type]{Int}{Represents an integral number.}
 While every \type{Int} can be used where a \type{Float} is expected (that is, \type{Int} \emph{is assignable to} or \emph{unifies with} \type{Float}), the reverse is not true: Assigning a \type{Float} to an \type{Int} might lose precision and is not implicitly allowed.
 
 \subsection{Overflow}
 \label{types-overflow}
 
-\todo{Took the ideas from old manual, but moved Neko in with C++ and co.  Still Haxe 3 relevant?}For performance reasons, the Haxe compiler does not enforce any overflow behavior.  The burden of checking for overflows falls to the target platform. Here are some platform specific notes on overflow behavior:
+\todo{Took the ideas from old manual, but moved Neko in with C++ and co.  Still Haxe 3 relevant?}For performance reasons, the Haxe Compiler does not enforce any overflow behavior.  The burden of checking for overflows falls to the target platform. Here are some platform specific notes on overflow behavior:
 
 \begin{description}
- \item[C++, Java, C\#, Neko:] 32-bit integers, with usual overflow practices 
- \item[Flash, AVM2:] 32-bit integers, but higher integers are memory boxed
- \item[PHP JS Flash 8:] No native \emph{Int} type.  Overflows will occur if they reach their float limit (2\textsuperscript{52}).
+ \item[C++, Java, C\#, Neko:] 32-bit integers, with usual overflow practices. 
+ \item[Flash, AVM2:] 32-bit integers, but higher integers are memory boxed.
+ \item[PHP, JS, Flash 8:] No native \emph{Int} type.  Overflows will occur if they reach their float limit (2\textsuperscript{52}).
 \end{description}
 
 Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used to ensure correct overflow behavior regardless of the platform.  
@@ -229,7 +229,7 @@ Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used t
 	& & \type{Int} & \type{Int} & \type{Int} \\	 \hline
 	\multicolumn{5}{|c|}{Comparison} \\ \hline
 	Operator & Operation & Argument 1 & Argument 2 & Return \\ \hline
-	\expr{\textasciitilde} & \type{negation} & \type{Float/Int} & \type{N/A} & \type{Bool} \\
+	\expr{\textasciitilde} & negation & \type{Float/Int} & \type{N/A} & \type{Bool} \\
 	\expr{==} & equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
 	\expr{!=} & not equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
 	\expr{<} & less than & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
@@ -272,7 +272,7 @@ Accessing \expr{object.field} if \expr{object} is \expr{null} would lead to a ru
 \subsection{Void}
 \label{types-void}
 
-\define[Type]{Void}{Void denote the absence of a type. It is used to express that something (usually a function) has no value.}
+\define[Type]{Void}{Void denotes the absence of a type. It is used to express that something (usually a function) has no value.}
 
 \type{Void} is a special case in the type system because it is not actually a type. It is used to express the absence of a type, which applies mostly to function arguments and return types.
 We have already ``seen'' Void in the initial ``Hello World'' example:
@@ -291,21 +291,21 @@ var x:Void; // Arguments and variables of type Void are not allowed
 \section{Nullability}
 \label{types-nullability}
 
-\define{nullable}{A type in haxe is considered \emph{nullable} if \expr{null} is a valid value for it.}
+\define{nullable}{A type in Haxe is considered \emph{nullable} if \expr{null} is a valid value for it.}
 
 It is common for programming languages to have a single, clean definition for nullability. However, Haxe has to find a compromise in this regard. The reason for this is obvious when looking at the nature of Haxe's target languages: While some of them allow and, in fact, default to \expr{null} for anything, others do not even allow \expr{null} for certain types. This necessitates the distinction of two types of target languages:
 
 \define{Static target}{Static targets employ their own type system where \expr{null} is not a valid value for basic types. This is true for the \target{Flash 9+}, \target{C++}, \target{Java} and \target{C\#} targets.}
-\define{Dynamic target}{Dynamic targets are more lenient with their types and allow \it{null} values for basic types. They consist of \target{JavaScript}, \target{PHP}, \target{neko} and \target{Flash 6-8}.}
+\define{Dynamic target}{Dynamic targets are more lenient with their types and allow \expr{null} values for basic types. They consist of \target{JavaScript}, \target{PHP}, \target{neko} and \target{Flash 6-8}.}
 
 There is nothing to worry about when working with \expr{null} on dynamic targets, but static ones may require some thought. For starters, basic types are initialized to these values:
 
 \begin{description}
 	\item[\type{Int}:] \expr{0}
-	\item[\type{Float}:] \expr{NaN} on \target{Flash 9}, \expr{0.0} on other static targets
+	\item[\type{Float}:] \expr{NaN} on \target{Flash 9+}, \expr{0.0} on other static targets
 	\item[\type{Bool}:] \expr{false}
 \end{description}
-As a consequence, the Haxe compiler does not allow the assignment of \expr{null} to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as \type{Null$<$T$>$}:
+As a consequence, the Haxe Compiler does not allow the assignment of \expr{null} to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as \type{Null$<$T$>$}:
 
 \begin{lstlisting}
 var a:Int = null; // error on static platforms
@@ -361,9 +361,9 @@ Semantically, this class represents a point in discrete 2-dimensional space, but
 	\item The keyword \expr{class} denotes that we are declaring a class.
 	\item \type{Point} is the name of the class and could be anything conforming to the rules for type identifiers.
 	\item Enclosed in curly braces \expr{$\left\{\right\}$} are the class fields,
-	\item which consist of two \emph{variable} fields \expr{x} and \expr{y} of type \type{Int}
+	\item which consist of two \emph{variable} fields \expr{x} and \expr{y} of type \type{Int},
 	\item followed by a special \emph{function} field named \expr{new}, which is the \emph{constructor} of the class,
-	\item as well as a normal function \expr{toString}
+	\item as well as a normal function \expr{toString}.
 \end{itemize}
 There is a special type in Haxe which is compatible with all classes:
 
@@ -386,7 +386,7 @@ This will yield an instance of class \type{Point}, which is assigned to a variab
 \subsection{Inheritance}
 \label{types-class-inheritance}
 
-Classes may inherit from other classes, which in haxe is denoted by the \expr{extends} keyword:
+Classes may inherit from other classes, which in Haxe is denoted by the \expr{extends} keyword:
 
 \haxe{assets/Point3.hx}
 This relation is often described as "is-a": Any instance of class \type{Point3} is also an instance of \type{Point}. \type{Point} is then known as the \emph{parent class} of \type{Point3}, which is a \emph{child class} of \type{Point}. A class may have many child classes, but only one parent class. The term ``a parent class of class X'' usually refers to its direct parent class, the parent class of its parent class and so on.
@@ -396,7 +396,7 @@ The code above is very similar to the original \type{Point} class, with two new 
  \item \expr{extends Point} denotes that this class inherits from class \type{Point}
  \item \expr{super(x, y)} is the call to the constructor of the parent class, in this case \expr{Point.new}
 \end{itemize}
-It is not necessary for child classes to define their own constructors, but if they do a call to \expr{super()} is mandatory. Unlike some other object-oriented languages, this call can appear anywhere in the constructor code and does not have to be the first expression.
+It is not necessary for child classes to define their own constructors, but if they do, a call to \expr{super()} is mandatory. Unlike some other object-oriented languages, this call can appear anywhere in the constructor code and does not have to be the first expression.
 
 A class may override \tref{methods}{class-field-method} of its base class, which requires the explicit \expr{override} keyword. The effects and restrictions of this are detailed in \Fullref{class-field-overriding}.
 
@@ -416,9 +416,9 @@ The syntax is similar to classes, with the following exceptions:
 \begin{itemize}
 	\item \expr{interface} keyword is used instead of \expr{class} keyword
 	\item functions do not have any expressions
-	\item any field must have an explicit type
+	\item every field must have an explicit type
 \end{itemize}
-Interfaces, unlike structural subtyping, describe a \emph{static relation} between classes. A given class is only considered to be compatible to an interface if it explicitely states so:
+Interfaces, unlike structural subtyping, describe a \emph{static relation} between classes. A given class is only considered to be compatible to an interface if it explicitly states so:
 
 \begin{lstlisting}
 class Point implements Printable { }
@@ -446,7 +446,7 @@ Semantically, this enum describes a color which is either red, green, blue or a 
 	\item which are \expr{Red}, \expr{Green} and \expr{Blue} taking no arguments,
 	\item as well as \expr{Rgb} taking three \type{Int} arguments named \expr{r}, \expr{g} and \expr{b}.
 \end{itemize}
-The haxe type system provides a type which unifies with all enum types:
+The Haxe type system provides a type which unifies with all enum types:
 
 \define[Type]{Enum}{This type is compatible with all enum types. At compile-time, \type{Enum<T>} can be considered to be the common base type of all enum types. However, this relation is not reflected in generated code.} 
 
@@ -463,7 +463,7 @@ var c = Rgb(255, 255, 0);
 In this code, the type of variables \expr{a}, \expr{b} and \expr{c} is instance of enum \type{Color}. Variable \expr{c} is initialized using the \expr{Rgb} constructor with arguments.
 
 All enum instances can be assigned to a special type named \type{EnumValue}.
-\define[Type]{EnumValue}{EnumValue is a special type which unifies with all enum instances. It is used by the standard library to provide some operations for all enum instances, and can be employed in user-code accordingly.}
+\define[Type]{EnumValue}{EnumValue is a special type which unifies with all enum instances. It is used by the Haxe Standard Library to provide some operations for all enum instances, and can be employed in user-code accordingly.}
 
 It is important to distinguish enum types and enum constructors, as this example demonstrates:
 
@@ -506,12 +506,12 @@ It is worth noting that using anonymous structures does not subvert the typing s
 \begin{lstlisting}
 class Test {
 	static public function main() {
-		var point = { x: 0.0, y: 12.0};
+		var point = { x: 0.0, y: 12.0 };
 		point.z; // { y : Float, x : Float } has no field z
 	}
 }
 \end{lstlisting}
-The error message indicates that the compiler knows the type of \expr{point}: It is a structure with fields \expr{x} and \expr{y} of type \type{Float}. Since it has no field \expr{z} the access fails.
+The error message indicates that the compiler knows the type of \expr{point}: It is a structure with fields \expr{x} and \expr{y} of type \type{Float}. Since it has no field \expr{z}, the access fails.
 The type of \expr{point} is known through \tref{type inference}{type-system-type-inference}, which thankfully saves us from using explicit types for local variables. However, if \expr{point} was a field, explicit typing would be necessary:
 
 \begin{lstlisting}
@@ -542,13 +542,13 @@ It is also possible to use \emph{JSON}-notation for structures by using \emph{st
 \begin{lstlisting}
 var point = { "x" : 1, "y" : -5 };
 \end{lstlisting}
-While any string literal is allowed, the field is only considered part of the type if it is a valid haxe identifier. Otherwise, haxe syntax does not allow expressing access to such a field, and \tref{reflection}{std-reflection} has to be employed through the use of \expr{Reflect.field} and \expr{Reflect.setField}.
+While any string literal is allowed, the field is only considered part of the type if it is a valid Haxe identifier. Otherwise, Haxe syntax does not allow expressing access to such a field, and \tref{reflection}{std-reflection} has to be employed through the use of \expr{Reflect.field} and \expr{Reflect.setField}.
 
 
 \subsection{Class Notation for Structure Types}
 \label{types-structure-class-notation}
 
-When defining a structure type, haxe allows using the same syntax as described in \Fullref{class-field}. The following \tref{typedef}{type-system-typedef} declares a \type{Point} type with variable fields \expr{x} and \expr{y} of type \type{Int}:
+When defining a structure type, Haxe allows using the same syntax as described in \Fullref{class-field}. The following \tref{typedef}{type-system-typedef} declares a \type{Point} type with variable fields \expr{x} and \expr{y} of type \type{Int}:
 
 \begin{lstlisting}
 typedef Point = {
@@ -582,7 +582,7 @@ There is a strong resemblance between the declaration of function \expr{test} an
 	\item \emph{Function arguments} are separated by the special arrow token \expr{->} instead of commas, and
 	\item the \emph{function return type} appears at the end after another \expr{->}.
 \end{itemize}
-In either notation, it is obvious that the function \expr{test} accepts a first argument of type \type{Int}, a second argument of type \type{String} and returns a value of type \type{Bool}. If a call to this function is made, such as \expr{test(1, "foo")} within the second \expr{\$type} expression, the haxe typer checks if \expr{1} can be assigned to \type{Int} and if \expr{"foo"} can be assigned to \type{String}. The type of the call is then equal to the type of the value \expr{test} returns, which is \type{Bool}.
+In either notation, it is obvious that the function \expr{test} accepts a first argument of type \type{Int}, a second argument of type \type{String} and returns a value of type \type{Bool}. If a call to this function is made, such as \expr{test(1, "foo")} within the second \expr{\$type} expression, the Haxe typer checks if \expr{1} can be assigned to \type{Int} and if \expr{"foo"} can be assigned to \type{String}. The type of the call is then equal to the type of the value \expr{test} returns, which is \type{Bool}.
 
 
 \subsection{Optional Arguments}
@@ -600,7 +600,7 @@ This example program calls \expr{test} four times and prints its return value.
 	\item the third call is made with two arguments \expr{1} and \expr{"foo"}
 	\item the fourth call is made with a singular argument \expr{"foo"}
 \end{enumerate}
-The output shows that optional arguments which are omitted from the call have a value of \expr{null}. This implies that the type of these arguments must admit \expr{null} as value, which raises the question of its \tref{nullability}{types-nullability}. The haxe compiler ensures that optional basic type arguments are nullable by inferring their type as \type{Null<T>} when compiling to a \tref{static target}{def:Static target}.
+The output shows that optional arguments which are omitted from the call have a value of \expr{null}. This implies that the type of these arguments must admit \expr{null} as value, which raises the question of its \tref{nullability}{types-nullability}. The Haxe Compiler ensures that optional basic type arguments are nullable by inferring their type as \type{Null<T>} when compiling to a \tref{static target}{def:Static target}.
 
 While the first three calls are intuitive, the fourth one might come as a surprise: It is indeed allowed to skip optional arguments if the supplied value is assignable to a later argument.
 
@@ -615,7 +615,7 @@ This example is very similar to the one from \Fullref{types-function-optional-ar
 
 %TODO: Default values do not imply nullability, even if the value is \expr{null}. 
 
-Default values in haxe are not part of the type and are not replaced at call-site (unless the function is \tref{inlined}{class-field-inline}, which might be considered a more typical approach. On some targets, the compiler may still pass \expr{null} for omitted argument values and generate code into the function which is similar to this:
+Default values in Haxe are not part of the type and are not replaced at call-site (unless the function is \tref{inlined}{class-field-inline}, which might be considered a more typical approach. On some targets, the compiler may still pass \expr{null} for omitted argument values and generate code into the function which is similar to this:
 \begin{lstlisting}
 	static function test(i = 12, s = "bar") {
 		if (i == null) i = 12;
@@ -631,7 +631,7 @@ This should be considered in performance-critical code, where a solution without
 \section{Dynamic}
 \label{types-dynamic}
 
-While haxe has a static type system, this type system can effectively be turned off by using the \type{Dynamic} type. A \emph{dynamic value} can be assigned to anything, and anything can be assigned to it. This has several drawbacks:
+While Haxe has a static type system, this type system can effectively be turned off by using the \type{Dynamic} type. A \emph{dynamic value} can be assigned to anything, and anything can be assigned to it. This has several drawbacks:
 
 \begin{itemize}
 	\item The compiler can no longer type-check assignments, function calls and other constructs where specific types are expected.
@@ -647,13 +647,13 @@ d.foo;
 \end{lstlisting}
 Trying to run a compiled program in the Flash Player yields an error \texttt{Property foo not found on Number and there is no default value}. Without \type{Dynamic}, this would have been detected at compile-time.
 
-\trivia{Dynamic Inference before haxe 3}{The haxe 3 compiler never infers a type to \type{Dynamic}, so users must be explicit about it. Previous haxe versions used to infer arrays of mixed types, e.g. \expr{[1, true, "foo"]}, as \type{Array<Dynamic>}. We found that this behavior introduced too many type problems and thus removed it for haxe 3.}
+\trivia{Dynamic Inference before Haxe 3}{The Haxe 3 compiler never infers a type to \type{Dynamic}, so users must be explicit about it. Previous Haxe versions used to infer arrays of mixed types, e.g. \expr{[1, true, "foo"]}, as \type{Array<Dynamic>}. We found that this behavior introduced too many type problems and thus removed it for Haxe 3.}
 
-Use of \type{Dynamic} should be minimized as there are better options in many situations, but sometimes it is just practical to use it. Parts of the haxe \Fullref{std-reflection} API use it, and it is sometimes the best option when dealing with custom data structures that are not known at compile-time.
+Use of \type{Dynamic} should be minimized as there are better options in many situations, but sometimes it is just practical to use it. Parts of the Haxe \Fullref{std-reflection} API use it, and it is sometimes the best option when dealing with custom data structures that are not known at compile-time.
 
 Dynamic behaves in a special way when being \tref{unified}{type-system-unification} with a \tref{monomorph}{types-monomorph}, which is described in \Fullref{type-system-monomorphs}.
 
-\trivia{Dynamic in the Standard Library}{Dynamic was quite frequent in the haxe standard library before haxe 3. With the continuous improvements of the haxe type system, the occurences of Dynamic were reduced over the releases leading to haxe 3.}
+\trivia{Dynamic in the Standard Library}{Dynamic was quite frequent in the Haxe Standard Library before Haxe 3. With the continuous improvements of the Haxe type system, the occurences of Dynamic were reduced over the releases leading to Haxe 3.}
 
 \subsection{Dynamic with Type Parameter}
 \label{types-dynamic-with-type-parameter}
@@ -856,7 +856,7 @@ By adding the \expr{:enum} metadata to an abstract definition, that abstract can
 
 \haxe{assets/AbstractEnum.hx}
 
-The Haxe compiler replaces all field access to the \type{HttpStatus} abstract with their values, as evident in the \target{Javascript} output:
+The Haxe Compiler replaces all field access to the \type{HttpStatus} abstract with their values, as evident in the \target{Javascript} output:
 
 \begin{lstlisting}
 Main.main = function() {
@@ -947,7 +947,7 @@ All types are organized in \emph{modules} and can be addressed through \emph{pat
 \section{Typedef}
 \label{type-system-typedef}
 
-We briefly looked at typedefs while talking about \tref{anonymous structures}{types-anonymous-structure} and saw how we could shorten a complex structure type by giving it a name. This is precisely what typedefs are good for, and giving names to structure types might even be considered their primary use. In fact, it is so common that the distinction appears somewhat blurry and many haxe users consider typedefs to actually \emph{be} the structure.
+We briefly looked at typedefs while talking about \tref{anonymous structures}{types-anonymous-structure} and saw how we could shorten a complex structure type by giving it a name. This is precisely what typedefs are good for, and giving names to structure types might even be considered their primary use. In fact, it is so common that the distinction appears somewhat blurry and many Haxe users consider typedefs to actually \emph{be} the structure.
 
 A typedef can give a name to any other type:
 
@@ -962,7 +962,7 @@ typedef User = {
     var name : String;
 }
 \end{lstlisting}
-A typedef is not a textual replacement, but actually a real type. It can even have \tref{type parameters}{type-system-type-parameters} as the \type{Iterable} type from the standard library demonstrates:
+A typedef is not a textual replacement, but actually a real type. It can even have \tref{type parameters}{type-system-type-parameters} as the \type{Iterable} type from the Haxe Standard Library demonstrates:
 
 \begin{lstlisting}
 typedef Iterable<T> = {
@@ -991,7 +991,7 @@ There may only be a single extension on a structure, so extensions can be unders
 \section{Type Parameters}
 \label{type-system-type-parameters}
 
-Haxe allows parametrization of a number of types, as well as \tref{class fields}{class-field} and \tref{enum constructors}{types-enum-constructor}. Type parameters are defined by enclosing comma-separated type parameter names in angle brackets \expr{$<>$}. A simple example from the standard library is \type{Array}:
+Haxe allows parametrization of a number of types, as well as \tref{class fields}{class-field} and \tref{enum constructors}{types-enum-constructor}. Type parameters are defined by enclosing comma-separated type parameter names in angle brackets \expr{$<>$}. A simple example from the Haxe Standard Library is \type{Array}:
 
 \begin{lstlisting}
 class Array<T> {
@@ -1045,7 +1045,7 @@ We can see that invoking \expr{test} with an empty array in line 7 and an \type{
 \section{Generic}
 \label{type-system-generic}
 
-Usually, the Haxe compiler generates only a single class or function, even if it has type parameters. This results in a natural abstraction, where the code generator for the target language has to assume that a type parameter could be of any type. The generated code then might have to perform some type checks, which can be detrimental to performance.
+Usually, the Haxe Compiler generates only a single class or function, even if it has type parameters. This results in a natural abstraction, where the code generator for the target language has to assume that a type parameter could be of any type. The generated code then might have to perform some type checks, which can be detrimental to performance.
 
 A class or function can be made \emph{generic} by attributing it with the \expr{:generic} \tref{metadata}{lf-metadata}. This causes the compiler to emit a distinct class/function per type parameter combination with mangled names. A specification like this can yield a boost in performance-critical code portions on \tref{static targets}{def:Static target} at the cost of a larger output size:
 
@@ -1095,7 +1095,7 @@ Main.main();
 
 \define{Generic Type Parameter}{A type parameter is said to be generic if its containing class or method is generic.}
 
-With normal type parameter, it is not possible to construct them, i.e. \expr{new T()} is a compiler error. This is because haxe generates only a single function and the construct then makes no sense. This is different when the type parameter is generic: Since we know that the compiler will generate a distinct function for each type parameter combination, it is possible to replace the \type{T} \expr{new T()} with the real type.
+With normal type parameter, it is not possible to construct them, i.e. \expr{new T()} is a compiler error. This is because Haxe generates only a single function and the construct then makes no sense. This is different when the type parameter is generic: Since we know that the compiler will generate a distinct function for each type parameter combination, it is possible to replace the \type{T} \expr{new T()} with the real type.
 
 \haxe{assets/GenericTypeParameter.hx} 
 
@@ -1154,7 +1154,7 @@ With \expr{b} being typed as \type{MyArray<Base>} and \type{MyArray} only having
 
 \todo{Mention toString()/String conversion somewhere in this chapter.}
 
-Unification is the heart of the type system and contributes immensely to the robustness of haxe programs. It describes the process of checking if a type is compatible to another type.
+Unification is the heart of the type system and contributes immensely to the robustness of Haxe programs. It describes the process of checking if a type is compatible to another type.
 
 \define{Unification}{Unification between two types A and B is a directional process which answers the question if A \emph{can be assigned to} B. It may \emph{mutate} either type if it is or has a \tref{monomorph}{types-monomorph}.}
 
@@ -1201,7 +1201,7 @@ These rules are transitive, meaning that a child class can also be assigned to t
 
 \define{Structural Subtyping}{Structural subtyping defines an implicit relation between types that have the same structure.}
 
-In haxe, structural subtyping is only possible when assigning a class instance to a structure. The following example is part of the \type{Lambda} class of the \tref{Haxe Standard Library}{std}:
+In Haxe, structural subtyping is only possible when assigning a class instance to a structure. The following example is part of the \type{Lambda} class of the \tref{Haxe Standard Library}{std}:
 
 \begin{lstlisting}
 public static function empty<T>(it : Iterable<T>) : Bool {
@@ -1238,7 +1238,7 @@ The right-hand function clearly is of type \type{Void->String}, yet we can assig
 Given a set of multiple types, a \emph{common base type} is a type which all types of the set unify against:
 
 \haxe{assets/UnifyMin.hx}
-Although \type{Base} is not mentioned, the haxe compiler manages to infer it as the common type of \type{Child1} and \type{Child2}. The haxe compiler employs this kind of unification in the following situations:
+Although \type{Base} is not mentioned, the Haxe Compiler manages to infer it as the common type of \type{Child1} and \type{Child2}. The Haxe Compiler employs this kind of unification in the following situations:
 
 \begin{itemize}
 	\item array declarations
@@ -1310,7 +1310,7 @@ There are also some cases involving recursion where type inference has limitatio
 \section{Modules and Paths}
 \label{type-system-modules-and-paths}
 
-\define{Module}{All haxe code is organized in modules, which are addressed using paths. In essence, each .hx file represents a module which may contain several types. A type may be \expr{private}, in which case only its containing module can access it.}
+\define{Module}{All Haxe code is organized in modules, which are addressed using paths. In essence, each .hx file represents a module which may contain several types. A type may be \expr{private}, in which case only its containing module can access it.}
 
 The distinction of a module and its containing type of the same name is blurry by design. In fact, addressing \expr{haxe.ds.StringMap<Int>} can be considered shorthand for \expr{haxe.ds.StringMap.StringMap<Int>}. The latter version consists of four parts:
 
@@ -1442,7 +1442,7 @@ For step \ref{resolution:import} of this algorithm as well as steps \ref{resolut
 
 \define{Class Field}{A class field is a variable, property or method of a class which can either be static or non-static. Non-static fields are referred to as \emph{member} fields, so we speak of e.g. a \emph{static method} or a \emph{member variable}.}
 
-So far we have seen how types and haxe programs in general are structured. This section about class fields concludes the structural part and at the same time bridges to the behavioral part of haxe. This is because class fields are the place where \tref{expressions}{expression} are at home.
+So far we have seen how types and Haxe programs in general are structured. This section about class fields concludes the structural part and at the same time bridges to the behavioral part of Haxe. This is because class fields are the place where \tref{expressions}{expression} are at home.
 
 There are three kinds of class fields:
 
@@ -1451,7 +1451,7 @@ There are three kinds of class fields:
 	\item[Property:] A \tref{property}{class-field-property} class field defines a custom access behavior for something that, outside the class, looks like a variable field.
 	\item[Method:] A \tref{method}{class-field-method} is a function which can be called to execute code.
 \end{description}
-Strictly speaking, a variable could be considered to be a property with certain access modifiers. Indeed, the haxe compiler does not distinguish variables and properties during its typing phase, but they remain separated at syntax level.
+Strictly speaking, a variable could be considered to be a property with certain access modifiers. Indeed, the Haxe Compiler does not distinguish variables and properties during its typing phase, but they remain separated at syntax level.
 
 Regarding terminology, a method is a (static or non-static) function belonging to a class. Other functions, such as a \tref{closure}{expression-closure} in expressions, are not considered methods.
 
@@ -1747,7 +1747,7 @@ The effects of overriding fields are detailed in \Fullref{class-field-overriding
 \chapter{Expressions}
 \label{expression}
 
-Expressions in haxe define what a program \emph{does}. Most expressions are found in the body of a \tref{method}{class-field-method}, where they are combined to express what that method should do. This section explains the different kinds of expressions. Some definitions help here:
+Expressions in Haxe define what a program \emph{does}. Most expressions are found in the body of a \tref{method}{class-field-method}, where they are combined to express what that method should do. This section explains the different kinds of expressions. Some definitions help here:
 
 \define{Name}{A general name may refer to
 \begin{itemize}
@@ -1769,7 +1769,7 @@ Further limitations follow from the usage context, which are checked upon typing
 \section{Blocks}
 \label{expression-block}
 
-A block in haxe starts with an opening curly brace \expr{\{} and ends with a closing curly brace \expr{\}}. A block may contain several expressions, each of which is followed by a semicolon \expr{;}. The general syntax is thus:
+A block in Haxe starts with an opening curly brace \expr{\{} and ends with a closing curly brace \expr{\}}. A block may contain several expressions, each of which is followed by a semicolon \expr{;}. The general syntax is thus:
 
 \begin{lstlisting}
 {
@@ -1802,7 +1802,7 @@ are evaluated.
 \section{Constants}
 \label{expression-constants}
 
-The haxe syntax supports the following constants:
+The Haxe syntax supports the following constants:
 
 \begin{description}
 	\item[Int:] An \tref{integer}{def:Int}, such as \expr{0}, \expr{1}, \expr{97121}, \expr{-12}, \expr{0xFF0000}.
@@ -2030,7 +2030,7 @@ Haxe allows conditional compilation by using \expr{\#if}, \expr{\#elseif} and \e
 This example demonstrates usage of conditional compilation:
 
 \haxe{assets/ConditionalCompilation.hx}
-Compiling this without any flags will leave only the \expr{trace("ok");} line in the body of the \expr{main} method. The other branches are discarded while parsing the file. As a consequence, these branches must still contain valid haxe syntax, but the code is not type-checked.
+Compiling this without any flags will leave only the \expr{trace("ok");} line in the body of the \expr{main} method. The other branches are discarded while parsing the file. As a consequence, these branches must still contain valid Haxe syntax, but the code is not type-checked.
 
 The conditions after \expr{\#if} and \expr{\#elseif} allow the following expressions:
 
@@ -2041,7 +2041,7 @@ The conditions after \expr{\#if} and \expr{\#elseif} allow the following express
 	\item The operators \expr{==}, \expr{!=}, \expr{>}, \expr{>=}, \expr{<}, \expr{<=} can be used to compare values.
 	\item Parentheses \expr{()} can be used to group expressions as usual.
 \end{itemize}
-An exhaustive list of all built-in defines can be obtained by invoking the haxe compiler with the \expr{--help-defines} argument.
+An exhaustive list of all built-in defines can be obtained by invoking the Haxe Compiler with the \expr{--help-defines} argument.
 
 
 \section{Static Extension}
@@ -2118,7 +2118,7 @@ Some pattern matcher basics include:
 \subsection{Enum matching}
 \label{lf-pattern-matching-enums}
 
-As with haxe 2, enums can be matched by their constructors in a natural way. With haxe 3 pattern matching, this match can now be "deep":
+As with Haxe 2, enums can be matched by their constructors in a natural way. With Haxe 3 pattern matching, this match can now be "deep":
 
 \haxe[firstline=8,lastline=19]{assets/PatternMatching.hx}
 
@@ -2270,13 +2270,13 @@ switch(Leaf("foo")) {
 \section{String Interpolation}
 \label{lf-string-interpolation}
 
-With haxe 3 it is no longer necessary to manually concatenate parts of a string due to the introduction of \emph{String Interpolation}. Special identifiers, denoted by the dollar sign \expr{\$} within a String enclosed by single-quote \expr{'} characters, are evaluated as if they were concatenated identifiers:
+With Haxe 3 it is no longer necessary to manually concatenate parts of a string due to the introduction of \emph{String Interpolation}. Special identifiers, denoted by the dollar sign \expr{\$} within a String enclosed by single-quote \expr{'} characters, are evaluated as if they were concatenated identifiers:
 
 \begin{lstlisting}
 var x = 12;
 trace('The value of x is $x'); // The value of x is 12
 \end{lstlisting}
-Furthermore, it is possible to include whole expressions in the string by using \expr{\$$\left\{expr\right\}$}, with \expr{expr} being any valid haxe expression:
+Furthermore, it is possible to include whole expressions in the string by using \expr{\$$\left\{expr\right\}$}, with \expr{expr} being any valid Haxe expression:
 
 \begin{lstlisting}
 var x = 12;
@@ -2289,7 +2289,7 @@ trace("The sum of " +x+ " and 3 is " + (x + 3));
 \end{lstlisting}
 Of course the use of single-quote enclosed strings without any interpolation remains valid, but care has to be taken regarding the \$ character as it triggers interpolation. If an actual dollar-sign should be used in the string, \expr{\$\$} can be used.
 
-\trivia{String Interpolation before haxe 3}{String Interpolation has been a haxe feature since version 2.09. Back then, the macro \expr{Std.format} had to be used, being both slower and less comfortable than the new string interpolation syntax.}
+\trivia{String Interpolation before Haxe 3}{String Interpolation has been a Haxe feature since version 2.09. Back then, the macro \expr{Std.format} had to be used, being both slower and less comfortable than the new string interpolation syntax.}
 
 
 \section{Array Comprehension}
@@ -2331,7 +2331,7 @@ A call to \expr{f(1)} then actually invokes \expr{map.set(1, "12")}, the calls t
 
 The underscore \expr{_} can be skipped for trailing arguments, so the the first argument could be bound through \expr{map.set.bind(1)}, yielding a \expr{String->Void} function that sets a new value for index \expr{1} on invocation.
 
-\trivia{Callback}{Prior to haxe 3, haxe used to know a \expr{callback}-keyword which could be called with a function argument followed by any number of binding arguments. The name originated from a common usage were a callback-function is created with the this-object being bound.\\
+\trivia{Callback}{Prior to Haxe 3, Haxe used to know a \expr{callback}-keyword which could be called with a function argument followed by any number of binding arguments. The name originated from a common usage were a callback-function is created with the this-object being bound.\\
 Callback would allow binding of arguments only from left to right as there was no support for the underscore \expr{_}. The choice to use an underscore was controversial and several other suggestions were made, none of which were considered superior. After all, the underscore \expr{_} at least looks like it's saying ``fill value in here'', which nicely describes its semantics.}
 
 
@@ -2454,7 +2454,7 @@ Dead Code Elimination, or \emph{DCE}, is a compiler feature which removes unused
 DCE has three modes which are set when invoking the command line:
 
 \begin{description}
-	\item[-dce std:] Only classes in the haxe standard library are affected by DCE. This is the default setting on all targets but \target{Javascript}.
+	\item[-dce std:] Only classes in the Haxe Standard Library are affected by DCE. This is the default setting on all targets but \target{Javascript}.
 	\item[-dce no:] No DCE is performed.
 	\item[-dce full:] All classes are affected by DCE. This is the default setting when targeting \target{Javascript}.
 \end{description}
@@ -2467,7 +2467,7 @@ The DCE-algorithm works well with typed code, but may fail when \tref{dynamic}{t
 \end{description}
 The compiler automatically defines the flag \expr{dce} with a value of either \expr{"std"}, \expr{"no"} or \expr{"full"} depending on the active mode. This can be used in \tref{conditional compilation}{lf-condition-compliation}.
 
-\trivia{DCE-rewrite}{DCE was originally implemented in haxe 2.07. This implementation considered a function to be used when it was explicitly typed. The problem with that was that several features, most importantly interfaces, would cause all class fields to be typed in order to verify type-safety. This effectively subverted DCE completely, prompting the rewrite for haxe 2.10.}
+\trivia{DCE-rewrite}{DCE was originally implemented in Haxe 2.07. This implementation considered a function to be used when it was explicitly typed. The problem with that was that several features, most importantly interfaces, would cause all class fields to be typed in order to verify type-safety. This effectively subverted DCE completely, prompting the rewrite for Haxe 2.10.}
 
 \trivia{DCE and try.haxe.org}{DCE for the \type{Javascript} target saw vast improvements when the website \url{http://try.haxe.org} was published. Initial reception of the generated \target{Javascript} code was mixed, leading to a more fine-grained selection of which code to eliminate.}
 
@@ -2495,11 +2495,11 @@ The compiler automatically defines the flag \expr{dce} with a value of either \e
 \chapter{Macros}
 \label{macro}
 
-Macros are without a doubt the most advanced feature in haxe. They are often perceived as dark magic that only a select few are capable of mastering, yet there is nothing magical (and certainly nothing dark) about them.
+Macros are without a doubt the most advanced feature in Haxe. They are often perceived as dark magic that only a select few are capable of mastering, yet there is nothing magical (and certainly nothing dark) about them.
 
-\define{Abstract Syntax Tree (AST)}{The AST is the result of \emph{parsing} Haxe code into a typed structure. This structure is exposed to macros through the types defined in the file \expr{haxe/macro/Expr.hx} of the Haxe standard library.}
+\define{Abstract Syntax Tree (AST)}{The AST is the result of \emph{parsing} Haxe code into a typed structure. This structure is exposed to macros through the types defined in the file \expr{haxe/macro/Expr.hx} of the Haxe Standard Library.}
 
-A basic macro is a \emph{syntax-transformation}. It receives zero or more \tref{expressions}{expression} and also returns an expression. If a macro is called, it effectively inserts code at the place it was called from. In that respect, it could be compared to a preprocessor like \expr{\#define} in C++, but a haxe macro is not a textual replacement tool.
+A basic macro is a \emph{syntax-transformation}. It receives zero or more \tref{expressions}{expression} and also returns an expression. If a macro is called, it effectively inserts code at the place it was called from. In that respect, it could be compared to a preprocessor like \expr{\#define} in C++, but a Haxe macro is not a textual replacement tool.
 
 We can identify different kinds of macros, which are run at specific compilation stages:
 
@@ -2568,7 +2568,7 @@ If the final argument of a macro is of type \type{Array<Expr>}, the macro accept
 \section{Reification}
 \label{macro-reification}
 
-The Haxe Compiler allows \emph{reification} of expressions, types and classes to simplify working with macros. The syntax for reification is \expr{macro expr}, where \expr{expr} is any valid haxe expression.
+The Haxe Compiler allows \emph{reification} of expressions, types and classes to simplify working with macros. The syntax for reification is \expr{macro expr}, where \expr{expr} is any valid Haxe expression.
 
 \subsection{Expression Reification}
 \label{macro-reification-expression}
@@ -2638,7 +2638,7 @@ The Haxe Standard Library comes with a set of tool-classes to simplify working w
 \end{description}
 
 \trivia{The tinkerbell library and why Tools.hx works}{We learned about static extensions that using a \emph{module} implies that all its types are brought into static extension context. As it turns out, such a type can also be a \tref{typedef}{type-system-typedef} to another type. The compiler then considers this type part of the module, and extends static extension accordingly.\\
-This ``trick'' was first used in Juraj Kirchheim's \emph{tinkerbell}\footnote{https://github.com/back2dos/tinkerbell} library for exactly the same purpose. Tinkerbell provided many useful macro tools long before they made it into the Haxe compiler and Haxe Standard Library. It remains the primary library for additional macro tools and offers other useful functionality as well.} 
+This ``trick'' was first used in Juraj Kirchheim's \emph{tinkerbell}\footnote{https://github.com/back2dos/tinkerbell} library for exactly the same purpose. Tinkerbell provided many useful macro tools long before they made it into the Haxe Compiler and Haxe Standard Library. It remains the primary library for additional macro tools and offers other useful functionality as well.} 
 
 
 
@@ -2982,7 +2982,7 @@ Although neko can fluidly handle mathematical errors, like division by zero, thi
 
 \subsection{Integer Math}
 \label{std-math-integer-math}
-If you are targeting a platform that can utilize integer operations, e.g. integer division, for performance gains, wrap the operation in \emph{Std.int()}.  The Haxe compiler can then optimize for integer operations.  An example:
+If you are targeting a platform that can utilize integer operations, e.g. integer division, for performance gains, wrap the operation in \emph{Std.int()}.  The Haxe Compiler can then optimize for integer operations.  An example:
 \begin{lstlisting}
 	var intDivision = Std.int(6.2/4.7);
 \end{lstlisting}
