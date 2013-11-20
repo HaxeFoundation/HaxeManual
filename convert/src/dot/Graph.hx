@@ -18,10 +18,13 @@ class Edge {
 }
 
 class Graph {
-	var nodes:Array<Node> = [];
-	var edges:Array<Edge> = [];
+	var nodes:Array<Node>;
+	var edges:Array<Edge>;
 
-	public function new() { }
+	public function new() {
+		nodes = [];
+		edges = [];
+	}
 
 	public function global(attrs:Array<Attribute>) {
 		nodes.push(new Node(this, "node", attrs));
