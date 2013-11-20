@@ -1,88 +1,11 @@
-\documentclass[a4paper,oneside]{book}
+\documentclass{haxe}
 
-\usepackage{fullpage}
-\usepackage{listings}
-\usepackage[usenames,dvipsnames]{xcolor}
-\usepackage{framed}
-\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
-\usepackage[nameinlink]{cleveref}
-\usepackage{courier}
-\usepackage{palatino}
-\usepackage{graphicx}
-\usepackage{underscore}
-
+% todo-related
 \usepackage[left=4.7cm, right=2cm, top=2cm, bottom=4.2cm]{geometry}
 \usepackage[draft]{todonotes}
 \reversemarginpar
-\setlength{\marginparwidth}{4cm}
 
-\definecolor{bgcolor}{gray}{0.85}
-\definecolor{kwdcolor}{HTML}{0000FF}
-\definecolor{identcolor}{rgb}{0,0,0}
-\definecolor{commentcolor}{HTML}{008000}
-\definecolor{stringcolor}{HTML}{a31515}
-
-\newcommand{\target}[1]{#1}
-\newcommand{\type}[1]{\texttt{#1}}
-\newcommand{\expr}[1]{\texttt{#1}}
-\newenvironment{myshaded}
-  {\def\FrameCommand{\fboxsep=\topsep\colorbox{bgcolor}}%
-  \MakeFramed {\advance\hsize-\width \FrameRestore}}%
- {\endMakeFramed}
-
-\newcommand{\define}[3][Definition]
-	{\begin{myshaded}\noindent\textbf{#1: #2}\par\nobreak\noindent\ignorespaces#3\label{def:#2}\end{myshaded}}
-
-\newcommand{\trivia}[2]
-	{\begin{myshaded}\noindent\textbf{Trivia: #1}\par\nobreak\noindent\ignorespaces\textit{#2}\end{myshaded}}
-
-\newcommand{\ic}[1]{\texttt{#1}}
-
-\newcommand{\image}[2]
-	{\begin{figure}[ht]\centering{\includegraphics[width=\linewidth]{#1}\caption{#2}\label{#1}}\end{figure}}
-
-\newcommand{\Fullref}[1]{\nameref{#1} (\Cref{#1})}
-\newcommand{\tref}[2]{#1 (\ref{#2})}
-
-%added the todonotes package instead
-%\newcommand{\todo}[1]{TODO: #1}
-
-\newcommand{\state}[1]{}
-
-\newcommand{\since}[1]{\noindent\textbf{Since haxe #1}\\}
-
-\lstdefinelanguage{haxe}{
-  keywords={function, class, var, if, else, while, do, for, break, continue, return, extends, implements, import, switch, case, default, static, public, private, try, catch, new, this, throw, extern, enum, in, interface, untyped, cast, override, typedef, dynamic, package, inline, using, null, true, false, abstract, macro},
-  sensitive=true,
-  comment=[l]{//},
-  morecomment=[s]{/*}{*/},
-  morestring=[b]',
-  morestring=[b]",	
-}
-
-\lstset{
-	language=Haxe,
-	basicstyle=\ttfamily,
-  keywordstyle=\color{kwdcolor},
-  identifierstyle=\color{identcolor},
-	commentstyle=\color{commentcolor},
-	stringstyle=\color{stringcolor},	
-	backgroundcolor=\color{bgcolor},
-	extendedchars=true,
-	showstringspaces=false,
-	showspaces=false,
-	numbers=left,
-	numberstyle=\footnotesize,
-	numbersep=9pt,
-	tabsize=4,
-	breaklines=true,
-	showtabs=false,
-	captionpos=b,
-}
-\newcommand{\haxe}[2][]{%
-    %\lstinputlisting[label={\detokenize{#2}},#1]{#2}%
-    \lstinputlisting[#1]{#2}%
-}
+% title (TODO: move this to class file once it looks good)
 
 \renewcommand{\maketitle}{
    \begin{titlepage}
@@ -96,6 +19,9 @@
 			\end{center}
    \end{titlepage}
 }
+
+
+
 
 \begin{document}
 \title{Haxe 3 Manual}
