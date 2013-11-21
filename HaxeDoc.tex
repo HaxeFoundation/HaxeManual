@@ -1765,7 +1765,6 @@ Further limitations follow from the usage context, which are checked upon typing
 \end{itemize}}
 
 
-
 \section{Blocks}
 \label{expression-block}
 
@@ -1887,8 +1886,22 @@ subject(e1, ..., eN); // call with multiple arguments
 \section{Closure}
 \label{expression-closure}
 
+
+
 \section{var}
 \label{expression-var}
+
+The \expr{var} keyword allows declaring multiple variables, separated by comma \expr{,}. Each variable has a valid \tref{identifier}{def:Identifier} and optionally a value assignment following the assignment operator \expr{=}. Variables can also have an explicit type-hint.
+
+\begin{lstlisting}
+var a; // declare local a
+var b:Int; // declare variable b of type Int
+var c = 1; // declare variable c, initialized to value 1
+var d,e = 2; // declare variable d and variable e initialized to value 2
+\end{lstlisting}
+
+The scoping behavior of local variables is described in \Fullref{expression-block}.
+
 
 \section{new}
 \label{expression-new}
