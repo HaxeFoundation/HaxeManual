@@ -20,7 +20,6 @@ Missing Content:
 5.3 - Binary Operators
 5.4 - Unary Operators
 5.9 - Closure
-5.10 - var
 5.11 - new
 5.13 - while
 5.15 - switch
@@ -47,8 +46,15 @@ Missing Content:
 10.9 - Xml
 10.10 - Input/Output
 10.11 - Sys/sys
-10.12 - Haxelib
-10.13 - Other Tools
+11 - Haxelib
+12 - Target Details
+12.1 - Javascript
+12.2 - Flash
+12.3 - Neko
+12.4 - PHP
+12.5 - C++
+12.6 - Java
+12.7 - C#
 
 Unreviewed:
 1.1 - What is Haxe?
@@ -129,6 +135,7 @@ Unreviewed:
 5.6 - Object Declaration
 5.7 - Field Access
 5.8 - Function Call
+5.10 - var
 5.12 - for
 5.14 - if
 5.17 - return
