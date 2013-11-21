@@ -168,11 +168,13 @@ We will explore type inference in detail later in \Fullref{type-system-type-infe
 
 \begin{description}
  \item[Class instance:] an object of a given class or interface
+\todo{A class instance can be a class instance or something else? Somewhat confusing.}
  \item[Enum instance:] a value of a Haxe enumeration
  \item[Structure:] an anonymous structure, i.e. a collection of named fields
  \item[Function:] a compound type of several arguments and one return
  \item[Dynamic:] a wildcard type which is compatible to any type
  \item[Abstract:] an abstract value type
+\todo{``abstract value type'' doesn't really provide any explanation}
  \item[Monomorph:] an unknown type, which may later become a different type
 \end{description}
 
@@ -183,6 +185,8 @@ We will explore type inference in detail later in \Fullref{type-system-type-infe
 \label{types-basic-types}
 
 \todo{Check wording here (we don't want to address ``you'')}
+
+\todo{A bit heavy on jargon. I don't know what abstract types are, what :coreType means, what metadata refers to and all the other stuff, but the section references and warnings are good to have.}
 
 \emph{Basic Types} include \emph{Bool, Float, and Int}.  The basic types are \emph{abstract types} tagged with \emph{:coreType} metadata.  This means is they get replaced by platform specific types at compile-time.  Don't worry about all of the implementation details at the moment, but feel free to see \Fullref{types-abstract} and \Fullref{lf-metadata} for more details.  Just be aware that this abstraction can cause the \Fullref{types-overflow} and \Fullref{types-nullability} of Basic Types to behave differently on different target platforms.  To reiterate: \textbf{basic types can behave differently depending on the target platform.}
 
@@ -198,9 +202,12 @@ While every \type{Int} can be used where a \type{Float} is expected (that is, \t
 
 \todo{Took the ideas from old manual, but moved Neko in with C++ and co.  Still Haxe 3 relevant?}For performance reasons, the Haxe Compiler does not enforce any overflow behavior.  The burden of checking for overflows falls to the target platform. Here are some platform specific notes on overflow behavior:
 
+\todo{Markdown: prettier formatting (bold definition names)}
+
 \begin{description}
  \item[C++, Java, C\#, Neko:] 32-bit integers, with usual overflow practices. 
  \item[Flash, AVM2:] 32-bit integers, but higher integers are memory boxed.
+ \todo{``Flash, AVM2'' looks like two different things, perhaps Flash 9+ (AVM2) is clearer? How high? Memory boxed? What is this and what are the implications?}
  \item[PHP, JS, Flash 8:] No native \emph{Int} type.  Overflows will occur if they reach their float limit (2\textsuperscript{52}).
 \end{description}
 
@@ -296,7 +303,7 @@ Haxe does not allow fields and variables of type \type{Void}, and will complain 
 \begin{lstlisting}
 var x:Void; // Arguments and variables of type Void are not allowed
 \end{lstlisting}
-
+\todo{Consider having special ``compiler error'' formatting, so it's fancier than a comment.}
 
 
 
@@ -318,6 +325,7 @@ There is nothing to worry about when working with \expr{null} on dynamic targets
 	\item[\type{Bool}:] \expr{false}
 \end{description}
 As a consequence, the Haxe Compiler does not allow the assignment of \expr{null} to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as \type{Null$<$T$>$}:
+\todo{\type{Null$<$T$>$} hasn't been mentioned before I think, so it could be confusing as to what it is and why it's there and how it works and why it works.}
 
 \begin{lstlisting}
 var a:Int = null; // error on static platforms
