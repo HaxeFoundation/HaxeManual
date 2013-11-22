@@ -1015,7 +1015,7 @@ The following table shows where type parameters are allowed:
 	Class & instantiation & Can also be bound upon member field access. \\
 	Enum & instantiation & \\
 	Enum Constructor & instantiation & \\
-	Function & invocation & Allowed for methods and named lvalue closures. \\
+	Function & invocation & Allowed for methods and named local lvalue functions. \\
 	Structure & instantiation & \\ \hline
 \end{tabular}
 \end{center}
@@ -1453,7 +1453,7 @@ There are three kinds of class fields:
 \end{description}
 Strictly speaking, a variable could be considered to be a property with certain access modifiers. Indeed, the Haxe Compiler does not distinguish variables and properties during its typing phase, but they remain separated at syntax level.
 
-Regarding terminology, a method is a (static or non-static) function belonging to a class. Other functions, such as a \tref{closure}{expression-closure} in expressions, are not considered methods.
+Regarding terminology, a method is a (static or non-static) function belonging to a class. Other functions, such as a \tref{local functions}{expression-function} in expressions, are not considered methods.
 
 
 \section{Variable}
@@ -1780,7 +1780,7 @@ A block in Haxe starts with an opening curly brace \expr{\{} and ends with a clo
 \end{lstlisting}
 The value and by extension the type of a block-expression is equal to the value and the type of the last sub-expression.
 
-Blocks can contain local variables declared by \tref{\expr{var} expression}{expression-var}, as well as local closures declared by \tref{\expr{function} expressions}{types-function}. These are available within the block and within sub-blocks, but not outside the block. Also, they are available only after their declaration. The following example uses \expr{var}, but the same rules apply to \expr{function} usage:
+Blocks can contain local variables declared by \tref{\expr{var} expression}{expression-var}, as well as local functions declared by \tref{\expr{function} expressions}{expression-function}. These are available within the block and within sub-blocks, but not outside the block. Also, they are available only after their declaration. The following example uses \expr{var}, but the same rules apply to \expr{function} usage:
 
 \begin{lstlisting}
 {
@@ -1881,13 +1881,6 @@ subject(e1, ..., eN); // call with multiple arguments
 \end{lstlisting}
 
 
-
-
-\section{Closure}
-\label{expression-closure}
-
-
-
 \section{var}
 \label{expression-var}
 
@@ -1901,6 +1894,31 @@ var d,e = 2; // declare variable d and variable e initialized to value 2
 \end{lstlisting}
 
 The scoping behavior of local variables is described in \Fullref{expression-block}.
+
+
+\section{Local functions}
+\label{expression-function}
+
+Haxe supports first-class functions and allows declaring local functions in expressions. The syntax follows \tref{class field methods}{class-field-method}:
+
+\haxe{assets/LocalFunction.hx}
+
+We declare \expr{myLocalFunction} inside the \tref{block expression}{expression-block} of the \expr{main} class field. It takes one argument \expr{i} and adds it to \expr{value}, which is defined in the outside scope.
+
+The scoping is equivalent to that of \tref{variables}{expression-var} and for the most part writing a named local function can be considered equal to assigning an unnamed local function to a local variable:
+
+\begin{lstlisting}
+var myLocalFunction = function(a) { }
+\end{lstlisting}
+
+However, there are some differences related to type parameters and the position of the function. We speak of a ``lvalue'' function if it is not assigned to anything upon its declaration, and an ``rvalue'' function otherwise.
+
+\begin{itemize}
+	\item Lvalue functions require a name and can have \tref{type parameters}{type-system-type-parameters}.
+	\item Rvalue functions may have a name, but cannot have type parameters.
+\end{itemize}
+
+
 
 
 \section{new}
@@ -1966,7 +1984,7 @@ return;
 return expression;
 \end{lstlisting}
 
-It leaves the control-flow of the innermost function it is declared in, which has to be distinguished when \tref{closures}{expression-closure} are involved:
+It leaves the control-flow of the innermost function it is declared in, which has to be distinguished when \tref{local functions}{expression-function} are involved:
 
 \begin{lstlisting}
 function f1() {
@@ -1978,7 +1996,7 @@ function f1() {
 }
 \end{lstlisting}
 
-The \expr{return} leaves closure \expr{f2}, but not \expr{f1}, meaning \expr{expression} is still evaluated.
+The \expr{return} leaves local function \expr{f2}, but not \expr{f1}, meaning \expr{expression} is still evaluated.
 
 If \expr{return} is used without a value expression, the typer ensures that the return type of the function it returns from is of \type{Void}. If it has a value expression, the typer \tref{unifies}{type-system-unification} its type with the return type (explicitly given or inferred by previous \expr{return} expressions) of the function it returns from.
 

@@ -1,18 +1,9 @@
-
-Class MyClass{
-  var x : Int;
-
-  function f1() {
-    //Can not access 'this'.  WILL NOT COMPILE!
-    var add = function(n) {this.x += n;};
-  }
-
-  function f2() {
-    //will compile
-    var me = this;
-    var add = function(n) {me.x += n;};
-  }
-
+class Main {
+	static public function main() {
+		var value = 1;
+		function myLocalFunction(i) {
+			return value + i;
+		}
+		trace(myLocalFunction(2)); // 3
+	}
 }
-
-
