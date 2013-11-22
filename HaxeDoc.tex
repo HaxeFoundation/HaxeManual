@@ -2817,6 +2817,14 @@ Arrays can be \emph{iterated over} using a \Fullref{expression-for} loop.  Howev
 \todo{Maybe we should introduce \textbackslash api\{type name\}}
 See \Fullref{expression-array-declaration} for array initialization.  New arrays can also be created by \Fullref{lf-array-comprehension}.  The \href{http://api.haxe.org/Array.html}{Array API} has details about Array methods.
 
+\subsection{Vector}
+\label{std-vector}
+
+A \type{Vector} is an optimized fixed-length \emph{collection} of elements. Much like \tref{Array}{std-Array}, it has one \tref{type parameter}{type-system-type-parameters} and all elements of a vector must be of the specified type, it can be \emph{iterated over} using a \tref{for loop}{expression-for} and accessed using \tref{array access syntax}{types-abstract-array-access}. However, unlike \type{Array} and \type{List}, vector length is specified on creation and cannot be changed later.
+
+\haxe{assets/Vector.hx}
+
+\type{haxe.ds.Vector} is implemented as an abstract type (\ref{types-abstract}) over a native array implementation for given target and can be faster for fixed-size collections, because the memory for storing its elements is pre-allocated.
 
 \subsection{List}
 \label{std-List}
