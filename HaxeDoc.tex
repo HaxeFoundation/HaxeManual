@@ -383,8 +383,7 @@ Semantically, this class represents a point in discrete 2-dimensional space, but
 
 \begin{itemize}
 	\item The keyword \expr{class} denotes that we are declaring a class.
-	\item \type{Point} is the name of the class and could be anything conforming to the rules for type identifiers.
-\todo{What are the rules for type identifiers?}
+	\item \type{Point} is the name of the class and could be anything conforming to the \tref{rules for type identifiers}{expression-rules}.
 	\item Enclosed in curly braces \expr{$\left\{\right\}$} are the class fields,
 	\item which consist of two \emph{variable} fields \expr{x} and \expr{y} of type \type{Int},
 	\item followed by a special \emph{function} field named \expr{new}, which is the \emph{constructor} of the class,
@@ -425,8 +424,7 @@ The code above is very similar to the original \type{Point} class, with two new 
 It is not necessary for child classes to define their own constructors, but if they do, a call to \expr{super()} is mandatory. Unlike some other object-oriented languages, this call can appear anywhere in the constructor code and does not have to be the first expression.
 \todo{Mandatory even if there are no arguments? (could be useful to mention as it's not in something like AS3 afaik)}
 
-A class may override \tref{methods}{class-field-method} of its base class, which requires the explicit \expr{override} keyword. The effects and restrictions of this are detailed in \Fullref{class-field-overriding}.
-\todo{Base class hasn't been mentioned before, it's the same as parent class?}
+A class may override \tref{methods}{class-field-method} of its parent class, which requires the explicit \expr{override} keyword. The effects and restrictions of this are detailed in \Fullref{class-field-overriding}.
 
 
 \subsection{Interfaces}
@@ -447,8 +445,7 @@ The syntax is similar to classes, with the following exceptions:
 \todo{I don't think Haxe expressions have been mentioned before, would be nice to link to appropriate section.}
 	\item every field must have an explicit type
 \end{itemize}
-Interfaces, unlike structural subtyping, describe a \emph{static relation} between classes. A given class is only considered to be compatible to an interface if it explicitly states so:
-\todo{What is structural subtyping? Needs more explanation (should be previously described / linked).}
+Interfaces, unlike \tref{structural subtyping}{type-system-structural-subtyping}, describe a \emph{static relation} between classes. A given class is only considered to be compatible to an interface if it explicitly states so:
 
 \begin{lstlisting}
 class Point implements Printable { }
@@ -579,11 +576,10 @@ class Path {
 \end{lstlisting}
 
 
-\subsection{JSON-Notation for Structure Values}
-\label{types-structure-json-notation}
+\subsection{JSON for Structure Values}
+\label{types-structure-json}
 
-It is also possible to use \emph{JSON}-notation for structures by using \emph{string literals} for the keys:
-\todo{JSON-notation = JavaScript Object Notation-notation, perhaps just use JSON or JSON notation (not sure the hyphen is needed)}
+It is also possible to use \emph{JavaScript Object Notation} for structures by using \emph{string literals} for the keys:
 
 \begin{lstlisting}
 var point = { "x" : 1, "y" : -5 };
@@ -1231,17 +1227,17 @@ In this particular case, the unification is triggered by an \emph{assignment}, a
 \subsection{Between Class/Interface}
 \label{type-system-unification-between-classes-and-interfaces}
 
-When defining unification behavior between classes, it is important to remember that unification is directional: We can assign a more specialized class (e.g. a child class) to a generic class (e.g. a base class), but the reverse is not valid.
+When defining unification behavior between classes, it is important to remember that unification is directional: We can assign a more specialized class (e.g. a child class) to a generic class (e.g. a parent class), but the reverse is not valid.
 
 The following assignments are allowed:
 
 \begin{itemize}
-	\item child class to base class
+	\item child class to parent class
 	\item class to implementing interface
 	\item interface to base interface
 \end{itemize}
 These rules are transitive, meaning that a child class can also be assigned to the base class of its base class, an interface its base class implements, the base interface of an implementing interface and so on.
-
+\todo{''parent class'' should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.}
 
 \subsection{Structural Subtyping}
 \label{type-system-structural-subtyping}
@@ -1628,7 +1624,7 @@ The \expr{dynamic} access modifier works exactly like \expr{get} or \expr{set}, 
 \subsection{Rules for getter and setter}
 \label{class-field-property-rules}
 
-Visibility of accessor methods has no effect on the accessibility of its property. That is, if a property is \expr{public} an defined to have a getter, that getter may me defined as \expr{private} regardless.
+Visibility of accessor methods has no effect on the accessibility of its property. That is, if a property is \expr{public} and defined to have a getter, that getter may me defined as \expr{private} regardless.
 
 Both getter and setter may access their physical field for data storage. The compiler ensures that this kind of field access does not go through the accessor method if made from within the accessor method itself, thus avoiding infinite recursion:
 
@@ -1804,6 +1800,7 @@ Expressions in Haxe define what a program \emph{does}. Most expressions are foun
 	\item a field.
 \end{itemize}}
 
+\label{expression-rules}
 \define{Identifier}{Haxe identifiers start with an underscore \expr{_}, a dollar \expr{\$}, a lower-case character \expr{a-z} or an upper-case character \expr{A-Z}. After that, any combination and number of \expr{_}, \expr{A-Z}, \expr{a-z} and \expr{0-9} may follow.\\
 Further limitations follow from the usage context, which are checked upon typing:
 \begin{itemize}
@@ -2435,7 +2432,7 @@ Furthermore, it is possible to include whole expressions in the string by using 
 
 \begin{lstlisting}
 var x = 12;
-trace('The sum of $x and 3 is ${x + 3}'); // The sum of x and 3 is 15
+trace('The sum of $x and 3 is ${x + 3}'); // The sum of 12 and 3 is 15
 \end{lstlisting} 
 String interpolation is a compile-time feature and has no impact on the runtime. The above example is equivalent to manual concatenation, which is exactly what the compiler generates:
 
