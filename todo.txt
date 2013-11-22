@@ -20,11 +20,9 @@ Missing Content:
 2.5.3 - Optional Fields
 5.3 - Binary Operators
 5.4 - Unary Operators
-5.13 - while
-5.15 - switch
-5.16 - try/catch
-5.20 - throw
-5.21 - cast
+5.17 - try/catch
+5.21 - throw
+5.22 - cast
 6.9 - Remoting
 6.10 - Runtime Type Information
 7 - Compiler Reference
@@ -138,10 +136,13 @@ Unreviewed:
 5.11 - new
 5.11.1 - Inline constructors
 5.12 - for
-5.14 - if
-5.17 - return
-5.18 - break
-5.19 - continue
+5.13 - while
+5.14 - do-while
+5.15 - if
+5.16 - switch
+5.18 - return
+5.19 - break
+5.20 - continue
 6.1 - Conditional Compilation
 6.2 - Static Extension
 6.2.1 - In the Haxe Standard Library
