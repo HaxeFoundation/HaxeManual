@@ -1969,8 +1969,37 @@ Variable \expr{v} is then available within loop body \expr{e2} and holds the val
 
 The type of a \expr{for} expression is always \type{Void}, meaning it has no value and cannot be used as right-side expression.
 
+The control flow of loops can be affected by \tref{\expr{break}}{expression-break} and \tref{\expr{continue}}{expression-continue} expressions.
+
 \section{while}
 \label{expression-while}
+
+A normal while loop starts with the \expr{while} keyword, followed by an opening parenthesis \expr{(}, the condition expression and a closing paranthesis \expr{)}. After that follows the loop body expression:
+
+\begin{lstlisting}
+while(condition) expression;
+\end{lstlisting}
+
+The condition expression has to be of type \type{Bool}.
+
+Upon each iteration, the condition expression is evaluated. If it evaluates to \expr{false}, the loop stops, otherwise it evaluates the loop body expression.
+
+\haxe{assets/While.hx}
+
+This kind of while-loop is not guaranteed to evaluate the loop body expression at all: If the condition does not hold from the start, it is never evaluated. This is different for \tref{do-while loops}{expression-do-while}.
+
+\section{do-while}
+\label{expression-do-while}
+
+A do-while loop starts with the \expr{do} keyword followed by the loop body expression. After that follows the \expr{while} keyword, an opening parenthesis \expr{(}, the condition expression and a closing parenthesis \expr{)}:
+
+\begin{lstlisting}
+do expression while(condition);
+\end{lstlisting}
+
+The condition expression has to be of type \type{Bool}.
+
+As the syntax suggests, the loop body expression is always evaluated at least once, unlike \tref{while}{expression-while} loops.
 
 \section{if}
 \label{expression-if}
@@ -1980,6 +2009,8 @@ Conditional expressions come in the form of a leading \expr{if} keyword, a condi
 \begin{lstlisting}
 if (condition) expression;
 \end{lstlisting}
+
+The condition expression has to be of type \type{Bool}.
 
 Optionally, \expr{expression} may be followed by the \expr{else} keyword as well as another expression to be evaluated if the condition does not hold:
 
