@@ -1919,10 +1919,40 @@ However, there are some differences related to type parameters and the position 
 \end{itemize}
 
 
-
-
 \section{new}
 \label{expression-new}
+
+The \expr{new} keyword signals that a \tref{class}{types-class-instance} or an \tref{abstract}{types-abstract} is being instantiated. It is followed by the \tref{type path}{def:Type path} of the type which is to be instantiated. It may also list explicit \tref{type parameters}{type-system-type-parameters} enclosed in \expr{<>} and separated by comma \expr{,}. After an opening parenthesis \expr{()} follow the constructor arguments, again separated by comma \expr{,}, with a closing parenthesis \expr{)} at the end.
+
+\haxe{assets/New.hx}
+
+Within the \expr{main} method we instantiate an instance of \type{Main} itself, with an explicit type parameter \type{Int} and the arguments \expr{12} and \expr{"foo"}. As we can see, the syntax is very similar to the \tref{function call syntax}{expression-function-call} and it is common to speak of ``constructor calls''.
+
+\subsection{Inline constructors}
+\label{expression-inline-constructor}
+\since{3.1.0}
+
+If a constructor is declared to be \tref{inline}{class-field-inline}, the compiler may try to optimize it away in certain situations. There are several requirements for this to work:
+
+\begin{itemize}
+	\item The result of the constructor call must be directly assigned to a local variable.
+	\item The expression of the constructor field must only contain assignments to its fields.
+\end{itemize}
+
+The following example demonstrates constructor inlining:
+
+\haxe{assets/NewInline.hx}
+
+A look at the \target{Javascript} output reveals the effect:
+
+\begin{lstlisting}
+Main.main = function() {
+	var pt_x = 1.2;
+	var pt_y = 9.3;
+};
+\end{lstlisting}
+
+
 
 \section{for}
 \label{expression-for}

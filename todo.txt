@@ -13,14 +13,12 @@ Todo:
 9.5.1 - Enum building: Check if we can build GADTs this way.
 10.2.1 - Array: make sure this is true about static targets
 10.2.1 - Array: Maybe we should introduce \\ api{type name}
-10.2.2 - List: I hope none of these are lies -C 
+10.2.3 - List: I hope none of these are lies -C 
 10.4.3 - Integer Math: I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?
 
 Missing Content:
 5.3 - Binary Operators
 5.4 - Unary Operators
-5.9 - Closure
-5.11 - new
 5.13 - while
 5.15 - switch
 5.16 - try/catch
@@ -39,7 +37,7 @@ Missing Content:
 9.6.1 - Macro-in-Macro
 9.6.4 - Type Parameters
 9.7 - Compiler Configuration
-10.2.5 - Option
+10.2.6 - Option
 10.5 - Lambda
 10.6 - Reflection
 10.7 - Serialization
@@ -135,7 +133,10 @@ Unreviewed:
 5.6 - Object Declaration
 5.7 - Field Access
 5.8 - Function Call
-5.10 - var
+5.9 - var
+5.10 - Local functions
+5.11 - new
+5.11.1 - Inline constructors
 5.12 - for
 5.14 - if
 5.17 - return
@@ -179,9 +180,10 @@ Unreviewed:
 9.6.3 - Build Order
 10.1 - String
 10.2.1 - Array
-10.2.2 - List
-10.2.3 - GenericStack
-10.2.4 - Map
+10.2.2 - Vector
+10.2.3 - List
+10.2.4 - GenericStack
+10.2.5 - Map
 10.3 - Regular Expressions
 10.3.1 - Matching
 10.3.2 - Groups
