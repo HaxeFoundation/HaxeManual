@@ -190,7 +190,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 					buffer.add('> $s2');
 				case [TCustomCommand("todo"), options = popt(bracketArg), TBrOpen, s = text(), TBrClose]:
 					todos.push('${lastSection.id} - ${lastSection.title}: $s');
-					buffer.add('\n>TODO: $s\n\n');
+					//buffer.add('\n>TODO: $s\n\n');
 				case [TCustomCommand("missingfigure"), TBrOpen, s = text(), TBrClose]: buffer.add('> $s');
 				case [TCustomCommand("since"), TBrOpen, s = text(), TBrClose]: buffer.add('##### since Haxe $s\n\n');
 				case [TCustomCommand("state"), TBrOpen, s = text(), TBrClose]:

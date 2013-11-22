@@ -17,6 +17,7 @@ Todo:
 10.4.3 - Integer Math: I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?
 
 Missing Content:
+2.5.3 - Optional Fields
 5.3 - Binary Operators
 5.4 - Unary Operators
 5.13 - while
@@ -75,7 +76,6 @@ Unreviewed:
 2.5 - Anonymous Structure
 2.5.1 - JSON-Notation for Structure Values
 2.5.2 - Class Notation for Structure Types
-2.5.3 - Optional Fields
 2.5.4 - Impact on Performance
 2.6 - Function
 2.6.1 - Optional Arguments
