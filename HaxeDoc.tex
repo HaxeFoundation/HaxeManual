@@ -2198,6 +2198,40 @@ The conditions after \expr{\#if} and \expr{\#elseif} allow the following express
 An exhaustive list of all built-in defines can be obtained by invoking the Haxe Compiler with the \expr{--help-defines} argument. The Haxe Compiler allows multiple \expr{-D} flags per compilation.
 
 
+\section{Externs}
+\label{lf-externs}
+
+Externs can be used to describe target-specific interaction in a type-safe manner. They are defined like normal classes, except that
+
+\begin{itemize}
+	\item the \expr{class} keyword is preceded by the \expr{extern} keyword,
+	\item \tref{methods}{class-field-method} have no expressions and
+	\item all argument and return types are explicit.
+\end{itemize}
+
+A common example from the \tref{Haxe Standard Library}{std} is the \type{Math} class, as an excerpt shows:
+
+\begin{lstlisting}
+extern class Math
+{
+	static var PI(default,null) : Float;
+	static function floor(v:Float):Int;
+}
+\end{lstlisting}
+
+We see that externs can define both methods and variables (actually, \expr{PI} is declared as a read-only \tref{property}{class-field-property}). Once this information is available to the compiler, it allows field access accordingly and also knows the types:
+
+\haxe{assets/Extern.hx}
+
+This works because the return type of method \expr{floor} is declared to be \type{Int}.
+
+The Haxe Standard Library comes with many externs for the \target{Flash} and \target{Javascript} target. They allow accessing the native APIs in a type-safe manner and are instrumental for designing higher-level APIs. There are also externs for many popular native libraries on \tref{haxelib}{haxelib}.
+
+The \target{Flash}, \target{Java} and \target{C\#} targets allow direct inclusion of native libraries from \tref{command line}{compiler-reference}. Target-specific details are explained in the respective sections of \Fullref{target-details}.
+
+
+
+
 \section{Static Extension}
 \label{lf-static-extension}
 
