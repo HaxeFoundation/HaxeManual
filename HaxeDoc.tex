@@ -2473,6 +2473,34 @@ The loop expression can be anything, including conditions and nested loops, so t
 \haxe{assets/AdvArrayComprehension.hx}
 
 
+\section{Iterators}
+\label{lf-iterators}
+
+With Haxe it is very easy to define custom iterators and iterable data types. These concepts are represented by the types \type{Iterator<T>} and \type{Iterable<T>} respectively:
+
+\begin{lstlisting}
+typedef Iterator<T> = {
+	function hasNext() : Bool;
+	function next() : T;
+}
+
+typedef Iterable<T> = {
+	function iterator() : Iterator<T>;
+}
+\end{lstlisting}
+
+Any \tref{class}{types-class-instance} which \tref{structurally unifies}{type-system-structural-subtyping} with one of these types can be iterated over using a \tref{for-loop}{expression-for}. That is, if the class defines methods \expr{hasNext} and \expr{next} with matching return types it is considered an iterator, if it defines a method \expr{iterator} returning an \type{Iterator<T>} it is considered an iterable type.
+
+\haxe{assets/Iterator.hx}
+
+The type \type{MyStringIterator} in this example qualifies as iterator: It defines a method \expr{hasNext} returning \type{Bool} and a method \expr{next} returning \type{String}, making it compatible with \type{Iterator<String>}. The \expr{main} method instantiates it, then iterates over it.
+
+\haxe{assets/Iterable.hx}
+
+Here we do not setup a full iterator like in the previous example, but instead define that the \type{MyArrayWrap<T>} has a method \expr{iterator}, effectively forwarding the iterator method of the wrapped \type{Array<T>} type. 
+
+
+
 \section{Function Bindings}
 \label{lf-function-bindings}
 
