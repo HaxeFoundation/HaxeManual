@@ -2718,9 +2718,9 @@ While it may be not optimal to embed large assets, like images or music in the a
 External files are embedded using the \emph{-resource} compiler argument:
 
 \todo{what to use for listing of non-haxe code like hxml?}
-\begin{verbatim}
+\begin{lstlisting}
 -resource hello_message.txt@welcome
-\end{verbatim}
+\end{lstlisting}
 
 The string after the \emph{@} symbol is the \emph{resource identifier}. It will used in the code for retrieving the resource. It can be omitted (together with the \emph{@} symbol), then the file name will become a resource identifier.
 
@@ -3349,7 +3349,7 @@ If the compiler emits an error \ic{Error: Library random is not installed : run 
 Each Haxe library defines a set of attributes in its \ic{haxelib.json} file:
 
 \begin{description}
-	\item[name:] The name of the library. It must contain at least 3 characters among the following: [A-Za-z0-9_-.]. In particular, no spaces are allowed.
+	\item[name:] The name of the library. It must contain at least 3 characters among the following: \ic{\[A-Za-z0-9_-.\]}. In particular, no spaces are allowed.
 	\item[url:] The URL of the library, i.e. where more information can be found.
 	\item[license:] The license under which the library is released. Can be \ic{GPL}, \ic{LGPL}, \ic{BSD}, \ic{Public} (for Public Domain) or \ic{MIT}.
 	\item[tags:] An array of tag-strings which are used on the repository website to sort libraries.
