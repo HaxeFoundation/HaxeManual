@@ -2671,8 +2671,57 @@ The compiler automatically defines the flag \expr{dce} with a value of either \e
 \subsection{Metadata}
 \label{metadata}
 
+\section{Resources}
+\label{cr-resources}
 
+Haxe provides simple resource embedding system that can be used for embedding  files directly into the compiled application.
 
+While it may be not optimal to embed large assets, like images or music in the application file, it comes in very handy to embed smaller resources, like configuration or XML data.
+
+\subsection{Embedding resources}
+\label{cr-resources-embed}
+
+External files are embedded using the \emph{-resource} compiler argument:
+
+\todo{what to use for listing of non-haxe code like hxml?}
+\begin{verbatim}
+-resource hello_message.txt@welcome
+\end{verbatim}
+
+The string after the \emph{@} symbol is the \emph{resource identifier}. It will used in the code for retrieving the resource. It can be omitted (together with the \emph{@} symbol), then the file name will become a resource identifier.
+
+\subsection{Retrieving text resources}
+\label{cr-resources-getString}
+
+To retrieve the content of an embedded resource, we use the static method \emph{getString} of \type{haxe.Resource} passing a \emph{resource identifier} to it:
+
+\haxe{assets/ResourceGetString.hx}
+
+The code above will display the content of the \emph{hello_message.txt} file that we included earlier using \emph{welcome} as the identifier.
+
+\subsection{Retrieving binary resources}
+\label{cr-resources-getBytes}
+
+While it's not recommended to embed large binary files in the application, it still may be useful to embed binary data. Binary representation of an embedded resource can be accessed using the static method \emph{getBytes} of \type{haxe.Resource}:
+
+\haxe{assets/ResourceGetBytes.hx}
+
+The return type of \emph{getBytes} method is \type{haxe.io.Bytes}, an object providing access to individual bytes of the data.
+
+\subsection{Implementation details}
+\label{cr-resources-impl}
+
+\todo{do we need to describe this?}
+Haxe uses target platform's native resource embedding, if there is one, providing its own implementation otherwise.
+
+\begin{itemize}
+\item \emph{Flash} resources are embedded as ByteArray definitions
+\item \emph{C\#} resources are included in the compiled assembly
+\item \emph{Java} resources are packed in the resulting JAR file
+\item \emph{C++} resources are stored in global byte array constants.
+\item \emph{JavaScript} resources are serialized in Haxe serialization format and stored in a static field of \type{haxe.Resource} class.
+\item \emph{Neko} resources are stored as strings in a static field of \type{haxe.Resource} class.
+\end{itemize}
 
 \chapter{Macros}
 \label{macro}
