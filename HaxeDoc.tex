@@ -3318,8 +3318,81 @@ Older browsers (Internet Explorer 7, for instance) may not have native \emph{JSO
 
 \part{Miscellaneous}
 
+
+
+
 \chapter{Haxelib}
 \label{haxelib}
+
+Haxelib is the library manager that comes with any Haxe distribution. Connected to a central repository, it allows submitting and retrieving libraries and has multiple features beyond that. Available libraries can be found at \url{http://lib.haxe.org}.
+
+A basic Haxe library is a collection of \ic{.hx} files. That is, libraries are distributed by source code by default, making it easy to inspect and modify their behavior. Each library is identified by a unique name, which is utilized when telling the Haxe Compiler which libraries to use for a given compilation.
+
+\section{Using a Haxe library with the Haxe Compiler}
+\label{haxelib-using-haxe}
+
+Any installed Haxe library can be made available to the compiler through the \ic{-lib <library-name.} argument. This is very similiar to the \ic{-cp <path>} argument, but expects a library name instead of a directory path. These commands are explained thoroughly in \Fullref{compiler-reference}.
+
+For our exemplary usage we chose a very simple Haxe library called ``random''. It provides a set of static convenience methods to achieve various random effects, such as picking a random element from an array.
+
+\haxe{assets/HaxelibRandom.hx}
+
+Compiling this without any \ic{-lib} argument causes an error message along the lines of \ic{Unknown identifier : Random}. This shows that installed Haxe libraries are not available to the compiler by default unless they are explicitly added. A working command line for above program is \ic{haxe -lib random -main Main --interp}.
+
+If the compiler emits an error \ic{Error: Library random is not installed : run 'haxelib install random'} the library has to be installed via the \ic{haxelib} command first. As the error message suggests, this is achieved through \ic{haxelib install random}. We will learn more about the \ic{haxelib} command in \Fullref{haxelib-using}.
+
+
+
+\section{haxelib.json}
+\label{haxelib-json}
+
+Each Haxe library defines a set of attributes in its \ic{haxelib.json} file:
+
+\begin{description}
+	\item[name:] The name of the library. It must contain at least 3 characters among the following: [A-Za-z0-9_-.]. In particular, no spaces are allowed.
+	\item[url:] The URL of the library, i.e. where more information can be found.
+	\item[license:] The license under which the library is released. Can be \ic{GPL}, \ic{LGPL}, \ic{BSD}, \ic{Public} (for Public Domain) or \ic{MIT}.
+	\item[tags:] An array of tag-strings which are used on the repository website to sort libraries.
+	\item[description:] The description of what the library is doing.
+	\item[version:] The version string of the library. This is detailed in \Fullref{haxelib-json-versioning}.
+	\item[releasenote:] The release notes of the current version.
+	\item[contributors:] An array of user names which identify contributors to the library. 
+	\item[dependencies:] An object describing the dependencies of the library. This is detailed in \Fullref{haxelib-json-dependencies}.
+\end{description}
+
+The following JSON is a simple example of a haxelib.json:
+
+\begin{lstlisting}
+{
+  "name": "useless_lib",
+  "url" : "https://github.com/jasononeil/useless/",
+  "license": "MIT",
+  "tags": ["cross", "useless"],
+  "description": "This library is useless in the same way on every platform",
+  "version": "1.0.0",
+  "releasenote": "Initial release, everything is working correctly",
+  "contributors": ["Juraj","Jason","Nicolas"],
+  "dependencies": {
+    "tink_macros": "",
+    "nme": "3.5.5"
+  }
+}
+\end{lstlisting}
+
+
+
+\subsection{Versioning}
+\label{haxelib-json-versioning}
+
+
+
+\subsection{Dependencies}
+\label{haxelib-json-dependencies}
+
+
+\section{Using Haxelib}
+\label{haxelib-using}
+
 
 
 \chapter{Target Details}
