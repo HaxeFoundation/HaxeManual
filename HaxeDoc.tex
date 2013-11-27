@@ -174,8 +174,7 @@ We will explore type inference in detail later in \Fullref{type-system-type-infe
  \item[Structure:] an anonymous structure, i.e. a collection of named fields
  \item[Function:] a compound type of several arguments and one return
  \item[Dynamic:] a wildcard type which is compatible to any type
- \item[Abstract:] an abstract value type
-\todo{``abstract value type'' doesn't really provide any explanation}
+ \item[Abstract:] a compile-time type which is represented by a different type at runtime
  \item[Monomorph:] an unknown type, which may later become a different type
 \end{description}
 
@@ -201,7 +200,7 @@ While every \type{Int} can be used where a \type{Float} is expected (that is, \t
 \subsection{Overflow}
 \label{types-overflow}
 
-\todo{Took the ideas from old manual, but moved Neko in with C++ and co.  Still Haxe 3 relevant?}For performance reasons, the Haxe Compiler does not enforce any overflow behavior.  The burden of checking for overflows falls to the target platform. Here are some platform specific notes on overflow behavior:
+For performance reasons, the Haxe Compiler does not enforce any overflow behavior.  The burden of checking for overflows falls to the target platform. Here are some platform specific notes on overflow behavior:
 
 \todo{Markdown: prettier formatting (bold definition names)}
 
@@ -350,13 +349,12 @@ var a : Int = n;
 trace(a); // 0 on static platforms
 \end{lstlisting}
 
-\emph{Optional Arguments and Nullability:}
-\todo{This could be expanded upon and might be better as a subsection.}
-Optional arguments also have to be accounted when considering nullability.
-In particular, there must be a distinction between \emph{native} optional arguments which are not nullable and Haxe optional arguments which might be.  The distinction is made by using the question-mark optional argument:
+\subsection{Optional Arguments and Nullability:}
+\label{types-nullability-optional-arguments}
 
-\trivia{Argument vs Parameter}{In some other programming languages, \emph{argument} and \emph{parameter} are used interchangably.  In Haxe, \emph{argument} is used when referring to methods, and \emph{parameter} refers to \Fullref{type-system-type-parameters}.}
-\todo{Trivia should probably be after example (but perhaps in a floating box that decides to position itself at the ends of pages or something, if that was the goal).}
+Optional arguments also have to be accounted when considering nullability.
+
+In particular, there must be a distinction between \emph{native} optional arguments which are not nullable and Haxe optional arguments which might be.  The distinction is made by using the question-mark optional argument:
 
 \begin{lstlisting}
 // x is a native Int (not nullable)
@@ -368,6 +366,7 @@ function opt( ?z : Int = -1) {...}
 \end{lstlisting}
 \todo{Is there a difference between \type{?y : Int} and \type{y : Null$<$Int$>$} or can you even do the latter? Some more explanation and examples with native optional and Haxe optional arguments and how they relate to nullability would be nice.}
 
+\trivia{Argument vs Parameter}{In some other programming languages, \emph{argument} and \emph{parameter} are used interchangably.  In Haxe, \emph{argument} is used when referring to methods, and \emph{parameter} refers to \Fullref{type-system-type-parameters}.}
 
 
 \section{Class Instance}
@@ -422,7 +421,6 @@ The code above is very similar to the original \type{Point} class, with two new 
  \item \expr{super(x, y)} is the call to the constructor of the parent class, in this case \expr{Point.new}
 \end{itemize}
 It is not necessary for child classes to define their own constructors, but if they do, a call to \expr{super()} is mandatory. Unlike some other object-oriented languages, this call can appear anywhere in the constructor code and does not have to be the first expression.
-\todo{Mandatory even if there are no arguments? (could be useful to mention as it's not in something like AS3 afaik)}
 
 A class may override \tref{methods}{class-field-method} of its parent class, which requires the explicit \expr{override} keyword. The effects and restrictions of this are detailed in \Fullref{class-field-overriding}.
 
@@ -441,8 +439,7 @@ The syntax is similar to classes, with the following exceptions:
 
 \begin{itemize}
 	\item \expr{interface} keyword is used instead of \expr{class} keyword
-	\item functions do not have any expressions
-\todo{I don't think Haxe expressions have been mentioned before, would be nice to link to appropriate section.}
+	\item functions do not have any \tref{expressions}{expression}
 	\item every field must have an explicit type
 \end{itemize}
 Interfaces, unlike \tref{structural subtyping}{type-system-structural-subtyping}, describe a \emph{static relation} between classes. A given class is only considered to be compatible to an interface if it explicitly states so:
@@ -465,10 +462,8 @@ Interface fields are not limited to methods, they can be variables and propertie
 \section{Enum Instance}
 \label{types-enum-instance}
 
-Haxe provides powerful enumeration (short: enum) types, which are actually an \emph{algebraic data type} (ADT). While they cannot have any expressions, they are very useful for describing the structure of code logic:
+Haxe provides powerful enumeration (short: enum) types, which are actually an \emph{algebraic data type} (ADT). While they cannot have any \tref{expressions}{expression}, they are very useful for describing data structures:
 \todo{Algebraic data type? What are those, why is it important and what are the implications of this?}
-\todo{Same as in 2.3.3, could be linked to expressions explanation.}
-\todo{``Structure of code logic'' is a bit confusing / vague}
 
 \haxe{assets/Color.hx}
 Semantically, this enum describes a color which is either red, green, blue or a specified RGB value. The syntactic structure is as follows:
@@ -524,8 +519,7 @@ The general syntactic rules follow:
 \begin{enumerate}
 	\item A structure is enclosed in curly braces \expr{$\left\{\right\}$}. 
 	\item Has a \emph{comma-separated} list of key-value-pairs.
-	\item A \emph{colon} separates the key, which must be a \Fullref{def:Identifier}, from the value.
-\todo{``... must be a Expressions (Chapter 5), from the value.'' looks a bit wonky}
+	\item A \emph{colon} separates the key, which must be a valid \tref{identifier}{def:Identifier}, from the value.
 	\item\label{valueanytype} The value can be any Haxe expression.
 \end{enumerate}
 Rule \ref{valueanytype} implies that structures can be nested and complex, e.g.:
@@ -591,7 +585,6 @@ While any string literal is allowed, the field is only considered part of the ty
 \label{types-structure-class-notation}
 
 When defining a structure type, Haxe allows using the same syntax as described in \Fullref{class-field}. The following \tref{typedef}{type-system-typedef} declares a \type{Point} type with variable fields \expr{x} and \expr{y} of type \type{Int}:
-\todo{Can class notation be used without using typedefs? Are typedefs necessary? If not, provide examples of other usages.}
 
 \begin{lstlisting}
 typedef Point = {
@@ -726,8 +719,6 @@ Implementing \type{Dynamic} does not satisfy the requirements of other implement
 
 \section{Abstract}
 \label{types-abstract}
-
-\todo{@:enum and @:expose}
 
 An abstract type is a type which is, at runtime, actually a different type. It is a compile-time feature which defines types ``over'' concrete types in order to modify or augment their behavior:
 
@@ -2745,7 +2736,6 @@ The return type of \emph{getBytes} method is \type{haxe.io.Bytes}, an object pro
 \subsection{Implementation details}
 \label{cr-resources-impl}
 
-\todo{do we need to describe this?}
 Haxe uses target platform's native resource embedding, if there is one, providing its own implementation otherwise.
 
 \begin{itemize}
@@ -3331,7 +3321,7 @@ A basic Haxe library is a collection of \ic{.hx} files. That is, libraries are d
 \section{Using a Haxe library with the Haxe Compiler}
 \label{haxelib-using-haxe}
 
-Any installed Haxe library can be made available to the compiler through the \ic{-lib <library-name.} argument. This is very similiar to the \ic{-cp <path>} argument, but expects a library name instead of a directory path. These commands are explained thoroughly in \Fullref{compiler-reference}.
+Any installed Haxe library can be made available to the compiler through the \ic{-lib <library-name>} argument. This is very similiar to the \ic{-cp <path>} argument, but expects a library name instead of a directory path. These commands are explained thoroughly in \Fullref{compiler-reference}.
 
 For our exemplary usage we chose a very simple Haxe library called ``random''. It provides a set of static convenience methods to achieve various random effects, such as picking a random element from an array.
 

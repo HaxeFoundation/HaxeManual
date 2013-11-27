@@ -2,30 +2,22 @@ This file is generated, do not edit!
 
 Todo:
 2 - Types: A class instance can be a class instance or something else? Somewhat confusing.
-2 - Types: "abstract value type" doesn't really provide any explanation
 2.1 - Basic Types: Check wording here (we don't want to address "you")
 2.1 - Basic Types: A bit heavy on jargon. I don't know what abstract types are, what :coreType means, what metadata refers to and all the other stuff, but the section references and warnings are good to have.
-2.1.2 - Overflow: Took the ideas from old manual, but moved Neko in with C++ and co.  Still Haxe 3 relevant?
 2.1.2 - Overflow: Markdown: prettier formatting (bold definition names)
 2.1.2 - Overflow: "Flash, AVM2" looks like two different things, perhaps Flash 9+ (AVM2) is clearer? How high? Memory boxed? What is this and what are the implications?
 2.1.3 - Numeric Operators: make sure the types are right for inc, dec, negate, and bitwise negate
 2.1.5 - Void: Consider having special "compiler error" formatting, so it's fancier than a comment.
 2.2 - Nullability: `Null<T>` hasn't been mentioned before I think, so it could be confusing as to what it is and why it's there and how it works and why it works.
-2.2 - Nullability: This could be expanded upon and might be better as a subsection.
-2.2 - Nullability: Trivia should probably be after example (but perhaps in a floating box that decides to position itself at the ends of pages or something, if that was the goal).
-2.2 - Nullability: Is there a difference between `?y : Int` and `y : Null<Int>` or can you even do the latter? Some more explanation and examples with native optional and Haxe optional arguments and how they relate to nullability would be nice.
+2.2.1 - Optional Arguments and Nullability:: Is there a difference between `?y : Int` and `y : Null<Int>` or can you even do the latter? Some more explanation and examples with native optional and Haxe optional arguments and how they relate to nullability would be nice.
 2.3 - Class Instance: Doesn't toString need return type of String?
 2.3 - Class Instance: Same as in 2.2, what the `Class<T>` syntax means is unclear at this point.
 2.3 - Class Instance: What are class types?
 2.3.1 - Class constructor: Minor semantics: instances are created by calling the constructor or is the constructor called when they are created?
-2.3.2 - Inheritance: Mandatory even if there are no arguments? (could be useful to mention as it's not in something like AS3 afaik)
-2.3.3 - Interfaces: I don't think Haxe expressions have been mentioned before, would be nice to link to appropriate section.
 2.3.3 - Interfaces: Would be nice to have an example of the multiple implements keywords.
 2.3.3 - Interfaces: Would be nice to have an example for things other than functions.
 2.3.3 - Interfaces: Function / method used interchangeably?
 2.4 - Enum Instance: Algebraic data type? What are those, why is it important and what are the implications of this?
-2.4 - Enum Instance: Same as in 2.3.3, could be linked to expressions explanation.
-2.4 - Enum Instance: "Structure of code logic" is a bit confusing / vague
 2.4 - Enum Instance: Same as in 2.3, could be linked to rules.
 2.4 - Enum Instance: Same as in 2.2, what is `Enum<T>` syntax?
 2.4 - Enum Instance: Doesn't really show enum usage, do you use Color.Red or just Red? etc.
@@ -34,18 +26,14 @@ Todo:
 2.4.1 - Enum Constructor: Might be me, but it's hard to think about them as constructors when they don't actually contain any construction code (perhaps a quip about that would be appropriate).
 2.4.1 - Enum Constructor: For this to work in markdown, it either needs line numbers or the paragraph needs rephrasing.
 2.4.1 - Enum Constructor: `Enum<Color>` syntax, what's the difference between that and Color?
-2.5 - Anonymous Structure: "... must be a Expressions (Chapter 5), from the value." looks a bit wonky
 2.5.1 - JSON for Structure Values: Similar to todo in 2.3, link to Haxe identifiers
-2.5.2 - Class Notation for Structure Types: Can class notation be used without using typedefs? Are typedefs necessary? If not, provide examples of other usages.
 2.5.3 - Optional Fields: I don't really know how these work yet.
 2.7.2 - Implementing Dynamic: resolve()
-2.8 - Abstract: @:enum and @:expose
 3.5 - Unification: Mention toString()/String conversion somewhere in this chapter.
 3.5.1 - Between Class/Interface: "parent class" should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.
 3.7.2 - Import: Describe import a.*
 6.4 - Pattern Matching: Check "you" wording.
 8.3.1 - Embedding resources: what to use for listing of non-haxe code like hxml?
-8.3.4 - Implementation details: do we need to describe this?
 9.5.1 - Enum building: Check if we can build GADTs this way.
 10.2.1 - Array: make sure this is true about static targets
 10.2.1 - Array: Maybe we should introduce \\ api{type name}
@@ -104,6 +92,7 @@ Unreviewed:
 2.1.4 - Bool
 2.1.5 - Void
 2.2 - Nullability
+2.2.1 - Optional Arguments and Nullability:
 2.3 - Class Instance
 2.3.1 - Class constructor
 2.3.2 - Inheritance
