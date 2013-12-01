@@ -1,4 +1,5 @@
 -cp src
 -main Main
 -lib hxparse
--x convert
+-neko convert.n
+-resource envTemplate.tex@tikzTemplate

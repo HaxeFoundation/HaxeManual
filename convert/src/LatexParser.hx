@@ -137,6 +137,11 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 				case [TCommand(CCentering)]:
 				case [TCommand(CIncludegraphics), options = popt(bracketArg), TBrOpen, s = text(), TBrClose]:
 					// TODO
+				case [TCustomEnvironment("flowchart", s, handler)]:
+					var s = handler(s);
+					if (s != null) {
+						buffer.add(s);
+					}
 				case [TCommand(CCaption), TBrOpen, s = text(), TBrClose]:
 					// TODO
 				case [TCustomCommand("haxe"), options = popt(bracketArg), TBrOpen, s = text(), TBrClose]:
@@ -423,6 +428,5 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 		p.stdout.readAll();
 		var err = p.stderr.readAll();
 		if (p.exitCode() != 0) trace('Failed: $path\n$err');
-		
 	}
 }

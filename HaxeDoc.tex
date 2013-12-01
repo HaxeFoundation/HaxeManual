@@ -21,6 +21,7 @@
 }
 
 
+\input{tikz}
 
 
 \begin{document}
@@ -781,6 +782,7 @@ Similarly, adding \expr{@:to} to a function qualifies it as implicit cast functi
 In the example, the method \expr{fromString} allows the assignment of value \expr{"3"} to variable \expr{a} of type \type{MyAbstract}, while the method \expr{toArray} allows assigning that abstract to variable \expr{b} of type \type{Array<Int>}.
 
 When using this kind of cast, calls to that functions are inserted were required. This becomes obvious when looking at the \target{Javascript} output:
+\todo{The wording is a bit broken here, I can only infer what it means.}
 
 \begin{lstlisting}
 var a = _ImplicitCastField.MyAbstract_Impl_.fromString("3");
@@ -1509,11 +1511,29 @@ The example first prints the initialization value of \expr{member}, then sets it
 
 It should be noted that the explicit type is not required if there is an initialization value. The compiler will \tref{infer}{type-system-type-inference} it in this case.
 
-\begin{figure}
-	\centering
-	\includegraphics[width=1\textwidth]{assets/graphics/var-initialization.pdf}
-	\caption{Variable initialization}
-\end{figure}
+\begin{flowchart}{class-field-variable-init-values}{Initialization values of a variable field.}
+\Tree[.\node [decision] {\expr{inline}};
+	\edge node[auto=right] {Yes};
+	[.\node [decision] {\expr{static}};
+		\edge node[auto=right] {No};
+		\node [startstop, valueNone] {Invalid};
+		\edge node[auto=left] {Yes};
+		\node [startstop, valueSome] {Constants only};
+	]
+	\edge node[auto=left] {No};
+	[.\node [decision] {\expr{extern}};
+		\edge node[auto=right] {No};
+		[.\node [decision] {\expr{static}};
+			\edge node[auto=right] {No};
+			\node [startstop, valueSome] {No 'this'};
+			\edge node[auto=left] {Yes};
+			\node [startstop, valueAll] {Anything};
+		]
+		\edge node[auto=left] {Yes};
+		\node [startstop, valueNone] {None};
+	]
+]
+\end{flowchart}
 
 
 \section{Property}

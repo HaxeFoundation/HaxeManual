@@ -1,0 +1,36 @@
+%&template
+%%%%%%%%% STATIC PREAMBLE (can be precompiled) %%%%%%%%%
+\documentclass[preview, border=0.1cm]{standalone}
+
+% TODO: this stuff needs to be imported from common lib tex
+\newcommand{\expr}[1]{\texttt{#1}} % Haxe expressions
+
+\input{../tikz}
+
+\renewenvironment*{flowchart}[2]{
+	\begin{tikzpicture}
+	\tikzset {
+		level distance = 3cm,
+		grow = down,
+		edge from parent/.append style = {
+			thick, -> , >=stealth,
+			decoration = {
+				markings,
+				mark = at position 1 with {
+					\arrow[scale=2]{>}
+				}
+			},
+			postaction = {decorate}
+		}
+	}
+}{
+	\end{tikzpicture}
+}
+
+
+\csname endofdump\endcsname
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+%%%CONTENT%%%
+\end{document}

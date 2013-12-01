@@ -29,6 +29,7 @@ Todo:
 2.5.1 - JSON for Structure Values: Similar to todo in 2.3, link to Haxe identifiers
 2.5.3 - Optional Fields: I don't really know how these work yet.
 2.7.2 - Implementing Dynamic: resolve()
+2.8.1 - Implicit Casts: The wording is a bit broken here, I can only infer what it means.
 3.5 - Unification: Mention toString()/String conversion somewhere in this chapter.
 3.5.1 - Between Class/Interface: "parent class" should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.
 3.7.2 - Import: Describe import a.*
@@ -67,9 +68,6 @@ Missing Content:
 10.9 - Xml
 10.10 - Input/Output
 10.11 - Sys/sys
-11.2.1 - Versioning
-11.2.2 - Dependencies
-11.3 - Using Haxelib
 12 - Target Details
 12.1 - Javascript
 12.2 - Flash
@@ -239,5 +237,8 @@ Unreviewed:
 11 - Haxelib
 11.1 - Using a Haxe library with the Haxe Compiler
 11.2 - haxelib.json
+11.2.1 - Versioning
+11.2.2 - Dependencies
+11.3 - Using Haxelib
 
 Modified:

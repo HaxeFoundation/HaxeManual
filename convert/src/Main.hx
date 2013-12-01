@@ -6,6 +6,7 @@ using Lambda;
 class Main{
 	static function main() {
 		Sys.setCwd("../");
+		LatexLexer.customEnvironments["flowchart"] = FlowchartHandler.handle;
 		var input = byte.ByteData.ofString(sys.io.File.getContent("HaxeDoc.tex"));
 		var parser = new LatexParser(input, "HaxeDoc.tex");
 		var sections = try {

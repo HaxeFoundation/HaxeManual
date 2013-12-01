@@ -4,6 +4,7 @@ enum LatexToken {
 	TBegin(s:String);
 	TEnd(s:String);
 	TCustomCommand(cmd:String);
+	TCustomEnvironment(cmd:String, s:String, handler:String->String);
 	TBrOpen;
 	TBrClose;
 	TBkOpen;
