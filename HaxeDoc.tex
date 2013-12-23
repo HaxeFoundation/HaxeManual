@@ -1358,7 +1358,7 @@ The distinction of a module and its containing type of the same name is blurry b
 \end{enumerate}
 If the module and type name are equal, the duplicate can be removed, leading to the \expr{haxe.ds.StringMap<Int>} short version. However, knowing about the extended version helps with understanding how \tref{module sub-types}{type-system-module-sub-types} are addressed.
 
-Paths can be shortened further by using an \tref{import}{type-system-import}, which typically allows omitting the package part of a path. This may lead to usage of unqualified identifiers, for which understanding the \tref{resolution order}{type-systemresolution-order} is required.
+Paths can be shortened further by using an \tref{import}{type-system-import}, which typically allows omitting the package part of a path. This may lead to usage of unqualified identifiers, for which understanding the \tref{resolution order}{type-system-resolution-order} is required.
 
 \define{Type path}{The (dot-)path to a type consists of the package, the module name and the type name. Its general form is \expr{pack1.pack2.packN.ModuleName.TypeName}.} 
 
@@ -1402,7 +1402,7 @@ The type \type{Binop} is an \tref{enum}{types-enum-instance} declared in the mod
 There several aspects worth knowing about importing:
 
 \begin{itemize}
-	\item The bottommost import takes priority (detailed in \Fullref{type-systemresolution-order}).
+	\item The bottommost import takes priority (detailed in \Fullref{type-system-resolution-order}).
 	\item The \tref{static extension}{lf-static-extension} keyword \expr{using} implies the effect of \expr{import}.
 	\item If an enum is imported (directly or as part of a module import), all its \tref{enum constructors}{types-enum-constructor} are also imported (this is what allows the \expr{OpAdd} usage in above example).
 \end{itemize}
@@ -1416,7 +1416,7 @@ Furthermore, it is also possible to import \tref{static fields}{class-field} of 
 Special care has to be taken with field names or local variable names that conflict with a package name: Since they take priority over packages, a local variable named \expr{haxe} blocks off usage the entire \expr{haxe} package.
 
 \subsection{Resolution Order}
-\label{type-systemresolution-order}
+\label{type-system-resolution-order}
 
 Resolution order comes into play as soon as unqualified identifiers are involved. These are \tref{expressions}{expression} in the form of \expr{foo()}, \expr{foo = 1} and \expr{foo.field}. The last one in particular includes module paths such as \expr{haxe.ds.StringMap}, where \expr{haxe} is an unqualified identifier.  
 
@@ -1432,6 +1432,88 @@ We describe the resolution order algorithm here, which depends on the following 
 	\item the \tref{expected type}{def:Expected Type}
 	\item the expression being \expr{untyped} or not
 \end{itemize}
+
+\todo{proper label and caption + code/identifier styling for diagram}
+\begin{flowchart}{type-system-resolution-order-diagram}{Resolution order diagram.}
+
+\tikzset {
+	level distance = 1.4cm,
+	scale = 1
+}
+\tikzset{multiline/.style={align=center}}
+
+\tikzstyle{noEdge} = [ auto = left, outer sep = 0.2cm ]
+
+% Compact decision shape (cut off rectangle corners if you know how)
+\tikzstyle{decisionc} = [
+	decision,
+	minimum height = 0.8cm,
+	rectangle
+]
+
+\Tree
+[.\node [decisionc] (dec1) {'i' == 'true', 'false', 'this', 'super' or 'null'};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec2) {Local variable 'i' exists};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec3) {Current field is static?};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec4) {Current class or parent class have field 'i'};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec5) {Static extension with 'this'-type};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec6) {Current class has static field 'i'};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec7) {Imported enum has constructor `i'};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec8) {Static `i' imported};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec9) {`i' starts with lower-case character};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec10) {Type `i' imported};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec11) {Current package contains module `i' with type `i'};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec12) {Top-level type `i' exists};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec13) {Untyped mode};
+\edge [noEdge] node {Yes};
+[.\node [decisionc] (dec14) {`i' == `__this__'};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec15) {Generate local variable `i'};
+]]]]]]]]]]]]]]]
+
+
+\node [startstop, fill = green!70, xshift = 5cm] (resolve) at (dec15.east) {Resolve};
+
+\tikzstyle{yesNode} = [above right, at start]
+
+\coordinate (yesAnchor) at (resolve.north);
+
+\draw [flowchartArrow] (dec1) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec2) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec4) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec5) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec6) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec7) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec8) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec10) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec11) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec12) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec14) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec15) -- (resolve.west);
+
+\draw [flowchartArrow] (dec3) to [out = 180, in = 180, distance = 3cm] (dec6);
+\draw (dec3.west) node [above left] {Yes};
+
+\draw [flowchartArrow] (dec9) to [out = 180, in = 180, distance = 3cm] (dec13);
+\draw (dec9.west) node [above left] {Yes};
+
+\node [startstop, fill = red!70, xshift = 2cm] (fail) at (dec13.east) {Fail};
+\draw [flowchartArrow] (dec13.east) -- (fail.west) node [above right, at start] {No};
+
+
+\end{flowchart}
 
 Given an identifier \expr{i}, the algorithm is as follows:
 
@@ -1920,7 +2002,7 @@ object.fieldName
 
 This syntax is also used to access types within packages in the form of \expr{pack.Type}. 
 
-The typer ensures that an accessed field actually exist and may apply transformations depending on the nature of the field. If a field access is ambiguous, understanding the \tref{resolution order}{type-systemresolution-order} may help.
+The typer ensures that an accessed field actually exist and may apply transformations depending on the nature of the field. If a field access is ambiguous, understanding the \tref{resolution order}{type-system-resolution-order} may help.
 
 
 \section{Function Call}
@@ -2262,7 +2344,7 @@ Clearly, \type{Int} does not natively provide a \expr{triple} method, yet this p
 
 Static extensions are usually considered syntactic sugar and indeed they are, but it is worth noting that they can have a dramatic effect on code readability: Instead of nested calls in the form of \expr{f1(f2(f3(f4(x))))}, chained calls in the form of \expr{x.f4().f3().f2().f1()} can be used.
 
-Following the rules previously described in \Fullref{type-systemresolution-order}, multiple \expr{using} expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see \Fullref{type-system-modules-and-paths}) as static extension brings all its types into context.
+Following the rules previously described in \Fullref{type-system-resolution-order}, multiple \expr{using} expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see \Fullref{type-system-modules-and-paths}) as static extension brings all its types into context.
 
 \subsection{In the Haxe Standard Library}
 \label{lf-static-extension-in-std}

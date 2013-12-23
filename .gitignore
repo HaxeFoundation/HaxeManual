@@ -13,3 +13,5 @@ HaxeDoc.tdo
 HaxeDoc.pdf
 md/
 latextemp/
+HaxeDoc.synctex.gz
+toc.sv

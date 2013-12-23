@@ -66,22 +66,26 @@
 	\caption{\tcapt}
 }
 
+\tikzstyle{flowchartArrow} = [
+	thick,
+	->,
+	>=stealth,
+	decoration = {
+		markings,
+		mark = at position 1 with {
+			\arrow[scale=2]{>}
+		}
+	},
+	postaction = {decorate}
+]
+
 \newenvironment*{flowchart}[2]{
 	\label{#1}
 	\begin{tikzfigure}[#2]
 	\tikzset {
 		level distance = 3cm,
 		grow = down,
-		edge from parent/.append style = {
-			thick, -> , >=stealth,
-			decoration = {
-				markings,
-				mark = at position 1 with {
-					\arrow[scale=2]{>}
-				}
-			},
-			postaction = {decorate}
-		}
+		edge from parent/.append style = { flowchartArrow }
 	}
 }{
 	\end{tikzfigure}
