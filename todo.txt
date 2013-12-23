@@ -33,6 +33,7 @@ Todo:
 3.5 - Unification: Mention toString()/String conversion somewhere in this chapter.
 3.5.1 - Between Class/Interface: "parent class" should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.
 3.7.2 - Import: Describe import a.*
+3.7.3 - Resolution Order: proper label and caption + code/identifier styling for diagram
 6.4 - Pattern Matching: Check "you" wording.
 8.3.1 - Embedding resources: what to use for listing of non-haxe code like hxml?
 9.5.1 - Enum building: Check if we can build GADTs this way.
