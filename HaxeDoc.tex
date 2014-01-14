@@ -58,11 +58,11 @@ Currently, there are eight supported target languages which allow different use-
 	\hline
 	Name & Output type & Main usages \\ \hline
 	Javascript & Sourcecode & Desktop, Mobile, Server \\
-	Actionscript 3 & Sourcecode & Browser, Desktop, Mobile \\
-	Flash & Bytecode & Browser, Desktop, Mobile \\ 
 	Neko & Bytecode & Desktop, Server \\
 	PHP & Sourcecode & Server \\
 	C++ & Sourcecode & Desktop, Mobile, Server \\
+	Actionscript 3 & Sourcecode & Browser, Desktop, Mobile \\
+	Flash & Bytecode & Browser, Desktop, Mobile \\ 
 	Java & Sourcecode & Desktop, Server \\
 	C\# & Sourcecode & Desktop, Mobile, Server \\ \hline
 \end{tabular}
@@ -110,6 +110,7 @@ Most of this document's content was written by Simon Krajewski while working for
 	\item Caleb Harper: Additional content and editing
 	\item Josefiene Pertosa: Editing
 	\item Miha Lunar: Editing
+	\item Nicolas Cannasse: Haxe creator
 \end{itemize}
 
 
@@ -132,13 +133,13 @@ This can be tested by saving the above code to a file named \ic{HelloWorld.hx} a
 \label{introduction-haxe-history}
 \state{Edited}
 
-The Haxe project started on 22 October 2005 as a successor to the \emph{Motion-Twin Action Script Compiler}, MTASC. French developer \emph{Motion-Twin}\footnote{http://motion-twin.org} had developed MTASC as a popular ActionScript 2 compiler, and the next logical step for them was to design their very own programming language; thus, giving birth to Haxe.
+The Haxe project was started on 22 October 2005 by French developer \emph{Nicolas Cannasse} as a successor of the popular open-source ActionScript 2 compiler \emph{MTASC} (Motion-Twin Action Script Compiler) and the in-house \emph{MTypes} language which experimented type inference applied to an Object Oriented language. Long time passion of Nicolas for programming language design and new opportunies to mix different technologies together as part of his game developer work at \emph{Motion-Twin} led to the creation of a new language.
 
-Being spelled \emph{haXe} back then, its beta was released in February 2006 with the first supported targets being AVM\footnote{Adobe Virtual Machine}-bytecode and Motion-Twin's own \emph{Neko} virtual machine\footnote{http://nekovm.org}.
+Being spelled \emph{haXe} back then, its beta was released in February 2006 with the first supported targets being AVM\footnote{Adobe Virtual Machine}-bytecode and Nicolas's own \emph{Neko} virtual machine\footnote{http://nekovm.org}.
 
-\emph{Nicolas Cannasse}, who remains leader of the Haxe project to this date, kept on designing Haxe with a clear vision, subsequently leading to the Haxe 1.0 release in May 2006. This first major release came with support for \target{Javascript} code generation and already had some of the features that define Haxe today, such as type inference and structural sub-typing.
+Nicolas Cannasse, who remains leader of the Haxe project to this date, kept on designing Haxe with a clear vision, subsequently leading to the Haxe 1.0 release in May 2006. This first major release came with support for \target{Javascript} code generation and already had some of the features that define Haxe today, such as type inference and structural sub-typing.
 
-Haxe 1 saw several minor releases over the course of two years, adding the \target{Flash 9} target along with the \emph{haxelib}-tool in August 2006 and the \target{Actionscript 3} target in March 2007. During these months, there was a strong focus on improving stability, which came in the form of several minor bug-fix releases.
+Haxe 1 saw several minor releases over the course of two years, adding the \target{Flash AVM2} target along with the \emph{haxelib}-tool in August 2006 and the \target{Actionscript 3} target in March 2007. During these months, there was a strong focus on improving stability, which came in the form of several minor bug-fix releases.
 
 Haxe 2.0 was released in July 2008, coming with the \target{PHP} target courtesy of \emph{Franco Ponticelli}. A similar effort by \emph{Hugh Sanderson} lead to the addition of the \target{C++} target in July 2009 with the Haxe 2.04 release.
 
@@ -153,7 +154,7 @@ In late 2012, the Haxe 3 switch was flipped and the Haxe Compiler team, now back
 \chapter{Types}
 \label{types}
 
-The Haxe Compiler employs a sophisticated typing system which helps detecting type-related errors in a program at compile-time. A type error is an invalid operation on a given type, such as dividing by a String, trying to access a field of an Integer or calling a function with not enough (or too many) arguments.
+The Haxe Compiler employs a rich typing system which helps detecting type-related errors in a program at compile-time. A type error is an invalid operation on a given type, such as dividing by a String, trying to access a field of an Integer or calling a function with not enough (or too many) arguments.
 
 In some languages this additional safety comes at a price because programmers are forced to explicitly assign types to syntactic constructs:
 
@@ -166,18 +167,21 @@ The explicit type annotations are not required in Haxe, because the compiler can
 \begin{lstlisting}
 var myButton = new MySpecialButton(); // Haxe
 \end{lstlisting}
-We will explore type inference in detail later in \Fullref{type-system-type-inference}. For now, it is sufficient to say that the variable \expr{myButton} in the above code is known to be an \emph{instance of class} \type{MySpecialButton}. A class instance is one of seven type groups:
+We will explore type inference in detail later in \Fullref{type-system-type-inference}. For now, it is sufficient to say that the variable \expr{myButton} in the above code is known to be an \emph{instance of class} \type{MySpecialButton}. 
+
+Unlike some other Object Oriented programming languages, in Haxe every value is not an Object. The Haxe type system consists actually in seven type groups:
 
 \begin{description}
- \item[Class instance:] an object of a given class or interface
-\todo{A class instance can be a class instance or something else? Somewhat confusing.}
- \item[Enum instance:] a value of a Haxe enumeration
- \item[Structure:] an anonymous structure, i.e. a collection of named fields
- \item[Function:] a compound type of several arguments and one return
- \item[Dynamic:] a wildcard type which is compatible to any type
- \item[Abstract:] a compile-time type which is represented by a different type at runtime
- \item[Monomorph:] an unknown type, which may later become a different type
+ \item[\emph{Class instance}:] an object of a given class or interface
+ \item[\emph{Enum instance}:] a value of a Haxe enumeration
+ \item[\emph{Structure}:] an anonymous structure, i.e. a collection of named fields
+ \item[\emph{Function}:] a compound type of several arguments and one return
+ \item[\emph{Dynamic}:] a wildcard type which is compatible to any type
+ \item[\emph{Abstract}:] a compile-time type which is represented by a different type at runtime
+ \item[\emph{Monomorph}:] an unknown type, which may later become a different type
 \end{description}
+
+We will describe each of these type groups and how they relate to each other in the next chapters.
 
 \define{Compound Type}{A compound type is a type which has sub-types. This includes any type with \tref{type parameters}{type-system-type-parameters} and the \tref{function}{types-function} type.}
 
@@ -206,13 +210,11 @@ For performance reasons, the Haxe Compiler does not enforce any overflow behavio
 \todo{Markdown: prettier formatting (bold definition names)}
 
 \begin{description}
- \item[C++, Java, C\#, Neko:] 32-bit integers, with usual overflow practices. 
- \item[Flash, AVM2:] 32-bit integers, but higher integers are memory boxed.
- \todo{``Flash, AVM2'' looks like two different things, perhaps Flash 9+ (AVM2) is clearer? How high? Memory boxed? What is this and what are the implications?}
- \item[PHP, JS, Flash 8:] No native \emph{Int} type.  Overflows will occur if they reach their float limit (2\textsuperscript{52}).
+ \item[C++, Java, C\#, Neko, Flash:] 32-bit signed integers, with usual overflow practices. 
+ \item[PHP, JS, Flash 8:] No native \emph{Int} type.  Loss of precision will occur if they reach their float limit (2\textsuperscript{52}).
 \end{description}
 
-Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used to ensure correct overflow behavior regardless of the platform.  
+Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used to ensure correct overflow behavior regardless of the platform, at the cost of additional computations depending on the platform.
 
 \subsection{Numeric Operators}
 \label{types-numeric-operators}
@@ -223,10 +225,10 @@ Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used t
 	\hline
 	\multicolumn{5}{|c|}{Arithmetic} \\ \hline
 	Operator & Operation & Argument 1 & Argument 2 & Return \\ \hline
-	\expr{++}& increment & \type{Int} & \type{N/A} & \type{Int}\\
-	& & \type{Float} & \type{N/A} & \type{Float}\\
-	\expr{--} & decrement & \type{Int} & \type{N/A} & \type{Int}\\
-	& & \type{Float} & \type{N/A} & \type{Float}\\
+	\expr{++}& increment & \type{Int} & N/A & \type{Int}\\
+	& & \type{Float} & N/A & \type{Float}\\
+	\expr{--} & decrement & \type{Int} & N/A & \type{Int}\\
+	& & \type{Float} & N/A & \type{Float}\\
 	\expr{+} & addition & \type{Float} & \type{Float} & \type{Float} \\
 	& & \type{Float} & \type{Int} & \type{Float} \\
 	& & \type{Int} & \type{Float} & \type{Float} \\
@@ -249,7 +251,6 @@ Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used t
 	& & \type{Int} & \type{Int} & \type{Int} \\	 \hline
 	\multicolumn{5}{|c|}{Comparison} \\ \hline
 	Operator & Operation & Argument 1 & Argument 2 & Return \\ \hline
-	\expr{\textasciitilde} & negation & \type{Float/Int} & \type{N/A} & \type{Bool} \\
 	\expr{==} & equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
 	\expr{!=} & not equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
 	\expr{<} & less than & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
@@ -258,7 +259,7 @@ Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used t
 	\expr{>=} & great than or equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\ \hline
 	\multicolumn{5}{|c|}{Bitwise} \\ \hline
 	Operator & Operation & Argument 1 & Argument 2 & Return \\ \hline
-	\expr{!} & bitwise negation & \type{Int} & \type{N/A} & \type{Int} \\	
+	\expr{\textasciitilde} & bitwise negation & \type{Int} & N/A & \type{Int} \\	
 	\expr{\&} & bitwise and & \type{Int} & \type{Int} & \type{Int} \\	
 	\expr{|} & bitwise or & \type{Int} & \type{Int} & \type{Int} \\	
 	\expr{\^} & bitwise xor & \type{Int} & \type{Int} & \type{Int} \\	
@@ -315,14 +316,14 @@ var x:Void; // Arguments and variables of type Void are not allowed
 
 It is common for programming languages to have a single, clean definition for nullability. However, Haxe has to find a compromise in this regard. The reason for this is obvious when looking at the nature of Haxe's target languages: While some of them allow and, in fact, default to \expr{null} for anything, others do not even allow \expr{null} for certain types. This necessitates the distinction of two types of target languages:
 
-\define{Static target}{Static targets employ their own type system where \expr{null} is not a valid value for basic types. This is true for the \target{Flash 9+}, \target{C++}, \target{Java} and \target{C\#} targets.}
-\define{Dynamic target}{Dynamic targets are more lenient with their types and allow \expr{null} values for basic types. They consist of \target{JavaScript}, \target{PHP}, \target{neko} and \target{Flash 6-8}.}
+\define{Static target}{Static targets employ their own type system where \expr{null} is not a valid value for basic types. This is true for the \target{Flash}, \target{C++}, \target{Java} and \target{C\#} targets.}
+\define{Dynamic target}{Dynamic targets are more lenient with their types and allow \expr{null} values for basic types. They consist of \target{JavaScript}, \target{PHP}, \target{Neko} and \target{Flash 6-8}.}
 
 There is nothing to worry about when working with \expr{null} on dynamic targets, but static ones may require some thought. For starters, basic types are initialized to these values:
 
 \begin{description}
 	\item[\type{Int}:] \expr{0}
-	\item[\type{Float}:] \expr{NaN} on \target{Flash 9+}, \expr{0.0} on other static targets
+	\item[\type{Float}:] \expr{NaN} on \target{Flash}, \expr{0.0} on other static targets
 	\item[\type{Bool}:] \expr{false}
 \end{description}
 As a consequence, the Haxe Compiler does not allow the assignment of \expr{null} to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as \type{Null$<$T$>$}:
@@ -606,7 +607,7 @@ Using structures and by extension \tref{structural subtyping}{type-system-struct
 
 
 
-\section{Function}
+\section{Function Type}
 \label{types-function}
 
 The function type, along with the \tref{monomorph}{types-monomorph}, is a type which is usually well-hidden from Haxe users, yet present everywhere. We can make it surface by using \expr{\$type}, a special Haxe identifier which outputs the type its expression has during compilation :
@@ -3317,7 +3318,7 @@ Regular Expressions are implemented:
 \begin{itemize}
     \item in JavaScript, the runtime is providing the implementation with the object RegExp.
     \item in Neko and C++, the PCRE library is used
-    \item in Flash9, PHP, C\# and Java, native implementations are used
+    \item in Flash, PHP, C\# and Java, native implementations are used
     \item in Flash 6/8, the implementation is not available
 \end{itemize}
 
