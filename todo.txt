@@ -1,12 +1,12 @@
 This file is generated, do not edit!
 
 Todo:
-2 - Types: A class instance can be a class instance or something else? Somewhat confusing.
+1.1 - What is Haxe?: Could we have a big Haxe logo in the First Manual Page (Introduction) under the menu (a bit like a book cover ?) It looks a bit empty now and is a landing page for "Manual"
 2.1 - Basic Types: Check wording here (we don't want to address "you")
 2.1 - Basic Types: A bit heavy on jargon. I don't know what abstract types are, what :coreType means, what metadata refers to and all the other stuff, but the section references and warnings are good to have.
 2.1.2 - Overflow: Markdown: prettier formatting (bold definition names)
-2.1.2 - Overflow: "Flash, AVM2" looks like two different things, perhaps Flash 9+ (AVM2) is clearer? How high? Memory boxed? What is this and what are the implications?
 2.1.3 - Numeric Operators: make sure the types are right for inc, dec, negate, and bitwise negate
+2.1.3 - Numeric Operators: While introducing the different operations, we should include that information as well, including how they differ with the "C" standard, see http://haxe.org/manual/operators
 2.1.5 - Void: Consider having special "compiler error" formatting, so it's fancier than a comment.
 2.2 - Nullability: `Null<T>` hasn't been mentioned before I think, so it could be confusing as to what it is and why it's there and how it works and why it works.
 2.2.1 - Optional Arguments and Nullability:: Is there a difference between `?y : Int` and `y : Null<Int>` or can you even do the latter? Some more explanation and examples with native optional and Haxe optional arguments and how they relate to nullability would be nice.
@@ -28,13 +28,16 @@ Todo:
 2.4.1 - Enum Constructor: `Enum<Color>` syntax, what's the difference between that and Color?
 2.5.1 - JSON for Structure Values: Similar to todo in 2.3, link to Haxe identifiers
 2.5.3 - Optional Fields: I don't really know how these work yet.
+2.6 - Function Type: It seems a bit convoluted explanations. Should we maybe start by "decoding" the meaning of  Void -> Void, then Int -> Bool -> Float, then maybe have samples using $type
 2.7.2 - Implementing Dynamic: resolve()
 2.8.1 - Implicit Casts: The wording is a bit broken here, I can only infer what it means.
 3.5 - Unification: Mention toString()/String conversion somewhere in this chapter.
 3.5.1 - Between Class/Interface: "parent class" should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.
 3.7.2 - Import: Describe import a.*
 3.7.3 - Resolution Order: proper label and caption + code/identifier styling for diagram
+5.11.1 - Inline constructors: I would add a "inlining" section in Manual/Language Features, then move the content of  Expression/new/inline constructors there
 6.4 - Pattern Matching: Check "you" wording.
+6.6 - Array Comprehension: Comprehensions are only listing Arrays, not Maps
 8.3.1 - Embedding resources: what to use for listing of non-haxe code like hxml?
 9.5.1 - Enum building: Check if we can build GADTs this way.
 10.2.1 - Array: make sure this is true about static targets
@@ -102,7 +105,7 @@ Unreviewed:
 2.5.1 - JSON for Structure Values
 2.5.2 - Class Notation for Structure Types
 2.5.4 - Impact on Performance
-2.6 - Function
+2.6 - Function Type
 2.6.1 - Optional Arguments
 2.6.2 - Default values
 2.7 - Dynamic
