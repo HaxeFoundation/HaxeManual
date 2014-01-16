@@ -47,6 +47,8 @@
 \section{What is Haxe?}
 \label{introduction-what-is-haxe}
 
+\todo{Could we have a big Haxe logo in the First Manual Page (Introduction) under the menu (a bit like a book cover ?) It looks a bit empty now and is a landing page for "Manual"}
+
 Haxe is a high-level, open source programming language and compiler. It allows compilation of programs written using an ECMAScript\footnote{http://www.ecma-international.org/publications/standards/Ecma-327.htm}-oriented syntax to multiple target languages. Employing proper abstraction, it is possible to maintain a single code-base which compiles to multiple targets.
 
 Haxe is strongly typed, but the typing system can be subverted where required. Utilizing type information, the Haxe type system can detect errors at compile-time which would only be noticeable at runtime in the target language. Furthermore, type information can be used by the target generators to generate optimized and robust code.
@@ -220,6 +222,8 @@ Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used t
 \label{types-numeric-operators}
 
 \todo{make sure the types are right for inc, dec, negate, and bitwise negate}
+\todo{While introducing the different operations, we should include that information as well, including how they differ with the "C" standard, see http://haxe.org/manual/operators}
+
 \begin{center}
 \begin{tabular}{| l | l | l | l | l |}
 	\hline
@@ -609,6 +613,8 @@ Using structures and by extension \tref{structural subtyping}{type-system-struct
 
 \section{Function Type}
 \label{types-function}
+
+\todo{It seems a bit convoluted explanations. Should we maybe start by "decoding" the meaning of  Void -> Void, then Int -> Bool -> Float, then maybe have samples using \$type}
 
 The function type, along with the \tref{monomorph}{types-monomorph}, is a type which is usually well-hidden from Haxe users, yet present everywhere. We can make it surface by using \expr{\$type}, a special Haxe identifier which outputs the type its expression has during compilation :
 
@@ -2070,6 +2076,8 @@ Within the \expr{main} method we instantiate an instance of \type{Main} itself, 
 \label{expression-inline-constructor}
 \since{3.1.0}
 
+\todo{I would add a "inlining" section in Manual/Language Features, then move the content of  Expression/new/inline constructors there}
+
 If a constructor is declared to be \tref{inline}{class-field-inline}, the compiler may try to optimize it away in certain situations. There are several requirements for this to work:
 
 \begin{itemize}
@@ -2576,6 +2584,8 @@ Of course the use of single-quote enclosed strings without any interpolation rem
 
 \section{Array Comprehension}
 \label{lf-array-comprehension}
+
+\todo{Comprehensions are only listing Arrays, not Maps}
 
 Array comprehension in Haxe uses existing syntax to allow concise initialization of arrays. It is identified by \expr{[for} or \expr{[while} constructs:
 
