@@ -6,12 +6,10 @@ Todo:
 2.1 - Basic Types: A bit heavy on jargon. I don't know what abstract types are, what :coreType means, what metadata refers to and all the other stuff, but the section references and warnings are good to have.
 2.1.3 - Numeric Operators: make sure the types are right for inc, dec, negate, and bitwise negate
 2.1.3 - Numeric Operators: While introducing the different operations, we should include that information as well, including how they differ with the "C" standard, see http://haxe.org/manual/operators
-2.1.5 - Void: Consider having special "compiler error" formatting, so it's fancier than a comment.
 2.2 - Nullability: `Null<T>` hasn't been mentioned before I think, so it could be confusing as to what it is and why it's there and how it works and why it works.
 2.2.1 - Optional Arguments and Nullability:: Is there a difference between `?y : Int` and `y : Null<Int>` or can you even do the latter? Some more explanation and examples with native optional and Haxe optional arguments and how they relate to nullability would be nice.
 2.3 - Class Instance: Same as in 2.2, what the `Class<T>` syntax means is unclear at this point.
 2.3 - Class Instance: What are class types?
-2.4 - Enum Instance: Same as in 2.3, could be linked to rules.
 2.4 - Enum Instance: Same as in 2.2, what is `Enum<T>` syntax?
 2.4 - Enum Instance: Doesn't really show enum usage, do you use Color.Red or just Red? etc.
 2.4.1 - Enum Constructor: EnumValue is the type that unifies with the types that are instances of Enums? Would benefit from more elaboration.
