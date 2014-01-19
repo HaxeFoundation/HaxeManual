@@ -17,6 +17,7 @@ Todo:
 2.4.1 - Enum Constructor: `Enum<Color>` syntax, what's the difference between that and Color?
 2.5.3 - Optional Fields: I don't really know how these work yet.
 2.6 - Function Type: It seems a bit convoluted explanations. Should we maybe start by "decoding" the meaning of  Void -> Void, then Int -> Bool -> Float, then maybe have samples using $type
+2.6 - Function Type: what seems to be missing everywhere is an explanation on how to use a function type as one of the parameters, Int -> String ->(String->Void)-> Bool; - Flanders
 2.7.2 - Implementing Dynamic: resolve()
 3.5 - Unification: Mention toString()/String conversion somewhere in this chapter.
 3.5.1 - Between Class/Interface: "parent class" should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.
