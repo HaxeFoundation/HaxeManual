@@ -3055,7 +3055,7 @@ Standard library
 \subsection{Array}
 \label{std-Array}
 
-An \type{Array} is a \emph{collection} for storing elements.  It has one \Fullref{type-system-type-parameters} and all elements of the array must be of the specified type.  Alternatively, arrays of mixed types are allowed if the type parameter is \Fullref{types-dynamic}.  See the below code snippet for an example. 
+An \type{Array} is a \emph{collection} for storing elements.  It has one \tref{type parameter}{type-system-type-parameters} and all elements of the array must be of the specified type.  Alternatively, arrays of mixed types are allowed if the type parameter is \Fullref{types-dynamic}.  See the below code snippet for an example. 
 \trivia{Dynamic Arrays}{In Haxe 2, mixed type array declarations were allowed.  In Haxe 3, arrays can have mixed types ONLY if they are explicitly declared as \emph{Array$<$Dynamic$>$}.}
 The following example shows some basic examples of working with arrays:
 \haxe{assets/ArrayExample.hx}
@@ -3093,7 +3093,7 @@ See the \href{http://api.haxe.org/List.html}{List API} for details about the lis
 
 \subsection{GenericStack}
 \label{std-GenericStack}
-A \type{GenericStack}, like \type{Array} and \type{List} is a container for storing elements.  It has one \Fullref{type-system-type-parameters} and all elements of the array must be of the specified type. See the \href{http://api.haxe.org/haxe/ds/GenericStack.html}{GenericStack API} for details about its methods.  Here is a small example program for initializing and working with a \type{GenericStack}.
+A \type{GenericStack}, like \type{Array} and \type{List} is a container for storing elements.  It has one \tref{type parameter}{type-system-type-parameters} and all elements of the array must be of the specified type. See the \href{http://api.haxe.org/haxe/ds/GenericStack.html}{GenericStack API} for details about its methods.  Here is a small example program for initializing and working with a \type{GenericStack}.
 \haxe{assets/GenericStackExample.hx}
 \trivia{FastList}{In Haxe 2, the GenericStack class was known as FastList.  Since its behavior more closely resembled a typical stack, the name was changed for Haxe 3.}
 The \emph{Generic} in \type{GenericStack} is literal.  It is attributed with the \expr{:generic} metadata.  Depending on the target, this can lead to improved performance on static targets.  See \Fullref{type-system-generic} for more details.
