@@ -7,6 +7,6 @@ class Bind {
 		f(1);
 		f(2);
 		f(3);
-		trace(map.toString()); // {1 => 12, 2 => 12, 3 => 12}
+		trace(map); // {1 => 12, 2 => 12, 3 => 12}
 	}
 }
