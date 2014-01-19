@@ -622,6 +622,7 @@ There is a strong resemblance between the declaration of function \expr{test} an
 \end{itemize}
 In either notation, it is obvious that the function \expr{test} accepts a first argument of type \type{Int}, a second argument of type \type{String} and returns a value of type \type{Bool}. If a call to this function is made, such as \expr{test(1, "foo")} within the second \expr{\$type} expression, the Haxe typer checks if \expr{1} can be assigned to \type{Int} and if \expr{"foo"} can be assigned to \type{String}. The type of the call is then equal to the type of the value \expr{test} returns, which is \type{Bool}.
 
+\todo{what seems to be missing everywhere is an explanation on how to use a function type as one of the parameters, Int -> String ->(String->Void)-> Bool; - Flanders}
 
 \subsection{Optional Arguments}
 \label{types-function-optional-arguments}
@@ -804,6 +805,9 @@ The \emph{selection algorithm} when assigning a type \expr{A} to a type \expr{B}
 	\item Stop, unification fails.
 	\item Stop, unification succeeds.
 \end{enumerate}
+
+\input{assets/tikz/abstract-selection.tex}
+
 By design, implicit casts are \emph{not transitive}, as the following example shows:
 
 \haxe{assets/ImplicitTransitiveCast.hx}

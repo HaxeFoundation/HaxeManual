@@ -1,0 +1,34 @@
+\begin{flowchart}{types-abstract-implicit-casts-selection-algorithm}{Selection algorithm flow chart.}
+
+\tikzset {
+	level distance = 1.8cm
+}
+
+\tikzstyle{edgeBelow} = [ auto = left, outer sep = 0.2cm ]
+
+\Tree
+[.\node [decisionc] (dec1) {\expr{A} is abstract};
+\edge [edgeBelow] node {Yes};
+[.\node [decisionc] (dec2) {\expr{A} defines \expr{to} for \expr{B}};
+\edge [edgeBelow] node {No};
+[.\node [decisionc] (dec3) {\expr{B} is abstract};
+\edge [edgeBelow] node {Yes};
+[.\node [decisionc] (dec4) {\expr{B} defines \expr{from} for \expr{A}};
+\edge [edgeBelow] node {No};
+[.\node [startstop, fill = red!70] (fail) {Unification fails};
+]]]]]
+
+
+\node [startstop, fill = green!70, xshift = 3cm] (success) at (fail.east) {Unification succeeds};
+
+\tikzstyle{altNode} = [above right, at start]
+\tikzstyle{skipNode} = [above left, at start]
+\tikzstyle{skipArrow} = [out = 200, in = 160, looseness = 1.3]
+\coordinate (altAnchor) at (success.north);
+
+\draw [flowchartArrow] (dec1.west) [skipArrow] to node [skipNode] {No} (dec3.north west);
+\draw [flowchartArrow] (dec3.south west) [skipArrow] to node [skipNode] {No} (fail.west);
+\draw [flowchartArrow] (dec2) -| (altAnchor) node [altNode] {Yes};
+\draw [flowchartArrow] (dec4) -| (altAnchor) node [altNode] {Yes};
+
+\end{flowchart}

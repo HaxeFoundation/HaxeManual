@@ -13,15 +13,16 @@ class FlowchartHandler {
 		if (!envargRegexp.match(s)) throw "Custom environment definition doesn't match expected argument template.";
 		var envlabel = envargRegexp.matched(1);
 		var envtitle = envargRegexp.matched(2);
-		var targetPath = "assets/graphics/generated/"+envlabel+".png";
-		pdflatexCompile(Resource.getString("tikzTemplate"), "\\begin{flowchart}" + s + "\\end{flowchart}", targetPath);
-		var relativePath = "../../" + targetPath;
+		var targetPath = "assets/graphics/generated/";
+		var targetName = envlabel;
+		latexCompile(Resource.getString("tikzTemplate"), "\\begin{flowchart}" + s + "\\end{flowchart}", targetPath, targetName);
+		var relativePath = "../../" + targetPath + targetName + ".png";
 		return '![$envtitle]($relativePath)\n\n_Figure: ${envtitle}_';
 	}
 	
-	static function pdflatexCompile(template:String, content:String, targetPath:String) {
+	static function latexCompile(template:String, content:String, targetPath:String, targetName:String) {
 		
-		// TODO: error checking for pdflatex / convert
+		// TODO: error checking for latex / mudraw
 		
 		#if !(compileEnv || recompileEnv)
 		return;
@@ -29,13 +30,13 @@ class FlowchartHandler {
 		
 		var cwd = Sys.getCwd();
 		
-		var path = Path.addTrailingSlash(new Path(cwd).dir) + targetPath;
+		var path = Path.addTrailingSlash(new Path(cwd).dir) + targetPath + targetName + ".png";
 		
 		if (FileSystem.exists(path)) {
 			#if recompileEnv
 			FileSystem.deleteFile(path);
 			#else
-			trace("Target pdflatex file already exists, ignoring: " + path);
+			trace("Target file already exists, ignoring: " + path);
 			return;
 			#end
 		}
@@ -66,8 +67,10 @@ class FlowchartHandler {
 		fout.writeString(replaced);
 		fout.close();
 		
-		Sys.command("pdflatex", ["-interaction=nonstopmode", Path.withoutDirectory(texFile)]);
-		Sys.command("convert", ["-density", "120", tempName + ".pdf", tempName + ".png"]);
+		//Sys.command("pdflatex", ["-interaction=nonstopmode", Path.withoutDirectory(texFile)]);
+		//Sys.command("convert", ["-density", "120", tempName + ".pdf", tempName + ".png"]);
+		Sys.command("xelatex", ["-interaction=nonstopmode", Path.withoutDirectory(texFile)]);
+		Sys.command("mudraw", ["-r", "110", "-c", "rgba", "-o", tempName + ".png", tempName + ".pdf"]);
 		Sys.setCwd(cwd);
 		
 		var imagePath = tempDir + tempName + ".png";
@@ -81,12 +84,31 @@ class FlowchartHandler {
 			throw 'Unable to move image from $imagePath to $path. Make sure the target directory exists.';
 		}
 		
+		
+		#if keepEnvPDF
+		var pdfSourcePath = tempDir + tempName + ".pdf";
+		var pdfTargetpath = Path.addTrailingSlash(new Path(cwd).dir) + targetPath + targetName + ".pdf";
+		if (!FileSystem.exists(pdfSourcePath)) {
+			throw "Supposedly generated pdf at " + pdfSourcePath + " not found.";
+		}
+		
+		try {
+			if (FileSystem.exists(pdfTargetpath)) FileSystem.deleteFile(pdfTargetpath);
+			FileSystem.rename(pdfSourcePath, pdfTargetpath);
+		} catch (e:String) {
+			throw 'Unable to move pdf from $pdfSourcePath to $pdfTargetpath. Make sure the target directory exists.';
+		}
+		#end
+		
+		
 		// Cleanup
 		#if !keepEnvTemp
 		FileSystem.deleteFile(tempDir + tempName + ".log");
 		FileSystem.deleteFile(tempDir + tempName + ".aux");
 		FileSystem.deleteFile(tempDir + tempName + ".tex");
+		#if !keepEnvPDF
 		FileSystem.deleteFile(tempDir + tempName + ".pdf");
+		#end
 		FileSystem.deleteDirectory(tempDir);
 		#end
 		
