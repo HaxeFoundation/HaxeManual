@@ -3151,19 +3151,19 @@ We can use standard regular expression patterns such as:
     \item \expr{|} "OR" statement.
 \end{itemize}
 
-For example, the following regular expression match a valid email address:
+For example, the following regular expression matches valid email addresses:
 \begin{lstlisting}
 ~/[A-Z0-9._\%-]+@[A-Z0-9.-]+\.[A-Z][A-Z][A-Z]?/i;
 \end{lstlisting}
 
-Please notice that the \expr{i} at the end of the regular expression is a \emph{flag} that enable case-insensitive matching.
+Please notice that the \expr{i} at the end of the regular expression is a \emph{flag} that enables case-insensitive matching.
 
 The possible flags are the following:
 \begin{itemize}
     \item \expr{i} case insensitive matching
     \item \expr{g} global replace or split, see below
     \item \expr{m} multiline matching, \expr{\textasciicircum} and \expr{\$} represent the beginning and end of a line
-    \item \expr{s} the dot \expr{.} will match also newlines \emph{(Neko, C++, PHP and Java targets only)}
+    \item \expr{s} the dot \expr{.} will also match newlines \emph{(Neko, C++, PHP and Java targets only)}
     \item \expr{u} use UTF-8 matching \emph{(Neko and C++ targets only)}
 \end{itemize}
 
