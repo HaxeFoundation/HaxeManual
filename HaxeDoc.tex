@@ -3232,7 +3232,7 @@ Regular Expressions are implemented:
 \section{Math}
 \label{std-math}
 
-Haxe includes a floating point math library for some common mathematical operations.  Most of the fuctions operate on and return \type{floats}.  However, a \type{Int} can be used where a \type{Float} is expected, and Haxe also converts \type{Int} to \type{Float} during most numeric operations.  See \Fullref{types-numeric-operators} for more details on when operators convert \type{Int} to \type{Float}.
+Haxe includes a floating point math library for some common mathematical operations.  Most of the fuctions operate on and return \type{floats}.  However, an \type{Int} can be used where a \type{Float} is expected, and Haxe also converts \type{Int} to \type{Float} during most numeric operations  (see \Fullref{types-numeric-operators} for more details).
 
 Here are some example uses of the math library.  See the \href{http://api.haxe.org/Math.html}{Math API} for all available functions.
 
@@ -3240,9 +3240,9 @@ Here are some example uses of the math library.  See the \href{http://api.haxe.o
 
 \subsection{Special Numbers}
 \label{std-math-special-numbers}
-The math library has defitions for several special numbers:
+The math library has definitions for several special numbers:
 \begin{itemize}
-	\item NaN (Not A Number): returned when a mathmatically incorrect operation is executed e.g. Math.sqrt(-1)
+	\item NaN (Not a Number): returned when a mathmatically incorrect operation is executed, e.g. Math.sqrt(-1)
 	\item POSITIVE_INFINITY: e.g. divide a positive number by zero
 	\item NEGATIVE_INFINITY: e.g. divide a negative number by zero
 	\item PI : 3.1415...
@@ -3254,7 +3254,7 @@ Although neko can fluidly handle mathematical errors, like division by zero, thi
 
 \subsection{Integer Math}
 \label{std-math-integer-math}
-If you are targeting a platform that can utilize integer operations, e.g. integer division, for performance gains, wrap the operation in \emph{Std.int()}.  The Haxe Compiler can then optimize for integer operations.  An example:
+If you are targeting a platform that can utilize integer operations, e.g. integer division, it should be wrapped in \emph{Std.int()} for improved performance.  The Haxe Compiler can then optimize for integer operations.  An example:
 \begin{lstlisting}
 	var intDivision = Std.int(6.2/4.7);
 \end{lstlisting}
@@ -3279,7 +3279,7 @@ It is common to see \Fullref{lf-static-extension} used with the math library.  T
 \section{Json}
 \label{std-Json}
 
-Haxe provides built-in support for (de-)serializing \emph{JSON}\footnote{http://en.wikipedia.org/wiki/JSON} data via \type{haxe.Json} class.
+Haxe provides built-in support for (de-)serializing \emph{JSON}\footnote{http://en.wikipedia.org/wiki/JSON} data via the \type{haxe.Json} class.
 
 \subsection{Parsing JSON}
 \label{std-Json-parsing}
@@ -3299,11 +3299,11 @@ Use the \expr{haxe.Json.stringify} static method to encode a Haxe value into a \
 \subsection{Implementation details}
 \label{std-Json-implementation-details}
 
-\type{haxe.Json} API automatically uses native implementation on targets where it is available, i.e. \emph{JavaScript}, \emph{Flash} and \emph{PHP} and provides its own implementation for other targets.
+The \type{haxe.Json} API automatically uses native implementation on targets where it is available, i.e. \emph{JavaScript}, \emph{Flash} and \emph{PHP} and provides its own implementation for other targets.
 
 Usage of Haxe own implementation can be forced with \expr{-D haxeJSON} compiler argument. This will also provide serialization of \tref{enums}{types-enum-instance} by their index, \tref{maps}{std-Map} with string keys and class instances.
 
-Older browsers (Internet Explorer 7, for instance) may not have native \emph{JSON} implementation. In case it's required to support them, we can include in the HTML page one of the JSON implementations available on the internet or use \expr{-D old_browser} compiler argument that will make \type{haxe.Json} try to use native JSON and fallback to its own implementation in case it's not available.
+Older browsers (Internet Explorer 7, for instance) may not have native \emph{JSON} implementation. In case it's required to support them, we can include one of the JSON implementations available on the internet in the HTML page. Alternatively, a \expr{-D old_browser} compiler argument that will make \type{haxe.Json} try to use native JSON and fallback to its own implementation in case it's not available can be used.
 
 \section{Xml}
 \label{std-Xml}
@@ -3345,7 +3345,7 @@ If the compiler emits an error \ic{Error: Library random is not installed : run 
 \section{haxelib.json}
 \label{haxelib-json}
 
-Each Haxe library defines a set of attributes in its \ic{haxelib.json} file:
+Each Haxe library requires a \ic{haxelib.json} file in which the following attributes are defined:
 
 \begin{description}
 	\item[name:] The name of the library. It must contain at least 3 characters among the following: \ic{\[A-Za-z0-9_-.\]}. In particular, no spaces are allowed.
