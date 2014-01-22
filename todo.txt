@@ -1,0 +1,235 @@
+This file is generated, do not edit!
+
+Todo:
+1.1 - What is Haxe?: Could we have a big Haxe logo in the First Manual Page (Introduction) under the menu (a bit like a book cover ?) It looks a bit empty now and is a landing page for "Manual"
+2.1 - Basic Types: Check wording here (we don't want to address "you")
+2.1 - Basic Types: A bit heavy on jargon. I don't know what abstract types are, what :coreType means, what metadata refers to and all the other stuff, but the section references and warnings are good to have.
+2.1.3 - Numeric Operators: make sure the types are right for inc, dec, negate, and bitwise negate
+2.1.3 - Numeric Operators: While introducing the different operations, we should include that information as well, including how they differ with the "C" standard, see http://haxe.org/manual/operators
+2.2 - Nullability: `Null<T>` hasn't been mentioned before I think, so it could be confusing as to what it is and why it's there and how it works and why it works.
+2.2.1 - Optional Arguments and Nullability:: Is there a difference between `?y : Int` and `y : Null<Int>` or can you even do the latter? Some more explanation and examples with native optional and Haxe optional arguments and how they relate to nullability would be nice.
+2.3 - Class Instance: Same as in 2.2, what the `Class<T>` syntax means is unclear at this point.
+2.3 - Class Instance: What are class types?
+2.4 - Enum Instance: Same as in 2.2, what is `Enum<T>` syntax?
+2.4 - Enum Instance: Doesn't really show enum usage, do you use Color.Red or just Red? etc.
+2.4.1 - Enum Constructor: EnumValue is the type that unifies with the types that are instances of Enums? Would benefit from more elaboration.
+2.4.1 - Enum Constructor: For this to work in markdown, it either needs line numbers or the paragraph needs rephrasing.
+2.4.1 - Enum Constructor: `Enum<Color>` syntax, what's the difference between that and Color?
+2.5.3 - Optional Fields: I don't really know how these work yet.
+2.6 - Function Type: It seems a bit convoluted explanations. Should we maybe start by "decoding" the meaning of  Void -> Void, then Int -> Bool -> Float, then maybe have samples using $type
+2.7.2 - Implementing Dynamic: resolve()
+3.5 - Unification: Mention toString()/String conversion somewhere in this chapter.
+3.5.1 - Between Class/Interface: "parent class" should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.
+3.7.2 - Import: Describe import a.*
+3.7.3 - Resolution Order: proper label and caption + code/identifier styling for diagram
+5.11.1 - Inline constructors: I would add a "inlining" section in Manual/Language Features, then move the content of  Expression/new/inline constructors there
+6.4 - Pattern Matching: Check "you" wording.
+6.6 - Array Comprehension: Comprehensions are only listing Arrays, not Maps
+8.3.1 - Embedding resources: what to use for listing of non-haxe code like hxml?
+9.5.1 - Enum building: Check if we can build GADTs this way.
+10.2.1 - Array: make sure this is true about static targets
+10.2.1 - Array: Maybe we should introduce \\ api{type name}
+10.2.3 - List: I hope none of these are lies -C 
+10.4.3 - Integer Math: I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?
+
+Missing Content:
+2.5.3 - Optional Fields
+5.3 - Binary Operators
+5.4 - Unary Operators
+5.17 - try/catch
+5.21 - throw
+5.22 - cast
+6.11 - Remoting
+6.12 - Runtime Type Information
+7 - Compiler Reference
+7.1 - Compiler Metadata
+8.2 - Completion
+8.2.1 - Field Access
+8.2.2 - Call Arguments
+8.2.3 - Usage
+8.2.4 - Position
+8.2.5 - Metadata
+9.6.1 - Macro-in-Macro
+9.6.4 - Type Parameters
+9.7 - Compiler Configuration
+10.2.6 - Option
+10.5 - Lambda
+10.6 - Reflection
+10.7 - Serialization
+10.9 - Xml
+10.10 - Input/Output
+10.11 - Sys/sys
+12 - Target Details
+12.1 - Javascript
+12.2 - Flash
+12.3 - Neko
+12.4 - PHP
+12.5 - C++
+12.6 - Java
+12.7 - C#
+
+Unreviewed:
+1.1 - What is Haxe?
+1.2 - About this Document
+1.2.1 - Authors and contributions
+1.3 - Hello World
+2 - Types
+2.1 - Basic Types
+2.1.1 - Numeric types
+2.1.2 - Overflow
+2.1.3 - Numeric Operators
+2.1.4 - Bool
+2.1.5 - Void
+2.2 - Nullability
+2.2.1 - Optional Arguments and Nullability:
+2.3 - Class Instance
+2.3.1 - Class constructor
+2.3.2 - Inheritance
+2.3.3 - Interfaces
+2.4 - Enum Instance
+2.4.1 - Enum Constructor
+2.5 - Anonymous Structure
+2.5.1 - JSON for Structure Values
+2.5.2 - Class Notation for Structure Types
+2.5.4 - Impact on Performance
+2.6 - Function Type
+2.6.1 - Optional Arguments
+2.6.2 - Default values
+2.7 - Dynamic
+2.7.1 - Dynamic with Type Parameter
+2.7.2 - Implementing Dynamic
+2.8 - Abstract
+2.8.1 - Implicit Casts
+2.8.2 - Operator Overloading
+2.8.3 - Array Access
+2.8.4 - Selective Functions
+2.8.5 - Enum abstracts
+2.8.6 - Exposing abstracts
+2.8.7 - Core-type abstracts
+2.9 - Monomorph
+3 - Type System
+3.1 - Typedef
+3.1.1 - Extensions
+3.2 - Type Parameters
+3.2.1 - Constraints
+3.3 - Generic
+3.3.1 - Construction of generic type parameters
+3.4 - Variance
+3.5 - Unification
+3.5.1 - Between Class/Interface
+3.5.2 - Structural Subtyping
+3.5.3 - Monomorphs
+3.5.4 - Function Return
+3.5.5 - Common Base Type
+3.6 - Type Inference
+3.6.1 - Top-down Inference
+3.6.2 - Limitations
+3.7 - Modules and Paths
+3.7.1 - Module Sub-Types
+3.7.2 - Import
+3.7.3 - Resolution Order
+4 - Class Fields
+4.1 - Variable
+4.2 - Property
+4.2.1 - Common accessor identifier combinations
+4.2.2 - Impact on the type system
+4.2.3 - Rules for getter and setter
+4.3 - Method
+4.3.1 - Overriding Methods
+4.3.2 - Effects of variance and access modifiers
+4.4.1 - Visibility
+4.4.2 - Inline
+4.4.3 - Dynamic
+4.4.4 - Override
+5 - Expressions
+5.1 - Blocks
+5.2 - Constants
+5.5 - Array Declaration
+5.6 - Object Declaration
+5.7 - Field Access
+5.8 - Function Call
+5.9 - var
+5.10 - Local functions
+5.11 - new
+5.11.1 - Inline constructors
+5.12 - for
+5.13 - while
+5.14 - do-while
+5.15 - if
+5.16 - switch
+5.18 - return
+5.19 - break
+5.20 - continue
+6.1 - Conditional Compilation
+6.2 - Externs
+6.3 - Static Extension
+6.3.1 - In the Haxe Standard Library
+6.4.1 - Introduction
+6.4.2 - Enum matching
+6.4.3 - Variable capture
+6.4.4 - Structure matching
+6.4.5 - Array matching
+6.4.6 - Or patterns
+6.4.7 - Guards
+6.4.8 - Match on multiple values
+6.4.9 - Extractors
+6.4.10 - Exhaustiveness checks
+6.4.11 - Useless pattern checks
+6.5 - String Interpolation
+6.6 - Array Comprehension
+6.7 - Iterators
+6.8 - Function Bindings
+6.9 - Metadata
+6.10 - Access Control
+8.1 - Dead Code Elimination
+8.3 - Resources
+8.3.1 - Embedding resources
+8.3.2 - Retrieving text resources
+8.3.3 - Retrieving binary resources
+8.3.4 - Implementation details
+9 - Macros
+9.1 - Macro Context
+9.2 - Arguments
+9.2.1 - ExprOf
+9.2.2 - Constant Expressions
+9.2.3 - Rest Argument
+9.3 - Reification
+9.3.1 - Expression Reification
+9.3.2 - Type Reification
+9.3.3 - Class Reification
+9.4 - Tools
+9.5 - Type Building
+9.5.1 - Enum building
+9.5.2 - @:autoBuild
+9.6.2 - Static extension
+9.6.3 - Build Order
+10.1 - String
+10.2.1 - Array
+10.2.2 - Vector
+10.2.3 - List
+10.2.4 - GenericStack
+10.2.5 - Map
+10.3 - Regular Expressions
+10.3.1 - Matching
+10.3.2 - Groups
+10.3.3 - Replace
+10.3.4 - Split
+10.3.5 - Map
+10.3.6 - Implementation Details
+10.4 - Math
+10.4.1 - Special Numbers
+10.4.2 - Mathematical Errors
+10.4.3 - Integer Math
+10.4.4 - Extensions
+10.8 - Json
+10.8.1 - Parsing JSON
+10.8.2 - Encoding JSON
+10.8.3 - Implementation details
+11 - Haxelib
+11.1 - Using a Haxe library with the Haxe Compiler
+11.2 - haxelib.json
+11.2.1 - Versioning
+11.2.2 - Dependencies
+11.3 - Using Haxelib
+
+Modified:

@@ -1,0 +1,23 @@
+\begin{flowchart}{class-field-variable-init-values}{Initialization values of a variable field.}
+\Tree[.\node [decision] {\expr{inline}};
+	\edge node[auto=right] {Yes};
+	[.\node [decision] {\expr{static}};
+		\edge node[auto=right] {No};
+		\node [startstop, valueNone] {Invalid};
+		\edge node[auto=left] {Yes};
+		\node [startstop, valueSome] {Constants only};
+	]
+	\edge node[auto=left] {No};
+	[.\node [decision] {\expr{extern}};
+		\edge node[auto=right] {No};
+		[.\node [decision] {\expr{static}};
+			\edge node[auto=right] {No};
+			\node [startstop, valueSome] {No 'this'};
+			\edge node[auto=left] {Yes};
+			\node [startstop, valueAll] {Anything};
+		]
+		\edge node[auto=left] {Yes};
+		\node [startstop, valueNone] {None};
+	]
+]
+\end{flowchart}

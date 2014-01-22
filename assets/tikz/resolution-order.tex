@@ -1,0 +1,80 @@
+\begin{flowchart}{type-system-resolution-order-diagram}{Resolution order of identifier `i'}
+
+\tikzset {
+	level distance = 1.4cm,
+	scale = 1
+}
+\tikzset{multiline/.style={align=center}}
+
+\tikzstyle{noEdge} = [ auto = left, outer sep = 0.2cm ]
+
+% Compact decision shape (cut off rectangle corners if you know how)
+\tikzstyle{decisionc} = [
+	decision,
+	minimum height = 0.8cm,
+	rectangle
+]
+
+\Tree
+[.\node [decisionc] (dec1) {'i' == 'true', 'false', 'this', 'super' or 'null'};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec2) {Local variable 'i' exists};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec3) {Current field is static?};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec4) {Current class or parent class have field 'i'};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec5) {Static extension with 'this'-type};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec6) {Current class has static field 'i'};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec7) {Imported enum has constructor `i'};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec8) {Static `i' imported};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec9) {`i' starts with lower-case character};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec10) {Type `i' imported};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec11) {Current package contains module `i' with type `i'};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec12) {Top-level type `i' exists};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec13) {Untyped mode};
+\edge [noEdge] node {Yes};
+[.\node [decisionc] (dec14) {`i' == `__this__'};
+\edge [noEdge] node {No};
+[.\node [decisionc] (dec15) {Generate local variable `i'};
+]]]]]]]]]]]]]]]
+
+
+\node [startstop, fill = green!70, xshift = 5cm] (resolve) at (dec15.east) {Resolve};
+
+\tikzstyle{yesNode} = [above right, at start]
+
+\coordinate (yesAnchor) at (resolve.north);
+
+\draw [flowchartArrow] (dec1) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec2) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec4) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec5) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec6) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec7) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec8) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec10) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec11) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec12) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec14) -| (yesAnchor) node [yesNode] {Yes};
+\draw [flowchartArrow] (dec15) -- (resolve.west);
+
+\draw [flowchartArrow] (dec3) to [out = 180, in = 180, distance = 3cm] (dec6);
+\draw (dec3.west) node [above left] {Yes};
+
+\draw [flowchartArrow] (dec9) to [out = 180, in = 180, distance = 3cm] (dec13);
+\draw (dec9.west) node [above left] {Yes};
+
+\node [startstop, fill = red!70, xshift = 2cm] (fail) at (dec13.east) {Fail};
+\draw [flowchartArrow] (dec13.east) -- (fail.west) node [above right, at start] {No};
+
+
+\end{flowchart}
