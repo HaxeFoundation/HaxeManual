@@ -2405,22 +2405,24 @@ Here we have to capture the argument value of the \expr{TString} enum constructo
 
 \haxe{assets/Extractor.hx}
 
-Extractors are identified by the \expr{extractorExpression => match} expression. The compiler generates code which is similar to the previous example, but the original syntax was greatly simplified. The way extractors are treated depends on the expression left of the \expr{=>} operator. If it is
+Extractors are identified by the \expr{extractorExpression => match} expression. The compiler generates code which is similar to the previous example, but the original syntax was greatly simplified. Extractors consist of two parts, which are separated by the \expr{=>} operator:
 
-\begin{itemize}
-	\item any identifier \expr{i}, the generated code is equal to \expr{matchedValue.i()},
-	\item otherwise for arbitrary expressions \expr{e}, it is equal to \expr{e(matchedValue)}.
-\end{itemize}
+\begin{enumerate}
+\item The left side can be any expression, where all occurrences of underscore \expr{_} are replaced with the currently matched value.
+\item The right side is a pattern which is matched against the result of the evaluation of the left side.
+\end{enumerate}
 
-The distinction is made because interpreting a plain identifier like that can be quite convenient, as the \expr{toLowerCase()} example above demonstrated. It also allows bringing extractors into context through \tref{static extensions}{lf-static-extension}.
+Since the right side is a pattern, it can contain another extractor. The following example ``chains'' two extractors:
 
-Any expression can be used as extractor expression and the typer ensures that it is of function type \type{S->T}, where \type{S} is the type of the currently matched value and \type{T} is equal to the type of the expression right of the \expr{=>} operator. With that, extractors can be combined with other features such as \tref{function binding}{lf-function-bindings}:
+\haxe{assets/Extractor4.hx}
 
-\haxe{assets/Extractor3.hx}
+This traces \expr{12} as a result of the calls to \expr{add(3, 1)}, where \expr{3} is the matched value, and \expr{mul(4, 3)} where \expr{4} is the result of the \expr{add} call. It is worth noting that the \expr{a} on the right side of the second \expr{=>} operator is a \tref{capture variable}{lf-pattern-matching-variable-capture}.
 
-In this particular case, the extractor is called as \expr{lessThan(4, 5)}, yielding true.
+It is currently not possible to use extractors within \tref{or-patterns}{lf-pattern-matching-or}:
 
-A lcurrent imitation with regards to extractors is that they disable \tref{useless pattern checks}{lf-pattern-matching-unused}.
+\haxe{assets/Extractor5.hx}
+
+However, it is possible to have or-patterns on the right side of an extractor, so the previous example would compile without the parentheses.
 
 
 \subsection{Exhaustiveness checks}
