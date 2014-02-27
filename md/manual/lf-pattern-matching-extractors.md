@@ -39,51 +39,58 @@ class Main {
 	static public function main() {
 		var e = TString("fOo");
 		var success = switch(e) {
-			case TString(toLowerCase => "foo"): true;
+			case TString(_.toLowerCase() => "foo"): true;
 			case _: false;
 		}
 	}
 }
 ```
 
-Extractors are identified by the `extractorExpression => match` expression. The compiler generates code which is similar to the previous example, but the original syntax was greatly simplified. The way extractors are treated depends on the expression left of the `=>` operator. If it is
+Extractors are identified by the `extractorExpression => match` expression. The compiler generates code which is similar to the previous example, but the original syntax was greatly simplified. Extractors consist of two parts, which are separated by the `=>` operator:
 
 
 
-* any identifier `i`, the generated code is equal to `matchedValue.i()`,
-* otherwise for arbitrary expressions `e`, it is equal to `e(matchedValue)`.
+1. The left side can be any expression, where all occurrences of underscore `_` are replaced with the currently matched value.
+2. The right side is a pattern which is matched against the result of the evaluation of the left side.
 
 
 
-The distinction is made because interpreting a plain identifier like that can be quite convenient, as the `toLowerCase()` example above demonstrated. It also allows bringing extractors into context through [static extensions](lf-static-extension.md).
-
-Any expression can be used as extractor expression and the typer ensures that it is of function type `S->T`, where `S` is the type of the currently matched value and `T` is equal to the type of the expression right of the `=>` operator. With that, extractors can be combined with other features such as [function binding](lf-function-bindings.md):
+Since the right side is a pattern, it can contain another extractor. The following example "chains" two extractors:
 
 ```haxe
-enum Test {
-	TString(s:String);
-	TInt(i:Int);
-}
-
 class Main {
 	static public function main() {
-		var e = TInt(4);
-		var success = switch(e) {
-			case TInt(lessThan.bind(_, 5) => true): true;
-			case _: false;
+		switch(3) {
+			case add(_, 1) => mul(_, 3) => a: trace(a);
 		}
-		trace(success);
 	}
 	
-	static function lessThan(lhs:Int, rhs:Int) {
-		return lhs < rhs;
+	static function add(i1:Int, i2:Int) {
+		return i1 + i2;
+	}
+	
+	static function mul(i1:Int, i2:Int) {
+		return i1 * i2;
 	}
 }
 ```
 
-In this particular case, the extractor is called as `lessThan(4, 5)`, yielding true.
+This traces `12` as a result of the calls to `add(3, 1)`, where `3` is the matched value, and `mul(4, 3)` where `4` is the result of the `add` call. It is worth noting that the `a` on the right side of the second `=>` operator is a [capture variable](lf-pattern-matching-variable-capture.md).
 
-A lcurrent imitation with regards to extractors is that they disable [useless pattern checks](lf-pattern-matching-unused.md).
+It is currently not possible to use extractors within [or-patterns](lf-pattern-matching-or.md):
+
+```haxe
+class Main {
+	static public function main() {
+		switch("foo") {
+			// Extractors in or patterns are not allowed
+			case (_.toLowerCase() => "foo") | "bar":
+		}
+	}
+}
+```
+
+However, it is possible to have or-patterns on the right side of an extractor, so the previous example would compile without the parentheses.
 
 ---
 
