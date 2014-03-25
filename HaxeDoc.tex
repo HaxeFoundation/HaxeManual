@@ -917,22 +917,18 @@ This is similar to accessing \tref{variables declared as inline}{class-field-inl
 	\item Defining fields requires less syntax.
 \end{itemize}
 
-\subsection{Exposing abstracts}
-\label{types-abstract-expose}
+
+\subsection{Forwarding abstract fields}
+\label{types-abstract-forward}
 \since{3.1.0}
 
-When wrapping an underlying type, it is sometimes desirable to ``keep'' parts of its functionality. Because writing forwarding functions by hand is cumbersome, Haxe allows adding the \expr{:expose} metadata to an abstract type:
+When wrapping an underlying type, it is sometimes desirable to ``keep'' parts of its functionality. Because writing forwarding functions by hand is cumbersome, Haxe allows adding the \expr{:forward} metadata to an abstract type:
 
 \haxe{assets/AbstractExpose.hx}
 
-The \type{MyArray} abstract in this example wraps \type{Array}. Its \expr{:expose} metadata has two arguments which demonstrate the two allowed ways of specifying exposed fields:
+The \type{MyArray} abstract in this example wraps \type{Array}. Its \expr{:forward} metadata has two arguments which correspond to the field names to be forwarded to the underlying type. In this example, the \expr{main} method instantiates \type{MyArray} and accesses its \expr{push} and \expr{pop} methods. The commented line demonstrates that the \expr{length} field is not available.
 
-\begin{itemize}
-	\item With a plain identifier (here: \expr{push}) to expose the field as is.
-	\item Using the \expr{=>} notation (here: \expr{pop => read}) to expose the underlying field on the left side (here: \expr{pop}) as the field name on the right side (here: \expr{read}).
-\end{itemize}
-
-In this example, the \expr{main} function instantiates \type{MyArray} and accesses its \expr{pop} and \expr{read} function. As usual we can look at the \target{Javascript} output to see how the code is being generated:
+As usual we can look at the \target{Javascript} output to see how the code is being generated:
 
 \begin{lstlisting}
 Main.main = function() {
@@ -942,7 +938,9 @@ Main.main = function() {
 };
 \end{lstlisting}
 
-\trivia{Implemented as macro}{Both the \expr{:enum} and \expr{:expose} functionality are implemented using \tref{macros}{macro}. The implementations can be found in the file \expr{haxe/macro/Build.hx}. The compiler rewrites both metadata as a \expr{:build} metadata which calls the implementations. See \tref{type building}{macro-type-building} for details.}
+It is also possible to use \expr{:forward} without any arguments in order to forward all fields. Of course the Haxe compiler still ensures that the field actually exists on the underlying type.
+
+\trivia{Implemented as macro}{Both the \expr{:enum} and \expr{:forward} functionality were originally implemented using \tref{build macros}{macro-type-building}. While this worked nicely in non-macro code, it caused issues if these features were used from within macros. The implementation was subsequently moved to the compiler.}
 
 
 \subsection{Core-type abstracts}
