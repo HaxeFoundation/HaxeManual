@@ -13,6 +13,7 @@ class MyArray<T> {
 class Main {
 	static public function main() {
 		var a = new MyArray<String>();
+		var b = new MyArray<Int>();
 	}
 }
 ```

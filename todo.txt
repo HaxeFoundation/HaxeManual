@@ -104,7 +104,7 @@ Unreviewed:
 2.8.3 - Array Access
 2.8.4 - Selective Functions
 2.8.5 - Enum abstracts
-2.8.6 - Exposing abstracts
+2.8.6 - Forwarding abstract fields
 2.8.7 - Core-type abstracts
 2.9 - Monomorph
 3 - Type System

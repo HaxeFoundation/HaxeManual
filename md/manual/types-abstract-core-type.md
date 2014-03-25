@@ -15,6 +15,6 @@ In contrast to opaque abstracts, core-type abstracts have the following properti
 
 ---
 
-Previous section: [Exposing abstracts](types-abstract-expose.md)
+Previous section: [Forwarding abstract fields](types-abstract-forward.md)
 
 Next section: [Monomorph](types-monomorph.md)
