@@ -76,7 +76,7 @@ class Main{
 			} else switch(sec.state) {
 				case New: unreviewed.push('${sec.id} - ${sec.title}');
 				case Modified: modified.push('${sec.id} - ${sec.title}');
-				case Edited | NoContent:
+				case Reviewed | NoContent:
 			}
 			allSections.push(sec);
 			for (sec in sec.sub) {

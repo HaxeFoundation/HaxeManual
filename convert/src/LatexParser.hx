@@ -19,9 +19,9 @@ enum State {
 	**/
 	Modified;
 	/**
-		Section is edited.
+		Section was reviewed.
 	**/
-	Edited;
+	Reviewed;
 }
 
 typedef Section = {
@@ -207,7 +207,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 				case [TCustomCommand("state"), TBrOpen, s = text(), TBrClose]:
 					var state = switch(s) {
 						case "Modified": Modified;
-						case "Edited": Edited;
+						case "Reviewed": Reviewed;
 						case "NoContent": NoContent;
 						case _: throw 'Invalid state string: $s';
 					}
