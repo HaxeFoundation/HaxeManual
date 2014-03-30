@@ -171,7 +171,7 @@ var myButton = new MySpecialButton(); // Haxe
 \end{lstlisting}
 We will explore type inference in detail later in \Fullref{type-system-type-inference}. For now, it is sufficient to say that the variable \expr{myButton} in the above code is known to be an \emph{instance of class} \type{MySpecialButton}. 
 
-Unlike some other Object Oriented programming languages, in Haxe every value is not an Object. The Haxe type system consists actually in seven type groups:
+The Haxe type system knows seven type groups:
 
 \begin{description}
  \item[\emph{Class instance}:] an object of a given class or interface
@@ -1962,32 +1962,6 @@ The \expr{new} keyword signals that a \tref{class}{types-class-instance} or an \
 
 Within the \expr{main} method we instantiate an instance of \type{Main} itself, with an explicit type parameter \type{Int} and the arguments \expr{12} and \expr{"foo"}. As we can see, the syntax is very similar to the \tref{function call syntax}{expression-function-call} and it is common to speak of ``constructor calls''.
 
-\subsection{Inline constructors}
-\label{expression-inline-constructor}
-\since{3.1.0}
-
-\todo{I would add a "inlining" section in Manual/Language Features, then move the content of  Expression/new/inline constructors there}
-
-If a constructor is declared to be \tref{inline}{class-field-inline}, the compiler may try to optimize it away in certain situations. There are several requirements for this to work:
-
-\begin{itemize}
-	\item The result of the constructor call must be directly assigned to a local variable.
-	\item The expression of the constructor field must only contain assignments to its fields.
-\end{itemize}
-
-The following example demonstrates constructor inlining:
-
-\haxe{assets/NewInline.hx}
-
-A look at the \target{Javascript} output reveals the effect:
-
-\begin{lstlisting}
-Main.main = function() {
-	var pt_x = 1.2;
-	var pt_y = 9.3;
-};
-\end{lstlisting}
-
 
 
 \section{for}
@@ -2087,6 +2061,33 @@ Further details on syntax of pattern expressions are detailed in \Fullref{lf-pat
 \section{try/catch}
 \label{expression-try-catch}
 
+Haxe allows catching values using its \expr{try/catch} syntax:
+
+\begin{lstlisting}
+try try-expr
+catch(varName1:Type1) catch-expr-1
+catch(varName2:Type2) catch-expr-2
+\end{lstlisting}
+
+If during runtime the evaluation of \expr{try-expression} causes a \tref{\expr{throw}}{expression-throw}, it can be caught by any subsequent \expr{catch} block. These blocks consist of
+
+\begin{itemize}
+	\item a variable name which holds the thrown value,
+	\item an explicit type annotation which determines which types of values to catch an
+	\item the expression to execute in that case.
+\end{itemize}
+
+Haxe allows throwing and catching any kind of value, it is not limited to types inheriting from a specific exception or error class. Catch blocks are checked from top to bottom with the first one whose type is compatible with the thrown value being picked.
+
+This process has many similarities to the compile-time \tref{unification}{type-system-unification} behavior. However, since the check has to be done at runtime there are several restrictions:
+
+\begin{itemize}
+	\item The type must exist at runtime: \tref{Class instances}{types-class-instance}, \tref{enum instances}{types-enum-instance}, \tref{abstract core types}{types-abstract-core-type} and \tref{Dynamic}{types-dynamic}.
+	\item Type parameters can only be \tref{Dynamic}{types-dynamic}.
+\end{itemize}
+
+
+
 \section{return}
 \label{expression-return}
 
@@ -2153,11 +2154,52 @@ The typer ensures that it appears only within a loop.
 \section{throw}
 \label{expression-throw}
 
+Haxe allows throwing any kind of value using its \expr{throw} syntax:
+
+\begin{lstlisting}
+throw expr
+\end{lstlisting}
+
+A value which is thrown like this can be caught by \tref{\expr{catch} blocks}{expression-try-catch}. If no such block catches it, the behavior is target-dependent.
+
+
 \section{cast}
 \label{expression-cast}
 
+Haxe allows two kinds of casts:
 
+\begin{lstlisting}
+cast expr; // unsafe cast
+cast (expr, Type); // safe cast
+\end{lstlisting}
 
+\subsection{unsafe cast}
+\label{expression-cast-unsafe}
+
+Unsafe casts are useful to subvert the type system. The compiler types \expr{expr} as usual and then wraps it in a \tref{monomorph}{types-monomorph}. This allows the expression to be assigned to anything.
+
+Unsafe casts do not introduce any \tref{dynamic}{types-dynamic} types, as the following example shows:
+
+\haxe{assets/UnsafeCast.hx}
+
+Variable \expr{i} is typed as \type{Int} and then assigned to variable \expr{s} using the unsafe cast \expr{cast i}. This causes \expr{s} to be of an unknown type, a monomorph. Following the usual rules of \tref{unification}{type-system-unification}, it can then be bound to any type, such as \type{String} in this example.
+
+These casts are called "unsafe" because the runtime behavior for invalid casts is not defined. While most \tref{dynamic targets}{def:Dynamic target} are likely to work, it might lead to undefined errors on \tref{static targets}{def:Static target}.
+
+Unsafe casts have little to no runtime overhead.
+
+\subsection{safe cast}
+\label{expression-cast-safe}
+
+Unlike \tref{unsafe casts}{expression-cast-unsafe}, the runtime behavior in case of a failing cast is defined for safe casts:
+
+\haxe{assets/SafeCast.hx}
+
+In this example we first cast a class instance of type \type{Child1} to \type{Base}, which succeeds because \type{Child1} is a \tref{child class}{type-system-inheritance} of \type{Base}. We then try to cast the same class instance to \type{Child2}, which is not allowed because instances of \type{Child2} are not instances of \type{Child1}.
+
+The Haxe compiler guarantees that an exception of type \type{String} is \tref{thrown}{expression-throw} in this case. This exception can be caught using a \tref{\expr{try/catch} block}{expression-try-catch}.
+
+Safe casts have a runtime overhead. It is important to understand the the compiler already generates type checks, so it is redundant to add manual checks, e.g. using \expr{Std.is}. The intended usage is to try the safe cast and catch the \type{String} exception.
 
 
 \chapter{Language Features}
@@ -2638,6 +2680,33 @@ If access is allowed to an \tref{interface}{types-interfaces}, it extends to all
 This is also true for access granted to parent classes, in which case it extends to all child classes.
 
 \trivia{Broken feature}{Access extension to child classes and implementing classes was supposed to work in Haxe 3.0 and even documented accordingly. While writing this manual it was found that this part of the access control implementation was simply missing.}
+
+
+\section{Inline constructors}
+\label{lf-inline-constructor}
+\since{3.1.0}
+
+If a constructor is declared to be \tref{inline}{class-field-inline}, the compiler may try to optimize it away in certain situations. There are several requirements for this to work:
+
+\begin{itemize}
+	\item The result of the constructor call must be directly assigned to a local variable.
+	\item The expression of the constructor field must only contain assignments to its fields.
+\end{itemize}
+
+The following example demonstrates constructor inlining:
+
+\haxe{assets/NewInline.hx}
+
+A look at the \target{Javascript} output reveals the effect:
+
+\begin{lstlisting}
+Main.main = function() {
+	var pt_x = 1.2;
+	var pt_y = 9.3;
+};
+\end{lstlisting}
+
+
 
 
 \section{Remoting}
