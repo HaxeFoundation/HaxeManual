@@ -1,8 +1,6 @@
-## 5.11.1 Inline constructors
+## 6.11 Inline constructors
 
 ##### since Haxe 3.1.0
-
-
 
 
 
@@ -46,6 +44,6 @@ Main.main = function() {
 
 ---
 
-Previous section: [new](expression-new.md)
+Previous section: [Access Control](lf-access-control.md)
 
-Next section: [for](expression-for.md)
+Next section: [Compiler Reference](compiler-reference.md)

@@ -15,7 +15,7 @@ var myButton = new MySpecialButton(); // Haxe
 ```
 We will explore type inference in detail later in [Type Inference](type-system-type-inference.md). For now, it is sufficient to say that the variable `myButton` in the above code is known to be an **instance of class** `MySpecialButton`. 
 
-Unlike some other Object Oriented programming languages, in Haxe every value is not an Object. The Haxe type system consists actually in seven type groups:
+The Haxe type system knows seven type groups:
 
 
 

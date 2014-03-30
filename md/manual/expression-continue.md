@@ -18,4 +18,4 @@ The typer ensures that it appears only within a loop.
 
 Previous section: [break](expression-break.md)
 
-Next section: [Language Features](lf.md)
+Next section: [throw](expression-throw.md)

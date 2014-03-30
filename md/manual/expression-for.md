@@ -16,6 +16,6 @@ The control flow of loops can be affected by [`break`](expression-break.md) and 
 
 ---
 
-Previous section: [Inline constructors](expression-inline-constructor.md)
+Previous section: [new](expression-new.md)
 
 Next section: [while](expression-while.md)

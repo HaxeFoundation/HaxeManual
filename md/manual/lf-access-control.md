@@ -111,4 +111,4 @@ This is also true for access granted to parent classes, in which case it extends
 
 Previous section: [Metadata](lf-metadata.md)
 
-Next section: [Compiler Reference](compiler-reference.md)
+Next section: [Inline constructors](lf-inline-constructor.md)

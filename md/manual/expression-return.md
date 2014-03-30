@@ -25,6 +25,6 @@ If `return` is used without a value expression, the typer ensures that the retur
 
 ---
 
-Previous section: [switch](expression-switch.md)
+Previous section: [try/catch](expression-try-catch.md)
 
 Next section: [break](expression-break.md)

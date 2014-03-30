@@ -22,7 +22,6 @@ Todo:
 3.5.1 - Between Class/Interface: "parent class" should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.
 3.7.2 - Import: Describe import a.*
 3.7.3 - Resolution Order: proper label and caption + code/identifier styling for diagram
-5.11.1 - Inline constructors: I would add a "inlining" section in Manual/Language Features, then move the content of  Expression/new/inline constructors there
 6.4 - Pattern Matching: Check "you" wording.
 6.6 - Array Comprehension: Comprehensions are only listing Arrays, not Maps
 8.3.1 - Embedding resources: what to use for listing of non-haxe code like hxml?
@@ -36,11 +35,8 @@ Missing Content:
 2.5.3 - Optional Fields
 5.3 - Binary Operators
 5.4 - Unary Operators
-5.17 - try/catch
-5.21 - throw
-5.22 - cast
-6.11 - Remoting
-6.12 - Runtime Type Information
+6.12 - Remoting
+6.13 - Runtime Type Information
 7 - Compiler Reference
 7.1 - Compiler Metadata
 8.2 - Completion
@@ -151,15 +147,19 @@ Unreviewed:
 5.9 - var
 5.10 - Local functions
 5.11 - new
-5.11.1 - Inline constructors
 5.12 - for
 5.13 - while
 5.14 - do-while
 5.15 - if
 5.16 - switch
+5.17 - try/catch
 5.18 - return
 5.19 - break
 5.20 - continue
+5.21 - throw
+5.22 - cast
+5.22.1 - unsafe cast
+5.22.2 - safe cast
 6.1 - Conditional Compilation
 6.2 - Externs
 6.3 - Static Extension
@@ -181,6 +181,7 @@ Unreviewed:
 6.8 - Function Bindings
 6.9 - Metadata
 6.10 - Access Control
+6.11 - Inline constructors
 8.1 - Dead Code Elimination
 8.3 - Resources
 8.3.1 - Embedding resources

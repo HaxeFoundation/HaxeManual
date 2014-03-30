@@ -4,6 +4,6 @@
 
 ---
 
-Previous section: [Access Control](lf-access-control.md)
+Previous section: [Inline constructors](lf-inline-constructor.md)
 
 Next section: [Compiler Features](cr-features.md)

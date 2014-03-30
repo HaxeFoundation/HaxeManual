@@ -20,12 +20,14 @@
 
 6.10: [Access Control](lf-access-control.md)
 
-6.11: [Remoting](lf-remoting.md)
+6.11: [Inline constructors](lf-inline-constructor.md)
 
-6.12: [Runtime Type Information](lf-rtti.md)
+6.12: [Remoting](lf-remoting.md)
+
+6.13: [Runtime Type Information](lf-rtti.md)
 
 ---
 
-Previous section: [continue](expression-continue.md)
+Previous section: [safe cast](expression-cast-safe.md)
 
 Next section: [Conditional Compilation](lf-condition-compilation.md)
