@@ -21,7 +21,7 @@ class Main {
 }
 ```
 
-In this example we first cast a class instance of type `Child1` to `Base`, which succeeds because `Child1` is a [child class](type-system-inheritance) of `Base`. We then try to cast the same class instance to `Child2`, which is not allowed because instances of `Child2` are not instances of `Child1`.
+In this example we first cast a class instance of type `Child1` to `Base`, which succeeds because `Child1` is a [child class](types-class-inheritance.md) of `Base`. We then try to cast the same class instance to `Child2`, which is not allowed because instances of `Child2` are not instances of `Child1`.
 
 The Haxe compiler guarantees that an exception of type `String` is [thrown](expression-throw.md) in this case. This exception can be caught using a [`try/catch` block](expression-try-catch.md).
 

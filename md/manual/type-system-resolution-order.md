@@ -19,7 +19,7 @@ We describe the resolution order algorithm here, which depends on the following 
 
 
 
-![Resolution order of identifier `i'](../../assets/graphics/generated/type-system-resolution-order-diagram.png)
+<img src="../../assets/graphics/generated/type-system-resolution-order-diagram.png" alt="Resolution order of identifier `i'" title="Resolution order of identifier `i'" />
 
 _Figure: Resolution order of identifier `i'_
 

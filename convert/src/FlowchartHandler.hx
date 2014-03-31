@@ -16,7 +16,7 @@ class FlowchartHandler {
 		var targetPath = "assets/graphics/generated/"+envlabel+".png";
 		pdflatexCompile(Resource.getString("tikzTemplate"), "\\begin{flowchart}" + s + "\\end{flowchart}", targetPath);
 		var relativePath = "../../" + targetPath;
-		return '![$envtitle]($relativePath)\n\n_Figure: ${envtitle}_';
+		return '<img src="$relativePath" alt="$envtitle" title="$envtitle" />\n\n_Figure: ${envtitle}_';
 	}
 	
 	static function pdflatexCompile(template:String, content:String, targetPath:String) {

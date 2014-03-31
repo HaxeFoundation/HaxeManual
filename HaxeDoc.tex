@@ -2195,7 +2195,7 @@ Unlike \tref{unsafe casts}{expression-cast-unsafe}, the runtime behavior in case
 
 \haxe{assets/SafeCast.hx}
 
-In this example we first cast a class instance of type \type{Child1} to \type{Base}, which succeeds because \type{Child1} is a \tref{child class}{type-system-inheritance} of \type{Base}. We then try to cast the same class instance to \type{Child2}, which is not allowed because instances of \type{Child2} are not instances of \type{Child1}.
+In this example we first cast a class instance of type \type{Child1} to \type{Base}, which succeeds because \type{Child1} is a \tref{child class}{types-class-inheritance} of \type{Base}. We then try to cast the same class instance to \type{Child2}, which is not allowed because instances of \type{Child2} are not instances of \type{Child1}.
 
 The Haxe compiler guarantees that an exception of type \type{String} is \tref{thrown}{expression-throw} in this case. This exception can be caught using a \tref{\expr{try/catch} block}{expression-try-catch}.
 
