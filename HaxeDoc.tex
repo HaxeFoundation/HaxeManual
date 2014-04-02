@@ -2746,6 +2746,12 @@ The DCE-algorithm works well with typed code, but may fail when \tref{dynamic}{t
 	\item[\expr{@:keepSub}:] If used on a class, it works like \expr{@:keep} on the annotated class as well as all subclasses.
 	\item[\expr{@:keepInit}:] Usually, a class which had all fields removed by DCE (or is empty to begin with) is removed from the output. By using this metadata, empty classes are kept.
 \end{description}
+
+If a class needs to be marked with  @:keep  from the command line, instead of editing its source code, there is a compiler macro available for doing so:
+\expr{--macro keep('type dot path')}
+see the \href{http://api.haxe.org/haxe/macro/Compiler.html#keep}{keep API} for details of this macro.
+It will mark package, module or sub-type to be kept by DCE and includes them for compilation.
+
 The compiler automatically defines the flag \expr{dce} with a value of either \expr{"std"}, \expr{"no"} or \expr{"full"} depending on the active mode. This can be used in \tref{conditional compilation}{lf-condition-compilation}.
 
 \trivia{DCE-rewrite}{DCE was originally implemented in Haxe 2.07. This implementation considered a function to be used when it was explicitly typed. The problem with that was that several features, most importantly interfaces, would cause all class fields to be typed in order to verify type-safety. This effectively subverted DCE completely, prompting the rewrite for Haxe 2.10.}
