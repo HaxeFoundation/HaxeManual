@@ -19,6 +19,11 @@ The DCE-algorithm works well with typed code, but may fail when [dynamic](types-
 * `@:keepSub`: If used on a class, it works like `@:keep` on the annotated class as well as all subclasses.
 * `@:keepInit`: Usually, a class which had all fields removed by DCE (or is empty to begin with) is removed from the output. By using this metadata, empty classes are kept.
 
+If a class needs to be marked with `@:keep` from the command line, instead of editing its source code, there is a compiler macro available for doing so: 
+--macro keep('type dot path') 
+see the [http://api.haxe.org/haxe/macro/Compiler.html#keep](keep API) for details of this macro
+It will mark package, module or sub-type to be kept by DCE and includes them for compilation.
+
 
 The compiler automatically defines the flag `dce` with a value of either `"std"`, `"no"` or `"full"` depending on the active mode. This can be used in [conditional compilation](lf-condition-compilation.md).
 
