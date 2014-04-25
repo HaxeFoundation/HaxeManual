@@ -191,11 +191,9 @@ We will describe each of these type groups and how they relate to each other in 
 \section{Basic Types}
 \label{types-basic-types}
 
-\todo{Check wording here (we don't want to address ``you'')}
-
 \todo{A bit heavy on jargon. I don't know what abstract types are, what :coreType means, what metadata refers to and all the other stuff, but the section references and warnings are good to have.}
 
-\emph{Basic Types} include \emph{Bool, Float, and Int}.  The basic types are \emph{abstract types} tagged with \emph{:coreType} metadata.  This means is they get replaced by platform specific types at compile-time.  Don't worry about all of the implementation details at the moment, but feel free to see \Fullref{types-abstract} and \Fullref{lf-metadata} for more details.  Just be aware that this abstraction can cause the \Fullref{types-overflow} and \Fullref{types-nullability} of Basic Types to behave differently on different target platforms.  To reiterate: \textbf{basic types can behave differently depending on the target platform.}
+\emph{Basic Types} include \emph{Bool, Float, and Int}.  The basic types are \emph{abstract types} tagged with \emph{:coreType} metadata.  This means that they get replaced by platform specific types at compile-time.  Full implementation details are not pertinent at this time, but they can be referenced in the \Fullref{types-abstract} and \Fullref{lf-metadata} sections if needed.  However, it should be noted that abstraction can cause the \Fullref{types-overflow} and \Fullref{types-nullability} of Basic Types to behave differently on different target platforms.  To reiterate: \textbf{basic types can behave differently depending on the target platform.}
 
 \subsection{Numeric types}
 \label{types-numeric-types}
@@ -2320,7 +2318,6 @@ The following classes from the Haxe Standard Library are designed to be used as 
 \section{Pattern Matching}
 \label{lf-pattern-matching}
 \state{NoContent}
-\todo{Check ``you'' wording.}
 
 \subsection{Introduction}
 \label{lf-pattern-matching-introduction}
@@ -2344,7 +2341,7 @@ As with Haxe 2, enums can be matched by their constructors in a natural way. Wit
 
 \haxe[firstline=8,lastline=19]{assets/PatternMatching.hx}
 
-The pattern matcher will check each case from top to bottom and pick the first one that matches the input value. If you are not too familiar with pattern matching, the following manual interpretation of each case rule might help:
+The pattern matcher will check each case from top to bottom and pick the first one that matches the input value. The following manual interpretation of each case rule may help those unfamiliar with pattern matching:
 
 \begin{description}
 	\item[\expr{case Leaf(_)}:] matching fails because \expr{myTree} is a \expr{Node}
@@ -2381,9 +2378,9 @@ It is now also possible to match against the fields of anonymous structures and 
 
 \haxe[firstline=36,lastline=42]{assets/PatternMatching.hx}
 
-Note that in the second case, we bind the matched \expr{name} field to identifier \expr{n} if \expr{rating} matches \expr{"awesome"}. Of course you could also put this structure into the \type{Tree} from the previous example and combine structure and enum matching.
+Note that in the second case, we bind the matched \expr{name} field to identifier \expr{n} if \expr{rating} matches \expr{"awesome"}. Of course it is also possible to put this structure into the \type{Tree} from the previous example and combine structure and enum matching.
 
-A limitation with regards to class instances is that you cannot match against fields of their parent class.
+A limitation with regards to class instances is the inability to match against fields of their parent class.
 
 \subsection{Array matching}
 \label{lf-pattern-matching-array}
@@ -2464,7 +2461,7 @@ However, it is possible to have or-patterns on the right side of an extractor, s
 \subsection{Exhaustiveness checks}
 \label{lf-pattern-matching-exhaustiveness}
 
-The compiler ensures that you do not forget a possible case for non value-only switches:
+The compiler ensures that a possible case for non value-only switches is not forgotten:
 
 \begin{lstlisting}
 switch(true) {
@@ -2669,7 +2666,7 @@ The \expr{@:access(MyClass.foo)} annotation effectively subverts the visibility 
 	\item The metadata syntax is flexible enough to allow extension of this feature.
 	\item The metadata can be accessed/generated/modified by Haxe macros.
 \end{itemize}
-Of course, the main drawback of using metadata syntax is that you get no error report in case you misspell either the metadata key (@:acesss for instance) or the class/package name. However, with this feature you will get an error when you try to access a private field that you are not allowed to, therefore there is no possibility for silent errors.}
+Of course, the main drawback of using metadata syntax is that no error report will be given in the case of misspelling either the metadata key (@:acesss for instance) or the class/package name. However, with this feature an error will occur when trying to access a private field wihout proper access, therefore there is no possibility for silent errors.}
 
 \since{3.1.0}
 
@@ -3319,7 +3316,7 @@ Although neko can fluidly handle mathematical errors, like division by zero, thi
 
 \subsection{Integer Math}
 \label{std-math-integer-math}
-If you are targeting a platform that can utilize integer operations, e.g. integer division, for performance gains, wrap the operation in \emph{Std.int()}.  The Haxe Compiler can then optimize for integer operations.  An example:
+If the targetted deployment platform can utilize integer operations, e.g. integer division, for performance gains, wrap the operation in \emph{Std.int()}.  The Haxe Compiler can then optimize for integer operations.  An example:
 \begin{lstlisting}
 	var intDivision = Std.int(6.2/4.7);
 \end{lstlisting}
@@ -3457,7 +3454,7 @@ major.minor.patch
 These are the basic rules:
 
 \begin{itemize}
-	\item Major versions are incremented when you break backwards compatibility - so old code will not work with the new version of the library.
+	\item Major versions are incremented when backwards compatibility is broken - so old code will not work with the new version of the library.
 	\item Minor versions are incremented when new features are added.
 	\item Patch versions are for small fixes that do not change the public API, so no existing code should break.
 	\item When a minor version increments, the patch number is reset to 0. When a major version increments, both the minor and patch are reset to 0.
@@ -3469,14 +3466,14 @@ Examples:
 "0.0.1" // A first release.  Anything with a "0" for the major version is subject to change in the next release - no promises about API stability!
 "0.1.0" // Added a new feature!   Increment the minor version, reset the patch version
 "0.1.1" // Realised the new feature was broken.  Fixed it now, so increment the patch version
-"1.0.0" // New major version, so increment the major version, reset the minor and patch versions.   You promise your users not to break this API until you bump to 2.0.0
+"1.0.0" // New major version, so increment the major version, reset the minor and patch versions. API for this version should not be broken until the bump to 2.0.0
 "1.0.1" // A minor fix
 "1.1.0" // A new feature
 "1.2.0" // Another new feature
 "2.0.0" // A new version, which might break compatibility with 1.0.  Users are to upgrade cautiously.
 \end{lstlisting}
 
-If this release is a preview (Alpha, Beta or Release Candidate), you can also include that, with an optional release number:
+If this release is a preview (Alpha, Beta or Release Candidate), its status can also be included with an optional release number:
 
 \begin{lstlisting}
 major.minor.patch-(alpha/beta/rc).release
@@ -3488,7 +3485,7 @@ Examples:
 "1.0.0-alpha"   // The alpha of 1.0.0 - use with care, things are changing!
 "1.0.0-alpha.2" // The 2nd alpha
 "1.0.0-beta"    // Beta - things are settling down, but still subject to change.
-"1.0.0-rc.1"    // The 1st release candidate for 1.0.0 - you shouldn't be adding any more features now
+"1.0.0-rc.1"    // The 1st release candidate for 1.0.0 - additional features shouldn't be added after this version
 "1.0.0-rc.2"    // The 2nd release candidate for 1.0.0
 "1.0.0"         // The final release!  
 \end{lstlisting}
