@@ -2267,8 +2267,7 @@ The Haxe Standard Library comes with many externs for the \target{Flash} and \ta
 
 The \target{Flash}, \target{Java} and \target{C\#} targets allow direct inclusion of native libraries from \tref{command line}{compiler-reference}. Target-specific details are explained in the respective sections of \Fullref{target-details}.
 
-
-
+Some targets such as \target{Python} or \target{JavaScript} may require generating additional "import" code that loads an \expr{extern} class from a native module. Haxe provides ways to declare such dependencies also described in respective sections \Fullref{target-details}.
 
 \section{Static Extension}
 \label{lf-static-extension}
@@ -3535,6 +3534,25 @@ If the \ic{haxelib} command is executed without any arguments, it prints an exha
 
 \section{Javascript}
 \label{target-javascript}
+
+\subsection{Loading extern classes using "require" function}
+\label{target-javascript-require}
+
+Modern \target{JavaScript} platforms, such as Node.js provide a way of loading objects
+from external modules using the "require" function. Haxe supports automatic generation
+of "require" statements for \expr{extern} classes.
+
+This feature can be enabled by specifying \expr{@:jsRequire} metadata for the extern class. If our \expr{extern} class represents a whole module, we pass a single argument to the \expr{@:jsRequire} metadata specifying the name of the module to load:
+
+\haxe{assets/JSRequireModule.hx}
+
+In case our \expr{extern} class represents an object within a module, second \expr{@:jsRequire} argument specifies an object to load from a module:
+
+\haxe{assets/JSRequireObject.hx}
+
+The second argument is a dotted-path, so we can load sub-objects in any hierarchy.
+
+If we need to load custom JavaScript objects in runtime, a \expr{js.Lib.require} function can be used. It takes \expr{String} as its only argument and returns \expr{Dynamic}, so it is advised to be assigned to a strictly typed variable.
 
 \section{Flash}
 \label{target-flash}
