@@ -26,7 +26,7 @@ Blocks can contain local variables declared by [`var` expression](expression-var
 }
 a; // error, a is not available outside
 ```
-At runtime, blocks are evaluated from top to bottom. Control flow (e.g. [exceptions](expression-try-catch.md) or [return expressions](expression-return.md)) may leave a block before all expressions 
+At runtime, blocks are evaluated from top to bottom. Control flow (e.g. [exceptions](expression-try-catch.md) or [return expressions](expression-return.md)) may leave a block before all expressions
 are evaluated.
 
 ---
