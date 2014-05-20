@@ -1,0 +1,6 @@
+-cp src
+-main Main
+-lib hxparse
+-neko convert.n
+-resource envTemplate.tex@tikzTemplate
+-cmd neko convert.n
