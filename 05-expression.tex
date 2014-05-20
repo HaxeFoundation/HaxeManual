@@ -1,0 +1,422 @@
+\chapter{Expressions}
+\label{expression}
+
+Expressions in Haxe define what a program \emph{does}. Most expressions are found in the body of a \tref{method}{class-field-method}, where they are combined to express what that method should do. This section explains the different kinds of expressions. Some definitions help here:
+
+\define{Name}{A general name may refer to
+\begin{itemize}
+	\item a type,
+	\item a local variable,
+	\item a local function or
+	\item a field.
+\end{itemize}}
+
+\define{Identifier}{Haxe identifiers start with an underscore \expr{_}, a dollar \expr{\$}, a lower-case character \expr{a-z} or an upper-case character \expr{A-Z}. After that, any combination and number of \expr{_}, \expr{A-Z}, \expr{a-z} and \expr{0-9} may follow.\\
+Further limitations follow from the usage context, which are checked upon typing:
+\begin{itemize}
+	\item Type names must start with an upper-case letter \expr{A-Z} or an underscore \expr{_}.
+	\item Leading dollars are not allowed for any kind of \tref{name}{def:Name} (dollar-names are mostly used for \tref{macro reification}{macro-reification}).
+\end{itemize}}
+
+
+\section{Blocks}
+\label{expression-block}
+
+A block in Haxe starts with an opening curly brace \expr{\{} and ends with a closing curly brace \expr{\}}. A block may contain several expressions, each of which is followed by a semicolon \expr{;}. The general syntax is thus:
+
+\begin{lstlisting}
+{
+	expr1;
+	expr2;
+	...
+	exprN;
+}
+\end{lstlisting}
+The value and by extension the type of a block-expression is equal to the value and the type of the last sub-expression.
+
+Blocks can contain local variables declared by \tref{\expr{var} expression}{expression-var}, as well as local functions declared by \tref{\expr{function} expressions}{expression-function}. These are available within the block and within sub-blocks, but not outside the block. Also, they are available only after their declaration. The following example uses \expr{var}, but the same rules apply to \expr{function} usage:
+
+\begin{lstlisting}
+{
+	a; // error, a is not declared yet
+	var a = 1; // declare a
+	a; // ok, a was declared
+	{
+		a; // ok, a is available in sub-blocks
+	}
+	a; // ok, a is still available after sub-blocks
+}
+a; // error, a is not available outside
+\end{lstlisting}
+At runtime, blocks are evaluated from top to bottom. Control flow (e.g. \tref{exceptions}{expression-try-catch} or \tref{return expressions}{expression-return}) may leave a block before all expressions 
+are evaluated.
+
+
+\section{Constants}
+\label{expression-constants}
+
+The Haxe syntax supports the following constants:
+
+\begin{description}
+	\item[Int:] An \tref{integer}{def:Int}, such as \expr{0}, \expr{1}, \expr{97121}, \expr{-12}, \expr{0xFF0000}.
+	\item[Float:] A \tref{floating point number}{def:Float}, such as \expr{0.0}, \expr{1.}, \expr{.3}, \expr{-93.2}.
+	\item[String:] A \tref{string of characters}{def:String}, such as \expr{""}, \expr{"foo"}, \expr{''}, \expr{'bar'}.
+	\item[true,false:] A \tref{boolean}{def:Bool} value.
+	\item[null:] The null value.
+\end{description}
+
+Furthermore, the internal syntax structure treats \tref{identifiers}{def:Identifier} as constants, which may be relevant when working with \tref{macros}{macro}.
+
+
+\section{Binary Operators}
+\label{expression-binops}
+
+\section{Unary Operators}
+\label{expression-unops}
+
+\section{Array Declaration}
+\label{expression-array-declaration}
+
+Arrays are initialized by enclosing comma \expr{,} separated values in brackets \expr{[]}. A plain \expr{[]} represents the empty array, whereas \expr{[1, 2, 3]} initializes an array with three elements \expr{1}, \expr{2} and \expr{3}.
+
+The generated code may be less concise on platforms that do not support array initialization. Essentially, such initialization code then looks like this:
+
+\begin{lstlisting}
+var a = new Array();
+a.push(1);
+a.push(2);
+a.push(3);
+\end{lstlisting}
+This should be considered when deciding if a function should be \tref{inlined}{class-field-inline} as it may inline more code than visible in the syntax.
+
+Advanced initialization techniques are described in \Fullref{lf-array-comprehension}.
+
+
+\section{Object Declaration}
+\label{expression-object-declaration}
+
+Object declaration begins with an opening curly brace \expr{\{} after which \expr{key:value}-pairs separated by comma \expr{,} follow, and which ends in a closing curly brace \expr{\}}.
+
+\begin{lstlisting}
+{
+	key1:value1,
+	key2:value2,
+	...
+	keyN:valueN
+}
+\end{lstlisting}
+Further details of object declaration are described in the section about \tref{anonymous structures}{types-anonymous-structure}.
+
+
+\section{Field Access}
+\label{expression-field-access}
+
+Field access is expressed by using the dot \expr{.} followed by the name of the field.
+
+\begin{lstlisting}
+object.fieldName
+\end{lstlisting}
+
+This syntax is also used to access types within packages in the form of \expr{pack.Type}. 
+
+The typer ensures that an accessed field actually exist and may apply transformations depending on the nature of the field. If a field access is ambiguous, understanding the \tref{resolution order}{type-system-resolution-order} may help.
+
+
+\section{Function Call}
+\label{expression-function-call}
+
+Functions calls consist of an arbitrary subject expression followed by an opening parenthesis \expr{(}, a comma \expr{,} separated list of expressions as arguments and a closing parenthesis \expr{)}.
+
+\begin{lstlisting}
+subject(); // call with no arguments
+subject(e1); // call with one argument
+subject(e1, e2); // call with two arguments
+subject(e1, ..., eN); // call with multiple arguments
+\end{lstlisting}
+
+
+\section{var}
+\label{expression-var}
+
+The \expr{var} keyword allows declaring multiple variables, separated by comma \expr{,}. Each variable has a valid \tref{identifier}{def:Identifier} and optionally a value assignment following the assignment operator \expr{=}. Variables can also have an explicit type-hint.
+
+\begin{lstlisting}
+var a; // declare local a
+var b:Int; // declare variable b of type Int
+var c = 1; // declare variable c, initialized to value 1
+var d,e = 2; // declare variable d and variable e initialized to value 2
+\end{lstlisting}
+
+The scoping behavior of local variables is described in \Fullref{expression-block}.
+
+
+\section{Local functions}
+\label{expression-function}
+
+Haxe supports first-class functions and allows declaring local functions in expressions. The syntax follows \tref{class field methods}{class-field-method}:
+
+\haxe{assets/LocalFunction.hx}
+
+We declare \expr{myLocalFunction} inside the \tref{block expression}{expression-block} of the \expr{main} class field. It takes one argument \expr{i} and adds it to \expr{value}, which is defined in the outside scope.
+
+The scoping is equivalent to that of \tref{variables}{expression-var} and for the most part writing a named local function can be considered equal to assigning an unnamed local function to a local variable:
+
+\begin{lstlisting}
+var myLocalFunction = function(a) { }
+\end{lstlisting}
+
+However, there are some differences related to type parameters and the position of the function. We speak of a ``lvalue'' function if it is not assigned to anything upon its declaration, and an ``rvalue'' function otherwise.
+
+\begin{itemize}
+	\item Lvalue functions require a name and can have \tref{type parameters}{type-system-type-parameters}.
+	\item Rvalue functions may have a name, but cannot have type parameters.
+\end{itemize}
+
+
+\section{new}
+\label{expression-new}
+
+The \expr{new} keyword signals that a \tref{class}{types-class-instance} or an \tref{abstract}{types-abstract} is being instantiated. It is followed by the \tref{type path}{def:Type path} of the type which is to be instantiated. It may also list explicit \tref{type parameters}{type-system-type-parameters} enclosed in \expr{<>} and separated by comma \expr{,}. After an opening parenthesis \expr{()} follow the constructor arguments, again separated by comma \expr{,}, with a closing parenthesis \expr{)} at the end.
+
+\haxe{assets/New.hx}
+
+Within the \expr{main} method we instantiate an instance of \type{Main} itself, with an explicit type parameter \type{Int} and the arguments \expr{12} and \expr{"foo"}. As we can see, the syntax is very similar to the \tref{function call syntax}{expression-function-call} and it is common to speak of ``constructor calls''.
+
+
+
+\section{for}
+\label{expression-for}
+
+Haxe does not support traditional for-loops known from C. Its \expr{for} keyword expects an opening parenthesis \expr{(}, then a variable identifier followed by the keyword \expr{in} and an arbitrary expression used as iterating collection. After the closing parenthesis \expr{)} follows an arbitrary loop body expression.
+
+\begin{lstlisting}
+for (v in e1) e2;
+\end{lstlisting}
+
+The typer ensures that the type of \expr{e1} can be iterated over, which is typically the case if it has an \expr{iterator} method returning an \type{Iterator<T>}, or if it is an \type{Iterator<T>} itself.
+
+Variable \expr{v} is then available within loop body \expr{e2} and holds the value of the individual elements of collection \expr{e1}.
+
+The type of a \expr{for} expression is always \type{Void}, meaning it has no value and cannot be used as right-side expression.
+
+The control flow of loops can be affected by \tref{\expr{break}}{expression-break} and \tref{\expr{continue}}{expression-continue} expressions.
+
+\section{while}
+\label{expression-while}
+
+A normal while loop starts with the \expr{while} keyword, followed by an opening parenthesis \expr{(}, the condition expression and a closing paranthesis \expr{)}. After that follows the loop body expression:
+
+\begin{lstlisting}
+while(condition) expression;
+\end{lstlisting}
+
+The condition expression has to be of type \type{Bool}.
+
+Upon each iteration, the condition expression is evaluated. If it evaluates to \expr{false}, the loop stops, otherwise it evaluates the loop body expression.
+
+\haxe{assets/While.hx}
+
+This kind of while-loop is not guaranteed to evaluate the loop body expression at all: If the condition does not hold from the start, it is never evaluated. This is different for \tref{do-while loops}{expression-do-while}.
+
+\section{do-while}
+\label{expression-do-while}
+
+A do-while loop starts with the \expr{do} keyword followed by the loop body expression. After that follows the \expr{while} keyword, an opening parenthesis \expr{(}, the condition expression and a closing parenthesis \expr{)}:
+
+\begin{lstlisting}
+do expression while(condition);
+\end{lstlisting}
+
+The condition expression has to be of type \type{Bool}.
+
+As the syntax suggests, the loop body expression is always evaluated at least once, unlike \tref{while}{expression-while} loops.
+
+\section{if}
+\label{expression-if}
+
+Conditional expressions come in the form of a leading \expr{if} keyword, a condition expression enclosed in parentheses \expr{()} and a expression to be evaluated in case the condition holds:
+
+\begin{lstlisting}
+if (condition) expression;
+\end{lstlisting}
+
+The condition expression has to be of type \type{Bool}.
+
+Optionally, \expr{expression} may be followed by the \expr{else} keyword as well as another expression to be evaluated if the condition does not hold:
+
+\begin{lstlisting}
+if (condition) expression1 else expression2;
+\end{lstlisting}
+
+Here, \expr{expression2} may consist of another \expr{if} expression:
+
+\begin{lstlisting}
+if (condition1) expression1
+else if(condition2) expression2
+else expression3
+\end{lstlisting}
+
+If the value of an \expr{if} expression is required, e.g. for \expr{var x = if(condition) expression1 else expression2}, the typer ensures that the types of \expr{expression1} and \expr{expression2} \tref{unify}{type-system-unification}. If no \expr{else} expression is given, the type is inferred to be \type{Void}.
+
+
+\section{switch}
+\label{expression-switch}
+
+A basic switch expression starts with the \expr{switch} keyword and the switch subject expression, as well as the case expressions between curly braces \expr{\{\}}. Case expressions either start with the \expr{case} keyword and are followed by a pattern expression, or consist of the \expr{default} keyword. In both cases a colon \expr{:} and an optional case body expression follows:
+
+\begin{lstlisting}
+switch subject {
+	case pattern1: case-body-expression-1;
+	case pattern2: case-body-expression-2;
+	default: default-expression;
+}
+\end{lstlisting}
+
+Case body expressions never ``fall through'', so the \tref{\expr{break}}{expression-break} keyword is not supported in Haxe.
+
+Switch expressions can be used as value; in that case the types of all case body expressions and the default expression must \tref{unify}{type-system-unification}.
+
+Further details on syntax of pattern expressions are detailed in \Fullref{lf-pattern-matching}.
+
+\section{try/catch}
+\label{expression-try-catch}
+
+Haxe allows catching values using its \expr{try/catch} syntax:
+
+\begin{lstlisting}
+try try-expr
+catch(varName1:Type1) catch-expr-1
+catch(varName2:Type2) catch-expr-2
+\end{lstlisting}
+
+If during runtime the evaluation of \expr{try-expression} causes a \tref{\expr{throw}}{expression-throw}, it can be caught by any subsequent \expr{catch} block. These blocks consist of
+
+\begin{itemize}
+	\item a variable name which holds the thrown value,
+	\item an explicit type annotation which determines which types of values to catch an
+	\item the expression to execute in that case.
+\end{itemize}
+
+Haxe allows throwing and catching any kind of value, it is not limited to types inheriting from a specific exception or error class. Catch blocks are checked from top to bottom with the first one whose type is compatible with the thrown value being picked.
+
+This process has many similarities to the compile-time \tref{unification}{type-system-unification} behavior. However, since the check has to be done at runtime there are several restrictions:
+
+\begin{itemize}
+	\item The type must exist at runtime: \tref{Class instances}{types-class-instance}, \tref{enum instances}{types-enum-instance}, \tref{abstract core types}{types-abstract-core-type} and \tref{Dynamic}{types-dynamic}.
+	\item Type parameters can only be \tref{Dynamic}{types-dynamic}.
+\end{itemize}
+
+
+
+\section{return}
+\label{expression-return}
+
+A \expr{return} expression can come with or without an value expression:
+
+\begin{lstlisting}
+return;
+return expression;
+\end{lstlisting}
+
+It leaves the control-flow of the innermost function it is declared in, which has to be distinguished when \tref{local functions}{expression-function} are involved:
+
+\begin{lstlisting}
+function f1() {
+	function f2() {
+		return;
+	}
+	f2();
+	expression;
+}
+\end{lstlisting}
+
+The \expr{return} leaves local function \expr{f2}, but not \expr{f1}, meaning \expr{expression} is still evaluated.
+
+If \expr{return} is used without a value expression, the typer ensures that the return type of the function it returns from is of \type{Void}. If it has a value expression, the typer \tref{unifies}{type-system-unification} its type with the return type (explicitly given or inferred by previous \expr{return} expressions) of the function it returns from.
+
+
+\section{break}
+\label{expression-break}
+
+The \expr{break} keyword leaves the control flow of the innermost loop (\expr{for} or \expr{while}) it is declared in, stopping further iterations:
+
+\begin{lstlisting}
+while(true) {
+	expression1;
+	if (condition) break;
+	expression2;
+}
+\end{lstlisting}
+
+Here, \expr{expression1} is evaluated for each iteration, but as soon as \expr{condition} holds, \expr{expression2} is not evaluated anymore.
+
+The typer ensures that it appears only within a loop. The \expr{break} keyword in \tref{\expr{switch} cases}{expression-switch} is not supported in Haxe.
+
+
+\section{continue}
+\label{expression-continue}
+
+The \expr{continue} keyword ends the current iteration of the innermost loop (\expr{for} or \expr{while}) it is declared in, causing the loop condition to be checked for the next iteration:
+
+\begin{lstlisting}
+while(true) {
+	expression1;
+	if(condition) continue;
+	expression2;
+}
+\end{lstlisting}
+
+Here, \expr{expression1} is evaluated for each iteration, but if \expr{condition} holds, \expr{expression2} is not evaluated for the current iteration. Unlike \expr{break}, iterations continue.
+
+The typer ensures that it appears only within a loop.
+
+
+\section{throw}
+\label{expression-throw}
+
+Haxe allows throwing any kind of value using its \expr{throw} syntax:
+
+\begin{lstlisting}
+throw expr
+\end{lstlisting}
+
+A value which is thrown like this can be caught by \tref{\expr{catch} blocks}{expression-try-catch}. If no such block catches it, the behavior is target-dependent.
+
+
+\section{cast}
+\label{expression-cast}
+
+Haxe allows two kinds of casts:
+
+\begin{lstlisting}
+cast expr; // unsafe cast
+cast (expr, Type); // safe cast
+\end{lstlisting}
+
+\subsection{unsafe cast}
+\label{expression-cast-unsafe}
+
+Unsafe casts are useful to subvert the type system. The compiler types \expr{expr} as usual and then wraps it in a \tref{monomorph}{types-monomorph}. This allows the expression to be assigned to anything.
+
+Unsafe casts do not introduce any \tref{dynamic}{types-dynamic} types, as the following example shows:
+
+\haxe{assets/UnsafeCast.hx}
+
+Variable \expr{i} is typed as \type{Int} and then assigned to variable \expr{s} using the unsafe cast \expr{cast i}. This causes \expr{s} to be of an unknown type, a monomorph. Following the usual rules of \tref{unification}{type-system-unification}, it can then be bound to any type, such as \type{String} in this example.
+
+These casts are called "unsafe" because the runtime behavior for invalid casts is not defined. While most \tref{dynamic targets}{def:Dynamic target} are likely to work, it might lead to undefined errors on \tref{static targets}{def:Static target}.
+
+Unsafe casts have little to no runtime overhead.
+
+\subsection{safe cast}
+\label{expression-cast-safe}
+
+Unlike \tref{unsafe casts}{expression-cast-unsafe}, the runtime behavior in case of a failing cast is defined for safe casts:
+
+\haxe{assets/SafeCast.hx}
+
+In this example we first cast a class instance of type \type{Child1} to \type{Base}, which succeeds because \type{Child1} is a \tref{child class}{type-system-inheritance} of \type{Base}. We then try to cast the same class instance to \type{Child2}, which is not allowed because instances of \type{Child2} are not instances of \type{Child1}.
+
+The Haxe compiler guarantees that an exception of type \type{String} is \tref{thrown}{expression-throw} in this case. This exception can be caught using a \tref{\expr{try/catch} block}{expression-try-catch}.
+
+Safe casts have a runtime overhead. It is important to understand the the compiler already generates type checks, so it is redundant to add manual checks, e.g. using \expr{Std.is}. The intended usage is to try the safe cast and catch the \type{String} exception.

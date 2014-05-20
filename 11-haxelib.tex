@@ -1,0 +1,135 @@
+\chapter{Haxelib}
+\label{haxelib}
+
+Haxelib is the library manager that comes with any Haxe distribution. Connected to a central repository, it allows submitting and retrieving libraries and has multiple features beyond that. Available libraries can be found at \url{http://lib.haxe.org}.
+
+A basic Haxe library is a collection of \ic{.hx} files. That is, libraries are distributed by source code by default, making it easy to inspect and modify their behavior. Each library is identified by a unique name, which is utilized when telling the Haxe Compiler which libraries to use for a given compilation.
+
+\section{Using a Haxe library with the Haxe Compiler}
+\label{haxelib-using-haxe}
+
+Any installed Haxe library can be made available to the compiler through the \ic{-lib <library-name>} argument. This is very similiar to the \ic{-cp <path>} argument, but expects a library name instead of a directory path. These commands are explained thoroughly in \Fullref{compiler-reference}.
+
+For our exemplary usage we chose a very simple Haxe library called ``random''. It provides a set of static convenience methods to achieve various random effects, such as picking a random element from an array.
+
+\haxe{assets/HaxelibRandom.hx}
+
+Compiling this without any \ic{-lib} argument causes an error message along the lines of \ic{Unknown identifier : Random}. This shows that installed Haxe libraries are not available to the compiler by default unless they are explicitly added. A working command line for above program is \ic{haxe -lib random -main Main --interp}.
+
+If the compiler emits an error \ic{Error: Library random is not installed : run 'haxelib install random'} the library has to be installed via the \ic{haxelib} command first. As the error message suggests, this is achieved through \ic{haxelib install random}. We will learn more about the \ic{haxelib} command in \Fullref{haxelib-using}.
+
+
+
+\section{haxelib.json}
+\label{haxelib-json}
+
+Each Haxe library requires a \ic{haxelib.json} file in which the following attributes are defined:
+
+\begin{description}
+	\item[name:] The name of the library. It must contain at least 3 characters among the following: \ic{\[A-Za-z0-9_-.\]}. In particular, no spaces are allowed.
+	\item[url:] The URL of the library, i.e. where more information can be found.
+	\item[license:] The license under which the library is released. Can be \ic{GPL}, \ic{LGPL}, \ic{BSD}, \ic{Public} (for Public Domain) or \ic{MIT}.
+	\item[tags:] An array of tag-strings which are used on the repository website to sort libraries.
+	\item[description:] The description of what the library is doing.
+	\item[version:] The version string of the library. This is detailed in \Fullref{haxelib-json-versioning}.
+	\item[releasenote:] The release notes of the current version.
+	\item[contributors:] An array of user names which identify contributors to the library. 
+	\item[dependencies:] An object describing the dependencies of the library. This is detailed in \Fullref{haxelib-json-dependencies}.
+\end{description}
+
+The following JSON is a simple example of a haxelib.json:
+
+\begin{lstlisting}
+{
+  "name": "useless_lib",
+  "url" : "https://github.com/jasononeil/useless/",
+  "license": "MIT",
+  "tags": ["cross", "useless"],
+  "description": "This library is useless in the same way on every platform",
+  "version": "1.0.0",
+  "releasenote": "Initial release, everything is working correctly",
+  "contributors": ["Juraj","Jason","Nicolas"],
+  "dependencies": {
+    "tink_macros": "",
+    "nme": "3.5.5"
+  }
+}
+\end{lstlisting}
+
+
+
+\subsection{Versioning}
+\label{haxelib-json-versioning}
+
+Haxelib uses a simplified version of SemVer\url{http://semver.org/}. The basic format is this:
+
+\begin{lstlisting}
+major.minor.patch
+\end{lstlisting}
+
+These are the basic rules:
+
+\begin{itemize}
+	\item Major versions are incremented when you break backwards compatibility - so old code will not work with the new version of the library.
+	\item Minor versions are incremented when new features are added.
+	\item Patch versions are for small fixes that do not change the public API, so no existing code should break.
+	\item When a minor version increments, the patch number is reset to 0. When a major version increments, both the minor and patch are reset to 0.
+\end{itemize}
+
+Examples:
+
+\begin{lstlisting}
+"0.0.1" // A first release.  Anything with a "0" for the major version is subject to change in the next release - no promises about API stability!
+"0.1.0" // Added a new feature!   Increment the minor version, reset the patch version
+"0.1.1" // Realised the new feature was broken.  Fixed it now, so increment the patch version
+"1.0.0" // New major version, so increment the major version, reset the minor and patch versions.   You promise your users not to break this API until you bump to 2.0.0
+"1.0.1" // A minor fix
+"1.1.0" // A new feature
+"1.2.0" // Another new feature
+"2.0.0" // A new version, which might break compatibility with 1.0.  Users are to upgrade cautiously.
+\end{lstlisting}
+
+If this release is a preview (Alpha, Beta or Release Candidate), you can also include that, with an optional release number:
+
+\begin{lstlisting}
+major.minor.patch-(alpha/beta/rc).release
+\end{lstlisting}
+
+Examples:
+
+\begin{lstlisting}
+"1.0.0-alpha"   // The alpha of 1.0.0 - use with care, things are changing!
+"1.0.0-alpha.2" // The 2nd alpha
+"1.0.0-beta"    // Beta - things are settling down, but still subject to change.
+"1.0.0-rc.1"    // The 1st release candidate for 1.0.0 - you shouldn't be adding any more features now
+"1.0.0-rc.2"    // The 2nd release candidate for 1.0.0
+"1.0.0"         // The final release!  
+\end{lstlisting}
+
+
+\subsection{Dependencies}
+\label{haxelib-json-dependencies}
+
+As of Haxe 3.1.0, haxelib supports only exact version matching for dependencies. Dependencies are defined as part of the \tref{haxelib.json}{haxelib-json}, with the library name serving as key and the expected version (if required) as value in the format described in \Fullref{haxelib-json-versioning}.
+
+We have seen an example of this when introducing haxelib.json:
+
+\begin{lstlisting}
+"dependencies": {
+  "tink_macros": "",
+  "nme": "3.5.5"
+}
+\end{lstlisting}
+
+This adds two dependencies to the given Haxe library:
+
+\begin{enumerate}
+	\item The library ``tink_macros'' can be used in any version. Haxelib will then always try to use the latest version.
+	\item The library ``nme'' is required in version ``3.5.5''. Haxelib will make sure that this exact version is used, avoiding potential breaking changes with future versions.
+\end{enumerate}
+
+
+\section{Using Haxelib}
+\label{haxelib-using}
+
+If the \ic{haxelib} command is executed without any arguments, it prints an exhaustive list of all available arguments.

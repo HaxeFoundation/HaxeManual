@@ -1,0 +1,278 @@
+\chapter{Standard Library}
+\label{std}
+\state{NoContent}
+
+Standard library
+
+\section{String}
+\label{std-String}
+
+\define[Type]{String}{A String is a sequence of characters.}
+
+%TODO: utf8 crap %
+
+\section{Data Structures}
+\label{std-ds}
+\state{NoContent}
+
+\subsection{Array}
+\label{std-Array}
+
+An \type{Array} is a \emph{collection} for storing elements.  It has one \tref{type parameter}{type-system-type-parameters} and all elements of the array must be of the specified type.  Alternatively, arrays of mixed types are allowed if the type parameter is \Fullref{types-dynamic}.  See the below code snippet for an example. 
+\trivia{Dynamic Arrays}{In Haxe 2, mixed type array declarations were allowed.  In Haxe 3, arrays can have mixed types ONLY if they are explicitly declared as \emph{Array$<$Dynamic$>$}.}
+The following example shows some basic examples of working with arrays:
+\haxe{assets/ArrayExample.hx}
+
+\todo{make sure this is true about static targets}
+In Haxe, arrays are unbounded:  accessing or assigning an index outside the current size of the array does NOT result in an exception.  When assigning, the array grows and the inbetween elements are assigned \emph{null} (or the \emph{static target} alternative: see \Fullref{types-nullability} for more details).  When accessing, \emph{null} is returned.  Accessing a negative index in an array also returns \emph{null}.
+
+Arrays can be \emph{iterated over} using a \Fullref{expression-for} loop.  However removing elements while iterating over an array is error prone (but just fine with a \emph{List}).
+
+\todo{Maybe we should introduce \textbackslash api\{type name\}}
+See \Fullref{expression-array-declaration} for array initialization.  New arrays can also be created by \Fullref{lf-array-comprehension}.  The \href{http://api.haxe.org/Array.html}{Array API} has details about Array methods.
+
+\subsection{Vector}
+\label{std-vector}
+
+A \type{Vector} is an optimized fixed-length \emph{collection} of elements. Much like \tref{Array}{std-Array}, it has one \tref{type parameter}{type-system-type-parameters} and all elements of a vector must be of the specified type, it can be \emph{iterated over} using a \tref{for loop}{expression-for} and accessed using \tref{array access syntax}{types-abstract-array-access}. However, unlike \type{Array} and \type{List}, vector length is specified on creation and cannot be changed later.
+
+\haxe{assets/Vector.hx}
+
+\type{haxe.ds.Vector} is implemented as an abstract type (\ref{types-abstract}) over a native array implementation for given target and can be faster for fixed-size collections, because the memory for storing its elements is pre-allocated.
+
+\subsection{List}
+\label{std-List}
+A \type{List} is a \emph{collection} for storing elements.  On the surface, a list is similar to an \Fullref{std-Array}.  However, the underlying implementation is very different.  This results in several functional differences:
+\todo{I hope none of these are lies -C }
+\begin{enumerate}
+	\item A list can not be indexed using square brackets, i.e. \expr{[0]}.
+	\item A list can not be initialized.
+	\item There are no list comprehensions.
+	\item A list can freely modify/add/remove elements while iterating over them.
+\end{enumerate}
+
+See the \href{http://api.haxe.org/List.html}{List API} for details about the list methods.  A simple example for working with lists:
+\haxe{assets/ListExample.hx}
+
+\subsection{GenericStack}
+\label{std-GenericStack}
+A \type{GenericStack}, like \type{Array} and \type{List} is a container for storing elements.  It has one \tref{type parameter}{type-system-type-parameters} and all elements of the array must be of the specified type. See the \href{http://api.haxe.org/haxe/ds/GenericStack.html}{GenericStack API} for details about its methods.  Here is a small example program for initializing and working with a \type{GenericStack}.
+\haxe{assets/GenericStackExample.hx}
+\trivia{FastList}{In Haxe 2, the GenericStack class was known as FastList.  Since its behavior more closely resembled a typical stack, the name was changed for Haxe 3.}
+The \emph{Generic} in \type{GenericStack} is literal.  It is attributed with the \expr{:generic} metadata.  Depending on the target, this can lead to improved performance on static targets.  See \Fullref{type-system-generic} for more details.
+\subsection{Map}
+\label{std-Map}
+
+A \type{Map} is a container composed of \emph{key}, \emph{value} pairs.  A \type{Map} is also commonly referred to as an associative array, dictionary, or symbol table.  The following code gives a short example of working with maps:
+
+\haxe{assets/MapExample.hx}
+
+See the \href{http://api.haxe.org/haxe/Map.html}{Map API} for details of its methods.
+
+Under the hood, a \type{Map} is an \Fullref{types-abstract} type.  At compile time, it gets converted to one of several specialized types depending on the \emph{key} type:
+\begin{itemize}
+	\item haxe.ds.StringMap
+	\item haxe.ds.IntMap
+	\item haxe.ds.EnumValueMap
+	\item haxe.ds.ObjectMap
+\end{itemize}
+So, at runtime, the \type{Map} type does not exist, and has been replaced with one of the above objects.  
+
+\subsection{Option}
+\label{std-Option}
+
+\section{Regular Expressions}
+\label{std-regex}
+
+Haxe has built-in support for \emph{regular expressions}\footnote{http://en.wikipedia.org/wiki/Regular_expression}. They can be used to verify the format of a string, transform a string or extract some regular data from a given text.
+
+Haxe has special syntax for creating regular expressions. We can create a regular expression object by typing it between the \expr{\textasciitilde/} combination and a single \expr{/} character:
+
+\begin{lstlisting}
+var r = ~/haxe/i;
+\end{lstlisting}
+
+Alternatively, we can create regular expression with regular syntax:
+
+\begin{lstlisting}
+var r = new EReg("haxe", "i");
+\end{lstlisting}
+
+First argument is a string with regular expression pattern, second one is a string with \emph{flags} (see below).
+
+We can use standard regular expression patterns such as:
+\begin{itemize}
+    \item \expr{.} any character
+    \item \expr{*} repeat zero-or-more
+    \item \expr{+} repeat one-or-more
+    \item \expr{?} optional zero-or-one
+    \item \expr{[A-Z0-9]} character ranges
+    \item \expr{[\textasciicircum\textbackslash r\textbackslash n\textbackslash t]} character not-in-range
+    \item \expr{(...)} parenthesis to match groups of characters
+    \item \expr{\textasciicircum} beginning of the string (beginning of a line in multiline matching mode)
+    \item \expr{\$} end of the string (end of a line in multiline matching mode)
+    \item \expr{|} "OR" statement.
+\end{itemize}
+
+For example, the following regular expression matches valid email addresses:
+\begin{lstlisting}
+~/[A-Z0-9._\%-]+@[A-Z0-9.-]+\.[A-Z][A-Z][A-Z]?/i;
+\end{lstlisting}
+
+Please notice that the \expr{i} at the end of the regular expression is a \emph{flag} that enables case-insensitive matching.
+
+The possible flags are the following:
+\begin{itemize}
+    \item \expr{i} case insensitive matching
+    \item \expr{g} global replace or split, see below
+    \item \expr{m} multiline matching, \expr{\textasciicircum} and \expr{\$} represent the beginning and end of a line
+    \item \expr{s} the dot \expr{.} will also match newlines \emph{(Neko, C++, PHP and Java targets only)}
+    \item \expr{u} use UTF-8 matching \emph{(Neko and C++ targets only)}
+\end{itemize}
+
+\subsection{Matching}
+\label{std-regex-match}
+
+Probably one of the most common uses for regular expressions is checking whether a string matches the specific pattern. The \expr{match} method of a regular expression object can be used to do that:
+\haxe{assets/ERegMatch.hx}
+
+\subsection{Groups}
+\label{std-regex-groups}
+
+Specific information can be extracted from a matched string by using \emph{groups}. If \expr{match()} returns true, we can get groups using the \expr{matched(X)} method, where X is the number of a group defined by regular expression pattern:
+
+\haxe{assets/ERegGroups.hx}
+
+Note that group numbers start with 1 and \expr{r.matched(0)} will always return the whole matched substring.
+
+The \expr{r.matchedPos()} will return the position of this substring in the original string:
+
+\haxe{assets/ERegMatchPos.hx}
+
+Additionally, \expr{r.matchedLeft()} and \expr{r.matchedRight()} can be used to get substrings to the left and to the right of the matched substring:
+
+\haxe{assets/ERegMatchLeftRight.hx}
+
+\subsection{Replace}
+\label{std-regex-replace}
+
+A regular expression can also be used to replace a part of the string:
+
+\haxe{assets/ERegReplace.hx}
+
+We can use \expr{\$X} to reuse a matched group in the replacement:
+
+\haxe{assets/ERegReplaceGroups.hx}
+
+\subsection{Split}
+\label{std-regex-split}
+
+A regular expression can also be used to split a string into several substrings:
+
+\haxe{assets/ERegSplit.hx}
+
+\subsection{Map}
+\label{std-regex-map}
+
+The \expr{map} method of a regular expression object can be used to replace matched substrings using a custom function:
+
+\haxe{assets/ERegMap.hx}
+
+This function takes a regular expression object as its first argument so we may use it to get additional information about the match being done.
+
+\subsection{Implementation Details}
+\label{std-regex-implementation-details}
+
+Regular Expressions are implemented:
+\begin{itemize}
+    \item in JavaScript, the runtime is providing the implementation with the object RegExp.
+    \item in Neko and C++, the PCRE library is used
+    \item in Flash, PHP, C\# and Java, native implementations are used
+    \item in Flash 6/8, the implementation is not available
+\end{itemize}
+
+
+\section{Math}
+\label{std-math}
+
+Haxe includes a floating point math library for some common mathematical operations.  Most of the fuctions operate on and return \type{floats}.  However, an \type{Int} can be used where a \type{Float} is expected, and Haxe also converts \type{Int} to \type{Float} during most numeric operations  (see \Fullref{types-numeric-operators} for more details).
+
+Here are some example uses of the math library.  See the \href{http://api.haxe.org/Math.html}{Math API} for all available functions.
+
+\haxe{assets/MathExample.hx}
+
+\subsection{Special Numbers}
+\label{std-math-special-numbers}
+The math library has definitions for several special numbers:
+\begin{itemize}
+	\item NaN (Not a Number): returned when a mathmatically incorrect operation is executed, e.g. Math.sqrt(-1)
+	\item POSITIVE_INFINITY: e.g. divide a positive number by zero
+	\item NEGATIVE_INFINITY: e.g. divide a negative number by zero
+	\item PI : 3.1415...
+\end{itemize}
+
+\subsection{Mathematical Errors}
+\label{std-math-mathematical-errors}
+Although neko can fluidly handle mathematical errors, like division by zero, this is not true for all target.  Depending on the target, mathematical errors may produce exceptions and ultimately errors.
+
+\subsection{Integer Math}
+\label{std-math-integer-math}
+If you are targeting a platform that can utilize integer operations, e.g. integer division, it should be wrapped in \emph{Std.int()} for improved performance.  The Haxe Compiler can then optimize for integer operations.  An example:
+\begin{lstlisting}
+	var intDivision = Std.int(6.2/4.7);
+\end{lstlisting}
+\todo{I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?}
+
+\subsection{Extensions}
+\label{std-math-extensions}
+It is common to see \Fullref{lf-static-extension} used with the math library.  This code shows a simple example:  
+\haxe{assets/MathStaticExtension.hx}
+\haxe{assets/MathExtensionUsage.hx}
+
+
+\section{Lambda}
+\label{std-Lambda}
+
+\section{Reflection}
+\label{std-reflection}
+
+\section{Serialization}
+\label{std-serialization}
+
+\section{Json}
+\label{std-Json}
+
+Haxe provides built-in support for (de-)serializing \emph{JSON}\footnote{http://en.wikipedia.org/wiki/JSON} data via the \type{haxe.Json} class.
+
+\subsection{Parsing JSON}
+\label{std-Json-parsing}
+
+Use the \expr{haxe.Json.parse} static method to parse \emph{JSON} data and obtain a Haxe value from it:
+\haxe{assets/JsonParse.hx}
+
+Note that the type of the object returned by \expr{haxe.Json.parse} is \expr{Dynamic}, so if the structure of our data is well-known, we may want to specify a type using \tref{anonymous structures}{types-anonymous-structure}. This way we provide compile-time checks for accessing our data and most likely more optimal code generation, because compiler knows about types in a structure:
+\haxe{assets/JsonParseTyped.hx}
+
+\subsection{Encoding JSON}
+\label{std-Json-encoding}
+
+Use the \expr{haxe.Json.stringify} static method to encode a Haxe value into a \emph{JSON} string:
+\haxe{assets/JsonStringify.hx}
+
+\subsection{Implementation details}
+\label{std-Json-implementation-details}
+
+The \type{haxe.Json} API automatically uses native implementation on targets where it is available, i.e. \emph{JavaScript}, \emph{Flash} and \emph{PHP} and provides its own implementation for other targets.
+
+Usage of Haxe own implementation can be forced with \expr{-D haxeJSON} compiler argument. This will also provide serialization of \tref{enums}{types-enum-instance} by their index, \tref{maps}{std-Map} with string keys and class instances.
+
+Older browsers (Internet Explorer 7, for instance) may not have native \emph{JSON} implementation. In case it's required to support them, we can include one of the JSON implementations available on the internet in the HTML page. Alternatively, a \expr{-D old_browser} compiler argument that will make \type{haxe.Json} try to use native JSON and fallback to its own implementation in case it's not available can be used.
+
+\section{Xml}
+\label{std-Xml}
+
+\section{Input/Output}
+\label{std-input-output}
+
+\section{Sys/sys}
+\label{std-sys}

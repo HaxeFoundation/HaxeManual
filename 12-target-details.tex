@@ -1,0 +1,42 @@
+\chapter{Target Details}
+\label{target-details}
+
+\section{Javascript}
+\label{target-javascript}
+
+\subsection{Loading extern classes using "require" function}
+\label{target-javascript-require}
+
+Modern \target{JavaScript} platforms, such as Node.js provide a way of loading objects
+from external modules using the "require" function. Haxe supports automatic generation
+of "require" statements for \expr{extern} classes.
+
+This feature can be enabled by specifying \expr{@:jsRequire} metadata for the extern class. If our \expr{extern} class represents a whole module, we pass a single argument to the \expr{@:jsRequire} metadata specifying the name of the module to load:
+
+\haxe{assets/JSRequireModule.hx}
+
+In case our \expr{extern} class represents an object within a module, second \expr{@:jsRequire} argument specifies an object to load from a module:
+
+\haxe{assets/JSRequireObject.hx}
+
+The second argument is a dotted-path, so we can load sub-objects in any hierarchy.
+
+If we need to load custom JavaScript objects in runtime, a \expr{js.Lib.require} function can be used. It takes \expr{String} as its only argument and returns \expr{Dynamic}, so it is advised to be assigned to a strictly typed variable.
+
+\section{Flash}
+\label{target-flash}
+
+\section{Neko}
+\label{target-neko}
+
+\section{PHP}
+\label{target-php}
+
+\section{C++}
+\label{target-cpp}
+
+\section{Java}
+\label{target-java}
+
+\section{C\#}
+\label{target-cs}
