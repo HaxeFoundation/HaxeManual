@@ -22,7 +22,7 @@ class Main {
 	function new() {
 		Sys.setCwd("../");
 		var sections = parse();
-		var linkBase = "https://github.com/Simn/HaxeManual/tree/master/";
+		var linkBase = "https://github.com/HaxeFoundation/HaxeManual/blob/master/";
 		out = "md/manual";
 		unlink(out);
 		sys.FileSystem.createDirectory(out);
@@ -43,6 +43,8 @@ class Main {
 			content += "\n\n---";
 			if (i != 0) content += '\n\nPrevious section: ${link(sectionInfo.all[i - 1])}';
 			if (i != sectionInfo.all.length - 1) content += '\n\nNext section: ${link(sectionInfo.all[i + 1])}';
+			var fileAndLines = '${sec.source.file}#L${sec.source.lineMin}-${sec.source.lineMax}';
+			content += '\n\nContribute: [fileAndLines]($linkBase$fileAndLines)';
 			sys.io.File.saveContent('$out/${url(sec)}', content);
 			Reflect.deleteField(sec, "content");
 		}

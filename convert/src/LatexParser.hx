@@ -31,7 +31,12 @@ typedef Section = {
 	sub: Array<Section>,
 	index: Int,
 	id: String,
-	state: State
+	state: State,
+	source: {
+		file: String,
+		lineMin: Int,
+		lineMax: Int
+	}
 }
 
 enum ListMode {
@@ -66,9 +71,11 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 	var tableFieldCount:Int;
 	var listMode:GenericStack<ListMode>;
 	var lastLabelTarget:LabelKind;
+	var input:byte.ByteData;
 
 	public function new(input, sourceName) {
 		super(new LatexLexer(input, sourceName), LatexLexer.tok);
+		this.input = input;
 		buffer = new StringBuf();
 		todos = [];
 		sections = [];
@@ -143,11 +150,13 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 						buffer.add(s);
 					}
 				case [TCommand(CInput), TBrOpen, s = text(), TBrClose]:
-					var old = stream;
-					var input = byte.ByteData.ofString(sys.io.File.getContent(s));
+					var oldStream = stream;
+					var oldInput = input;
+					input = byte.ByteData.ofString(sys.io.File.getContent(s));
 					stream = new LatexLexer(input, s);
 					document();
-					stream = old;
+					stream = oldStream;
+					input = oldInput;
 				case [TCommand(CCaption), TBrOpen, s = text(), TBrClose]:
 					// TODO
 				case [TCustomCommand("haxe"), options = popt(bracketArg), TBrOpen, s = text(), TBrClose]:
@@ -418,7 +427,12 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 			buffer = new StringBuf();
 		}
 		var id = (parent != null ? parent.id + "." : "") + index;
-		lastSection = {title: title, label: null, content: "", sub: [], index:index, id: id, state: New};
+		var source = {
+			file: stream.curPos().psource,
+			lineMin: stream.curPos().getLinePosition(input).lineMin,
+			lineMax: stream.curPos().getLinePosition(input).lineMax
+		}
+		lastSection = {title: title, label: null, content: "", sub: [], index:index, id: id, state: New, source: source };
 		lastLabelTarget = Section(lastSection);
 		return lastSection;
 	}
