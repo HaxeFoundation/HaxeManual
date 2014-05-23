@@ -1,6 +1,6 @@
 ## 10.2.4 GenericStack
 
-A `GenericStack`, like `Array` and `List` is a container for storing elements.  It has one [type parameter](type-system-type-parameters.md) and all elements of the array must be of the specified type. See the [http://api.haxe.org/haxe/ds/GenericStack.html](GenericStack API) for details about its methods.  Here is a small example program for initializing and working with a `GenericStack`.
+A `GenericStack`, like `Array` and `List` is a container for storing elements.  It has one [type parameter](type-system-type-parameters.md) and all elements of the array must be of the specified type. See the [GenericStack API](http://api.haxe.org/haxe/ds/GenericStack.html) for details about its methods.  Here is a small example program for initializing and working with a `GenericStack`.
 ```haxe
 import haxe.ds.GenericStack;
 

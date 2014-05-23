@@ -38,7 +38,7 @@ class MapExample{
 
 ```
 
-See the [http://api.haxe.org/haxe/Map.html](Map API) for details of its methods.
+See the [Map API](http://api.haxe.org/haxe/Map.html) for details of its methods.
 
 Under the hood, a `Map` is an [Abstract](types-abstract.md) type.  At compile time, it gets converted to one of several specialized types depending on the **key** type:
 

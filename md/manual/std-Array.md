@@ -39,7 +39,7 @@ In Haxe, arrays are unbounded:  accessing or assigning an index outside the curr
 Arrays can be **iterated over** using a [for](expression-for.md) loop.  However removing elements while iterating over an array is error prone (but just fine with a **List**).
 
 
-See [Array Declaration](expression-array-declaration.md) for array initialization.  New arrays can also be created by [Array Comprehension](lf-array-comprehension.md).  The [http://api.haxe.org/Array.html](Array API) has details about Array methods.
+See [Array Declaration](expression-array-declaration.md) for array initialization.  New arrays can also be created by [Array Comprehension](lf-array-comprehension.md).  The [Array API](http://api.haxe.org/Array.html) has details about Array methods.
 
 ---
 

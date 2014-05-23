@@ -21,7 +21,7 @@ The DCE-algorithm works well with typed code, but may fail when [dynamic](types-
 
 
 
-If a class needs to be marked with `@:keep` from the command line instead of editing its source code, there is a compiler macro available for doing so: `--macro keep('type dot path')` See the [http://api.haxe.org/haxe/macro/Compiler.html#keep](haxe.macro.Compiler.keep API) for details of this macro. It will mark package, module or sub-type to be kept by DCE and includes them for compilation.
+If a class needs to be marked with `@:keep` from the command line instead of editing its source code, there is a compiler macro available for doing so: `--macro keep('type dot path')` See the [haxe.macro.Compiler.keep API](http://api.haxe.org/haxe/macro/Compiler.html#keep) for details of this macro. It will mark package, module or sub-type to be kept by DCE and includes them for compilation.
  
 The compiler automatically defines the flag `dce` with a value of either `"std"`, `"no"` or `"full"` depending on the active mode. This can be used in [conditional compilation](lf-condition-compilation.md).
 

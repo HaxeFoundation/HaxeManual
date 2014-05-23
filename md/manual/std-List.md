@@ -11,7 +11,7 @@ A `List` is a **collection** for storing elements.  On the surface, a list is si
 
 
 
-See the [http://api.haxe.org/List.html](List API) for details about the list methods.  A simple example for working with lists:
+See the [List API](http://api.haxe.org/List.html) for details about the list methods.  A simple example for working with lists:
 ```haxe
 class ListExample {
 	static public function main() {
