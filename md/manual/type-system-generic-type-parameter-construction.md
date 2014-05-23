@@ -23,7 +23,7 @@ class Main {
 		return new T("foo");
 	}
 }
-``` 
+```
 
 It should be noted that [top-down inference](type-system-top-down-inference.md) is used here to determine the actual type of `T`. There are two requirements for this kind of type parameter construction to work. The constructed type parameter must be
 

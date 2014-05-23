@@ -160,7 +160,7 @@ Main.main();
 
 With normal type parameter, it is not possible to construct them, i.e. \expr{new T()} is a compiler error. This is because Haxe generates only a single function and the construct then makes no sense. This is different when the type parameter is generic: Since we know that the compiler will generate a distinct function for each type parameter combination, it is possible to replace the \type{T} \expr{new T()} with the real type.
 
-\haxe{assets/GenericTypeParameter.hx} 
+\haxe{assets/GenericTypeParameter.hx}
 
 It should be noted that \tref{top-down inference}{type-system-top-down-inference} is used here to determine the actual type of \type{T}. There are two requirements for this kind of type parameter construction to work. The constructed type parameter must be
 
