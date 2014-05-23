@@ -35,3 +35,5 @@ It is not possible to override fields which are declared as [`inline`](class-fie
 Previous section: [Overriding Methods](class-field-overriding.md)
 
 Next section: [Access Modifier](class-field-access-modifier.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/04-class-field.tex#L212-212)

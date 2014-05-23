@@ -23,3 +23,5 @@ This is quite similar to usual array matching, but there are differences:
 Previous section: [Guards](lf-pattern-matching-guards.md)
 
 Next section: [Extractors](lf-pattern-matching-extractors.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L210-210)

@@ -56,3 +56,5 @@ So, at runtime, the `Map` type does not exist, and has been replaced with one of
 Previous section: [GenericStack](std-GenericStack.md)
 
 Next section: [Regular Expressions](std-regex.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L63-63)

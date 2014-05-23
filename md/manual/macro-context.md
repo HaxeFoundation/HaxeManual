@@ -22,3 +22,5 @@ The context API is complemented by the `haxe.macro.Compiler` API detailed in [Co
 Previous section: [Macros](macro.md)
 
 Next section: [Arguments](macro-arguments.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L18-18)

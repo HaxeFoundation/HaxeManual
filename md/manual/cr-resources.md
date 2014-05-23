@@ -9,3 +9,5 @@ While it may be not optimal to embed large assets, like images or music in the a
 Previous section: [Completion](#)
 
 Next section: [Embedding resources](cr-resources-embed.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/08-compiler-features.tex#L51-51)

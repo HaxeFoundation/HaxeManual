@@ -52,3 +52,5 @@ Examples:
 Previous section: [haxelib.json](haxelib-json.md)
 
 Next section: [Dependencies](haxelib-json-dependencies.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/11-haxelib.tex#L61-61)

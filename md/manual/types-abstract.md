@@ -59,3 +59,5 @@ A good question at this point is what happens if a member function is not declar
 Previous section: [Implementing Dynamic](types-dynamic-implemented.md)
 
 Next section: [Implicit Casts](types-abstract-implicit-casts.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L568-568)

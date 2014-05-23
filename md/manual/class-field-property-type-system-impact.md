@@ -33,3 +33,5 @@ The `dynamic` access modifier works exactly like `get` or `set`, but does not ch
 Previous section: [Common accessor identifier combinations](class-field-property-common-combinations.md)
 
 Next section: [Rules for getter and setter](class-field-property-rules.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/04-class-field.tex#L121-121)

@@ -37,3 +37,5 @@ If line 7 is uncommented, the program does not compile because `Red` (an enum co
 Previous section: [Enum Instance](types-enum-instance.md)
 
 Next section: [Anonymous Structure](types-anonymous-structure.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L333-333)

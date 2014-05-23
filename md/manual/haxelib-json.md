@@ -40,3 +40,5 @@ The following JSON is a simple example of a haxelib.json:
 Previous section: [Using a Haxe library with the Haxe Compiler](haxelib-using-haxe.md)
 
 Next section: [Versioning](haxelib-json-versioning.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/11-haxelib.tex#L23-23)

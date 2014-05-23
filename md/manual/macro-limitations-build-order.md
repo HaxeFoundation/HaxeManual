@@ -40,3 +40,5 @@ With both interfaces `I1` and `I2` having `:autoBuild` metadata, the build macro
 Previous section: [Static extension](macro-limitations-static-extension.md)
 
 Next section: [Standard Library](std.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L258-258)

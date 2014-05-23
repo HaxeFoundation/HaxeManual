@@ -85,3 +85,5 @@ class Main {
 Previous section: [Impact on the type system](class-field-property-type-system-impact.md)
 
 Next section: [Method](class-field-method.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/04-class-field.tex#L138-138)

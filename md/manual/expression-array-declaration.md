@@ -19,3 +19,5 @@ Advanced initialization techniques are described in [Array Comprehension](lf-arr
 Previous section: [Constants](expression-constants.md)
 
 Next section: [Object Declaration](expression-object-declaration.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L77-77)

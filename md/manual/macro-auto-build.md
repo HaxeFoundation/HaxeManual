@@ -47,3 +47,5 @@ It is important to keep in mind that the order of these macro executions is unde
 Previous section: [Enum building](macro-enum-building.md)
 
 Next section: [Limitations](macro-limitations.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L218-218)

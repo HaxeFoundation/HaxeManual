@@ -16,3 +16,5 @@ Haxe uses target platform's native resource embedding, if there is one, providin
 Previous section: [Retrieving binary resources](cr-resources-getBytes.md)
 
 Next section: [Macros](macro.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/08-compiler-features.tex#L88-88)

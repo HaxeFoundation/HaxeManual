@@ -112,3 +112,5 @@ This is also true for access granted to parent classes, in which case it extends
 Previous section: [Metadata](lf-metadata.md)
 
 Next section: [Inline constructors](lf-inline-constructor.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L428-428)

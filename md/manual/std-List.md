@@ -30,3 +30,5 @@ class ListExample {
 Previous section: [Vector](std-vector.md)
 
 Next section: [GenericStack](std-GenericStack.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L43-43)

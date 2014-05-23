@@ -46,3 +46,5 @@ See [Array Declaration](expression-array-declaration.md) for array initializatio
 Previous section: [Data Structures](std-ds.md)
 
 Next section: [Vector](std-vector.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L18-18)

@@ -18,3 +18,5 @@ class Main {
 Previous section: [Replace](std-regex-replace.md)
 
 Next section: [Map](std-regex-map.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L167-167)

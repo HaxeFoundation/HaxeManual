@@ -21,3 +21,5 @@ This will trace `1` because `array[1]` matches `6`, and `array[0]` is allowed to
 Previous section: [Structure matching](lf-pattern-matching-structure.md)
 
 Next section: [Or patterns](lf-pattern-matching-or.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L183-183)

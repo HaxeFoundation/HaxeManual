@@ -59,3 +59,5 @@ Special care has to be taken with field names or local variable names that confl
 Previous section: [Module Sub-Types](type-system-module-sub-types.md)
 
 Next section: [Resolution Order](type-system-resolution-order.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L414-414)

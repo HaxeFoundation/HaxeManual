@@ -32,3 +32,5 @@ class TestMath{
 Previous section: [Integer Math](std-math-integer-math.md)
 
 Next section: [Json](std-Json.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L226-226)

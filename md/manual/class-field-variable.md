@@ -37,3 +37,5 @@ _Figure: Initialization values of a variable field._
 Previous section: [Class Fields](class-field.md)
 
 Next section: [Property](class-field-property.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/04-class-field.tex#L20-20)

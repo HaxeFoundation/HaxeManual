@@ -22,3 +22,5 @@ We can identify different kinds of macros, which are run at specific compilation
 Previous section: [Implementation details](cr-resources-impl.md)
 
 Next section: [Macro Context](macro-context.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L1-1)

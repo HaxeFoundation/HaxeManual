@@ -18,3 +18,5 @@ In contrast to opaque abstracts, core-type abstracts have the following properti
 Previous section: [Forwarding abstract fields](types-abstract-forward.md)
 
 Next section: [Monomorph](types-monomorph.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L795-795)

@@ -26,3 +26,5 @@ The **Generic** in `GenericStack` is literal.  It is attributed with the `:gener
 Previous section: [List](std-List.md)
 
 Next section: [Map](std-Map.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L57-57)

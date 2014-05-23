@@ -39,3 +39,5 @@ It is not always easy to judge if a function qualifies for being inline. Short f
 Previous section: [Visibility](class-field-visibility.md)
 
 Next section: [Dynamic](class-field-dynamic.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/04-class-field.tex#L256-256)

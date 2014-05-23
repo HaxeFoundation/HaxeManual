@@ -18,3 +18,5 @@ The code above will display the content of the **hello_message.txt** file that w
 Previous section: [Embedding resources](cr-resources-embed.md)
 
 Next section: [Retrieving binary resources](cr-resources-getBytes.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/08-compiler-features.tex#L70-70)

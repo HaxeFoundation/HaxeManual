@@ -57,3 +57,5 @@
 Previous section: [Overflow](types-overflow.md)
 
 Next section: [Bool](types-bool.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L64-64)

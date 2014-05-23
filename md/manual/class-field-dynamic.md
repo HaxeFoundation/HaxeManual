@@ -25,3 +25,5 @@ Dynamic fields cannot be `inline` for obvious reasons: While inlining is done at
 Previous section: [Inline](class-field-inline.md)
 
 Next section: [Override](class-field-override.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/04-class-field.tex#L281-281)

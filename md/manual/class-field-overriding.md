@@ -42,3 +42,5 @@ The variable `child` is explicitly typed as `Base` to highlight an important dif
 Previous section: [Method](class-field-method.md)
 
 Next section: [Effects of variance and access modifiers](class-field-override-effects.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/04-class-field.tex#L195-195)

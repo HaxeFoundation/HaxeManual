@@ -119,3 +119,5 @@ While the individual casts from `A` to `B` and from `B` to `C` are allowed, a tr
 Previous section: [Abstract](types-abstract.md)
 
 Next section: [Operator Overloading](types-abstract-operator-overloading.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L608-608)

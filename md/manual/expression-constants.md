@@ -19,3 +19,5 @@ Furthermore, the internal syntax structure treats [identifiers](dictionary.md#id
 Previous section: [Blocks](expression-block.md)
 
 Next section: [Array Declaration](expression-array-declaration.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L55-55)

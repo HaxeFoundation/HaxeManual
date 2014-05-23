@@ -19,3 +19,5 @@
 Previous section: [Using Haxelib](haxelib-using.md)
 
 Next section: [Javascript](#)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/12-target-details.tex#L1-1)

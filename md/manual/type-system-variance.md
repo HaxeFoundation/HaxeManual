@@ -81,3 +81,5 @@ With `b` being typed as `MyArray<Base>` and `MyArray` only having a `pop()` meth
 Previous section: [Construction of generic type parameters](type-system-generic-type-parameter-construction.md)
 
 Next section: [Unification](type-system-unification.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L189-189)

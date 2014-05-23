@@ -9,3 +9,5 @@ A basic Haxe library is a collection of `.hx` files. That is, libraries are dist
 Previous section: [Implementation details](std-Json-implementation-details.md)
 
 Next section: [Using a Haxe library with the Haxe Compiler](haxelib-using-haxe.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/11-haxelib.tex#L1-1)

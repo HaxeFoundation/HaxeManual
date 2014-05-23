@@ -40,3 +40,5 @@ We will describe each of these type groups and how they relate to each other in 
 Previous section: [History](introduction-haxe-history.md)
 
 Next section: [Basic Types](types-basic-types.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L1-1)

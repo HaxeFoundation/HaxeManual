@@ -15,3 +15,5 @@
 Previous section: [Dead Code Elimination](cr-dce.md)
 
 Next section: [Resources](cr-resources.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/08-compiler-features.tex#L33-33)

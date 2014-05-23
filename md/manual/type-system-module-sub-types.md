@@ -20,3 +20,5 @@ The accessibility can be controlled more fine-grained by using [access control](
 Previous section: [Modules and Paths](type-system-modules-and-paths.md)
 
 Next section: [Import](type-system-import.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L393-393)

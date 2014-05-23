@@ -19,3 +19,5 @@ The return type of **getBytes** method is `haxe.io.Bytes`, an object providing a
 Previous section: [Retrieving text resources](cr-resources-getString.md)
 
 Next section: [Implementation details](cr-resources-impl.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/08-compiler-features.tex#L79-79)

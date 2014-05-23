@@ -14,3 +14,5 @@ The string after the **@** symbol is the **resource identifier**. It will used i
 Previous section: [Resources](cr-resources.md)
 
 Next section: [Retrieving text resources](cr-resources-getString.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/08-compiler-features.tex#L58-58)

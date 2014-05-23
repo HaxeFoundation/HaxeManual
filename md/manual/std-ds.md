@@ -17,3 +17,5 @@
 Previous section: [String](std-String.md)
 
 Next section: [Array](std-Array.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L14-14)

@@ -26,3 +26,5 @@ There may only be a single extension on a structure, so extensions can be unders
 Previous section: [Typedef](type-system-typedef.md)
 
 Next section: [Type Parameters](type-system-type-parameters.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L38-38)

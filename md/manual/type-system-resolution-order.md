@@ -69,3 +69,5 @@ For step 1 of this algorithm as well as steps 5 and 7 of the previous one, the o
 Previous section: [Import](type-system-import.md)
 
 Next section: [Class Fields](class-field.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L445-445)

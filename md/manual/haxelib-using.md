@@ -7,3 +7,5 @@ If the `haxelib` command is executed without any arguments, it prints an exhaust
 Previous section: [Dependencies](haxelib-json-dependencies.md)
 
 Next section: [Target Details](#)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/11-haxelib.tex#L132-132)

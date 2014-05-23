@@ -7,3 +7,5 @@
 Previous section: [Types](types.md)
 
 Next section: [Numeric types](types-numeric-types.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L36-36)

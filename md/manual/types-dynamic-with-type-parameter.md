@@ -14,3 +14,5 @@ att.income = 0; // error, value is not a String
 Previous section: [Dynamic](types-dynamic.md)
 
 Next section: [Implementing Dynamic](types-dynamic-implemented.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L542-542)

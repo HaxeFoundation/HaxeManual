@@ -15,3 +15,5 @@ The matched type `Bool` admits two values `true` and `false`, but only `false` i
 Previous section: [Extractors](lf-pattern-matching-extractors.md)
 
 Next section: [Useless pattern checks](lf-pattern-matching-unused.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L259-259)

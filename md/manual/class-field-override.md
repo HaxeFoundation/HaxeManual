@@ -9,3 +9,5 @@ The effects of overriding fields are detailed in [Overriding Methods](class-fiel
 Previous section: [Dynamic](class-field-dynamic.md)
 
 Next section: [Expressions](expression.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/04-class-field.tex#L294-294)

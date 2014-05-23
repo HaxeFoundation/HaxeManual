@@ -11,3 +11,5 @@
 ---
 
 Next section: [What is Haxe?](introduction-what-is-haxe.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/01-introduction.tex#L1-1)

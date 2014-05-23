@@ -41,3 +41,5 @@ There is a special type in Haxe which is compatible with all classes:
 Previous section: [Optional Arguments and Nullability:](types-nullability-optional-arguments.md)
 
 Next section: [Class constructor](types-class-constructor.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L220-220)

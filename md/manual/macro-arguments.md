@@ -27,3 +27,5 @@ The macro `add` is called with `x++` as argument and thus returns `x++ + x++` us
 Previous section: [Macro Context](macro-context.md)
 
 Next section: [ExprOf](macro-ExprOf.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L33-33)

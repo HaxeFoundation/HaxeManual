@@ -34,3 +34,5 @@ In this particular case, the unification is triggered by an **assignment**, a co
 Previous section: [Variance](type-system-variance.md)
 
 Next section: [Between Class/Interface](type-system-unification-between-classes-and-interfaces.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L215-215)

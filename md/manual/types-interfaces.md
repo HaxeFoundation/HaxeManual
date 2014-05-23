@@ -53,3 +53,5 @@ class Main implements Placeable {
 Previous section: [Inheritance](types-class-inheritance.md)
 
 Next section: [Enum Instance](types-enum-instance.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L275-275)

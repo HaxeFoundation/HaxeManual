@@ -45,3 +45,5 @@ The example demonstrates how [type inference](type-system-type-inference.md) can
 Previous section: [Rules for getter and setter](class-field-property-rules.md)
 
 Next section: [Overriding Methods](class-field-overriding.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/04-class-field.tex#L170-170)

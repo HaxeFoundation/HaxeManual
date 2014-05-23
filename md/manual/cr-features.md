@@ -11,3 +11,5 @@
 Previous section: [Compiler Reference](#)
 
 Next section: [Dead Code Elimination](cr-dce.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/08-compiler-features.tex#L1-1)

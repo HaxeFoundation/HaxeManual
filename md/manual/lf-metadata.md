@@ -67,3 +67,5 @@ Allowed values for metadata arguments are:
 Previous section: [Function Bindings](lf-function-bindings.md)
 
 Next section: [Access Control](lf-access-control.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L388-388)

@@ -21,3 +21,5 @@ In late 2012, the Haxe 3 switch was flipped and the Haxe Compiler team, now back
 Previous section: [Hello World](introduction-hello-world.md)
 
 Next section: [Types](types.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/01-introduction.tex#L92-92)

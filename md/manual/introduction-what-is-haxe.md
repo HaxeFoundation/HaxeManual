@@ -36,3 +36,5 @@ Finally, we will venture to the exciting land of **haxe macros** in [Macros](mac
 Previous section: [Introduction](introduction.md)
 
 Next section: [About this Document](introduction-about-this-document.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/01-introduction.tex#L5-5)

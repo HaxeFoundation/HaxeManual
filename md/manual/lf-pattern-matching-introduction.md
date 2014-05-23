@@ -22,3 +22,5 @@ Some pattern matcher basics include:
 Previous section: [Pattern Matching](lf-pattern-matching.md)
 
 Next section: [Enum matching](lf-pattern-matching-enums.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L120-120)

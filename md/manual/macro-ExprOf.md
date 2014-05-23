@@ -29,3 +29,5 @@ This is different for the next two lines which are using static extensions (note
 Previous section: [Arguments](macro-arguments.md)
 
 Next section: [Constant Expressions](macro-constant-arguments.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L44-44)

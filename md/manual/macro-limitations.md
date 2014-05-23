@@ -13,3 +13,5 @@
 Previous section: [@:autoBuild](macro-auto-build.md)
 
 Next section: [Static extension](macro-limitations-static-extension.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L238-238)

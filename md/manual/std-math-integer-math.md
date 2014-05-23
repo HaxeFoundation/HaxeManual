@@ -10,3 +10,5 @@ If you are targeting a platform that can utilize integer operations, e.g. intege
 Previous section: [Mathematical Errors](std-math-mathematical-errors.md)
 
 Next section: [Extensions](std-math-extensions.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L218-218)

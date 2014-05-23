@@ -66,3 +66,5 @@ Omitting the visibility modifier usually defaults the visibility to `private`, b
 Previous section: [Access Modifier](class-field-access-modifier.md)
 
 Next section: [Inline](class-field-inline.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/04-class-field.tex#L231-231)

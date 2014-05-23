@@ -7,3 +7,5 @@ Although neko can fluidly handle mathematical errors, like division by zero, thi
 Previous section: [Special Numbers](std-math-special-numbers.md)
 
 Next section: [Integer Math](std-math-integer-math.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L214-214)

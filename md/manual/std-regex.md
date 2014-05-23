@@ -53,3 +53,5 @@ The possible flags are the following:
 Previous section: [Map](std-Map.md)
 
 Next section: [Matching](std-regex-match.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L84-84)

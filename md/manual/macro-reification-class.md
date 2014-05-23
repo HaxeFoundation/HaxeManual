@@ -31,3 +31,5 @@ This kind of reification can also be useful to obtain instances of `haxe.macro.E
 Previous section: [Type Reification](macro-reification-type.md)
 
 Next section: [Tools](macro-tools.md)
+
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L123-123)
