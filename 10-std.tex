@@ -102,16 +102,16 @@ First argument is a string with regular expression pattern, second one is a stri
 
 We can use standard regular expression patterns such as:
 \begin{itemize}
-    \item \expr{.} any character
-    \item \expr{*} repeat zero-or-more
-    \item \expr{+} repeat one-or-more
-    \item \expr{?} optional zero-or-one
-    \item \expr{[A-Z0-9]} character ranges
-    \item \expr{[\textasciicircum\textbackslash r\textbackslash n\textbackslash t]} character not-in-range
-    \item \expr{(...)} parenthesis to match groups of characters
-    \item \expr{\textasciicircum} beginning of the string (beginning of a line in multiline matching mode)
-    \item \expr{\$} end of the string (end of a line in multiline matching mode)
-    \item \expr{|} "OR" statement.
+	\item \expr{.} any character
+	\item \expr{*} repeat zero-or-more
+	\item \expr{+} repeat one-or-more
+	\item \expr{?} optional zero-or-one
+	\item \expr{[A-Z0-9]} character ranges
+	\item \expr{[\textasciicircum\textbackslash r\textbackslash n\textbackslash t]} character not-in-range
+	\item \expr{(...)} parenthesis to match groups of characters
+	\item \expr{\textasciicircum} beginning of the string (beginning of a line in multiline matching mode)
+	\item \expr{\$} end of the string (end of a line in multiline matching mode)
+	\item \expr{|} "OR" statement.
 \end{itemize}
 
 For example, the following regular expression matches valid email addresses:
@@ -123,11 +123,11 @@ Please notice that the \expr{i} at the end of the regular expression is a \emph{
 
 The possible flags are the following:
 \begin{itemize}
-    \item \expr{i} case insensitive matching
-    \item \expr{g} global replace or split, see below
-    \item \expr{m} multiline matching, \expr{\textasciicircum} and \expr{\$} represent the beginning and end of a line
-    \item \expr{s} the dot \expr{.} will also match newlines \emph{(Neko, C++, PHP and Java targets only)}
-    \item \expr{u} use UTF-8 matching \emph{(Neko and C++ targets only)}
+	\item \expr{i} case insensitive matching
+	\item \expr{g} global replace or split, see below
+	\item \expr{m} multiline matching, \expr{\textasciicircum} and \expr{\$} represent the beginning and end of a line
+	\item \expr{s} the dot \expr{.} will also match newlines \emph{(Neko, C++, PHP and Java targets only)}
+	\item \expr{u} use UTF-8 matching \emph{(Neko and C++ targets only)}
 \end{itemize}
 
 \subsection{Matching}
@@ -185,10 +185,10 @@ This function takes a regular expression object as its first argument so we may 
 
 Regular Expressions are implemented:
 \begin{itemize}
-    \item in JavaScript, the runtime is providing the implementation with the object RegExp.
-    \item in Neko and C++, the PCRE library is used
-    \item in Flash, PHP, C\# and Java, native implementations are used
-    \item in Flash 6/8, the implementation is not available
+	\item in JavaScript, the runtime is providing the implementation with the object RegExp.
+	\item in Neko and C++, the PCRE library is used
+	\item in Flash, PHP, C\# and Java, native implementations are used
+	\item in Flash 6/8, the implementation is not available
 \end{itemize}
 
 

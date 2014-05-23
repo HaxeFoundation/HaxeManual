@@ -19,16 +19,16 @@ First argument is a string with regular expression pattern, second one is a stri
 We can use standard regular expression patterns such as:
 
 
-    * `.` any character
-    * `*` repeat zero-or-more
-    * `+` repeat one-or-more
-    * `?` optional zero-or-one
-    * `[A-Z0-9]` character ranges
-    * `[^\\ r\\ n\\ t]` character not-in-range
-    * `(...)` parenthesis to match groups of characters
-    * `^` beginning of the string (beginning of a line in multiline matching mode)
-    * `$` end of the string (end of a line in multiline matching mode)
-    * `|` "OR" statement.
+* `.` any character
+* `*` repeat zero-or-more
+* `+` repeat one-or-more
+* `?` optional zero-or-one
+* `[A-Z0-9]` character ranges
+* `[^\\ r\\ n\\ t]` character not-in-range
+* `(...)` parenthesis to match groups of characters
+* `^` beginning of the string (beginning of a line in multiline matching mode)
+* `$` end of the string (end of a line in multiline matching mode)
+* `|` "OR" statement.
 
 
 
@@ -42,11 +42,11 @@ Please notice that the `i` at the end of the regular expression is a **flag** th
 The possible flags are the following:
 
 
-    * `i` case insensitive matching
-    * `g` global replace or split, see below
-    * `m` multiline matching, `^` and `$` represent the beginning and end of a line
-    * `s` the dot `.` will also match newlines **(Neko, C++, PHP and Java targets only)**
-    * `u` use UTF-8 matching **(Neko and C++ targets only)**
+* `i` case insensitive matching
+* `g` global replace or split, see below
+* `m` multiline matching, `^` and `$` represent the beginning and end of a line
+* `s` the dot `.` will also match newlines **(Neko, C++, PHP and Java targets only)**
+* `u` use UTF-8 matching **(Neko and C++ targets only)**
 
 ---
 
