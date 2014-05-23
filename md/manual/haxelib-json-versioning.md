@@ -1,6 +1,6 @@
 ## 11.2.1 Versioning
 
-Haxelib uses a simplified version of SemVer[http://semver.org/](http://semver.org/). The basic format is this:
+Haxelib uses a simplified version of [SemVer](http://semver.org/). The basic format is this:
 
 ```haxe
 major.minor.patch
