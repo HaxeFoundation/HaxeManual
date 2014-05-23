@@ -3,7 +3,7 @@
 An `Array` is a **collection** for storing elements.  It has one [type parameter](type-system-type-parameters.md) and all elements of the array must be of the specified type.  Alternatively, arrays of mixed types are allowed if the type parameter is [Dynamic](types-dynamic.md).  See the below code snippet for an example. 
 > ##### Trivia: Dynamic Arrays
 >
-> In Haxe 2, mixed type array declarations were allowed.  In Haxe 3, arrays can have mixed types ONLY if they are explicitly declared as **Array<Dynamic>**.
+> In Haxe 2, mixed type array declarations were allowed.  In Haxe 3, arrays can have mixed types ONLY if they are explicitly declared as **`Array<Dynamic>`**.
 The following example shows some basic examples of working with arrays:
 ```haxe
 class ArrayExample {

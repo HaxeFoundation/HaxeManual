@@ -1,6 +1,6 @@
 ## 6.6 Array Comprehension
 
-Array comprehension in Haxe uses existing syntax to allow concise initialization of arrays. It is identified by `[for` or `[while` constructs:
+Array comprehension in Haxe uses existing syntax to allow concise initialization of arrays. It is identified by `for` or `while` constructs:
 
 ```haxe
 class Main {
