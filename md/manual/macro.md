@@ -19,7 +19,7 @@ We can identify different kinds of macros, which are run at specific compilation
 
 ---
 
-Previous section: [Implementation details](cr-resources-impl.md)
+Previous section: [Resources](cr-resources.md)
 
 Next section: [Macro Context](macro-context.md)
 
