@@ -37,10 +37,22 @@ class Main {
 			}
 		}
 
+		function generateTitleString(sec:Section) {
+			return '## ${sec.id} ${sec.title}\n\n';
+		}
+
+		for (sec in sectionInfo.all) {
+			if (sec.flags["fold"] == "true") {
+				for (sub in sec.sub) {
+					sec.content += "\n\n" + generateTitleString(sub) + sub.content;
+					sectionInfo.all.remove(sub);
+				}
+			}
+		}
+
 		for (i in 0...sectionInfo.all.length) {
 			var sec = sectionInfo.all[i];
-			var content = '## ${sec.id} ${sec.title}\n\n' + sec.content;
-			content += "\n\n---";
+			var content = generateTitleString(sec) + sec.content + "\n\n---";
 			if (i != 0) content += '\n\nPrevious section: ${link(sectionInfo.all[i - 1])}';
 			if (i != sectionInfo.all.length - 1) content += '\n\nNext section: ${link(sectionInfo.all[i + 1])}';
 			var fileAndLines = '${sec.source.file}#L${sec.source.lineMin}-${sec.source.lineMax}';
