@@ -34,6 +34,7 @@ typedef Section = {
 	index: Int,
 	id: String,
 	state: State,
+	flags: Map<String, String>,
 	source: {
 		file: String,
 		lineMin: Int,
@@ -225,6 +226,8 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 						case _: throw 'Invalid state string: $s';
 					}
 					lastSection.state = state;
+				case [TCustomCommand("flag"), TBrOpen, key = text(), TBrClose, TBrOpen, value = text(), TBrClose]:
+					lastSection.flags[key] = value;
 				// section
 				case [TCommand(CPart), TBrOpen, s = text(), TBrClose]:
 					// TODO: handle this
@@ -436,7 +439,17 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 			lineMin: stream.curPos().getLinePosition(input).lineMin,
 			lineMax: stream.curPos().getLinePosition(input).lineMax
 		}
-		lastSection = {title: title, label: null, content: "", sub: [], index:index, id: id, state: New, source: source };
+		lastSection = {
+			title: title,
+			label: null,
+			content: "",
+			sub: [],
+			index:index,
+			id: id,
+			state: New,
+			source: source,
+			flags: new Map()
+		};
 		lastLabelTarget = Section(lastSection);
 		return lastSection;
 	}

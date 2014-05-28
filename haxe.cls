@@ -32,6 +32,7 @@
 \newcommand{\tref}[2]{#1 (\ref{#2})} % general references
 \newcommand{\state}[1]{} % state of the section
 \newcommand{\ic}[1]{\texttt{#1}} % shortcut because \texttt is awkward to type
+\newcommand{\flag}[2]{} % pass custom flags to converter
 
 % Listings
 
