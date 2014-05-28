@@ -32,4 +32,6 @@ If we need to load custom JavaScript objects in runtime, a `js.Lib.require` func
 
 Previous section: [Javascript](#)
 
+Next section: [C++](#)
+
 Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/12-target-details.tex#L7-7)

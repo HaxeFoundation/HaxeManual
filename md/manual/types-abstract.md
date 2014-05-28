@@ -17,7 +17,7 @@ We can derive the following from this example:
 * `Abstract` is the name of the abstract and could be anything conforming to the rules for type identifiers.
 * Enclosed in parenthesis `()` is the **underlying type** `Int`.
 * Enclosed in curly braces `{}` are the fields,
-* which is a constructor function `expressionnew` accepting one argument `i` of type `Int`.
+* which is a constructor function `new` accepting one argument `i` of type `Int`.
 
 
 

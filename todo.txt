@@ -62,6 +62,7 @@ Missing Content:
 12.3 - Neko
 12.4 - PHP
 12.5 - C++
+12.5.2 - Using C++ Pointers
 12.6 - Java
 12.7 - C#
 
@@ -234,5 +235,6 @@ Unreviewed:
 11.2.2 - Dependencies
 11.3 - Using Haxelib
 12.1.1 - Loading extern classes using "require" function
+12.5.1 - Using C++ Defines
 
 Modified:
