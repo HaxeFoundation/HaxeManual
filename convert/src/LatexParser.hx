@@ -1,5 +1,7 @@
 import haxe.ds.GenericStack;
 
+import hxparse.LexerTokenSource;
+import hxparse.Parser;
 import LatexToken;
 import LatexCommand;
 
@@ -56,7 +58,7 @@ typedef Label = {
 	kind: LabelKind
 }
 
-class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxparse.ParserBuilder {
+class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> implements hxparse.ParserBuilder {
 	public var labelMap:Map<String, Label>;
 	public var definitionMap:Map<String, String>;
 	public var todos:Array<String>;
@@ -74,7 +76,9 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 	var input:byte.ByteData;
 
 	public function new(input, sourceName) {
-		super(new LatexLexer(input, sourceName), LatexLexer.tok);
+		var lexer = new LatexLexer(input, sourceName);
+		var source = new hxparse.LexerTokenSource(lexer, LatexLexer.tok);
+		super(source);
 		this.input = input;
 		buffer = new StringBuf();
 		todos = [];
@@ -153,7 +157,7 @@ class LatexParser extends hxparse.Parser<LatexLexer, LatexToken> implements hxpa
 					var oldStream = stream;
 					var oldInput = input;
 					input = byte.ByteData.ofString(sys.io.File.getContent(s));
-					stream = new LatexLexer(input, s);
+					stream = new LexerTokenSource(new LatexLexer(input, s), LatexLexer.tok);
 					document();
 					stream = oldStream;
 					input = oldInput;
