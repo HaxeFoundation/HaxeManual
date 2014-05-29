@@ -5,6 +5,8 @@ Macros are without a doubt the most advanced feature in Haxe. They are often per
 
 \define{Abstract Syntax Tree (AST)}{The AST is the result of \emph{parsing} Haxe code into a typed structure. This structure is exposed to macros through the types defined in the file \expr{haxe/macro/Expr.hx} of the Haxe Standard Library.}
 
+\input{assets/tikz/macro-compilation-role.tex}
+
 A basic macro is a \emph{syntax-transformation}. It receives zero or more \tref{expressions}{expression} and also returns an expression. If a macro is called, it effectively inserts code at the place it was called from. In that respect, it could be compared to a preprocessor like \expr{\#define} in C++, but a Haxe macro is not a textual replacement tool.
 
 We can identify different kinds of macros, which are run at specific compilation stages:

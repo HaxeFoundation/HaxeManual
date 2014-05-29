@@ -73,4 +73,4 @@ Previous section: [Tools](macro-tools.md)
 
 Next section: [Enum building](macro-enum-building.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L151-151)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L153-153)

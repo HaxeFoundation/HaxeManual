@@ -26,4 +26,4 @@ Previous section: [ExprOf](macro-ExprOf.md)
 
 Next section: [Rest Argument](macro-rest-argument.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L55-55)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L57-57)

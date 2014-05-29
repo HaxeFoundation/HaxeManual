@@ -28,4 +28,4 @@ Previous section: [Macro Context](macro-context.md)
 
 Next section: [ExprOf](macro-ExprOf.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L33-33)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L35-35)
