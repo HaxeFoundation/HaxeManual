@@ -1,0 +1,45 @@
+\begin{flowchart}{macro-compilation-role}{The role of macros during compilation.}
+
+\tikzstyle{macro} = [ fill = orange!40 ]
+\tikzstyle{macroEdge} = [ dashed, color = orange!70!black ]
+\tikzstyle{edge} = [ midway, auto = left, outer sep = 0.2cm ]
+
+\node (src) [process] {Source code};
+\node (lexpar) [process, right = of src] {Lexer / Parser};
+\node (ast1) [process, right = of lexpar] {Abstract Syntax Tree (AST)};
+\node (ast1t) [above = of ast1, text width = 4cm] {
+	\begin{itemize}
+		\itemsep-0.2em
+		\item Expression
+		\item Complex Type
+		\item haxe.macro.Expr
+	\end{itemize}
+};
+\node (macro) [process, right = of ast1, macro] {Macro processor};
+\node (ast2) [process, below = 4cm of macro, macro] {Abstract Syntax Tree (AST)};
+\node (typer) [process, left = of ast2] {Typer};
+\node (ast3) [process, left = of typer] {Typed AST};
+\node (ast3t) [above = of ast3, xshift = 0.5cm, text width =4cm] {
+	\begin{itemize}
+		\itemsep-0.2em
+		\item Typed Expression
+		\item Type
+		\item haxe.macro.Type
+	\end{itemize}
+};
+\node (gen) [process, left = of ast3] {Generator};
+\node (out) [process, above = of gen] {Output};
+
+\draw [flowchartArrow] (src) -- (lexpar);
+\draw [flowchartArrow] (lexpar) -- (ast1) node[edge] {parse};
+\draw [dashed] (ast1t.-144) -- (ast1t.144 |- ast1.north);
+\draw [flowchartArrow, macroEdge] (ast1) -- (macro);
+\draw [flowchartArrow, macroEdge] (macro) -- (ast2) node[edge] {transform};
+\draw [flowchartArrow, macroEdge] (ast2) -- (typer);
+\draw [flowchartArrow] (typer |- ast1.south) -- (typer);
+\draw [flowchartArrow] (typer) -- (ast3) node[edge] {type};
+\draw [dashed] (ast3t.-144) -- (ast3t.-144 |- ast3.north);
+\draw [flowchartArrow] (ast3) -- (gen);
+\draw [flowchartArrow] (gen) -- (out) node[edge] {generate};
+
+\end{flowchart}
