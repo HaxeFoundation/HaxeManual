@@ -4,7 +4,7 @@ Haxe provides simple resource embedding system that can be used for embedding  f
 
 While it may be not optimal to embed large assets, like images or music in the application file, it comes in very handy to embed smaller resources, like configuration or XML data.
 
-## 8.3.1 Embedding resources
+### 8.3.1 Embedding resources
 
 External files are embedded using the **-resource** compiler argument:
 
@@ -15,7 +15,7 @@ External files are embedded using the **-resource** compiler argument:
 
 The string after the **@** symbol is the **resource identifier**. It will used in the code for retrieving the resource. It can be omitted (together with the **@** symbol), then the file name will become a resource identifier.
 
-## 8.3.2 Retrieving text resources
+### 8.3.2 Retrieving text resources
 
 To retrieve the content of an embedded resource, we use the static method **getString** of `haxe.Resource` passing a **resource identifier** to it:
 
@@ -30,7 +30,7 @@ class Main {
 
 The code above will display the content of the **hello_message.txt** file that we included earlier using **welcome** as the identifier.
 
-## 8.3.3 Retrieving binary resources
+### 8.3.3 Retrieving binary resources
 
 While it's not recommended to embed large binary files in the application, it still may be useful to embed binary data. Binary representation of an embedded resource can be accessed using the static method **getBytes** of `haxe.Resource`:
 
@@ -46,7 +46,7 @@ class Main {
 
 The return type of **getBytes** method is `haxe.io.Bytes`, an object providing access to individual bytes of the data.
 
-## 8.3.4 Implementation details
+### 8.3.4 Implementation details
 
 Haxe uses target platform's native resource embedding, if there is one, providing its own implementation otherwise.
 

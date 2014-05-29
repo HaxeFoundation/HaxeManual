@@ -37,14 +37,14 @@ class Main {
 			}
 		}
 
-		function generateTitleString(sec:Section) {
-			return '## ${sec.id} ${sec.title}\n\n';
+		function generateTitleString(sec:Section, prefix = "##") {
+			return '$prefix ${sec.id} ${sec.title}\n\n';
 		}
 
 		for (sec in sectionInfo.all) {
 			if (sec.flags["fold"] == "true") {
 				for (sub in sec.sub) {
-					sec.content += "\n\n" + generateTitleString(sub) + sub.content;
+					sec.content += "\n\n" + generateTitleString(sub, "###") + sub.content;
 					sectionInfo.all.remove(sub);
 				}
 			}
