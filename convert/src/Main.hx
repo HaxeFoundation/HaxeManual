@@ -46,6 +46,7 @@ class Main {
 				for (sub in sec.sub) {
 					sec.content += "\n\n" + generateTitleString(sub, "###") + sub.content;
 					sectionInfo.all.remove(sub);
+					Reflect.deleteField(sub, "content");
 				}
 			}
 		}
