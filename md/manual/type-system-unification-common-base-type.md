@@ -31,4 +31,4 @@ Previous section: [Function Return](type-system-unification-function-return.md)
 
 Next section: [Type Inference](type-system-type-inference.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L298-298)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L301-301)

@@ -47,4 +47,4 @@ Previous section: [Type Inference](type-system-type-inference.md)
 
 Next section: [Limitations](type-system-inference-limitations.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L336-336)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L339-339)

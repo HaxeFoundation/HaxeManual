@@ -43,4 +43,4 @@ Previous section: [Common Base Type](type-system-unification-common-base-type.md
 
 Next section: [Top-down Inference](type-system-top-down-inference.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L315-315)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L318-318)

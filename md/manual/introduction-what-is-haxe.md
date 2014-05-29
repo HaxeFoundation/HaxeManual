@@ -4,7 +4,7 @@ Haxe is a high-level, open source programming language and compiler. It allows c
 
 Haxe is strongly typed, but the typing system can be subverted where required. Utilizing type information, the Haxe type system can detect errors at compile-time which would only be noticeable at runtime in the target language. Furthermore, type information can be used by the target generators to generate optimized and robust code.
 
-Currently, there are eight supported target languages which allow different use-cases:
+Currently, there are nine supported target languages which allow different use-cases:
 
 
 Name  | Output type  | Main usages 
@@ -12,6 +12,7 @@ Name  | Output type  | Main usages
 Javascript  | Sourcecode  | Desktop, Mobile, Server 
 Neko  | Bytecode  | Desktop, Server 
 PHP  | Sourcecode  | Server 
+Python  | Sourcecode  | Desktop, Server 
 C++  | Sourcecode  | Desktop, Mobile, Server 
 Actionscript 3  | Sourcecode  | Browser, Desktop, Mobile 
 Flash  | Bytecode  | Browser, Desktop, Mobile 

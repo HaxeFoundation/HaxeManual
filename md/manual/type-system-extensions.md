@@ -19,7 +19,30 @@ The greater-than operator `>` denotes that an extension of `Iterable<T>` is bein
 
 In order to be compatible with `IterableWithLength<T>`, a type then must be compatible with `Iterable<T>` and also provide a read-only `length` property of type `Int`. The example assigns an `Array`, which happens to fulfill these requirements.
 
-There may only be a single extension on a structure, so extensions can be understood as an [inheritance](types-class-inheritance.md) mechanism for structures.
+##### since Haxe 3.1.0
+
+
+
+It is also possible to extend multiple structures:
+
+```haxe
+typedef WithLength = {
+	var length(default, null):Int;
+}
+
+typedef IterableWithLengthAndPush<T> = {
+	> Iterable<T>,
+	> WithLength,
+	function push(a:T):Int;
+}
+
+class Extension2 {
+	static public function main() {
+		var array = [1, 2, 3];
+		var t:IterableWithLengthAndPush<Int> = array;
+	}
+}
+```
 
 ---
 

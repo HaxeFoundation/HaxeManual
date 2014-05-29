@@ -57,4 +57,4 @@ Previous section: [Generic](type-system-generic.md)
 
 Next section: [Variance](type-system-variance.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L156-156)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L159-159)

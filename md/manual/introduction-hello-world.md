@@ -23,4 +23,4 @@ Previous section: [Authors and contributions](introduction-authors-and-contribut
 
 Next section: [History](introduction-haxe-history.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/01-introduction.tex#L78-78)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/01-introduction.tex#L79-79)

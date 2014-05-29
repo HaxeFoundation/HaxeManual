@@ -71,4 +71,4 @@ Previous section: [Constraints](type-system-type-parameter-constraints.md)
 
 Next section: [Construction of generic type parameters](type-system-generic-type-parameter-construction.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L108-108)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L111-111)

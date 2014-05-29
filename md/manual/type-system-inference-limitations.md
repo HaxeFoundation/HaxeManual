@@ -10,4 +10,4 @@ Previous section: [Top-down Inference](type-system-top-down-inference.md)
 
 Next section: [Modules and Paths](type-system-modules-and-paths.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L363-363)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L366-366)

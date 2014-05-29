@@ -19,4 +19,4 @@ Previous section: [Unification](type-system-unification.md)
 
 Next section: [Structural Subtyping](type-system-structural-subtyping.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L247-247)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L250-250)

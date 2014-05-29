@@ -36,4 +36,4 @@ Previous section: [Type Parameters](type-system-type-parameters.md)
 
 Next section: [Generic](type-system-generic.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L93-93)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L96-96)
