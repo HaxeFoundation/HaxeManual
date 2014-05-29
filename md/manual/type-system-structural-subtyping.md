@@ -22,4 +22,4 @@ Previous section: [Between Class/Interface](type-system-unification-between-clas
 
 Next section: [Monomorphs](type-system-monomorphs.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L262-262)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L265-265)

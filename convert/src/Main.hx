@@ -37,15 +37,16 @@ class Main {
 			}
 		}
 
-		function generateTitleString(sec:Section) {
-			return '## ${sec.id} ${sec.title}\n\n';
+		function generateTitleString(sec:Section, prefix = "##") {
+			return '$prefix ${sec.id} ${sec.title}\n\n';
 		}
 
 		for (sec in sectionInfo.all) {
 			if (sec.flags["fold"] == "true") {
 				for (sub in sec.sub) {
-					sec.content += "\n\n" + generateTitleString(sub) + sub.content;
+					sec.content += "\n\n" + generateTitleString(sub, "###") + sub.content;
 					sectionInfo.all.remove(sub);
+					Reflect.deleteField(sub, "content");
 				}
 			}
 		}
@@ -63,7 +64,6 @@ class Main {
 
 		generateDictionary();
 		generateTodo(sectionInfo);
-		generateDotMap(sections);
 
 		sys.io.File.saveContent('$out/sections.txt', haxe.Json.stringify(sections));
 	}
@@ -133,24 +133,6 @@ class Main {
 			+ "Unreviewed:\n" + sectionInfo.unreviewed.join("\n") + "\n\n"
 			+ "Modified:\n" + sectionInfo.modified.join("\n");
 		sys.io.File.saveContent('todo.txt', todo);
-	}
-
-	function generateDotMap(sections:Array<Section>) {
-		var graph = new dot.Graph();
-		graph.global([FontName("Palatino")]);
-		var root = graph.node([Label("Haxe Manual")]);
-		function connect(source:dot.Node, target:Section) {
-			var node = graph.node([Label(target.title), Href(url(target))]);
-			source.connect(node, []);
-			for (sub in target.sub) {
-				connect(node, sub);
-			}
-		}
-		for (sec in sections) {
-			connect(root, sec);
-		}
-		var code = graph.getDotCode();
-		sys.io.File.saveContent('toc.sv', code);
 	}
 
 	function link(sec:Section) {

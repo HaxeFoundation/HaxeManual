@@ -29,4 +29,4 @@ Previous section: [Limitations](type-system-inference-limitations.md)
 
 Next section: [Module Sub-Types](type-system-module-sub-types.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L373-373)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L376-376)

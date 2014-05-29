@@ -22,4 +22,4 @@ Previous section: [Hello World](introduction-hello-world.md)
 
 Next section: [Types](types.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/01-introduction.tex#L92-92)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/01-introduction.tex#L93-93)

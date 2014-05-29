@@ -82,4 +82,4 @@ Previous section: [Construction of generic type parameters](type-system-generic-
 
 Next section: [Unification](type-system-unification.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L189-189)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L192-192)
