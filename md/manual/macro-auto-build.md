@@ -48,4 +48,4 @@ Previous section: [Enum building](macro-enum-building.md)
 
 Next section: [Limitations](macro-limitations.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L218-218)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L220-220)

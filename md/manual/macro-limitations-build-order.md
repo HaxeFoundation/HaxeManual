@@ -41,4 +41,4 @@ Previous section: [Static extension](macro-limitations-static-extension.md)
 
 Next section: [Standard Library](std.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L258-258)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L260-260)

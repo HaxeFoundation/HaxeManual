@@ -36,4 +36,4 @@ Previous section: [Reification](macro-reification.md)
 
 Next section: [Type Reification](macro-reification-type.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L79-79)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L81-81)
