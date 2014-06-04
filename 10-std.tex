@@ -94,23 +94,30 @@ A \type{GenericStack}, like \type{Array} and \type{List} is a container for stor
 \haxe{assets/GenericStackExample.hx}
 \trivia{FastList}{In Haxe 2, the GenericStack class was known as FastList.  Since its behavior more closely resembled a typical stack, the name was changed for Haxe 3.}
 The \emph{Generic} in \type{GenericStack} is literal.  It is attributed with the \expr{:generic} metadata.  Depending on the target, this can lead to improved performance on static targets.  See \Fullref{type-system-generic} for more details.
+
+
+
 \subsection{Map}
 \label{std-Map}
 
-A \type{Map} is a container composed of \emph{key}, \emph{value} pairs.  A \type{Map} is also commonly referred to as an associative array, dictionary, or symbol table.  The following code gives a short example of working with maps:
+A \type{Map} is a container composed of \emph{key}, \emph{value} pairs.  A \type{Map} is also commonly referred to as an associative array, dictionary, or symbol table. The following code gives a short example of working with maps:
 
 \haxe{assets/MapExample.hx}
 
 See the \href{http://api.haxe.org/Map.html}{Map API} for details of its methods.
 
-Under the hood, a \type{Map} is an \Fullref{types-abstract} type.  At compile time, it gets converted to one of several specialized types depending on the \emph{key} type:
+Under the hood, a \type{Map} is an \tref{abstract}{types-abstract} type. At compile time, it gets converted to one of several specialized types depending on the \emph{key} type:
 \begin{itemize}
-	\item haxe.ds.StringMap
-	\item haxe.ds.IntMap
-	\item haxe.ds.EnumValueMap
-	\item haxe.ds.ObjectMap
+	\item \type{String}: \type{haxe.ds.StringMap}
+	\item \type{Int}: \type{haxe.ds.IntMap}
+	\item \type{EnumValue}: \type{haxe.ds.EnumValueMap}
+	\item \type{\{\}}: \type{haxe.ds.ObjectMap}
 \end{itemize}
-So, at runtime, the \type{Map} type does not exist, and has been replaced with one of the above objects.  
+
+The \type{Map} type does not exist at runtime and has been replaced with one of the above objects. 
+
+Map defines \tref{array access}{types-abstract-array-access} using its key type.
+
 
 \subsection{Option}
 \label{std-Option}
