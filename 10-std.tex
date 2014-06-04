@@ -115,6 +115,21 @@ So, at runtime, the \type{Map} type does not exist, and has been replaced with o
 \subsection{Option}
 \label{std-Option}
 
+An option is an \tref{enum}{types-enum-instance} in the Haxe Standard Library which is defined like so:
+
+\begin{lstlisting}
+enum Option<T> {
+	Some(v:T);
+	None;
+}
+\end{lstlisting}
+
+It can be used in various situations, such as communicating whether or not a method had a valid return and if so, what value it returned:
+
+\haxe{assets/OptionUsage.hx}
+
+
+
 \section{Regular Expressions}
 \label{std-regex}
 
