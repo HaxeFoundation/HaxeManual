@@ -8,4 +8,4 @@ Previous section: [Extensions](std-math-extensions.md)
 
 Next section: [Parsing JSON](std-Json-parsing.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L242-242)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L298-298)

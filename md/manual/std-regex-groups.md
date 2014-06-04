@@ -53,4 +53,4 @@ Previous section: [Matching](std-regex-match.md)
 
 Next section: [Replace](std-regex-replace.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L139-139)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L195-195)

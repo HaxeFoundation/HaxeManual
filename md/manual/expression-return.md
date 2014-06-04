@@ -1,4 +1,4 @@
-## 5.18 return
+## 5.19 return
 
 A `return` expression can come with or without an value expression:
 
@@ -29,4 +29,4 @@ Previous section: [try/catch](expression-try-catch.md)
 
 Next section: [break](expression-break.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L311-311)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L328-328)

@@ -10,7 +10,7 @@
 
 10.2.5: [Map](std-Map.md)
 
-10.2.6: [Option](#)
+10.2.6: [Option](std-Option.md)
 
 ---
 

@@ -45,4 +45,4 @@ Previous section: [Optional Arguments and Nullability](types-nullability-optiona
 
 Next section: [Class constructor](types-class-constructor.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L231-231)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L234-234)

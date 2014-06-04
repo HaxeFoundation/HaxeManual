@@ -48,4 +48,4 @@ Previous section: [Enum abstracts](types-abstract-enum.md)
 
 Next section: [Core-type abstracts](types-abstract-core-type.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L800-800)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L796-796)

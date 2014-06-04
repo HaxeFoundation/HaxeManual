@@ -1,4 +1,4 @@
-## 5.22.1 unsafe cast
+## 5.23.1 unsafe cast
 
 Unsafe casts are useful to subvert the type system. The compiler types `expr` as usual and then wraps it in a [monomorph](types-monomorph.md). This allows the expression to be assigned to anything.
 
@@ -29,4 +29,4 @@ Previous section: [cast](expression-cast.md)
 
 Next section: [safe cast](expression-cast-safe.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L396-396)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L413-413)

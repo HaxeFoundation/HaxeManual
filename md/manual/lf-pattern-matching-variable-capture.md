@@ -40,4 +40,4 @@ Previous section: [Enum matching](lf-pattern-matching-enums.md)
 
 Next section: [Structure matching](lf-pattern-matching-structure.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L151-151)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L150-150)

@@ -1,4 +1,4 @@
-## 5.22.2 safe cast
+## 5.23.2 safe cast
 
 Unlike [unsafe casts](expression-cast-unsafe.md), the runtime behavior in case of a failing cast is defined for safe casts:
 
@@ -33,4 +33,4 @@ Previous section: [unsafe cast](expression-cast-unsafe.md)
 
 Next section: [Language Features](lf.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L411-411)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L428-428)

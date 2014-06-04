@@ -1,6 +1,6 @@
 ## 6.4.4 Structure matching
 
-It is now also possible to match against the fields of anonymous structures and instances:
+It is also possible to match against the fields of anonymous structures and instances:
 
 ```haxe
 var myStructure = { name: "haxe", rating: "awesome" };
@@ -12,7 +12,7 @@ var value = switch(myStructure) {
 trace(value); // haxe
 ```
 
-Note that in the second case, we bind the matched `name` field to identifier `n` if `rating` matches `"awesome"`. Of course you could also put this structure into the `Tree` from the previous example and combine structure and enum matching.
+In the second case we bind the matched `name` field to identifier `n` if `rating` matches `"awesome"`. Of course this structure could also be put into the `Tree` from the previous example to combine structure and enum matching.
 
 A limitation with regards to class instances is that you cannot match against fields of their parent class.
 
@@ -22,4 +22,4 @@ Previous section: [Variable capture](lf-pattern-matching-variable-capture.md)
 
 Next section: [Array matching](lf-pattern-matching-array.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L172-172)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L171-171)

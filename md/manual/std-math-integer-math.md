@@ -11,4 +11,4 @@ Previous section: [Mathematical Errors](std-math-mathematical-errors.md)
 
 Next section: [Extensions](std-math-extensions.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L218-218)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L274-274)

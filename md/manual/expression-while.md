@@ -1,4 +1,4 @@
-## 5.13 while
+## 5.14 while
 
 A normal while loop starts with the `while` keyword, followed by an opening parenthesis `(`, the condition expression and a closing paranthesis `)`. After that follows the loop body expression:
 
@@ -30,4 +30,4 @@ Previous section: [for](expression-for.md)
 
 Next section: [do-while](expression-do-while.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L204-204)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L221-221)

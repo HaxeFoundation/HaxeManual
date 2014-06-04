@@ -60,4 +60,4 @@ Previous section: [Implementing Dynamic](types-dynamic-implemented.md)
 
 Next section: [Implicit Casts](types-abstract-implicit-casts.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L598-598)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L601-601)

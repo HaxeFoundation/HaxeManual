@@ -1,4 +1,4 @@
-## 5.14 do-while
+## 5.15 do-while
 
 A do-while loop starts with the `do` keyword followed by the loop body expression. After that follows the `while` keyword, an opening parenthesis `(`, the condition expression and a closing parenthesis `)`:
 
@@ -16,4 +16,4 @@ Previous section: [while](expression-while.md)
 
 Next section: [if](expression-if.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L221-221)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L238-238)

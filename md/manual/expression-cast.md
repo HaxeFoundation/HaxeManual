@@ -1,4 +1,4 @@
-## 5.22 cast
+## 5.23 cast
 
 Haxe allows two kinds of casts:
 
@@ -13,4 +13,4 @@ Previous section: [throw](expression-throw.md)
 
 Next section: [unsafe cast](expression-cast-unsafe.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L386-386)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L403-403)

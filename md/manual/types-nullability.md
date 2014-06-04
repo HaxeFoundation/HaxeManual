@@ -17,14 +17,20 @@ It is common for programming languages to have a single, clean definition for nu
 > Dynamic targets are more lenient with their types and allow `null` values for basic types. They consist of JavaScript, PHP, Neko and Flash 6-8.
 
 
-There is nothing to worry about when working with `null` on dynamic targets, but static ones may require some thought. For starters, basic types are initialized to these values:
+There is nothing to worry about when working with `null` on dynamic targets, but static ones may require some thought. For starters, basic types are initialized to their default values.
 
-
-
-* `Int`: `0`
-* `Float`: `NaN` on Flash, `0.0` on other static targets
-* `Bool`: `false`
-
+> ##### Define: Default values
+>
+> 
+> Basic types have the following default values on static targets:
+> 
+> 
+> * `Int`: `0`
+> * `Float`: `NaN` on Flash, `0.0` on other static targets
+> * `Bool`: `false`
+> 
+> 
+> 
 
 
 As a consequence, the Haxe Compiler does not allow the assignment of `null` to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as `Null<T>`:

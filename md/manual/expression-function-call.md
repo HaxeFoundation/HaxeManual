@@ -1,4 +1,4 @@
-## 5.8 Function Call
+## 5.9 Function Call
 
 Functions calls consist of an arbitrary subject expression followed by an opening parenthesis `(`, a comma `,` separated list of expressions as arguments and a closing parenthesis `)`.
 
@@ -11,8 +11,8 @@ subject(e1, ..., eN); // call with multiple arguments
 
 ---
 
-Previous section: [Field Access](expression-field-access.md)
+Previous section: [Array Access](expression-array-access.md)
 
 Next section: [var](expression-var.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L125-125)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L142-142)

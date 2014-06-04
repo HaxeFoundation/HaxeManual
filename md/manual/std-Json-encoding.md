@@ -18,4 +18,4 @@ Previous section: [Parsing JSON](std-Json-parsing.md)
 
 Next section: [Implementation details](std-Json-implementation-details.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L256-256)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L312-312)

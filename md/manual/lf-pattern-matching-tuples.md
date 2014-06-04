@@ -1,6 +1,6 @@
 ## 6.4.8 Match on multiple values
 
-Array syntax can also be used to match on multiple values:
+Array syntax can be used to match on multiple values:
 
 ```haxe
 var s = switch [1, false, "foo"] {
@@ -24,4 +24,4 @@ Previous section: [Guards](lf-pattern-matching-guards.md)
 
 Next section: [Extractors](lf-pattern-matching-extractors.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L210-210)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L209-209)

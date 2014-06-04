@@ -47,4 +47,4 @@ Previous section: [Dynamic with Type Parameter](types-dynamic-with-type-paramete
 
 Next section: [Abstract](types-abstract.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L583-583)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L586-586)

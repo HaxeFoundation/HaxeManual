@@ -1,4 +1,4 @@
-## 5.9 var
+## 5.10 var
 
 The `var` keyword allows declaring multiple variables, separated by comma `,`. Each variable has a valid [identifier](dictionary.md#identifier) and optionally a value assignment following the assignment operator `=`. Variables can also have an explicit type-hint.
 
@@ -17,4 +17,4 @@ Previous section: [Function Call](expression-function-call.md)
 
 Next section: [Local functions](expression-function.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L138-138)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L155-155)

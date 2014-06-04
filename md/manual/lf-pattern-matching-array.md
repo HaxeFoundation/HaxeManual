@@ -22,4 +22,4 @@ Previous section: [Structure matching](lf-pattern-matching-structure.md)
 
 Next section: [Or patterns](lf-pattern-matching-or.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L183-183)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L182-182)

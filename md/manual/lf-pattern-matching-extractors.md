@@ -98,4 +98,4 @@ Previous section: [Match on multiple values](lf-pattern-matching-tuples.md)
 
 Next section: [Exhaustiveness checks](lf-pattern-matching-exhaustiveness.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L227-227)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L226-226)

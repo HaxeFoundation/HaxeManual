@@ -37,4 +37,4 @@ Previous section: [Enum Constructor](types-enum-constructor.md)
 
 Next section: [Anonymous Structure](types-anonymous-structure.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L370-370)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L373-373)

@@ -1,11 +1,11 @@
 ## 6.4.10 Exhaustiveness checks
 
-The compiler ensures that you do not forget a possible case for non value-only switches:
+The compiler ensures that no possible cases are forgotten:
 
 ```haxe
 switch(true) {
     case false:
-} // This match is not exhaustive, these patterns are not matched: true
+} // Unmatched patterns: true
 ```
 
 The matched type `Bool` admits two values `true` and `false`, but only `false` is checked.
@@ -16,4 +16,4 @@ Previous section: [Extractors](lf-pattern-matching-extractors.md)
 
 Next section: [Useless pattern checks](lf-pattern-matching-unused.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L259-259)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L258-258)

@@ -1,4 +1,4 @@
-## 5.17 try/catch
+## 5.18 try/catch
 
 Haxe allows catching values using its `try/catch` syntax:
 
@@ -33,4 +33,4 @@ Previous section: [switch](expression-switch.md)
 
 Next section: [return](expression-return.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L281-281)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L298-298)

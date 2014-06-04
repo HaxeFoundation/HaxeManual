@@ -50,4 +50,4 @@ Previous section: [Enum Instance](types-enum-instance.md)
 
 Next section: [Using enums](types-enum-using.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L342-342)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L345-345)

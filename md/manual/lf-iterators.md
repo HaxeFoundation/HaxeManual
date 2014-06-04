@@ -76,4 +76,4 @@ Previous section: [Array Comprehension](lf-array-comprehension.md)
 
 Next section: [Function Bindings](lf-function-bindings.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L343-343)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L345-345)

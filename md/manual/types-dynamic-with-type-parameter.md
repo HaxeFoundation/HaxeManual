@@ -15,4 +15,4 @@ Previous section: [Dynamic](types-dynamic.md)
 
 Next section: [Implementing Dynamic](types-dynamic-implemented.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L570-570)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L573-573)

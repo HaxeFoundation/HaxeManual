@@ -1,6 +1,6 @@
 ## 6.4.1 Introduction
 
-Haxe 3 comes with improved options for pattern matching. Here we will explore the syntax for different patterns using this data structure as running example:
+Pattern matching is the process of branching depending on a value matching given, possibly deep patterns. In Haxe, all pattern matching is done within a [`switch` expression](expression-switch.md) where the individual `case` expressions represent the patterns. Here we will explore the syntax for different patterns using this data structure as running example:
 
 ```haxe
 enum Tree<T> {
@@ -23,4 +23,4 @@ Previous section: [Pattern Matching](lf-pattern-matching.md)
 
 Next section: [Enum matching](lf-pattern-matching-enums.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L120-120)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L119-119)

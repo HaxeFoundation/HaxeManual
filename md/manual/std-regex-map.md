@@ -21,4 +21,4 @@ Previous section: [Split](std-regex-split.md)
 
 Next section: [Implementation Details](std-regex-implementation-details.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L174-174)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L230-230)

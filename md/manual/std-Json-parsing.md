@@ -36,4 +36,4 @@ Previous section: [Json](std-Json.md)
 
 Next section: [Encoding JSON](std-Json-encoding.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L247-247)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L303-303)

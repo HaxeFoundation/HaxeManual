@@ -1,6 +1,6 @@
 ## 6.4.2 Enum matching
 
-As with Haxe 2, enums can be matched by their constructors in a natural way. With Haxe 3 pattern matching, this match can now be "deep":
+Enums can be matched by their constructors in a natural way:
 
 ```haxe
 var myTree = Node(Leaf("foo"), Node(Leaf("bar"), Leaf("foobar")));
@@ -17,7 +17,7 @@ var match = switch(myTree) {
 trace(match); // 2
 ```
 
-The pattern matcher will check each case from top to bottom and pick the first one that matches the input value. If you are not too familiar with pattern matching, the following manual interpretation of each case rule might help:
+The pattern matcher will check each case from top to bottom and pick the first one that matches the input value. The following manual interpretation of each case rule helps understanding the process:
 
 
 
@@ -32,4 +32,4 @@ Previous section: [Introduction](lf-pattern-matching-introduction.md)
 
 Next section: [Variable capture](lf-pattern-matching-variable-capture.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L135-135)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L134-134)

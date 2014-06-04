@@ -1,4 +1,4 @@
-## 5.19 break
+## 5.20 break
 
 The `break` keyword leaves the control flow of the innermost loop (`for` or `while`) it is declared in, stopping further iterations:
 
@@ -20,4 +20,4 @@ Previous section: [return](expression-return.md)
 
 Next section: [continue](expression-continue.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L338-338)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L355-355)

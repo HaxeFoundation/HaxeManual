@@ -1,4 +1,4 @@
-## 5.12 for
+## 5.13 for
 
 Haxe does not support traditional for-loops known from C. Its `for` keyword expects an opening parenthesis `(`, then a variable identifier followed by the keyword `in` and an arbitrary expression used as iterating collection. After the closing parenthesis `)` follows an arbitrary loop body expression.
 
@@ -20,4 +20,4 @@ Previous section: [new](expression-new.md)
 
 Next section: [while](expression-while.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L187-187)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L204-204)

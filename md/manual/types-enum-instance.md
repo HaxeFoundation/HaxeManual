@@ -32,4 +32,4 @@ Previous section: [Interfaces](types-interfaces.md)
 
 Next section: [Enum Constructor](types-enum-constructor.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L323-323)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L326-326)

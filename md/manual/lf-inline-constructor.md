@@ -48,4 +48,4 @@ Previous section: [Access Control](lf-access-control.md)
 
 Next section: [Compiler Reference](#)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L480-480)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L482-482)

@@ -36,6 +36,18 @@ A [compound type](dictionary.md#compound-type) is considered contravariant if it
 ##### Covariance
 A [compound type](dictionary.md#compound-type) is considered covariant if its component types can be assigned to less specific components, i.e. if they are only read, but never written.
 
+##### Default values
+
+Basic types have the following default values on static targets:
+
+
+* `Int`: `0`
+* `Float`: `NaN` on Flash, `0.0` on other static targets
+* `Bool`: `false`
+
+
+
+
 ##### Definition name
 Definition description
 

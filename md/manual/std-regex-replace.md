@@ -32,4 +32,4 @@ Previous section: [Groups](std-regex-groups.md)
 
 Next section: [Split](std-regex-split.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L156-156)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L212-212)

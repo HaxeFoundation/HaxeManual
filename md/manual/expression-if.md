@@ -1,4 +1,4 @@
-## 5.15 if
+## 5.16 if
 
 Conditional expressions come in the form of a leading `if` keyword, a condition expression enclosed in parentheses `()` and a expression to be evaluated in case the condition holds:
 
@@ -30,4 +30,4 @@ Previous section: [do-while](expression-do-while.md)
 
 Next section: [switch](expression-switch.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L234-234)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L251-251)

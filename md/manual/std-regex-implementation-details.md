@@ -14,4 +14,4 @@ Previous section: [Map](std-regex-map.md)
 
 Next section: [Math](std-math.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L183-183)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L239-239)

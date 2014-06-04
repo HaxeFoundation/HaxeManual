@@ -1,4 +1,4 @@
-## 5.21 throw
+## 5.22 throw
 
 Haxe allows throwing any kind of value using its `throw` syntax:
 
@@ -14,4 +14,4 @@ Previous section: [continue](expression-continue.md)
 
 Next section: [cast](expression-cast.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L374-374)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L391-391)

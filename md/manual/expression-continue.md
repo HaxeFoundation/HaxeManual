@@ -1,4 +1,4 @@
-## 5.20 continue
+## 5.21 continue
 
 The `continue` keyword ends the current iteration of the innermost loop (`for` or `while`) it is declared in, causing the loop condition to be checked for the next iteration:
 
@@ -20,4 +20,4 @@ Previous section: [break](expression-break.md)
 
 Next section: [throw](expression-throw.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L356-356)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L373-373)

@@ -12,13 +12,10 @@ Todo:
 3.5.1 - Between Class/Interface: "parent class" should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.
 3.7.2 - Import: Describe import a.*
 3.7.3 - Resolution Order: proper label and caption + code/identifier styling for diagram
-6.4 - Pattern Matching: Check "you" wording.
+6.4.10 - Exhaustiveness checks: Figure out wtf our rules are now for when this is checked.
 6.6 - Array Comprehension: Comprehensions are only listing Arrays, not Maps
 8.3.1 - Embedding resources: what to use for listing of non-haxe code like hxml?
 9.5.1 - Enum building: Check if we can build GADTs this way.
-10.2.1 - Array: make sure this is true about static targets
-10.2.1 - Array: Maybe we should introduce \\ api{type name}
-10.2.3 - List: I hope none of these are lies -C 
 10.4.3 - Integer Math: I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?
 
 Missing Content:
@@ -38,7 +35,6 @@ Missing Content:
 9.6.1 - Macro-in-Macro
 9.6.4 - Type Parameters
 9.7 - Compiler Configuration
-10.2.6 - Option
 10.5 - Lambda
 10.6 - Reflection
 10.7 - Serialization
@@ -135,23 +131,24 @@ Unreviewed:
 5.5 - Array Declaration
 5.6 - Object Declaration
 5.7 - Field Access
-5.8 - Function Call
-5.9 - var
-5.10 - Local functions
-5.11 - new
-5.12 - for
-5.13 - while
-5.14 - do-while
-5.15 - if
-5.16 - switch
-5.17 - try/catch
-5.18 - return
-5.19 - break
-5.20 - continue
-5.21 - throw
-5.22 - cast
-5.22.1 - unsafe cast
-5.22.2 - safe cast
+5.8 - Array Access
+5.9 - Function Call
+5.10 - var
+5.11 - Local functions
+5.12 - new
+5.13 - for
+5.14 - while
+5.15 - do-while
+5.16 - if
+5.17 - switch
+5.18 - try/catch
+5.19 - return
+5.20 - break
+5.21 - continue
+5.22 - throw
+5.23 - cast
+5.23.1 - unsafe cast
+5.23.2 - safe cast
 6.1 - Conditional Compilation
 6.2 - Externs
 6.3 - Static Extension
@@ -202,6 +199,7 @@ Unreviewed:
 10.2.3 - List
 10.2.4 - GenericStack
 10.2.5 - Map
+10.2.6 - Option
 10.3 - Regular Expressions
 10.3.1 - Matching
 10.3.2 - Groups

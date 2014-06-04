@@ -1,4 +1,4 @@
-## 5.16 switch
+## 5.17 switch
 
 A basic switch expression starts with the `switch` keyword and the switch subject expression, as well as the case expressions between curly braces `{}`. Case expressions either start with the `case` keyword and are followed by a pattern expression, or consist of the `default` keyword. In both cases a colon `:` and an optional case body expression follows:
 
@@ -22,4 +22,4 @@ Previous section: [if](expression-if.md)
 
 Next section: [try/catch](expression-try-catch.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L262-262)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L279-279)

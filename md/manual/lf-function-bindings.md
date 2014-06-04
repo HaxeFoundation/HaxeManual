@@ -35,4 +35,4 @@ Previous section: [Iterators](lf-iterators.md)
 
 Next section: [Metadata](lf-metadata.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L371-371)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L373-373)
