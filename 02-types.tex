@@ -352,8 +352,8 @@ var c = Rgb(255, 255, 0);
 In this code, the type of variables \expr{a}, \expr{b} and \expr{c} is \type{Color}. Variable \expr{c} is initialized using the \expr{Rgb} constructor with arguments.
 
 All enum instances can be assigned to a special type named \type{EnumValue}.
-\todo{EnumValue is the type that unifies with the types that are instances of Enums? Would benefit from more elaboration.}
-\define[Type]{EnumValue}{define-enumvalue}{EnumValue is a special type which unifies with all enum instances. It is used by the Haxe Standard Library to provide some operations for all enum instances, and can be employed in user-code accordingly.}
+
+\define[Type]{EnumValue}{define-enumvalue}{EnumValue is a special type which unifies with all enum instances. It is used by the Haxe Standard Library to provide some operations for all enum instances, and can be employed in user-code accordingly in cases where an API requires \emph{an} enum instance, but not a specific one.}
 
 It is important to distinguish enum types and enum constructors, as this example demonstrates:
 
