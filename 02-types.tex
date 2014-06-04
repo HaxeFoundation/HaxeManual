@@ -358,9 +358,14 @@ All enum instances can be assigned to a special type named \type{EnumValue}.
 It is important to distinguish enum types and enum constructors, as this example demonstrates:
 
 \haxe{assets/EnumUnification.hx}
-If line 7 is uncommented, the program does not compile because \expr{Red} (an enum constructor) cannot be assigned to a variable of type \type{Enum<Color>} (an enum type). The relation is analogous to a class and its instance.
-\todo{For this to work in markdown, it either needs line numbers or the paragraph needs rephrasing.}
-\todo{\type{Enum$<$Color$>$} syntax, what's the difference between that and Color?}
+
+If the commented line uncommented, the program does not compile because \expr{Red} (an enum constructor) cannot be assigned to a variable of type \type{Enum<Color>} (an enum type). The relation is analogous to a class and its instance.
+
+\trivia{Concrete type parameter for \type{Enum$<$T$>$}}{One of the reviewers of this manual was confused about the difference between \type{Color} and \type{Enum<Color>} in the example above. Indeed, using a concrete type parameter there is pointless and only has the purpose of demonstration. Usually we would omit the type there and let \tref{type inference}{type-system-type-inference} deal with it.
+
+However, the inferred type would be different from \type{Enum<Color>}. The compiler infers a pseudo-type which has the enum constructors as ``fields''. As of Haxe 3.2.0, it is not possible to express this type in syntax, but it is also never necessary to do that.}
+
+
 
 \subsection{Using enums}
 \label{types-enum-using}
