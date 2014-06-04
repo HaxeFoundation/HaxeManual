@@ -734,15 +734,8 @@ There are two kinds of array access methods:
 \end{itemize}
 The methods \expr{get} and \expr{arrayWrite} seen above then allow the following usage:
 
-\begin{lstlisting}
-class ArrayAccessUsage {
-	public static function main(){
-		var map = new Map();
-		map["foo"] = 1;
-		trace(map["foo"]);
-	}
-}
-\end{lstlisting}
+\haxe{assets/AbstractArrayAccess.hx}
+
 At this point it should not be surprising to see that calls to the array access fields are inserted in the output:
 
 \begin{lstlisting}
