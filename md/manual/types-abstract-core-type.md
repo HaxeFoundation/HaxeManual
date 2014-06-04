@@ -19,4 +19,4 @@ Previous section: [Forwarding abstract fields](types-abstract-forward.md)
 
 Next section: [Monomorph](types-monomorph.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L795-795)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L794-794)

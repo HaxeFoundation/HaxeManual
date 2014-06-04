@@ -28,4 +28,4 @@ Previous section: [What is Haxe?](introduction-what-is-haxe.md)
 
 Next section: [Authors and contributions](introduction-authors-and-contributions.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/01-introduction.tex#L44-44)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/01-introduction.tex#L47-47)

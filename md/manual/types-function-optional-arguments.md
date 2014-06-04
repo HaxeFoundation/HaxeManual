@@ -38,4 +38,4 @@ Previous section: [Function Type](types-function.md)
 
 Next section: [Default values](types-function-default-values.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L472-472)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L471-471)

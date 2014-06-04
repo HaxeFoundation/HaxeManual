@@ -13,4 +13,4 @@ Previous section: [Anonymous Structure](types-anonymous-structure.md)
 
 Next section: [Class Notation for Structure Types](types-structure-class-notation.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L419-419)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L418-418)

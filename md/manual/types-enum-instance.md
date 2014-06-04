@@ -22,7 +22,7 @@ Semantically, this enum describes a color which is either red, green, blue or a 
 
 The Haxe type system provides a type which unifies with all enum types:
 
-> ##### Define: Enum
+> ##### Define: `Enum<T>`
 >
 > This type is compatible with all enum types. At compile-time, `Enum<T>` can be considered to be the common base type of all enum types. However, this relation is not reflected in generated code.
 
@@ -32,4 +32,4 @@ Previous section: [Interfaces](types-interfaces.md)
 
 Next section: [Enum Constructor](types-enum-constructor.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L312-312)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L311-311)

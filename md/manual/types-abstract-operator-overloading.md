@@ -62,4 +62,4 @@ Previous section: [Implicit Casts](types-abstract-implicit-casts.md)
 
 Next section: [Array Access](types-abstract-array-access.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L664-664)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L663-663)

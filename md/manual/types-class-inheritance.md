@@ -30,4 +30,4 @@ Previous section: [Class constructor](types-class-constructor.md)
 
 Next section: [Interfaces](types-interfaces.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L257-257)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L256-256)

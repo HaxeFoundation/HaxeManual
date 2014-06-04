@@ -31,4 +31,4 @@ Previous section: [Impact on Performance](types-structure-performance.md)
 
 Next section: [Optional Arguments](types-function-optional-arguments.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L453-453)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L452-452)

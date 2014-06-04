@@ -32,7 +32,7 @@ Semantically, this class represents a point in discrete 2-dimensional space, but
 
 There is a special type in Haxe which is compatible with all classes:
 
-> ##### Define: Class<T>
+> ##### Define: `Class<T>`
 >
 > This type is compatible with all class types. At compile-time, `Class<T>` can be considered to be the common base type of all class types. However, this relation is not reflected in generated code.
 
@@ -42,4 +42,4 @@ Previous section: [Optional Arguments and Nullability:](types-nullability-option
 
 Next section: [Class constructor](types-class-constructor.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L220-220)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L219-219)

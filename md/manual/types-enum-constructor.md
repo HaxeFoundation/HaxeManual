@@ -38,4 +38,4 @@ Previous section: [Enum Instance](types-enum-instance.md)
 
 Next section: [Anonymous Structure](types-anonymous-structure.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L333-333)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L332-332)
