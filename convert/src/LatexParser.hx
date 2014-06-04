@@ -201,7 +201,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 
 				// custom
 				case [TCustomCommand("define"), subject = popt(bracketArg), TBrOpen, s = text(), TBrClose, TBrOpen, s2 = text2(), TBrClose, TBrOpen, s3 = text2(), TBrClose]:
-					definitionMap[s2] = s3;
+					definitionMap[s] = s3;
 					labelMap[s2] = mkLabel(s, Definition);
 					buffer.add('> ##### Define: $s\n');
 					buffer.add('>\n');
