@@ -171,13 +171,16 @@ It is common for programming languages to have a single, clean definition for nu
 
 \define{Dynamic target}{define-dynamic-target}{Dynamic targets are more lenient with their types and allow \expr{null} values for basic types. They consist of \target{JavaScript}, \target{PHP}, \target{Neko} and \target{Flash 6-8}.}
 
-There is nothing to worry about when working with \expr{null} on dynamic targets, but static ones may require some thought. For starters, basic types are initialized to these values:
+There is nothing to worry about when working with \expr{null} on dynamic targets, but static ones may require some thought. For starters, basic types are initialized to their default values.
 
-\begin{description}
-	\item[\type{Int}:] \expr{0}
-	\item[\type{Float}:] \expr{NaN} on \target{Flash}, \expr{0.0} on other static targets
-	\item[\type{Bool}:] \expr{false}
-\end{description}
+\define{Default values}{define-default-value}{
+	Basic types have the following default values on static targets:
+	\begin{description}
+		\item[\type{Int}:] \expr{0}
+		\item[\type{Float}:] \expr{NaN} on \target{Flash}, \expr{0.0} on other static targets
+		\item[\type{Bool}:] \expr{false}
+	\end{description}
+}
 
 As a consequence, the Haxe Compiler does not allow the assignment of \expr{null} to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as \type{Null$<$T$>$}:
 
