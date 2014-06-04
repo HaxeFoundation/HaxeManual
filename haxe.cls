@@ -80,4 +80,4 @@
 	{\begin{myshaded}\noindent\textbf{#1: #2}\par\nobreak\noindent\ignorespaces#4\label{#3}\end{myshaded}}
 
 \newcommand{\trivia}[2]
-	{\begin{myshaded}\noindent\textbf{Trivia: #1}\par\nobreak\noindent\ignorespaces\textit{#2}\end{myshaded}}
+	{\begin{myshaded}\noindent\textbf{Trivia: #1}\par\nobreak\noindent\ignorespaces#2\end{myshaded}}
