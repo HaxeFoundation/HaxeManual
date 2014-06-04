@@ -76,8 +76,8 @@
   \MakeFramed {\advance\hsize-\width \FrameRestore}}%
  {\endMakeFramed}
 
-\newcommand{\define}[3][Definition]
-	{\begin{myshaded}\noindent\textbf{#1: #2}\par\nobreak\noindent\ignorespaces#3\label{def:#2}\end{myshaded}}
+\newcommand{\define}[4][Definition]
+	{\begin{myshaded}\noindent\textbf{#1: #2}\par\nobreak\noindent\ignorespaces#4\label{#3}\end{myshaded}}
 
 \newcommand{\trivia}[2]
 	{\begin{myshaded}\noindent\textbf{Trivia: #1}\par\nobreak\noindent\ignorespaces\textit{#2}\end{myshaded}}

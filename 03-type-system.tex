@@ -113,7 +113,7 @@ We can see that invoking \expr{test} with an empty array in line 7 and an \type{
 
 Usually, the Haxe Compiler generates only a single class or function, even if it has type parameters. This results in a natural abstraction, where the code generator for the target language has to assume that a type parameter could be of any type. The generated code then might have to perform some type checks, which can be detrimental to performance.
 
-A class or function can be made \emph{generic} by attributing it with the \expr{:generic} \tref{metadata}{lf-metadata}. This causes the compiler to emit a distinct class/function per type parameter combination with mangled names. A specification like this can yield a boost in performance-critical code portions on \tref{static targets}{def:Static target} at the cost of a larger output size:
+A class or function can be made \emph{generic} by attributing it with the \expr{:generic} \tref{metadata}{lf-metadata}. This causes the compiler to emit a distinct class/function per type parameter combination with mangled names. A specification like this can yield a boost in performance-critical code portions on \tref{static targets}{define-static-target} at the cost of a larger output size:
 
 \haxe{assets/GenericClass.hx}
 
@@ -159,7 +159,7 @@ Main.main();
 \subsection{Construction of generic type parameters}
 \label{type-system-generic-type-parameter-construction}
 
-\define{Generic Type Parameter}{A type parameter is said to be generic if its containing class or method is generic.}
+\define{Generic Type Parameter}{define-generic-type-parameter}{A type parameter is said to be generic if its containing class or method is generic.}
 
 With normal type parameter, it is not possible to construct them, i.e. \expr{new T()} is a compiler error. This is because Haxe generates only a single function and the construct then makes no sense. This is different when the type parameter is generic: Since we know that the compiler will generate a distinct function for each type parameter combination, it is possible to replace the \type{T} \expr{new T()} with the real type.
 
@@ -208,9 +208,9 @@ If \type{Array} had no \expr{push()} method and no other means of modification, 
 
 With \expr{b} being typed as \type{MyArray<Base>} and \type{MyArray} only having a \expr{pop()} method, we can safely assign. There is no method defined on \type{MyArray} which could be used to add incompatible types, it is thus said to be \emph{covariant}.
 
-\define{Covariance}{A \tref{compound type}{def:Compound Type} is considered covariant if its component types can be assigned to less specific components, i.e. if they are only read, but never written.}
+\define{Covariance}{define-covariance}{A \tref{compound type}{define-compound-type} is considered covariant if its component types can be assigned to less specific components, i.e. if they are only read, but never written.}
 
-\define{Contravariance}{A \tref{compound type}{def:Compound Type} is considered contravariant if its component types can be assigned to less generic components, i.e. if they are only written, but never read.}
+\define{Contravariance}{define-contravariance}{A \tref{compound type}{define-compound-type} is considered contravariant if its component types can be assigned to less generic components, i.e. if they are only written, but never read.}
 
 
 
@@ -222,7 +222,7 @@ With \expr{b} being typed as \type{MyArray<Base>} and \type{MyArray} only having
 
 Unification is the heart of the type system and contributes immensely to the robustness of Haxe programs. It describes the process of checking if a type is compatible to another type.
 
-\define{Unification}{Unification between two types A and B is a directional process which answers the question if A \emph{can be assigned to} B. It may \emph{mutate} either type if it is or has a \tref{monomorph}{types-monomorph}.}
+\define{Unification}{define-unification}{Unification between two types A and B is a directional process which answers the question if A \emph{can be assigned to} B. It may \emph{mutate} either type if it is or has a \tref{monomorph}{types-monomorph}.}
 
 Unification errors are very easy to trigger:
 
@@ -265,7 +265,7 @@ These rules are transitive, meaning that a child class can also be assigned to t
 \subsection{Structural Subtyping}
 \label{type-system-structural-subtyping}
 
-\define{Structural Subtyping}{Structural subtyping defines an implicit relation between types that have the same structure.}
+\define{Structural Subtyping}{define-structural-subtyping}{Structural subtyping defines an implicit relation between types that have the same structure.}
 
 In Haxe, structural subtyping is only possible when assigning a class instance to a structure. The following example is part of the \type{Lambda} class of the \tref{Haxe Standard Library}{std}:
 
@@ -324,7 +324,7 @@ The effects of type inference have been seen throughout this document and will c
 The special construct \expr{\$type} was previously mentioned in order to simplify the explanation of the \Fullref{types-function} type, so let us introduce it officially now:
 
 %TODO: $type
-\define[Construct]{type}{type is a compile-time mechanism being called like a function, with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.}
+\define[Construct]{type}{define-dollar-type}{type is a compile-time mechanism being called like a function, with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.}
 
 In the example above, the first \expr{\$type} prints \expr{Unknown<0>}. This is a \tref{monomorph}{types-monomorph}, a type that is not yet known. The next line \expr{x = "foo"} assigns a \type{String} literal to \expr{x}, which causes the \tref{unification}{type-system-unification} of the monomorph with \type{String}. We then see that the type of \expr{x} indeed has changed to \type{String}.
 
@@ -341,7 +341,7 @@ Variable \expr{x} is first initialized to an empty \type{Array}. At this point w
 
 Most of the time, types are inferred on their own and may then be unified with an expected type. In a few places, however, an expected type may be used to influence inference. We then speak of \emph{top-down inference}.
 
-\define{Expected Type}{Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is argument to a function call. They can influence typing of that expression through what is called \tref{top-down inference}{type-system-top-down-inference}.}
+\define{Expected Type}{define-expected-type}{Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is argument to a function call. They can influence typing of that expression through what is called \tref{top-down inference}{type-system-top-down-inference}.}
 
 A good example are arrays of mixed types. As mentioned in \Fullref{types-dynamic}, the compiler refuses \expr{[1, "foo"]} because it cannot determine an element type. Employing top-down inference, this can be overcome:
 
@@ -376,7 +376,7 @@ There are also some cases involving recursion where type inference has limitatio
 \section{Modules and Paths}
 \label{type-system-modules-and-paths}
 
-\define{Module}{All Haxe code is organized in modules, which are addressed using paths. In essence, each .hx file represents a module which may contain several types. A type may be \expr{private}, in which case only its containing module can access it.}
+\define{Module}{define-module}{All Haxe code is organized in modules, which are addressed using paths. In essence, each .hx file represents a module which may contain several types. A type may be \expr{private}, in which case only its containing module can access it.}
 
 The distinction of a module and its containing type of the same name is blurry by design. In fact, addressing \expr{haxe.ds.StringMap<Int>} can be considered shorthand for \expr{haxe.ds.StringMap.StringMap<Int>}. The latter version consists of four parts:
 
@@ -390,7 +390,7 @@ If the module and type name are equal, the duplicate can be removed, leading to 
 
 Paths can be shortened further by using an \tref{import}{type-system-import}, which typically allows omitting the package part of a path. This may lead to usage of unqualified identifiers, for which understanding the \tref{resolution order}{type-system-resolution-order} is required.
 
-\define{Type path}{The (dot-)path to a type consists of the package, the module name and the type name. Its general form is \expr{pack1.pack2.packN.ModuleName.TypeName}.} 
+\define{Type path}{define-type-path}{The (dot-)path to a type consists of the package, the module name and the type name. Its general form is \expr{pack1.pack2.packN.ModuleName.TypeName}.} 
 
 
 \subsection{Module Sub-Types}
@@ -459,7 +459,7 @@ We describe the resolution order algorithm here, which depends on the following 
 	\item the kind (static or member) of the current field
 	\item the declared member fields on the current class and its parent classes
 	\item the declared static fields on the current class
-	\item the \tref{expected type}{def:Expected Type}
+	\item the \tref{expected type}{define-expected-type}
 	\item the expression being \expr{untyped} or not
 \end{itemize}
 

@@ -3,7 +3,7 @@
 
 Expressions in Haxe define what a program \emph{does}. Most expressions are found in the body of a \tref{method}{class-field-method}, where they are combined to express what that method should do. This section explains the different kinds of expressions. Some definitions help here:
 
-\define{Name}{A general name may refer to
+\define{Name}{define-name}{A general name may refer to
 \begin{itemize}
 	\item a type,
 	\item a local variable,
@@ -11,11 +11,11 @@ Expressions in Haxe define what a program \emph{does}. Most expressions are foun
 	\item a field.
 \end{itemize}}
 
-\define{Identifier}{Haxe identifiers start with an underscore \expr{_}, a dollar \expr{\$}, a lower-case character \expr{a-z} or an upper-case character \expr{A-Z}. After that, any combination and number of \expr{_}, \expr{A-Z}, \expr{a-z} and \expr{0-9} may follow.\\
+\define{Identifier}{define-identifier}{Haxe identifiers start with an underscore \expr{_}, a dollar \expr{\$}, a lower-case character \expr{a-z} or an upper-case character \expr{A-Z}. After that, any combination and number of \expr{_}, \expr{A-Z}, \expr{a-z} and \expr{0-9} may follow.\\
 Further limitations follow from the usage context, which are checked upon typing:
 \begin{itemize}
 	\item Type names must start with an upper-case letter \expr{A-Z} or an underscore \expr{_}.
-	\item Leading dollars are not allowed for any kind of \tref{name}{def:Name} (dollar-names are mostly used for \tref{macro reification}{macro-reification}).
+	\item Leading dollars are not allowed for any kind of \tref{name}{define-name} (dollar-names are mostly used for \tref{macro reification}{macro-reification}).
 \end{itemize}}
 
 
@@ -58,14 +58,14 @@ are evaluated.
 The Haxe syntax supports the following constants:
 
 \begin{description}
-	\item[Int:] An \tref{integer}{def:Int}, such as \expr{0}, \expr{1}, \expr{97121}, \expr{-12}, \expr{0xFF0000}.
-	\item[Float:] A \tref{floating point number}{def:Float}, such as \expr{0.0}, \expr{1.}, \expr{.3}, \expr{-93.2}.
-	\item[String:] A \tref{string of characters}{def:String}, such as \expr{""}, \expr{"foo"}, \expr{''}, \expr{'bar'}.
-	\item[true,false:] A \tref{boolean}{def:Bool} value.
+	\item[Int:] An \tref{integer}{define-int}, such as \expr{0}, \expr{1}, \expr{97121}, \expr{-12}, \expr{0xFF0000}.
+	\item[Float:] A \tref{floating point number}{define-float}, such as \expr{0.0}, \expr{1.}, \expr{.3}, \expr{-93.2}.
+	\item[String:] A \tref{string of characters}{define-string}, such as \expr{""}, \expr{"foo"}, \expr{''}, \expr{'bar'}.
+	\item[true,false:] A \tref{boolean}{define-bool} value.
 	\item[null:] The null value.
 \end{description}
 
-Furthermore, the internal syntax structure treats \tref{identifiers}{def:Identifier} as constants, which may be relevant when working with \tref{macros}{macro}.
+Furthermore, the internal syntax structure treats \tref{identifiers}{define-identifier} as constants, which may be relevant when working with \tref{macros}{macro}.
 
 
 \section{Binary Operators}
@@ -138,7 +138,7 @@ subject(e1, ..., eN); // call with multiple arguments
 \section{var}
 \label{expression-var}
 
-The \expr{var} keyword allows declaring multiple variables, separated by comma \expr{,}. Each variable has a valid \tref{identifier}{def:Identifier} and optionally a value assignment following the assignment operator \expr{=}. Variables can also have an explicit type-hint.
+The \expr{var} keyword allows declaring multiple variables, separated by comma \expr{,}. Each variable has a valid \tref{identifier}{define-identifier} and optionally a value assignment following the assignment operator \expr{=}. Variables can also have an explicit type-hint.
 
 \begin{lstlisting}
 var a; // declare local a
@@ -176,7 +176,7 @@ However, there are some differences related to type parameters and the position 
 \section{new}
 \label{expression-new}
 
-The \expr{new} keyword signals that a \tref{class}{types-class-instance} or an \tref{abstract}{types-abstract} is being instantiated. It is followed by the \tref{type path}{def:Type path} of the type which is to be instantiated. It may also list explicit \tref{type parameters}{type-system-type-parameters} enclosed in \expr{<>} and separated by comma \expr{,}. After an opening parenthesis \expr{()} follow the constructor arguments, again separated by comma \expr{,}, with a closing parenthesis \expr{)} at the end.
+The \expr{new} keyword signals that a \tref{class}{types-class-instance} or an \tref{abstract}{types-abstract} is being instantiated. It is followed by the \tref{type path}{define-type-path} of the type which is to be instantiated. It may also list explicit \tref{type parameters}{type-system-type-parameters} enclosed in \expr{<>} and separated by comma \expr{,}. After an opening parenthesis \expr{()} follow the constructor arguments, again separated by comma \expr{,}, with a closing parenthesis \expr{)} at the end.
 
 \haxe{assets/New.hx}
 
@@ -404,7 +404,7 @@ Unsafe casts do not introduce any \tref{dynamic}{types-dynamic} types, as the fo
 
 Variable \expr{i} is typed as \type{Int} and then assigned to variable \expr{s} using the unsafe cast \expr{cast i}. This causes \expr{s} to be of an unknown type, a monomorph. Following the usual rules of \tref{unification}{type-system-unification}, it can then be bound to any type, such as \type{String} in this example.
 
-These casts are called "unsafe" because the runtime behavior for invalid casts is not defined. While most \tref{dynamic targets}{def:Dynamic target} are likely to work, it might lead to undefined errors on \tref{static targets}{def:Static target}.
+These casts are called "unsafe" because the runtime behavior for invalid casts is not defined. While most \tref{dynamic targets}{define-dynamic-target} are likely to work, it might lead to undefined errors on \tref{static targets}{define-static-target}.
 
 Unsafe casts have little to no runtime overhead.
 

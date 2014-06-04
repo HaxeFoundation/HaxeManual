@@ -1,7 +1,7 @@
 \chapter{Class Fields}
 \label{class-field}
 
-\define{Class Field}{A class field is a variable, property or method of a class which can either be static or non-static. Non-static fields are referred to as \emph{member} fields, so we speak of e.g. a \emph{static method} or a \emph{member variable}.}
+\define{Class Field}{define-class-field}{A class field is a variable, property or method of a class which can either be static or non-static. Non-static fields are referred to as \emph{member} fields, so we speak of e.g. a \emph{static method} or a \emph{member variable}.}
 
 So far we have seen how types and Haxe programs in general are structured. This section about class fields concludes the structural part and at the same time bridges to the behavioral part of Haxe. This is because class fields are the place where \tref{expressions}{expression} are at home.
 
@@ -52,9 +52,9 @@ Next to \tref{variables}{class-field-variable}, properties are the second option
 
 When dealing with properties, it is important to understand the two kinds of access:
 
-\define{Read Access}{A read access to a field occurs when a right-hand side \tref{field access expression}{expression-field-access} is used. This includes calls in the form of \expr{obj.field()}, where \expr{field} is accessed to be read.}
+\define{Read Access}{define-read-access}{A read access to a field occurs when a right-hand side \tref{field access expression}{expression-field-access} is used. This includes calls in the form of \expr{obj.field()}, where \expr{field} is accessed to be read.}
 
-\define{Write Access}{A write access to a field occurs when a \tref{field access expression}{expression-field-access} is assigned a value in the form of \expr{obj.field = value}. It may also occur in combination with \tref{read access}{def:Read Access} for special assignment operators such as \expr{+=} in expressions like \expr{obj.field += value}.} 
+\define{Write Access}{define-write-access}{A write access to a field occurs when a \tref{field access expression}{expression-field-access} is assigned a value in the form of \expr{obj.field = value}. It may also occur in combination with \tref{read access}{define-read-access} for special assignment operators such as \expr{+=} in expressions like \expr{obj.field += value}.} 
 
 Read access and write access are directly reflected in the syntax, as the following example shows:
 
@@ -80,7 +80,7 @@ The access identifiers define the behavior when the field is read (first identif
 	\item[\expr{never}:] Allows no access at all.
 \end{description}
 
-\define{Accessor method}{An \emph{accessor method} (or short \emph{accessor}) for a field named \expr{field} of type \type{T} is a \emph{getter} named \expr{get_field} of type \type{Void->T} or a \emph{setter} named \expr{set_field} of type \type{T->T}.}
+\define{Accessor method}{define-accessor-method}{An \emph{accessor method} (or short \emph{accessor}) for a field named \expr{field} of type \type{T} is a \emph{getter} named \expr{get_field} of type \type{Void->T} or a \emph{setter} named \expr{set_field} of type \type{T->T}.}
 
 \trivia{Accessor names}{In Haxe 2, arbitrary identifiers were allowed as access identifiers and would lead to custom accessor method names to be admitted. This made parts of the implementation quite tricky to deal with. In particular, \expr{Reflect.getProperty()} and \expr{Reflect.setProperty()} had to assume that any name could have been used, requiring the target generators to generate meta-information and perform lookups.\\
 We disallowed these identifiers and went for the \expr{get_} and \expr{set_} naming convention which greatly simplified implementation. This was one of the breaking changes between Haxe 2 and 3.}
@@ -146,7 +146,7 @@ Both getter and setter may access their physical field for data storage. The com
 
 However, the compiler assumes that a physical field exists only if at least one of the access identifiers is \expr{default} or \expr{null}.
 
-\define{Physical field}{A field is considered to be \emph{physical} if it is either
+\define{Physical field}{define-physical-field}{A field is considered to be \emph{physical} if it is either
 	\begin{itemize}
 		\item a \tref{variable}{class-field-variable}
 		\item a \tref{property}{class-field-property} with the read-access or write-access identifier being \expr{default} or \expr{null}

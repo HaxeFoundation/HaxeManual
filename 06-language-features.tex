@@ -7,7 +7,7 @@
 
 Haxe allows conditional compilation by using \expr{\#if}, \expr{\#elseif} and \expr{\#else} and checking for \emph{compiler flags}.
 
-\define{Compiler Flag}{A compiler flag is a configurable value which may influence the compilation process. Such a flag can be set by invoking the command line with \expr{-D key=value} or just \expr{-D key}, in which case the value defaults to \expr{"1"}. The compiler also sets several flags internally to pass information between different compilation steps.}
+\define{Compiler Flag}{define-compiler-flag}{A compiler flag is a configurable value which may influence the compilation process. Such a flag can be set by invoking the command line with \expr{-D key=value} or just \expr{-D key}, in which case the value defaults to \expr{"1"}. The compiler also sets several flags internally to pass information between different compilation steps.}
 
 This example demonstrates usage of conditional compilation:
 
@@ -64,7 +64,7 @@ Some targets such as \target{Python} or \target{JavaScript} may require generati
 \section{Static Extension}
 \label{lf-static-extension}
 
-\define{Static Extension}{A static extension allows pseudo-extending existing types without modifying their source. In Haxe this is achieved by declaring a static method with a first argument of the extending type and then bringing the defining class into context through \expr{using}.}
+\define{Static Extension}{define-static-extension}{A static extension allows pseudo-extending existing types without modifying their source. In Haxe this is achieved by declaring a static method with a first argument of the extending type and then bringing the defining class into context through \expr{using}.}
 
 Static extensions can be a powerful tool which allows augmenting types without actually changing them. The following example demonstrates the usage:
 
@@ -435,7 +435,7 @@ Access control can be used if the basic \tref{visibility}{class-field-visibility
 	\item[Forcing access:] A target is forced to allow access to the given class or field by using the \expr{:access(target)} \tref{metadata}{lf-metadata}.
 \end{description}
 
-In this context, a \emph{target} can be the \tref{dot-path}{def:Type path} to
+In this context, a \emph{target} can be the \tref{dot-path}{define-type-path} to
 
 \begin{itemize}
 	\item a \emph{class field},

@@ -3,7 +3,7 @@
 
 Macros are without a doubt the most advanced feature in Haxe. They are often perceived as dark magic that only a select few are capable of mastering, yet there is nothing magical (and certainly nothing dark) about them.
 
-\define{Abstract Syntax Tree (AST)}{The AST is the result of \emph{parsing} Haxe code into a typed structure. This structure is exposed to macros through the types defined in the file \expr{haxe/macro/Expr.hx} of the Haxe Standard Library.}
+\define{Abstract Syntax Tree (AST)}{define-ast}{The AST is the result of \emph{parsing} Haxe code into a typed structure. This structure is exposed to macros through the types defined in the file \expr{haxe/macro/Expr.hx} of the Haxe Standard Library.}
 
 \input{assets/tikz/macro-compilation-role.tex}
 
@@ -20,7 +20,7 @@ We can identify different kinds of macros, which are run at specific compilation
 \section{Macro Context}
 \label{macro-context}
 
-\define{Macro Context}{The macro context is the environment in which the macro is executed. Depending on the macro type, it can be considered to be a class being built or a function being typed. Contextual information can be obtained through the \ic{haxe.macro.Context} API.}
+\define{Macro Context}{define-macro-context}{The macro context is the environment in which the macro is executed. Depending on the macro type, it can be considered to be a class being built or a function being typed. Contextual information can be obtained through the \ic{haxe.macro.Context} API.}
 
 Haxe macros have access to different contextual information depending on the macro type. Other than querying such information, the context also allows some modifications such as defining a new type or registering certain callbacks. It is important to understand that not all information is available for all macro kinds, as the following examples demonstrate:
 

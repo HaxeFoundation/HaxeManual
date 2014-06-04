@@ -200,13 +200,13 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					buffer.add("\n```");
 
 				// custom
-				case [TCustomCommand("define"), subject = popt(bracketArg), TBrOpen, s = text(), TBrClose, TBrOpen, s2 = text2(), TBrClose]:
-					definitionMap[s] = s2;
-					labelMap['def:$s'] = mkLabel(s, Definition);
+				case [TCustomCommand("define"), subject = popt(bracketArg), TBrOpen, s = text(), TBrClose, TBrOpen, s2 = text2(), TBrClose, TBrOpen, s3 = text2(), TBrClose]:
+					definitionMap[s2] = s3;
+					labelMap[s2] = mkLabel(s, Definition);
 					buffer.add('> ##### Define: $s\n');
 					buffer.add('>\n');
-					s2 = s2.replace("\r", "").split("\n").join("\n> ");
-					buffer.add('> $s2');
+					s3 = s3.replace("\r", "").split("\n").join("\n> ");
+					buffer.add('> $s3');
 					buffer.add("\n");
 				case [TCustomCommand("trivia"), title = popt(bracketArg), TBrOpen, s = text(), TBrClose, TBrOpen, s2 = text2(), TBrClose]:
 					buffer.add('> ##### Trivia: $s\n');

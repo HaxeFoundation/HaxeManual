@@ -30,7 +30,7 @@ The Haxe type system knows seven type groups:
 
 We will describe each of these type groups and how they relate to each other in the next chapters.
 
-\define{Compound Type}{A compound type is a type which has sub-types. This includes any type with \tref{type parameters}{type-system-type-parameters} and the \tref{function}{types-function} type.}
+\define{Compound Type}{define-compound-type}{A compound type is a type which has sub-types. This includes any type with \tref{type parameters}{type-system-type-parameters} and the \tref{function}{types-function} type.}
 
 
 \section{Basic Types}
@@ -45,8 +45,8 @@ We will describe each of these type groups and how they relate to each other in 
 \subsection{Numeric types}
 \label{types-numeric-types}
 
-\define[Type]{Float}{Represents a double-precision IEEE 64-bit floating point number.}
-\define[Type]{Int}{Represents an integral number.}
+\define[Type]{Float}{define-float}{Represents a double-precision IEEE 64-bit floating point number.}
+\define[Type]{Int}{define-int}{Represents an integral number.}
 While every \type{Int} can be used where a \type{Float} is expected (that is, \type{Int} \emph{is assignable to} or \emph{unifies with} \type{Float}), the reverse is not true: Assigning a \type{Float} to an \type{Int} might lose precision and is not implicitly allowed.
 
 \subsection{Overflow}
@@ -119,7 +119,7 @@ Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used t
 \subsection{Bool}
 \label{types-bool}
 
-\define[Type]{Bool}{Represents a value which can be either \emph{true} or \emph{false}.}
+\define[Type]{Bool}{define-bool}{Represents a value which can be either \emph{true} or \emph{false}.}
 Values of type \type{Bool} appear commonly in \emph{conditions} such as \expr{if} (section \ref{expression-if}) and \expr{while} (section \ref{expression-while}). The following \emph{operators} accept and return \type{Bool} values:
 \begin{itemize}
 	\item \expr{\&\&} (and)
@@ -140,7 +140,7 @@ Accessing \expr{object.field} if \expr{object} is \expr{null} would lead to a ru
 \subsection{Void}
 \label{types-void}
 
-\define[Type]{Void}{Void denotes the absence of a type. It is used to express that something (usually a function) has no value.}
+\define[Type]{Void}{define-void}{Void denotes the absence of a type. It is used to express that something (usually a function) has no value.}
 
 \type{Void} is a special case in the type system because it is not actually a type. It is used to express the absence of a type, which applies mostly to function arguments and return types.
 We have already ``seen'' Void in the initial ``Hello World'' example:
@@ -158,12 +158,12 @@ var x:Void; // Arguments and variables of type Void are not allowed
 \section{Nullability}
 \label{types-nullability}
 
-\define{nullable}{A type in Haxe is considered \emph{nullable} if \expr{null} is a valid value for it.}
+\define{nullable}{define-nullable}{A type in Haxe is considered \emph{nullable} if \expr{null} is a valid value for it.}
 
 It is common for programming languages to have a single, clean definition for nullability. However, Haxe has to find a compromise in this regard. The reason for this is obvious when looking at the nature of Haxe's target languages: While some of them allow and, in fact, default to \expr{null} for anything, others do not even allow \expr{null} for certain types. This necessitates the distinction of two types of target languages:
 
-\define{Static target}{Static targets employ their own type system where \expr{null} is not a valid value for basic types. This is true for the \target{Flash}, \target{C++}, \target{Java} and \target{C\#} targets.}
-\define{Dynamic target}{Dynamic targets are more lenient with their types and allow \expr{null} values for basic types. They consist of \target{JavaScript}, \target{PHP}, \target{Neko} and \target{Flash 6-8}.}
+\define{Static target}{define-static-target}{Static targets employ their own type system where \expr{null} is not a valid value for basic types. This is true for the \target{Flash}, \target{C++}, \target{Java} and \target{C\#} targets.}
+\define{Dynamic target}{define-dynamic-target}{Dynamic targets are more lenient with their types and allow \expr{null} values for basic types. They consist of \target{JavaScript}, \target{PHP}, \target{Neko} and \target{Flash 6-8}.}
 
 There is nothing to worry about when working with \expr{null} on dynamic targets, but static ones may require some thought. For starters, basic types are initialized to these values:
 
@@ -216,7 +216,6 @@ function opt( ?z : Int = -1) {...}
 
 \trivia{Argument vs Parameter}{In some other programming languages, \emph{argument} and \emph{parameter} are used interchangably.  In Haxe, \emph{argument} is used when referring to methods, and \emph{parameter} refers to \Fullref{type-system-type-parameters}.}
 
-
 \section{Class Instance}
 \label{types-class-instance}
 
@@ -230,7 +229,7 @@ Semantically, this class represents a point in discrete 2-dimensional space, but
 
 \begin{itemize}
 	\item The keyword \expr{class} denotes that we are declaring a class.
-	\item \type{Point} is the name of the class and could be anything conforming to the \tref{rules for type identifiers}{def:Identifier}.
+	\item \type{Point} is the name of the class and could be anything conforming to the \tref{rules for type identifiers}{define-identifier}.
 	\item Enclosed in curly braces \expr{$\left\{\right\}$} are the class fields,
 	\item which consist of two \emph{variable} fields \expr{x} and \expr{y} of type \type{Int},
 	\item followed by a special \emph{function} field named \expr{new}, which is the \emph{constructor} of the class,
@@ -238,7 +237,7 @@ Semantically, this class represents a point in discrete 2-dimensional space, but
 \end{itemize}
 There is a special type in Haxe which is compatible with all classes:
 
-\define[Type]{Class$<$T$>$}{This type is compatible with all class types. At compile-time, \type{Class<T>} can be considered to be the common base type of all class types. However, this relation is not reflected in generated code.}
+\define[Type]{\expr{Class$<$T$>$}}{define-class-t}{This type is compatible with all class types. At compile-time, \type{Class<T>} can be considered to be the common base type of all class types. However, this relation is not reflected in generated code.}
 \todo{Same as in 2.2, what the \type{Class$<$T$>$} syntax means is unclear at this point.}
 \todo{What are class types?}
 
@@ -318,14 +317,14 @@ Haxe provides powerful enumeration (short: enum) types, which are actually an \e
 Semantically, this enum describes a color which is either red, green, blue or a specified RGB value. The syntactic structure is as follows:
 \begin{itemize}
 	\item The keyword \expr{enum} denotes that we are declaring an enum.
-	\item \type{Color} is the name of the enum and could be anything conforming to the rules for \tref{type identifiers}{def:Identifier}.
+	\item \type{Color} is the name of the enum and could be anything conforming to the rules for \tref{type identifiers}{define-identifier}.
 	\item Enclosed in curly braces \expr{$\left\{\right\}$} are the \emph{enum constructors},
 	\item which are \expr{Red}, \expr{Green} and \expr{Blue} taking no arguments,
 	\item as well as \expr{Rgb} taking three \type{Int} arguments named \expr{r}, \expr{g} and \expr{b}.
 \end{itemize}
 The Haxe type system provides a type which unifies with all enum types:
 
-\define[Type]{Enum}{This type is compatible with all enum types. At compile-time, \type{Enum<T>} can be considered to be the common base type of all enum types. However, this relation is not reflected in generated code.} 
+\define[Type]{\expr{Enum$<$T$>$}}{define-enum-t}{This type is compatible with all enum types. At compile-time, \type{Enum<T>} can be considered to be the common base type of all enum types. However, this relation is not reflected in generated code.} 
 \todo{Same as in 2.2, what is \type{Enum$<$T$>$} syntax?}
 
 \todo{Doesn't really show enum usage, do you use Color.Red or just Red? etc.}
@@ -344,7 +343,7 @@ In this code, the type of variables \expr{a}, \expr{b} and \expr{c} is \type{Col
 
 All enum instances can be assigned to a special type named \type{EnumValue}.
 \todo{EnumValue is the type that unifies with the types that are instances of Enums? Would benefit from more elaboration.}
-\define[Type]{EnumValue}{EnumValue is a special type which unifies with all enum instances. It is used by the Haxe Standard Library to provide some operations for all enum instances, and can be employed in user-code accordingly.}
+\define[Type]{EnumValue}{define-enumvalue}{EnumValue is a special type which unifies with all enum instances. It is used by the Haxe Standard Library to provide some operations for all enum instances, and can be employed in user-code accordingly.}
 
 It is important to distinguish enum types and enum constructors, as this example demonstrates:
 
@@ -365,7 +364,7 @@ The general syntactic rules follow:
 \begin{enumerate}
 	\item A structure is enclosed in curly braces \expr{$\left\{\right\}$}. 
 	\item Has a \emph{comma-separated} list of key-value-pairs.
-	\item A \emph{colon} separates the key, which must be a valid \tref{identifier}{def:Identifier}, from the value.
+	\item A \emph{colon} separates the key, which must be a valid \tref{identifier}{define-identifier}, from the value.
 	\item\label{valueanytype} The value can be any Haxe expression.
 \end{enumerate}
 Rule \ref{valueanytype} implies that structures can be nested and complex, e.g.:
@@ -424,7 +423,7 @@ It is also possible to use \emph{JavaScript Object Notation} for structures by u
 \begin{lstlisting}
 var point = { "x" : 1, "y" : -5 };
 \end{lstlisting}
-While any string literal is allowed, the field is only considered part of the type if it is a valid \tref{Haxe identifier}{def:Identifier}. Otherwise, Haxe syntax does not allow expressing access to such a field, and \tref{reflection}{std-reflection} has to be employed through the use of \expr{Reflect.field} and \expr{Reflect.setField}.
+While any string literal is allowed, the field is only considered part of the type if it is a valid \tref{Haxe identifier}{define-identifier}. Otherwise, Haxe syntax does not allow expressing access to such a field, and \tref{reflection}{std-reflection} has to be employed through the use of \expr{Reflect.field} and \expr{Reflect.setField}.
 
 \subsection{Class Notation for Structure Types}
 \label{types-structure-class-notation}
@@ -446,7 +445,7 @@ typedef Point = {
 \subsection{Impact on Performance}
 \label{types-structure-performance}
 
-Using structures and by extension \tref{structural subtyping}{type-system-structural-subtyping} has no impact on performance when compiling to \tref{dynamic targets}{def:Dynamic target}. However, on \tref{static targets}{def:Static target} a dynamic lookup has to be performed, which is typically slower than a static field access.
+Using structures and by extension \tref{structural subtyping}{type-system-structural-subtyping} has no impact on performance when compiling to \tref{dynamic targets}{define-dynamic-target}. However, on \tref{static targets}{define-static-target} a dynamic lookup has to be performed, which is typically slower than a static field access.
 
 
 
@@ -484,7 +483,7 @@ This example program calls \expr{test} four times and prints its return value.
 	\item the third call is made with two arguments \expr{1} and \expr{"foo"}
 	\item the fourth call is made with a singular argument \expr{"foo"}
 \end{enumerate}
-The output shows that optional arguments which are omitted from the call have a value of \expr{null}. This implies that the type of these arguments must admit \expr{null} as value, which raises the question of its \tref{nullability}{types-nullability}. The Haxe Compiler ensures that optional basic type arguments are nullable by inferring their type as \type{Null<T>} when compiling to a \tref{static target}{def:Static target}.
+The output shows that optional arguments which are omitted from the call have a value of \expr{null}. This implies that the type of these arguments must admit \expr{null} as value, which raises the question of its \tref{nullability}{types-nullability}. The Haxe Compiler ensures that optional basic type arguments are nullable by inferring their type as \type{Null<T>} when compiling to a \tref{static target}{define-static-target}.
 
 While the first three calls are intuitive, the fourth one might come as a surprise: It is indeed allowed to skip optional arguments if the supplied value is assignable to a later argument.
 
@@ -581,9 +580,9 @@ We can derive the following from this example:
 	\item which is a constructor function \expr{new} accepting one argument \expr{i} of type \type{Int}.
 \end{itemize}
 
-\define{Underlying Type}{The underlying type of an abstract is the type which is used to represent said abstract at runtime. It is usually a concrete (i.e. non-abstract) type, but could be another abstract type as well.}
+\define{Underlying Type}{define-underlying-type}{The underlying type of an abstract is the type which is used to represent said abstract at runtime. It is usually a concrete (i.e. non-abstract) type, but could be another abstract type as well.}
 
-The syntax is reminiscent of classes and the semantics are indeed similar. In fact, everything in the ``body'' of an abstract (that is everything after the opening curly brace) is parsed as class fields. Abstracts may have \tref{method}{class-field-method} fields and non-\tref{physical}{def:Physical field} \tref{property}{class-field-property} fields.
+The syntax is reminiscent of classes and the semantics are indeed similar. In fact, everything in the ``body'' of an abstract (that is everything after the opening curly brace) is parsed as class fields. Abstracts may have \tref{method}{class-field-method} fields and non-\tref{physical}{define-physical-field} \tref{property}{class-field-property} fields.
 
 Furthermore, abstracts can be instantiated and used just like classes:
 
