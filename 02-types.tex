@@ -586,10 +586,12 @@ att.income = 0; // error, value is not a String
 Classes can \tref{implement}{types-interfaces} \type{Dynamic} and \type{Dynamic$<$T$>$}, which enables arbitrary field access. In the former case, fields can have any type, in the latter they are constrained to be compatible with the parameter type:
 
 \haxe{assets/ImplementsDynamic.hx}
+
 Implementing \type{Dynamic} does not satisfy the requirements of other implemented interfaces. The expected fields still have to be implemented explicitly.
 
-\todo{resolve()}
+Classes that implement \type{Dynamic} (with or without type parameter) can also utilize a special method named \expr{resolve}. If a \tref{read access}{define-read-access} is made and the field in question does not exists, the \expr{resolve} method is called with the field name as argument:
 
+\haxe{assets/DynamicResolve.hx}
 
 
 
