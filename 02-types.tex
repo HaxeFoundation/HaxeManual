@@ -168,6 +168,7 @@ var x:Void; // Arguments and variables of type Void are not allowed
 It is common for programming languages to have a single, clean definition for nullability. However, Haxe has to find a compromise in this regard. The reason for this is obvious when looking at the nature of Haxe's target languages: While some of them allow and, in fact, default to \expr{null} for anything, others do not even allow \expr{null} for certain types. This necessitates the distinction of two types of target languages:
 
 \define{Static target}{define-static-target}{Static targets employ their own type system where \expr{null} is not a valid value for basic types. This is true for the \target{Flash}, \target{C++}, \target{Java} and \target{C\#} targets.}
+
 \define{Dynamic target}{define-dynamic-target}{Dynamic targets are more lenient with their types and allow \expr{null} values for basic types. They consist of \target{JavaScript}, \target{PHP}, \target{Neko} and \target{Flash 6-8}.}
 
 There is nothing to worry about when working with \expr{null} on dynamic targets, but static ones may require some thought. For starters, basic types are initialized to these values:
@@ -177,13 +178,14 @@ There is nothing to worry about when working with \expr{null} on dynamic targets
 	\item[\type{Float}:] \expr{NaN} on \target{Flash}, \expr{0.0} on other static targets
 	\item[\type{Bool}:] \expr{false}
 \end{description}
+
 As a consequence, the Haxe Compiler does not allow the assignment of \expr{null} to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as \type{Null$<$T$>$}:
-\todo{\type{Null$<$T$>$} hasn't been mentioned before I think, so it could be confusing as to what it is and why it's there and how it works and why it works.}
 
 \begin{lstlisting}
 var a:Int = null; // error on static platforms
 var b:Null<Int> = null; // allowed
 \end{lstlisting}
+
 Similarly, basic types cannot be compared to \expr{null} unless wrapped:
 
 \begin{lstlisting}
@@ -192,7 +194,10 @@ if( a == null ) { ... } // error on static platforms
 var b : Null<Int> = 0;
 if( b != null ) { ... } // allowed
 \end{lstlisting}
+
 This restriction extends to all situations where \tref{unification}{type-system-unification} is performed.
+
+\define[Type]{\expr{Null<T>}}{define-null-t}{On static targets the types \type{Null<Int>}, \type{Null<Float>} and \type{Null<Bool>} can be used in order to allow \expr{null} as a value. On dynamic targets this has no effect. \type{Null<T>} can also be used with other types in order to document that \expr{null} is an allowed value.}
 
 If a \expr{null}-value is ``hidden'' in \type{Null$<$T$>$} or \type{Dynamic} and assigned to a basic type, the default value is used:
 
@@ -201,6 +206,8 @@ var n : Null<Int> = null;
 var a : Int = n;
 trace(a); // 0 on static platforms
 \end{lstlisting}
+
+
 
 \subsection{Optional Arguments and Nullability}
 \label{types-nullability-optional-arguments}
