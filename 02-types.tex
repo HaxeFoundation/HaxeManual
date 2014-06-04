@@ -327,8 +327,6 @@ The Haxe type system provides a type which unifies with all enum types:
 \define[Type]{\expr{Enum$<$T$>$}}{define-enum-t}{This type is compatible with all enum types. At compile-time, \type{Enum<T>} can be considered to be the common base type of all enum types. However, this relation is not reflected in generated code.} 
 \todo{Same as in 2.2, what is \type{Enum$<$T$>$} syntax?}
 
-\todo{Doesn't really show enum usage, do you use Color.Red or just Red? etc.}
-
 \subsection{Enum Constructor}
 \label{types-enum-constructor}
 
@@ -351,6 +349,17 @@ It is important to distinguish enum types and enum constructors, as this example
 If line 7 is uncommented, the program does not compile because \expr{Red} (an enum constructor) cannot be assigned to a variable of type \type{Enum<Color>} (an enum type). The relation is analogous to a class and its instance.
 \todo{For this to work in markdown, it either needs line numbers or the paragraph needs rephrasing.}
 \todo{\type{Enum$<$Color$>$} syntax, what's the difference between that and Color?}
+
+\subsection{Using enums}
+\label{types-enum-using}
+
+Enums are a good choice if only a finite set of values should be allowed. The individual \tref{constructors}{types-enum-constructor} then represent the allowed variants and enable the compiler to check if all possible values are respected. This can be seen here:
+
+\haxe{assets/Color2.hx}
+
+After retrieving the value of \expr{color} by assigning the return value of \expr{getColor()} to it, a \tref{\expr{switch} expression}{expression-switch} is used to branch depending on the value. The first three cases \expr{Red}, \expr{Green} and \expr{Blue} are trivial and correspond to the constructors of \type{Color} that have no arguments. The final case \expr{Rgb(r, g, b)} shows how the argument values of a constructor can be extracted: they are available as local variables within the case body expression, just as if a \tref{\expr{var} expression}{expression-var} had been used.
+
+Advanced information on using the \expr{switch} expression will be explored later in the section on \tref{pattern matching}{lf-pattern-matching}.
 
 
 \section{Anonymous Structure}
