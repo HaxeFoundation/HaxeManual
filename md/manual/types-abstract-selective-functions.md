@@ -34,4 +34,4 @@ Previous section: [Array Access](types-abstract-array-access.md)
 
 Next section: [Enum abstracts](types-abstract-enum.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L724-724)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L755-755)

@@ -4,6 +4,7 @@
 >
 > Represents a double-precision IEEE 64-bit floating point number.
 
+
 > ##### Define: Int
 >
 > Represents an integral number.
@@ -16,4 +17,4 @@ Previous section: [Basic Types](types-basic-types.md)
 
 Next section: [Overflow](types-overflow.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L45-45)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L49-49)

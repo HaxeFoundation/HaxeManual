@@ -54,4 +54,4 @@ Previous section: [Inheritance](types-class-inheritance.md)
 
 Next section: [Enum Instance](types-enum-instance.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L274-274)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L286-286)

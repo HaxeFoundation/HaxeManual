@@ -42,4 +42,4 @@ Previous section: [Operator Overloading](types-abstract-operator-overloading.md)
 
 Next section: [Selective Functions](types-abstract-selective-functions.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L686-686)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L717-717)

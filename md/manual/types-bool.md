@@ -26,4 +26,4 @@ Previous section: [Numeric Operators](types-numeric-operators.md)
 
 Next section: [Void](types-void.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L119-119)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L124-124)

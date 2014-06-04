@@ -28,4 +28,4 @@ Previous section: [Bool](types-bool.md)
 
 Next section: [Nullability](types-nullability.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L140-140)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L145-145)

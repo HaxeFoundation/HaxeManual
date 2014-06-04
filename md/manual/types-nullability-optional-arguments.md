@@ -1,4 +1,4 @@
-## 2.2.1 Optional Arguments and Nullability:
+## 2.2.1 Optional Arguments and Nullability
 
 Optional arguments also have to be accounted when considering nullability.
 
@@ -24,4 +24,4 @@ Previous section: [Nullability](types-nullability.md)
 
 Next section: [Class Instance](types-class-instance.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L200-200)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L212-212)

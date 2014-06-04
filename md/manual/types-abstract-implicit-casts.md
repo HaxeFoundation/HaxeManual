@@ -120,4 +120,4 @@ Previous section: [Abstract](types-abstract.md)
 
 Next section: [Operator Overloading](types-abstract-operator-overloading.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L607-607)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L638-638)

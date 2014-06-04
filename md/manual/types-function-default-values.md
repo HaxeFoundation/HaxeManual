@@ -36,4 +36,4 @@ Previous section: [Optional Arguments](types-function-optional-arguments.md)
 
 Next section: [Dynamic](types-dynamic.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L491-491)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L520-520)

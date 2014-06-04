@@ -11,6 +11,7 @@ It is common for programming languages to have a single, clean definition for nu
 >
 > Static targets employ their own type system where `null` is not a valid value for basic types. This is true for the Flash, C++, Java and C# targets.
 
+
 > ##### Define: Dynamic target
 >
 > Dynamic targets are more lenient with their types and allow `null` values for basic types. They consist of JavaScript, PHP, Neko and Flash 6-8.
@@ -25,13 +26,14 @@ There is nothing to worry about when working with `null` on dynamic targets, but
 * `Bool`: `false`
 
 
-As a consequence, the Haxe Compiler does not allow the assignment of `null` to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as `Null<T>`:
 
+As a consequence, the Haxe Compiler does not allow the assignment of `null` to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as `Null<T>`:
 
 ```haxe
 var a:Int = null; // error on static platforms
 var b:Null<Int> = null; // allowed
 ```
+
 Similarly, basic types cannot be compared to `null` unless wrapped:
 
 ```haxe
@@ -40,7 +42,13 @@ if( a == null ) { ... } // error on static platforms
 var b : Null<Int> = 0;
 if( b != null ) { ... } // allowed
 ```
+
 This restriction extends to all situations where [unification](type-system-unification.md) is performed.
+
+> ##### Define: `Null<T>`
+>
+> On static targets the types `Null<Int>`, `Null<Float>` and `Null<Bool>` can be used in order to allow `null` as a value. On dynamic targets this has no effect. `Null<T>` can also be used with other types in order to document that `null` is an allowed value.
+
 
 If a `null`-value is "hidden" in `Null<T>` or `Dynamic` and assigned to a basic type, the default value is used:
 
@@ -54,6 +62,6 @@ trace(a); // 0 on static platforms
 
 Previous section: [Void](types-void.md)
 
-Next section: [Optional Arguments and Nullability:](types-nullability-optional-arguments.md)
+Next section: [Optional Arguments and Nullability](types-nullability-optional-arguments.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L158-158)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L163-163)

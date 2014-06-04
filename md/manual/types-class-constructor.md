@@ -13,4 +13,4 @@ Previous section: [Class Instance](types-class-instance.md)
 
 Next section: [Inheritance](types-class-inheritance.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L244-244)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L256-256)

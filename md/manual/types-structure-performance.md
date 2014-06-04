@@ -8,4 +8,4 @@ Previous section: [Class Notation for Structure Types](types-structure-class-not
 
 Next section: [Function Type](types-function.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L445-445)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L471-471)
