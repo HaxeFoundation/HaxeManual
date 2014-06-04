@@ -115,12 +115,11 @@ The following classes from the Haxe Standard Library are designed to be used as 
 \section{Pattern Matching}
 \label{lf-pattern-matching}
 \state{NoContent}
-\todo{Check ``you'' wording.}
 
 \subsection{Introduction}
 \label{lf-pattern-matching-introduction}
 
-Haxe 3 comes with improved options for pattern matching. Here we will explore the syntax for different patterns using this data structure as running example:
+Pattern matching is the process of branching depending on a value matching given, possibly deep patterns. In Haxe, all pattern matching is done within a \tref{\expr{switch} expression}{expression-switch} where the individual \expr{case} expressions represent the patterns. Here we will explore the syntax for different patterns using this data structure as running example:
 
 \haxe[firstline=1,lastline=4]{assets/PatternMatching.hx}
 
@@ -135,11 +134,11 @@ Some pattern matcher basics include:
 \subsection{Enum matching}
 \label{lf-pattern-matching-enums}
 
-As with Haxe 2, enums can be matched by their constructors in a natural way. With Haxe 3 pattern matching, this match can now be "deep":
+Enums can be matched by their constructors in a natural way:
 
 \haxe[firstline=8,lastline=19]{assets/PatternMatching.hx}
 
-The pattern matcher will check each case from top to bottom and pick the first one that matches the input value. If you are not too familiar with pattern matching, the following manual interpretation of each case rule might help:
+The pattern matcher will check each case from top to bottom and pick the first one that matches the input value. The following manual interpretation of each case rule helps understanding the process:
 
 \begin{description}
 	\item[\expr{case Leaf(_)}:] matching fails because \expr{myTree} is a \expr{Node}
@@ -172,11 +171,11 @@ Here, \expr{leafNode} is bound to \expr{Leaf("foo")} if the input matches that. 
 \subsection{Structure matching}
 \label{lf-pattern-matching-structure}
 
-It is now also possible to match against the fields of anonymous structures and instances:
+It is also possible to match against the fields of anonymous structures and instances:
 
 \haxe[firstline=36,lastline=42]{assets/PatternMatching.hx}
 
-Note that in the second case, we bind the matched \expr{name} field to identifier \expr{n} if \expr{rating} matches \expr{"awesome"}. Of course you could also put this structure into the \type{Tree} from the previous example and combine structure and enum matching.
+In the second case we bind the matched \expr{name} field to identifier \expr{n} if \expr{rating} matches \expr{"awesome"}. Of course this structure could also be put into the \type{Tree} from the previous example to combine structure and enum matching.
 
 A limitation with regards to class instances is that you cannot match against fields of their parent class.
 
@@ -196,7 +195,7 @@ The \expr{|} operator can be used anywhere within patterns to describe multiple 
 
 \haxe[firstline=56,lastline=61]{assets/PatternMatching.hx}
 
-If there's a captured variable in an or-pattern, it must appear in both its sub-patterns.
+If there is a captured variable in an or-pattern, it must appear in both its sub-patterns.
 
 \subsection{Guards}
 \label{lf-pattern-matching-guards}
@@ -205,12 +204,12 @@ It is also possible to further restrict patterns with the \expr{case ... if(cond
 
 \haxe[firstline=64,lastline=72]{assets/PatternMatching.hx}
 
-Note how the first case has an additional guard condition \expr{if (b > a)}. It will only be selected if that condition holds, otherwise matching continues with the next case.
+The first case has an additional guard condition \expr{if (b > a)}. It will only be selected if that condition holds, otherwise matching continues with the next case.
 
 \subsection{Match on multiple values}
 \label{lf-pattern-matching-tuples}
 
-Array syntax can also be used to match on multiple values:
+Array syntax can be used to match on multiple values:
 
 \haxe[firstline=75,lastline=80]{assets/PatternMatching.hx}
 
@@ -259,15 +258,18 @@ However, it is possible to have or-patterns on the right side of an extractor, s
 \subsection{Exhaustiveness checks}
 \label{lf-pattern-matching-exhaustiveness}
 
-The compiler ensures that you do not forget a possible case for non value-only switches:
+The compiler ensures that no possible cases are forgotten:
 
 \begin{lstlisting}
 switch(true) {
     case false:
-} // This match is not exhaustive, these patterns are not matched: true
+} // Unmatched patterns: true
 \end{lstlisting}
 
 The matched type \type{Bool} admits two values \expr{true} and \expr{false}, but only \expr{false} is checked. 
+
+\todo{Figure out wtf our rules are now for when this is checked.}
+
 
 
 \subsection{Useless pattern checks}
