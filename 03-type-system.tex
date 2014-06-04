@@ -324,7 +324,7 @@ The effects of type inference have been seen throughout this document and will c
 The special construct \expr{\$type} was previously mentioned in order to simplify the explanation of the \Fullref{types-function} type, so let us introduce it officially now:
 
 %TODO: $type
-\define[Construct]{type}{define-dollar-type}{type is a compile-time mechanism being called like a function, with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.}
+\define[Construct]{\expr{\$type}}{define-dollar-type}{\expr{\$type} is a compile-time mechanism being called like a function, with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.}
 
 In the example above, the first \expr{\$type} prints \expr{Unknown<0>}. This is a \tref{monomorph}{types-monomorph}, a type that is not yet known. The next line \expr{x = "foo"} assigns a \type{String} literal to \expr{x}, which causes the \tref{unification}{type-system-unification} of the monomorph with \type{String}. We then see that the type of \expr{x} indeed has changed to \type{String}.
 

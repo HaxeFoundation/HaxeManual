@@ -29,7 +29,7 @@ A [compound type](dictionary.md#compound-type) is considered covariant if its co
 Definition description
 
 ##### define-dollar-type
-type is a compile-time mechanism being called like a function, with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.
+`$type` is a compile-time mechanism being called like a function, with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.
 
 ##### define-dynamic-target
 Dynamic targets are more lenient with their types and allow `null` values for basic types. They consist of JavaScript, PHP, Neko and Flash 6-8.
