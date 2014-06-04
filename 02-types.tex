@@ -36,16 +36,21 @@ We will describe each of these type groups and how they relate to each other in 
 \section{Basic Types}
 \label{types-basic-types}
 
-\todo{Check wording here (we don't want to address ``you'')}
+\emph{Basic types} consist of \type{Bool}, \type{Float} and \type{Int}. They can easily be identified in the syntax by values such as
 
-\todo{A bit heavy on jargon. I don't know what abstract types are, what :coreType means, what metadata refers to and all the other stuff, but the section references and warnings are good to have.}
+\begin{itemize}
+	\item \expr{true} and \expr{false} for \type{Bool},
+	\item \expr{1}, \expr{0}, \expr{-1} and \expr{0xFF0000} for \type{Int} and
+	\item \expr{1.0}, \expr{0.0}, \expr{-1.0}, \expr{1e10} for \type{Float}.
+\end{itemize}
 
-\emph{Basic Types} include \emph{Bool, Float, and Int}.  The basic types are \emph{abstract types} tagged with \emph{:coreType} metadata.  This means is they get replaced by platform specific types at compile-time.  Don't worry about all of the implementation details at the moment, but feel free to see \Fullref{types-abstract} and \Fullref{lf-metadata} for more details.  Just be aware that this abstraction can cause the \Fullref{types-overflow} and \Fullref{types-nullability} of Basic Types to behave differently on different target platforms.  To reiterate: \textbf{basic types can behave differently depending on the target platform.}
+In Haxe, basic types are not \tref{classes}{types-class-instance}. They are implemented as \tref{abstract types}{types-abstract} and are tied to the compiler's internal operator handling as described in the following sections.
 
 \subsection{Numeric types}
 \label{types-numeric-types}
 
 \define[Type]{Float}{define-float}{Represents a double-precision IEEE 64-bit floating point number.}
+
 \define[Type]{Int}{define-int}{Represents an integral number.}
 While every \type{Int} can be used where a \type{Float} is expected (that is, \type{Int} \emph{is assignable to} or \emph{unifies with} \type{Float}), the reverse is not true: Assigning a \type{Float} to an \type{Int} might lose precision and is not implicitly allowed.
 
