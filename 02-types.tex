@@ -490,9 +490,12 @@ There is a strong resemblance between the declaration of function \expr{test} an
 	\item \emph{Function arguments} are separated by the special arrow token \expr{->} instead of commas, and
 	\item the \emph{function return type} appears at the end after another \expr{->}.
 \end{itemize}
+
 In either notation, it is obvious that the function \expr{test} accepts a first argument of type \type{Int}, a second argument of type \type{String} and returns a value of type \type{Bool}. If a call to this function is made, such as \expr{test(1, "foo")} within the second \expr{\$type} expression, the Haxe typer checks if \expr{1} can be assigned to \type{Int} and if \expr{"foo"} can be assigned to \type{String}. The type of the call is then equal to the type of the value \expr{test} returns, which is \type{Bool}.
 
-\todo{what seems to be missing everywhere is an explanation on how to use a function type as one of the parameters, Int -> String ->(String->Void)-> Bool; - Flanders}
+If a function type has other function types as argument or return type, parentheses can be used to group them correctly. As an example, \type{Int -> (Int -> Void) -> Void} represents a function which has a first argument of type \type{Int}, a second argument of function type \type{Int -> Void} and a return of \type{Void}.
+
+
 
 \subsection{Optional Arguments}
 \label{types-function-optional-arguments}
