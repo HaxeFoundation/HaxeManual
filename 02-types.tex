@@ -249,9 +249,9 @@ Semantically, this class represents a point in discrete 2-dimensional space, but
 \end{itemize}
 There is a special type in Haxe which is compatible with all classes:
 
-\define[Type]{\expr{Class$<$T$>$}}{define-class-t}{This type is compatible with all class types. At compile-time, \type{Class<T>} can be considered to be the common base type of all class types. However, this relation is not reflected in generated code.}
-\todo{Same as in 2.2, what the \type{Class$<$T$>$} syntax means is unclear at this point.}
-\todo{What are class types?}
+\define[Type]{\expr{Class$<$T$>$}}{define-class-t}{This type is compatible with all class types, which means that all classes (not their instances) can be assigned to it. At compile-time, \type{Class<T>} can be considered to be the common base type of all class types. However, this relation is not reflected in generated code.
+
+This type is useful when an API requires a value to be \emph{a} class, but not a specific one. This applies to several methods of the \tref{Haxe reflection API}{std-reflection}.}.
 
 \subsection{Class constructor}
 \label{types-class-constructor}
