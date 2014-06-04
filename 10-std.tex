@@ -18,18 +18,52 @@ Standard library
 \subsection{Array}
 \label{std-Array}
 
-An \type{Array} is a \emph{collection} for storing elements.  It has one \tref{type parameter}{type-system-type-parameters} and all elements of the array must be of the specified type.  Alternatively, arrays of mixed types are allowed if the type parameter is \Fullref{types-dynamic}.  See the below code snippet for an example. 
-\trivia{Dynamic Arrays}{In Haxe 2, mixed type array declarations were allowed.  In Haxe 3, arrays can have mixed types ONLY if they are explicitly declared as \emph{\expr{Array<Dynamic>}}.}
-The following example shows some basic examples of working with arrays:
-\haxe{assets/ArrayExample.hx}
+An \type{Array} is a collection of elements. It has one \tref{type parameter}{type-system-type-parameters} which corresponds to the type of these elements. Arrays can be created in three ways:
 
-\todo{make sure this is true about static targets}
-In Haxe, arrays are unbounded:  accessing or assigning an index outside the current size of the array does NOT result in an exception.  When assigning, the array grows and the inbetween elements are assigned \emph{null} (or the \emph{static target} alternative: see \Fullref{types-nullability} for more details).  When accessing, \emph{null} is returned.  Accessing a negative index in an array also returns \emph{null}.
+\begin{enumerate}
+	\item By using their constructor: \expr{new Array()}
+	\item By using \tref{array declaration syntax}{expression-array-declaration}: \expr{[1, 2, 3]}
+	\item By using \tref{array comprehension}{lf-array-comprehension}: \expr{[for (i in 0...10) if (i \% 2 == 0) i]}
+\end{enumerate}
 
-Arrays can be \emph{iterated over} using a \Fullref{expression-for} loop.  However removing elements while iterating over an array is error prone (but just fine with a \emph{List}).
+Arrays come with an API \href{http://api.haxe.org/Array.html}{API} to cover most use-cases. Additionally they allow read and write \tref{array access}{expression-array-access}:
 
-\todo{Maybe we should introduce \textbackslash api\{type name\}}
-See \Fullref{expression-array-declaration} for array initialization.  New arrays can also be created by \Fullref{lf-array-comprehension}.  The \href{http://api.haxe.org/Array.html}{Array API} has details about Array methods.
+\haxe{assets/ArrayAccess.hx}
+
+Since array access in Haxe is unbounded, i.e. it is guaranteed to not throw an exception, this requires further discussion:
+
+\begin{itemize}
+	\item If a read access is made on a non-existing index, a target-dependent value is returned.
+	\item If a write access is made with a positive index which is out of bounds, \expr{null} (or the \tref{default value}{define-default-value} for \tref{basic types}{types-basic-types} on \tref{static targets}{define-static-target}) is inserted at all positions between the last defined index and the newly written one.
+	\item If a write access is made with a negative index, the result is unspecified.
+\end{itemize}
+
+Arrays define an \tref{iterator}{lf-iterators} over their elements. This iteration is typically optimized by the compiler to use a \tref{\expr{while} loop}{expression-while} with array index:
+
+\haxe{assets/ArrayIterator.hx}
+
+Haxe generates this optimized \target{Javascript} output:
+
+\begin{lstlisting}
+Main.main = function() {
+	var scores = [110,170,35];
+	var sum = 0;
+	var _g = 0;
+	while(_g < scores.length) {
+		var score = scores[_g];
+		++_g;
+		sum += score;
+	}
+	console.log(sum);
+};
+\end{lstlisting}
+
+Haxe does not allow arrays of mixed types unless the parameter type is forced to \tref{\type{Dynamic}}{types-dynamic}:
+
+\haxe{assets/ArrayDynamic.hx}
+
+\trivia{Dynamic Arrays}{In Haxe 2, mixed type array declarations were allowed. In Haxe 3, arrays can have mixed types only if they are explicitly declared as \expr{Array<Dynamic>}.}
+
 
 \subsection{Vector}
 \label{std-vector}

@@ -1,7 +1,8 @@
-class ArrayAccessUsage {
-	public static function main(){
-		var map = new Map();
-		map["foo"] = 1;
-		trace(map["foo"]);
+class Main {
+	static public function main() {
+		var a = [1, 2, 3];
+		trace(a[1]); // 2
+		a[1] = 1;
+		trace(a[1]); // 1
 	}
 }
