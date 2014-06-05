@@ -33,7 +33,7 @@ class Main {
 }
 ```
 
-The problem here is that the compiler never actually "sees" the type `haxe.Template`, so it does not compile it into the output. Furthermore, even if it were to see the type there could be issues arising from using [dead code elimitation](cr-dce.md) eliminating types or fields which are only used via reflection.
+The problem here is that the compiler never actually "sees" the type `haxe.Template`, so it does not compile it into the output. Furthermore, even if it were to see the type there could be issues arising from [dead code elimitation](cr-dce.md) eliminating types or fields which are only used via reflection.
 
 Another set of problems comes from the fact that, by design, several reflection functions expect arguments of type [Dynamic](types-dynamic.md), meaning the compiler cannot check if the passed in arguments are correct. The following example demonstrates a common mistake when working with `callMethod`:
 
