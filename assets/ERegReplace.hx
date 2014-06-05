@@ -1,7 +1,9 @@
 class Main {
-    static function main() {
-        var str = "aaabcbcbcbz";
-        var r = ~/b[^c]/g; // g : replace all instances
-        trace(r.replace(str,"xx")); // "aaabcbcbcxx"
-    }
+  static function main() {
+    var str = "aaabcbcbcbz";
+    // g : replace all instances
+    var r = ~/b[^c]/g;
+    // "aaabcbcbcxx"
+    trace(r.replace(str,"xx"));
+  }
 }

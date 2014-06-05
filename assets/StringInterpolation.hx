@@ -3,5 +3,5 @@ var x = 12;
 trace('The value of x is ' + x);
 
 // With String Interpolation;
-trace('The value of x is $x'); // The value of x is 12
-
+// The value of x is 12
+trace('The value of x is $x');

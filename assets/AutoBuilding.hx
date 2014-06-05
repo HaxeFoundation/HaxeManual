@@ -7,5 +7,5 @@ interface I2 extends I { }
 class Base { }
 
 class Main extends Base implements I2 {
-	static public function main() {	}
+  static public function main() { }
 }

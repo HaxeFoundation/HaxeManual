@@ -12,4 +12,5 @@ switch( myColor ){
   case Red: 0xFF0000;
   case Green: 0x00ff00;
 }
-//will cause a compile warning because 'Blue' is missing
+// will cause a compile warning because 'Blue'
+// is missing

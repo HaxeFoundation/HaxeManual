@@ -6,8 +6,10 @@ The Haxe Compiler employs a rich typing system which helps detecting type-relate
 In some languages this additional safety comes at a price because programmers are forced to explicitly assign types to syntactic constructs:
 
 \begin{lstlisting}
-var myButton:MySpecialButton = new MySpecialButton(); // As3
-MySpecialButton* myButton = new MySpecialButton(); // C++ 
+var myButton:MySpecialButton =
+  new MySpecialButton(); // As3
+MySpecialButton* myButton =
+  new MySpecialButton(); // C++ 
 \end{lstlisting}
 The explicit type annotations are not required in Haxe, because the compiler can \emph{infer} the type:
 
@@ -131,11 +133,11 @@ Values of type \type{Bool} appear commonly in \emph{conditions} such as \expr{if
 	\item \expr{||} (or)
 	\item \expr{!} (not)
 \end{itemize}
-Haxe guarantees that compound boolean expressions are evaluated from left to right and only as far as necessary at runtime. For instance, an expression like \expr{A \&\& B} will evaluate \expr{A} first and evaluate \expr{B} only if the evaluation of \expr{A} yielded \expr{true}. Likewise, the expressions \expr{A || B} will not evaluate \expr{B} if the evaluation of \expr{A} yielded \expr{true}, because the value of \expr{B} is irrelevant in that case.
-This is important in some cases such as this:
+Haxe guarantees that compound boolean expressions are evaluated from left to right and only as far as necessary at runtime. For instance, an expression like \expr{A \&\& B} will evaluate \expr{A} first and evaluate \expr{B} only if the evaluation of \expr{A} yielded \expr{true}. Likewise, the expressions \expr{A || B} will not evaluate \expr{B} if the evaluation of \expr{A} yielded \expr{true}, because the value of \expr{B} is irrelevant in that case. This is important in some cases such as this:
 
 \begin{lstlisting}
-if (object != null && object.field == 1) { ... }
+if (object != null && object.field == 1)
+  { ... }
 \end{lstlisting}
 Accessing \expr{object.field} if \expr{object} is \expr{null} would lead to a runtime error, but the check for \expr{object != null} guards against it.
 
@@ -155,7 +157,9 @@ The function type will be explored in detail in section \Fullref{types-function}
 Haxe does not allow fields and variables of type \type{Void}, and will complain if an attempt is made at declaring such:
 
 \begin{lstlisting}
-var x:Void; // Arguments and variables of type Void are not allowed
+// Arguments and variables of type Void
+// are not allowed
+var x:Void;
 \end{lstlisting}
 
 
@@ -185,7 +189,8 @@ There is nothing to worry about when working with \expr{null} on dynamic targets
 As a consequence, the Haxe Compiler does not allow the assignment of \expr{null} to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as \type{Null$<$T$>$}:
 
 \begin{lstlisting}
-var a:Int = null; // error on static platforms
+// error on static platforms
+var a:Int = null;
 var b:Null<Int> = null; // allowed
 \end{lstlisting}
 
@@ -193,7 +198,8 @@ Similarly, basic types cannot be compared to \expr{null} unless wrapped:
 
 \begin{lstlisting}
 var a : Int = 0;
-if( a == null ) { ... } // error on static platforms
+// error on static platforms
+if( a == null ) { ... }
 var b : Null<Int> = 0;
 if( b != null ) { ... } // allowed
 \end{lstlisting}
@@ -311,7 +317,8 @@ class Point implements Printable { }
 The \expr{implements} keyword here denotes that \type{Point} has a "is-a" relationship to \type{Printable}, i.e. each instance of \type{Point} is also an instance of \type{Printable}. While a class may only have one parent class, it may implement multiple interfaces through multiple \expr{implements} keywords:
 
 \begin{lstlisting}
-class Point implements Printable implements Serializable
+class Point implements Printable
+  implements Serializable
 \end{lstlisting}
 
 The compiler checks if the \expr{implements} assumption holds. That is, it makes sure the class actually does implement all the fields required by the interface. A field is considered implemented if the class or any of its parent classes provide an implementation.
@@ -400,25 +407,31 @@ Rule \ref{valueanytype} implies that structures can be nested and complex, e.g.:
 
 \begin{lstlisting}
 var user = {
-    name : "Nicolas",
-    age : 32,
-    pos : [{ x : 0, y : 0 },{ x : 1, y : -1 }],
+  name : "Nicolas",
+	age : 32,
+	pos : [
+	  { x : 0, y : 0 },
+		{ x : 1, y : -1 }
+  ],
 };
 \end{lstlisting}
 Fields of structures, like classes, are accessed using a \emph{dot} (\expr{.}) like so:
 
 \begin{lstlisting}
-user.name; // get value of name, which is "Nicolas"
-user.age = 33; // set value of age to 33
+// get value of name, which is "Nicolas"
+user.name;
+// set value of age to 33
+user.age = 33;
 \end{lstlisting}
 It is worth noting that using anonymous structures does not subvert the typing system. The compiler ensures that only available fields are accessed, which means the following program does not compile:
 
 \begin{lstlisting}
 class Test {
-	static public function main() {
-		var point = { x: 0.0, y: 12.0 };
-		point.z; // { y : Float, x : Float } has no field z
-	}
+  static public function main() {
+    var point = { x: 0.0, y: 12.0 };
+    // { y : Float, x : Float } has no field z
+    point.z;
+  }
 }
 \end{lstlisting}
 The error message indicates that the compiler knows the type of \expr{point}: It is a structure with fields \expr{x} and \expr{y} of type \type{Float}. Since it has no field \expr{z}, the access fails.
@@ -577,9 +590,12 @@ Dynamic behaves in a special way when being \tref{unified}{type-system-unificati
 
 \begin{lstlisting}
 var att : Dynamic<String> = xml.attributes;
-att.name = "Nicolas"; // valid, value is a String
-att.age = "26"; // dito (this documentation is quite old)
-att.income = 0; // error, value is not a String
+// valid, value is a String
+att.name = "Nicolas";
+// dito (this documentation is quite old)
+att.age = "26";
+// error, value is not a String
+att.income = 0;
 \end{lstlisting}
 
 
@@ -664,8 +680,10 @@ In the example, the method \expr{fromString} allows the assignment of value \exp
 When using this kind of cast, calls to the cast-functions are inserted were required. This becomes obvious when looking at the \target{Javascript} output:
 
 \begin{lstlisting}
-var a = _ImplicitCastField.MyAbstract_Impl_.fromString("3");
-var b = _ImplicitCastField.MyAbstract_Impl_.toArray(a);
+var a = _ImplicitCastField.MyAbstract_Impl_
+  .fromString("3");
+var b = _ImplicitCastField.MyAbstract_Impl_
+  .toArray(a);
 \end{lstlisting}
 This can be further optimized by \tref{inlining}{class-field-inline} both cast functions, turning the output to this:
 
@@ -703,7 +721,8 @@ Abstracts allow overloading of unary and binary operators by adding the \expr{@:
 By defining \expr{@:op(A * B)}, the function \expr{repeat} serves as operator method for the multiplication \expr{*} operator when the type of the left value is \type{MyAbstract} and the type of the right value is \type{Int}. The usage is shown in line 17, which turns into this when compiled to \target{Javascript}:
 
 \begin{lstlisting}
-console.log(_AbstractOperatorOverload.MyAbstract_Impl_.repeat(a,3));
+console.log(_AbstractOperatorOverload.
+  MyAbstract_Impl_.repeat(a,3));
 \end{lstlisting}
 Similar to \tref{implicit casts with class fields}{types-abstract-implicit-casts}, a call to the overload method is inserted where required.
 
@@ -723,8 +742,10 @@ It is also possible to omit the method body of a \expr{@:op} function, but only 
 Array access describes the particular syntax traditionally used to access the value in an array at a certain offset. This is usually only allowed with arguments of type \type{Int}, but with abstracts it is possible to define custom array access methods. The \tref{Haxe Standard Library}{std} uses this in its \type{Map} type, where the following two methods can be found:
 
 \begin{lstlisting}
-@:arrayAccess public inline function get(key:K) return this.get(key);
-@:arrayAccess public inline function arrayWrite(k:K, v:V):V {
+@:arrayAccess public inline function
+get(key:K) return this.get(key);
+@:arrayAccess public inline function
+arrayWrite(k:K, v:V):V {
 	this.set(k, v);
 	return v;
 }

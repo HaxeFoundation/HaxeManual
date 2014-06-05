@@ -1,16 +1,16 @@
 class Base {
-	public function new() { }
+  public function new() { }
 }
 
 class Child extends Base { }
 
 typedef MyArray<T> = {
-	public function pop():T;
+  public function pop():T;
 }
 
 class Main {
-    public static function main () {
-		var a = [new Child()];
-		var b:MyArray<Base> = a;
-    }
+  public static function main () {
+    var a = [new Child()];
+    var b:MyArray<Base> = a;
+  }
 }

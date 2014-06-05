@@ -229,7 +229,8 @@ Unification errors are very easy to trigger:
 \begin{lstlisting}
 class Main {
 	static public function main() {
-		var s:String = 1; // Int should be String
+    // Int should be String
+		var s:String = 1;
 	}
 }
 \end{lstlisting}
@@ -270,7 +271,8 @@ These rules are transitive, meaning that a child class can also be assigned to t
 In Haxe, structural subtyping is only possible when assigning a class instance to a structure. The following example is part of the \type{Lambda} class of the \tref{Haxe Standard Library}{std}:
 
 \begin{lstlisting}
-public static function empty<T>(it : Iterable<T>) : Bool {
+public static function
+empty<T>(it : Iterable<T>):Bool {
 	return !it.iterator().hasNext();
 }
 \end{lstlisting}

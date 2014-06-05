@@ -1,11 +1,12 @@
 typedef IterableWithLength<T> = {
-	> Iterable<T>,
-	var length(default, null):Int; // read only property
+  > Iterable<T>,
+  // read only property
+  var length(default, null):Int;
 }
 
 class Extension {
-	static public function main() {
-		var array = [1, 2, 3];
-		var t:IterableWithLength<Int> = array;
-	}
+  static public function main() {
+    var array = [1, 2, 3];
+    var t:IterableWithLength<Int> = array;
+  }
 }

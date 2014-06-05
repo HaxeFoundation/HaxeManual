@@ -228,9 +228,12 @@ If a class has the \expr{:autoBuild} metadata, the compiler generates \expr{:bui
 This outputs during compilation:
 
 \begin{lstlisting}
-AutoBuildingMacro.hx:6: fromInterface: TInst(I2,[])
-AutoBuildingMacro.hx:6: fromInterface: TInst(Main,[])
-AutoBuildingMacro.hx:11: fromBaseClass: TInst(Main,[])
+AutoBuildingMacro.hx:6:
+  fromInterface: TInst(I2,[])
+AutoBuildingMacro.hx:6:
+  fromInterface: TInst(Main,[])
+AutoBuildingMacro.hx:11:
+  fromBaseClass: TInst(Main,[])
 \end{lstlisting}
 
 It is important to keep in mind that the order of these macro executions is undefined, which is detailed in \Fullref{macro-limitations-build-order}.

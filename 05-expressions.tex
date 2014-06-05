@@ -44,7 +44,9 @@ Blocks can contain local variables declared by \tref{\expr{var} expression}{expr
 	{
 		a; // ok, a is available in sub-blocks
 	}
-	a; // ok, a is still available after sub-blocks
+  // ok, a is still available after
+	// sub-blocks	
+	a;
 }
 a; // error, a is not available outside
 \end{lstlisting}
@@ -148,7 +150,8 @@ Functions calls consist of an arbitrary subject expression followed by an openin
 subject(); // call with no arguments
 subject(e1); // call with one argument
 subject(e1, e2); // call with two arguments
-subject(e1, ..., eN); // call with multiple arguments
+// call with multiple arguments
+subject(e1, ..., eN);
 \end{lstlisting}
 
 
@@ -160,8 +163,11 @@ The \expr{var} keyword allows declaring multiple variables, separated by comma \
 \begin{lstlisting}
 var a; // declare local a
 var b:Int; // declare variable b of type Int
-var c = 1; // declare variable c, initialized to value 1
-var d,e = 2; // declare variable d and variable e initialized to value 2
+// declare variable c, initialized to value 1
+var c = 1;
+// declare variable d and variable e
+// initialized to value 2
+var d,e = 2;
 \end{lstlisting}
 
 The scoping behavior of local variables is described in \Fullref{expression-block}.

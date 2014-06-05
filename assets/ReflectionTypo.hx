@@ -1,5 +1,5 @@
 class Main {
-	static function main() {
-		trace(Type.resolveClass("Mian")); // null
-	}
+  static function main() {
+    trace(Type.resolveClass("Mian")); // null
+  }
 }

@@ -1,10 +1,13 @@
 class Main {
-	static function main() {
-		//Reflect.callMethod(Main, "f", []); // wrong
-		Reflect.callMethod(Main, Reflect.field(Main, "f"), []); // right
-	}
+  static function main() {
+    // wrong
+    //Reflect.callMethod(Main, "f", []);
+    // right
+    Reflect.callMethod(Main,
+      Reflect.field(Main, "f"), []);
+  }
 
-	static function f() {
-		trace('Called');
-	}
+  static function f() {
+    trace('Called');
+  }
 }

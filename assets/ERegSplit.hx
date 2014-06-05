@@ -1,7 +1,8 @@
 class Main {
-    static function main() {
-        var str = "XaaaYababZbbbW";
-        var r = ~/[ab]+/g;
-        trace(r.split(str)); // ["X","Y","Z","W"]
-    }
+  static function main() {
+    var str = "XaaaYababZbbbW";
+    var r = ~/[ab]+/g;
+    // ["X","Y","Z","W"]
+    trace(r.split(str));
+  }
 }

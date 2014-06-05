@@ -1,21 +1,22 @@
 class MathExample {
-	static public function main() {
+  static public function main() {
 
-		var x = 1/2;
-		var y = 20.2;
-		var z = -2;
+    var x = 1/2;
+    var y = 20.2;
+    var z = -2;
 
-		trace(Math.abs(z)); //2
-		trace(Math.sin(x*Math.PI)); //1
-		trace(Math.ceil(y)); //21
+    trace(Math.abs(z)); //2
+    trace(Math.sin(x*Math.PI)); //1
+    trace(Math.ceil(y)); //21
 
-		//log is the natural logarithm
-		trace(Math.log(Math.exp(5))); //5
+    // log is the natural logarithm
+    trace(Math.log(Math.exp(5))); //5
 
-		//Outputs for neko target, may vary depending on platform
-		trace(1/0); //inf
-		trace(-1/0); //-inf
-		trace(Math.sqrt(-1)); //nan
-	}
+    // Output for neko target, may vary
+    // depending on platform
+    trace(1/0); //inf
+    trace(-1/0); //-inf
+    trace(Math.sqrt(-1)); //nan
+  }
 }
 
