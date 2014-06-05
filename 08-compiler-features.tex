@@ -99,3 +99,35 @@ Haxe uses target platform's native resource embedding, if there is one, providin
 \item \emph{JavaScript} resources are serialized in Haxe serialization format and stored in a static field of \type{haxe.Resource} class.
 \item \emph{Neko} resources are stored as strings in a static field of \type{haxe.Resource} class.
 \end{itemize}
+
+
+
+\section{Runtime Type Information}
+\label{cr-rtti}
+
+The Haxe compiler generates runtime type information (RTTI) for classes that are annotated or extend classes that are annotated with the \expr{:rtti} metadata. This information is stored as a XML string in a static field \expr{__rtti} and can be processed through \type{haxe.rtti.XmlParser}. The resulting structure has various fields providing information on the class.
+
+\paragraph{General type information}
+
+\begin{description}
+	\item[path:] The \tref{type path}{define-type-path} of the type.
+	\item[module:] The type path of the \tref{module}{define-module} containing the type.
+	\item[file:] The full slash path of the .hx file containing the type. This might be \expr{null} in case there is no such file, e.g. if the type is defined through a \tref{macro}{macro}.
+	\item[params:] An array of strings representing the names of the \tref{type parameters}{type-system-type-parameters} the type has. As of Haxe 3.2.0, this does not include the \tref{constraints}{type-system-type-parameter-constraints}.
+	\item[doc:] The documentation of the type. This information is only available if the \tref{compiler flag}{define-compiler-flag} \expr{-D use_rtti_doc} was in place. Otherwise, or if the type has no documentation, the value is \expr{null}.
+	\item[isPrivate:] Whether or not the type is \tref{private}{define-private-type}.
+	\item[platforms:] A \type{List<String>} of targets where this type is available.
+	\item[meta:] The meta data the type was annotated with.
+\end{description}
+	
+\paragraph{Class type information}
+
+\begin{description}
+	\item[isExtern:] Whether or not the class is \tref{extern}{lf-externs}.
+	\item[isInterface:] Whether or not the class is actually an \tref{interface}{types-interfaces}.
+	\item[superClass:] The class' parent class defined by its type path and list of type parameters.
+	\item[interfaces:] The list of interfaces defined by their type path and list of type parameters.
+	\item[fields:] The list of member class fields.
+	\item[statics:] The list of static class fields.
+	\item[tdynamic:] The type which is \tref{dynamically implemented}{types-dynamic-implemented} by this class, or \expr{null} if no such type exists.
+\end{description}
