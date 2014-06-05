@@ -125,15 +125,14 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 				case [s = text2()]: buffer.add(s);
 
 				// skip
-				case [TCommand(CTitle), TBrOpen, s = text(), TBrClose]:
-				case [TCommand(CAuthor), TBrOpen, s = text(), TBrClose]:
+				case [TCommand(CTitle), s = inBraces(text)]:
+				case [TCommand(CAuthor), s = inBraces(text)]:
 				case [TCommand(CDate), TBrOpen, TCommand(CToday), TBrClose]:
 				case [TCommand(CClearpage)]:
 				case [TCommand(CTableofcontents)]:
 				case [TCommand(CMaketitle)]:
 				case [TCustomCommand("todototoc")]:
 				case [TCustomCommand("listoftodos")]:
-
 
 				// format
 				case [TBegin("center")]:
@@ -152,19 +151,12 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 				case [TEnd("lstlisting")]:
 					codeMode = false;
 					buffer.add("```");
-				case [TBegin("figure")]:
-					// TODO
-				case [TEnd("figure")]:
-					// TODO
-				case [TCommand(CCentering)]:
-				case [TCommand(CIncludegraphics), options = popt(bracketArg), TBrOpen, s = text(), TBrClose]:
-					// TODO
 				case [TCustomEnvironment("flowchart", s, handler)]:
 					var s = handler(s);
 					if (s != null) {
 						buffer.add(s);
 					}
-				case [TCommand(CInput), TBrOpen, s = text(), TBrClose]:
+				case [TCommand(CInput), s = inBraces(text)]:
 					var oldStream = stream;
 					var oldInput = input;
 					input = byte.ByteData.ofString(sys.io.File.getContent(s));
@@ -172,9 +164,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					document();
 					stream = oldStream;
 					input = oldInput;
-				case [TCommand(CCaption), TBrOpen, s = text(), TBrClose]:
-					// TODO
-				case [TCustomCommand("haxe"), options = popt(bracketArg), TBrOpen, s = text(), TBrClose]:
+				case [TCustomCommand("haxe"), options = popt(bracketArg), s = inBraces(text)]:
 					var f = sys.io.File.getContent(s);
 					var validate = false;
 					var f = if (options == null) {
@@ -210,7 +200,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					buffer.add("\n```");
 
 				// custom
-				case [TCustomCommand("define"), subject = popt(bracketArg), TBrOpen, title = text(), TBrClose, TBrOpen, label = text2(), TBrClose, TBrOpen, content = text2(), TBrClose]:
+				case [TCustomCommand("define"), subject = popt(bracketArg), title = inBraces(text), label = inBraces(text2), content = inBraces(text2)]:
 					definitions.push({
 						title: title,
 						label: label,
@@ -222,17 +212,17 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					content = content.replace("\r", "").split("\n").join("\n> ");
 					buffer.add('> $content');
 					buffer.add("\n");
-				case [TCustomCommand("trivia"), title = popt(bracketArg), TBrOpen, s = text(), TBrClose, TBrOpen, s2 = text2(), TBrClose]:
+				case [TCustomCommand("trivia"), title = popt(bracketArg), s = inBraces(text), s2 = inBraces(text2)]:
 					buffer.add('> ##### Trivia: $s\n');
 					buffer.add('>\n');
 					s2 = s2.replace("\r", "").split("\n").join("\n> ");
 					buffer.add('> $s2');
-				case [TCustomCommand("todo"), options = popt(bracketArg), TBrOpen, s = text(), TBrClose]:
+				case [TCustomCommand("todo"), options = popt(bracketArg), s = inBraces(text)]:
 					todos.push('${lastSection.id} - ${lastSection.title}: $s');
 					//buffer.add('\n>TODO: $s\n\n');
-				case [TCustomCommand("missingfigure"), TBrOpen, s = text(), TBrClose]: buffer.add('> $s');
-				case [TCustomCommand("since"), TBrOpen, s = text(), TBrClose]: buffer.add('##### since Haxe $s\n\n');
-				case [TCustomCommand("state"), TBrOpen, s = text(), TBrClose]:
+				case [TCustomCommand("missingfigure"), s = inBraces(text)]: buffer.add('> $s');
+				case [TCustomCommand("since"), s = inBraces(text)]: buffer.add('##### since Haxe $s\n\n');
+				case [TCustomCommand("state"), s = inBraces(text)]:
 					var state = switch(s) {
 						case "Modified": Modified;
 						case "Reviewed": Reviewed;
@@ -240,21 +230,21 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 						case _: throw 'Invalid state string: $s';
 					}
 					lastSection.state = state;
-				case [TCustomCommand("flag"), TBrOpen, key = text(), TBrClose, TBrOpen, value = text(), TBrClose]:
+				case [TCustomCommand("flag"), key = inBraces(text), value = inBraces(text)]:
 					lastSection.flags[key] = value;
 				// section
-				case [TCommand(CPart), TBrOpen, s = text(), TBrClose]:
+				case [TCommand(CPart), s = inBraces(text)]:
 					// TODO: handle this
-				case [TCommand(CChapter), TBrOpen, s = text(), TBrClose]:
+				case [TCommand(CChapter), s = inBraces(text)]:
 					sections.push(mkSection(s, null, sections.length + 1));
-				case [TCommand(CSection), TBrOpen, s = text(), TBrClose]:
+				case [TCommand(CSection), s = inBraces(text)]:
 					var sec = sections[sections.length - 1];
 					sec.sub.push(mkSection(s, sec, sec.sub.length + 1));
-				case [TCommand(CSubsection), TBrOpen, s = text(), TBrClose]:
+				case [TCommand(CSubsection), s = inBraces(text)]:
 					var sec = sections[sections.length - 1].sub;
 					var sec = sec[sec.length - 1];
 					sec.sub.push(mkSection(s, sec, sec.sub.length + 1));
-				case [TCommand(CParagraph), TBrOpen, s = text(), TBrClose]:
+				case [TCommand(CParagraph), s = inBraces(text)]:
 					lastLabelTarget = Paragraph(lastSection, s);
 					buffer.add('###### $s');
 				// misc
@@ -291,20 +281,16 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 				}
 			case [TCommand(CTextasciitilde)]: "~";
 			case [TCommand(CTextbackslash)]: "\\\\";
-			case [TCommand(CEmph), TBrOpen, s = text(), TBrClose]: '**$s**';
+			case [TCommand(CEmph), s = inBraces(text)]: '**$s**';
 			case [TCommand(CTextwidth)]: "";
-			//I think \it{} is obsolete.  Added \textit{}
-			case [TCommand(CTextit), TBrOpen, s = text(), TBrClose]:'*$s*';
-			case [TCommand(CIt), TBrOpen, s = text(), TBrClose]: '*$s*';
-			case [TCommand(CTextbf), TBrOpen, s = text(), TBrClose]:'**$s**';
-			case [TCommand(CTextsuperscript), TBrOpen, s = text(), TBrClose]:'<sup>$s</sup>';
+			case [TCommand(CTextsuperscript), s = inBraces(text)]:'<sup>$s</sup>';
 			case [TBrOpen && codeMode]: "{";
 			case [TBrClose && codeMode]: "}";
 			case [TBkOpen && (codeMode || exprMode)]: "[";
 			case [TBkClose && (codeMode || exprMode)]: "]";
 			case [TCommand(CLeft)]: "";
 			case [TCommand(CRight)]: "";
-			case [TCustomCommand("target"), TBrOpen, s = text(), TBrClose]: s;
+			case [TCustomCommand("target"), s = inBraces(text)]: s;
 			case [TCustomCommand("expr")]:
 				exprMode = true;
 				var s = switch stream {
@@ -319,13 +305,13 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 				}
 				exprMode = false;
 				s;
-			case [TCommand(CTexttt), TBrOpen, s = text(), TBrClose]: '`$s`';
-			case [TCustomCommand("type"), TBrOpen, s = text(), TBrClose]: '`$s`';
-			case [TCustomCommand("ic"), TBrOpen, s = text(), TBrClose]: '`$s`';
+			case [TCommand(CTexttt), s = inBraces(text)]: '`$s`';
+			case [TCustomCommand("type"), s = inBraces(text)]: '`$s`';
+			case [TCustomCommand("ic"), s = inBraces(text)]: '`$s`';
 			case [s = ref()]: s;
-			case [TCustomCommand("href"), TBrOpen, s1 = text(), TBrClose, TBrOpen, s2 = text(), TBrClose]: '[$s2]($s1)';
-			case [TCommand(CUrl), TBrOpen, s = text(), TBrClose]: '[$s]($s)';
-			case [TCommand(CLabel), TBrOpen, s = text(), TBrClose]:
+			case [TCustomCommand("href"), s1 = inBraces(text), s2 = inBraces(text)]: '[$s2]($s1)';
+			case [TCommand(CUrl), s = inBraces(text)]: '[$s]($s)';
+			case [TCommand(CLabel), s = inBraces(text)]:
 				var name = switch(lastLabelTarget) {
 					case Section(sec):
 						lastSection.label = s;
@@ -352,10 +338,6 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 				}
 			case [TNewline]: tableMode ? "" : "\n";
 			case [TDoubleBackslash]: "\n";
-			//These commands can have optional, empy braces after them (for spacing purposes).
-			case [TCommand(CTextless), dummy = popt(emptyBraces)]: "&lt;";
-			case [TCommand(CTextgreater), dummy = popt(emptyBraces)]: "&gt;";
-			case [TCommand(CLdots), dummy = popt(emptyBraces)]: "...";
 			case [TCommand(CTextasciicircum)]: "^";
 		}
 	}
@@ -405,7 +387,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 				listMode.pop();
 				"\n";
 			// TODO
-			case [TCommand(CFootnote), TBrOpen, s = text(), TBrClose]: "";
+			case [TCommand(CFootnote), s = inBraces(text)]: "";
 			case [t = _text()]:
 				t;
 		}
@@ -438,6 +420,11 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 		}
 	}
 
+	function inBraces<T>(f:Void->T) {
+		return switch stream {
+			case [TBrOpen, r = f(), TBrClose]: r;
+		}
+	}
 
 	function popt<T>(f:Void->T):Null<T> {
 		return switch stream {
