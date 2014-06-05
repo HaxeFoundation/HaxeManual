@@ -150,7 +150,7 @@ class Main {
 
 	function generateEPub() {
 		var files = sectionInfo.all.map(function(sec) return out + "/" + url(sec));
-		Sys.command("pandoc", ["-t", "epub", "-f", "markdown_github", "-o", "HaxeManual.epub", "--epub-metadata=epub_metadata.xml"].concat(files).concat(['$out/dictionary.md']));
+		Sys.command("pandoc", ["-t", "epub", "-f", "markdown_github", "-o", "HaxeManual.epub", "--table-of-contents", "--epub-metadata=epub_metadata.xml"].concat(files).concat(['$out/dictionary.md']));
 	}
 
 	function link(sec:Section) {
