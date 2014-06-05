@@ -23,7 +23,6 @@ Missing Content:
 5.3 - Binary Operators
 5.4 - Unary Operators
 6.12 - Remoting
-6.13 - Runtime Type Information
 7 - Compiler Reference
 7.1 - Compiler Metadata
 8.2 - Completion
@@ -177,6 +176,8 @@ Unreviewed:
 8.3.2 - Retrieving text resources
 8.3.3 - Retrieving binary resources
 8.3.4 - Implementation details
+8.4 - Runtime Type Information
+8.4.1 - RTTI structure
 9 - Macros
 9.1 - Macro Context
 9.2 - Arguments

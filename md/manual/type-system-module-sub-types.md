@@ -5,7 +5,12 @@ A module sub-type is a type declared in a module with a different name than that
 ```haxe
 var e:haxe.macro.Expr.ExprDef;
 ```
-Here, the sub-type `ExprDef` within module `haxe.macro.Expr` is accessed. By default, module sub-types are publicly available, but their visibility can be constrained to their enclosing module by adding the `private` keyword:
+
+Here the sub-type `ExprDef` within module `haxe.macro.Expr` is accessed. 
+
+The sub-type relation is not reflected at runtime. That is, public sub-types become a member of their containing package, which could lead to conflicts if two modules within the same package try to define the same sub-type. Naturally the Haxe compiler detects these cases and reports them accordingly. In the example above, `ExprDef` is generated as `haxe.macro.ExprDef`.
+
+Sub-types can also be made private:
 
 ```haxe
 private class C { ... }
@@ -13,7 +18,15 @@ private enum E { ... }
 private typedef T { ... }
 private abstract A { ... }
 ```
-The accessibility can be controlled more fine-grained by using [access control](lf-access-control.md).
+
+> ##### Define: Private type
+>
+> A type can be made private by using the `private` modifier. As a result, the type can only be directly accessed from within the [module](dictionary.md#module) it is defined in.
+> 
+> Private types, unlike public ones, do not become a member of their containing package.
+
+
+The accessibility of types can be controlled more fine-grained by using [access control](lf-access-control.md).
 
 ---
 

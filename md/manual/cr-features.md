@@ -6,6 +6,8 @@
 
 8.3: [Resources](cr-resources.md)
 
+8.4: [Runtime Type Information](cr-rtti.md)
+
 ---
 
 Previous section: [Compiler Reference](#)

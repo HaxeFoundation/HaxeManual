@@ -24,8 +24,6 @@
 
 6.12: [Remoting](#)
 
-6.13: [Runtime Type Information](#)
-
 ---
 
 Previous section: [safe cast](expression-cast-safe.md)

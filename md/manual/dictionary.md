@@ -111,6 +111,11 @@ A field is considered to be **physical** if it is either
 
 
 
+##### Private type
+A type can be made private by using the `private` modifier. As a result, the type can only be directly accessed from within the [module](dictionary.md#module) it is defined in.
+
+Private types, unlike public ones, do not become a member of their containing package.
+
 ##### Read Access
 A read access to a field occurs when a right-hand side [field access expression](expression-field-access.md) is used. This includes calls in the form of `obj.field()`, where `field` is accessed to be read.
 

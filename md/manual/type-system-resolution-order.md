@@ -70,4 +70,4 @@ Previous section: [Import](type-system-import.md)
 
 Next section: [Class Fields](class-field.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L448-448)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L457-457)
