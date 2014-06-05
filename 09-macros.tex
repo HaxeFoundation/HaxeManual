@@ -12,7 +12,7 @@ A basic macro is a \emph{syntax-transformation}. It receives zero or more \tref{
 We can identify different kinds of macros, which are run at specific compilation stages:
 
 \begin{description}
-	\item[Initialization Macros:] These are provided by command line using the \ic{--macro} compiler parameter. They are executed after the compiler arguments were processed and the \emph{typer context} has been created, but before any typing was done (see \Fullref{macro-compiler-configuration}).
+	\item[Initialization Macros:] These are provided by command line using the \ic{--macro} compiler parameter. They are executed after the compiler arguments were processed and the \emph{typer context} has been created, but before any typing was done (see \Fullref{macro-initialization}).
 	\item[Build Macros:] These are defined for classes, enums and abstracts through the \expr{@:build} or \expr{@:autoBuild} \tref{metadata}{lf-metadata}. They are executed per-type, after the type has been set up (including its relation to other types, such as inheritance for classes) but before its fields are typed (see \Fullref{macro-type-building}).
 	\item[Expression Macros:] These are normal functions which are executed as soon as they are typed.
 \end{description}
@@ -30,7 +30,7 @@ Haxe macros have access to different contextual information depending on the mac
 	\item Build macros have a local type (if incomplete), but no local method, so \expr{Context.getLocalMethod()} returns \expr{null}.
 \end{itemize}
 
-The context API is complemented by the \expr{haxe.macro.Compiler} API detailed in \Fullref{macro-compiler-configuration}. While this API is available to all macro kinds, care has to be taken for any modification outside of initialization macros. This stems from the natural limitation of undefined \tref{build order}{macro-limitations-build-order}, which could cause e.g. a flag definition through \expr{Compiler.define()} to take effect before or after a \tref{conditional compilation}{lf-condition-compilation} check against that flag.
+The context API is complemented by the \expr{haxe.macro.Compiler} API detailed in \Fullref{macro-initialization}. While this API is available to all macro kinds, care has to be taken for any modification outside of initialization macros. This stems from the natural limitation of undefined \tref{build order}{macro-limitations-build-order}, which could cause e.g. a flag definition through \expr{Compiler.define()} to take effect before or after a \tref{conditional compilation}{lf-condition-compilation} check against that flag.
 
 \section{Arguments}
 \label{macro-arguments}
@@ -271,5 +271,13 @@ With both interfaces \type{I1} and \type{I2} having \expr{:autoBuild} metadata, 
 \label{macro-limitations-type-parameters}
 
 
-\section{Compiler Configuration}
-\label{macro-compiler-configuration}
+\section{Initialization macros}
+\label{macro-initialization}
+
+Initialization macros are invoked from command line by using the \expr{--macro callExpr(args)} command. This registers a callback which the compiler invokes after creating its context, but before typing what was argument to \expr{-main}. This then allows configuring the compiler in some ways.
+
+If the argument to \expr{--macro} is a call to a plain identifier, that identifier is looked up in the class \type{haxe.macro.Compiler} which is part of the Haxe Standard Library. It comes with several useful initialization macros which are detailed in its \href{http://api.haxe.org//haxe/macro/Compiler.html}{API}.
+
+As an example, the \expr{include} macro allows inclusion of an entire package for compilation, recursively if necessary. The command line argument for this would then be \expr{--macro include('some.pack', true)}.
+
+Of course it is also possible to define custom initialization macros to perform various tasks before the real compilation. A macro like this would then be invoked via \expr{--macro some.Class.theMacro(args)}. For instance, as all macros share the same \tref{context}{macro-context}, an initialization macro could set the value of a static field which other macros use as configuration.
