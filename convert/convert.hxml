@@ -5,3 +5,4 @@
 -resource envTemplate.tex@tikzTemplate
 -cmd neko convert.n
 #-D epub
+#-D mobi

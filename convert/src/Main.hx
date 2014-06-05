@@ -74,6 +74,13 @@ class Main {
 		#if epub
 		generateEPub();
 		#end
+
+		#if mobi
+			#if !epub
+			#error "Generating .mobi requires -D epub to be defined"
+			#end
+			Sys.command("ebook-convert", ["HaxeManual.epub", "HaxeManual.mobi", "--no-inline-toc"]);
+		#end
 	}
 
 	function parse() {
