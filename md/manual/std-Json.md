@@ -4,8 +4,8 @@ Haxe provides built-in support for (de-)serializing **JSON** data via the `haxe.
 
 ---
 
-Previous section: [Extensions](std-math-extensions.md)
+Previous section: [Reflection](std-reflection.md)
 
 Next section: [Parsing JSON](std-Json-parsing.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L298-298)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L334-334)

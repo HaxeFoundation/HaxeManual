@@ -33,9 +33,7 @@ Missing Content:
 8.2.5 - Metadata
 9.6.1 - Macro-in-Macro
 9.6.4 - Type Parameters
-9.7 - Compiler Configuration
 10.5 - Lambda
-10.6 - Reflection
 10.7 - Serialization
 10.9 - Xml
 10.10 - Input/Output
@@ -194,6 +192,7 @@ Unreviewed:
 9.5.2 - @:autoBuild
 9.6.2 - Static extension
 9.6.3 - Build Order
+9.7 - Initialization macros
 10.1 - String
 10.2.1 - Array
 10.2.2 - Vector
@@ -213,6 +212,7 @@ Unreviewed:
 10.4.2 - Mathematical Errors
 10.4.3 - Integer Math
 10.4.4 - Extensions
+10.6 - Reflection
 10.8 - Json
 10.8.1 - Parsing JSON
 10.8.2 - Encoding JSON

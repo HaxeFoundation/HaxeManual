@@ -12,4 +12,4 @@ Previous section: [Encoding JSON](std-Json-encoding.md)
 
 Next section: [Haxelib](haxelib.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L318-318)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L354-354)

@@ -4,7 +4,7 @@ Standard library
 
 ---
 
-Previous section: [Build Order](macro-limitations-build-order.md)
+Previous section: [Initialization macros](macro-initialization.md)
 
 Next section: [String](std-String.md)
 
