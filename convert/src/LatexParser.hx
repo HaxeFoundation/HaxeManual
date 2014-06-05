@@ -52,6 +52,7 @@ enum LabelKind {
 	Section(sec:Section);
 	Item(i:Int);
 	Definition;
+	Paragraph(sec:Section, name:String);
 }
 
 typedef Label = {
@@ -240,7 +241,9 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					var sec = sections[sections.length - 1].sub;
 					var sec = sec[sec.length - 1];
 					sec.sub.push(mkSection(s, sec, sec.sub.length + 1));
-
+				case [TCommand(CParagraph), TBrOpen, s = text(), TBrClose]:
+					lastLabelTarget = Paragraph(lastSection, s);
+					buffer.add('###### $s');
 				// misc
 				case [TCommand(CMulticolumn), TBrOpen, _ = text(), TBrClose, TBrOpen, _ = text(), TBrClose, TBrOpen, s = text(), TBrClose]:
 					buffer.add('\n##### $s\n');
@@ -316,6 +319,8 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 						sec.title;
 					case Item(i):
 						"" + i;
+					case Paragraph(_, name):
+						name;
 					case Definition:
 						throw false;
 				}

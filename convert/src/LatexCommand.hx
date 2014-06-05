@@ -19,6 +19,7 @@ enum LatexCommand {
 	CSection;
 	CSubsection;
 	CSubsubsection;
+	CParagraph;
 	CItem;
 	CEmph;
 	CIt;
@@ -37,7 +38,7 @@ enum LatexCommand {
 	CTextwidth;
 	CCaption;
 	CInput;
-	
+
 	CTextless;
 	CTextgreater;
 	CTextbackslash;
