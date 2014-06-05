@@ -105,7 +105,16 @@ Haxe uses target platform's native resource embedding, if there is one, providin
 \section{Runtime Type Information}
 \label{cr-rtti}
 
-The Haxe compiler generates runtime type information (RTTI) for classes that are annotated or extend classes that are annotated with the \expr{:rtti} metadata. This information is stored as a XML string in a static field \expr{__rtti} and can be processed through \type{haxe.rtti.XmlParser}. The resulting structure has various fields providing information on the class.
+The Haxe compiler generates runtime type information (RTTI) for classes that are annotated or extend classes that are annotated with the \expr{:rtti} metadata. This information is stored as a XML string in a static field \expr{__rtti} and can be processed through \type{haxe.rtti.XmlParser}. The resulting structure is described in \Fullref{cr-rtti-structure}.
+
+\since{3.2.0}
+
+The type \type{haxe.rtti.Rtti} has been introduced in order to simplify working with RTTI. Retrieving this information is now very easy:
+
+\haxe{assets/RttiUsage.hx}
+
+\subsection{RTTI structure}
+\label{cr-rtti-structure}
 
 \paragraph{General type information}
 
@@ -116,18 +125,65 @@ The Haxe compiler generates runtime type information (RTTI) for classes that are
 	\item[params:] An array of strings representing the names of the \tref{type parameters}{type-system-type-parameters} the type has. As of Haxe 3.2.0, this does not include the \tref{constraints}{type-system-type-parameter-constraints}.
 	\item[doc:] The documentation of the type. This information is only available if the \tref{compiler flag}{define-compiler-flag} \expr{-D use_rtti_doc} was in place. Otherwise, or if the type has no documentation, the value is \expr{null}.
 	\item[isPrivate:] Whether or not the type is \tref{private}{define-private-type}.
-	\item[platforms:] A \type{List<String>} of targets where this type is available.
+	\item[platforms:] A list of strings representing the targets where the type is available.
 	\item[meta:] The meta data the type was annotated with.
 \end{description}
 	
 \paragraph{Class type information}
+\label{cr-rtti-class-type-information}
 
 \begin{description}
 	\item[isExtern:] Whether or not the class is \tref{extern}{lf-externs}.
 	\item[isInterface:] Whether or not the class is actually an \tref{interface}{types-interfaces}.
 	\item[superClass:] The class' parent class defined by its type path and list of type parameters.
 	\item[interfaces:] The list of interfaces defined by their type path and list of type parameters.
-	\item[fields:] The list of member class fields.
-	\item[statics:] The list of static class fields.
-	\item[tdynamic:] The type which is \tref{dynamically implemented}{types-dynamic-implemented} by this class, or \expr{null} if no such type exists.
+	\item[fields:] The list of member \tref{class fields}{class-field}, described in \Fullref{cr-rtti-class-field-information}.
+	\item[statics:] The list of static class fields, described in \Fullref{cr-rtti-class-field-information}.
+	\item[tdynamic:] The type which is \tref{dynamically implemented}{types-dynamic-implemented} by the class, or \expr{null} if no such type exists.
+\end{description}
+
+\paragraph{Enum type information}
+
+\begin{description}
+	\item[isExtern:] Whether or not the enum is \tref{extern}{lf-externs}.
+	\item[constructors:] The list of enum constructors.
+\end{description}
+
+\paragraph{Abstract type information}
+
+\begin{description}
+	\item[to:] An array containing the defined \tref{implicit to casts}{types-abstract-implicit-casts}.
+	\item[from:] An array containing the defined \tref{implicit from casts}{types-abstract-implicit-casts}.
+	\item[impl:] The \tref{class type information}{cr-rtti-class-type-information} of the implementing class.
+	\item[athis:] The \tref{underlying type}{define-underlying-type} of the abstract.
+\end{description}
+	
+	
+\paragraph{Class field information}
+\label{cr-rtti-class-field-information}
+
+\begin{description}
+	\item[name:] The name of the field.
+	\item[type:] The type of the field.
+	\item[isPublic:] Whether or not the field is \tref{public}{class-field-visibility}.
+	\item[isOverride:] Whether or not the field \tref{overrides}{class-field-override} another field.
+	\item[doc:] The documentation of the field. This information is only available if the \tref{compiler flag}{define-compiler-flag} \expr{-D use_rtti_doc} was in place. Otherwise, or if the field has no documentation, the value is \expr{null}.
+	\item[get:] The \tref{read access behavior}{define-read-access} of the field.
+	\item[set:] The \tref{write access behavior}{define-write-access} of the field.
+	\item[params:] \item[params:] An array of strings representing the names of the \tref{type parameters}{type-system-type-parameters} the field has. As of Haxe 3.2.0, this does not include the \tref{constraints}{type-system-type-parameter-constraints}.
+	\item[platforms:] A list of strings representing the targets where the field is available.
+	\item[meta:] The meta data the field was annotated with.
+	\item[line:] The line number where the field is defined. This information is only available if the field has an expression. Otherwise the value is \expr{null}.
+	\item[overloads:] The list of available overloads for the fields, or \expr{null} if no overloads exists.
+\end{description}
+
+\paragraph{Enum constructor information}
+\label{cr-rtti-enum-constructor-information}
+
+\begin{description}
+	\item[name:] The name of the constructor.
+	\item[args:] The list of arguments the constructor has, or \expr{null} if no arguments are available.
+	\item[doc:] The documentation of the constructor. This information is only available if the \tref{compiler flag}{define-compiler-flag} \expr{-D use_rtti_doc} was in place. Otherwise, or if the constructor has no documentation, the value is \expr{null}.
+	\item[platforms:] A list of strings representing the targets where the constructor is available.
+	\item[meta:] The meta data the constructor was annotated with.
 \end{description}
