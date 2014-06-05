@@ -23,7 +23,7 @@ Expressions in Haxe define what a program **does**. Most expressions are found i
 > 
 > 
 > * Type names must start with an upper-case letter `A-Z` or an underscore `_`.
-> * Leading dollars are not allowed for any kind of [name](dictionary.md#name) (dollar-names are mostly used for [macro reification](macro-reification.md)).
+> * Leading dollars are not allowed for any kind of [name](dictionary.md#define-name) (dollar-names are mostly used for [macro reification](macro-reification.md)).
 > 
 >
 

@@ -1,6 +1,6 @@
 ## 5.10 var
 
-The `var` keyword allows declaring multiple variables, separated by comma `,`. Each variable has a valid [identifier](dictionary.md#identifier) and optionally a value assignment following the assignment operator `=`. Variables can also have an explicit type-hint.
+The `var` keyword allows declaring multiple variables, separated by comma `,`. Each variable has a valid [identifier](dictionary.md#define-identifier) and optionally a value assignment following the assignment operator `=`. Variables can also have an explicit type-hint.
 
 ```haxe
 var a; // declare local a

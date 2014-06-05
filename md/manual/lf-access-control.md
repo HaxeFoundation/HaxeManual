@@ -9,7 +9,7 @@ Access control can be used if the basic [visibility](class-field-visibility.md) 
 
 
 
-In this context, a **target** can be the [dot-path](dictionary.md#type-path) to
+In this context, a **target** can be the [dot-path](dictionary.md#define-type-path) to
 
 
 

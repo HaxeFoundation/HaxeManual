@@ -69,12 +69,12 @@ With `b` being typed as `MyArray<Base>` and `MyArray` only having a `pop()` meth
 
 > ##### Define: Covariance
 >
-> A [compound type](dictionary.md#compound-type) is considered covariant if its component types can be assigned to less specific components, i.e. if they are only read, but never written.
+> A [compound type](dictionary.md#define-compound-type) is considered covariant if its component types can be assigned to less specific components, i.e. if they are only read, but never written.
 
 
 > ##### Define: Contravariance
 >
-> A [compound type](dictionary.md#compound-type) is considered contravariant if its component types can be assigned to less generic components, i.e. if they are only written, but never read.
+> A [compound type](dictionary.md#define-compound-type) is considered contravariant if its component types can be assigned to less generic components, i.e. if they are only written, but never read.
 
 ---
 

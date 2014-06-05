@@ -26,7 +26,7 @@ We can derive the following from this example:
 > The underlying type of an abstract is the type which is used to represent said abstract at runtime. It is usually a concrete (i.e. non-abstract) type, but could be another abstract type as well.
 
 
-The syntax is reminiscent of classes and the semantics are indeed similar. In fact, everything in the "body" of an abstract (that is everything after the opening curly brace) is parsed as class fields. Abstracts may have [method](class-field-method.md) fields and non-[physical](dictionary.md#physical-field) [property](class-field-property.md) fields.
+The syntax is reminiscent of classes and the semantics are indeed similar. In fact, everything in the "body" of an abstract (that is everything after the opening curly brace) is parsed as class fields. Abstracts may have [method](class-field-method.md) fields and non-[physical](dictionary.md#define-physical-field) [property](class-field-property.md) fields.
 
 Furthermore, abstracts can be instantiated and used just like classes:
 

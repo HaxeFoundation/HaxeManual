@@ -20,7 +20,7 @@ class Main {
 
 Implementing `Dynamic` does not satisfy the requirements of other implemented interfaces. The expected fields still have to be implemented explicitly.
 
-Classes that implement `Dynamic` (with or without type parameter) can also utilize a special method named `resolve`. If a [read access](dictionary.md#read-access) is made and the field in question does not exists, the `resolve` method is called with the field name as argument:
+Classes that implement `Dynamic` (with or without type parameter) can also utilize a special method named `resolve`. If a [read access](dictionary.md#define-read-access) is made and the field in question does not exists, the `resolve` method is called with the field name as argument:
 
 ```haxe
 class Resolve implements Dynamic<String> {

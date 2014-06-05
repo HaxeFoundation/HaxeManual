@@ -12,7 +12,7 @@ We describe the resolution order algorithm here, which depends on the following 
 * the kind (static or member) of the current field
 * the declared member fields on the current class and its parent classes
 * the declared static fields on the current class
-* the [expected type](dictionary.md#expected-type)
+* the [expected type](dictionary.md#define-expected-type)
 * the expression being `untyped` or not
 
 

@@ -11,6 +11,7 @@ Haxe code here
 Occasionally, we demonstrate how Haxe code is generated, for which we usually show the Javascript target.
 
 Furthermore, we define a set of terms in this document. Most often, this is done when introducing a new type or when a term is specific to Haxe. We not define every new aspect we introduce, e.g. what a class is, in order to not clutter the text. A definition looks like this:
+
 > ##### Define: Definition name
 >
 > Definition description

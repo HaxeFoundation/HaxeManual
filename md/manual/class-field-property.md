@@ -19,7 +19,7 @@ When dealing with properties, it is important to understand the two kinds of acc
 
 > ##### Define: Write Access
 >
-> A write access to a field occurs when a [field access expression](expression-field-access.md) is assigned a value in the form of `obj.field = value`. It may also occur in combination with [read access](dictionary.md#read-access) for special assignment operators such as `+=` in expressions like `obj.field += value`.
+> A write access to a field occurs when a [field access expression](expression-field-access.md) is assigned a value in the form of `obj.field = value`. It may also occur in combination with [read access](dictionary.md#define-read-access) for special assignment operators such as `+=` in expressions like `obj.field += value`.
  
 
 Read access and write access are directly reflected in the syntax, as the following example shows:

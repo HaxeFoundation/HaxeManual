@@ -28,7 +28,7 @@ Since array access in Haxe is unbounded, i.e. it is guaranteed to not throw an e
 
 
 * If a read access is made on a non-existing index, a target-dependent value is returned.
-* If a write access is made with a positive index which is out of bounds, `null` (or the [default value](dictionary.md#default-values) for [basic types](types-basic-types.md) on [static targets](dictionary.md#static-target)) is inserted at all positions between the last defined index and the newly written one.
+* If a write access is made with a positive index which is out of bounds, `null` (or the [default value](dictionary.md#define-default-value) for [basic types](types-basic-types.md) on [static targets](dictionary.md#define-static-target)) is inserted at all positions between the last defined index and the newly written one.
 * If a write access is made with a negative index, the result is unspecified.
 
 

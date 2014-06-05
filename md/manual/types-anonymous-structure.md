@@ -15,7 +15,7 @@ The general syntactic rules follow:
 
 1. A structure is enclosed in curly braces `{}`. 
 2. Has a **comma-separated** list of key-value-pairs.
-3. A **colon** separates the key, which must be a valid [identifier](dictionary.md#identifier), from the value.
+3. A **colon** separates the key, which must be a valid [identifier](dictionary.md#define-identifier), from the value.
 4. The value can be any Haxe expression.
 
 

@@ -16,4 +16,4 @@ Previous section: [About this Document](introduction-about-this-document.md)
 
 Next section: [Hello World](introduction-hello-world.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/01-introduction.tex#L67-67)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/01-introduction.tex#L68-68)
