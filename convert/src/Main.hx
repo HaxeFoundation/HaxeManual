@@ -56,9 +56,9 @@ class Main {
 
 		for (i in 0...sectionInfo.all.length) {
 			var sec = sectionInfo.all[i];
-			sec.content = generateTitleString(sec) + sec.content;
+			sec.content = generateTitleString(sec) + sec.content + "\n";
 			#if !epub
-			sec.content += "\n\n---";
+			sec.content += "\n---";
 			if (i != 0) sec.content += '\n\nPrevious section: ${link(sectionInfo.all[i - 1])}';
 			if (i != sectionInfo.all.length - 1) sec.content += '\n\nNext section: ${link(sectionInfo.all[i + 1])}';
 			var fileAndLines = '${sec.source.file}#L${sec.source.lineMin}-${sec.source.lineMax}';
