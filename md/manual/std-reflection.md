@@ -11,7 +11,7 @@ The reflection API consists of two classes:
 
 
 
-The available methods are detailed in the API for [http://api.haxe.org//Reflect.html](Reflect) and [http://api.haxe.org//Type.html](Type).
+The available methods are detailed in the API for [Reflect](http://api.haxe.org//Reflect.html) and [Type](http://api.haxe.org//Type.html).
 
 Reflection can be a powerful tool, but it is important to understand why it can also cause problems. As an example, several functions expect a [String](std-String.md) argument and try to resolve it to a type or field. This is vulnerable to typing errors:
 
