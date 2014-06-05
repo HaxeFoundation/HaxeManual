@@ -60,9 +60,18 @@ typedef Label = {
 	kind: LabelKind
 }
 
+typedef Definition = {
+	title: String,
+	label: String,
+	content: String
+}
+
 class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> implements hxparse.ParserBuilder {
+
+	static public inline var linkPrefix = #if epub "#" #else "" #end;
+
 	public var labelMap:Map<String, Label>;
-	public var definitionMap:Map<String, String>;
+	public var definitions:Array<Definition>;
 	public var todos:Array<String>;
 
 	var sections:Array<Section>;
@@ -86,7 +95,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 		todos = [];
 		sections = [];
 		labelMap = new Map();
-		definitionMap = new Map();
+		definitions = [];
 		listMode = new GenericStack<ListMode>();
 		codeMode = false;
 		exprMode = false;
@@ -201,13 +210,17 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					buffer.add("\n```");
 
 				// custom
-				case [TCustomCommand("define"), subject = popt(bracketArg), TBrOpen, s = text(), TBrClose, TBrOpen, s2 = text2(), TBrClose, TBrOpen, s3 = text2(), TBrClose]:
-					definitionMap[s] = s3;
-					labelMap[s2] = mkLabel(s, Definition);
-					buffer.add('> ##### Define: $s\n');
+				case [TCustomCommand("define"), subject = popt(bracketArg), TBrOpen, title = text(), TBrClose, TBrOpen, label = text2(), TBrClose, TBrOpen, content = text2(), TBrClose]:
+					definitions.push({
+						title: title,
+						label: label,
+						content: content
+					});
+					labelMap[label] = mkLabel(label, Definition);
+					buffer.add('> ##### Define: $title\n');
 					buffer.add('>\n');
-					s3 = s3.replace("\r", "").split("\n").join("\n> ");
-					buffer.add('> $s3');
+					content = content.replace("\r", "").split("\n").join("\n> ");
+					buffer.add('> $content');
 					buffer.add("\n");
 				case [TCustomCommand("trivia"), title = popt(bracketArg), TBrOpen, s = text(), TBrClose, TBrOpen, s2 = text2(), TBrClose]:
 					buffer.add('> ##### Trivia: $s\n');
@@ -402,7 +415,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 		return switch stream {
 			case [TCommand(CRef), TBrOpen, s = text(), TBrClose]: '~~~$s~~~';
 			case [TCustomCommand("Fullref"), TBrOpen, s = text(), TBrClose]: '~~~$s~~~';
-			case [TCustomCommand("tref"), TBrOpen, s1 = text(), TBrClose, TBrOpen, s2 = text(), TBrClose]: '[$s1](~~$s2~~)';
+			case [TCustomCommand("tref"), TBrOpen, s1 = text(), TBrClose, TBrOpen, s2 = text(), TBrClose]: '[$s1]($linkPrefix~~$s2~~)';
 		}
 	}
 

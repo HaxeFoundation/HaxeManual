@@ -23,9 +23,7 @@ class Main {
 		Sys.setCwd("../");
 		var sections = parse();
 		var linkBase = "https://github.com/HaxeFoundation/HaxeManual/blob/master/";
-		out = "md/manual";
-		unlink(out);
-		sys.FileSystem.createDirectory(out);
+		out = #if epub "md_epub/manual" #else "md/manual" #end;
 
 		sectionInfo = collectSectionInfo(sections);
 
@@ -38,7 +36,9 @@ class Main {
 		}
 
 		function generateTitleString(sec:Section, prefix = "##") {
-			return '$prefix ${sec.id} ${sec.title}\n\n';
+			return
+				#if epub '<a name="${url(sec)}"></a>\n' + #end
+				'$prefix ${sec.id} ${sec.title}\n\n';
 		}
 
 		for (sec in sectionInfo.all) {
@@ -51,21 +51,29 @@ class Main {
 			}
 		}
 
+		unlink(out);
+		sys.FileSystem.createDirectory(out);
+
 		for (i in 0...sectionInfo.all.length) {
 			var sec = sectionInfo.all[i];
-			var content = generateTitleString(sec) + sec.content + "\n\n---";
-			if (i != 0) content += '\n\nPrevious section: ${link(sectionInfo.all[i - 1])}';
-			if (i != sectionInfo.all.length - 1) content += '\n\nNext section: ${link(sectionInfo.all[i + 1])}';
+			sec.content = generateTitleString(sec) + sec.content;
+			#if !epub
+			sec.content += "\n\n---";
+			if (i != 0) sec.content += '\n\nPrevious section: ${link(sectionInfo.all[i - 1])}';
+			if (i != sectionInfo.all.length - 1) sec.content += '\n\nNext section: ${link(sectionInfo.all[i + 1])}';
 			var fileAndLines = '${sec.source.file}#L${sec.source.lineMin}-${sec.source.lineMax}';
-			content += '\n\nContribute: [fileAndLines]($linkBase$fileAndLines)';
-			sys.io.File.saveContent('$out/${url(sec)}', content);
+			sec.content += '\n\nContribute: [fileAndLines]($linkBase$fileAndLines)';
+			#end
+			sys.io.File.saveContent('$out/${url(sec)}', sec.content);
 			Reflect.deleteField(sec, "content");
 		}
-
 		generateDictionary();
-		generateTodo(sectionInfo);
-
+		generateTodo();
 		sys.io.File.saveContent('$out/sections.txt', haxe.Json.stringify(sections));
+
+		#if epub
+		generateEPub();
+		#end
 	}
 
 	function parse() {
@@ -121,12 +129,17 @@ class Main {
 	}
 
 	function generateDictionary() {
-		var a = [for (k in parser.definitionMap.keys()) {k:k, v:parser.definitionMap[k]}];
-		a.sort(function(v1, v2) return Reflect.compare(v1.k.toLowerCase(), v2.k.toLowerCase()));
-		sys.io.File.saveContent('$out/dictionary.md', a.map(function(v) return '##### ${v.k}\n${process(v.v)}').join("\n\n"));
+		var entries = parser.definitions;
+		entries.sort(function(v1, v2) return Reflect.compare(v1.title.toLowerCase(), v2.title.toLowerCase()));
+		var definitions = [];
+		for (entry in entries) {
+			var anchorName = #if epub "dictionary.md-" +entry.label #else entry.label #end;
+			definitions.push('<a name="$anchorName"></a>\n##### ${entry.title}\n${process(entry.content)}');
+		}
+		sys.io.File.saveContent('$out/dictionary.md', definitions.join("\n\n"));
 	}
 
-	function generateTodo(sectionInfo:SectionInfo) {
+	function generateTodo() {
 		var todo = "This file is generated, do not edit!\n\n"
 			+ "Todo:\n" + parser.todos.join("\n") + "\n\n"
 			+ "Missing Content:\n" + sectionInfo.noContent.map(function(sec) return '${sec.id} - ${sec.title}').join("\n") + "\n\n"
@@ -135,18 +148,28 @@ class Main {
 		sys.io.File.saveContent('todo.txt', todo);
 	}
 
+	function generateEPub() {
+		var files = sectionInfo.all.map(function(sec) return out + "/" + url(sec));
+		Sys.command("pandoc", ["-t", "epub", "-f", "markdown_github", "-o", "HaxeManual.epub", "--epub-metadata=epub_metadata.xml"].concat(files).concat(['$out/dictionary.md']));
+	}
+
 	function link(sec:Section) {
 		if (sectionInfo.noContent.has(sec)) {
 			return '[${sec.title}](#)';
 		}
-		return '[${sec.title}](${url(sec)})';
+		return '[${sec.title}](${LatexParser.linkPrefix}${url(sec)})';
 	}
 
 	function process(s:String):String {
 		function labelUrl(label:Label) {
 			return switch(label.kind) {
 				case Section(sec): url(sec);
-				case Definition: 'dictionary.md#${escapeAnchor(label.name)}';
+				case Definition:
+					#if epub
+					'dictionary.md-${escapeAnchor(label.name)}';
+					#else
+					'dictionary.md#${escapeAnchor(label.name)}';
+					#end
 				case Item(i): "" + i;
 				case Paragraph(sec, name): '${url(sec)}#${escapeAnchor(name)}';
 			}
@@ -154,7 +177,7 @@ class Main {
 		function labelLink(label:Label) {
 			return switch(label.kind) {
 				case Section(sec): link(sec);
-				case Definition: '[${label.name}](${escapeAnchor("dictionary.md#" + label.name)})';
+				case Definition: '[${label.name}](${labelUrl(label)})';
 				case Item(i): "" + i;
 				case Paragraph(sec, name): '[$name](${url(sec)}#${escapeAnchor(name)})';
 			}
