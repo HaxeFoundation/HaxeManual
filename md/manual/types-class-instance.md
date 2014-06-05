@@ -6,15 +6,15 @@ The following code example serves as basis for the remainder of this section:
 
 ```haxe
 class Point {
-	var x : Int;
-	var y : Int;
-	public function new(x,y) {
-		this.x = x;
-		this.y = y;
-	}
-	public function toString() {
-		return "Point("+x+","+y+")";
-	}
+  var x : Int;
+  var y : Int;
+  public function new(x,y) {
+    this.x = x;
+    this.y = y;
+  }
+  public function toString() {
+    return "Point("+x+","+y+")";
+  }
 }
 ```
 
@@ -45,4 +45,4 @@ Previous section: [Optional Arguments and Nullability](types-nullability-optiona
 
 Next section: [Class constructor](types-class-constructor.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L234-234)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L240-240)

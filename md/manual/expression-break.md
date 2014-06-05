@@ -20,4 +20,4 @@ Previous section: [return](expression-return.md)
 
 Next section: [continue](expression-continue.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L355-355)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L361-361)

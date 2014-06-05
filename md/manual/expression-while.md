@@ -12,13 +12,13 @@ Upon each iteration, the condition expression is evaluated. If it evaluates to `
 
 ```haxe
 class Main {
-	static public function main() {
-		var f = 0.0;
-		while (f < 0.5) {
-			trace(f);
-			f = Math.random();
-		}
-	}
+  static public function main() {
+    var f = 0.0;
+    while (f < 0.5) {
+      trace(f);
+      f = Math.random();
+    }
+  }
 }
 ```
 
@@ -30,4 +30,4 @@ Previous section: [for](expression-for.md)
 
 Next section: [do-while](expression-do-while.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L221-221)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L227-227)

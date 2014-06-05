@@ -24,10 +24,10 @@ We see that externs can define both methods and variables (actually, `PI` is dec
 
 ```haxe
 class Main {
-	static public function main() {
-		var pi = Math.floor(Math.PI);
-		$type(pi); // Int
-	}
+  static public function main() {
+    var pi = Math.floor(Math.PI);
+    $type(pi); // Int
+  }
 }
 ```
 

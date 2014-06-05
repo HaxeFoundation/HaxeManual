@@ -11,11 +11,11 @@ The type `haxe.rtti.Rtti` has been introduced in order to simplify working with 
 ```haxe
 @:rtti
 class Main {
-	var x:String;
-	static function main() {
-		var rtti = haxe.rtti.Rtti.getRtti(Main);
-		trace(rtti);
-	}
+  var x:String;
+  static function main() {
+    var rtti = haxe.rtti.Rtti.getRtti(Main);
+    trace(rtti);
+  }
 }
 ```
 

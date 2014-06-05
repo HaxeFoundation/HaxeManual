@@ -16,15 +16,17 @@ using Main;
 using haxe.macro.Tools;
 
 class Main {
-	static public function main() {
-		"foo".test();
-	}
-	
-	macro static function test(e:ExprOf<String>) {
-		trace(e.toString()); // @:this this
-		trace(Context.typeof(e)); // TInst(String,[])
-		return e;
-	}
+  static public function main() {
+    "foo".test();
+  }
+
+  macro static function
+  test(e:ExprOf<String>) {
+    trace(e.toString()); // @:this this
+    // TInst(String,[])
+    trace(Context.typeof(e));
+    return e;
+  }
 }
 ```
 
@@ -34,4 +36,4 @@ Previous section: [Limitations](macro-limitations.md)
 
 Next section: [Build Order](macro-limitations-build-order.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L247-247)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L250-250)

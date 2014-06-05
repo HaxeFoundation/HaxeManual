@@ -14,12 +14,12 @@ Arrays come with an API [API](http://api.haxe.org/Array.html) to cover most use-
 
 ```haxe
 class Main {
-	static public function main() {
-		var a = [1, 2, 3];
-		trace(a[1]); // 2
-		a[1] = 1;
-		trace(a[1]); // 1
-	}
+  static public function main() {
+    var a = [1, 2, 3];
+    trace(a[1]); // 2
+    a[1] = 1;
+    trace(a[1]); // 1
+  }
 }
 ```
 
@@ -37,14 +37,14 @@ Arrays define an [iterator](lf-iterators.md) over their elements. This iteration
 
 ```haxe
 class Main {
-	static public function main() {
-		var scores = [110, 170, 35];
-		var sum = 0;
-		for (score in scores) {
-			sum += score;
-		}
-		trace(sum); // 315
-	}
+  static public function main() {
+    var scores = [110, 170, 35];
+    var sum = 0;
+    for (score in scores) {
+      sum += score;
+    }
+    trace(sum); // 315
+  }
 }
 ```
 
@@ -68,14 +68,16 @@ Haxe does not allow arrays of mixed types unless the parameter type is forced to
 
 ```haxe
 class Main {
-	static public function main() {
-		// Compile Error: Arrays of mixed types are only allowed if the type is
-		// forced to Array<Dynamic>
-		//var myArray = [10, "Bob", false];
+  static public function main() {
+    // Compile Error: Arrays of mixed types are
+    // only allowed if the type is forced to
+    // Array<Dynamic>
+    //var myArray = [10, "Bob", false];
 
-		// Array<Dynamic> with mixed types
-		var myExplicitAray:Array<Dynamic> = [10, "Sally", true];
-	}
+    // Array<Dynamic> with mixed types
+    var myExplicitArray:Array<Dynamic> =
+      [10, "Sally", true];
+  }
 }
 ```
 

@@ -6,9 +6,10 @@ When using `get` or `set` access identifier, the compiler ensures that the gette
 
 ```haxe
 class Main {
-	public var x(get, null):Int; // Method get_x required by property x is missing
-	
-	static public function main() {}
+  // Method get_x required by property x is
+  // missing
+  public var x(get, null):Int;
+  static public function main() {}
 }
 ```
 
@@ -16,13 +17,14 @@ The method `get_x` is missing, but it need not be declared on the class defining
 
 ```haxe
 class Base {
-	public function get_x() return 1;
+  public function get_x() return 1;
 }
 
 class Main extends Base {
-	public var x(get, null):Int; // ok, get_x is declared by parent class
-	
-	static public function main() {}
+  // ok, get_x is declared by parent class
+  public var x(get, null):Int;
+
+  static public function main() {}
 }
 ```
 

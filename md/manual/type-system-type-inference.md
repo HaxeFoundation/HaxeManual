@@ -4,12 +4,12 @@ The effects of type inference have been seen throughout this document and will c
 
 ```haxe
 class TypeInference {
-	public static function main() {
-		var x = null;
-		$type(x); // Unknown<0>
-		x = "foo";
-		$type(x); // String
-	}
+  public static function main() {
+    var x = null;
+    $type(x); // Unknown<0>
+    x = "foo";
+    $type(x); // String
+  }
 }
 ```
 The special construct `$type` was previously mentioned in order to simplify the explanation of the [Function Type](types-function.md) type, so let us introduce it officially now:
@@ -27,12 +27,12 @@ Following the rules of unification, type inference can occur in compound types:
 
 ```haxe
 class TypeInference2 {
-	public static function main() {
-		var x = [];
-		$type(x); // Array<Unknown<0>>
-		x.push("foo");
-		$type(x); // Array<String>
-	}
+  public static function main() {
+    var x = [];
+    $type(x); // Array<Unknown<0>>
+    x.push("foo");
+    $type(x); // Array<String>
+  }
 }
 ```
 Variable `x` is first initialized to an empty `Array`. At this point we can tell that the type of `x` is an array, but we do not yet know the type of the array elements. Consequentially, the type of `x` is `Array<Unknown<0>>`. It is only after pushing a `String` onto the array that we know the type to be `Array<String>`.
@@ -43,4 +43,4 @@ Previous section: [Common Base Type](type-system-unification-common-base-type.md
 
 Next section: [Top-down Inference](type-system-top-down-inference.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L318-318)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L320-320)

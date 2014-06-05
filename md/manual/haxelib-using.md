@@ -8,4 +8,4 @@ Previous section: [Dependencies](haxelib-json-dependencies.md)
 
 Next section: [Target Details](#)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/11-haxelib.tex#L132-132)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/11-haxelib.tex#L137-137)

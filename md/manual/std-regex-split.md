@@ -4,11 +4,12 @@ A regular expression can also be used to split a string into several substrings:
 
 ```haxe
 class Main {
-    static function main() {
-        var str = "XaaaYababZbbbW";
-        var r = ~/[ab]+/g;
-        trace(r.split(str)); // ["X","Y","Z","W"]
-    }
+  static function main() {
+    var str = "XaaaYababZbbbW";
+    var r = ~/[ab]+/g;
+    // ["X","Y","Z","W"]
+    trace(r.split(str));
+  }
 }
 
 ```

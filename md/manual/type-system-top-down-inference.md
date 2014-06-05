@@ -11,9 +11,9 @@ A good example are arrays of mixed types. As mentioned in [Dynamic](types-dynami
 
 ```haxe
 class Main {
-	static public function main() {
-		var a:Array<Dynamic> = [1, "foo"];
-	}
+  static public function main() {
+    var a:Array<Dynamic> = [1, "foo"];
+  }
 }
 ```
 
@@ -23,19 +23,19 @@ We have seen another interesting use of top-down inference when [construction of
 
 ```haxe
 typedef Constructible = {
-	public function new(s:String):Void;
+  public function new(s:String):Void;
 }
 
 class Main {
-	static public function main() {
-		var s:String = make();
-		var t:haxe.Template = make();
-	}
+  static public function main() {
+    var s:String = make();
+    var t:haxe.Template = make();
+  }
 
-	@:generic
-	static function make<T:Constructible>():T {
-		return new T("foo");
-	}
+  @:generic
+  static function make<T:Constructible>():T {
+    return new T("foo");
+  }
 }
 ```
 
@@ -47,4 +47,4 @@ Previous section: [Type Inference](type-system-type-inference.md)
 
 Next section: [Limitations](type-system-inference-limitations.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L339-339)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L341-341)

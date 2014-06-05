@@ -8,22 +8,22 @@ Extractors allow applying transformations to values being matched. This is often
 
 ```haxe
 enum Test {
-	TString(s:String);
-	TInt(i:Int);
+  TString(s:String);
+  TInt(i:Int);
 }
 
 class Main {
-	static public function main() {
-		var e = TString("fOo");
-		switch(e) {
-			case TString(temp):
-				switch(temp.toLowerCase()) {
-					case "foo": true;
-					case _: false;
-				}
-			case _: false;
-		}
-	}
+  static public function main() {
+    var e = TString("fOo");
+    switch(e) {
+      case TString(temp):
+        switch(temp.toLowerCase()) {
+          case "foo": true;
+          case _: false;
+        }
+      case _: false;
+    }
+  }
 }
 ```
 
@@ -31,18 +31,20 @@ Here we have to capture the argument value of the `TString` enum constructor in 
 
 ```haxe
 enum Test {
-	TString(s:String);
-	TInt(i:Int);
+  TString(s:String);
+  TInt(i:Int);
 }
 
 class Main {
-	static public function main() {
-		var e = TString("fOo");
-		var success = switch(e) {
-			case TString(_.toLowerCase() => "foo"): true;
-			case _: false;
-		}
-	}
+  static public function main() {
+    var e = TString("fOo");
+    var success = switch(e) {
+      case TString(_.toLowerCase() => "foo"):
+        true;
+      case _:
+        false;
+    }
+  }
 }
 ```
 
@@ -59,19 +61,20 @@ Since the right side is a pattern, it can contain another extractor. The followi
 
 ```haxe
 class Main {
-	static public function main() {
-		switch(3) {
-			case add(_, 1) => mul(_, 3) => a: trace(a);
-		}
-	}
-	
-	static function add(i1:Int, i2:Int) {
-		return i1 + i2;
-	}
-	
-	static function mul(i1:Int, i2:Int) {
-		return i1 * i2;
-	}
+  static public function main() {
+    switch(3) {
+      case add(_, 1) => mul(_, 3) => a:
+        trace(a);
+    }
+  }
+
+  static function add(i1:Int, i2:Int) {
+    return i1 + i2;
+  }
+
+  static function mul(i1:Int, i2:Int) {
+    return i1 * i2;
+  }
 }
 ```
 
@@ -81,12 +84,13 @@ It is currently not possible to use extractors within [or-patterns](lf-pattern-m
 
 ```haxe
 class Main {
-	static public function main() {
-		switch("foo") {
-			// Extractors in or patterns are not allowed
-			case (_.toLowerCase() => "foo") | "bar":
-		}
-	}
+  static public function main() {
+    switch("foo") {
+      // Extractors in or patterns are not
+      // allowed
+      case (_.toLowerCase() => "foo") | "bar":
+    }
+  }
 }
 ```
 

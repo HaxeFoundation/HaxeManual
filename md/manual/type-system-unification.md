@@ -12,7 +12,8 @@ Unification errors are very easy to trigger:
 ```haxe
 class Main {
 	static public function main() {
-		var s:String = 1; // Int should be String
+    // Int should be String
+		var s:String = 1;
 	}
 }
 ```

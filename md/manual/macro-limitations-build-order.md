@@ -19,17 +19,18 @@ interface I2 { }
 class C implements I1 implements I2 { }
 
 class MyMacro {
-	macro static public function build():Array<Field> {
-		var c = Context.getLocalClass().get();
-		if (c.meta.has(":processed")) return null;
-		c.meta.add(":processed",[],c.pos);
-		// process here
-		return null;
-	}
+  macro static public function
+  build():Array<Field> {
+    var c = Context.getLocalClass().get();
+    if (c.meta.has(":processed")) return null;
+    c.meta.add(":processed",[],c.pos);
+    // process here
+    return null;
+  }
 }
 
 class Main {
-	static public function main() { }
+  static public function main() { }
 }
 ```
 
@@ -41,4 +42,4 @@ Previous section: [Static extension](macro-limitations-static-extension.md)
 
 Next section: [Initialization macros](macro-initialization.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L260-260)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L263-263)

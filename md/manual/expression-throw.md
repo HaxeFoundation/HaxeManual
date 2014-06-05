@@ -14,4 +14,4 @@ Previous section: [continue](expression-continue.md)
 
 Next section: [cast](expression-cast.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L391-391)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L397-397)

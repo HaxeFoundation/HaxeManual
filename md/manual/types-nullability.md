@@ -36,7 +36,8 @@ There is nothing to worry about when working with `null` on dynamic targets, but
 As a consequence, the Haxe Compiler does not allow the assignment of `null` to a basic type on static targets. In order to achieve this, the basic type has to be wrapped as `Null<T>`:
 
 ```haxe
-var a:Int = null; // error on static platforms
+// error on static platforms
+var a:Int = null;
 var b:Null<Int> = null; // allowed
 ```
 
@@ -44,7 +45,8 @@ Similarly, basic types cannot be compared to `null` unless wrapped:
 
 ```haxe
 var a : Int = 0;
-if( a == null ) { ... } // error on static platforms
+// error on static platforms
+if( a == null ) { ... }
 var b : Null<Int> = 0;
 if( b != null ) { ... } // allowed
 ```
@@ -70,4 +72,4 @@ Previous section: [Void](types-void.md)
 
 Next section: [Optional Arguments and Nullability](types-nullability-optional-arguments.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L163-163)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L167-167)

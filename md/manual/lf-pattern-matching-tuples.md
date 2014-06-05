@@ -3,12 +3,12 @@
 Array syntax can be used to match on multiple values:
 
 ```haxe
-var s = switch [1, false, "foo"] {
-	case [1, false, "bar"]: "0";
-	case [_, true, _]: "1";
-	case [_, false, _]: "2";
-}
-trace(s); // 2
+    var myArray = [7, 6];
+    var s = switch(myArray) {
+      case [a, b] if (b > a):
+        b + ">" +a;
+      case [a, b]:
+        b + "<=" +a;
 ```
 
 This is quite similar to usual array matching, but there are differences:

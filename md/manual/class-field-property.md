@@ -26,8 +26,8 @@ Read access and write access are directly reflected in the syntax, as the follow
 
 ```haxe
 class Main {
-	public var x(default, null):Int;
-	static public function main() { }
+  public var x(default, null):Int;
+  static public function main() { }
 }
 ```
 

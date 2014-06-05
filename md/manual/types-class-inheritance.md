@@ -4,11 +4,11 @@ Classes may inherit from other classes, which in Haxe is denoted by the `extends
 
 ```haxe
 class Point3 extends Point {
-	var z : Int;
-	public function new(x,y,z) {
-		super(x,y);
-		this.z = z;
-	}
+  var z : Int;
+  public function new(x,y,z) {
+    super(x,y);
+    this.z = z;
+  }
 }
 ```
 This relation is often described as "is-a": Any instance of class `Point3` is also an instance of `Point`. `Point` is then known as the **parent class** of `Point3`, which is a **child class** of `Point`. A class may have many child classes, but only one parent class. The term "a parent class of class X" usually refers to its direct parent class, the parent class of its parent class and so on.
@@ -30,4 +30,4 @@ Previous section: [Class constructor](types-class-constructor.md)
 
 Next section: [Interfaces](types-interfaces.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L271-271)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L277-277)

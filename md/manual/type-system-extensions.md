@@ -4,15 +4,16 @@ Extensions are used to express that a structure has all the fields of a given ty
 
 ```haxe
 typedef IterableWithLength<T> = {
-	> Iterable<T>,
-	var length(default, null):Int; // read only property
+  > Iterable<T>,
+  // read only property
+  var length(default, null):Int;
 }
 
 class Extension {
-	static public function main() {
-		var array = [1, 2, 3];
-		var t:IterableWithLength<Int> = array;
-	}
+  static public function main() {
+    var array = [1, 2, 3];
+    var t:IterableWithLength<Int> = array;
+  }
 }
 ```
 The greater-than operator `>` denotes that an extension of `Iterable<T>` is being created, with the additional class fields following. In this case, a read-only [property](class-field-property.md) `length` of type `Int` is required.
@@ -27,20 +28,21 @@ It is also possible to extend multiple structures:
 
 ```haxe
 typedef WithLength = {
-	var length(default, null):Int;
+  var length(default, null):Int;
 }
 
 typedef IterableWithLengthAndPush<T> = {
-	> Iterable<T>,
-	> WithLength,
-	function push(a:T):Int;
+  > Iterable<T>,
+  > WithLength,
+  function push(a:T):Int;
 }
 
 class Extension2 {
-	static public function main() {
-		var array = [1, 2, 3];
-		var t:IterableWithLengthAndPush<Int> = array;
-	}
+  static public function main() {
+    var array = [1, 2, 3];
+    var t:IterableWithLengthAndPush<Int> =
+      array;
+  }
 }
 ```
 

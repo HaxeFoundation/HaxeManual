@@ -7,14 +7,14 @@ A class or function can be made **generic** by attributing it with the `:generic
 ```haxe
 @:generic
 class MyArray<T> {
-	public function new() { }
+  public function new() { }
 }
 
 class Main {
-	static public function main() {
-		var a = new MyArray<String>();
-		var b = new MyArray<Int>();
-	}
+  static public function main() {
+    var a = new MyArray<String>();
+    var b = new MyArray<Int>();
+  }
 }
 ```
 
@@ -39,12 +39,12 @@ We can identify that `MyArray<String>` and `MyArray<Int>` have become `MyArray_S
 
 ```haxe
 class Main {
-	static public function main() {
-		method("foo");
-		method(1);
-	}
-	
-	@:generic static function method<T>(t:T) { }
+  static public function main() {
+    method("foo");
+    method(1);
+  }
+
+  @:generic static function method<T>(t:T) { }
 }
 ```
 

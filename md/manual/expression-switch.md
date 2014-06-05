@@ -22,4 +22,4 @@ Previous section: [if](expression-if.md)
 
 Next section: [try/catch](expression-try-catch.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L279-279)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L285-285)

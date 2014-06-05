@@ -4,13 +4,13 @@ We have already seen variable fields in several code examples of previous sectio
 
 ```haxe
 class VariableField {
-	static var member:String = "bar";
-	
-	public static function main() {
-		trace(member);
-		member = "foo";
-		trace(member);
-	}
+  static var member:String = "bar";
+
+  public static function main() {
+    trace(member);
+    member = "foo";
+    trace(member);
+  }
 }
 ```
 We can learn from this that a variable

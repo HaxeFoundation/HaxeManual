@@ -4,17 +4,18 @@ Fields are by default **private**, meaning that only the class and its sub-class
 
 ```haxe
 class MyClass {
-	static public function available() {
-		unavailable();
-	}
-	static private function unavailable() { }
+  static public function available() {
+    unavailable();
+  }
+  static private function unavailable() { }
 }
 
 class Main {
-	static public function main() {
-		MyClass.available();
-		MyClass.unavailable(); // Cannot access private field unavailable
-	}
+  static public function main() {
+    MyClass.available();
+    // Cannot access private field unavailable
+    MyClass.unavailable();
+  }
 }
 ```
 
@@ -24,24 +25,25 @@ The example demonstrates visibility through **static** fields, but the rules for
 
 ```haxe
 class Base {
-	public function new() { }
-	private function baseField() { }
+  public function new() { }
+  private function baseField() { }
 }
 
 class Child1 extends Base {
-	private function child1Field() { }
+  private function child1Field() { }
 }
 
 class Child2 extends Base {
-	public function child2Field() {
-		var child1 = new Child1();
-		child1.baseField();
-		child1.child1Field(); // Cannot access private field child1Field
-	}
+  public function child2Field() {
+    var child1 = new Child1();
+    child1.baseField();
+    // Cannot access private field child1Field
+    child1.child1Field();
+  }
 }
 
 class Main {
-	static public function main() { }
+  static public function main() { }
 }
 ```
 

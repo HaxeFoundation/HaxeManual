@@ -38,14 +38,14 @@ Here, `MyClass.foo` can be accessed from the `main`-method because `MyClass` is 
 
 ```haxe
 class MyClass {
-	@:allow(Main.main)
-    static private var foo: Int;
+  @:allow(Main.main)
+  static private var foo: Int;
 }
 
 class Main {
-    static public function main() {
-        MyClass.foo;
-    }
+  static public function main() {
+    MyClass.foo;
+  }
 }
 ```
 
@@ -53,14 +53,14 @@ If a type cannot be modified to allow this kind of access, the accessing method 
 
 ```haxe
 class MyClass {
-    static private var foo: Int;
+  static private var foo: Int;
 }
 
 class Main {
-	@:access(MyClass.foo)
-    static public function main() {
-        MyClass.foo;
-    }
+  @:access(MyClass.foo)
+  static public function main() {
+    MyClass.foo;
+  }
 }
 ```
 
@@ -88,16 +88,16 @@ If access is allowed to an [interface](types-interfaces.md), it extends to all c
 
 ```haxe
 class MyClass {
-	@:allow(I)
-    static private var foo: Int;
+  @:allow(I)
+  static private var foo: Int;
 }
 
 interface I { }
 
 class Main implements I {
-	static public function main() {
-		MyClass.foo;
-	}
+  static public function main() {
+    MyClass.foo;
+  }
 }
 ```
 
@@ -113,4 +113,4 @@ Previous section: [Metadata](lf-metadata.md)
 
 Next section: [Inline constructors](lf-inline-constructor.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L430-430)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L433-433)

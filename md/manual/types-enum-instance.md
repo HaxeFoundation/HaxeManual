@@ -4,10 +4,10 @@ Haxe provides powerful enumeration (short: enum) types, which are actually an **
 
 ```haxe
 enum Color {
-	Red;
-	Green;
-	Blue;
-	Rgb(r:Int, g:Int, b:Int);
+  Red;
+  Green;
+  Blue;
+  Rgb(r:Int, g:Int, b:Int);
 }
 ```
 Semantically, this enum describes a color which is either red, green, blue or a specified RGB value. The syntactic structure is as follows:
@@ -32,4 +32,4 @@ Previous section: [Interfaces](types-interfaces.md)
 
 Next section: [Enum Constructor](types-enum-constructor.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L326-326)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L333-333)

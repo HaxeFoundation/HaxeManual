@@ -7,12 +7,12 @@ Unsafe casts do not introduce any [dynamic](types-dynamic.md) types, as the foll
 ```haxe
 class Main {
     public static function main() {
-		var i = 1;
-		$type(i); // Int
-		var s = cast i;
-		$type(s); // Unknown<0>
-		Std.parseInt(s);
-		$type(s); // String
+    var i = 1;
+    $type(i); // Int
+    var s = cast i;
+    $type(s); // Unknown<0>
+    Std.parseInt(s);
+    $type(s); // String
     }
 }
 ```
@@ -29,4 +29,4 @@ Previous section: [cast](expression-cast.md)
 
 Next section: [safe cast](expression-cast-safe.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L413-413)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L419-419)

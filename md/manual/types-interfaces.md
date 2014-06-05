@@ -24,7 +24,8 @@ class Point implements Printable { }
 The `implements` keyword here denotes that `Point` has a "is-a" relationship to `Printable`, i.e. each instance of `Point` is also an instance of `Printable`. While a class may only have one parent class, it may implement multiple interfaces through multiple `implements` keywords:
 
 ```haxe
-class Point implements Printable implements Serializable
+class Point implements Printable
+  implements Serializable
 ```
 
 The compiler checks if the `implements` assumption holds. That is, it makes sure the class actually does implement all the fields required by the interface. A field is considered implemented if the class or any of its parent classes provide an implementation.
@@ -33,14 +34,14 @@ Interface fields are not limited to methods, they can be variables and propertie
 
 ```haxe
 interface Placeable {
-	public var x:Float;
-	public var y:Float;
+  public var x:Float;
+  public var y:Float;
 }
 
 class Main implements Placeable {
-	public var x:Float;
-	public var y:Float;
-	static public function main() { }
+  public var x:Float;
+  public var y:Float;
+  static public function main() { }
 }
 ```
 
@@ -54,4 +55,4 @@ Previous section: [Inheritance](types-class-inheritance.md)
 
 Next section: [Enum Instance](types-enum-instance.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L289-289)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L295-295)

@@ -4,14 +4,15 @@ The function type, along with the [monomorph](types-monomorph.md), is a type whi
 
 ```haxe
 class FunctionType {
-	static public function main() {
-		$type(test); // i : Int -> s : String -> Bool
-		$type(test(1, "foo")); // Bool
-	}
-	
-	static function test(i:Int, s:String):Bool {
-		return true;
-	}
+  static public function main() {
+    // i : Int -> s : String -> Bool
+    $type(test);
+    $type(test(1, "foo")); // Bool
+  }
+
+  static function test(i:Int, s:String):Bool {
+    return true;
+  }
 }
 ```
 
@@ -34,4 +35,4 @@ Previous section: [Impact on Performance](types-structure-performance.md)
 
 Next section: [Optional Arguments](types-function-optional-arguments.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L481-481)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L494-494)

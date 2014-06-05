@@ -4,17 +4,17 @@ Given a set of multiple types, a **common base type** is a type which all types 
 
 ```haxe
 class Base {
-	public function new() { }
+  public function new() { }
 }
 
 class Child1 extends Base { }
 class Child2 extends Base { }
 
 class UnifyMin {
-	static public function main() {
-		var a = [new Child1(), new Child2()];
-		$type(a); // Array<Base>
-	}
+  static public function main() {
+    var a = [new Child1(), new Child2()];
+    $type(a); // Array<Base>
+  }
 }
 ```
 Although `Base` is not mentioned, the Haxe Compiler manages to infer it as the common type of `Child1` and `Child2`. The Haxe Compiler employs this kind of unification in the following situations:
@@ -31,4 +31,4 @@ Previous section: [Function Return](type-system-unification-function-return.md)
 
 Next section: [Type Inference](type-system-type-inference.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L301-301)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L303-303)

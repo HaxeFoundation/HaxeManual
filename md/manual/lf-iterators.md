@@ -17,30 +17,30 @@ Any [class](types-class-instance.md) which [structurally unifies](type-system-st
 
 ```haxe
 class MyStringIterator {
-	var s:String;
-	var i:Int;
-	
-	public function new(s:String) {
-		this.s = s;
-		i = 0;
-	}
-	
-	public function hasNext() {
-		return i < s.length;
-	}
-	
-	public function next() {
-		return s.charAt(i++);
-	}
+  var s:String;
+  var i:Int;
+
+  public function new(s:String) {
+    this.s = s;
+    i = 0;
+  }
+
+  public function hasNext() {
+    return i < s.length;
+  }
+
+  public function next() {
+    return s.charAt(i++);
+  }
 }
 
 class Main {
-	static public function main() {
-		var myIt = new MyStringIterator("my string");
-		for (chr in myIt) {
-			trace(chr);
-		}
-	}
+  static public function main() {
+    var myIt = new MyStringIterator("string");
+    for (chr in myIt) {
+      trace(chr);
+    }
+  }
 }
 ```
 
@@ -48,23 +48,23 @@ The type `MyStringIterator` in this example qualifies as iterator: It defines a 
 
 ```haxe
 class MyArrayWrap<T> {
-	var a:Array<T>;
-	public function new(a:Array<T>) {
-		this.a = a;
-	}
-	
-	public function iterator() {
-		return a.iterator();
-	}
+  var a:Array<T>;
+  public function new(a:Array<T>) {
+    this.a = a;
+  }
+
+  public function iterator() {
+    return a.iterator();
+  }
 }
 
 class Main {
-	static public function main() {
-		var myWrap = new MyArrayWrap([1, 2, 3]);
-		for (elt in myWrap) {
-			trace(elt);
-		}
-	}
+  static public function main() {
+    var myWrap = new MyArrayWrap([1, 2, 3]);
+    for (elt in myWrap) {
+      trace(elt);
+    }
+  }
 }
 ```
 
@@ -76,4 +76,4 @@ Previous section: [Array Comprehension](lf-array-comprehension.md)
 
 Next section: [Function Bindings](lf-function-bindings.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L345-345)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L348-348)

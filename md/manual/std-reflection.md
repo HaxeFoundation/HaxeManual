@@ -17,9 +17,9 @@ Reflection can be a powerful tool, but it is important to understand why it can 
 
 ```haxe
 class Main {
-	static function main() {
-		trace(Type.resolveClass("Mian")); // null
-	}
+  static function main() {
+    trace(Type.resolveClass("Mian")); // null
+  }
 }
 ```
 
@@ -27,9 +27,10 @@ However, even if there are no typing errors it is easy to come across unexpected
 
 ```haxe
 class Main {
-	static function main() {
-		trace(Type.resolveClass("haxe.Template")); // null
-	}
+  static function main() {
+    // null
+    trace(Type.resolveClass("haxe.Template"));
+  }
 }
 ```
 
@@ -39,14 +40,17 @@ Another set of problems comes from the fact that, by design, several reflection 
 
 ```haxe
 class Main {
-	static function main() {
-		//Reflect.callMethod(Main, "f", []); // wrong
-		Reflect.callMethod(Main, Reflect.field(Main, "f"), []); // right
-	}
+  static function main() {
+    // wrong
+    //Reflect.callMethod(Main, "f", []);
+    // right
+    Reflect.callMethod(Main,
+      Reflect.field(Main, "f"), []);
+  }
 
-	static function f() {
-		trace('Called');
-	}
+  static function f() {
+    trace('Called');
+  }
 }
 ```
 
@@ -56,23 +60,25 @@ A good advice when working with reflection is to wrap it in a few functions with
 
 ```haxe
 typedef MyStructure = {
-	name: String,
-	score: 12
+  name: String,
+  score: 12
 }
 
 class Main {
-	static function main() {
-		var data = reflective();
-		// At this point data is nicely typed as MyStructure
-	}
+  static function main() {
+    var data = reflective();
+    // At this point data is nicely typed as
+    // MyStructure
+  }
 
-	static function reflective():MyStructure {
-		// Work with reflection here to get some values we want to return.
-		return {
-			name: "Reflection",
-			score: 0
-		}
-	}
+  static function reflective():MyStructure {
+    // Work with reflection here to get some
+    // values we want to return.
+    return {
+      name: "Reflection",
+      score: 0
+    }
+  }
 }
 ```
 

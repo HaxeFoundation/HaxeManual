@@ -3,18 +3,22 @@
 Classes can [implement](types-interfaces.md) `Dynamic` and `Dynamic<T>`, which enables arbitrary field access. In the former case, fields can have any type, in the latter they are constrained to be compatible with the parameter type:
 
 ```haxe
-class ImplementsDynamic implements Dynamic<String> {
-	public var present:Int;
-	public function new() {}
+class ImplementsDynamic
+  implements Dynamic<String> {
+  public var present:Int;
+  public function new() {}
 }
 
 class Main {
-	static public function main() {
-		var c = new ImplementsDynamic();
-		c.present = 1; // valid, present is an existing field
-		c.stringField = "foo"; // valid, assigned value is a String
-		//c.intField = 1; // error, Int should be String
-	}
+  static public function main() {
+    var c = new ImplementsDynamic();
+    // valid, present is an existing field
+    c.present = 1;
+    // valid, assigned value is a String
+    c.stringField = "foo";
+    // error, Int should be String
+    //c.intField = 1;
+  }
 }
 ```
 
@@ -24,20 +28,20 @@ Classes that implement `Dynamic` (with or without type parameter) can also utili
 
 ```haxe
 class Resolve implements Dynamic<String> {
-	public var present:Int;
-	public function new() {}
-	function resolve(field:String) {
-		return "Tried to resolve " +field;
-	}
+  public var present:Int;
+  public function new() {}
+  function resolve(field:String) {
+    return "Tried to resolve " +field;
+  }
 }
 
 class Main {
-	static public function main() {
-		var c = new Resolve();
-		c.present = 2;
-		trace(c.present);
-		trace(c.resolveMe);
-	}
+  static public function main() {
+    var c = new Resolve();
+    c.present = 2;
+    trace(c.present);
+    trace(c.resolveMe);
+  }
 }
 ```
 
@@ -47,4 +51,4 @@ Previous section: [Dynamic with Type Parameter](types-dynamic-with-type-paramete
 
 Next section: [Abstract](types-abstract.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L586-586)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L602-602)

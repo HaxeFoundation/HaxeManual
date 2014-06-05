@@ -4,17 +4,18 @@ While variance is relevant in other places, it occurs particularly often with ty
 
 ```haxe
 class Base {
-	public function new() { }
+  public function new() { }
 }
 
 class Child extends Base { }
 
 class Main {
-    public static function main () {
-		var children = [new Child()];
-		var bases:Array<Base> = children; // Array<Child> should be Array<Base>
-			// Type parameters are invariant
-			// Child should be Base
+  public static function main () {
+    var children = [new Child()];
+    // Array<Child> should be Array<Base>
+    // Type parameters are invariant
+    // Child should be Base
+    var bases:Array<Base> = children;
     }
 }
 ```
@@ -23,7 +24,7 @@ Apparently, an `Array<Child>` cannot be assigned to an `Array<Base>`, even thoug
 
 ```haxe
 class Base {
-	public function new() { }
+  public function new() { }
 }
 
 class Child extends Base { }
@@ -31,14 +32,15 @@ class Child extends Base { }
 class OtherChild extends Base { }
 
 class Main {
-    public static function main () {
-		var children = [new Child()];
-		var bases:Array<Base> = cast children; // subvert type checker
-		bases.push(new OtherChild());
-		for(child in children) {
-			trace(child);
-		}
+  public static function main () {
+    var children = [new Child()];
+    // subvert type checker
+    var bases:Array<Base> = cast children;
+    bases.push(new OtherChild());
+    for(child in children) {
+      trace(child);
     }
+  }
 }
 ```
 
@@ -48,20 +50,20 @@ If `Array` had no `push()` method and no other means of modification, the assign
 
 ```haxe
 class Base {
-	public function new() { }
+  public function new() { }
 }
 
 class Child extends Base { }
 
 typedef MyArray<T> = {
-	public function pop():T;
+  public function pop():T;
 }
 
 class Main {
-    public static function main () {
-		var a = [new Child()];
-		var b:MyArray<Base> = a;
-    }
+  public static function main () {
+    var a = [new Child()];
+    var b:MyArray<Base> = a;
+  }
 }
 ```
 

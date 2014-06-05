@@ -17,19 +17,20 @@ The following example demonstrates constructor inlining:
 
 ```haxe
 class Point {
-	public var x:Float;
-	public var y:Float;
-	
-	public inline function new(x:Float, y:Float) {
-		this.x = x;
-		this.y = y;
-	}
+  public var x:Float;
+  public var y:Float;
+
+  public inline function
+  new(x:Float, y:Float) {
+    this.x = x;
+    this.y = y;
+  }
 }
 
 class Main {
-	static public function main() {
-		var pt = new Point(1.2, 9.3);
-	}
+  static public function main() {
+    var pt = new Point(1.2, 9.3);
+  }
 }
 ```
 
@@ -48,4 +49,4 @@ Previous section: [Access Control](lf-access-control.md)
 
 Next section: [Compiler Reference](#)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L482-482)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L485-485)

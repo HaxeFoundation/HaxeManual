@@ -24,4 +24,4 @@ Previous section: [Versioning](haxelib-json-versioning.md)
 
 Next section: [Using Haxelib](haxelib-using.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/11-haxelib.tex#L110-110)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/11-haxelib.tex#L115-115)

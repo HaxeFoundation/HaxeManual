@@ -4,9 +4,9 @@ While [variables](class-field-variable.md) hold data, methods are defining behav
 
 ```haxe
 class HelloWorld {
-	static public function main():Void {
-		trace("Hello World");
-	}
+  static public function main():Void {
+    trace("Hello World");
+  }
 }
 ```
 
@@ -26,13 +26,13 @@ We can also look at the next example to learn more about arguments and return ty
 
 ```haxe
 class Main {
-	static public function main() {
-		myFunc("foo", 1);
-	}
-	
-	static function myFunc(f:String, i) {
-		return true;
-	}
+  static public function main() {
+    myFunc("foo", 1);
+  }
+
+  static function myFunc(f:String, i) {
+    return true;
+  }
 }
 ```
 

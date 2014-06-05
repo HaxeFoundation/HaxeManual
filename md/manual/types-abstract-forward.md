@@ -9,18 +9,19 @@ When wrapping an underlying type, it is sometimes desirable to "keep" parts of i
 ```haxe
 @:forward(push, pop)
 abstract MyArray<S>(Array<S>) {
-	public inline function new() {
-		this = [];
-	}
+  public inline function new() {
+    this = [];
+  }
 }
 
 class Main {
-	static public function main() {
-		var myArray = new MyArray();
-		myArray.push(12);
-		myArray.pop();
-		//myArray.length; // MyArray<Int> has no field length
-	}
+  static public function main() {
+    var myArray = new MyArray();
+    myArray.push(12);
+    myArray.pop();
+    // MyArray<Int> has no field length
+    //myArray.length;
+  }
 }
 ```
 
@@ -48,4 +49,4 @@ Previous section: [Enum abstracts](types-abstract-enum.md)
 
 Next section: [Core-type abstracts](types-abstract-core-type.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L796-796)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L817-817)

@@ -9,22 +9,25 @@ By adding the `:enum` metadata to an abstract definition, that abstract can be u
 ```haxe
 @:enum
 abstract HttpStatus(Int) {
-	var NotFound = 404;
-	var MethodNotAllowed = 405;
+  var NotFound = 404;
+  var MethodNotAllowed = 405;
 }
 
 class Main {
-	static public function main() {
-		var status = HttpStatus.NotFound;
-		var msg = printStatus(status);
-	}
-	
-	static function printStatus(status:HttpStatus) {
-		return switch(status) {
-			case NotFound: "Not found";
-			case MethodNotAllowed: "Method not allowed";
-		}
-	}
+  static public function main() {
+    var status = HttpStatus.NotFound;
+    var msg = printStatus(status);
+  }
+
+  static function
+  printStatus(status:HttpStatus) {
+    return switch(status) {
+      case NotFound:
+        "Not found";
+      case MethodNotAllowed:
+        "Method not allowed";
+    }
+  }
 }
 ```
 
@@ -59,4 +62,4 @@ Previous section: [Selective Functions](types-abstract-selective-functions.md)
 
 Next section: [Forwarding abstract fields](types-abstract-forward.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L762-762)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L783-783)

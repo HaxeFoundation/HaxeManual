@@ -20,4 +20,4 @@ Previous section: [new](expression-new.md)
 
 Next section: [while](expression-while.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L204-204)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L210-210)

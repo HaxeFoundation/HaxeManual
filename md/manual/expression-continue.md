@@ -20,4 +20,4 @@ Previous section: [break](expression-break.md)
 
 Next section: [throw](expression-throw.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L373-373)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L379-379)

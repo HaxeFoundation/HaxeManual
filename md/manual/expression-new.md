@@ -4,11 +4,11 @@ The `new` keyword signals that a [class](types-class-instance.md) or an [abstrac
 
 ```haxe
 class Main<T> {
-	static public function main() {
-		new Main<Int>(12, "foo");
-	}
-	
-	function new(t:T, s:String) { }
+  static public function main() {
+    new Main<Int>(12, "foo");
+  }
+
+  function new(t:T, s:String) { }
 }
 ```
 
@@ -20,4 +20,4 @@ Previous section: [Local functions](expression-function.md)
 
 Next section: [for](expression-for.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L193-193)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L199-199)

@@ -4,7 +4,7 @@ Unlike [unsafe casts](expression-cast-unsafe.md), the runtime behavior in case o
 
 ```haxe
 class Base {
-	public function new() { }
+  public function new() { }
 }
 
 class Child1 extends Base {}
@@ -13,11 +13,12 @@ class Child2 extends Base {}
 
 class Main {
     public static function main() {
-		var child1:Base = new Child1();
-		var child2:Base = new Child2();
-		cast(child1, Base);
-		cast(child1, Child2); // Exception: Class cast error
-    }
+    var child1:Base = new Child1();
+    var child2:Base = new Child2();
+    cast(child1, Base);
+    // Exception: Class cast error
+    cast(child1, Child2);
+  }
 }
 ```
 
@@ -33,4 +34,4 @@ Previous section: [unsafe cast](expression-cast-unsafe.md)
 
 Next section: [Language Features](lf.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L428-428)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L434-434)

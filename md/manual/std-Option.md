@@ -12,24 +12,27 @@ enum Option<T> {
 It can be used in various situations, such as communicating whether or not a method had a valid return and if so, what value it returned:
 
 ```haxe
-class Main {
-	static public function main() {
-		var result = trySomething();
-		switch (result) {
-			case None:
-				trace("Got None");
-			case Some(s):
-				trace("Got something with a value: " +s);
-		}
-	}
+import haxe.ds.Option;
 
-	static function trySomething():haxe.ds.Option<String> {
-		if (Math.random() > 0.5) {
-			return None;
-		} else {
-			return Some("Success");
-		}
-	}
+class Main {
+  static public function main() {
+    var result = trySomething();
+    switch (result) {
+      case None:
+        trace("Got None");
+      case Some(s):
+        trace("Got a value: " +s);
+    }
+  }
+
+  static function
+  trySomething():Option<String> {
+    if (Math.random() > 0.5) {
+      return None;
+    } else {
+      return Some("Success");
+    }
+  }
 }
 ```
 

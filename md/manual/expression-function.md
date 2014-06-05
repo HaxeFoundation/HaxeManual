@@ -4,13 +4,13 @@ Haxe supports first-class functions and allows declaring local functions in expr
 
 ```haxe
 class Main {
-	static public function main() {
-		var value = 1;
-		function myLocalFunction(i) {
-			return value + i;
-		}
-		trace(myLocalFunction(2)); // 3
-	}
+  static public function main() {
+    var value = 1;
+    function myLocalFunction(i) {
+      return value + i;
+    }
+    trace(myLocalFunction(2)); // 3
+  }
 }
 ```
 
@@ -35,4 +35,4 @@ Previous section: [var](expression-var.md)
 
 Next section: [new](expression-new.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L170-170)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L176-176)

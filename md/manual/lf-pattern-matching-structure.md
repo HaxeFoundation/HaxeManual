@@ -3,13 +3,13 @@
 It is also possible to match against the fields of anonymous structures and instances:
 
 ```haxe
-var myStructure = { name: "haxe", rating: "awesome" };
-var value = switch(myStructure) {
-	case { name: "haxe", rating: "poor" } : throw false;
-	case { rating: "awesome", name: n } : n;
-	case _: "no awesome language found";
-}
-trace(value); // haxe
+        leafNode;
+      case x: x;
+    }
+    trace(node); // Leaf(foo)
+
+    var myStructure = {
+      name: "haxe",
 ```
 
 In the second case we bind the matched `name` field to identifier `n` if `rating` matches `"awesome"`. Of course this structure could also be put into the `Tree` from the previous example to combine structure and enum matching.

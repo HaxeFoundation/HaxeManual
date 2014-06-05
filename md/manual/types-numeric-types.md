@@ -17,4 +17,4 @@ Previous section: [Basic Types](types-basic-types.md)
 
 Next section: [Overflow](types-overflow.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L49-49)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L51-51)

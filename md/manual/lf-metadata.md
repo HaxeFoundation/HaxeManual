@@ -14,23 +14,28 @@ Several constructs can be attributed with custom metadata:
 These metadata information can be obtained at runtime through the `haxe.rtti.Meta` API:
 
 ```haxe
+import haxe.rtti.Meta;
+
 @author("Nicolas")
 @debug
 class MyClass {
-	@range(1, 8)
-	var value:Int;
-	
-	@broken
-	@:noCompletion
-	static function method() { }
+  @range(1, 8)
+  var value:Int;
+
+  @broken
+  @:noCompletion
+  static function method() { }
 }
 
 class Main {
-	static public function main() {
-		trace(haxe.rtti.Meta.getType(MyClass)); // { author : ["Nicolas"], debug : null }
-		trace(haxe.rtti.Meta.getFields(MyClass).value.range); // [1,8]
-		trace(haxe.rtti.Meta.getStatics(MyClass).method); // { broken: null }
-	}
+  static public function main() {
+    // { author : ["Nicolas"], debug : null }
+    trace(Meta.getType(MyClass));
+    // [1,8]
+    trace(Meta.getFields(MyClass).value.range);
+    // { broken: null }
+    trace(Meta.getStatics(MyClass).method);
+  }
 }
 ```
 
@@ -68,4 +73,4 @@ Previous section: [Function Bindings](lf-function-bindings.md)
 
 Next section: [Access Control](lf-access-control.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L390-390)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L393-393)

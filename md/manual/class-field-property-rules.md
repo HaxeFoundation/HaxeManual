@@ -6,13 +6,13 @@ Both getter and setter may access their physical field for data storage. The com
 
 ```haxe
 class Main {
-	public var x(default, set):Int;
-	
-	function set_x(newX) {
-		return x = newX;
-	}
-	
-	static public function main() {}
+  public var x(default, set):Int;
+
+  function set_x(newX) {
+    return x = newX;
+  }
+
+  static public function main() {}
 }
 ```
 
@@ -35,19 +35,19 @@ If this is not the case, access to the field from within an accessor method caus
 
 ```haxe
 class Main {
-	//Compiling fails with the error:
-	//this field cannot be accessed because it is not a real variable
-	public var x(get, set):Int;
-	
-	function get_x() {
-		return x;
-	}
-	
-	function set_x(x) {
-		return this.x = x;
-	}
-	
-	static public function main() {}
+  // This field cannot be accessed because it
+  // is not a real variable
+  public var x(get, set):Int;
+
+  function get_x() {
+    return x;
+  }
+
+  function set_x(x) {
+    return this.x = x;
+  }
+
+  static public function main() {}
 }
 
 ```
@@ -56,19 +56,19 @@ If a physical field is indeed intended, it can be forced by attributing the fiel
 
 ```haxe
 class Main {
-    //@isVar forces the field to be physical 
-    //allowing the program to compile.
-	@:isVar public var x(get, set):Int;
-	
-	function get_x() {
-		return x;
-	}
-	
-	function set_x(x) {
-		return this.x = x;
-	}
-	
-	static public function main() {}
+  // @isVar forces the field to be physical
+  // allowing the program to compile.
+  @:isVar public var x(get, set):Int;
+
+  function get_x() {
+    return x;
+  }
+
+  function set_x(x) {
+    return this.x = x;
+  }
+
+  static public function main() {}
 }
 
 ```

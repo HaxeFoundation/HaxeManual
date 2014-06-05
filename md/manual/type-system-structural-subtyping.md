@@ -8,7 +8,8 @@
 In Haxe, structural subtyping is only possible when assigning a class instance to a structure. The following example is part of the `Lambda` class of the [Haxe Standard Library](std.md):
 
 ```haxe
-public static function empty<T>(it : Iterable<T>) : Bool {
+public static function
+empty<T>(it : Iterable<T>):Bool {
 	return !it.iterator().hasNext();
 }
 ```
@@ -22,4 +23,4 @@ Previous section: [Between Class/Interface](type-system-unification-between-clas
 
 Next section: [Monomorphs](type-system-monomorphs.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L265-265)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L266-266)

@@ -9,7 +9,8 @@ This feature can be enabled by specifying `@:jsRequire` metadata for the extern 
 ```haxe
 @:jsRequire("fs")
 extern class FS {
-    static function readFileSync(path:String, encoding:String):String;
+  static function readFileSync(path:String,
+    encoding:String):String;
 }
 
 ```

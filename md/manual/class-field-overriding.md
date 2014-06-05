@@ -4,23 +4,23 @@ Overriding fields is instrumental for creating class hierarchies. Many design pa
 
 ```haxe
 class Base {
-	public function new() { }
-	public function myMethod() {
-		return "Base";
-	}
+  public function new() { }
+  public function myMethod() {
+    return "Base";
+  }
 }
 
 class Child extends Base {
-	public override function myMethod() {
-		return "Child";
-	}
+  public override function myMethod() {
+    return "Child";
+  }
 }
 
 class Main {
-	static public function main() {
-		var child:Base = new Child();
-		trace(child.myMethod()); // Child
-	}
+  static public function main() {
+    var child:Base = new Child();
+    trace(child.myMethod()); // Child
+  }
 }
 
 ```

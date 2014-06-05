@@ -22,7 +22,9 @@ Blocks can contain local variables declared by [`var` expression](expression-var
 	{
 		a; // ok, a is available in sub-blocks
 	}
-	a; // ok, a is still available after sub-blocks
+  // ok, a is still available after
+	// sub-blocks	
+	a;
 }
 a; // error, a is not available outside
 ```

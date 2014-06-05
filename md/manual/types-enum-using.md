@@ -4,26 +4,27 @@ Enums are a good choice if only a finite set of values should be allowed. The in
 
 ```haxe
 enum Color {
-	Red;
-	Green;
-	Blue;
-	Rgb(r:Int, g:Int, b:Int);
+  Red;
+  Green;
+  Blue;
+  Rgb(r:Int, g:Int, b:Int);
 }
 
 class Main {
-	static function main() {
-		var color = getColor();
-		switch (color) {
-			case Red: trace("Color was red");
-			case Green: trace("Color was green");
-			case Blue: trace("Color was blue");
-			case Rgb(r, g, b): trace("Color had a red value of " +r);
-		}
-	}
+  static function main() {
+    var color = getColor();
+    switch (color) {
+      case Red: trace("Color was red");
+      case Green: trace("Color was green");
+      case Blue: trace("Color was blue");
+      case Rgb(r, g, b):
+        trace("Color had a red value of " +r);
+    }
+  }
 
-	static function getColor():Color {
-		return Rgb(255, 0, 255);
-	}
+  static function getColor():Color {
+    return Rgb(255, 0, 255);
+  }
 }
 ```
 
@@ -37,4 +38,4 @@ Previous section: [Enum Constructor](types-enum-constructor.md)
 
 Next section: [Anonymous Structure](types-anonymous-structure.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L373-373)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L380-380)

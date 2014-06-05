@@ -4,13 +4,14 @@ Specific information can be extracted from a matched string by using **groups**.
 
 ```haxe
 class Main {
-    static function main() {
-        var str = "Nicolas is 26 years old";
-        var r = ~/([A-Za-z]+) is ([0-9]+) years old/;
-        r.match(str);
-        trace(r.matched(1)); // "Nicolas"
-        trace(r.matched(2)); // "26"
-    }
+  static function main() {
+    var str = "Nicolas is 26 years old";
+    var r =
+      ~/([A-Za-z]+) is ([0-9]+) years old/;
+    r.match(str);
+    trace(r.matched(1)); // "Nicolas"
+    trace(r.matched(2)); // "26"
+  }
 }
 
 ```
@@ -21,13 +22,14 @@ The `r.matchedPos()` will return the position of this substring in the original 
 
 ```haxe
 class Main {
-    static function main() {
-        var str = "abcdeeeeefghi";
-        var r = ~/e+/;
-        r.match(str);
-        trace(r.matched(0)); // "eeeee"
-        trace(r.matchedPos()); // { pos : 4, len : 5 }
-    }
+  static function main() {
+    var str = "abcdeeeeefghi";
+    var r = ~/e+/;
+    r.match(str);
+    trace(r.matched(0)); // "eeeee"
+    // { pos : 4, len : 5 }
+    trace(r.matchedPos());
+  }
 }
 
 ```
@@ -36,13 +38,13 @@ Additionally, `r.matchedLeft()` and `r.matchedRight()` can be used to get substr
 
 ```haxe
 class Main {
-    static function main() {
-        var r = ~/b/;
-        r.match("abc");
-        trace(r.matchedLeft()); // a
-        trace(r.matched(0)); // b
-        trace(r.matchedRight()); // c
-    }
+  static function main() {
+    var r = ~/b/;
+    r.match("abc");
+    trace(r.matchedLeft()); // a
+    trace(r.matched(0)); // b
+    trace(r.matchedRight()); // c
+  }
 }
 
 ```

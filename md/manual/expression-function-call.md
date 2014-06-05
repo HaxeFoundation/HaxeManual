@@ -6,7 +6,8 @@ Functions calls consist of an arbitrary subject expression followed by an openin
 subject(); // call with no arguments
 subject(e1); // call with one argument
 subject(e1, e2); // call with two arguments
-subject(e1, ..., eN); // call with multiple arguments
+// call with multiple arguments
+subject(e1, ..., eN);
 ```
 
 ---
@@ -15,4 +16,4 @@ Previous section: [Array Access](expression-array-access.md)
 
 Next section: [var](expression-var.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L142-142)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L144-144)

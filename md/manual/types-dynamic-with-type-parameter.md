@@ -4,9 +4,12 @@
 
 ```haxe
 var att : Dynamic<String> = xml.attributes;
-att.name = "Nicolas"; // valid, value is a String
-att.age = "26"; // dito (this documentation is quite old)
-att.income = 0; // error, value is not a String
+// valid, value is a String
+att.name = "Nicolas";
+// dito (this documentation is quite old)
+att.age = "26";
+// error, value is not a String
+att.income = 0;
 ```
 
 ---
@@ -15,4 +18,4 @@ Previous section: [Dynamic](types-dynamic.md)
 
 Next section: [Implementing Dynamic](types-dynamic-implemented.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L573-573)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L586-586)

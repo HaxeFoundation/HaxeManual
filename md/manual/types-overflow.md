@@ -17,4 +17,4 @@ Previous section: [Numeric types](types-numeric-types.md)
 
 Next section: [Numeric Operators](types-numeric-operators.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L57-57)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L59-59)

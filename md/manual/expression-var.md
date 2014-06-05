@@ -5,8 +5,11 @@ The `var` keyword allows declaring multiple variables, separated by comma `,`. E
 ```haxe
 var a; // declare local a
 var b:Int; // declare variable b of type Int
-var c = 1; // declare variable c, initialized to value 1
-var d,e = 2; // declare variable d and variable e initialized to value 2
+// declare variable c, initialized to value 1
+var c = 1;
+// declare variable d and variable e
+// initialized to value 2
+var d,e = 2;
 ```
 
 The scoping behavior of local variables is described in [Blocks](expression-block.md).
@@ -17,4 +20,4 @@ Previous section: [Function Call](expression-function-call.md)
 
 Next section: [Local functions](expression-function.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L155-155)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L158-158)

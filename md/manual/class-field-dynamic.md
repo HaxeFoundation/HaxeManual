@@ -4,15 +4,15 @@ Methods can be denoted with the `dynamic` keyword to make them (re-)bindable:
 
 ```haxe
 class Main {
-	static dynamic function test() {
-		return "original";
-	}
-	
-	static public function main() {
-		trace(test()); // original
-		test = function() { return "new"; }
-		trace(test()); // new
-	}
+  static dynamic function test() {
+    return "original";
+  }
+
+  static public function main() {
+    trace(test()); // original
+    test = function() { return "new"; }
+    trace(test()); // new
+  }
 }
 ```
 

@@ -34,4 +34,4 @@ Previous section: [Modules and Paths](type-system-modules-and-paths.md)
 
 Next section: [Import](type-system-import.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L396-396)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L398-398)

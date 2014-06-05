@@ -6,9 +6,10 @@ If a type path is used multiple times in a .hx file, it might make sense to use 
 import haxe.ds.StringMap;
 
 class Main {
-	static public function main() {
-		new StringMap(); // instead of: new haxe.ds.StringMap();
-	}
+  static public function main() {
+    // instead of: new haxe.ds.StringMap();
+    new StringMap();
+  }
 }
 ```
 
@@ -20,9 +21,9 @@ In this example, we are actually importing a **module**, not just a specific typ
 import haxe.macro.Expr;
 
 class Main {
-	static public function main() {
-		var e:Binop = OpAdd;
-	}
+  static public function main() {
+    var e:Binop = OpAdd;
+  }
 }
 ```
 
@@ -44,9 +45,9 @@ Furthermore, it is also possible to import [static fields](class-field.md) of a 
 import Math.random;
 
 class Main {
-	static public function main() {
-		random();
-	}
+  static public function main() {
+    random();
+  }
 }
 ```
 
@@ -60,4 +61,4 @@ Previous section: [Module Sub-Types](type-system-module-sub-types.md)
 
 Next section: [Resolution Order](type-system-resolution-order.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L426-426)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L428-428)

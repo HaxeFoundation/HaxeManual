@@ -29,4 +29,4 @@ Previous section: [try/catch](expression-try-catch.md)
 
 Next section: [break](expression-break.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L328-328)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L334-334)

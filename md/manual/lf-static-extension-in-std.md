@@ -6,9 +6,9 @@ Several classes in the Haxe Standard Library are suitable for static extension u
 using StringTools;
 
 class Main {
-	static public function main() {
-		"adc".replace("d", "b");
-	}
+  static public function main() {
+    "adc".replace("d", "b");
+  }
 }
 ```
 

@@ -3,12 +3,12 @@
 The `|` operator can be used anywhere within patterns to describe multiple accepted patterns:
 
 ```haxe
-var match = switch(7) {
-	case 4 | 1: "0";
-	case 6 | 7: "1";
-	case _: "2";
-}
-trace(match); // 1
+    var myArray = [1, 6];
+    var match = switch(myArray) {
+      case [2, _]: "0";
+      case [_, 6]: "1";
+      case []: "2";
+      case [_, _, _]: "3";
 ```
 
 If there is a captured variable in an or-pattern, it must appear in both its sub-patterns.

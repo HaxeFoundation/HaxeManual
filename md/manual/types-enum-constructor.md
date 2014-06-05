@@ -20,18 +20,19 @@ It is important to distinguish enum types and enum constructors, as this example
 
 ```haxe
 enum Color {
-	Red;
-	Green;
-	Blue;
-	Rgb(r:Int, g:Int, b:Int);
+  Red;
+  Green;
+  Blue;
+  Rgb(r:Int, g:Int, b:Int);
 }
 
 class Main {
-	static public function main() {
-		var ec:EnumValue = Red; // valid
-		var en:Enum<Color> = Color; // valid
-		//var x:Enum<Color> = Red; // Compile Error: Color should be Enum<Color>
-	}
+  static public function main() {
+    var ec:EnumValue = Red; // valid
+    var en:Enum<Color> = Color; // valid
+    // Error: Color should be Enum<Color>
+    //var x:Enum<Color> = Red;
+  }
 }
 
 ```
@@ -50,4 +51,4 @@ Previous section: [Enum Instance](types-enum-instance.md)
 
 Next section: [Using enums](types-enum-using.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L345-345)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L352-352)

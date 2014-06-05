@@ -4,9 +4,9 @@ An abstract type is a type which is, at runtime, actually a different type. It i
 
 ```haxe
 abstract AbstractInt(Int) {
-	inline public function new(i:Int) {
-		this = i;
-	}
+  inline public function new(i:Int) {
+    this = i;
+  }
 }
 ```
 We can derive the following from this example:
@@ -32,10 +32,10 @@ Furthermore, abstracts can be instantiated and used just like classes:
 
 ```haxe
 class MyAbstract {
-	static public function main() {
-		var a = new AbstractInt(12);
-		trace(a); //12
-	}
+  static public function main() {
+    var a = new AbstractInt(12);
+    trace(a); //12
+  }
 }
 ```
 As mentioned before, abstracts are a compile-time feature, so it is interesting to see what the above actually generates. A suitable target for this is Javascript, which tends to generate concise and clean code. Compiling the above (using `haxe -main MyAbstract -js myabstract.js`) shows this Javascript code:
@@ -60,4 +60,4 @@ Previous section: [Implementing Dynamic](types-dynamic-implemented.md)
 
 Next section: [Implicit Casts](types-abstract-implicit-casts.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L601-601)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L617-617)

@@ -19,4 +19,4 @@ Previous section: [Field Access](expression-field-access.md)
 
 Next section: [Function Call](expression-function-call.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L125-125)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L127-127)

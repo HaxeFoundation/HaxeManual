@@ -4,9 +4,9 @@ Anonymous structures can be used to group data without explicitly creating a typ
 
 ```haxe
 class Structure {
-	static public function main() {
-		var myStructure = { x: 12, name: "foo"};
-	}
+  static public function main() {
+    var myStructure = { x: 12, name: "foo"};
+  }
 }
 ```
 The general syntactic rules follow:
@@ -23,25 +23,31 @@ Rule 4 implies that structures can be nested and complex, e.g.:
 
 ```haxe
 var user = {
-    name : "Nicolas",
-    age : 32,
-    pos : [{ x : 0, y : 0 },{ x : 1, y : -1 }],
+  name : "Nicolas",
+	age : 32,
+	pos : [
+	  { x : 0, y : 0 },
+		{ x : 1, y : -1 }
+  ],
 };
 ```
 Fields of structures, like classes, are accessed using a **dot** (`.`) like so:
 
 ```haxe
-user.name; // get value of name, which is "Nicolas"
-user.age = 33; // set value of age to 33
+// get value of name, which is "Nicolas"
+user.name;
+// set value of age to 33
+user.age = 33;
 ```
 It is worth noting that using anonymous structures does not subvert the typing system. The compiler ensures that only available fields are accessed, which means the following program does not compile:
 
 ```haxe
 class Test {
-	static public function main() {
-		var point = { x: 0.0, y: 12.0 };
-		point.z; // { y : Float, x : Float } has no field z
-	}
+  static public function main() {
+    var point = { x: 0.0, y: 12.0 };
+    // { y : Float, x : Float } has no field z
+    point.z;
+  }
 }
 ```
 The error message indicates that the compiler knows the type of `point`: It is a structure with fields `x` and `y` of type `Float`. Since it has no field `z`, the access fails.
@@ -72,4 +78,4 @@ Previous section: [Using enums](types-enum-using.md)
 
 Next section: [JSON for Structure Values](types-structure-json.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L385-385)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L392-392)

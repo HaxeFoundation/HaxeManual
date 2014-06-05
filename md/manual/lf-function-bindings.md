@@ -4,16 +4,16 @@ Haxe 3 allows binding functions with partially applied arguments. Each function 
 
 ```haxe
 class Bind {
-	static public function main() {
-		var map = new Map<Int,String>();
-		var f = map.set.bind(_, "12");
-		$type(map.set); // Int -> String -> Void
-		$type(f); // Int -> Void	
-		f(1);
-		f(2);
-		f(3);
-		trace(map); // {1 => 12, 2 => 12, 3 => 12}
-	}
+  static public function main() {
+    var map = new Map<Int,String>();
+    var f = map.set.bind(_, "12");
+    $type(map.set); // Int -> String -> Void
+    $type(f); // Int -> Void
+    f(1);
+    f(2);
+    f(3);
+    trace(map); // {1 => 12, 2 => 12, 3 => 12}
+  }
 }
 
 ```
@@ -35,4 +35,4 @@ Previous section: [Iterators](lf-iterators.md)
 
 Next section: [Metadata](lf-metadata.md)
 
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L373-373)
+Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L376-376)
