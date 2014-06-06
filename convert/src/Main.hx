@@ -138,7 +138,7 @@ class Main {
 		var definitions = [];
 		for (entry in entries) {
 			var anchorName = #if epub "dictionary.md-" +entry.label #else entry.label #end;
-			definitions.push('<a name="$anchorName"></a>\n##### ${entry.title}\n${process(entry.content)}');
+			definitions.push('<a name="$anchorName"></a>\n\n##### ${entry.title}\n${process(entry.content)}');
 		}
 		sys.io.File.saveContent('$out/dictionary.md', definitions.join("\n\n"));
 	}
