@@ -331,6 +331,99 @@ While the method \expr{reflective} could interally work with reflection (and \ty
 \section{Serialization}
 \label{std-serialization}
 
+Many runtime values can be serialized and deserialized using the \type{haxe.Serializer} and \type{haxe.Unserializer} classes. Both support two usages:
+
+\begin{enumerate}
+	\item Create an instance and continuously call the \expr{serialize}/\expr{unserialize} method to handle multiple values.
+	\item Call their static \expr{run} method to serialize/deserialize a single value.
+\end{enumerate}
+
+The following example demonstrates the first usage:
+
+\haxe{assets/SerializationExample.hx}
+
+The result of the serialization (here stored in local variable \expr{s}) is a \tref{String}{std-String} and can be passed around at will, even remotely. Its format is described in \Fullref{std-serialization-format}.
+
+\paragraph{Supported values}
+
+\begin{itemize}
+	\item \expr{null}
+	\item \type{Bool}, \type{Int} and \type{Float} (including infinities and \expr{NaN})
+	\item \type{String}
+	\item \type{Date}
+	\item \type{haxe.io.Bytes} (encoded as base64)
+	\item \tref{\type{Array}}{std-Array} and \tref{\type{List}}{std-List}
+	\item \type{haxe.ds.StringMap}, \type{haxe.ds.IntMap} and \type{haxe.ds.ObjectMap}
+	\item \tref{anonymous structures}{types-anonymous-structure}
+	\item Haxe \tref{class instances}{types-class-instance} (not native ones)
+	\item \tref{enum instances}{types-enum-instance}
+\end{itemize}
+
+\paragraph{Serialization configuration}
+
+Serialization can be configured in two ways. For both a static variable can be set to influence all \type{haxe.Serializer} instances, and a member variable can be set to only influence a specific instance:
+
+\begin{description}
+	\item[\expr{USE_CACHE}, \expr{useCache}:] If true, repeated objects are serialized by reference. This can avoid infinite loops for recursive data at the expense of longer serialization time. By default, this value is \expr{false}.
+	\item[\expr{USE_ENUM_INDEX}, \expr{useEnumIndex}:] If true, enum constructors are serialized by their index instead of their name. This can make the serialization string shorter but breaks if enum constructors are inserted into the type before deserialization. By default, this value is \expr{false}.
+\end{description}
+
+\paragraph{Deserialization behavior}
+
+If the serialization result is stored and later used for deserialization, care has to be taken to maintain compatibility when working with class and enum instances. It is then important to understand exactly how unserialization is implemented.
+
+\begin{itemize}
+	\item The type has to be available in the runtime where the deserialization is made. If \tref{dead code elimination}{cr-dce} is active, a type which is used only through serialization might be removed.
+	\item Each \type{Unserializer} has a member variable \expr{resolver} which is used to resolve classes and enums by name. Upon creation of the \type{Unserializer} this is set to \expr{Unserializer.DEFAULT_RESOLVER}. Both that and the instance member can be set to a custom resolver.
+	\item Classes are resolved by name using \expr{resolver.resolveClass(name)}. The instance is then created using \expr{Type.createEmptyInstance}, which means that the class constructor is not called. Finally, the instance fields are set according to the serialized value.
+	\item Enums are resolved by name using \expr{resolver.resolveEnum(name)}. The enum instance is then created using \expr{Type.createEnum}, using the serialized argument values if available. If the constructor arguments were changed since serialization, the result is unspecified.
+\end{itemize}
+
+\paragraph{Custom (de)serialization}
+
+If a class defines the member method \expr{hxSerialize}, that method is called by the serializer and allows custom serialization of the class. Likewise, if a class defines the member method \expr{hxUnserialize} it is called by the deserializer:
+
+\haxe{assets/SerializationCustom.hx}
+
+In this example we decide that we want to ignore the value of member variable \expr{y} and do not serialize it. Instead we default it to \expr{-1} in \expr{hxUnserialize}. Both methods are annotated with the \expr{:keep} metadata to prevent \tref{dead code elimination}{cr-dce} from removing them as they are never properly referenced in the code.
+
+
+\subsection{Serialization format}
+\label{std-serialization-format}
+
+Each supported value is translated to a distinct prefix character, followed by the necessary data.
+
+\begin{description}
+	\item[\expr{null}:] \expr{n}
+	\item[\type{Int}:] \expr{z} for zero, or \expr{i} followed by the integer itself (e.g. \expr{i456})
+	\item[\type{Float}:]
+		\begin{description}
+			\item[\expr{NaN}:] \expr{k}
+			\item[negative infinity:] \expr{m}
+			\item[positive infinity:] \expr{p}
+			\item[normal Float:] \expr{d} followed by the float display (e.g. \expr{d1.45e-8})
+		\end{description}
+	\item[\type{Bool}:] \expr{t} for \expr{true}, \expr{f} for \expr{false}
+	\item[\type{String}:] \expr{y} followed by the url encoded string length, then \expr{:} and the url encoded string (e.g. \expr{y10:hi\%20there for "hi there".}.
+	\item[\type{String} (cached):] \expr{R} followed by the string cache ID (e.g. \expr{R456}). String caching is always enabled.
+	\item[name-value pairs:] a serialized string representing the namee, followed by the value
+	\item[structure:] \expr{o} followed by the list of name-value pairs, followed by \expr{g} (e.g. \expr{oy1:xi2y1:kng} for \expr{\{x:2, k:null\}})
+	\item[\type{List}:] \expr{l} followed by the list of serialized items, followed by \expr{h} (e.g. \expr{lnnh} for a list of two \expr{null} values)
+	\item[\type{Array}:] \expr{a} followed by the list of serialized items, followed by \expr{h}. For multiple consecutive \expr{null} values, \expr{u} followed by the number of \expr{null} values is used (e.g. \expr{ai1i2u4i7ni9h for [1,2,null,null,null,null,7,null,9]})
+	\item[\type{Date}:] \expr{v} followed by the date itself (e.g. \expr{d2010-01-01 12:45:10})
+	\item[\type{haxe.ds.StringMap}:] \expr{b} followed by the name-value pairs, followed by \expr{h} (e.g. \expr{by1:xi2y1:knh} for \expr{\{"x" => 2, "k" => null\}})
+	\item[\type{haxe.ds.IntMap}:] \expr{q} followed by the key-value pairs, followed by \expr{h}. Each key is represented as \expr{:<int>} (e.g. \expr{q:4n:5i45:6i7h} for \expr{\{4 => null, 5 => 45, 6 => 7\}})
+	\item[\type{haxe.ds.ObjectMap}:] \expr{M} followed by serialized value pairs representing the key and value, followed by \expr{h}
+	\item[\type{haxe.io.Bytes}:] \expr{s} followed by the length of the base64 encoded bytes, then \expr{:} and the byte representation using the codes \expr{A-Za-z0-9\%} (e.g. \expr{s3:AAA} for 2 bytes equal to \expr{0}, \expr{s10:SGVsbG8gIQ} for \expr{haxe.io.Bytes.ofString("Hello !")})
+	\item[exception:] \expr{x} followed by the exception value
+	\item[class instance:] \expr{c} followed by the serialized class name, followed by the name-value pairs of the fields, followed by \expr{g} (e.g. \expr{cy5:Pointy1:xzy1:yzg} for \expr{new Point(0, 0)} (having two integer fields \expr{x} and \expr{y})
+	\item[enum instance (by name):] \expr{w} followed by the serialized enum name, followed by the serialized constructor name, followed by the number of arguments, followed by the argument values (e.g. \expr{wy3:Fooy1:A0} for \expr{Foo.A} (with no arguments), \expr{wy3:Fooy1:B2i4n} for \expr{Foo.B(4,null)})
+	\item[enum instance (by index):] \expr{j} followed by the serialized enum name, followed by \expr{:}, followed by the constructor index, followed by the number of arguments, followed by the argument values (e.g. \expr{wy3:Foo0:0} for \expr{Foo.A} (with no arguments), \expr{wy3:Foo1:2i4n} for \expr{Foo.B(4,null)})
+	\item[custom:] \expr{C} followed by the class name, followed by the custom serialized data, followed by \expr{g}
+	\item[cache references:] \expr{r} followed by the cache index 
+\end{description}
+
+
 \section{Json}
 \label{std-Json}
 
