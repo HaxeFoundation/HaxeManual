@@ -16,9 +16,10 @@ class FlowchartHandler {
 		var targetPath = "assets/graphics/generated/";
 		var targetName = envlabel;
 		latexCompile(Resource.getString("tikzTemplate"), "\\begin{flowchart}" + s + "\\end{flowchart}", targetPath, targetName);
-		var relativePath = "../../" + targetPath + targetName + ".png";
+		var filePath = targetPath + targetName + ".png";
+		var relativePath = "../../" + filePath;
 		#if epub
-		return '![$envtitle]($targetPath)';
+		return '![$envtitle]($filePath)';
 		#else
 		return '<img src="$relativePath" alt="$envtitle" title="$envtitle" />\n\n_Figure: ${envtitle}_';
 		#end
