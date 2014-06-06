@@ -15,6 +15,9 @@ Enums can be matched by their constructors in a natural way:
       // l = Leaf("bar")
       case Node(_, Node(Leaf("bar"), _)): "2";
       // matches anything
+      case _: "3";
+    }
+    trace(match); // 2
 ```
 
 The pattern matcher will check each case from top to bottom and pick the first one that matches the input value. The following manual interpretation of each case rule helps understanding the process:
