@@ -17,5 +17,3 @@ class Main {
 Previous section: [Parsing JSON](std-Json-parsing.md)
 
 Next section: [Implementation details](std-Json-implementation-details.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L441-441)

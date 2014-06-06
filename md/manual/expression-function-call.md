@@ -15,5 +15,3 @@ subject(e1, ..., eN);
 Previous section: [Array Access](expression-array-access.md)
 
 Next section: [var](expression-var.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L144-144)

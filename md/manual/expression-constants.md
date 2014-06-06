@@ -16,5 +16,3 @@ Furthermore, the internal syntax structure treats [identifiers](dictionary.md#de
 Previous section: [Blocks](expression-block.md)
 
 Next section: [Array Declaration](expression-array-declaration.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L57-57)

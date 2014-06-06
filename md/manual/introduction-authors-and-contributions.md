@@ -13,5 +13,3 @@ Most of this document's content was written by Simon Krajewski while working for
 Previous section: [About this Document](introduction-about-this-document.md)
 
 Next section: [Hello World](introduction-hello-world.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/01-introduction.tex#L68-68)

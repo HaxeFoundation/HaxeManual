@@ -29,5 +29,3 @@
 Previous section: [safe cast](expression-cast-safe.md)
 
 Next section: [Conditional Compilation](lf-condition-compilation.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L1-1)

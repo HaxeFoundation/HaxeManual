@@ -32,5 +32,3 @@ Dynamic behaves in a special way when being [unified](type-system-unification.md
 Previous section: [Default values](types-function-default-values.md)
 
 Next section: [Dynamic with Type Parameter](types-dynamic-with-type-parameter.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L559-559)

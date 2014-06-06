@@ -106,5 +106,3 @@ In this example we decide that we want to ignore the value of member variable `y
 Previous section: [Reflection](std-reflection.md)
 
 Next section: [Serialization format](std-serialization-format.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L331-331)

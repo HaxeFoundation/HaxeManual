@@ -28,5 +28,3 @@ class TestMath{
 Previous section: [Integer Math](std-math-integer-math.md)
 
 Next section: [Reflection](std-reflection.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L282-282)

@@ -28,5 +28,3 @@ The Haxe type system provides a type which unifies with all enum types:
 Previous section: [Interfaces](types-interfaces.md)
 
 Next section: [Enum Constructor](types-enum-constructor.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L333-333)

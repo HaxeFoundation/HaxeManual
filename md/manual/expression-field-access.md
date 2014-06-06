@@ -15,5 +15,3 @@ The typer ensures that an accessed field actually exist and may apply transforma
 Previous section: [Object Declaration](expression-object-declaration.md)
 
 Next section: [Array Access](expression-array-access.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L113-113)

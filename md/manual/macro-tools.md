@@ -19,5 +19,3 @@ The Haxe Standard Library comes with a set of tool-classes to simplify working w
 Previous section: [Class Reification](macro-reification-class.md)
 
 Next section: [Type Building](macro-type-building.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L136-136)

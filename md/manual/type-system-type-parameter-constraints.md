@@ -34,5 +34,3 @@ We can see that invoking `test` with an empty array in line 7 and an `Array<Stri
 Previous section: [Type Parameters](type-system-type-parameters.md)
 
 Next section: [Generic](type-system-generic.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L96-96)

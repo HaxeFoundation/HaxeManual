@@ -27,5 +27,3 @@ This kind of reification only works in places where the internal structure expec
 Previous section: [Reification](macro-reification.md)
 
 Next section: [Type Reification](macro-reification-type.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L81-81)

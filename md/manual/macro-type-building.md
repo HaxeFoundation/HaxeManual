@@ -65,5 +65,3 @@ If a type-building macro should not modify anything, the macro can return `null`
 Previous section: [Tools](macro-tools.md)
 
 Next section: [Enum building](macro-enum-building.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L153-153)

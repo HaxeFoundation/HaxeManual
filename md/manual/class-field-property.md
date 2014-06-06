@@ -62,5 +62,3 @@ The access identifiers define the behavior when the field is read (first identif
 Previous section: [Variable](class-field-variable.md)
 
 Next section: [Common accessor identifier combinations](class-field-property-common-combinations.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/04-class-field.tex#L42-42)

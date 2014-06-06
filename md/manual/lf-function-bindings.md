@@ -34,5 +34,3 @@ The underscore `_` can be skipped for trailing arguments, so the the first argum
 Previous section: [Iterators](lf-iterators.md)
 
 Next section: [Metadata](lf-metadata.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L376-376)

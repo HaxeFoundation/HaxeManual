@@ -35,5 +35,3 @@ class Main {
 Previous section: [Limitations](macro-limitations.md)
 
 Next section: [Build Order](macro-limitations-build-order.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L250-250)

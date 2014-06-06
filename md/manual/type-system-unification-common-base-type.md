@@ -28,5 +28,3 @@ Although `Base` is not mentioned, the Haxe Compiler manages to infer it as the c
 Previous section: [Function Return](type-system-unification-function-return.md)
 
 Next section: [Type Inference](type-system-type-inference.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L303-303)

@@ -75,5 +75,3 @@ Here we do not setup a full iterator like in the previous example, but instead d
 Previous section: [Array Comprehension](lf-array-comprehension.md)
 
 Next section: [Function Bindings](lf-function-bindings.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L348-348)

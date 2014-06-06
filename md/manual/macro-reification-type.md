@@ -16,5 +16,3 @@ Each constructor of `ComplexType` has a distinct syntax:
 Previous section: [Expression Reification](macro-reification-expression.md)
 
 Next section: [Class Reification](macro-reification-class.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L109-109)

@@ -17,5 +17,3 @@ Further details of object declaration are described in the section about [anonym
 Previous section: [Array Declaration](expression-array-declaration.md)
 
 Next section: [Field Access](expression-field-access.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L97-97)

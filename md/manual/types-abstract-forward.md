@@ -48,5 +48,3 @@ It is also possible to use `:forward` without any arguments in order to forward 
 Previous section: [Enum abstracts](types-abstract-enum.md)
 
 Next section: [Core-type abstracts](types-abstract-core-type.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L817-817)

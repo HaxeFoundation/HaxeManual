@@ -28,5 +28,3 @@ typedef Iterable<T> = {
 Previous section: [Type System](type-system.md)
 
 Next section: [Extensions](type-system-extensions.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L10-10)

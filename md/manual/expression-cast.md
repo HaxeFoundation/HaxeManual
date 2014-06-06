@@ -12,5 +12,3 @@ cast (expr, Type); // safe cast
 Previous section: [throw](expression-throw.md)
 
 Next section: [unsafe cast](expression-cast-unsafe.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L409-409)

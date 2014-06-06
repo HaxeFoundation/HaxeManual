@@ -24,5 +24,3 @@ class Main {
 Previous section: [Resources](cr-resources.md)
 
 Next section: [RTTI structure](cr-rtti-structure.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/08-compiler-features.tex#L105-105)

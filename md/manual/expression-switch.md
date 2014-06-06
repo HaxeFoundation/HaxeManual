@@ -21,5 +21,3 @@ Further details on syntax of pattern expressions are detailed in [Pattern Matchi
 Previous section: [if](expression-if.md)
 
 Next section: [try/catch](expression-try-catch.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L285-285)

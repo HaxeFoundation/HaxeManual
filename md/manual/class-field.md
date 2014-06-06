@@ -22,5 +22,3 @@ Regarding terminology, a method is a (static or non-static) function belonging t
 Previous section: [Resolution Order](type-system-resolution-order.md)
 
 Next section: [Variable](class-field-variable.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/04-class-field.tex#L1-1)

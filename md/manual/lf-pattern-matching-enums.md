@@ -32,5 +32,3 @@ The pattern matcher will check each case from top to bottom and pick the first o
 Previous section: [Introduction](lf-pattern-matching-introduction.md)
 
 Next section: [Variable capture](lf-pattern-matching-variable-capture.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L134-134)

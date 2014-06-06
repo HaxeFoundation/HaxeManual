@@ -73,5 +73,3 @@ Map defines [array access](types-abstract-array-access.md) using its key type.
 Previous section: [GenericStack](std-GenericStack.md)
 
 Next section: [Option](std-Option.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L100-100)

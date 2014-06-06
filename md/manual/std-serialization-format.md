@@ -33,5 +33,3 @@ Each supported value is translated to a distinct prefix character, followed by t
 Previous section: [Serialization](std-serialization.md)
 
 Next section: [Json](std-Json.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L391-391)

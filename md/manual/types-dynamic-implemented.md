@@ -50,5 +50,3 @@ class Main {
 Previous section: [Dynamic with Type Parameter](types-dynamic-with-type-parameter.md)
 
 Next section: [Abstract](types-abstract.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L602-602)

@@ -35,5 +35,3 @@ class MathExample {
 Previous section: [Implementation Details](std-regex-implementation-details.md)
 
 Next section: [Special Numbers](std-math-special-numbers.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L251-251)

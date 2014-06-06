@@ -13,5 +13,3 @@ Alternatively, the **haxe.Int32** and **haxe.Int64** classes can be used to ensu
 Previous section: [Numeric types](types-numeric-types.md)
 
 Next section: [Numeric Operators](types-numeric-operators.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L59-59)

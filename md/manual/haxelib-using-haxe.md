@@ -22,5 +22,3 @@ If the compiler emits an error `Error: Library random is not installed : run 'ha
 Previous section: [Haxelib](haxelib.md)
 
 Next section: [haxelib.json](haxelib-json.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/11-haxelib.tex#L8-8)

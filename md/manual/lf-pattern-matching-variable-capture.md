@@ -38,5 +38,3 @@ Here, `leafNode` is bound to `Leaf("foo")` if the input matches that. In all oth
 Previous section: [Enum matching](lf-pattern-matching-enums.md)
 
 Next section: [Structure matching](lf-pattern-matching-structure.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L150-150)

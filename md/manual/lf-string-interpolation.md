@@ -31,5 +31,3 @@ Of course the use of single-quote enclosed strings without any interpolation rem
 Previous section: [Useless pattern checks](lf-pattern-matching-unused.md)
 
 Next section: [Array Comprehension](lf-array-comprehension.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L291-291)

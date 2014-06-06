@@ -39,5 +39,3 @@ The following classes from the Haxe Standard Library are designed to be used as 
 Previous section: [Static Extension](lf-static-extension.md)
 
 Next section: [Pattern Matching](lf-pattern-matching.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L85-85)

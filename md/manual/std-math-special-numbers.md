@@ -11,5 +11,3 @@ The math library has definitions for several special numbers:
 Previous section: [Math](std-math.md)
 
 Next section: [Mathematical Errors](std-math-mathematical-errors.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L260-260)

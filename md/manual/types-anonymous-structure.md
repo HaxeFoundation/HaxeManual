@@ -74,5 +74,3 @@ class Path {
 Previous section: [Using enums](types-enum-using.md)
 
 Next section: [JSON for Structure Values](types-structure-json.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L392-392)

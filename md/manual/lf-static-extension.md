@@ -39,5 +39,3 @@ Following the rules previously described in [Resolution Order](type-system-resol
 Previous section: [Externs](lf-externs.md)
 
 Next section: [In the Haxe Standard Library](lf-static-extension-in-std.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L64-64)

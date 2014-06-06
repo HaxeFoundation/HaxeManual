@@ -28,5 +28,3 @@ Unsafe casts have little to no runtime overhead.
 Previous section: [cast](expression-cast.md)
 
 Next section: [safe cast](expression-cast-safe.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L419-419)

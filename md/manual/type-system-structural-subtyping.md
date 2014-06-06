@@ -22,5 +22,3 @@ This kind of typing can be very convenient, but extensive use may be detrimental
 Previous section: [Between Class/Interface](type-system-unification-between-classes-and-interfaces.md)
 
 Next section: [Monomorphs](type-system-monomorphs.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L266-266)

@@ -25,5 +25,3 @@ class Main {
 Previous section: [Constant Expressions](macro-constant-arguments.md)
 
 Next section: [Reification](macro-reification.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L66-66)

@@ -35,5 +35,3 @@ While the first three calls are intuitive, the fourth one might come as a surpri
 Previous section: [Function Type](types-function.md)
 
 Next section: [Default values](types-function-default-values.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L516-516)

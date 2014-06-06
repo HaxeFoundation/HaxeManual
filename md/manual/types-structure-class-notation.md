@@ -14,5 +14,3 @@ typedef Point = {
 Previous section: [JSON for Structure Values](types-structure-json.md)
 
 Next section: [Impact on Performance](types-structure-performance.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L470-470)

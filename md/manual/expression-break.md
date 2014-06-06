@@ -19,5 +19,3 @@ The typer ensures that it appears only within a loop. The `break` keyword in [`s
 Previous section: [return](expression-return.md)
 
 Next section: [continue](expression-continue.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L361-361)

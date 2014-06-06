@@ -39,5 +39,3 @@ class Main {
 Previous section: [Json](std-Json.md)
 
 Next section: [Encoding JSON](std-Json-encoding.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L432-432)

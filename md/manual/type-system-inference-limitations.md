@@ -9,5 +9,3 @@ There are also some cases involving recursion where type inference has limitatio
 Previous section: [Top-down Inference](type-system-top-down-inference.md)
 
 Next section: [Modules and Paths](type-system-modules-and-paths.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L368-368)

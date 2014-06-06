@@ -27,5 +27,3 @@
 Previous section: [In the Haxe Standard Library](lf-static-extension-in-std.md)
 
 Next section: [Introduction](lf-pattern-matching-introduction.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L115-115)

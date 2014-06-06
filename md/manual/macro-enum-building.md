@@ -69,5 +69,3 @@ enum E {
 Previous section: [Type Building](macro-type-building.md)
 
 Next section: [@:autoBuild](macro-auto-build.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/09-macros.tex#L193-193)

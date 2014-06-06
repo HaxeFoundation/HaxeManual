@@ -27,5 +27,3 @@ A limitation with regards to class instances is that you cannot match against fi
 Previous section: [Variable capture](lf-pattern-matching-variable-capture.md)
 
 Next section: [Array matching](lf-pattern-matching-array.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L171-171)

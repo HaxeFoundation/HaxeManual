@@ -12,5 +12,3 @@ This will yield an instance of class `Point`, which is assigned to a variable na
 Previous section: [Class Instance](types-class-instance.md)
 
 Next section: [Inheritance](types-class-inheritance.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L265-265)

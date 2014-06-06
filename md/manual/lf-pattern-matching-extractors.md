@@ -98,5 +98,3 @@ However, it is possible to have or-patterns on the right side of an extractor, s
 Previous section: [Match on multiple values](lf-pattern-matching-tuples.md)
 
 Next section: [Exhaustiveness checks](lf-pattern-matching-exhaustiveness.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L226-226)

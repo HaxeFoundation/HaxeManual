@@ -45,5 +45,3 @@ Main.main = function() {
 Previous section: [Access Control](lf-access-control.md)
 
 Next section: [Compiler Reference](#)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L485-485)

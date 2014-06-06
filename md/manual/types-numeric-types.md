@@ -16,5 +16,3 @@ While every `Int` can be used where a `Float` is expected (that is, `Int` **is a
 Previous section: [Basic Types](types-basic-types.md)
 
 Next section: [Overflow](types-overflow.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L51-51)

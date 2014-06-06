@@ -29,5 +29,3 @@ This kind of while-loop is not guaranteed to evaluate the loop body expression a
 Previous section: [for](expression-for.md)
 
 Next section: [do-while](expression-do-while.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L227-227)

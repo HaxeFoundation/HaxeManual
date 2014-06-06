@@ -46,5 +46,3 @@ The explicit types `String` and `haxe.Template` are used here to determine the r
 Previous section: [Type Inference](type-system-type-inference.md)
 
 Next section: [Limitations](type-system-inference-limitations.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L341-341)

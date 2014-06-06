@@ -41,5 +41,3 @@ class Main {
 Previous section: [Map](std-Map.md)
 
 Next section: [Regular Expressions](std-regex.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L122-122)

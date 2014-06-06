@@ -32,5 +32,3 @@ The compiler automatically defines the flag `dce` with a value of either `"std"`
 Previous section: [Compiler Features](cr-features.md)
 
 Next section: [Completion](#)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/08-compiler-features.tex#L5-5)

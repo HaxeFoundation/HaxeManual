@@ -26,5 +26,3 @@ A class may override [methods](class-field-method.md) of its parent class, which
 Previous section: [Class constructor](types-class-constructor.md)
 
 Next section: [Interfaces](types-interfaces.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L277-277)

@@ -12,5 +12,3 @@ While any string literal is allowed, the field is only considered part of the ty
 Previous section: [Anonymous Structure](types-anonymous-structure.md)
 
 Next section: [Class Notation for Structure Types](types-structure-class-notation.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L460-460)

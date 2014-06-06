@@ -28,5 +28,3 @@ If `return` is used without a value expression, the typer ensures that the retur
 Previous section: [try/catch](expression-try-catch.md)
 
 Next section: [break](expression-break.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L334-334)

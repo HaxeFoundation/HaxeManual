@@ -68,5 +68,3 @@ trace(a); // 0 on static platforms
 Previous section: [Void](types-void.md)
 
 Next section: [Optional Arguments and Nullability](types-nullability-optional-arguments.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L167-167)

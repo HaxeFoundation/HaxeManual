@@ -16,5 +16,3 @@ switch(Leaf("foo")) {
 Previous section: [Exhaustiveness checks](lf-pattern-matching-exhaustiveness.md)
 
 Next section: [String Interpolation](lf-string-interpolation.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L275-275)

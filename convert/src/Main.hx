@@ -22,7 +22,6 @@ class Main {
 	function new() {
 		Sys.setCwd("../");
 		var sections = parse();
-		var linkBase = "https://github.com/HaxeFoundation/HaxeManual/blob/master/";
 		out = #if epub "md_epub/manual" #else "md/manual" #end;
 
 		sectionInfo = collectSectionInfo(sections);
@@ -61,8 +60,6 @@ class Main {
 			sec.content += "\n---";
 			if (i != 0) sec.content += '\n\nPrevious section: ${link(sectionInfo.all[i - 1])}';
 			if (i != sectionInfo.all.length - 1) sec.content += '\n\nNext section: ${link(sectionInfo.all[i + 1])}';
-			var fileAndLines = '${sec.source.file}#L${sec.source.lineMin}-${sec.source.lineMax}';
-			sec.content += '\n\nContribute: [fileAndLines]($linkBase$fileAndLines)';
 			#end
 			sys.io.File.saveContent('$out/${url(sec)}', sec.content);
 			Reflect.deleteField(sec, "content");

@@ -13,5 +13,3 @@
 Previous section: [Effects of variance and access modifiers](class-field-override-effects.md)
 
 Next section: [Visibility](class-field-visibility.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/04-class-field.tex#L227-227)

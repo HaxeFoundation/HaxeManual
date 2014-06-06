@@ -71,5 +71,3 @@
 ---
 
 Previous section: [C++](#)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/12-target-details.tex#L38-38)

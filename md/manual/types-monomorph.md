@@ -7,5 +7,3 @@ A monomorph is a type which may, through [unification](type-system-unification.m
 Previous section: [Core-type abstracts](types-abstract-core-type.md)
 
 Next section: [Type System](type-system.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L860-860)

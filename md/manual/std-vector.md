@@ -26,5 +26,3 @@ class Main {
 Previous section: [Array](std-Array.md)
 
 Next section: [List](std-List.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L68-68)

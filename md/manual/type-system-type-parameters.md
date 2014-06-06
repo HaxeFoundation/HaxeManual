@@ -58,5 +58,3 @@ Both arguments `expected` and `actual` of the `equals` function have type `T`. T
 Previous section: [Extensions](type-system-extensions.md)
 
 Next section: [Constraints](type-system-type-parameter-constraints.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L57-57)

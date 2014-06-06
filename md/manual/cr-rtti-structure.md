@@ -71,5 +71,3 @@
 Previous section: [Runtime Type Information](cr-rtti.md)
 
 Next section: [Macros](macro.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/08-compiler-features.tex#L116-116)

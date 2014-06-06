@@ -23,5 +23,3 @@ function opt( ?z : Int = -1) {...}
 Previous section: [Nullability](types-nullability.md)
 
 Next section: [Class Instance](types-class-instance.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L221-221)

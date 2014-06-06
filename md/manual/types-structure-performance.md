@@ -7,5 +7,3 @@ Using structures and by extension [structural subtyping](type-system-structural-
 Previous section: [Class Notation for Structure Types](types-structure-class-notation.md)
 
 Next section: [Function Type](types-function.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L487-487)

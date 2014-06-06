@@ -22,5 +22,3 @@ Accessing `object.field` if `object` is `null` would lead to a runtime error, bu
 Previous section: [Numeric Operators](types-numeric-operators.md)
 
 Next section: [Void](types-void.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L126-126)

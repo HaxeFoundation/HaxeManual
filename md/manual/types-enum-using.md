@@ -37,5 +37,3 @@ Advanced information on using the `switch` expression will be explored later in 
 Previous section: [Enum Constructor](types-enum-constructor.md)
 
 Next section: [Anonymous Structure](types-anonymous-structure.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L380-380)

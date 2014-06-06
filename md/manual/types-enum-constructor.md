@@ -50,5 +50,3 @@ If the commented line uncommented, the program does not compile because `Red` (a
 Previous section: [Enum Instance](types-enum-instance.md)
 
 Next section: [Using enums](types-enum-using.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L352-352)

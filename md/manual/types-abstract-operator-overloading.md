@@ -65,5 +65,3 @@ It is also possible to omit the method body of a `@:op` function, but only if th
 Previous section: [Implicit Casts](types-abstract-implicit-casts.md)
 
 Next section: [Array Access](types-abstract-array-access.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L715-715)

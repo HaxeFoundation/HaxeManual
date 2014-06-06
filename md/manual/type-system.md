@@ -11,5 +11,3 @@ All types are organized in **modules** and can be addressed through **paths**. [
 Previous section: [Monomorph](types-monomorph.md)
 
 Next section: [Typedef](type-system-typedef.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L1-1)

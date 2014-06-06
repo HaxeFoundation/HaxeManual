@@ -18,5 +18,3 @@ If there is a captured variable in an or-pattern, it must appear in both its sub
 Previous section: [Array matching](lf-pattern-matching-array.md)
 
 Next section: [Guards](lf-pattern-matching-guards.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L191-191)

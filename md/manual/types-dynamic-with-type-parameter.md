@@ -17,5 +17,3 @@ att.income = 0;
 Previous section: [Dynamic](types-dynamic.md)
 
 Next section: [Implementing Dynamic](types-dynamic-implemented.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L586-586)

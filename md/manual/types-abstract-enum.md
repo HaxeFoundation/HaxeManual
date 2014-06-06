@@ -59,5 +59,3 @@ This is similar to accessing [variables declared as inline](class-field-inline.m
 Previous section: [Selective Functions](types-abstract-selective-functions.md)
 
 Next section: [Forwarding abstract fields](types-abstract-forward.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/02-types.tex#L783-783)

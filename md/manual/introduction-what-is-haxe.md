@@ -41,5 +41,3 @@ Haxe abstracts away many target differences, but sometimes it is important to in
 Previous section: [Introduction](introduction.md)
 
 Next section: [About this Document](introduction-about-this-document.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/01-introduction.tex#L5-5)

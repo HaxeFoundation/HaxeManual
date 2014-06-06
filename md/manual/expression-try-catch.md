@@ -27,5 +27,3 @@ This process has many similarities to the compile-time [unification](type-system
 Previous section: [switch](expression-switch.md)
 
 Next section: [return](expression-return.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/05-expressions.tex#L304-304)

@@ -86,5 +86,3 @@ While the method `reflective` could interally work with reflection (and `Dynamic
 Previous section: [Extensions](std-math-extensions.md)
 
 Next section: [Serialization](std-serialization.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L294-294)

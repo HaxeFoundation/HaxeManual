@@ -63,5 +63,3 @@ Haxe uses target platform's native resource embedding, if there is one, providin
 Previous section: [Completion](#)
 
 Next section: [Runtime Type Information](cr-rtti.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/08-compiler-features.tex#L51-51)

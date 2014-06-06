@@ -14,5 +14,3 @@ The right-hand function clearly is of type `Void->String`, yet we can assign it 
 Previous section: [Monomorphs](type-system-monomorphs.md)
 
 Next section: [Common Base Type](type-system-unification-common-base-type.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/03-type-system.tex#L290-290)

@@ -41,5 +41,3 @@ An exhaustive list of all built-in defines can be obtained by invoking the Haxe 
 Previous section: [Language Features](lf.md)
 
 Next section: [Externs](lf-externs.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L5-5)

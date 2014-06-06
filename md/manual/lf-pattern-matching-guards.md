@@ -21,5 +21,3 @@ The first case has an additional guard condition `if (b > a)`. It will only be s
 Previous section: [Or patterns](lf-pattern-matching-or.md)
 
 Next section: [Match on multiple values](lf-pattern-matching-tuples.md)
-
-Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/06-language-features.tex#L200-200)
