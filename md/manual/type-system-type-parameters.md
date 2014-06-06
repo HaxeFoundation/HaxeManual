@@ -9,11 +9,8 @@ class Array<T> {
 ```
 Whenever an instance of `Array` is created, its type parameter `T` becomes a [monomorph](types-monomorph.md). That is, it can be bound to any type, but only one at a time. This binding can happen
 
-
-
 * explicitly by invoking the constructor with explicit types (`new Array<String>()`) or
 * implicitly by [type inference](type-system-type-inference.md), e.g. when invoking `arrayInstance.push("foo")`.
-
 
 Inside the definition of a class with type parameters, these type parameters are an unspecific type. Unless [constraints](type-system-type-parameter-constraints.md) are added, the compiler has to assume that the type parameters could be used with any type. As a consequence, it is not possible to access fields of type parameters or [cast](expression-cast.md) to a a type parameter type. It is also not possible to create a new instance of a type parameter type, unless the type parameter is [generic](type-system-generic.md) and constrained accordingly. 
 

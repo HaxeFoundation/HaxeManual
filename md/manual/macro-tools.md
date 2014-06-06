@@ -2,13 +2,10 @@
 
 The Haxe Standard Library comes with a set of tool-classes to simplify working with macros. These classes work best as [static extensions](lf-static-extension.md) and can be brought into context either individually or as a whole through `using haxe.macro.Tools`. These classes are:
 
-
-
 * `ComplexTypeTools`: Allows printing `ComplexType` instances in a human-readable way. Also allows determining the `Type` corresponding to a `ComplexType`.
 * `ExprTools`: Allows printing `Expr` instances in a human-readable way. Also allows iterating and mapping expressions.
 * `MacroStringTools`: Offers useful operations on strings and string expressions in macro context.
 * `TypeTools`: Allows printing `Type` instances in a human-readable way. Also offers several useful operations on types, such as [unifying](type-system-unification.md) them or getting their corresponding `ComplexType`.
-
 
 
 > ##### Trivia: The tinkerbell library and why Tools.hx works

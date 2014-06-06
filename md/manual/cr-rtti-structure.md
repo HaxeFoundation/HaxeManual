@@ -2,8 +2,6 @@
 
 ###### General type information
 
-
-
 * path: The [type path](dictionary.md#define-type-path) of the type.
 * module: The type path of the [module](dictionary.md#define-module) containing the type.
 * file: The full slash path of the .hx file containing the type. This might be `null` in case there is no such file, e.g. if the type is defined through a [macro](macro.md).
@@ -14,10 +12,7 @@
 * meta: The meta data the type was annotated with.
 
 
-
 ###### Class type information
-
-
 
 
 * isExtern: Whether or not the class is [extern](lf-externs.md).
@@ -29,19 +24,13 @@
 * tdynamic: The type which is [dynamically implemented](types-dynamic-implemented.md) by the class, or `null` if no such type exists.
 
 
-
 ###### Enum type information
-
-
 
 * isExtern: Whether or not the enum is [extern](lf-externs.md).
 * constructors: The list of enum constructors.
 
 
-
 ###### Abstract type information
-
-
 
 * to: An array containing the defined [implicit to casts](types-abstract-implicit-casts.md).
 * from: An array containing the defined [implicit from casts](types-abstract-implicit-casts.md).
@@ -50,10 +39,7 @@
 
 
 
-
 ###### Class field information
-
-
 
 
 * name: The name of the field.
@@ -63,17 +49,15 @@
 * doc: The documentation of the field. This information is only available if the [compiler flag](dictionary.md#define-compiler-flag) `-D use_rtti_doc` was in place. Otherwise, or if the field has no documentation, the value is `null`.
 * get: The [read access behavior](dictionary.md#define-read-access) of the field.
 * set: The [write access behavior](dictionary.md#define-write-access) of the field.
-* params: * params: An array of strings representing the names of the [type parameters](type-system-type-parameters.md) the field has. As of Haxe 3.2.0, this does not include the [constraints](type-system-type-parameter-constraints.md).
+* params: 
+* params: An array of strings representing the names of the [type parameters](type-system-type-parameters.md) the field has. As of Haxe 3.2.0, this does not include the [constraints](type-system-type-parameter-constraints.md).
 * platforms: A list of strings representing the targets where the field is available.
 * meta: The meta data the field was annotated with.
 * line: The line number where the field is defined. This information is only available if the field has an expression. Otherwise the value is `null`.
 * overloads: The list of available overloads for the fields, or `null` if no overloads exists.
 
 
-
 ###### Enum constructor information
-
-
 
 
 * name: The name of the constructor.

@@ -13,8 +13,6 @@ We have seen an example of this when introducing haxelib.json:
 
 This adds two dependencies to the given Haxe library:
 
-
-
 1. The library "tink_macros" can be used in any version. Haxelib will then always try to use the latest version.
 2. The library "nme" is required in version "3.5.5". Haxelib will make sure that this exact version is used, avoiding potential breaking changes with future versions.
 

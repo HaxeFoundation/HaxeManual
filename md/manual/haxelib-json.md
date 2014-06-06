@@ -2,8 +2,6 @@
 
 Each Haxe library requires a `haxelib.json` file in which the following attributes are defined:
 
-
-
 * name: The name of the library. It must contain at least 3 characters among the following: `[A-Za-z0-9_-.]`. In particular, no spaces are allowed.
 * url: The URL of the library, i.e. where more information can be found.
 * license: The license under which the library is released. Can be `GPL`, `LGPL`, `BSD`, `Public` (for Public Domain) or `MIT`.
@@ -13,7 +11,6 @@ Each Haxe library requires a `haxelib.json` file in which the following attribut
 * releasenote: The release notes of the current version.
 * contributors: An array of user names which identify contributors to the library. 
 * dependencies: An object describing the dependencies of the library. This is detailed in [Dependencies](haxelib-json-dependencies.md).
-
 
 
 The following JSON is a simple example of a haxelib.json:

@@ -27,14 +27,11 @@ Compiling this without any flags will leave only the `trace("ok");` line in the 
 
 The conditions after `#if` and `#elseif` allow the following expressions:
 
-
-
 * Any identifier is replaced by the value of the compiler flag by the same name. Note that `-D some-flag` from command line leads to the flags `some-flag` and `some_flag` to be defined.
 * The values of `String`, `Int` and `Float` constants are used directly.
 * The boolean operators `&&` (and), `||` (or) and `!` (not) work as expected.
 * The operators `==`, `!=`, `>`, `>=`, `<`, `<=` can be used to compare values.
 * Parentheses `()` can be used to group expressions as usual.
-
 
 
 An exhaustive list of all built-in defines can be obtained by invoking the Haxe Compiler with the `--help-defines` argument. The Haxe Compiler allows multiple `-D` flags per compilation.

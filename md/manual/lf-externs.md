@@ -2,12 +2,9 @@
 
 Externs can be used to describe target-specific interaction in a type-safe manner. They are defined like normal classes, except that
 
-
-
 * the `class` keyword is preceded by the `extern` keyword,
 * [methods](class-field-method.md) have no expressions and
 * all argument and return types are explicit.
-
 
 
 A common example from the [Haxe Standard Library](std.md) is the `Math` class, as an excerpt shows:

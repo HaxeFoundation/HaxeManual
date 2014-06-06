@@ -6,8 +6,6 @@ Introducing custom core-type abstracts is rarely necessary in user code as it re
 
 In contrast to opaque abstracts, core-type abstracts have the following properties:
 
-
-
 * They have no underlying type.
 * They are considered nullable unless they are annotated with `:notNull` metadata.
 * They are allowed to declare [array access](types-abstract-array-access.md) functions without expressions.

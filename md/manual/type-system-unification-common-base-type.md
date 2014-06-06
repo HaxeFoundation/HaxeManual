@@ -19,8 +19,6 @@ class UnifyMin {
 ```
 Although `Base` is not mentioned, the Haxe Compiler manages to infer it as the common type of `Child1` and `Child2`. The Haxe Compiler employs this kind of unification in the following situations:
 
-
-
 * array declarations
 * `if`/`else`
 * cases of a `switch`

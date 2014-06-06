@@ -21,13 +21,10 @@ class OptionalArguments {
 Function `test` has two optional arguments `i` of type `Int` and `s` of `String`. This is directly reflected in the function type, which line 3 outputs. 
 This example program calls `test` four times and prints its return value.
 
-
-
 1. the first call is made without any arguments
 2. the second call is made with a singular argument `1`
 3. the third call is made with two arguments `1` and `"foo"`
 4. the fourth call is made with a singular argument `"foo"`
-
 
 The output shows that optional arguments which are omitted from the call have a value of `null`. This implies that the type of these arguments must admit `null` as value, which raises the question of its [nullability](types-nullability.md). The Haxe Compiler ensures that optional basic type arguments are nullable by inferring their type as `Null<T>` when compiling to a [static target](dictionary.md#define-static-target).
 

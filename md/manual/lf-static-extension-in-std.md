@@ -22,13 +22,10 @@ Main.main = function() {
 
 The following classes from the Haxe Standard Library are designed to be used as static extensions:
 
-
-
 * `StringTools`: Provides extended functionality on strings, such as replacing or trimming.
 * `Lambda`: Provides functional methods on iterables.
 * `haxe.EnumTools`: Provides type information functionality on enums and their instances.
 * `haxe.macro.Tools`: Provides different extensions for working with macros (see [Tools](macro-tools.md)).
-
 
 
 

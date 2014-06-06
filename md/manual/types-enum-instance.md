@@ -11,14 +11,11 @@ enum Color {
 }
 ```
 Semantically, this enum describes a color which is either red, green, blue or a specified RGB value. The syntactic structure is as follows:
-
-
 * The keyword `enum` denotes that we are declaring an enum.
 * `Color` is the name of the enum and could be anything conforming to the rules for [type identifiers](dictionary.md#define-identifier).
 * Enclosed in curly braces `{}` are the **enum constructors**,
 * which are `Red`, `Green` and `Blue` taking no arguments,
 * as well as `Rgb` taking three `Int` arguments named `r`, `g` and `b`.
-
 
 The Haxe type system provides a type which unifies with all enum types:
 

@@ -31,12 +31,9 @@ The type `Binop` is an [enum](types-enum-instance.md) declared in the module `ha
 
 There several aspects worth knowing about importing:
 
-
-
 * The bottommost import takes priority (detailed in [Resolution Order](type-system-resolution-order.md)).
 * The [static extension](lf-static-extension.md) keyword `using` implies the effect of `import`.
 * If an enum is imported (directly or as part of a module import), all its [enum constructors](types-enum-constructor.md) are also imported (this is what allows the `OpAdd` usage in above example).
-
 
 
 Furthermore, it is also possible to import [static fields](class-field.md) of a class and use them unqualified:

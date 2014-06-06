@@ -2,11 +2,8 @@
 
 Building [enums](types-enum-instance.md) is analogous to building classes with a simple mapping:
 
-
-
 * Enum constructors without arguments are variable fields `FVar`.
 * Enum constructors with arguments are method fields `FFun`.
-
 
 
 

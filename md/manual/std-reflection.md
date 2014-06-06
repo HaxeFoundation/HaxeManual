@@ -4,11 +4,8 @@ Haxe supports runtime reflection of types an fields. Special care has to be take
 
 The reflection API consists of two classes:
 
-
-
 * Reflect: A lightweight API which work best on [anonymous structures](types-anonymous-structure.md), with limited support for [classes](types-class-instance.md). 
 * Type: A more robust API for working with classes and [enums](types-enum-instance.md).
-
 
 
 The available methods are detailed in the API for [Reflect](http://api.haxe.org//Reflect.html) and [Type](http://api.haxe.org//Type.html).
@@ -88,6 +85,6 @@ While the method `reflective` could interally work with reflection (and `Dynamic
 
 Previous section: [Extensions](std-math-extensions.md)
 
-Next section: [Json](std-Json.md)
+Next section: [Serialization](std-serialization.md)
 
 Contribute: [fileAndLines](https://github.com/HaxeFoundation/HaxeManual/blob/master/10-std.tex#L294-294)

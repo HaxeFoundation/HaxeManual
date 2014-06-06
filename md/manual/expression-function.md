@@ -24,8 +24,6 @@ var myLocalFunction = function(a) { }
 
 However, there are some differences related to type parameters and the position of the function. We speak of a "lvalue" function if it is not assigned to anything upon its declaration, and an "rvalue" function otherwise.
 
-
-
 * Lvalue functions require a name and can have [type parameters](type-system-type-parameters.md).
 * Rvalue functions may have a name, but cannot have type parameters.
 

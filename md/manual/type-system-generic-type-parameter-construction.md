@@ -27,11 +27,8 @@ class Main {
 
 It should be noted that [top-down inference](type-system-top-down-inference.md) is used here to determine the actual type of `T`. There are two requirements for this kind of type parameter construction to work. The constructed type parameter must be
 
-
-
 1. generic and
 2. be explicitly [constrained](type-system-type-parameter-constraints.md) to having a [constructor](types-class-constructor.md).
-
 
 
 Here, 1. is given by `make` having the `@:generic` metadata, and 2. by `T` being constrained to `Constructible`. The constraint holds for both `String` and `haxe.Template` as both have a constructor accepting a singular `String` argument. Sure enough, the relevant Javascript output looks as expected:

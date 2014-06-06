@@ -23,12 +23,9 @@ There is nothing to worry about when working with `null` on dynamic targets, but
 >
 > 
 > Basic types have the following default values on static targets:
-> 
-> 
 > * `Int`: `0`
 > * `Float`: `NaN` on Flash, `0.0` on other static targets
 > * `Bool`: `false`
-> 
 > 
 > 
 

@@ -50,8 +50,6 @@ Main.printStatus = function(status) {
 
 This is similar to accessing [variables declared as inline](class-field-inline.md), but has several advantages:
 
-
-
 * The typer can ensure that all values of the set are typed correctly.
 * When [matching](lf-pattern-matching.md) an enum abstract, the pattern matcher checks for [exhaustiveness](lf-pattern-matching-exhaustiveness.md).
 * Defining fields requires less syntax.

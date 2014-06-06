@@ -2,11 +2,8 @@
 
 Unlike classes, abstracts allow defining implicit casts. There are two kinds of implicit casts:
 
-
-
 * Direct: Allows direct casting of the abstract type to or from another type. This is defined by adding `to` and `from` rules to the abstract type, and is only allowed for types which unify with the underlying type of the abstract.
 * Class field: Allows casting via calls to special cast functions. These functions are defined using `@:to` and `@:from` metadata. This kind of cast is allowed for all types.
-
 
 The following code example shows an example of **direct** casting:
 
@@ -75,15 +72,12 @@ var b = [a];
 ```
 The **selection algorithm** when assigning a type `A` to a type `B` with at least one of them being an abstract is simple:
 
-
-
 1. If `A` is not an abstract, go to 3.
 2. If `A` defines a **to**-conversions that admits `B`, go to 6.
 3. If `B` is not an abstract, go to 5.
 4. If `B` defines a **from**-conversions that admits `A`, go to 6.
 5. Stop, unification fails.
 6. Stop, unification succeeds.
-
 
 
 <img src="../../assets/graphics/generated/types-abstract-implicit-casts-selection-algorithm.png" alt="Selection algorithm flow chart." title="Selection algorithm flow chart." />

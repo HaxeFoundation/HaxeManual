@@ -15,8 +15,6 @@ A basic macro is a **syntax-transformation**. It receives zero or more [expressi
 
 We can identify different kinds of macros, which are run at specific compilation stages:
 
-
-
 * Initialization Macros: These are provided by command line using the `--macro` compiler parameter. They are executed after the compiler arguments were processed and the **typer context** has been created, but before any typing was done (see [Initialization macros](macro-initialization.md)).
 * Build Macros: These are defined for classes, enums and abstracts through the `@:build` or `@:autoBuild` [metadata](lf-metadata.md). They are executed per-type, after the type has been set up (including its relation to other types, such as inheritance for classes) but before its fields are typed (see [Type Building](macro-type-building.md)).
 * Expression Macros: These are normal functions which are executed as soon as they are typed.

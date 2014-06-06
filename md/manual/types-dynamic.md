@@ -2,13 +2,10 @@
 
 While Haxe has a static type system, this type system can effectively be turned off by using the `Dynamic` type. A **dynamic value** can be assigned to anything, and anything can be assigned to it. This has several drawbacks:
 
-
-
 * The compiler can no longer type-check assignments, function calls and other constructs where specific types are expected.
 * Certain optimizations, in particular when compiling to static targets, can no longer be employed.
 * Some common errors, e.g. a typo in a field access, can not be caught at compile-time and likely cause an error at runtime.
 * [Dead Code Elimination](cr-dce.md) cannot detect used fields if they are used through `Dynamic`.
-
 
 It is very easy to come up with examples where the usage of `Dynamic` can cause problems at runtime. Consider compiling the following two lines to a static target:
 

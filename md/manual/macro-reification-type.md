@@ -4,8 +4,6 @@ Type reification is used to create instances of `haxe.macro.Expr.ComplexType` in
 
 Each constructor of `ComplexType` has a distinct syntax:
 
-
-
 * `TPath`: `macro : pack.Type`
 * `TFunction`: `macro : Arg1 -> Arg2 -> Return`
 * `TAnonymous`: `macro : { field: Type }`

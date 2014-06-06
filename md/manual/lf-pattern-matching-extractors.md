@@ -50,11 +50,8 @@ class Main {
 
 Extractors are identified by the `extractorExpression => match` expression. The compiler generates code which is similar to the previous example, but the original syntax was greatly simplified. Extractors consist of two parts, which are separated by the `=>` operator:
 
-
-
 1. The left side can be any expression, where all occurrences of underscore `_` are replaced with the currently matched value.
 2. The right side is a pattern which is matched against the result of the evaluation of the left side.
-
 
 
 Since the right side is a pattern, it can contain another extractor. The following example "chains" two extractors:

@@ -21,8 +21,6 @@ We try to assign a value of type `Int` to a variable of type `String`, which cau
 
 In this particular case, the unification is triggered by an **assignment**, a context in which the "is assignable to" definition is intuitive. It is one of several cases where unification is performed:
 
-
-
 * Assignment: If `a` is assigned to `b`, the type of `a` is unified with the type of `b`.
 * Function call: We have briefly seen this one while introducing the [function](types-function.md) type. In general, the compiler tries to unify the first given argument type with the first expected argument type, the second given argument type with the second expected argument type and so on until all argument types are handled.
 * Function return: Whenever a function has a `return e` expression, the type of `e` is unified with the function return type. If the function has no explicit return type, it is infered to the type of `e` and subsequent `return` expressions are infered against it.

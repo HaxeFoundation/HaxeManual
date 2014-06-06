@@ -18,11 +18,8 @@ class FunctionType {
 
 There is a strong resemblance between the declaration of function `test` and the output of the first `$type` expression, yet also a subtle difference:
 
-
-
 * **Function arguments** are separated by the special arrow token `->` instead of commas, and
 * the **function return type** appears at the end after another `->`.
-
 
 
 In either notation, it is obvious that the function `test` accepts a first argument of type `Int`, a second argument of type `String` and returns a value of type `Bool`. If a call to this function is made, such as `test(1, "foo")` within the second `$type` expression, the Haxe typer checks if `1` can be assigned to `Int` and if `"foo"` can be assigned to `String`. The type of the call is then equal to the type of the value `test` returns, which is `Bool`.

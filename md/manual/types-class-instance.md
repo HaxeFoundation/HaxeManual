@@ -20,15 +20,12 @@ class Point {
 
 Semantically, this class represents a point in discrete 2-dimensional space, but this is not important here. Let us instead describe the structure:
 
-
-
 * The keyword `class` denotes that we are declaring a class.
 * `Point` is the name of the class and could be anything conforming to the [rules for type identifiers](dictionary.md#define-identifier).
 * Enclosed in curly braces `{}` are the class fields,
 * which consist of two **variable** fields `x` and `y` of type `Int`,
 * followed by a special **function** field named `new`, which is the **constructor** of the class,
 * as well as a normal function `toString`.
-
 
 There is a special type in Haxe which is compatible with all classes:
 

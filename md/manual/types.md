@@ -19,16 +19,13 @@ We will explore type inference in detail later in [Type Inference](type-system-t
 
 The Haxe type system knows seven type groups:
 
-
-
- * **Class instance**: an object of a given class or interface
- * **Enum instance**: a value of a Haxe enumeration
- * **Structure**: an anonymous structure, i.e. a collection of named fields
- * **Function**: a compound type of several arguments and one return
- * **Dynamic**: a wildcard type which is compatible to any type
- * **Abstract**: a compile-time type which is represented by a different type at runtime
- * **Monomorph**: an unknown type, which may later become a different type
-
+ * **Class instance**: an object of a given class or interface 
+* **Enum instance**: a value of a Haxe enumeration 
+* **Structure**: an anonymous structure, i.e. a collection of named fields 
+* **Function**: a compound type of several arguments and one return 
+* **Dynamic**: a wildcard type which is compatible to any type 
+* **Abstract**: a compile-time type which is represented by a different type at runtime 
+* **Monomorph**: an unknown type, which may later become a different type
 
 
 We will describe each of these type groups and how they relate to each other in the next chapters.

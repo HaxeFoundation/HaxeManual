@@ -4,21 +4,15 @@ Dead Code Elimination, or **DCE**, is a compiler feature which removes unused co
 
 DCE has three modes which are set when invoking the command line:
 
-
-
 * -dce std: Only classes in the Haxe Standard Library are affected by DCE. This is the default setting on all targets but Javascript.
 * -dce no: No DCE is performed.
 * -dce full: All classes are affected by DCE. This is the default setting when targeting Javascript.
 
-
 The DCE-algorithm works well with typed code, but may fail when [dynamic](types-dynamic.md) or [reflection](std-reflection.md) is involved. This may require explicit marking of fields or classes as being used by attributing the following metadata:
-
-
 
 * `@:keep`: If used on a class, the class along with all fields is unaffected by DCE. If used on a field, that field is unaffected by DCE.
 * `@:keepSub`: If used on a class, it works like `@:keep` on the annotated class as well as all subclasses.
 * `@:keepInit`: Usually, a class which had all fields removed by DCE (or is empty to begin with) is removed from the output. By using this metadata, empty classes are kept.
-
 
 
 If a class needs to be marked with `@:keep` from the command line instead of editing its source code, there is a compiler macro available for doing so: `--macro keep('type dot path')` See the [haxe.macro.Compiler.keep API](http://api.haxe.org/haxe/macro/Compiler.html#keep) for details of this macro. It will mark package, module or sub-type to be kept by DCE and includes them for compilation.

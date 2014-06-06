@@ -2,12 +2,9 @@
 
 Next to [variables](class-field-variable.md), properties are the second option for dealing with data on a class. Unlike variables however, they offer more control of which kind of field access should be allowed and how it should be generated. Common use cases include:
 
-
-
 * Have a field which can be read from anywhere, but only be written from within the defining class.
 * Have a field which invokes a **getter**-method upon read-access.
 * Have a field which invokes a **setter**-method upon write-access.
-
 
 
 When dealing with properties, it is important to understand the two kinds of access:
@@ -33,8 +30,6 @@ class Main {
 
 For the most part, the syntax is similar to variable syntax, and the same rules indeed apply. Properties are identified by
 
-
-
 * the opening parenthesis `(` after the field name,
 * followed by a special **access identifier** (here: `default`),
 * with a comma `,` separating
@@ -42,17 +37,13 @@ For the most part, the syntax is similar to variable syntax, and the same rules 
 * before a closing parenthesis `)`.
 
 
-
 The access identifiers define the behavior when the field is read (first identifier) and written (second identifier). The accepted values are:
-
-
 
 * `default`: Allows normal field access if the field has public visibility, otherwise equal to `null` access.
 * `null`: Allows access only from within the defining class.
 * `get`/`set`: Access is generated as a call to an **accessor method**. The compiler ensures that the accessor is available.
 * `dynamic`: Like `get`/`set` access, but does not verify the existence of the accessor field.
 * `never`: Allows no access at all.
-
 
 
 > ##### Define: Accessor method

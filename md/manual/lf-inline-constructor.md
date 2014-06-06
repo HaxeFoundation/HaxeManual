@@ -6,11 +6,8 @@
 
 If a constructor is declared to be [inline](class-field-inline.md), the compiler may try to optimize it away in certain situations. There are several requirements for this to work:
 
-
-
 * The result of the constructor call must be directly assigned to a local variable.
 * The expression of the constructor field must only contain assignments to its fields.
-
 
 
 The following example demonstrates constructor inlining:

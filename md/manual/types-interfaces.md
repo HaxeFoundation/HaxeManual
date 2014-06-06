@@ -9,12 +9,9 @@ interface Printable {
 ```
 The syntax is similar to classes, with the following exceptions:
 
-
-
 * `interface` keyword is used instead of `class` keyword
 * functions do not have any [expressions](expression.md)
 * every field must have an explicit type
-
 
 Interfaces, unlike [structural subtyping](type-system-structural-subtyping.md), describe a **static relation** between classes. A given class is only considered to be compatible to an interface if it explicitly states so:
 

@@ -51,12 +51,9 @@ We can see that access to `child1.baseField()` is allowed from within `Child2` e
 
 Omitting the visibility modifier usually defaults the visibility to `private`, but there are exceptions where it becomes `public` instead:
 
-
-
 1. If the class is declared as `extern`.
 2. If the field id declared on an [interface](types-interfaces.md).
 3. If the field [overrides](class-field-overriding.md) a public field.
-
 
 
 > ##### Trivia: Protected

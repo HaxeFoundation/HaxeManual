@@ -51,8 +51,6 @@ The return type of **getBytes** method is `haxe.io.Bytes`, an object providing a
 
 Haxe uses target platform's native resource embedding, if there is one, providing its own implementation otherwise.
 
-
-
 * **Flash** resources are embedded as ByteArray definitions
 * **C#** resources are included in the compiled assembly
 * **Java** resources are packed in the resulting JAR file

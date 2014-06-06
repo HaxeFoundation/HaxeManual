@@ -13,11 +13,8 @@ arrayWrite(k:K, v:V):V {
 ```
 There are two kinds of array access methods:
 
-
-
 * If an `@:arrayAccess` method accepts one argument, it is a getter.
 * If an `@:arrayAccess` method accepts two arguments, it is a setter.
-
 
 The methods `get` and `arrayWrite` seen above then allow the following usage:
 

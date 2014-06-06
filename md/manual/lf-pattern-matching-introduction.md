@@ -11,8 +11,6 @@ enum Tree<T> {
 
 Some pattern matcher basics include:
 
-
-
 * Patterns will always be matched from top to bottom.
 * The topmost pattern that matches the input value has its expression executed.
 * A `_` pattern matches anything, so `case _`: is equal to `default:`
