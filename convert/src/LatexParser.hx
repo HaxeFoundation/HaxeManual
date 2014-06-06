@@ -82,7 +82,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 	var tableMode:Bool;
 	var hlineCount:Int;
 	var tableFieldCount:Int;
-	var listMode:GenericStack<ListMode>;
+	var listMode:Array<ListMode>;
 	var lastLabelTarget:LabelKind;
 	var input:byte.ByteData;
 
@@ -96,7 +96,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 		sections = [];
 		labelMap = new Map();
 		definitions = [];
-		listMode = new GenericStack<ListMode>();
+		listMode = new Array<ListMode>();
 		codeMode = false;
 		exprMode = false;
 		tableMode = false;
@@ -336,7 +336,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 				} else {
 					"---\n";
 				}
-			case [TNewline]: tableMode ? "" : "\n";
+			case [TNewline]: tableMode || listMode.length > 0 ? "" : "\n";
 			case [TDoubleBackslash]: "\n";
 			case [TCommand(CTextasciicircum)]: "^";
 		}
@@ -353,39 +353,37 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 		return switch stream {
 			// list
 			case [TBegin("itemize")]:
-				listMode.add(Itemize);
-				"\n";
+				listMode.push(Itemize);
+				"";
 			case [TBegin("description")]:
-				listMode.add(Description);
-				"\n";
+				listMode.push(Description);
+				"";
 			case [TBegin("enumerate")]:
-				listMode.add(Enumerate(1));
+				listMode.push(Enumerate(1));
 				lastLabelTarget = Item(1);
-				"\n";
+				"";
 			case [TCommand(CItem), subject = popt(bracketArg), s = text()]:
-				var bullet = switch(listMode.first()) {
+				var bullet = switch(listMode[listMode.length - 1]) {
 					case Enumerate(c):
-						listMode.pop();
-						listMode.add(Enumerate(c + 1));
+						listMode[listMode.length - 1] = Enumerate(c + 1);
 						lastLabelTarget = Item(c + 1);
 						'$c.';
 					case Description:
 						'* $subject';
 					case Itemize:
 						"*";
-					case null:
-						throw false;
 				}
-				'$bullet$s';
+				var indent = "".lpad("    ", (listMode.length - 1) * 2);
+				'$indent$bullet$s\n';
 			case [TEnd("itemize")]:
 				listMode.pop();
-				"\n";
+				"";
 			case [TEnd("description")]:
 				listMode.pop();
-				"\n";
+				"";
 			case [TEnd("enumerate")]:
 				listMode.pop();
-				"\n";
+				"";
 			// TODO
 			case [TCommand(CFootnote), s = inBraces(text)]: "";
 			case [t = _text()]:
