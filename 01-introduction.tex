@@ -7,11 +7,11 @@
 
 \todo{Could we have a big Haxe logo in the First Manual Page (Introduction) under the menu (a bit like a book cover ?) It looks a bit empty now and is a landing page for "Manual"}
 
-Haxe is a high-level, open source programming language and compiler. It allows compilation of programs written using an ECMAScript\footnote{http://www.ecma-international.org/publications/standards/Ecma-327.htm}-oriented syntax to multiple target languages. Employing proper abstraction, it is possible to maintain a single code-base which compiles to multiple targets.
+Haxe consists of a high-level, open source programming language and a compiler. It allows compilation of programs, written using an ECMAScript\footnote{http://www.ecma-international.org/publications/standards/Ecma-327.htm}-oriented syntax, to multiple target languages. Employing proper abstraction, it is possible to maintain a single code-base which compiles to multiple targets.
 
-Haxe is strongly typed, but the typing system can be subverted where required. Utilizing type information, the Haxe type system can detect errors at compile-time which would only be noticeable at runtime in the target language. Furthermore, type information can be used by the target generators to generate optimized and robust code.
+Haxe is strongly typed but the typing system can be subverted where required. Utilizing type information, the Haxe type system can detect errors at compile-time which would only be noticeable at runtime in the target language. Furthermore, type information can be used by the target generators to generate optimized and robust code.
 
-Currently, there are nine supported target languages which allow different use-cases:
+Currently, there are nine supported target languages which allow for different use-cases:
 
 \begin{center}
 \begin{tabular}{| l | l | l |}
@@ -28,7 +28,8 @@ Currently, there are nine supported target languages which allow different use-c
 	C\# & Sourcecode & Desktop, Mobile, Server \\ \hline
 \end{tabular}
 \end{center}
-The remainder of section \ref{introduction} gives a brief overview of what a Haxe program looks like, and how Haxe evolved since its inception in 2005.
+
+The remainder of section \ref{introduction} gives a brief overview of what a Haxe program looks like and how Haxe evolved since its inception in 2005.
 
 \Fullref{types} introduces the seven different kinds of types in Haxe and how they interact with each other. The discussion of types is continued in \Fullref{type-system}, where features like \emph{unification}, \emph{type parameters} and \emph{type inference} are explained.
 
@@ -36,11 +37,11 @@ The remainder of section \ref{introduction} gives a brief overview of what a Hax
 
 In \Fullref{expression} we see how to actually get programs to do something by using \emph{expressions}.
 
-\Fullref{lf} describes some of the Haxe features in detail, such as \emph{pattern matching}, \emph{string interpolation} and \emph{dead code elimination}. This concludes the Haxe language reference.
+\Fullref{lf} describes some of the Haxe features in detail such as \emph{pattern matching}, \emph{string interpolation} and \emph{dead code elimination}. This concludes the Haxe language reference.
 
-We continue with the Haxe compiler reference which first handles the basics in \Fullref{compiler-reference} before getting into the advanced features in \Fullref{cr-features}. Finally, we will venture to the exciting land of \emph{haxe macros} in \Fullref{macro} to see how some common tasks can be greatly simplified.
+We continue with the Haxe compiler reference, which first handles the basics in \Fullref{compiler-reference} before getting into the advanced features in \Fullref{cr-features}. Finally, we will venture into the exciting land of \emph{haxe macros} in \Fullref{macro} to see how some common tasks can be greatly simplified.
 
-In the following chapter \Fullref{std} we explore important types and concepts from the Haxe Standard Library. We then learn about Haxe's package manager Haxelib in \Fullref{haxelib}.
+In the following chapter, \Fullref{std}, we explore important types and concepts from the Haxe Standard Library. We then learn about Haxe's package manager Haxelib in \Fullref{haxelib}.
 
 Haxe abstracts away many target differences, but sometimes it is important to interact with a target directly, which is the subject of \Fullref{target-details}.
 
@@ -57,7 +58,7 @@ Haxe code here
 \end{lstlisting}
 Occasionally, we demonstrate how Haxe code is generated, for which we usually show the \target{Javascript} target.
 
-Furthermore, we define a set of terms in this document. Most often, this is done when introducing a new type or when a term is specific to Haxe. We not define every new aspect we introduce, e.g. what a class is, in order to not clutter the text. A definition looks like this:
+Furthermore, we define a set of terms in this document. Predominantly, this is done when introducing a new type or when a term is specific to Haxe. We do not define every new aspect we introduce, e.g. what a class is, to avoid cluttering the text. A definition looks like this:
 
 \define{Definition name}{define-definition}{Definition description}
 
@@ -83,10 +84,11 @@ Most of this document's content was written by Simon Krajewski while working for
 \section{Hello World}
 \label{introduction-hello-world}
 
-The following program prints ``Hello World'' after having been compiled and run:
+The following program prints ``Hello World'' after being compiled and run:
 
 \haxe{assets/HelloWorld.hx}
-This can be tested by saving the above code to a file named \ic{HelloWorld.hx} and invoking the Haxe Compiler like so: \ic{haxe -main HelloWorld --interp}. This generates the following output: \ic{HelloWorld.hx:3: Hello world}. There are several things to learn from this:
+This can be tested by saving the above code to a file named \ic{HelloWorld.hx} and invoking the Haxe Compiler like so: \ic{haxe -main HelloWorld --interp}. It then generates the following output: \ic{HelloWorld.hx:3: Hello world}. There are several things to learn from this:
+\todo{This generates the following output: too many 'this'. You may like a passive sentence: the following output will be generated...though this is to be avoided, generally}
 
 \begin{itemize}
 	\item Haxe programs are saved in files with an extension of \ic{.hx}.
@@ -98,15 +100,15 @@ This can be tested by saving the above code to a file named \ic{HelloWorld.hx} a
 \label{introduction-haxe-history}
 \state{Reviewed}
 
-The Haxe project was started on 22 October 2005 by French developer \emph{Nicolas Cannasse} as a successor of the popular open-source ActionScript 2 compiler \emph{MTASC} (Motion-Twin Action Script Compiler) and the in-house \emph{MTypes} language which experimented type inference applied to an Object Oriented language. Long time passion of Nicolas for programming language design and new opportunies to mix different technologies together as part of his game developer work at \emph{Motion-Twin} led to the creation of a new language.
+The Haxe project was started on 22 October 2005 by French developer \emph{Nicolas Cannasse} as a successor to the popular open-source ActionScript 2 compiler \emph{MTASC} (Motion-Twin Action Script Compiler) and the in-house \emph{MTypes} language, which experimented with the application of type inference to an object oriented language. Nicolas' long-time passion for programming language design and the rise of new opportunies to mix different technologies as part of his game developer work at \emph{Motion-Twin} led to the creation of a whole new language.
 
-Being spelled \emph{haXe} back then, its beta was released in February 2006 with the first supported targets being AVM\footnote{Adobe Virtual Machine}-bytecode and Nicolas's own \emph{Neko} virtual machine\footnote{http://nekovm.org}.
+Being spelled \emph{haXe} back then, its beta version was released in February 2006 with the first supported targets being AVM\footnote{Adobe Virtual Machine}-bytecode and Nicolas' own \emph{Neko} virtual machine\footnote{http://nekovm.org}.
 
-Nicolas Cannasse, who remains leader of the Haxe project to this date, kept on designing Haxe with a clear vision, subsequently leading to the Haxe 1.0 release in May 2006. This first major release came with support for \target{Javascript} code generation and already had some of the features that define Haxe today, such as type inference and structural sub-typing.
+Nicolas Cannasse, who remains leader of the Haxe project to this date, kept on designing Haxe with a clear vision, subsequently leading to the Haxe 1.0 release in May 2006. This first major release came with support for \target{Javascript} code generation and already had some of the features that define Haxe today such as type inference and structural sub-typing.
 
-Haxe 1 saw several minor releases over the course of two years, adding the \target{Flash AVM2} target along with the \emph{haxelib}-tool in August 2006 and the \target{Actionscript 3} target in March 2007. During these months, there was a strong focus on improving stability, which came in the form of several minor bug-fix releases.
+Haxe 1 saw several minor releases over the course of two years, adding the \target{Flash AVM2} target along with the \emph{haxelib}-tool in August 2006 and the \target{Actionscript 3} target in March 2007. During these months, there was a strong focus on improving stability, which resulted in several minor bug-fix releases.
 
-Haxe 2.0 was released in July 2008, coming with the \target{PHP} target courtesy of \emph{Franco Ponticelli}. A similar effort by \emph{Hugh Sanderson} lead to the addition of the \target{C++} target in July 2009 with the Haxe 2.04 release.
+Haxe 2.0 was released in July 2008, including the \target{PHP} target, courtesy of \emph{Franco Ponticelli}. A similar effort by \emph{Hugh Sanderson} lead to the addition of the \target{C++} target in July 2009 with the Haxe 2.04 release.
 
 Just as with Haxe 1, what followed were several months of stability releases. In January 2011, Haxe 2.07 was released with the support of \emph{macros}. Around that time, \emph{Bruno Garcia} joined the team as maintainer of the \target{Javascript} target, which saw vast improvements in the subsequent 2.08 and 2.09 releases.
 

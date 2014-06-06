@@ -1,7 +1,7 @@
 \chapter{Types}
 \label{types}
 
-The Haxe Compiler employs a rich typing system which helps detecting type-related errors in a program at compile-time. A type error is an invalid operation on a given type, such as dividing by a String, trying to access a field of an Integer or calling a function with not enough (or too many) arguments.
+The Haxe Compiler employs a rich type system which helps detecting type-related errors in a program at compile-time. A type error is an invalid operation on a given type such as dividing by a String, trying to access a field of an Integer or calling a function with not enough (or too many) arguments.
 
 In some languages this additional safety comes at a price because programmers are forced to explicitly assign types to syntactic constructs:
 
@@ -25,9 +25,9 @@ The Haxe type system knows seven type groups:
  \item[\emph{Enum instance}:] a value of a Haxe enumeration
  \item[\emph{Structure}:] an anonymous structure, i.e. a collection of named fields
  \item[\emph{Function}:] a compound type of several arguments and one return
- \item[\emph{Dynamic}:] a wildcard type which is compatible to any type
+ \item[\emph{Dynamic}:] a wildcard type which is compatible with any type
  \item[\emph{Abstract}:] a compile-time type which is represented by a different type at runtime
- \item[\emph{Monomorph}:] an unknown type, which may later become a different type
+ \item[\emph{Monomorph}:] an unknown type which may later become a different type
 \end{description}
 
 We will describe each of these type groups and how they relate to each other in the next chapters.
@@ -38,7 +38,7 @@ We will describe each of these type groups and how they relate to each other in 
 \section{Basic Types}
 \label{types-basic-types}
 
-\emph{Basic types} consist of \type{Bool}, \type{Float} and \type{Int}. They can easily be identified in the syntax by values such as
+\emph{Basic types} are \type{Bool}, \type{Float} and \type{Int}. They can easily be identified in the syntax by values such as
 
 \begin{itemize}
 	\item \expr{true} and \expr{false} for \type{Bool},
@@ -46,7 +46,7 @@ We will describe each of these type groups and how they relate to each other in 
 	\item \expr{1.0}, \expr{0.0}, \expr{-1.0}, \expr{1e10} for \type{Float}.
 \end{itemize}
 
-In Haxe, basic types are not \tref{classes}{types-class-instance}. They are implemented as \tref{abstract types}{types-abstract} and are tied to the compiler's internal operator handling as described in the following sections.
+Basic types are not \tref{classes}{types-class-instance} in Haxe. They are implemented as \tref{abstract types}{types-abstract} and are tied to the compiler's internal operator-handling as described in the following sections.
 
 \subsection{Numeric types}
 \label{types-numeric-types}
@@ -54,19 +54,19 @@ In Haxe, basic types are not \tref{classes}{types-class-instance}. They are impl
 \define[Type]{Float}{define-float}{Represents a double-precision IEEE 64-bit floating point number.}
 
 \define[Type]{Int}{define-int}{Represents an integral number.}
-While every \type{Int} can be used where a \type{Float} is expected (that is, \type{Int} \emph{is assignable to} or \emph{unifies with} \type{Float}), the reverse is not true: Assigning a \type{Float} to an \type{Int} might lose precision and is not implicitly allowed.
+While every \type{Int} can be used where a \type{Float} is expected (that is, \type{Int} \emph{is assignable to} or \emph{unifies with} \type{Float}), the reverse is not true: Assigning a \type{Float} to an \type{Int} might lose precision and is not allowed implicitly.
 
 \subsection{Overflow}
 \label{types-overflow}
 
-For performance reasons, the Haxe Compiler does not enforce any overflow behavior.  The burden of checking for overflows falls to the target platform. Here are some platform specific notes on overflow behavior:
+For performance reasons, the Haxe Compiler does not enforce any overflow behavior. The burden of checking for overflows falls to the target platform. Here are some platform specific notes on overflow behavior:
 
 \begin{description}
- \item[C++, Java, C\#, Neko, Flash:] 32-bit signed integers, with usual overflow practices. 
- \item[PHP, JS, Flash 8:] No native \emph{Int} type.  Loss of precision will occur if they reach their float limit (2\textsuperscript{52}).
+ \item[C++, Java, C\#, Neko, Flash:] 32-bit signed integers with usual overflow practices 
+ \item[PHP, JS, Flash 8:] No native \emph{Int} type, loss of precision will occur if they reach their float limit (2\textsuperscript{52})
 \end{description}
 
-Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used to ensure correct overflow behavior regardless of the platform, at the cost of additional computations depending on the platform.
+Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used to ensure correct overflow behavior regardless of the platform at the cost of additional computations depending on the platform.
 
 \subsection{Numeric Operators}
 \label{types-numeric-operators}
@@ -127,19 +127,23 @@ Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used t
 \label{types-bool}
 
 \define[Type]{Bool}{define-bool}{Represents a value which can be either \emph{true} or \emph{false}.}
-Values of type \type{Bool} appear commonly in \emph{conditions} such as \expr{if} (section \ref{expression-if}) and \expr{while} (section \ref{expression-while}). The following \emph{operators} accept and return \type{Bool} values:
+
+Values of type \type{Bool} are a common occurence in \emph{conditions} such as \tref{\expr{if}}{expression-if} and \tref{\expr{while}}{expression-while}. The following \emph{operators} accept and return \type{Bool} values:
+
 \begin{itemize}
 	\item \expr{\&\&} (and)
 	\item \expr{||} (or)
 	\item \expr{!} (not)
 \end{itemize}
-Haxe guarantees that compound boolean expressions are evaluated from left to right and only as far as necessary at runtime. For instance, an expression like \expr{A \&\& B} will evaluate \expr{A} first and evaluate \expr{B} only if the evaluation of \expr{A} yielded \expr{true}. Likewise, the expressions \expr{A || B} will not evaluate \expr{B} if the evaluation of \expr{A} yielded \expr{true}, because the value of \expr{B} is irrelevant in that case. This is important in some cases such as this:
+
+Haxe guarantees that compound boolean expressions are evaluated from left to right and only as far as necessary at run-time. For instance, an expression like \expr{A \&\& B} will evaluate \expr{A} first and evaluate \expr{B} only if the evaluation of \expr{A} yielded \expr{true}. Likewise, the expressions \expr{A || B} will not evaluate \expr{B} if the evaluation of \expr{A} yielded \expr{true}, because the value of \expr{B} is irrelevant in that case. This is important in cases such as this:
 
 \begin{lstlisting}
 if (object != null && object.field == 1)
   { ... }
 \end{lstlisting}
-Accessing \expr{object.field} if \expr{object} is \expr{null} would lead to a runtime error, but the check for \expr{object != null} guards against it.
+
+Accessing \expr{object.field} if \expr{object} is \expr{null} would lead to a run-time error, but the check for \expr{object != null} guards against it.
 
 
 
@@ -151,10 +155,13 @@ Accessing \expr{object.field} if \expr{object} is \expr{null} would lead to a ru
 
 \type{Void} is a special case in the type system because it is not actually a type. It is used to express the absence of a type, which applies mostly to function arguments and return types.
 We have already ``seen'' Void in the initial ``Hello World'' example:
+\todo{please review, doubled content}
 
 \haxe{assets/HelloWorld.hx}
-The function type will be explored in detail in section \Fullref{types-function}, but a quick preview helps here: The type of function \expr{main} in above example can be considered to be \type{Void->Void}, which reads as ``it has no arguments and returns nothing''.
-Haxe does not allow fields and variables of type \type{Void}, and will complain if an attempt is made at declaring such:
+
+The function type will be explored in detail in the section \Fullref{types-function} but a quick preview helps here: The type of the function \expr{main} in the example above is \type{Void->Void}, which reads as ``it has no arguments and returns nothing''.
+Haxe does not allow fields and variables of type \type{Void} and will complain if an attempt at declaring such is made:
+\todo{review please, sounds weird}
 
 \begin{lstlisting}
 // Arguments and variables of type Void
@@ -169,13 +176,14 @@ var x:Void;
 
 \define{nullable}{define-nullable}{A type in Haxe is considered \emph{nullable} if \expr{null} is a valid value for it.}
 
-It is common for programming languages to have a single, clean definition for nullability. However, Haxe has to find a compromise in this regard. The reason for this is obvious when looking at the nature of Haxe's target languages: While some of them allow and, in fact, default to \expr{null} for anything, others do not even allow \expr{null} for certain types. This necessitates the distinction of two types of target languages:
+It is common for programming languages to have a single, clean definition for nullability. However, Haxe has to find a compromise in this regard due to the nature of Haxe's target languages: While some of them allow and; in fact, default to \expr{null} for anything, others do not even allow \expr{null} for certain types. This necessitates the distinction of two types of target languages:
 
 \define{Static target}{define-static-target}{Static targets employ their own type system where \expr{null} is not a valid value for basic types. This is true for the \target{Flash}, \target{C++}, \target{Java} and \target{C\#} targets.}
 
-\define{Dynamic target}{define-dynamic-target}{Dynamic targets are more lenient with their types and allow \expr{null} values for basic types. They consist of \target{JavaScript}, \target{PHP}, \target{Neko} and \target{Flash 6-8}.}
+\define{Dynamic target}{define-dynamic-target}{Dynamic targets are more lenient with their types and allow \expr{null} values for basic types. This applies to the \target{JavaScript}, \target{PHP}, \target{Neko} and \target{Flash 6-8} targets.}
 
-There is nothing to worry about when working with \expr{null} on dynamic targets, but static ones may require some thought. For starters, basic types are initialized to their default values.
+There is nothing to worry about when working with \expr{null} on dynamic targets; however, static ones may require some thought. For starters, basic types are initialized to their default values.
+\todo{for starters...please review}
 
 \define{Default values}{define-default-value}{
 	Basic types have the following default values on static targets:
@@ -206,7 +214,7 @@ if( b != null ) { ... } // allowed
 
 This restriction extends to all situations where \tref{unification}{type-system-unification} is performed.
 
-\define[Type]{\expr{Null<T>}}{define-null-t}{On static targets the types \type{Null<Int>}, \type{Null<Float>} and \type{Null<Bool>} can be used in order to allow \expr{null} as a value. On dynamic targets this has no effect. \type{Null<T>} can also be used with other types in order to document that \expr{null} is an allowed value.}
+\define[Type]{\expr{Null<T>}}{define-null-t}{On static targets the types \type{Null<Int>}, \type{Null<Float>} and \type{Null<Bool>} can be used to allow \expr{null} as a value. On dynamic targets this has no effect. \type{Null<T>} can also be used with other types in order to document that \expr{null} is an allowed value.}
 
 If a \expr{null}-value is ``hidden'' in \type{Null$<$T$>$} or \type{Dynamic} and assigned to a basic type, the default value is used:
 
@@ -221,9 +229,9 @@ trace(a); // 0 on static platforms
 \subsection{Optional Arguments and Nullability}
 \label{types-nullability-optional-arguments}
 
-Optional arguments also have to be accounted when considering nullability.
+Optional arguments also have to be accounted for when considering nullability.
 
-In particular, there must be a distinction between \emph{native} optional arguments which are not nullable and Haxe optional arguments which might be.  The distinction is made by using the question-mark optional argument:
+In particular, there must be a distinction between \emph{native} optional arguments which are not nullable and Haxe-specific optional arguments which might be. The distinction is made by using the question-mark optional argument:
 
 \begin{lstlisting}
 // x is a native Int (not nullable)
@@ -235,42 +243,43 @@ function opt( ?z : Int = -1) {...}
 \end{lstlisting}
 \todo{Is there a difference between \type{?y : Int} and \type{y : Null$<$Int$>$} or can you even do the latter? Some more explanation and examples with native optional and Haxe optional arguments and how they relate to nullability would be nice.}
 
-\trivia{Argument vs Parameter}{In some other programming languages, \emph{argument} and \emph{parameter} are used interchangably.  In Haxe, \emph{argument} is used when referring to methods, and \emph{parameter} refers to \Fullref{type-system-type-parameters}.}
+\trivia{Argument vs. Parameter}{In some other programming languages, \emph{argument} and \emph{parameter} are used interchangeably.  In Haxe, \emph{argument} is used when referring to methods and \emph{parameter} refers to \Fullref{type-system-type-parameters}.}
 
 \section{Class Instance}
 \label{types-class-instance}
 
-Similar to many object-oriented languages, classes in Haxe are the primary data structure for the majority of programs. Each Haxe class has an explicit name, an implied path and zero or more class fields. Here we will focus on the general structure of classes and their relations, while leaving the details of class fields for \Fullref{class-field}.
+Similar to many object-oriented languages, classes are the primary data structure for the majority of programs in Haxe. Each Haxe class has an explicit name, an implied path and zero or more class fields. Here we will focus on the general structure of classes and their relations, while leaving the details of class fields for \Fullref{class-field}.
+\todo{please review future tense}
 
 The following code example serves as basis for the remainder of this section:
 
 \haxe{assets/Point.hx}
 
-Semantically, this class represents a point in discrete 2-dimensional space, but this is not important here. Let us instead describe the structure:
+Semantically, this class represents a point in discrete 2-dimensional space - but this is not important here. Let us instead describe the structure:
 
 \begin{itemize}
 	\item The keyword \expr{class} denotes that we are declaring a class.
 	\item \type{Point} is the name of the class and could be anything conforming to the \tref{rules for type identifiers}{define-identifier}.
 	\item Enclosed in curly braces \expr{$\left\{\right\}$} are the class fields,
-	\item which consist of two \emph{variable} fields \expr{x} and \expr{y} of type \type{Int},
+	\item Which consist of two \emph{variable} fields \expr{x} and \expr{y} of type \type{Int},
 	\item followed by a special \emph{function} field named \expr{new}, which is the \emph{constructor} of the class,
 	\item as well as a normal function \expr{toString}.
 \end{itemize}
 There is a special type in Haxe which is compatible with all classes:
 
-\define[Type]{\expr{Class$<$T$>$}}{define-class-t}{This type is compatible with all class types, which means that all classes (not their instances) can be assigned to it. At compile-time, \type{Class<T>} can be considered to be the common base type of all class types. However, this relation is not reflected in generated code.
+\define[Type]{\expr{Class$<$T$>$}}{define-class-t}{This type is compatible with all class types which means that all classes (not their instances) can be assigned to it. At compile-time, \type{Class<T>} is the common base type of all class types. However, this relation is not reflected in generated code.
 
 This type is useful when an API requires a value to be \emph{a} class, but not a specific one. This applies to several methods of the \tref{Haxe reflection API}{std-reflection}.}.
 
 \subsection{Class constructor}
 \label{types-class-constructor}
 
-Instances of classes are created by calling the class constructor, a process commonly referred to as \emph{instantiation}. Another name for class instances is \emph{object}, but we prefer the term class instance to emphasize the analogy between classes/class instances and \tref{enums/enum instances}{types-enum-instance}. 
+Instances of classes are created by calling the class constructor - a process commonly referred to as \emph{instantiation}. Another name for class instances is \emph{object}. Nevertheless, we prefer the term class instance to emphasize the analogy between classes/class instances and \tref{enums/enum instances}{types-enum-instance}. 
 
 \begin{lstlisting}
 var p = new Point(-1, 65);
 \end{lstlisting}
-This will yield an instance of class \type{Point}, which is assigned to a variable named \expr{p}. The constructor of \type{Point} receives the two arguments \expr{-1} and \expr{65} and assigns them to the instance variables \expr{x} and \expr{y} respectively (compare its definition in \Fullref{types-class-instance}). We will revisit the exact meaning of the \expr{new} expression later in section \ref{expression-new}. For now, we just consider it as calling the class constructor and returning the appropriate object.
+This will yield an instance of class \type{Point}, which is assigned to a variable named \expr{p}. The constructor of \type{Point} receives the two arguments \expr{-1} and \expr{65} and assigns them to the instance variables \expr{x} and \expr{y} respectively (compare its definition in \Fullref{types-class-instance}). We will revisit the exact meaning of the \expr{new} expression later in the section \ref{expression-new}. For now, we just think of it as calling the class constructor and returning the appropriate object.
 
 
 
@@ -295,7 +304,7 @@ A class may override \tref{methods}{class-field-method} of its parent class, whi
 \subsection{Interfaces}
 \label{types-interfaces}
 
-An interface can be understood as the signature of a class because it describes the public fields of a class. Interfaces do not provide implementations, but rather pure structural information:
+An interface can be understood as the signature of a class because it describes the public fields of a class. Interfaces do not provide implementations but pure structural information:
 
 \begin{lstlisting}
 interface Printable {
@@ -314,7 +323,7 @@ Interfaces, unlike \tref{structural subtyping}{type-system-structural-subtyping}
 \begin{lstlisting}
 class Point implements Printable { }
 \end{lstlisting}
-The \expr{implements} keyword here denotes that \type{Point} has a "is-a" relationship to \type{Printable}, i.e. each instance of \type{Point} is also an instance of \type{Printable}. While a class may only have one parent class, it may implement multiple interfaces through multiple \expr{implements} keywords:
+Here, the \expr{implements} keyword denotes that \type{Point} has a "is-a" relationship to \type{Printable}, i.e. each instance of \type{Point} is also an instance of \type{Printable}. While a class may only have one parent class, it may implement multiple interfaces through multiple \expr{implements} keywords:
 
 \begin{lstlisting}
 class Point implements Printable
@@ -323,7 +332,7 @@ class Point implements Printable
 
 The compiler checks if the \expr{implements} assumption holds. That is, it makes sure the class actually does implement all the fields required by the interface. A field is considered implemented if the class or any of its parent classes provide an implementation.
 
-Interface fields are not limited to methods, they can be variables and properties as well:
+Interface fields are not limited to methods. They can be variables and properties as well:
 
 \haxe{assets/InterfaceWithVariables.hx}
 
@@ -346,7 +355,7 @@ Semantically, this enum describes a color which is either red, green, blue or a 
 \end{itemize}
 The Haxe type system provides a type which unifies with all enum types:
 
-\define[Type]{\expr{Enum$<$T$>$}}{define-enum-t}{This type is compatible with all enum types. At compile-time, \type{Enum<T>} can be considered to be the common base type of all enum types. However, this relation is not reflected in generated code.} 
+\define[Type]{\expr{Enum$<$T$>$}}{define-enum-t}{This type is compatible with all enum types. At compile-time, \type{Enum<T>} can bee seen as the common base type of all enum types. However, this relation is not reflected in generated code.} 
 \todo{Same as in 2.2, what is \type{Enum$<$T$>$} syntax?}
 
 \subsection{Enum Constructor}
@@ -359,21 +368,22 @@ var a = Red;
 var b = Green;
 var c = Rgb(255, 255, 0);
 \end{lstlisting}
-In this code, the type of variables \expr{a}, \expr{b} and \expr{c} is \type{Color}. Variable \expr{c} is initialized using the \expr{Rgb} constructor with arguments.
+In this code the type of variables \expr{a}, \expr{b} and \expr{c} is \type{Color}. Variable \expr{c} is initialized using the \expr{Rgb} constructor with arguments.
+\todo{list arguments}
 
 All enum instances can be assigned to a special type named \type{EnumValue}.
 
-\define[Type]{EnumValue}{define-enumvalue}{EnumValue is a special type which unifies with all enum instances. It is used by the Haxe Standard Library to provide some operations for all enum instances, and can be employed in user-code accordingly in cases where an API requires \emph{an} enum instance, but not a specific one.}
+\define[Type]{EnumValue}{define-enumvalue}{EnumValue is a special type which unifies with all enum instances. It is used by the Haxe Standard Library to provide certain operations for all enum instances and can be employed in user-code accordingly in cases where an API requires \emph{an} enum instance, but not a specific one.}
 
 It is important to distinguish enum types and enum constructors, as this example demonstrates:
 
 \haxe{assets/EnumUnification.hx}
 
-If the commented line uncommented, the program does not compile because \expr{Red} (an enum constructor) cannot be assigned to a variable of type \type{Enum<Color>} (an enum type). The relation is analogous to a class and its instance.
+If the commented line is uncommented, the program does not compile because \expr{Red} (an enum constructor) cannot be assigned to a variable of type \type{Enum<Color>} (an enum type). The relation is analogous to a class and its instance.
 
-\trivia{Concrete type parameter for \type{Enum$<$T$>$}}{One of the reviewers of this manual was confused about the difference between \type{Color} and \type{Enum<Color>} in the example above. Indeed, using a concrete type parameter there is pointless and only has the purpose of demonstration. Usually we would omit the type there and let \tref{type inference}{type-system-type-inference} deal with it.
+\trivia{Concrete type parameter for \type{Enum$<$T$>$}}{One of the reviewers of this manual was confused about the difference between \type{Color} and \type{Enum<Color>} in the example above. Indeed, using a concrete type parameter there is pointless and only serves the purpose of demonstration. Usually we would omit the type there and let \tref{type inference}{type-system-type-inference} deal with it.
 
-However, the inferred type would be different from \type{Enum<Color>}. The compiler infers a pseudo-type which has the enum constructors as ``fields''. As of Haxe 3.2.0, it is not possible to express this type in syntax, but it is also never necessary to do that.}
+However, the inferred type would be different from \type{Enum<Color>}. The compiler infers a pseudo-type which has the enum constructors as ``fields''. As of Haxe 3.2.0, it is not possible to express this type in syntax but also, it is never necessary to do so.}
 
 
 
@@ -398,12 +408,14 @@ Anonymous structures can be used to group data without explicitly creating a typ
 The general syntactic rules follow:
 
 \begin{enumerate}
-	\item A structure is enclosed in curly braces \expr{$\left\{\right\}$}. 
+	\item A structure is enclosed in curly braces \expr{$\left\{\right\}$} and
 	\item Has a \emph{comma-separated} list of key-value-pairs.
 	\item A \emph{colon} separates the key, which must be a valid \tref{identifier}{define-identifier}, from the value.
 	\item\label{valueanytype} The value can be any Haxe expression.
 \end{enumerate}
 Rule \ref{valueanytype} implies that structures can be nested and complex, e.g.:
+
+\todo{please reformat}
 
 \begin{lstlisting}
 var user = {
