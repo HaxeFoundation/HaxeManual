@@ -499,7 +499,7 @@ typedef Point = {
 \subsection{Impact on Performance}
 \label{types-structure-performance}
 
-Using structures and by extension \tref{structural subtyping}{type-system-structural-subtyping} has no impact on performance when compiling to \tref{dynamic targets}{define-dynamic-target}. However, on \tref{static targets}{define-static-target} a dynamic lookup has to be performed, which is typically slower than a static field access.
+Using structures and, by extension,\tref{structural subtyping}{type-system-structural-subtyping} has no impact on performance when compiling to \tref{dynamic targets}{define-dynamic-target}. However, on \tref{static targets}{define-static-target} a dynamic lookup has to be performed which is typically slower than a static field access.
 
 
 
@@ -519,9 +519,9 @@ There is a strong resemblance between the declaration of function \expr{test} an
 	\item the \emph{function return type} appears at the end after another \expr{->}.
 \end{itemize}
 
-In either notation, it is obvious that the function \expr{test} accepts a first argument of type \type{Int}, a second argument of type \type{String} and returns a value of type \type{Bool}. If a call to this function is made, such as \expr{test(1, "foo")} within the second \expr{\$type} expression, the Haxe typer checks if \expr{1} can be assigned to \type{Int} and if \expr{"foo"} can be assigned to \type{String}. The type of the call is then equal to the type of the value \expr{test} returns, which is \type{Bool}.
+In either notation it is obvious that the function \expr{test} accepts a first argument of type \type{Int}, a second argument of type \type{String} and returns a value of type \type{Bool}. If a call to this function, such as \expr{test(1, "foo")}, is made within the second \expr{\$type} expression, the Haxe typer checks if \expr{1} can be assigned to \type{Int} and if \expr{"foo"} can be assigned to \type{String}. The type of the call is then equal to the type of the value \expr{test} returns, which is \type{Bool}.
 
-If a function type has other function types as argument or return type, parentheses can be used to group them correctly. As an example, \type{Int -> (Int -> Void) -> Void} represents a function which has a first argument of type \type{Int}, a second argument of function type \type{Int -> Void} and a return of \type{Void}.
+If a function type has other function types as argument or return type, parentheses can be used to group them correctly. For example, \type{Int -> (Int -> Void) -> Void} represents a function which has a first argument of type \type{Int}, a second argument of function type \type{Int -> Void} and a return of \type{Void}.
 
 
 
@@ -531,14 +531,14 @@ If a function type has other function types as argument or return type, parenthe
 Optional arguments are declared by prefixing an argument identifier with a question mark \expr{?}:
 
 \haxe[label=assets/OptionalArguments.hx]{assets/OptionalArguments.hx}
-Function \expr{test} has two optional arguments \expr{i} of type \type{Int} and \expr{s} of \type{String}. This is directly reflected in the function type, which line 3 outputs. 
+Function \expr{test} has two optional arguments: \expr{i} of type \type{Int} and \expr{s} of \type{String}. This is directly reflected in the function type output by line 3. 
 This example program calls \expr{test} four times and prints its return value.
 
 \begin{enumerate}
-	\item the first call is made without any arguments
-	\item the second call is made with a singular argument \expr{1}
-	\item the third call is made with two arguments \expr{1} and \expr{"foo"}
-	\item the fourth call is made with a singular argument \expr{"foo"}
+	\item The first call is made without any arguments.
+	\item The second call is made with a singular argument \expr{1}.
+	\item The third call is made with two arguments \expr{1} and \expr{"foo"}.
+	\item The fourth call is made with a singular argument \expr{"foo"}.
 \end{enumerate}
 The output shows that optional arguments which are omitted from the call have a value of \expr{null}. This implies that the type of these arguments must admit \expr{null} as value, which raises the question of its \tref{nullability}{types-nullability}. The Haxe Compiler ensures that optional basic type arguments are nullable by inferring their type as \type{Null<T>} when compiling to a \tref{static target}{define-static-target}.
 
@@ -551,11 +551,11 @@ While the first three calls are intuitive, the fourth one might come as a surpri
 Haxe allows default values for arguments by assigning a \emph{constant value} to them:
 
 \haxe{assets/DefaultValues.hx}
-This example is very similar to the one from \Fullref{types-function-optional-arguments}, with the only difference being that the values \expr{12} and \expr{"bar"} are assigned to the function arguments \expr{i} and \expr{s} respectively. The effect is that, instead of \expr{null}, the default values are used should an argument be omitted from the call.
+This example is very similar to the one from \Fullref{types-function-optional-arguments}, with the only difference being that the values \expr{12} and \expr{"bar"} are assigned to the function arguments \expr{i} and \expr{s} respectively. The effect is that the default values are used instead of \expr{null} should an argument be omitted from the call.
 
 %TODO: Default values do not imply nullability, even if the value is \expr{null}. 
 
-Default values in Haxe are not part of the type and are not replaced at call-site (unless the function is \tref{inlined}{class-field-inline}, which might be considered a more typical approach. On some targets, the compiler may still pass \expr{null} for omitted argument values and generate code into the function which is similar to this:
+Default values in Haxe are not part of the type and are not replaced at call-site (unless the function is \tref{inlined}{class-field-inline}, which can be considered as a more typical approach. On some targets the compiler may still pass \expr{null} for omitted argument values and generate code similar to this into the function:
 \begin{lstlisting}
 	static function test(i = 12, s = "bar") {
 		if (i == null) i = 12;
@@ -563,7 +563,7 @@ Default values in Haxe are not part of the type and are not replaced at call-sit
 		return "i: " +i + ", s: " +s;
 	}
 \end{lstlisting}
-This should be considered in performance-critical code, where a solution without default values may sometimes be more viable.
+This should be considered in performance-critical code where a solution without default values may sometimes be more viable.
 
 
 
@@ -571,7 +571,7 @@ This should be considered in performance-critical code, where a solution without
 \section{Dynamic}
 \label{types-dynamic}
 
-While Haxe has a static type system, this type system can effectively be turned off by using the \type{Dynamic} type. A \emph{dynamic value} can be assigned to anything, and anything can be assigned to it. This has several drawbacks:
+While Haxe has a static type system, this type system can, in effect, be turned off by using the \type{Dynamic} type. A \emph{dynamic value} can be assigned to anything; and anything can be assigned to it. This has several drawbacks:
 
 \begin{itemize}
 	\item The compiler can no longer type-check assignments, function calls and other constructs where specific types are expected.
@@ -589,11 +589,11 @@ Trying to run a compiled program in the Flash Player yields an error \texttt{Pro
 
 \trivia{Dynamic Inference before Haxe 3}{The Haxe 3 compiler never infers a type to \type{Dynamic}, so users must be explicit about it. Previous Haxe versions used to infer arrays of mixed types, e.g. \expr{[1, true, "foo"]}, as \type{Array<Dynamic>}. We found that this behavior introduced too many type problems and thus removed it for Haxe 3.}
 
-Use of \type{Dynamic} should be minimized as there are better options in many situations, but sometimes it is just practical to use it. Parts of the Haxe \Fullref{std-reflection} API use it, and it is sometimes the best option when dealing with custom data structures that are not known at compile-time.
+Use of \type{Dynamic} should be minimized as there are better options in many situations but sometimes it is just practical to use it. Parts of the Haxe \Fullref{std-reflection} API use it and it is sometimes the best option when dealing with custom data structures that are not known at compile-time.
 
 Dynamic behaves in a special way when being \tref{unified}{type-system-unification} with a \tref{monomorph}{types-monomorph}, which is described in \Fullref{type-system-monomorphs}.
 
-\trivia{Dynamic in the Standard Library}{Dynamic was quite frequent in the Haxe Standard Library before Haxe 3. With the continuous improvements of the Haxe type system, the occurences of Dynamic were reduced over the releases leading to Haxe 3.}
+\trivia{Dynamic in the Standard Library}{Dynamic was quite frequent in the Haxe Standard Library before Haxe 3. With the continuous improvements of the Haxe type system the occurences of Dynamic were reduced over the releases leading to Haxe 3.}
 
 \subsection{Dynamic with Type Parameter}
 \label{types-dynamic-with-type-parameter}
@@ -614,13 +614,13 @@ att.income = 0;
 \subsection{Implementing Dynamic}
 \label{types-dynamic-implemented}
 
-Classes can \tref{implement}{types-interfaces} \type{Dynamic} and \type{Dynamic$<$T$>$}, which enables arbitrary field access. In the former case, fields can have any type, in the latter they are constrained to be compatible with the parameter type:
+Classes can \tref{implement}{types-interfaces} \type{Dynamic} and \type{Dynamic$<$T$>$} which enables arbitrary field access. In the former case, fields can have any type, in the latter, they are constrained to be compatible with the parameter type:
 
 \haxe{assets/ImplementsDynamic.hx}
 
 Implementing \type{Dynamic} does not satisfy the requirements of other implemented interfaces. The expected fields still have to be implemented explicitly.
 
-Classes that implement \type{Dynamic} (with or without type parameter) can also utilize a special method named \expr{resolve}. If a \tref{read access}{define-read-access} is made and the field in question does not exists, the \expr{resolve} method is called with the field name as argument:
+Classes that implement \type{Dynamic} (with or without type parameter) can also utilize a special method named \expr{resolve}. If a \tref{read access}{define-read-access} is made and the field in question does not exist, the \expr{resolve} method is called with the field name as argument:
 
 \haxe{assets/DynamicResolve.hx}
 
@@ -629,7 +629,7 @@ Classes that implement \type{Dynamic} (with or without type parameter) can also 
 \section{Abstract}
 \label{types-abstract}
 
-An abstract type is a type which is, at runtime, actually a different type. It is a compile-time feature which defines types ``over'' concrete types in order to modify or augment their behavior:
+An abstract type is a type which is actually a different type at run-time. It is a compile-time feature which defines types ``over'' concrete types in order to modify or augment their behavior:
 
 \haxe[firstline=1,lastline=5]{assets/MyAbstract.hx}
 We can derive the following from this example:
@@ -639,10 +639,10 @@ We can derive the following from this example:
 	\item \type{Abstract} is the name of the abstract and could be anything conforming to the rules for type identifiers.
 	\item Enclosed in parenthesis \expr{()} is the \emph{underlying type} \type{Int}.
 	\item Enclosed in curly braces \expr{$\left\{\right\}$} are the fields,
-	\item which is a constructor function \expr{new} accepting one argument \expr{i} of type \type{Int}.
+	\item which are a constructor function \expr{new} accepting one argument \expr{i} of type \type{Int}.
 \end{itemize}
 
-\define{Underlying Type}{define-underlying-type}{The underlying type of an abstract is the type which is used to represent said abstract at runtime. It is usually a concrete (i.e. non-abstract) type, but could be another abstract type as well.}
+\define{Underlying Type}{define-underlying-type}{The underlying type of an abstract is the type which is used to represent said abstract at runtime. It is usually a concrete (i.e. non-abstract) type but could be another abstract type as well.}
 
 The syntax is reminiscent of classes and the semantics are indeed similar. In fact, everything in the ``body'' of an abstract (that is everything after the opening curly brace) is parsed as class fields. Abstracts may have \tref{method}{class-field-method} fields and non-\tref{physical}{define-physical-field} \tref{property}{class-field-property} fields.
 
@@ -655,9 +655,10 @@ As mentioned before, abstracts are a compile-time feature, so it is interesting 
 var a = 12;
 console.log(a);
 \end{lstlisting}
-The abstract type \type{Abstract} completely disappeared from the output and all that is left is a value of its underlying type, \type{Int}. This is because the constructor of \type{Abstract} is inlined, something we shall learn about later in section \Fullref{class-field-inline}, and its inlined expression assigns a value to \expr{this}. This might be shocking when thinking in terms of classes, but it is precisely what we want to express in the context of abstracts. Any \emph{inlined member method} of an abstract can assign to \expr{this}, and thus modify the ``internal value''.
+The abstract type \type{Abstract} completely disappeared from the output and all that is left is a value of its underlying type, \type{Int}. This is because the constructor of \type{Abstract} is inlined - something we shall learn about later in the section \Fullref{class-field-inline} - and its inlined expression assigns a value to \expr{this}. This might be surprising when thinking in terms of classes. However, it is precisely what we want to express in the context of abstracts. Any \emph{inlined member method} of an abstract can assign to \expr{this}, and thus modify the ``internal value''.
 
-A good question at this point is what happens if a member function is not declared inline, because the code obviously has to go somewhere. Haxe creates a private class, known to be the \emph{implementation class}, which has all the abstract member functions as static functions accepting an additional first argument \expr{this} of the underlying type. While this technically is an implementation detail, it can be used for \tref{selective functions}{types-abstract-selective-functions}.
+
+A good question at this point is ``What happens if a member function is not declared inline'' because the code obviously has to go somewhere. Haxe creates a private class, known to be the \emph{implementation class}, which has all the abstract member functions as static functions accepting an additional first argument \expr{this} of the underlying type. While technically this is an implementation detail, it can be used for \tref{selective functions}{types-abstract-selective-functions}.
 
 
 
@@ -672,7 +673,7 @@ A good question at this point is what happens if a member function is not declar
 Unlike classes, abstracts allow defining implicit casts. There are two kinds of implicit casts:
 
 \begin{description}
-	\item[Direct:] Allows direct casting of the abstract type to or from another type. This is defined by adding \expr{to} and \expr{from} rules to the abstract type, and is only allowed for types which unify with the underlying type of the abstract.
+	\item[Direct:] Allows direct casting of the abstract type to or from another type. This is defined by adding \expr{to} and \expr{from} rules to the abstract type and is only allowed for types which unify with the underlying type of the abstract.
 	\item[Class field:] Allows casting via calls to special cast functions. These functions are defined using \expr{@:to} and \expr{@:from} metadata. This kind of cast is allowed for all types.
 \end{description}
 The following code example shows an example of \emph{direct} casting:
@@ -680,16 +681,16 @@ The following code example shows an example of \emph{direct} casting:
 \haxe{assets/ImplicitCastDirect.hx}
 We declare \type{MyAbstract} as being \expr{from Int} and \expr{to Int}, meaning it can be assigned from \type{Int} and assigned to \type{Int}. This is shown in lines 9 and 10, where we first assign the \type{Int} \expr{12} to variable \expr{a} of type \type{MyAbstract} (this works due to the \expr{from Int} declaration) and then that abstract back to variable \expr{b} of type \type{Int} (this works due to the \expr{to Int} declaration).
 
-Class field casts have the same semantic, but are defined completely differently:
+Class field casts have the same semantics, but are defined completely differently:
 
 \haxe{assets/ImplicitCastField.hx}
 By adding \expr{@:from} to a static function, that function qualifies as implicit cast function from its argument type to the abstract. These functions must return a value of the abstract type. They must also be declared \expr{static}.
 
-Similarly, adding \expr{@:to} to a function qualifies it as implicit cast function from the abstract to its return type. These functions are typically member-functions, but they can be made \expr{static} and then serve as \tref{selective function}{types-abstract-selective-functions}.
+Similarly, adding \expr{@:to} to a function qualifies it as implicit cast function from the abstract to its return type. These functions are typically member-functions but they can be made \expr{static} and then serve as \tref{selective function}{types-abstract-selective-functions}.
 
-In the example, the method \expr{fromString} allows the assignment of value \expr{"3"} to variable \expr{a} of type \type{MyAbstract}, while the method \expr{toArray} allows assigning that abstract to variable \expr{b} of type \type{Array<Int>}.
+In the example the method \expr{fromString} allows the assignment of value \expr{"3"} to variable \expr{a} of type \type{MyAbstract} while the method \expr{toArray} allows assigning that abstract to variable \expr{b} of type \type{Array<Int>}.
 
-When using this kind of cast, calls to the cast-functions are inserted were required. This becomes obvious when looking at the \target{Javascript} output:
+When using this kind of cast, calls to the cast-functions are inserted where required. This becomes obvious when looking at the \target{Javascript} output:
 
 \begin{lstlisting}
 var a = _ImplicitCastField.MyAbstract_Impl_
@@ -697,7 +698,8 @@ var a = _ImplicitCastField.MyAbstract_Impl_
 var b = _ImplicitCastField.MyAbstract_Impl_
   .toArray(a);
 \end{lstlisting}
-This can be further optimized by \tref{inlining}{class-field-inline} both cast functions, turning the output to this:
+This can be further optimized by \tref{inlining}{class-field-inline} both cast functions, turning the output into the following:
+\todo{please review your use of ``this'' and try to vary somewhat to avoid too much word repetition}
 
 \begin{lstlisting}
 var a = Std.parseInt("3");
@@ -738,20 +740,22 @@ console.log(_AbstractOperatorOverload.
 \end{lstlisting}
 Similar to \tref{implicit casts with class fields}{types-abstract-implicit-casts}, a call to the overload method is inserted where required.
 
-Note that the example \expr{repeat} function is not commutative: While \expr{MyAbstract * Int} works, \expr{Int * MyAbstract} does not. If this should be allowed as well, the \expr{@:commutative} metadata can be added. If it should work \emph{only} for \expr{Int * MyAbstract}, but not for \expr{MyAbstract * Int}, the overload method can be made static, accepting \type{Int} and \type{MyAbstract} as first and second type respectively.
+The example \expr{repeat} function is not commutative: While \expr{MyAbstract * Int} works, \expr{Int * MyAbstract} does not. If this should be allowed as well, the \expr{@:commutative} metadata can be added. If it should work \emph{only} for \expr{Int * MyAbstract}, but not for \expr{MyAbstract * Int}, the overload method can be made static, accepting \type{Int} and \type{MyAbstract} as first and second type respectively.
 
 Overloading unary operators is analogous:
 
 \haxe{assets/AbstractUnopOverload.hx}
-Note that both binary and unary operator overloads can return any type.
+Both binary and unary operator overloads can return any type.
 
 It is also possible to omit the method body of a \expr{@:op} function, but only if the underlying type of the abstract allows the operation in question and if the resulting type can be assigned back to the abstract.
+\todo{please review for correctness}
 
 
 \subsection{Array Access}
 \label{types-abstract-array-access}
 
-Array access describes the particular syntax traditionally used to access the value in an array at a certain offset. This is usually only allowed with arguments of type \type{Int}, but with abstracts it is possible to define custom array access methods. The \tref{Haxe Standard Library}{std} uses this in its \type{Map} type, where the following two methods can be found:
+Array access describes the particular syntax traditionally used to access the value in an array at a certain offset. This is usually only allowed with arguments of type \type{Int}. Nevertheless, with abstracts it is possible to define custom array access methods. The \tref{Haxe Standard Library}{std} uses this in its \type{Map} type, where the following two methods can be found:
+\todo{You have marked ``Map'' for some reason}
 
 \begin{lstlisting}
 @:arrayAccess public inline function
@@ -789,7 +793,7 @@ Since the compiler promotes abstract member functions to static functions, it is
 \haxe{assets/SelectiveFunction.hx}
 The method \expr{getString} of abstract \type{MyAbstract} is defined to accept a first argument of \type{MyAbstract$<$String$>$}. This causes it to be available on variable \expr{a} on line 14 (because the type of \expr{a} is \type{MyAbstract$<$String$>$}), but not on variable \expr{b} whose type is \type{MyAbstract$<$Int$>$}.
 
-\trivia{Accidental Feature}{Selective functions were never actually designed, but rather discovered. After the idea was first mentioned, it required only minor adjustments in the compiler to make them work. Their discovery also lead to the introduction of multi-type abstracts, such as Map. }
+\trivia{Accidental Feature}{ Rather than having actually been designed, selective functions were discovered. After the idea was first mentioned, it required only minor adjustments in the compiler to make them work. Their discovery also lead to the introduction of multi-type abstracts, such as Map. }
 
 
 \subsection{Enum abstracts}
@@ -821,7 +825,7 @@ This is similar to accessing \tref{variables declared as inline}{class-field-inl
 
 \begin{itemize}
 	\item The typer can ensure that all values of the set are typed correctly.
-	\item When \tref{matching}{lf-pattern-matching} an enum abstract, the pattern matcher checks for \tref{exhaustiveness}{lf-pattern-matching-exhaustiveness}.
+	\item The pattern matcher checks for \tref{exhaustiveness}{lf-pattern-matching-exhaustiveness} when \tref{matching}{lf-pattern-matching} an enum abstract.
 	\item Defining fields requires less syntax.
 \end{itemize}
 
@@ -846,7 +850,7 @@ Main.main = function() {
 };
 \end{lstlisting}
 
-It is also possible to use \expr{:forward} without any arguments in order to forward all fields. Of course the Haxe compiler still ensures that the field actually exists on the underlying type.
+It is also possible to use \expr{:forward} without any arguments in order to forward all fields. Of course the Haxe Compiler still ensures that the field actually exists on the underlying type.
 
 \trivia{Implemented as macro}{Both the \expr{:enum} and \expr{:forward} functionality were originally implemented using \tref{build macros}{macro-type-building}. While this worked nicely in non-macro code, it caused issues if these features were used from within macros. The implementation was subsequently moved to the compiler.}
 
@@ -854,9 +858,9 @@ It is also possible to use \expr{:forward} without any arguments in order to for
 \subsection{Core-type abstracts}
 \label{types-abstract-core-type}
 
-The Haxe Standard Library defines a set of basic types as core-type abstracts. They are identified by the \expr{:coreType} metadata and the lack of an underlying type declaration. These abstracts can still be understood to represent a different type, but that type is native to the Haxe target. 
+The Haxe Standard Library defines a set of basic types as core-type abstracts. They are identified by the \expr{:coreType} metadata and the lack of an underlying type declaration. These abstracts can still be understood to represent a different type. Still, that type is native to the Haxe target. 
 
-Introducing custom core-type abstracts is rarely necessary in user code as it requires the target Haxe target to be able to make sense of it. However, there could be interesting use-cases for authors of macros and new Haxe targets.
+Introducing custom core-type abstracts is rarely necessary in user code as it requires the Haxe target to be able to make sense of it. However, there could be interesting use-cases for authors of macros and new Haxe targets.
 
 In contrast to opaque abstracts, core-type abstracts have the following properties:
 
