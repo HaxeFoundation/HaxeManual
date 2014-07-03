@@ -70,7 +70,7 @@ Whenever an instance of \type{Array} is created, its type parameter \type{T} bec
 	\item[explicitly] by invoking the constructor with explicit types (\expr{new Array$<$String$>$()}) or
 	\item[implicitly] by \tref{type inference}{type-system-type-inference}, e.g. when invoking \expr{arrayInstance.push("foo")}.
 \end{description}
-Inside the definition of a class with type parameters, these type parameters are an unspecific type. Unless \tref{constraints}{type-system-type-parameter-constraints} are added, the compiler has to assume that the type parameters could be used with any type. As a consequence, it is not possible to access fields of type parameters or \tref{cast}{expression-cast} to a a type parameter type. It is also not possible to create a new instance of a type parameter type, unless the type parameter is \tref{generic}{type-system-generic} and constrained accordingly. 
+Inside the definition of a class with type parameters, these type parameters are an unspecific type. Unless \tref{constraints}{type-system-type-parameter-constraints} are added, the compiler has to assume that the type parameters could be used with any type. As a consequence, it is not possible to access fields of type parameters or \tref{cast}{expression-cast} to a type parameter type. It is also not possible to create a new instance of a type parameter type, unless the type parameter is \tref{generic}{type-system-generic} and constrained accordingly. 
 
 The following table shows where type parameters are allowed:
 
