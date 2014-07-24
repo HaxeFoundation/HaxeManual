@@ -202,12 +202,12 @@ Overriding fields is instrumental for creating class hierarchies. Many design pa
 The important components here are
 
 \begin{itemize}
-	\item the class \type{Base} which has a field \expr{method} and a constructor,
-	\item the class \type{Child} which \expr{extends Base} and also has a field \expr{method} being declared with \expr{override}, and
-	\item the \type{Main} class whose \expr{main} method creates an instance of \expr{Child}, assigns it to a variable \expr{child} of explicit type \type{Base} and calls \expr{method()} on it.
+	\item the class \type{Base} which has a method \expr{myMethod} and a constructor,
+	\item the class \type{Child} which \expr{extends Base} and also has a method \expr{myMethod} being declared with \expr{override}, and
+	\item the \type{Main} class whose \expr{main} method creates an instance of \expr{Child}, assigns it to a variable \expr{child} of explicit type \type{Base} and calls \expr{myMethod()} on it.
 \end{itemize}
 
-The variable \expr{child} is explicitly typed as \type{Base} to highlight an important difference: At compile-time the type is known to be \type{Base}, but the runtime still finds the correct field \expr{method} on class \type{Child}. It is then obvious that the field access is resolved dynamically at runtime.
+The variable \expr{child} is explicitly typed as \type{Base} to highlight an important difference: At compile-time the type is known to be \type{Base}, but the runtime still finds the correct method \expr{myMethod} on class \type{Child}. It is then obvious that the field access is resolved dynamically at runtime.
 
 \subsection{Effects of variance and access modifiers}
 \label{class-field-override-effects}
