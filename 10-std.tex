@@ -90,7 +90,7 @@ See the \href{http://api.haxe.org/List.html}{List API} for details about the lis
 
 \subsection{GenericStack}
 \label{std-GenericStack}
-A \type{GenericStack}, like \type{Array} and \type{List} is a container for storing elements.  It has one \tref{type parameter}{type-system-type-parameters} and all elements of the array must be of the specified type. See the \href{http://api.haxe.org/haxe/ds/GenericStack.html}{GenericStack API} for details about its methods.  Here is a small example program for initializing and working with a \type{GenericStack}.
+A \type{GenericStack}, like \type{Array} and \type{List} is a container for storing elements.  It has one \tref{type parameter}{type-system-type-parameters} and all elements of the stack must be of the specified type. See the \href{http://api.haxe.org/haxe/ds/GenericStack.html}{GenericStack API} for details about its methods.  Here is a small example program for initializing and working with a \type{GenericStack}.
 \haxe{assets/GenericStackExample.hx}
 \trivia{FastList}{In Haxe 2, the GenericStack class was known as FastList.  Since its behavior more closely resembled a typical stack, the name was changed for Haxe 3.}
 The \emph{Generic} in \type{GenericStack} is literal.  It is attributed with the \expr{:generic} metadata.  Depending on the target, this can lead to improved performance on static targets.  See \Fullref{type-system-generic} for more details.
