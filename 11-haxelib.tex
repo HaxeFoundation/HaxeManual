@@ -61,8 +61,6 @@ The following JSON is a simple example of a haxelib.json:
 }
 \end{lstlisting}
 
-
-
 \subsection{Versioning}
 \label{haxelib-json-versioning}
 
@@ -132,6 +130,12 @@ This adds two dependencies to the given Haxe library:
 	\item The library ``tink_macros'' can be used in any version. Haxelib will then always try to use the latest version.
 	\item The library ``nme'' is required in version ``3.5.5''. Haxelib will make sure that this exact version is used, avoiding potential breaking changes with future versions.
 \end{enumerate}
+
+
+\section{extraParams.hxml}
+\label{haxelib-extraParams}
+
+If you add a file named \ic{extraParams.hxml} to your library root (at the same level as \ic{haxelib.json}), these parameters will be automatically added to the compilation parameters when someone use your library with \ic{-lib}.
 
 
 \section{Using Haxelib}
