@@ -6,7 +6,6 @@ Haxe allows conditional compilation by using `#if`, `#elseif` and `#else` and ch
 >
 > A compiler flag is a configurable value which may influence the compilation process. Such a flag can be set by invoking the command line with `-D key=value` or just `-D key`, in which case the value defaults to `"1"`. The compiler also sets several flags internally to pass information between different compilation steps.
 
-
 This example demonstrates usage of conditional compilation:
 
 ```haxe
@@ -32,7 +31,6 @@ The conditions after `#if` and `#elseif` allow the following expressions:
 * The boolean operators `&&` (and), `||` (or) and `!` (not) work as expected.
 * The operators `==`, `!=`, `>`, `>=`, `<`, `<=` can be used to compare values.
 * Parentheses `()` can be used to group expressions as usual.
-
 
 An exhaustive list of all built-in defines can be obtained by invoking the Haxe Compiler with the `--help-defines` argument. The Haxe Compiler allows multiple `-D` flags per compilation.
 

@@ -16,7 +16,6 @@ Inside the definition of a class with type parameters, these type parameters are
 
 The following table shows where type parameters are allowed:
 
-
 Parameter on  | Bound upon  | Notes 
  --- | --- | ---
 Class  | instantiation  | Can also be bound upon member field access. 

@@ -5,9 +5,6 @@ Building [enums](types-enum-instance.md) is analogous to building classes with a
 * Enum constructors without arguments are variable fields `FVar`.
 * Enum constructors with arguments are method fields `FFun`.
 
-
-
-
 ```haxe
 import haxe.macro.Context;
 import haxe.macro.Expr;

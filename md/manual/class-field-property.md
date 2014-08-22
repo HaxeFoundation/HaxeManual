@@ -6,13 +6,11 @@ Next to [variables](class-field-variable.md), properties are the second option f
 * Have a field which invokes a **getter**-method upon read-access.
 * Have a field which invokes a **setter**-method upon write-access.
 
-
 When dealing with properties, it is important to understand the two kinds of access:
 
 > ##### Define: Read Access
 >
 > A read access to a field occurs when a right-hand side [field access expression](expression-field-access.md) is used. This includes calls in the form of `obj.field()`, where `field` is accessed to be read.
-
 
 > ##### Define: Write Access
 >
@@ -36,7 +34,6 @@ For the most part, the syntax is similar to variable syntax, and the same rules 
 * another special access identifier (here: `null`)
 * before a closing parenthesis `)`.
 
-
 The access identifiers define the behavior when the field is read (first identifier) and written (second identifier). The accepted values are:
 
 * `default`: Allows normal field access if the field has public visibility, otherwise equal to `null` access.
@@ -45,11 +42,9 @@ The access identifiers define the behavior when the field is read (first identif
 * `dynamic`: Like `get`/`set` access, but does not verify the existence of the accessor field.
 * `never`: Allows no access at all.
 
-
 > ##### Define: Accessor method
 >
 > An **accessor method** (or short **accessor**) for a field named `field` of type `T` is a **getter** named `get_field` of type `Void->T` or a **setter** named `set_field` of type `T->T`.
-
 
 > ##### Trivia: Accessor names
 >

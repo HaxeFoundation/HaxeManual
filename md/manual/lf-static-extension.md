@@ -4,7 +4,6 @@
 >
 > A static extension allows pseudo-extending existing types without modifying their source. In Haxe this is achieved by declaring a static method with a first argument of the extending type and then bringing the defining class into context through `using`.
 
-
 Static extensions can be a powerful tool which allows augmenting types without actually changing them. The following example demonstrates the usage:
 
 ```haxe
@@ -28,7 +27,6 @@ Clearly, `Int` does not natively provide a `triple` method, yet this program com
 1. Both the literal `12` and the first argument of `triple` are of type `Int`.
 2. The class `IntExtender` is brought into context through `using Main.IntExtender`.
 3. `Int` does not have a `triple` field by itself (if it had, that field would take priority over the static extension).
-
 
 Static extensions are usually considered syntactic sugar and indeed they are, but it is worth noting that they can have a dramatic effect on code readability: Instead of nested calls in the form of `f1(f2(f3(f4(x))))`, chained calls in the form of `x.f4().f3().f2().f1()` can be used.
 

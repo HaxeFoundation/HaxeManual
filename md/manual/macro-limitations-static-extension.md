@@ -4,8 +4,6 @@ The concepts or [static extensions](lf-static-extension.md) and macros are somew
 
 ##### since Haxe 3.1.0
 
-
-
 The combination of static extensions and macros was reworked for the 3.1.0 release. The Haxe Compiler does not even try to find the original expression for the macro argument and instead passes a special `@:this this` expression. While the structure of this expression conveys no information, the expression can still be typed correctly:
 
 ```haxe

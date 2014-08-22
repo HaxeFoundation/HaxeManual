@@ -8,7 +8,6 @@ The Haxe syntax supports the following constants:
 * true,false: A [boolean](dictionary.md#define-bool) value.
 * null: The null value.
 
-
 Furthermore, the internal syntax structure treats [identifiers](dictionary.md#define-identifier) as constants, which may be relevant when working with [macros](macro.md).
 
 ---

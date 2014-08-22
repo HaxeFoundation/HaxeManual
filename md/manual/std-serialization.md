@@ -5,7 +5,6 @@ Many runtime values can be serialized and deserialized using the `haxe.Serialize
 1. Create an instance and continuously call the `serialize`/`unserialize` method to handle multiple values.
 2. Call their static `run` method to serialize/deserialize a single value.
 
-
 The following example demonstrates the first usage:
 
 ```haxe
@@ -42,14 +41,12 @@ The result of the serialization (here stored in local variable `s`) is a [String
 * Haxe [class instances](types-class-instance.md) (not native ones)
 * [enum instances](types-enum-instance.md)
 
-
 ###### Serialization configuration
 
 Serialization can be configured in two ways. For both a static variable can be set to influence all `haxe.Serializer` instances, and a member variable can be set to only influence a specific instance:
 
 * `USE_CACHE`, `useCache`: If true, repeated objects are serialized by reference. This can avoid infinite loops for recursive data at the expense of longer serialization time. By default, this value is `false`.
 * `USE_ENUM_INDEX`, `useEnumIndex`: If true, enum constructors are serialized by their index instead of their name. This can make the serialization string shorter but breaks if enum constructors are inserted into the type before deserialization. By default, this value is `false`.
-
 
 ###### Deserialization behavior
 
@@ -59,7 +56,6 @@ If the serialization result is stored and later used for deserialization, care h
 * Each `Unserializer` has a member variable `resolver` which is used to resolve classes and enums by name. Upon creation of the `Unserializer` this is set to `Unserializer.DEFAULT_RESOLVER`. Both that and the instance member can be set to a custom resolver.
 * Classes are resolved by name using `resolver.resolveClass(name)`. The instance is then created using `Type.createEmptyInstance`, which means that the class constructor is not called. Finally, the instance fields are set according to the serialized value.
 * Enums are resolved by name using `resolver.resolveEnum(name)`. The enum instance is then created using `Type.createEnum`, using the serialized argument values if available. If the constructor arguments were changed since serialization, the result is unspecified.
-
 
 ###### Custom (de)serialization
 

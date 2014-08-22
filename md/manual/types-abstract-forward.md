@@ -2,8 +2,6 @@
 
 ##### since Haxe 3.1.0
 
-
-
 When wrapping an underlying type, it is sometimes desirable to "keep" parts of its functionality. Because writing forwarding functions by hand is cumbersome, Haxe allows adding the `:forward` metadata to an abstract type:
 
 ```haxe

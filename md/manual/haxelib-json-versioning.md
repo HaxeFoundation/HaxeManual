@@ -13,7 +13,6 @@ These are the basic rules:
 * Patch versions are for small fixes that do not change the public API, so no existing code should break.
 * When a minor version increments, the patch number is reset to 0. When a major version increments, both the minor and patch are reset to 0.
 
-
 Examples:
 
 * "0.0.1": A first release.  Anything with a "0" for the major version is subject to change in the next release - no promises about API stability!
@@ -24,7 +23,6 @@ Examples:
 * "1.1.0": A new feature
 * "1.2.0": Another new feature
 * "2.0.0": A new version, which might break compatibility with 1.0.  Users are to upgrade cautiously.
-
 
 If this release is a preview (Alpha, Beta or Release Candidate), you can also include that, with an optional release number:
 

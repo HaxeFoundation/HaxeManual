@@ -31,7 +31,6 @@ The important components here are
 * the class `Child` which `extends Base` and also has a method `myMethod` being declared with `override`, and
 * the `Main` class whose `main` method creates an instance of `Child`, assigns it to a variable `child` of explicit type `Base` and calls `myMethod()` on it.
 
-
 The variable `child` is explicitly typed as `Base` to highlight an important difference: At compile-time the type is known to be `Base`, but the runtime still finds the correct method `myMethod` on class `Child`. It is then obvious that the field access is resolved dynamically at runtime.
 
 ---

@@ -55,7 +55,6 @@ Omitting the visibility modifier usually defaults the visibility to `private`, b
 2. If the field id declared on an [interface](types-interfaces.md).
 3. If the field [overrides](class-field-overriding.md) a public field.
 
-
 > ##### Trivia: Protected
 >
 > Haxe has no notion of a `protected` keyword known from Java, C++ and other object-oriented languages. However, its `private` behavior is equal to those language's protected behavior, so Haxe actually lacks their real private behavior.

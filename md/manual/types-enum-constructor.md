@@ -15,7 +15,6 @@ All enum instances can be assigned to a special type named `EnumValue`.
 >
 > EnumValue is a special type which unifies with all enum instances. It is used by the Haxe Standard Library to provide some operations for all enum instances, and can be employed in user-code accordingly in cases where an API requires **an** enum instance, but not a specific one.
 
-
 It is important to distinguish enum types and enum constructors, as this example demonstrates:
 
 ```haxe

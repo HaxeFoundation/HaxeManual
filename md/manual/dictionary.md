@@ -65,6 +65,7 @@ A [compound type](dictionary.md#define-compound-type) is considered covariant if
 ##### Default values
 
 Basic types have the following default values on static targets:
+
 * `Int`: `0`
 * `Float`: `NaN` on Flash, `0.0` on other static targets
 * `Bool`: `false`
@@ -107,6 +108,7 @@ A type parameter is said to be generic if its containing class or method is gene
 Haxe identifiers start with an underscore `_`, a dollar `$`, a lower-case character `a-z` or an upper-case character `A-Z`. After that, any combination and number of `_`, `A-Z`, `a-z` and `0-9` may follow.
 
 Further limitations follow from the usage context, which are checked upon typing:
+
 * Type names must start with an upper-case letter `A-Z` or an underscore `_`.
 * Leading dollars are not allowed for any kind of [name](dictionary.md#define-name) (dollar-names are mostly used for [macro reification](macro-reification.md)).
 
@@ -130,6 +132,7 @@ All Haxe code is organized in modules, which are addressed using paths. In essen
 
 ##### Name
 A general name may refer to
+
 * a type,
 * a local variable,
 * a local function or
@@ -145,6 +148,7 @@ A type in Haxe is considered **nullable** if `null` is a valid value for it.
 
 ##### Physical field
 A field is considered to be **physical** if it is either
+
 * a [variable](class-field-variable.md)
 * a [property](class-field-property.md) with the read-access or write-access identifier being `default` or `null`
 * a [property](class-field-property.md) with `:isVar` [metadata](lf-metadata.md)

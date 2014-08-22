@@ -5,6 +5,7 @@ Each supported value is translated to a distinct prefix character, followed by t
 * `null`: `n`
 * `Int`: `z` for zero, or `i` followed by the integer itself (e.g. `i456`)
 * `Float`:
+
     * `NaN`: `k`
     * negative infinity: `m`
     * positive infinity: `p`

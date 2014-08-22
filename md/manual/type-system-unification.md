@@ -6,7 +6,6 @@ Unification is the heart of the type system and contributes immensely to the rob
 >
 > Unification between two types A and B is a directional process which answers the question if A **can be assigned to** B. It may **mutate** either type if it is or has a [monomorph](types-monomorph.md).
 
-
 Unification errors are very easy to trigger:
 
 ```haxe

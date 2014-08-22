@@ -6,7 +6,6 @@ An `Array` is a collection of elements. It has one [type parameter](type-system-
 2. By using [array declaration syntax](expression-array-declaration.md): `[1, 2, 3]`
 3. By using [array comprehension](lf-array-comprehension.md): `[for (i in 0...10) if (i % 2 == 0) i]`
 
-
 Arrays come with an API [API](http://api.haxe.org/Array.html) to cover most use-cases. Additionally they allow read and write [array access](expression-array-access.md):
 
 ```haxe
@@ -25,7 +24,6 @@ Since array access in Haxe is unbounded, i.e. it is guaranteed to not throw an e
 * If a read access is made on a non-existing index, a target-dependent value is returned.
 * If a write access is made with a positive index which is out of bounds, `null` (or the [default value](dictionary.md#define-default-value) for [basic types](types-basic-types.md) on [static targets](dictionary.md#define-static-target)) is inserted at all positions between the last defined index and the newly written one.
 * If a write access is made with a negative index, the result is unspecified.
-
 
 Arrays define an [iterator](lf-iterators.md) over their elements. This iteration is typically optimized by the compiler to use a [`while` loop](expression-while.md) with array index:
 

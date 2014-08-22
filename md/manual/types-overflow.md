@@ -5,7 +5,6 @@ For performance reasons, the Haxe Compiler does not enforce any overflow behavio
  * C++, Java, C#, Neko, Flash: 32-bit signed integers, with usual overflow practices.  
 * PHP, JS, Flash 8: No native **Int** type.  Loss of precision will occur if they reach their float limit (2<sup>52</sup>).
 
-
 Alternatively, the **haxe.Int32** and **haxe.Int64** classes can be used to ensure correct overflow behavior regardless of the platform, at the cost of additional computations depending on the platform.
 
 ---

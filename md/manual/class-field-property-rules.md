@@ -21,12 +21,12 @@ However, the compiler assumes that a physical field exists only if at least one 
 > ##### Define: Physical field
 >
 > A field is considered to be **physical** if it is either
+> 
 > * a [variable](class-field-variable.md)
 > * a [property](class-field-property.md) with the read-access or write-access identifier being `default` or `null`
 > * a [property](class-field-property.md) with `:isVar` [metadata](lf-metadata.md)
 > 
 > 
-
 
 If this is not the case, access to the field from within an accessor method causes a compilation error:
 
@@ -69,7 +69,6 @@ class Main {
 }
 
 ```
-
 
 > ##### Trivia: Property setter type
 >

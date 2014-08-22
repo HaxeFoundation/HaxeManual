@@ -2,8 +2,6 @@
 
 ##### since Haxe 3.1.0
 
-
-
 Extractors allow applying transformations to values being matched. This is often useful when a small operation is required on a matched value before matching can continue:
 
 ```haxe
@@ -52,7 +50,6 @@ Extractors are identified by the `extractorExpression => match` expression. The 
 
 1. The left side can be any expression, where all occurrences of underscore `_` are replaced with the currently matched value.
 2. The right side is a pattern which is matched against the result of the evaluation of the left side.
-
 
 Since the right side is a pattern, it can contain another extractor. The following example "chains" two extractors:
 

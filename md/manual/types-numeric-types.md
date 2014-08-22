@@ -4,7 +4,6 @@
 >
 > Represents a double-precision IEEE 64-bit floating point number.
 
-
 > ##### Define: Int
 >
 > Represents an integral number.

@@ -17,6 +17,7 @@ var r = new EReg("haxe", "i");
 First argument is a string with regular expression pattern, second one is a string with **flags** (see below).
 
 We can use standard regular expression patterns such as:
+
 * `.` any character
 * `*` repeat zero-or-more
 * `+` repeat one-or-more
@@ -28,7 +29,6 @@ We can use standard regular expression patterns such as:
 * `$` end of the string (end of a line in multiline matching mode)
 * `|` "OR" statement.
 
-
 For example, the following regular expression matches valid email addresses:
 ```haxe
 ~/[A-Z0-9._%-]+@[A-Z0-9.-]+.[A-Z][A-Z][A-Z]?/i;
@@ -37,6 +37,7 @@ For example, the following regular expression matches valid email addresses:
 Please notice that the `i` at the end of the regular expression is a **flag** that enables case-insensitive matching.
 
 The possible flags are the following:
+
 * `i` case insensitive matching
 * `g` global replace or split, see below
 * `m` multiline matching, `^` and `$` represent the beginning and end of a line

@@ -27,7 +27,6 @@ The Haxe type system knows seven type groups:
 * **Abstract**: a compile-time type which is represented by a different type at runtime 
 * **Monomorph**: an unknown type, which may later become a different type
 
-
 We will describe each of these type groups and how they relate to each other in the next chapters.
 
 > ##### Define: Compound Type
