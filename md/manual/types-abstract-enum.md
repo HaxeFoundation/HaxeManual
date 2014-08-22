@@ -2,8 +2,6 @@
 
 ##### since Haxe 3.1.0
 
-
-
 By adding the `:enum` metadata to an abstract definition, that abstract can be used to define finite value sets:
 
 ```haxe

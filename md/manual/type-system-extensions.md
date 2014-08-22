@@ -22,8 +22,6 @@ In order to be compatible with `IterableWithLength<T>`, a type then must be comp
 
 ##### since Haxe 3.1.0
 
-
-
 It is also possible to extend multiple structures:
 
 ```haxe

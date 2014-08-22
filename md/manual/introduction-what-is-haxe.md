@@ -6,7 +6,6 @@ Haxe is strongly typed, but the typing system can be subverted where required. U
 
 Currently, there are nine supported target languages which allow different use-cases:
 
-
 Name  | Output type  | Main usages 
  --- | --- | ---
 Javascript  | Sourcecode  | Browser, Desktop, Mobile, Server 

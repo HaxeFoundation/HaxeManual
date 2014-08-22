@@ -25,7 +25,6 @@ private abstract A { ... }
 > 
 > Private types, unlike public ones, do not become a member of their containing package.
 
-
 The accessibility of types can be controlled more fine-grained by using [access control](lf-access-control.md).
 
 ---

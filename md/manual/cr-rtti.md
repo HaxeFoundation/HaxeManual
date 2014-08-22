@@ -4,8 +4,6 @@ The Haxe compiler generates runtime type information (RTTI) for classes that are
 
 ##### since Haxe 3.2.0
 
-
-
 The type `haxe.rtti.Rtti` has been introduced in order to simplify working with RTTI. Retrieving this information is now very easy:
 
 ```haxe

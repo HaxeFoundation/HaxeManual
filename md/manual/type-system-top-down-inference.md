@@ -6,7 +6,6 @@ Most of the time, types are inferred on their own and may then be unified with a
 >
 > Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is argument to a function call. They can influence typing of that expression through what is called [top-down inference](type-system-top-down-inference.md).
 
-
 A good example are arrays of mixed types. As mentioned in [Dynamic](types-dynamic.md), the compiler refuses `[1, "foo"]` because it cannot determine an element type. Employing top-down inference, this can be overcome:
 
 ```haxe

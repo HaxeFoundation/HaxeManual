@@ -14,7 +14,6 @@ If during runtime the evaluation of `try-expression` causes a [`throw`](expressi
 * an explicit type annotation which determines which types of values to catch, and
 * the expression to execute in that case.
 
-
 Haxe allows throwing and catching any kind of value, it is not limited to types inheriting from a specific exception or error class. Catch blocks are checked from top to bottom with the first one whose type is compatible with the thrown value being picked.
 
 This process has many similarities to the compile-time [unification](type-system-unification.md) behavior. However, since the check has to be done at runtime there are several restrictions:

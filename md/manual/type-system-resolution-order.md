@@ -13,9 +13,6 @@ We describe the resolution order algorithm here, which depends on the following 
 * the [expected type](dictionary.md#define-expected-type)
 * the expression being `untyped` or not
 
-
-
-
 <img src="../../assets/graphics/generated/type-system-resolution-order-diagram.png" alt="Resolution order of identifier `i'" title="Resolution order of identifier `i'" />
 
 _Figure: Resolution order of identifier `i'_
@@ -37,14 +34,12 @@ Given an identifier `i`, the algorithm is as follows:
 13. Generate a local variable named `i`, resolve to it and halt.
 14. Fail
 
-
 For step 10, it is also necessary to define the resolution order of types:
 
 1. If a type named `i` is imported (directly or as part of a module), resolve to it and halt.
 2. If the current package contains a module named `i` with a type named `i`, resolve to it and halt.
 3. If a type named `i` is available at top-level, resolve to it and halt.
 4. Fail
-
 
 For step 1 of this algorithm as well as steps 5 and 7 of the previous one, the order of import resolution is important:
 

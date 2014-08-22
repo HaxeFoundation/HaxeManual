@@ -5,13 +5,11 @@ Access control can be used if the basic [visibility](class-field-visibility.md) 
 * Allowing access: The target is granted access to the given class or field by using the `:allow(target)` [metadata](lf-metadata.md).
 * Forcing access: A target is forced to allow access to the given class or field by using the `:access(target)` [metadata](lf-metadata.md).
 
-
 In this context, a **target** can be the [dot-path](dictionary.md#define-type-path) to
 
 * a **class field**,
 * a **class** or **abstract** type, or
 * a **package**.
-
 
 If it is a class or abstract type, access modification extends to all fields of that type. Likewise, if it is a package, access modification extends to all types of that package and recursively to all fields of these types.
 
@@ -64,6 +62,7 @@ The `@:access(MyClass.foo)` annotation effectively subverts the visibility of th
 >
 > The access control language feature uses the Haxe metadata syntax instead of additional language-specific syntax. There are several reasons for that:
 > 
+> 
 > * Additional syntax often adds complexity to the language parsing, and also adds (too) many keywords.
 > * Additional syntax requires additional learning by the language user, whereas metadata syntax is something that is already known.
 > * The metadata syntax is flexible enough to allow extension of this feature.
@@ -72,8 +71,6 @@ The `@:access(MyClass.foo)` annotation effectively subverts the visibility of th
 > Of course, the main drawback of using metadata syntax is that you get no error report in case you misspell either the metadata key (@:acesss for instance) or the class/package name. However, with this feature you will get an error when you try to access a private field that you are not allowed to, therefore there is no possibility for silent errors.
 
 ##### since Haxe 3.1.0
-
-
 
 If access is allowed to an [interface](types-interfaces.md), it extends to all classes implementing that interface:
 

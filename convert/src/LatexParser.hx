@@ -105,8 +105,15 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 	public function parse() {
 		header();
 		document();
-		lastSection.content = buffer.toString().trim();
+		lastSection.content = getBuffer();
 		return sections;
+	}
+
+	function getBuffer() {
+		var s = buffer.toString().trim();
+		s = ~/\n\t*\n/g.replace(s, "\n\n");
+		s = ~/\n\n+/g.replace(s, "\n\n");
+		return s;
 	}
 
 	function header() {
@@ -354,14 +361,14 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 			// list
 			case [TBegin("itemize")]:
 				listMode.push(Itemize);
-				"";
+				"\n";
 			case [TBegin("description")]:
 				listMode.push(Description);
-				"";
+				"\n";
 			case [TBegin("enumerate")]:
 				listMode.push(Enumerate(1));
 				lastLabelTarget = Item(1);
-				"";
+				"\n";
 			case [TCommand(CItem), subject = popt(bracketArg), s = text()]:
 				var bullet = switch(listMode[listMode.length - 1]) {
 					case Enumerate(c):
@@ -433,7 +440,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 
 	function mkSection(title:String, parent:Section, index:Int) {
 		if (lastSection != null) {
-			lastSection.content = buffer.toString().trim();
+			lastSection.content = getBuffer();
 			buffer = new StringBuf();
 		}
 		var id = (parent != null ? parent.id + "." : "") + index;

@@ -21,7 +21,6 @@ There is a strong resemblance between the declaration of function `test` and the
 * **Function arguments** are separated by the special arrow token `->` instead of commas, and
 * the **function return type** appears at the end after another `->`.
 
-
 In either notation, it is obvious that the function `test` accepts a first argument of type `Int`, a second argument of type `String` and returns a value of type `Bool`. If a call to this function is made, such as `test(1, "foo")` within the second `$type` expression, the Haxe typer checks if `1` can be assigned to `Int` and if `"foo"` can be assigned to `String`. The type of the call is then equal to the type of the value `test` returns, which is `Bool`.
 
 If a function type has other function types as argument or return type, parentheses can be used to group them correctly. As an example, `Int -> (Int -> Void) -> Void` represents a function which has a first argument of type `Int`, a second argument of function type `Int -> Void` and a return of `Void`.

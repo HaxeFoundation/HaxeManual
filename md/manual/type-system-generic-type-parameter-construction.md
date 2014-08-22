@@ -4,7 +4,6 @@
 >
 > A type parameter is said to be generic if its containing class or method is generic.
 
-
 With normal type parameter, it is not possible to construct them, i.e. `new T()` is a compiler error. This is because Haxe generates only a single function and the construct then makes no sense. This is different when the type parameter is generic: Since we know that the compiler will generate a distinct function for each type parameter combination, it is possible to replace the `T` `new T()` with the real type.
 
 ```haxe
@@ -29,7 +28,6 @@ It should be noted that [top-down inference](type-system-top-down-inference.md) 
 
 1. generic and
 2. be explicitly [constrained](type-system-type-parameter-constraints.md) to having a [constructor](types-class-constructor.md).
-
 
 Here, 1. is given by `make` having the `@:generic` metadata, and 2. by `T` being constrained to `Constructible`. The constraint holds for both `String` and `haxe.Template` as both have a constructor accepting a singular `String` argument. Sure enough, the relevant Javascript output looks as expected:
 

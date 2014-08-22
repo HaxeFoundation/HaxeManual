@@ -12,7 +12,6 @@ Each Haxe library requires a `haxelib.json` file in which the following attribut
 * contributors: An array of user names which identify contributors to the library. 
 * dependencies: An object describing the dependencies of the library. This is detailed in [Dependencies](haxelib-json-dependencies.md).
 
-
 The following JSON is a simple example of a haxelib.json:
 
 ```haxe

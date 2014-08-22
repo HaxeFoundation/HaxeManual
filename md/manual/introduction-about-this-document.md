@@ -16,7 +16,6 @@ Furthermore, we define a set of terms in this document. Most often, this is done
 >
 > Definition description
 
-
 In a few places, this document has **trivia**-boxes. These include off-the-record information such as why certain decisions were made during Haxe's development or how a particular feature has been changed in past Haxe versions. This information is generally not important and can be skipped as it is only meant to convey trivia:
 
 > ##### Trivia: About Trivia

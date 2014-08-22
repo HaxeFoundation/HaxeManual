@@ -4,7 +4,6 @@
 >
 > A class field is a variable, property or method of a class which can either be static or non-static. Non-static fields are referred to as **member** fields, so we speak of e.g. a **static method** or a **member variable**.
 
-
 So far we have seen how types and Haxe programs in general are structured. This section about class fields concludes the structural part and at the same time bridges to the behavioral part of Haxe. This is because class fields are the place where [expressions](expression.md) are at home.
 
 There are three kinds of class fields:

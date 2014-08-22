@@ -9,14 +9,12 @@ Expression reification is used to create instances of `haxe.macro.Expr` in a con
 * `$p{}`: `Array<String> -> Expr` Generates a field expression from the given string array.
 * `$v{}`: `Dynamic -> Expr` Generates an expression depending on the type of its argument. This is only guaranteed to work for [basic types](types-basic-types.md) and [enum instances](types-enum-instance.md).
 
-
 This kind of reification only works in places where the internal structure expects an expression. This disallows `object.${fieldName}`, but `object.$fieldName` works. This is true for all places where the internal structure expects a string:
 
 * field access `object.$name`
 * variable name `var $name = 1;`
 
 ##### since Haxe 3.1.0
-
 
 * field name `{ $name: 1} `
 * function name `function $name() { }`

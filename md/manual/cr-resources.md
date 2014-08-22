@@ -8,7 +8,6 @@ While it may be not optimal to embed large assets, like images or music in the a
 
 External files are embedded using the **-resource** compiler argument:
 
-
 ```haxe
 -resource hello_message.txt@welcome
 ```

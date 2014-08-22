@@ -11,9 +11,7 @@
 * platforms: A list of strings representing the targets where the type is available.
 * meta: The meta data the type was annotated with.
 
-
 ###### Class type information
-
 
 * isExtern: Whether or not the class is [extern](lf-externs.md).
 * isInterface: Whether or not the class is actually an [interface](types-interfaces.md).
@@ -23,12 +21,10 @@
 * statics: The list of static class fields, described in [Class field information](cr-rtti-structure.md#class-field-information).
 * tdynamic: The type which is [dynamically implemented](types-dynamic-implemented.md) by the class, or `null` if no such type exists.
 
-
 ###### Enum type information
 
 * isExtern: Whether or not the enum is [extern](lf-externs.md).
 * constructors: The list of enum constructors.
-
 
 ###### Abstract type information
 
@@ -37,10 +33,7 @@
 * impl: The [class type information](cr-rtti-structure.md#class-type-information) of the implementing class.
 * athis: The [underlying type](dictionary.md#define-underlying-type) of the abstract.
 
-
-
 ###### Class field information
-
 
 * name: The name of the field.
 * type: The type of the field.
@@ -56,9 +49,7 @@
 * line: The line number where the field is defined. This information is only available if the field has an expression. Otherwise the value is `null`.
 * overloads: The list of available overloads for the fields, or `null` if no overloads exists.
 
-
 ###### Enum constructor information
-
 
 * name: The name of the constructor.
 * args: The list of arguments the constructor has, or `null` if no arguments are available.

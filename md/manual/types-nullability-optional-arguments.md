@@ -13,7 +13,6 @@ function bar( ?y : Int) {...}
 function opt( ?z : Int = -1) {...}
 ```
 
-
 > ##### Trivia: Argument vs Parameter
 >
 > In some other programming languages, **argument** and **parameter** are used interchangably.  In Haxe, **argument** is used when referring to methods, and **parameter** refers to [Type Parameters](type-system-type-parameters.md).

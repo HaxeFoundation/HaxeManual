@@ -79,7 +79,6 @@ The **selection algorithm** when assigning a type `A` to a type `B` with at leas
 5. Stop, unification fails.
 6. Stop, unification succeeds.
 
-
 <img src="../../assets/graphics/generated/types-abstract-implicit-casts-selection-algorithm.png" alt="Selection algorithm flow chart." title="Selection algorithm flow chart." />
 
 _Figure: Selection algorithm flow chart._

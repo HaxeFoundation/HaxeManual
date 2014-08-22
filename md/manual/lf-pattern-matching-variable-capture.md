@@ -19,7 +19,6 @@ This would return one of the following:
 * If `myTree` is a `Node` whose left sub-tree is a `Leaf`, its name is returned (this will apply here, returning `"foo"`).
 * Otherwise `"none"` is returned.
 
-
 It is also possible to use = to capture values which are further matched:
 
 ```haxe
