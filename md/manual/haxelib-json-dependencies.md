@@ -20,4 +20,4 @@ This adds two dependencies to the given Haxe library:
 
 Previous section: [Versioning](haxelib-json-versioning.md)
 
-Next section: [Using Haxelib](haxelib-using.md)
+Next section: [extraParams.hxml](haxelib-extraParams.md)

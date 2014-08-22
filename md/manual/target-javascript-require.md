@@ -1,5 +1,9 @@
 ## 12.1.1 Loading extern classes using "require" function
 
+##### since Haxe 3.2.0
+
+
+
 Modern JavaScript platforms, such as Node.js provide a way of loading objects
 from external modules using the "require" function. Haxe supports automatic generation
 of "require" statements for `extern` classes.

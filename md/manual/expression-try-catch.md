@@ -11,7 +11,7 @@ catch(varName2:Type2) catch-expr-2
 If during runtime the evaluation of `try-expression` causes a [`throw`](expression-throw.md), it can be caught by any subsequent `catch` block. These blocks consist of
 
 * a variable name which holds the thrown value,
-* an explicit type annotation which determines which types of values to catch an
+* an explicit type annotation which determines which types of values to catch, and
 * the expression to execute in that case.
 
 

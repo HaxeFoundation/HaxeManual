@@ -223,7 +223,8 @@ Unreviewed:
 11.2 - haxelib.json
 11.2.1 - Versioning
 11.2.2 - Dependencies
-11.3 - Using Haxelib
+11.3 - extraParams.hxml
+11.4 - Using Haxelib
 12.1.1 - Loading extern classes using "require" function
 12.5.1 - Using C++ Defines
 

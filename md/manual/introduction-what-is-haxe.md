@@ -9,7 +9,7 @@ Currently, there are nine supported target languages which allow different use-c
 
 Name  | Output type  | Main usages 
  --- | --- | ---
-Javascript  | Sourcecode  | Desktop, Mobile, Server 
+Javascript  | Sourcecode  | Browser, Desktop, Mobile, Server 
 Neko  | Bytecode  | Desktop, Server 
 PHP  | Sourcecode  | Server 
 Python  | Sourcecode  | Desktop, Server 
