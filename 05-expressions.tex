@@ -443,3 +443,23 @@ In this example we first cast a class instance of type \type{Child1} to \type{Ba
 The Haxe compiler guarantees that an exception of type \type{String} is \tref{thrown}{expression-throw} in this case. This exception can be caught using a \tref{\expr{try/catch} block}{expression-try-catch}.
 
 Safe casts have a runtime overhead. It is important to understand the the compiler already generates type checks, so it is redundant to add manual checks, e.g. using \expr{Std.is}. The intended usage is to try the safe cast and catch the \type{String} exception.
+
+
+\section{type check}
+\label{expression-type-check}
+\since{3.1.0}
+
+It is possible to employ compile-time type checks using the following syntax:
+
+\begin{lstlisting}
+(expr : type)
+\end{lstlisting}
+
+The parentheses are mandatory. Unlike \tref{safe casts}{expression-cast-safe} this construct has no run-time impact. It has two compile-time implications:
+
+\begin{enumerate}
+\item \tref{Top-down inference}{type-system-top-down-inference} is used to type \expr{expr} with type \expr{type}.
+\item The resulting typed expression is \tref{unified}{type-system-unification} with type \expr{type}.
+\end{enumerate}
+
+This has the usual effect of both operations such as the given type being used as expected type when performing \tref{unqualified identifier resolution}{type-system-resolution-order} and the unification checking for \tref{abstract casts}{types-abstract-implicit-casts}.
