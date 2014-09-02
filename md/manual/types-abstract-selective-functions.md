@@ -28,7 +28,7 @@ The method `getString` of abstract `MyAbstract` is defined to accept a first arg
 
 > ##### Trivia: Accidental Feature
 >
-> Selective functions were never actually designed, but rather discovered. After the idea was first mentioned, it required only minor adjustments in the compiler to make them work. Their discovery also lead to the introduction of multi-type abstracts, such as Map.
+>  Rather than having actually been designed, selective functions were discovered. After the idea was first mentioned, it required only minor adjustments in the compiler to make them work. Their discovery also lead to the introduction of multi-type abstracts, such as Map.
 
 ---
 

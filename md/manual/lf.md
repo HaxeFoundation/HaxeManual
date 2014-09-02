@@ -26,6 +26,6 @@
 
 ---
 
-Previous section: [safe cast](expression-cast-safe.md)
+Previous section: [type check](expression-type-check.md)
 
 Next section: [Conditional Compilation](lf-condition-compilation.md)

@@ -1,6 +1,6 @@
 ## 2 Types
 
-The Haxe Compiler employs a rich typing system which helps detecting type-related errors in a program at compile-time. A type error is an invalid operation on a given type, such as dividing by a String, trying to access a field of an Integer or calling a function with not enough (or too many) arguments.
+The Haxe Compiler employs a rich type system which helps detecting type-related errors in a program at compile-time. A type error is an invalid operation on a given type such as dividing by a String, trying to access a field of an Integer or calling a function with not enough (or too many) arguments.
 
 In some languages this additional safety comes at a price because programmers are forced to explicitly assign types to syntactic constructs:
 
@@ -23,9 +23,9 @@ The Haxe type system knows seven type groups:
 * **Enum instance**: a value of a Haxe enumeration 
 * **Structure**: an anonymous structure, i.e. a collection of named fields 
 * **Function**: a compound type of several arguments and one return 
-* **Dynamic**: a wildcard type which is compatible to any type 
+* **Dynamic**: a wildcard type which is compatible with any type 
 * **Abstract**: a compile-time type which is represented by a different type at runtime 
-* **Monomorph**: an unknown type, which may later become a different type
+* **Monomorph**: an unknown type which may later become a different type
 
 We will describe each of these type groups and how they relate to each other in the next chapters.
 

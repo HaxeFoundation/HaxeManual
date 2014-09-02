@@ -1,8 +1,8 @@
 ## 2.8.7 Core-type abstracts
 
-The Haxe Standard Library defines a set of basic types as core-type abstracts. They are identified by the `:coreType` metadata and the lack of an underlying type declaration. These abstracts can still be understood to represent a different type, but that type is native to the Haxe target. 
+The Haxe Standard Library defines a set of basic types as core-type abstracts. They are identified by the `:coreType` metadata and the lack of an underlying type declaration. These abstracts can still be understood to represent a different type. Still, that type is native to the Haxe target. 
 
-Introducing custom core-type abstracts is rarely necessary in user code as it requires the target Haxe target to be able to make sense of it. However, there could be interesting use-cases for authors of macros and new Haxe targets.
+Introducing custom core-type abstracts is rarely necessary in user code as it requires the Haxe target to be able to make sense of it. However, there could be interesting use-cases for authors of macros and new Haxe targets.
 
 In contrast to opaque abstracts, core-type abstracts have the following properties:
 

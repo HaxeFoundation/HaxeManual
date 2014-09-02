@@ -32,4 +32,4 @@ Safe casts have a runtime overhead. It is important to understand the the compil
 
 Previous section: [unsafe cast](expression-cast-unsafe.md)
 
-Next section: [Language Features](lf.md)
+Next section: [type check](expression-type-check.md)

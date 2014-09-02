@@ -1,6 +1,6 @@
 ## 2.8 Abstract
 
-An abstract type is a type which is, at runtime, actually a different type. It is a compile-time feature which defines types "over" concrete types in order to modify or augment their behavior:
+An abstract type is a type which is actually a different type at run-time. It is a compile-time feature which defines types "over" concrete types in order to modify or augment their behavior:
 
 ```haxe
 abstract AbstractInt(Int) {
@@ -15,11 +15,11 @@ We can derive the following from this example:
 * `Abstract` is the name of the abstract and could be anything conforming to the rules for type identifiers.
 * Enclosed in parenthesis `()` is the **underlying type** `Int`.
 * Enclosed in curly braces `{}` are the fields,
-* which is a constructor function `new` accepting one argument `i` of type `Int`.
+* which are a constructor function `new` accepting one argument `i` of type `Int`.
 
 > ##### Define: Underlying Type
 >
-> The underlying type of an abstract is the type which is used to represent said abstract at runtime. It is usually a concrete (i.e. non-abstract) type, but could be another abstract type as well.
+> The underlying type of an abstract is the type which is used to represent said abstract at runtime. It is usually a concrete (i.e. non-abstract) type but could be another abstract type as well.
 
 The syntax is reminiscent of classes and the semantics are indeed similar. In fact, everything in the "body" of an abstract (that is everything after the opening curly brace) is parsed as class fields. Abstracts may have [method](class-field-method.md) fields and non-[physical](dictionary.md#define-physical-field) [property](class-field-property.md) fields.
 
@@ -39,9 +39,9 @@ As mentioned before, abstracts are a compile-time feature, so it is interesting 
 var a = 12;
 console.log(a);
 ```
-The abstract type `Abstract` completely disappeared from the output and all that is left is a value of its underlying type, `Int`. This is because the constructor of `Abstract` is inlined, something we shall learn about later in section [Inline](class-field-inline.md), and its inlined expression assigns a value to `this`. This might be shocking when thinking in terms of classes, but it is precisely what we want to express in the context of abstracts. Any **inlined member method** of an abstract can assign to `this`, and thus modify the "internal value".
+The abstract type `Abstract` completely disappeared from the output and all that is left is a value of its underlying type, `Int`. This is because the constructor of `Abstract` is inlined - something we shall learn about later in the section [Inline](class-field-inline.md) - and its inlined expression assigns a value to `this`. This might be surprising when thinking in terms of classes. However, it is precisely what we want to express in the context of abstracts. Any **inlined member method** of an abstract can assign to `this`, and thus modify the "internal value".
 
-A good question at this point is what happens if a member function is not declared inline, because the code obviously has to go somewhere. Haxe creates a private class, known to be the **implementation class**, which has all the abstract member functions as static functions accepting an additional first argument `this` of the underlying type. While this technically is an implementation detail, it can be used for [selective functions](types-abstract-selective-functions.md).
+A good question at this point is "What happens if a member function is not declared inline" because the code obviously has to go somewhere. Haxe creates a private class, known to be the **implementation class**, which has all the abstract member functions as static functions accepting an additional first argument `this` of the underlying type. While technically this is an implementation detail, it can be used for [selective functions](types-abstract-selective-functions.md).
 
 > ##### Trivia: Basic Types and abstracts
 >

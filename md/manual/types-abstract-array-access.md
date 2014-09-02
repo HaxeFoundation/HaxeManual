@@ -1,6 +1,6 @@
 ## 2.8.3 Array Access
 
-Array access describes the particular syntax traditionally used to access the value in an array at a certain offset. This is usually only allowed with arguments of type `Int`, but with abstracts it is possible to define custom array access methods. The [Haxe Standard Library](std.md) uses this in its `Map` type, where the following two methods can be found:
+Array access describes the particular syntax traditionally used to access the value in an array at a certain offset. This is usually only allowed with arguments of type `Int`. Nevertheless, with abstracts it is possible to define custom array access methods. The [Haxe Standard Library](std.md) uses this in its `Map` type, where the following two methods can be found:
 
 ```haxe
 @:arrayAccess public inline function

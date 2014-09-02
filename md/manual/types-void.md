@@ -14,8 +14,9 @@ class HelloWorld {
   }
 }
 ```
-The function type will be explored in detail in section [Function Type](types-function.md), but a quick preview helps here: The type of function `main` in above example can be considered to be `Void->Void`, which reads as "it has no arguments and returns nothing".
-Haxe does not allow fields and variables of type `Void`, and will complain if an attempt is made at declaring such:
+
+The function type will be explored in detail in the section [Function Type](types-function.md) but a quick preview helps here: The type of the function `main` in the example above is `Void->Void`, which reads as "it has no arguments and returns nothing".
+Haxe does not allow fields and variables of type `Void` and will complain if an attempt at declaring such is made:
 
 ```haxe
 // Arguments and variables of type Void

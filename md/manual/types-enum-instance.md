@@ -22,7 +22,7 @@ The Haxe type system provides a type which unifies with all enum types:
 
 > ##### Define: `Enum<T>`
 >
-> This type is compatible with all enum types. At compile-time, `Enum<T>` can be considered to be the common base type of all enum types. However, this relation is not reflected in generated code.
+> This type is compatible with all enum types. At compile-time, `Enum<T>` can bee seen as the common base type of all enum types. However, this relation is not reflected in generated code.
 
 ---
 

@@ -6,19 +6,19 @@
 <a name="define-class-t" class="anch"></a>
 
 ##### `Class<T>`
-This type is compatible with all class types, which means that all classes (not their instances) can be assigned to it. At compile-time, `Class<T>` can be considered to be the common base type of all class types. However, this relation is not reflected in generated code.
+This type is compatible with all class types which means that all classes (not their instances) can be assigned to it. At compile-time, `Class<T>` is the common base type of all class types. However, this relation is not reflected in generated code.
 
 This type is useful when an API requires a value to be **a** class, but not a specific one. This applies to several methods of the [Haxe reflection API](std-reflection.md).
 
 <a name="define-enum-t" class="anch"></a>
 
 ##### `Enum<T>`
-This type is compatible with all enum types. At compile-time, `Enum<T>` can be considered to be the common base type of all enum types. However, this relation is not reflected in generated code.
+This type is compatible with all enum types. At compile-time, `Enum<T>` can bee seen as the common base type of all enum types. However, this relation is not reflected in generated code.
 
 <a name="define-null-t" class="anch"></a>
 
 ##### `Null<T>`
-On static targets the types `Null<Int>`, `Null<Float>` and `Null<Bool>` can be used in order to allow `null` as a value. On dynamic targets this has no effect. `Null<T>` can also be used with other types in order to document that `null` is an allowed value.
+On static targets the types `Null<Int>`, `Null<Float>` and `Null<Bool>` can be used to allow `null` as a value. On dynamic targets this has no effect. `Null<T>` can also be used with other types in order to document that `null` is an allowed value.
 
 <a name="define-ast" class="anch"></a>
 
@@ -80,12 +80,12 @@ Definition description
 <a name="define-dynamic-target" class="anch"></a>
 
 ##### Dynamic target
-Dynamic targets are more lenient with their types and allow `null` values for basic types. They consist of JavaScript, PHP, Neko and Flash 6-8.
+Dynamic targets are more lenient with their types and allow `null` values for basic types. This applies to the JavaScript, PHP, Neko and Flash 6-8 targets.
 
 <a name="define-enumvalue" class="anch"></a>
 
 ##### EnumValue
-EnumValue is a special type which unifies with all enum instances. It is used by the Haxe Standard Library to provide some operations for all enum instances, and can be employed in user-code accordingly in cases where an API requires **an** enum instance, but not a specific one.
+EnumValue is a special type which unifies with all enum instances. It is used by the Haxe Standard Library to provide certain operations for all enum instances and can be employed in user-code accordingly in cases where an API requires **an** enum instance, but not a specific one.
 
 <a name="define-expected-type" class="anch"></a>
 
@@ -195,7 +195,7 @@ The (dot-)path to a type consists of the package, the module name and the type n
 <a name="define-underlying-type" class="anch"></a>
 
 ##### Underlying Type
-The underlying type of an abstract is the type which is used to represent said abstract at runtime. It is usually a concrete (i.e. non-abstract) type, but could be another abstract type as well.
+The underlying type of an abstract is the type which is used to represent said abstract at runtime. It is usually a concrete (i.e. non-abstract) type but could be another abstract type as well.
 
 <a name="define-unification" class="anch"></a>
 

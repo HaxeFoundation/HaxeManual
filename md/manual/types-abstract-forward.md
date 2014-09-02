@@ -35,7 +35,7 @@ Main.main = function() {
 };
 ```
 
-It is also possible to use `:forward` without any arguments in order to forward all fields. Of course the Haxe compiler still ensures that the field actually exists on the underlying type.
+It is also possible to use `:forward` without any arguments in order to forward all fields. Of course the Haxe Compiler still ensures that the field actually exists on the underlying type.
 
 > ##### Trivia: Implemented as macro
 >

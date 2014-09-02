@@ -32,7 +32,7 @@ console.log(_AbstractOperatorOverload.
 ```
 Similar to [implicit casts with class fields](types-abstract-implicit-casts.md), a call to the overload method is inserted where required.
 
-Note that the example `repeat` function is not commutative: While `MyAbstract * Int` works, `Int * MyAbstract` does not. If this should be allowed as well, the `@:commutative` metadata can be added. If it should work **only** for `Int * MyAbstract`, but not for `MyAbstract * Int`, the overload method can be made static, accepting `Int` and `MyAbstract` as first and second type respectively.
+The example `repeat` function is not commutative: While `MyAbstract * Int` works, `Int * MyAbstract` does not. If this should be allowed as well, the `@:commutative` metadata can be added. If it should work **only** for `Int * MyAbstract`, but not for `MyAbstract * Int`, the overload method can be made static, accepting `Int` and `MyAbstract` as first and second type respectively.
 
 Overloading unary operators is analogous:
 
@@ -56,7 +56,7 @@ class AbstractUnopOverload {
   }
 }
 ```
-Note that both binary and unary operator overloads can return any type.
+Both binary and unary operator overloads can return any type.
 
 It is also possible to omit the method body of a `@:op` function, but only if the underlying type of the abstract allows the operation in question and if the resulting type can be assigned back to the abstract.
 
