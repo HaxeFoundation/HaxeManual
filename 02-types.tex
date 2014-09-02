@@ -585,13 +585,18 @@ It is very easy to come up with examples where the usage of \type{Dynamic} can c
 var d:Dynamic = 1;
 d.foo;
 \end{lstlisting}
+
 Trying to run a compiled program in the Flash Player yields an error \texttt{Property foo not found on Number and there is no default value}. Without \type{Dynamic}, this would have been detected at compile-time.
 
 \trivia{Dynamic Inference before Haxe 3}{The Haxe 3 compiler never infers a type to \type{Dynamic}, so users must be explicit about it. Previous Haxe versions used to infer arrays of mixed types, e.g. \expr{[1, true, "foo"]}, as \type{Array<Dynamic>}. We found that this behavior introduced too many type problems and thus removed it for Haxe 3.}
 
 Use of \type{Dynamic} should be minimized as there are better options in many situations but sometimes it is just practical to use it. Parts of the Haxe \Fullref{std-reflection} API use it and it is sometimes the best option when dealing with custom data structures that are not known at compile-time.
 
-Dynamic behaves in a special way when being \tref{unified}{type-system-unification} with a \tref{monomorph}{types-monomorph}, which is described in \Fullref{type-system-monomorphs}.
+\type{Dynamic} behaves in a special way when being \tref{unified}{type-system-unification} with a \tref{monomorph}{types-monomorph}. Monomorphs are never bound to \type{Dynamic} which can have surprising results in examples such as this:
+
+\haxe{assets/DynamicInferenceIssue.hx}
+
+Although the return type of \expr{Json.parse} is \type{Dynamic}, the type of local variable \expr{json} is not bound to it and remains a monomorph. It is then inferred as an \tref{anonymous structure}{types-anonymous-structure} upon the \expr{json.length} field access, which causes the following \expr{json[0]} array access to fail. In order to avoid this, the variable \expr{json} can be explicitly typed as \type{Dynamic} by using \expr{var json:Dynamic}.
 
 \trivia{Dynamic in the Standard Library}{Dynamic was quite frequent in the Haxe Standard Library before Haxe 3. With the continuous improvements of the Haxe type system the occurences of Dynamic were reduced over the releases leading to Haxe 3.}
 
