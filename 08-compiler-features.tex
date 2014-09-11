@@ -80,7 +80,7 @@ The code above will display the content of the \emph{hello_message.txt} file tha
 \subsection{Retrieving binary resources}
 \label{cr-resources-getBytes}
 
-While it’s not recommended to embed large binary files in the application, it still may be useful to embed binary data. The binary representation of an embedded resource can be accessed using the static method \emph{getBytes} of \type{haxe.Resource}:
+While it's not recommended to embed large binary files in the application, it still may be useful to embed binary data. The binary representation of an embedded resource can be accessed using the static method \emph{getBytes} of \type{haxe.Resource}:
 
 \haxe{assets/ResourceGetBytes.hx}
 
@@ -89,7 +89,7 @@ The return type of \emph{getBytes} method is \type{haxe.io.Bytes}, which is an o
 \subsection{Implementation details}
 \label{cr-resources-impl}
 
-Haxe uses the target platform’s native resource embedding if there is one, otherwise it provides its own implementation.
+Haxe uses the target platform's native resource embedding if there is one, otherwise it provides its own implementation.
 
 \begin{itemize}
 \item \emph{Flash} resources are embedded as ByteArray definitions
@@ -135,7 +135,7 @@ The type \type{haxe.rtti.Rtti} has been introduced in order to simplify working 
 \begin{description}
 	\item[isExtern:] Whether or not the class is \tref{extern}{lf-externs}.
 	\item[isInterface:] Whether or not the class is actually an \tref{interface}{types-interfaces}.
-	\item[superClass:] The class’ parent class defined by its type path and list of type parameters.
+	\item[superClass:] The class' parent class defined by its type path and list of type parameters.
 	\item[interfaces:] The list of interfaces defined by their type path and list of type parameters.
 	\item[fields:] The list of member \tref{class fields}{class-field}, described in \Fullref{cr-rtti-class-field-information}.
 	\item[statics:] The list of static class fields, described in \Fullref{cr-rtti-class-field-information}.
