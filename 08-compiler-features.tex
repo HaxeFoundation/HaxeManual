@@ -52,9 +52,9 @@ The compiler automatically defines the flag \expr{dce} with a value of either \e
 \label{cr-resources}
 \flag{fold}{true}
 
-Haxe provides simple resource embedding system that can be used for embedding  files directly into the compiled application.
+Haxe provides a simple resource embedding system that can be used for embedding files directly into the compiled application.
 
-While it may be not optimal to embed large assets, like images or music in the application file, it comes in very handy to embed smaller resources, like configuration or XML data.
+While it may be not optimal to embed large assets such as images or music in the application file, it comes in very handy for embedding smaller resources like configuration or XML data.
 
 \subsection{Embedding resources}
 \label{cr-resources-embed}
@@ -66,12 +66,12 @@ External files are embedded using the \emph{-resource} compiler argument:
 -resource hello_message.txt@welcome
 \end{lstlisting}
 
-The string after the \emph{@} symbol is the \emph{resource identifier}. It will used in the code for retrieving the resource. It can be omitted (together with the \emph{@} symbol), then the file name will become a resource identifier.
+The string after the \emph{@} symbol is the \emph{resource identifier} which is used in the code for retrieving the resource. If it is omitted (together with the \emph{@} symbol) then the file name will become the resource identifier.
 
 \subsection{Retrieving text resources}
 \label{cr-resources-getString}
 
-To retrieve the content of an embedded resource, we use the static method \emph{getString} of \type{haxe.Resource} passing a \emph{resource identifier} to it:
+To retrieve the content of an embedded resource we use the static method \emph{getString} of \type{haxe.Resource}, passing a \emph{resource identifier} to it:
 
 \haxe{assets/ResourceGetString.hx}
 
@@ -80,16 +80,16 @@ The code above will display the content of the \emph{hello_message.txt} file tha
 \subsection{Retrieving binary resources}
 \label{cr-resources-getBytes}
 
-While it's not recommended to embed large binary files in the application, it still may be useful to embed binary data. Binary representation of an embedded resource can be accessed using the static method \emph{getBytes} of \type{haxe.Resource}:
+While it's not recommended to embed large binary files in the application, it still may be useful to embed binary data. The binary representation of an embedded resource can be accessed using the static method \emph{getBytes} of \type{haxe.Resource}:
 
 \haxe{assets/ResourceGetBytes.hx}
 
-The return type of \emph{getBytes} method is \type{haxe.io.Bytes}, an object providing access to individual bytes of the data.
+The return type of \emph{getBytes} method is \type{haxe.io.Bytes}, which is an object providing access to individual bytes of the data.
 
 \subsection{Implementation details}
 \label{cr-resources-impl}
 
-Haxe uses target platform's native resource embedding, if there is one, providing its own implementation otherwise.
+Haxe uses the target platform's native resource embedding if there is one, otherwise it provides its own implementation.
 
 \begin{itemize}
 \item \emph{Flash} resources are embedded as ByteArray definitions
