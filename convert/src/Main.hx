@@ -159,7 +159,7 @@ class Main {
 
 	function link(sec:Section) {
 		if (sectionInfo.noContent.has(sec)) {
-			return '${sec.title}';
+			return #if epub '${sec.title}' #else '[${sec.title}](#)' #end;
 		}
 		return '[${sec.title}](${LatexParser.linkPrefix}${url(sec)})';
 	}
@@ -175,8 +175,11 @@ class Main {
 					'dictionary.md#${escapeAnchor(label.name)}';
 					#end
 				case Item(i): "" + i;
-				//case Paragraph(sec, name): '${url(sec)}#${escapeAnchor(name)}'; // TODO
+				#if epub
 				case Paragraph(sec, name): '${url(sec)}';
+				#else
+				case Paragraph(sec, name): '${url(sec)}#${escapeAnchor(name)}'; // TODO for epub
+				#end
 			}
 		}
 		function labelLink(label:Label) {
@@ -184,8 +187,11 @@ class Main {
 				case Section(sec): link(sec);
 				case Definition: '[${label.name}](${labelUrl(label)})';
 				case Item(i): "" + i;
-				//case Paragraph(sec, name): '[$name](${url(sec)}#${escapeAnchor(name)})'; // TODO
+				#if epub
 				case Paragraph(sec, name): '[$name](#${url(sec)})';
+				#else
+				case Paragraph(sec, name): '[$name](${url(sec)}#${escapeAnchor(name)})'; // TODO for epub
+				#end
 			}
 		}
 		function map(r, f) {
