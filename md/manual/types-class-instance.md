@@ -34,7 +34,6 @@ There is a special type in Haxe which is compatible with all classes:
 > This type is compatible with all class types which means that all classes (not their instances) can be assigned to it. At compile-time, `Class<T>` is the common base type of all class types. However, this relation is not reflected in generated code.
 > 
 > This type is useful when an API requires a value to be **a** class, but not a specific one. This applies to several methods of the [Haxe reflection API](std-reflection.md).
-.
 
 ---
 
