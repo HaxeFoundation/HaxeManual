@@ -34,6 +34,30 @@ As evident, the function body `(s1 + s2) / 2` of field `mid` was generated in pl
 
 It is not always easy to judge if a function qualifies for being inline. Short functions that have no writing expressions (such as a `=` assignment) are usually a good choice, but even more complex functions can be candidates. However, in some cases inlining can actually be detrimental to performance, e.g. because the compiler has to create temporary variables for complex expressions.
 
+Inline is not guaranteed to be done. The compiler might cancel inlining for various reasons or a user could supply the `--no-inline` command line argument to disable inlining. The only exception is if the class is [extern](lf-externs.md) or if the class field has the `:extern` [metadata](lf-metadata.md), in which case inline is forced. If it cannot be done, the compiler emits an error.
+
+It is important to remember this when relying on inline:
+
+```haxe
+class Main {
+    public static function main () { }
+
+	static function test() {
+		if (Math.random() > 0.5) {
+			return "ok";
+		} else {
+			error("random failed");
+		}
+	}
+
+	static inline function error(s:String) {
+		throw s;
+	}
+}
+```
+
+If the call to `error` is inlined the program compiles correctly because the control flow checker is satisfied due to the inlined [throw](expression-throw.md) expression. If inline is not done, the compiler only sees a function call to `error` and emits the error `A return is missing here`.
+
 ---
 
 Previous section: [Visibility](class-field-visibility.md)
