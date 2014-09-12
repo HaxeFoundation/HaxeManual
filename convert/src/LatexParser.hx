@@ -472,10 +472,6 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 	}
 
 	function testCompile(path:String) {
-		var path = new haxe.io.Path(path);
-		var p = new sys.io.Process("haxe", ["-main", path.file, "-cp", "assets", "-x", "test"]);
-		p.stdout.readAll();
-		var err = p.stderr.readAll();
-		if (p.exitCode() != 0) trace('Failed: $path\n$err');
+		new HaxeCompiler(path);
 	}
 }
