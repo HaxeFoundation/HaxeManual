@@ -372,7 +372,7 @@ Type inference saves a lot of manual type hints when working with local variable
 
 There are also some cases involving recursion where type inference has limitations. If a function calls itself recursively while its type is not (completely) known yet, type inference may infer a wrong, too specialized type.
 
-
+A different kind of limitation involves the readability of code. If type inference is overused it might be difficult to understand parts of a program due to the lack of visible types. This is particularly true for method signatures. It is recommended to find a good balance between type inference and explicit type hints.
 
 
 \section{Modules and Paths}
