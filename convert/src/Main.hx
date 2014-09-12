@@ -159,7 +159,7 @@ class Main {
 
 	function link(sec:Section) {
 		if (sectionInfo.noContent.has(sec)) {
-			return '[${sec.title}](#)';
+			return '${sec.title}';
 		}
 		return '[${sec.title}](${LatexParser.linkPrefix}${url(sec)})';
 	}
