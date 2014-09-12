@@ -40,7 +40,7 @@ Missing Content:
 8.2.2 - Call Arguments
 8.2.3 - Usage
 8.2.4 - Position
-8.2.5 - Metadata
+8.2.5 - Toplevel
 9.6.1 - Macro-in-Macro
 9.6.4 - Type Parameters
 10.5 - Lambda
