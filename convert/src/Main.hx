@@ -175,7 +175,8 @@ class Main {
 					'dictionary.md#${escapeAnchor(label.name)}';
 					#end
 				case Item(i): "" + i;
-				case Paragraph(sec, name): '${url(sec)}#${escapeAnchor(name)}';
+				//case Paragraph(sec, name): '${url(sec)}#${escapeAnchor(name)}'; // TODO
+				case Paragraph(sec, name): '${url(sec)}';
 			}
 		}
 		function labelLink(label:Label) {
@@ -183,7 +184,8 @@ class Main {
 				case Section(sec): link(sec);
 				case Definition: '[${label.name}](${labelUrl(label)})';
 				case Item(i): "" + i;
-				case Paragraph(sec, name): '[$name](${url(sec)}#${escapeAnchor(name)})';
+				//case Paragraph(sec, name): '[$name](${url(sec)}#${escapeAnchor(name)})'; // TODO
+				case Paragraph(sec, name): '[$name](#${url(sec)})';
 			}
 		}
 		function map(r, f) {
