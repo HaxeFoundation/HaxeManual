@@ -3,7 +3,7 @@ abstract AString(String) {
 	@:arrayAccess function getInt1(k:Int) {
 		return this.charAt(k);
 	}
-    @:arrayAccess function getInt2(k:Int) {
+	@:arrayAccess function getInt2(k:Int) {
 		return this.charAt(k).toUpperCase();
 	}
 }
