@@ -789,6 +789,17 @@ map.set("foo",1);
 console.log(map.get("foo"));
 \end{lstlisting}
 
+\paragraph{Order of array access resolving}
+\label{types-abstract-array-access-order}
+
+Due to a bug in Haxe versions before 3.2 the order of checked \expr{:arrayAccess} fields was undefined. This was fixed for Haxe 3.2 so that the fields are now consistently checked from top to bottom:
+
+\haxe{assets/AbstractArrayAccessOrder.hx}
+
+The array access \expr{a[0]} is resolved to the \expr{getInt1} field, leading to lower case \expr{f} being returned. The result might be different in Haxe versions before 3.2.
+
+Fields which are defined earlier take priority even if they require an \tref{implicit cast}{types-abstract-implicit-casts}.
+
 
 \subsection{Selective Functions}
 \label{types-abstract-selective-functions}
