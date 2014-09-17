@@ -36,6 +36,33 @@ map.set("foo",1);
 console.log(map.get("foo"));
 ```
 
+###### Order of array access resolving
+
+Due to a bug in Haxe versions before 3.2 the order of checked `:arrayAccess` fields was undefined. This was fixed for Haxe 3.2 so that the fields are now consistently checked from top to bottom:
+
+```haxe
+abstract AString(String) {
+	public function new(s) this = s;
+	@:arrayAccess function getInt1(k:Int) {
+		return this.charAt(k);
+	}
+    @:arrayAccess function getInt2(k:Int) {
+		return this.charAt(k).toUpperCase();
+	}
+}
+
+class Main {
+    static function main() {
+        var a = new AString("foo");
+		trace(a[0]); // f
+    }
+}
+```
+
+The array access `a[0]` is resolved to the `getInt1` field, leading to lower case `f` being returned. The result might be different in Haxe versions before 3.2.
+
+Fields which are defined earlier take priority even if they require an [implicit cast](types-abstract-implicit-casts.md).
+
 ---
 
 Previous section: [Operator Overloading](types-abstract-operator-overloading.md)
