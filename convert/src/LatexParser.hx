@@ -472,6 +472,10 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 	}
 
 	function testCompile(path:String) {
-		new HaxeCompiler(path);
+		var bytes = sys.io.File.getBytes(path);
+		var result = HaxeCompiler.parse(bytes);
+		if (!result.success) {
+			trace(path + ": " +result.stderr);
+		}
 	}
 }
