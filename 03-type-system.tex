@@ -3,21 +3,21 @@
 
 We learned about the different kinds of types in \Fullref{types} and it is now time to see how they interact with each other. We start off easy by introducing \tref{typedef}{type-system-typedef}, a mechanism to give a name (or alias) to a more complex type. Among other things, this will come in handy when working with types having \tref{type parameters}{type-system-type-parameters}.
 
-A lot of type-safety is achieved by checking if two given types of above type groups are compatible. That is, the compiler tries to perform \emph{unification} between them, as detailed in \Fullref{type-system-unification}.
+A lot of type-safety is achieved by checking if two given types of the type groups above are compatible. Meaning, the compiler tries to perform \emph{unification} between them as detailed in \Fullref{type-system-unification}.
 
 All types are organized in \emph{modules} and can be addressed through \emph{paths}. \Fullref{type-system-modules-and-paths} will give a detailed explanation of the related mechanics.
 
 \section{Typedef}
 \label{type-system-typedef}
 
-We briefly looked at typedefs while talking about \tref{anonymous structures}{types-anonymous-structure} and saw how we could shorten a complex structure type by giving it a name. This is precisely what typedefs are good for, and giving names to structure types might even be considered their primary use. In fact, it is so common that the distinction appears somewhat blurry and many Haxe users consider typedefs to actually \emph{be} the structure.
+We briefly looked at typedefs while talking about \tref{anonymous structures}{types-anonymous-structure} and saw how we could shorten a complex \tref{structure type}{types-anonymous-structure} by giving it a name. This is precisely what typedefs are good for - giving names to structure types might even be considered their primary use. In fact, it is so common that the distinction appears somewhat blurry and many Haxe users consider typedefs to actually \emph{be} the structure.
 
 A typedef can give a name to any other type:
 
 \begin{lstlisting}
 typedef IA = Array<Int>;
 \end{lstlisting}
-This enables us to use \expr{IA} in places where we would normally use \expr{Array$<$Int$>$}. While this saves only a few keystrokes in this particular case, it can make a difference for more complex, compound types. Again, this is why typedef and structures seem so connected:
+This enables us to use \expr{IA} in places where we would normally use \expr{Array$<$Int$>$}. While this saves only a few keystrokes in this particular case, it can make a much bigger difference for more complex, compound types. Again, this is why typedef and structures seem so connected:
 
 \begin{lstlisting}
 typedef User = {
@@ -25,7 +25,7 @@ typedef User = {
     var name : String;
 }
 \end{lstlisting}
-A typedef is not a textual replacement, but actually a real type. It can even have \tref{type parameters}{type-system-type-parameters} as the \type{Iterable} type from the Haxe Standard Library demonstrates:
+A typedef is not a textual replacement but actually a real type. It can even have \tref{type parameters}{type-system-type-parameters} as the \type{Iterable} type from the Haxe Standard Library demonstrates:
 
 \begin{lstlisting}
 typedef Iterable<T> = {
@@ -39,7 +39,7 @@ typedef Iterable<T> = {
 \label{type-system-extensions}
 
 % TODO: move to structures? %
-Extensions are used to express that a structure has all the fields of a given type in addition to some more:
+Extensions are used to express that a structure has all the fields of a given type as well as some additional fields of its own:
 
 \haxe{assets/Extension.hx}
 The greater-than operator \expr{>} denotes that an extension of \type{Iterable$<$T$>$} is being created, with the additional class fields following. In this case, a read-only \tref{property}{class-field-property} \expr{length} of type \type{Int} is required.
@@ -85,13 +85,13 @@ The following table shows where type parameters are allowed:
 	Structure & instantiation & \\ \hline
 \end{tabular}
 \end{center}
-With function type parameters being bound upon invocation, such a type parameter (if unconstrained) accepts any type. However, only one type per invocation is accepted, which can be utilized if a function has multiple arguments:
+With function type parameters being bound upon invocation, such a type parameter (if unconstrained) accepts any type. However, only one type per invocation is accepted. This can be utilized if a function has multiple arguments:
 
 \haxe{assets/FunctionTypeParameter.hx}
 
-Both arguments \expr{expected} and \expr{actual} of the \expr{equals} function have type \type{T}. This implies that for each invocation of \expr{equals}, the two arguments must be of the same type. The compiler admits the first call (both arguments being of \type{Int}) and the second call (both arguments being of \type{String}), but the third attempt causes a compiler error.
+Both arguments \expr{expected} and \expr{actual} of the \expr{equals} function have type \type{T}. This implies that for each invocation of \expr{equals} the two arguments must be of the same type. The compiler admits the first call (both arguments being of \type{Int}) and the second call (both arguments being of \type{String}) but the third attempt causes a compiler error.
 
-\trivia{Type parameters in expression syntax}{We often get the question why a method with type parameters cannot be called as \expr{method<String>(x)}. The error messages the compiler gives are not quite helpful, but there is a simple reason for that: The above code is parsed as if both \expr{<} and \expr{>} were binary operators, yielding \expr{(method < String) > (x)}.}
+\trivia{Type parameters in expression syntax}{We often get the question why a method with type parameters cannot be called as \expr{method<String>(x)}. The error messages the compiler gives are not very helpful. However, there is a simple reason for that: The above code is parsed as if both \expr{<} and \expr{>} were binary operators, yielding \expr{(method < String) > (x)}.}
 
 \subsection{Constraints}
 \label{type-system-type-parameter-constraints}
@@ -105,19 +105,19 @@ Type parameter \type{T} of method \expr{test} is constrained to the types \type{
 	\item it is compatible with \type{Iterable$<$String$>$} and
 	\item has a \expr{length}-property of type \type{Int}.
 \end{itemize}
-We can see that invoking \expr{test} with an empty array in line 7 and an \type{Array$<$String$>$} in line 8 works fine. This is because \type{Array} has both a \expr{length}-property and an \expr{iterator}-method. However, passing a \type{String} as argument in line 9 fails the constraint check, because \type{String} is not compatible with \type{Iterable$<$T$>$}. 
+We can see that invoking \expr{test} with an empty array in line 7 and an \type{Array$<$String$>$} in line 8 works fine. This is because \type{Array} has both a \expr{length}-property and an \expr{iterator}-method. However, passing a \type{String} as argument in line 9 fails the constraint check because \type{String} is not compatible with \type{Iterable$<$T$>$}. 
 
 
 \section{Generic}
 \label{type-system-generic}
 
-Usually, the Haxe Compiler generates only a single class or function, even if it has type parameters. This results in a natural abstraction, where the code generator for the target language has to assume that a type parameter could be of any type. The generated code then might have to perform some type checks, which can be detrimental to performance.
+Usually, the Haxe Compiler generates only a single class or function even if it has type parameters. This results in a natural abstraction where the code generator for the target language has to assume that a type parameter could be of any type. The generated code then might have to perform some type checks which can be detrimental to performance.
 
 A class or function can be made \emph{generic} by attributing it with the \expr{:generic} \tref{metadata}{lf-metadata}. This causes the compiler to emit a distinct class/function per type parameter combination with mangled names. A specification like this can yield a boost in performance-critical code portions on \tref{static targets}{define-static-target} at the cost of a larger output size:
 
 \haxe{assets/GenericClass.hx}
 
-It seems unusual to see the explicit type \type{MyArray<String>} here as we usually let \tref{type inference}{type-system-type-inference} deal with this, but here it is indeed required. The compiler has to know the exact type of a generic class upon construction. The \target{Javascript} output shows the result:
+It seems unusual to see the explicit type \type{MyArray<String>} here as we usually let \tref{type inference}{type-system-type-inference} deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The \target{Javascript} output shows the result:
 
 \begin{lstlisting}
 (function () { "use strict";
@@ -161,11 +161,11 @@ Main.main();
 
 \define{Generic Type Parameter}{define-generic-type-parameter}{A type parameter is said to be generic if its containing class or method is generic.}
 
-With normal type parameter, it is not possible to construct them, i.e. \expr{new T()} is a compiler error. This is because Haxe generates only a single function and the construct then makes no sense. This is different when the type parameter is generic: Since we know that the compiler will generate a distinct function for each type parameter combination, it is possible to replace the \type{T} \expr{new T()} with the real type.
+It is not possible to construct normal type parameters, e.g. \expr{new T()} is a compiler error. The reason for this is that Haxe generates only a single function and the construct makes no sense in that case. This is different when the type parameter is generic: Since we know that the compiler will generate a distinct function for each type parameter combination, it is possible to replace the \type{T} \expr{new T()} with the real type.
 
 \haxe{assets/GenericTypeParameter.hx}
 
-It should be noted that \tref{top-down inference}{type-system-top-down-inference} is used here to determine the actual type of \type{T}. There are two requirements for this kind of type parameter construction to work. The constructed type parameter must be
+It should be noted that \tref{top-down inference}{type-system-top-down-inference} is used here to determine the actual type of \type{T}. There are two requirements for this kind of type parameter construction to work: The constructed type parameter must be
 
 \begin{enumerate}
 	\item generic and
@@ -192,7 +192,7 @@ Main.main = function() {
 \section{Variance}
 \label{type-system-variance}
 
-While variance is relevant in other places, it occurs particularly often with type parameters and often comes as a surprise in this context. It is also very easy to trigger variance errors:
+While variance is also relevant in other places, it occurs particularly often with type parameters and comes as a surprise in this context. Also, it is very easy to trigger variance errors:
 
 \haxe{assets/Variance.hx}
 
@@ -200,13 +200,13 @@ Apparently, an \type{Array<Child>} cannot be assigned to an \type{Array<Base>}, 
 
 \haxe{assets/Variance2.hx}
 
-What happens here is that we subvert the type checker by using a \tref{cast}{expression-cast}, thus allowing the assignment in line 12. With that we hold a reference \expr{bases} to the original array, typed as \type{Array<Base>}. This allows pushing another type compatible with \type{Base}, \type{OtherChild}, onto that array. However, our original reference \expr{children} is still of type \type{Array<Child>}, and things go bad when we encounter the \type{OtherChild} instance in one of its elements while iterating.
+Here we subvert the type checker by using a \tref{cast}{expression-cast}, thus allowing the assignment in line 12. With that we hold a reference \expr{bases} to the original array, typed as \type{Array<Base>}. This allows pushing another type compatible with \type{Base} (\type{OtherChild}) onto that array. However, our original reference \expr{children} is still of type \type{Array<Child>} and things go bad when we encounter the \type{OtherChild} instance in one of its elements while iterating.
 
-If \type{Array} had no \expr{push()} method and no other means of modification, the assignment would be safe because no incompatible type could be added to it. We can achieve this in Haxe by restricting the type accordingly using \tref{structural subtyping}{type-system-structural-subtyping}:
+If \type{Array} had no \expr{push()} method and no other means of modification, the assignment would be safe because no incompatible type could be added to it. In Haxe, we can achieve this by restricting the type accordingly using \tref{structural subtyping}{type-system-structural-subtyping}:
 
 \haxe{assets/Variance3.hx}
 
-With \expr{b} being typed as \type{MyArray<Base>} and \type{MyArray} only having a \expr{pop()} method, we can safely assign. There is no method defined on \type{MyArray} which could be used to add incompatible types, it is thus said to be \emph{covariant}.
+We can safely assign with \expr{b} being typed as \type{MyArray<Base>} and \type{MyArray} only having a \expr{pop()} method. There is no method defined on \type{MyArray} which could be used to add incompatible types, it is thus said to be \emph{covariant}.
 
 \define{Covariance}{define-covariance}{A \tref{compound type}{define-compound-type} is considered covariant if its component types can be assigned to less specific components, i.e. if they are only read, but never written.}
 
@@ -241,17 +241,17 @@ In this particular case, the unification is triggered by an \emph{assignment}, a
 \begin{description}
 	\item[Assignment:] If \expr{a} is assigned to \expr{b}, the type of \expr{a} is unified with the type of \expr{b}.
 	\item[Function call:] We have briefly seen this one while introducing the \tref{function}{types-function} type. In general, the compiler tries to unify the first given argument type with the first expected argument type, the second given argument type with the second expected argument type and so on until all argument types are handled.
-	\item[Function return:] Whenever a function has a \expr{return e} expression, the type of \expr{e} is unified with the function return type. If the function has no explicit return type, it is infered to the type of \expr{e} and subsequent \expr{return} expressions are infered against it.
+	\item[Function return:] Whenever a function has a \expr{return e} expression, the type of \expr{e} is unified with the function return type. If the function has no explicit return type, it is inferred to the type of \expr{e} and subsequent \expr{return} expressions are inferred against it.
 	\item[Array declaration:] The compiler tries to find a minimal type between all given types in an array declaration. Refer to \Fullref{type-system-unification-common-base-type} for details.
 	\item[Object declaration:] If an object is declared ``against'' a given type, the compiler unifies each given field type with each expected field type.
-	\item[Operator unification:] Certain operators expect certain types which given types are unified against. For instance, the expression \expr{a \&\& b} unifies both \expr{a} and \expr{b} with \type{Bool} and the expression \expr{a == b} unifies \expr{a} with \expr{b}.
+	\item[Operator unification:] Certain operators expect certain types which the given types are unified against. For instance, the expression \expr{a \&\& b} unifies both \expr{a} and \expr{b} with \type{Bool} and the expression \expr{a == b} unifies \expr{a} with \expr{b}.
 \end{description}
 
 
 \subsection{Between Class/Interface}
 \label{type-system-unification-between-classes-and-interfaces}
 
-When defining unification behavior between classes, it is important to remember that unification is directional: We can assign a more specialized class (e.g. a child class) to a generic class (e.g. a parent class), but the reverse is not valid.
+When defining unification behavior between classes, it is important to remember that unification is directional: We can assign a more specialized class (e.g. a child class) to a generic class (e.g. a parent class) but the reverse is not valid.
 
 The following assignments are allowed:
 
@@ -276,9 +276,9 @@ empty<T>(it : Iterable<T>):Bool {
 	return !it.iterator().hasNext();
 }
 \end{lstlisting}
-The \expr{empty}-method checks if an \type{Iterable} has an element. For this purpose, it is not necessary to know anything about the argument type other than the fact that it is considered an iterable. This allows calling the \expr{empty}-method with any type that unifies with \type{Iterable$<$T$>$}, which applies to a lot of types in the Haxe Standard Library.
+The \expr{empty}-method checks if an \type{Iterable} has an element. For this purpose, it is not necessary to know anything about the argument type other than the fact that it is considered an iterable. This allows calling the \expr{empty}-method with any type that unifies with \type{Iterable$<$T$>$} which applies to a lot of types in the Haxe Standard Library.
 
-This kind of typing can be very convenient, but extensive use may be detrimental to performance on static targets, which is detailed in \Fullref{types-structure-performance}.
+This kind of typing can be very convenient but extensive use may be detrimental to performance on static targets. This is detailed in \Fullref{types-structure-performance}.
 
 
 \subsection{Monomorphs}
@@ -290,14 +290,15 @@ Unification of types having or being a \tref{monomorph}{types-monomorph} is deta
 \subsection{Function Return}
 \label{type-system-unification-function-return}
 
-Unification of function return types may involve the \tref{\type{Void}-type}{types-void} and require a clear definition of what unifies with \type{Void}. With \type{Void} describing the absence of a type, it is not assignable to any other type, not even \type{Dynamic}. This means that if a function is explicitly declared as returning \type{Dynamic}, it must not return \type{Void}.
+Unification of function return types may involve the \tref{\type{Void}-type}{types-void} and requires a clear definition of what unifies with \type{Void}. With \type{Void} describing the absence of a type, it is not assignable to any other type, not even \type{Dynamic}. This means that if a function is explicitly declared as returning \type{Dynamic}, it can not return \type{Void}.
 
 The opposite applies as well: If a function declares a return type of \type{Void}, it cannot return \type{Dynamic} or any other type. However, this direction of unification is allowed when assigning function types:
 
 \begin{lstlisting}
 var func:Void->Void = function() return "foo";
 \end{lstlisting}
-The right-hand function clearly is of type \type{Void->String}, yet we can assign it to variable \expr{func} of type \type{Void->Void}. This is because the compiler can safely assume that the return type is irrelevant, given that it could not be assigned to any non-\type{Void} type.
+
+The right-hand function clearly is of type \type{Void->String}, yet we can assign it to the variable \expr{func} of type \type{Void->Void}. This is because the compiler can safely assume that the return type is irrelevant, given that it could not be assigned to any non-\type{Void} type.
 
 
 \subsection{Common Base Type}
@@ -323,7 +324,7 @@ Although \type{Base} is not mentioned, the Haxe Compiler manages to infer it as 
 The effects of type inference have been seen throughout this document and will continue to be important. A simple example shows type inference at work:
 
 \haxe{assets/TypeInference.hx}
-The special construct \expr{\$type} was previously mentioned in order to simplify the explanation of the \Fullref{types-function} type, so let us introduce it officially now:
+The special construct \expr{\$type} was previously mentioned in order to simplify the explanation of the \Fullref{types-function} type, so let us now introduce it officially:
 
 %TODO: $type
 \define[Construct]{\expr{\$type}}{define-dollar-type}{\expr{\$type} is a compile-time mechanism being called like a function, with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.}
@@ -345,7 +346,7 @@ Most of the time, types are inferred on their own and may then be unified with a
 
 \define{Expected Type}{define-expected-type}{Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is argument to a function call. They can influence typing of that expression through what is called \tref{top-down inference}{type-system-top-down-inference}.}
 
-A good example are arrays of mixed types. As mentioned in \Fullref{types-dynamic}, the compiler refuses \expr{[1, "foo"]} because it cannot determine an element type. Employing top-down inference, this can be overcome:
+A good example are arrays of mixed types. As mentioned in \Fullref{types-dynamic}, the compiler refuses \expr{[1, "foo"]} because it can not determine an element type. Employing top-down inference, this can be overcome:
 
 \haxe{assets/TopDownInference.hx}
 
@@ -406,7 +407,7 @@ var e:haxe.macro.Expr.ExprDef;
 
 Here the sub-type \type{ExprDef} within module \expr{haxe.macro.Expr} is accessed. 
 
-The sub-type relation is not reflected at runtime. That is, public sub-types become a member of their containing package, which could lead to conflicts if two modules within the same package try to define the same sub-type. Naturally the Haxe compiler detects these cases and reports them accordingly. In the example above, \type{ExprDef} is generated as \type{haxe.macro.ExprDef}.
+The sub-type relation is not reflected at run-time. That is, public sub-types become a member of their containing package, which could lead to conflicts if two modules within the same package tried to define the same sub-type. Naturally, the Haxe compiler detects these cases and reports them accordingly. In the example above \type{ExprDef} is generated as \type{haxe.macro.ExprDef}.
 
 Sub-types can also be made private:
 
@@ -440,12 +441,12 @@ In this example, we are actually importing a \emph{module}, not just a specific 
 
 The type \type{Binop} is an \tref{enum}{types-enum-instance} declared in the module \type{haxe.macro.Expr}, and thus available after the import of said module. If we were to import only a specific type of that module, e.g. \expr{import haxe.macro.Expr.ExprDef}, the program would fail to compile with \expr{Class not found : Binop}.
 
-There several aspects worth knowing about importing:
+There are several aspects worth knowing about importing:
 
 \begin{itemize}
 	\item The bottommost import takes priority (detailed in \Fullref{type-system-resolution-order}).
 	\item The \tref{static extension}{lf-static-extension} keyword \expr{using} implies the effect of \expr{import}.
-	\item If an enum is imported (directly or as part of a module import), all its \tref{enum constructors}{types-enum-constructor} are also imported (this is what allows the \expr{OpAdd} usage in above example).
+	\item If an enum is imported (directly or as part of a module import), all its \tref{enum constructors}{types-enum-constructor} are also imported (this is what allows the \expr{OpAdd} usage in the above example).
 \end{itemize}
 
 Furthermore, it is also possible to import \tref{static fields}{class-field} of a class and use them unqualified:
@@ -464,7 +465,7 @@ Resolution order comes into play as soon as unqualified identifiers are involved
 We describe the resolution order algorithm here, which depends on the following state:
 
 \begin{itemize}
-	\item the delared \tref{local variables}{expression-var} (including function arguments)
+	\item the declared \tref{local variables}{expression-var} (including function arguments)
 	\item the \tref{imported}{type-system-import} modules, types and statics
 	\item the available \tref{static extensions}{lf-static-extension}
 	\item the kind (static or member) of the current field
