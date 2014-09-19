@@ -192,7 +192,7 @@ Main.main = function() {
 \section{Variance}
 \label{type-system-variance}
 
-While variance is also relevant in other places, it occurs particularly often with type parameters and comes as a surprise in this context. Also, it is very easy to trigger variance errors:
+While variance is also relevant in other places, it occurs particularly often with type parameters and comes as a surprise in this context. Additionally, it is very easy to trigger variance errors:
 
 \haxe{assets/Variance.hx}
 
@@ -278,7 +278,7 @@ empty<T>(it : Iterable<T>):Bool {
 \end{lstlisting}
 The \expr{empty}-method checks if an \type{Iterable} has an element. For this purpose, it is not necessary to know anything about the argument type other than the fact that it is considered an iterable. This allows calling the \expr{empty}-method with any type that unifies with \type{Iterable$<$T$>$} which applies to a lot of types in the Haxe Standard Library.
 
-This kind of typing can be very convenient but extensive use may be detrimental to performance on static targets. This is detailed in \Fullref{types-structure-performance}.
+This kind of typing can be very convenient but extensive use may be detrimental to performance on static targets, which  is detailed in \Fullref{types-structure-performance}.
 
 
 \subsection{Monomorphs}
@@ -290,7 +290,7 @@ Unification of types having or being a \tref{monomorph}{types-monomorph} is deta
 \subsection{Function Return}
 \label{type-system-unification-function-return}
 
-Unification of function return types may involve the \tref{\type{Void}-type}{types-void} and requires a clear definition of what unifies with \type{Void}. With \type{Void} describing the absence of a type, it is not assignable to any other type, not even \type{Dynamic}. This means that if a function is explicitly declared as returning \type{Dynamic}, it can not return \type{Void}.
+Unification of function return types may involve the \tref{\type{Void}-type}{types-void} and requires a clear definition of what unifies with \type{Void}. With \type{Void} describing the absence of a type, it is not assignable to any other type, not even \type{Dynamic}. This means that if a function is explicitly declared as returning \type{Dynamic}, it cannot return \type{Void}.
 
 The opposite applies as well: If a function declares a return type of \type{Void}, it cannot return \type{Dynamic} or any other type. However, this direction of unification is allowed when assigning function types:
 
@@ -346,7 +346,7 @@ Most of the time, types are inferred on their own and may then be unified with a
 
 \define{Expected Type}{define-expected-type}{Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is argument to a function call. They can influence typing of that expression through what is called \tref{top-down inference}{type-system-top-down-inference}.}
 
-A good example are arrays of mixed types. As mentioned in \Fullref{types-dynamic}, the compiler refuses \expr{[1, "foo"]} because it can not determine an element type. Employing top-down inference, this can be overcome:
+A good example are arrays of mixed types. As mentioned in \Fullref{types-dynamic}, the compiler refuses \expr{[1, "foo"]} because it cannot determine an element type. Employing top-down inference, this can be overcome:
 
 \haxe{assets/TopDownInference.hx}
 
