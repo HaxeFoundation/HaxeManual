@@ -8,7 +8,7 @@ var e:haxe.macro.Expr.ExprDef;
 
 Here the sub-type `ExprDef` within module `haxe.macro.Expr` is accessed. 
 
-The sub-type relation is not reflected at runtime. That is, public sub-types become a member of their containing package, which could lead to conflicts if two modules within the same package try to define the same sub-type. Naturally the Haxe compiler detects these cases and reports them accordingly. In the example above, `ExprDef` is generated as `haxe.macro.ExprDef`.
+The sub-type relation is not reflected at run-time. That is, public sub-types become a member of their containing package, which could lead to conflicts if two modules within the same package tried to define the same sub-type. Naturally, the Haxe compiler detects these cases and reports them accordingly. In the example above `ExprDef` is generated as `haxe.macro.ExprDef`.
 
 Sub-types can also be made private:
 

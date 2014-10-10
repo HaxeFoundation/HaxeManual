@@ -1,6 +1,6 @@
 ## 3.1.1 Extensions
 
-Extensions are used to express that a structure has all the fields of a given type in addition to some more:
+Extensions are used to express that a structure has all the fields of a given type as well as some additional fields of its own:
 
 ```haxe
 typedef IterableWithLength<T> = {

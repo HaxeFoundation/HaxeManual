@@ -1,4 +1,4 @@
-## 8.1 Dead Code Elimination
+## 8.2 Dead Code Elimination
 
 Dead Code Elimination, or **DCE**, is a compiler feature which removes unused code from the output. After typing, the compiler evaluates the DCE entry-points (usually the main-method) and recursively determines which fields and types are used. Used fields are marked accordingly and unmarked fields are then removed from their classes.
 

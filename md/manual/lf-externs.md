@@ -31,7 +31,7 @@ This works because the return type of method `floor` is declared to be `Int`.
 
 The Haxe Standard Library comes with many externs for the Flash and Javascript target. They allow accessing the native APIs in a type-safe manner and are instrumental for designing higher-level APIs. There are also externs for many popular native libraries on [haxelib](haxelib.md).
 
-The Flash, Java and C# targets allow direct inclusion of native libraries from [command line](compiler-reference.md). Target-specific details are explained in the respective sections of [Target Details](#).
+The Flash, Java and C# targets allow direct inclusion of native libraries from [command line](compiler-usage.md). Target-specific details are explained in the respective sections of [Target Details](#).
 
 Some targets such as Python or JavaScript may require generating additional "import" code that loads an `extern` class from a native module. Haxe provides ways to declare such dependencies also described in respective sections [Target Details](#).
 

@@ -1,6 +1,6 @@
 ## 3.5.1 Between Class/Interface
 
-When defining unification behavior between classes, it is important to remember that unification is directional: We can assign a more specialized class (e.g. a child class) to a generic class (e.g. a parent class), but the reverse is not valid.
+When defining unification behavior between classes, it is important to remember that unification is directional: We can assign a more specialized class (e.g. a child class) to a generic class (e.g. a parent class) but the reverse is not valid.
 
 The following assignments are allowed:
 

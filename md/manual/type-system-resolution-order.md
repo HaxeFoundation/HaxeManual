@@ -4,7 +4,7 @@ Resolution order comes into play as soon as unqualified identifiers are involved
 
 We describe the resolution order algorithm here, which depends on the following state:
 
-* the delared [local variables](expression-var.md) (including function arguments)
+* the declared [local variables](expression-var.md) (including function arguments)
 * the [imported](type-system-import.md) modules, types and statics
 * the available [static extensions](lf-static-extension.md)
 * the kind (static or member) of the current field

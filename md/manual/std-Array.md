@@ -6,7 +6,7 @@ An `Array` is a collection of elements. It has one [type parameter](type-system-
 2. By using [array declaration syntax](expression-array-declaration.md): `[1, 2, 3]`
 3. By using [array comprehension](lf-array-comprehension.md): `[for (i in 0...10) if (i % 2 == 0) i]`
 
-Arrays come with an API [API](http://api.haxe.org/Array.html) to cover most use-cases. Additionally they allow read and write [array access](expression-array-access.md):
+Arrays come with an [API](http://api.haxe.org/Array.html) to cover most use-cases. Additionally they allow read and write [array access](expression-array-access.md):
 
 ```haxe
 class Main {

@@ -4,7 +4,7 @@
 >
 > A type parameter is said to be generic if its containing class or method is generic.
 
-With normal type parameter, it is not possible to construct them, i.e. `new T()` is a compiler error. This is because Haxe generates only a single function and the construct then makes no sense. This is different when the type parameter is generic: Since we know that the compiler will generate a distinct function for each type parameter combination, it is possible to replace the `T` `new T()` with the real type.
+It is not possible to construct normal type parameters, e.g. `new T()` is a compiler error. The reason for this is that Haxe generates only a single function and the construct makes no sense in that case. This is different when the type parameter is generic: Since we know that the compiler will generate a distinct function for each type parameter combination, it is possible to replace the `T` `new T()` with the real type.
 
 ```haxe
 typedef Constructible = {
@@ -24,7 +24,7 @@ class Main {
 }
 ```
 
-It should be noted that [top-down inference](type-system-top-down-inference.md) is used here to determine the actual type of `T`. There are two requirements for this kind of type parameter construction to work. The constructed type parameter must be
+It should be noted that [top-down inference](type-system-top-down-inference.md) is used here to determine the actual type of `T`. There are two requirements for this kind of type parameter construction to work: The constructed type parameter must be
 
 1. generic and
 2. be explicitly [constrained](type-system-type-parameter-constraints.md) to having a [constructor](types-class-constructor.md).

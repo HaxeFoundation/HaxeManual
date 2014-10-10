@@ -24,7 +24,7 @@ Todo:
 3.7.3 - Resolution Order: proper label and caption + code/identifier styling for diagram
 6.4.10 - Exhaustiveness checks: Figure out wtf our rules are now for when this is checked.
 6.6 - Array Comprehension: Comprehensions are only listing Arrays, not Maps
-8.3.1 - Embedding resources: what to use for listing of non-haxe code like hxml?
+8.4.1 - Embedding resources: what to use for listing of non-haxe code like hxml?
 9.5.1 - Enum building: Check if we can build GADTs this way.
 10.4.3 - Integer Math: I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?
 
@@ -33,14 +33,14 @@ Missing Content:
 5.3 - Binary Operators
 5.4 - Unary Operators
 6.12 - Remoting
-7 - Compiler Reference
-7.1 - Compiler Metadata
-8.2 - Completion
-8.2.1 - Field Access
-8.2.2 - Call Arguments
-8.2.3 - Usage
-8.2.4 - Position
-8.2.5 - Toplevel
+7 - Compiler Usage
+8.1 - Compiler Metadata
+8.3 - Completion
+8.3.1 - Field Access
+8.3.2 - Call Arguments
+8.3.3 - Usage
+8.3.4 - Position
+8.3.5 - Toplevel
 9.6.1 - Macro-in-Macro
 9.6.4 - Type Parameters
 10.5 - Lambda
@@ -177,14 +177,14 @@ Unreviewed:
 6.9 - Metadata
 6.10 - Access Control
 6.11 - Inline constructors
-8.1 - Dead Code Elimination
-8.3 - Resources
-8.3.1 - Embedding resources
-8.3.2 - Retrieving text resources
-8.3.3 - Retrieving binary resources
-8.3.4 - Implementation details
-8.4 - Runtime Type Information
-8.4.1 - RTTI structure
+8.2 - Dead Code Elimination
+8.4 - Resources
+8.4.1 - Embedding resources
+8.4.2 - Retrieving text resources
+8.4.3 - Retrieving binary resources
+8.4.4 - Implementation details
+8.5 - Runtime Type Information
+8.5.1 - RTTI structure
 9 - Macros
 9.1 - Macro Context
 9.2 - Arguments

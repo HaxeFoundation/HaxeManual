@@ -1,4 +1,4 @@
-## 8.4.1 RTTI structure
+## 8.5.1 RTTI structure
 
 ###### General type information
 

@@ -1,6 +1,6 @@
 ## 3.3 Generic
 
-Usually, the Haxe Compiler generates only a single class or function, even if it has type parameters. This results in a natural abstraction, where the code generator for the target language has to assume that a type parameter could be of any type. The generated code then might have to perform some type checks, which can be detrimental to performance.
+Usually, the Haxe Compiler generates only a single class or function even if it has type parameters. This results in a natural abstraction where the code generator for the target language has to assume that a type parameter could be of any type. The generated code then might have to perform some type checks which can be detrimental to performance.
 
 A class or function can be made **generic** by attributing it with the `:generic` [metadata](lf-metadata.md). This causes the compiler to emit a distinct class/function per type parameter combination with mangled names. A specification like this can yield a boost in performance-critical code portions on [static targets](dictionary.md#define-static-target) at the cost of a larger output size:
 
@@ -18,7 +18,7 @@ class Main {
 }
 ```
 
-It seems unusual to see the explicit type `MyArray<String>` here as we usually let [type inference](type-system-type-inference.md) deal with this, but here it is indeed required. The compiler has to know the exact type of a generic class upon construction. The Javascript output shows the result:
+It seems unusual to see the explicit type `MyArray<String>` here as we usually let [type inference](type-system-type-inference.md) deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The Javascript output shows the result:
 
 ```haxe
 (function () { "use strict";

@@ -25,7 +25,7 @@ Function  | invocation  | Allowed for methods and named local lvalue functions.
 Structure  | instantiation  | 
  
 
-With function type parameters being bound upon invocation, such a type parameter (if unconstrained) accepts any type. However, only one type per invocation is accepted, which can be utilized if a function has multiple arguments:
+With function type parameters being bound upon invocation, such a type parameter (if unconstrained) accepts any type. However, only one type per invocation is accepted. This can be utilized if a function has multiple arguments:
 
 ```haxe
 class FunctionTypeParameter {
@@ -46,11 +46,11 @@ class FunctionTypeParameter {
 }
 ```
 
-Both arguments `expected` and `actual` of the `equals` function have type `T`. This implies that for each invocation of `equals`, the two arguments must be of the same type. The compiler admits the first call (both arguments being of `Int`) and the second call (both arguments being of `String`), but the third attempt causes a compiler error.
+Both arguments `expected` and `actual` of the `equals` function have type `T`. This implies that for each invocation of `equals` the two arguments must be of the same type. The compiler admits the first call (both arguments being of `Int`) and the second call (both arguments being of `String`) but the third attempt causes a compiler error.
 
 > ##### Trivia: Type parameters in expression syntax
 >
-> We often get the question why a method with type parameters cannot be called as `method<String>(x)`. The error messages the compiler gives are not quite helpful, but there is a simple reason for that: The above code is parsed as if both `<` and `>` were binary operators, yielding `(method < String) > (x)`.
+> We often get the question why a method with type parameters cannot be called as `method<String>(x)`. The error messages the compiler gives are not very helpful. However, there is a simple reason for that: The above code is parsed as if both `<` and `>` were binary operators, yielding `(method < String) > (x)`.
 
 ---
 

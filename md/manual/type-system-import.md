@@ -29,11 +29,11 @@ class Main {
 
 The type `Binop` is an [enum](types-enum-instance.md) declared in the module `haxe.macro.Expr`, and thus available after the import of said module. If we were to import only a specific type of that module, e.g. `import haxe.macro.Expr.ExprDef`, the program would fail to compile with `Class not found : Binop`.
 
-There several aspects worth knowing about importing:
+There are several aspects worth knowing about importing:
 
 * The bottommost import takes priority (detailed in [Resolution Order](type-system-resolution-order.md)).
 * The [static extension](lf-static-extension.md) keyword `using` implies the effect of `import`.
-* If an enum is imported (directly or as part of a module import), all its [enum constructors](types-enum-constructor.md) are also imported (this is what allows the `OpAdd` usage in above example).
+* If an enum is imported (directly or as part of a module import), all its [enum constructors](types-enum-constructor.md) are also imported (this is what allows the `OpAdd` usage in the above example).
 
 Furthermore, it is also possible to import [static fields](class-field.md) of a class and use them unqualified:
 

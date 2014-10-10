@@ -2,7 +2,7 @@
 
 Haxe consists of a high-level, open source programming language and a compiler. It allows compilation of programs, written using an ECMAScript-oriented syntax, to multiple target languages. Employing proper abstraction, it is possible to maintain a single code-base which compiles to multiple targets.
 
-Haxe is strongly typed but the typing system can be subverted where required. Utilizing type information, the Haxe type system can detect errors at compile-time which would only be noticeable at runtime in the target language. Furthermore, type information can be used by the target generators to generate optimized and robust code.
+Haxe is strongly typed but the typing system can be subverted where required. Utilizing type information, the Haxe type system can detect errors at compile-time which would only be noticeable at run-time in the target language. Furthermore, type information can be used by the target generators to generate optimized and robust code.
 
 Currently, there are nine supported target languages which allow for different use-cases:
 
@@ -29,7 +29,7 @@ In [Expressions](expression.md) we see how to actually get programs to do someth
 
 [Language Features](lf.md) describes some of the Haxe features in detail such as **pattern matching**, **string interpolation** and **dead code elimination**. This concludes the Haxe language reference.
 
-We continue with the Haxe compiler reference, which first handles the basics in [Compiler Reference](#) before getting into the advanced features in [Compiler Features](cr-features.md). Finally, we will venture into the exciting land of **haxe macros** in [Macros](macro.md) to see how some common tasks can be greatly simplified.
+We continue with the Haxe compiler reference, which first handles the basics in [Compiler Usage](#) before getting into the advanced features in [Compiler Features](cr-features.md). Finally, we will venture into the exciting land of **haxe macros** in [Macros](macro.md) to see how some common tasks can be greatly simplified.
 
 In the following chapter, [Standard Library](std.md), we explore important types and concepts from the Haxe Standard Library. We then learn about Haxe's package manager Haxelib in [Haxelib](haxelib.md).
 

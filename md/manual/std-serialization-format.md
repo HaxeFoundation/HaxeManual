@@ -10,7 +10,6 @@ Each supported value is translated to a distinct prefix character, followed by t
     * negative infinity: `m`
     * positive infinity: `p`
     * normal Float: `d` followed by the float display (e.g. `d1.45e-8`)
-    
 * `Bool`: `t` for `true`, `f` for `false`
 * `String`: `y` followed by the url encoded string length, then `:` and the url encoded string (e.g. `y10:hi%20there for "hi there".`.
 * `String` (cached): `R` followed by the string cache ID (e.g. `R456`). String caching is always enabled.

@@ -1,4 +1,4 @@
-## 8.4 Runtime Type Information
+## 8.5 Runtime Type Information
 
 The Haxe compiler generates runtime type information (RTTI) for classes that are annotated or extend classes that are annotated with the `:rtti` metadata. This information is stored as a XML string in a static field `__rtti` and can be processed through `haxe.rtti.XmlParser`. The resulting structure is described in [RTTI structure](cr-rtti-structure.md).
 

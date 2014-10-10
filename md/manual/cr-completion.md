@@ -1,14 +1,14 @@
-## 8.2 Completion
+## 8.3 Completion
 
-8.2.1: [Field Access](#)
+8.3.1: [Field Access](#)
 
-8.2.2: [Call Arguments](#)
+8.3.2: [Call Arguments](#)
 
-8.2.3: [Usage](#)
+8.3.3: [Usage](#)
 
-8.2.4: [Position](#)
+8.3.4: [Position](#)
 
-8.2.5: [Toplevel](#)
+8.3.5: [Toplevel](#)
 
 ---
 
