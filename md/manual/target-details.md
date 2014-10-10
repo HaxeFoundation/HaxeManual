@@ -1,6 +1,6 @@
 ## 12 Target Details
 
-12.1: [Javascript](#)
+12.1: [Javascript](target-javascript.md)
 
 12.2: [Flash](#)
 
@@ -18,4 +18,4 @@
 
 Previous section: [Using Haxelib](haxelib-using.md)
 
-Next section: [Javascript](#)
+Next section: [Javascript](target-javascript.md)

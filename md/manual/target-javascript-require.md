@@ -33,6 +33,6 @@ If we need to load custom JavaScript objects in runtime, a `js.Lib.require` func
 
 ---
 
-Previous section: [Javascript](#)
+Previous section: [Javascript](target-javascript.md)
 
 Next section: [C++](#)
