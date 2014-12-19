@@ -15,7 +15,10 @@ using haxe.macro.Tools;
 
 class Main {
   static public function main() {
-    "foo".test();
+    #if !macro
+    var a = "foo";
+    a.test();
+    #end
   }
 
   macro static function
