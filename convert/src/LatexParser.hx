@@ -317,7 +317,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 			case [TCustomCommand("ic"), s = inBraces(text)]: '`$s`';
 			case [s = ref()]: s;
 			case [TCustomCommand("href"), s1 = inBraces(text), s2 = inBraces(text)]: '[$s2]($s1)';
-			case [TCommand(CUrl), s = inBraces(text)]: '[$s]($s)';
+			case [TCommand(CUrl), s = inBraces(text)]: '<$s>';
 			case [TCommand(CLabel), s = inBraces(text)]:
 				var name = switch(lastLabelTarget) {
 					case Section(sec):
