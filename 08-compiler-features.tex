@@ -15,7 +15,7 @@ DCE has three modes which are set when invoking the command line:
 \begin{description}
 	\item[-dce std:] Only classes in the Haxe Standard Library are affected by DCE. This is the default setting on all targets but \target{Javascript}.
 	\item[-dce no:] No DCE is performed.
-	\item[-dce full:] All classes are affected by DCE. This is the default setting when targeting \target{Javascript}.
+	\item[-dce full:] All classes are affected by DCE.
 \end{description}
 The DCE-algorithm works well with typed code, but may fail when \tref{dynamic}{types-dynamic} or \tref{reflection}{std-reflection} is involved. This may require explicit marking of fields or classes as being used by attributing the following metadata:
 
