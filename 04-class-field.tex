@@ -303,6 +303,6 @@ Dynamic fields cannot be \expr{inline} for obvious reasons: While inlining is do
 \subsection{Override}
 \label{class-field-override}
 
-The access modifier \expr{override} is required when a field is declared which also exists on a \tref{parent class}{types-class-inheritance}. Its purpose is to ensure that the author of a class is aware of the override as this may not always be obvious in large class hierarchies. Likewise, having \expr{override} on a field which does not actually override anything (e.g. due to a misspelled field name) triggers an error as well.
+The access modifier \expr{override} is required when a field is declared which also exists on a \tref{parent class}{types-class-inheritance}. Its purpose is to ensure that the author of a class is aware of the override as this may not always be obvious in large class hierarchies. Likewise, having \expr{override} on a field which does not actually override anything (e.g. due to a misspelled field name) triggers an error.
 
 The effects of overriding fields are detailed in \Fullref{class-field-overriding}. This modifier is only allowed on \tref{method}{class-field-method} fields.
