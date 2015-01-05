@@ -200,7 +200,7 @@ Apparently, an \type{Array<Child>} cannot be assigned to an \type{Array<Base>}, 
 
 \haxe{assets/Variance2.hx}
 
-Here we subvert the type checker by using a \tref{cast}{expression-cast}, thus allowing the assignment in line 12. With that we hold a reference \expr{bases} to the original array, typed as \type{Array<Base>}. This allows pushing another type compatible with \type{Base} (\type{OtherChild}) onto that array. However, our original reference \expr{children} is still of type \type{Array<Child>} and things go bad when we encounter the \type{OtherChild} instance in one of its elements while iterating.
+Here we subvert the type checker by using a \tref{cast}{expression-cast}, thus allowing the assignment after the commented line. With that we hold a reference \expr{bases} to the original array, typed as \type{Array<Base>}. This allows pushing another type compatible with \type{Base} (\type{OtherChild}) onto that array. However, our original reference \expr{children} is still of type \type{Array<Child>} and things go bad when we encounter the \type{OtherChild} instance in one of its elements while iterating.
 
 If \type{Array} had no \expr{push()} method and no other means of modification, the assignment would be safe because no incompatible type could be added to it. In Haxe, we can achieve this by restricting the type accordingly using \tref{structural subtyping}{type-system-structural-subtyping}:
 
