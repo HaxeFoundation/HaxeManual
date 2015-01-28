@@ -156,6 +156,7 @@ Unreviewed:
 5.23.2 - safe cast
 5.24 - type check
 6.1 - Conditional Compilation
+6.1.1 - Global Compiler Flags
 6.2 - Externs
 6.3 - Static Extension
 6.3.1 - In the Haxe Standard Library

@@ -42,7 +42,7 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 @:from    |  Specifies that the field of the abstract is a cast operation from the type identified in the function. See [Implicit Casts](types-abstract-implicit-casts.md)   |  all 
 @:functionCode   |      |  cpp 
 @:functionTailCode   |     |  cpp 
-@:generic  |  Marks a class or class field as [generic](type-system-generic-type-parameter-construction.md) so each type parameter combination generates its own type/field   |  all 
+@:generic  |  Marks a class or class field as [generic](type-system-generic.md) so each type parameter combination generates its own type/field   |  all 
 @:genericBuild   |  Builds instances of a type using the specified macro    |  all 
 @:getter _(Class field name)_   |  Generates a native getter function on the given field    |  flash 
 @:hack    |  Allows extending classes marked as <code>@:final</code>   |  all 

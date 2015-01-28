@@ -38,4 +38,4 @@ An exhaustive list of all built-in defines can be obtained by invoking the Haxe 
 
 Previous section: [Language Features](lf.md)
 
-Next section: [Externs](lf-externs.md)
+Next section: [Global Compiler Flags](lf-condition-compilation-flags.md)

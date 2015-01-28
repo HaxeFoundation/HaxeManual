@@ -37,6 +37,6 @@ Some targets such as Python or JavaScript may require generating additional "imp
 
 ---
 
-Previous section: [Conditional Compilation](lf-condition-compilation.md)
+Previous section: [Global Compiler Flags](lf-condition-compilation-flags.md)
 
 Next section: [Static Extension](lf-static-extension.md)
