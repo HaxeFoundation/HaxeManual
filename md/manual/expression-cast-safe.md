@@ -26,7 +26,7 @@ In this example we first cast a class instance of type `Child1` to `Base`, which
 
 The Haxe compiler guarantees that an exception of type `String` is [thrown](expression-throw.md) in this case. This exception can be caught using a [`try/catch` block](expression-try-catch.md).
 
-Safe casts have a runtime overhead. It is important to understand the the compiler already generates type checks, so it is redundant to add manual checks, e.g. using `Std.is`. The intended usage is to try the safe cast and catch the `String` exception.
+Safe casts have a runtime overhead. It is important to understand that the compiler already generates type checks, so it is redundant to add manual checks, e.g. using `Std.is`. The intended usage is to try the safe cast and catch the `String` exception.
 
 ---
 

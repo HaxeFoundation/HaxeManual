@@ -16,7 +16,7 @@ Methods are identified by the `function` keyword. We can also learn that they
 2. have an argument list (here: empty `()`),
 3. have a return type (here: `Void`),
 4. may have [access modifiers](class-field-access-modifier.md) (here: `static` and `public`) and
-5. may have an expression (here: `{trace(trace("Hello World");)}`).
+5. may have an expression (here: `{trace("Hello World");}`).
 
 We can also look at the next example to learn more about arguments and return types:
 

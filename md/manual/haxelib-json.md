@@ -8,6 +8,7 @@ Each Haxe library requires a `haxelib.json` file in which the following attribut
 * tags: An array of tag-strings which are used on the repository website to sort libraries.
 * description: The description of what the library is doing.
 * version: The version string of the library. This is detailed in [Versioning](haxelib-json-versioning.md).
+* classPath: The path string to the source files.
 * releasenote: The release notes of the current version.
 * contributors: An array of user names which identify contributors to the library. 
 * dependencies: An object describing the dependencies of the library. This is detailed in [Dependencies](haxelib-json-dependencies.md).
@@ -17,20 +18,15 @@ The following JSON is a simple example of a haxelib.json:
 ```haxe
 {
   "name": "useless_lib",
-  "url" :
-	  "https://github.com/jasononeil/useless/",
+  "url" : "https://github.com/jasononeil/useless/",
   "license": "MIT",
   "tags": ["cross", "useless"],
-  "description":
-	  "This library is useless in the same way on
-		every platform",
+  "description": "This library is useless in the same way on every platform.",
   "version": "1.0.0",
-  "releasenote":
-	  "Initial release, everything is working
-		correctly",
+  "releasenote": "Initial release, everything is working correctly.",
   "contributors": ["Juraj","Jason","Nicolas"],
   "dependencies": {
-    "tink_macros": "",
+    "tink_macro": "",
     "nme": "3.5.5"
   }
 }

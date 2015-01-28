@@ -40,7 +40,7 @@ class Main {
 }
 ```
 
-The `build` method of `TestBuildingMacro` performs three steps:
+The `build` method of `TypeBuildingMacro` performs three steps:
 
 1. It obtains the build fields using `Context.getBuildFields()`.
 2. It declares a new `haxe.macro.expr.Field` field using the `funcName` macro argument as field name. This field is a `String` [variable](class-field-variable.md) with a default value `"my default"` (from the `kind` field) and is public and static (from the `access` field).

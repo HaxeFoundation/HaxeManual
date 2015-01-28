@@ -57,4 +57,4 @@ Allowed values for metadata arguments are:
 
 Previous section: [Function Bindings](lf-function-bindings.md)
 
-Next section: [Access Control](lf-access-control.md)
+Next section: [Global Metadata](lf-metadata-global.md)

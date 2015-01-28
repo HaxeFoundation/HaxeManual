@@ -57,7 +57,7 @@ A good advice when working with reflection is to wrap it in a few functions with
 ```haxe
 typedef MyStructure = {
   name: String,
-  score: 12
+  score: Int
 }
 
 class Main {
@@ -76,6 +76,7 @@ class Main {
     }
   }
 }
+
 ```
 
 While the method `reflective` could interally work with reflection (and `Dynamic` for that matter) a lot, its return value is a typed structure which the callers can use in a type-safe manner.

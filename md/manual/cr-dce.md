@@ -4,9 +4,9 @@ Dead Code Elimination, or **DCE**, is a compiler feature which removes unused co
 
 DCE has three modes which are set when invoking the command line:
 
-* -dce std: Only classes in the Haxe Standard Library are affected by DCE. This is the default setting on all targets but Javascript.
+* -dce std: Only classes in the Haxe Standard Library are affected by DCE. This is the default setting on all targets.
 * -dce no: No DCE is performed.
-* -dce full: All classes are affected by DCE. This is the default setting when targeting Javascript.
+* -dce full: All classes are affected by DCE.
 
 The DCE-algorithm works well with typed code, but may fail when [dynamic](types-dynamic.md) or [reflection](std-reflection.md) is involved. This may require explicit marking of fields or classes as being used by attributing the following metadata:
 

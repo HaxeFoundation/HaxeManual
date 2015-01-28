@@ -42,7 +42,6 @@
 * doc: The documentation of the field. This information is only available if the [compiler flag](dictionary.md#define-compiler-flag) `-D use_rtti_doc` was in place. Otherwise, or if the field has no documentation, the value is `null`.
 * get: The [read access behavior](dictionary.md#define-read-access) of the field.
 * set: The [write access behavior](dictionary.md#define-write-access) of the field.
-* params: 
 * params: An array of strings representing the names of the [type parameters](type-system-type-parameters.md) the field has. As of Haxe 3.2.0, this does not include the [constraints](type-system-type-parameter-constraints.md).
 * platforms: A list of strings representing the targets where the field is available.
 * meta: The meta data the field was annotated with.

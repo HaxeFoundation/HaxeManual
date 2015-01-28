@@ -21,7 +21,7 @@ Line 4 binds the function `map.set` to a variable named `f`, and applies `12` as
 
 A call to `f(1)` then actually invokes `map.set(1, "12")`, the calls to `f(2)` and `f(3)` are analogous. The last line proves that all three indices indeed are mapped to the value `"12"`.
 
-The underscore `_` can be skipped for trailing arguments, so the the first argument could be bound through `map.set.bind(1)`, yielding a `String->Void` function that sets a new value for index `1` on invocation.
+The underscore `_` can be skipped for trailing arguments, so the first argument could be bound through `map.set.bind(1)`, yielding a `String->Void` function that sets a new value for index `1` on invocation.
 
 > ##### Trivia: Callback
 >

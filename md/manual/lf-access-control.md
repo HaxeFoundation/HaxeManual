@@ -97,6 +97,6 @@ This is also true for access granted to parent classes, in which case it extends
 
 ---
 
-Previous section: [Metadata](lf-metadata.md)
+Previous section: [Global Metadata](lf-metadata-global.md)
 
 Next section: [Inline constructors](lf-inline-constructor.md)

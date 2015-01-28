@@ -175,6 +175,7 @@ Unreviewed:
 6.7 - Iterators
 6.8 - Function Bindings
 6.9 - Metadata
+6.9.1 - Global Metadata
 6.10 - Access Control
 6.11 - Inline constructors
 8.2 - Dead Code Elimination

@@ -12,7 +12,7 @@ abstract AbstractInt(Int) {
 We can derive the following from this example:
 
 * The keyword `abstract` denotes that we are declaring an abstract type.
-* `Abstract` is the name of the abstract and could be anything conforming to the rules for type identifiers.
+* `AbstractInt` is the name of the abstract and could be anything conforming to the rules for type identifiers.
 * Enclosed in parenthesis `()` is the **underlying type** `Int`.
 * Enclosed in curly braces `{}` are the fields,
 * which are a constructor function `new` accepting one argument `i` of type `Int`.
