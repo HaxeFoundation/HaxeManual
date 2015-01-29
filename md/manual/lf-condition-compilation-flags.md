@@ -1,6 +1,6 @@
 ## 6.1.1 Global Compiler Flags
 
-Starting from Haxe 3.0, you can get the list of supported compiler flags by running `haxe --help-defines`
+Starting from Haxe 3.0, you can get the list of supported [compiler flags](lf-condition-compilation.md) by running `haxe --help-defines`
 
 ##### Global Compiler Flags
  
@@ -14,7 +14,7 @@ Starting from Haxe 3.0, you can get the list of supported compiler flags by runn
 <code>cppia</code>   |  Generate experimental cpp instruction assembly 
 <code>dce</code>   |  The current [Dead Code Elimination](cr-dce.md) mode 
 <code>dce-debug</code>   |  Show [Dead Code Elimination](cr-dce.md) log 
-<code>debug</code>   |  Activated when compiling with -debug 
+<code>debug</code>   |  Activated when compiling with <code>-debug</code> 
 <code>display</code>   |  Activated during completion 
 <code>dll-export</code>   |  GenCPP experimental linking 
 <code>dll-import</code>   |  GenCPP experimental linking 
@@ -66,7 +66,7 @@ Starting from Haxe 3.0, you can get the list of supported compiler flags by runn
 <code>swf-direct-blit</code>   |  Use hardware acceleration to blit graphics 
 <code>swf-gpu</code>   |  Use GPU compositing features when drawing graphics 
 <code>swf-mark</code>   |  GenSWF8 internal 
-<code>swf-metadata=&lt;file.xml&gt;</code>   |  Include contents of <file.xml> as metadata in the swf. 
+<code>swf-metadata=&lt;file.xml&gt;</code>   |  Include contents of <code>&lt;file.xml&gt;</code> as metadata in the swf. 
 <code>swf-preloader-frame</code>   |  Insert empty first frame in swf. To be used together with <code>-D flash-use-stage</code> and <code>-swf-lib</code> 
 <code>swf-protected</code>   |  Compile Haxe private as protected in the SWF instead of public 
 <code>swf-script-timeout</code>   |  Maximum ActionScript processing time before script stuck dialog box displays (in seconds) 
