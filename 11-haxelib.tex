@@ -137,4 +137,45 @@ If you add a file named \ic{extraParams.hxml} to your library root (at the same 
 \section{Using Haxelib}
 \label{haxelib-using}
 
-If the \ic{haxelib} command is executed without any arguments, it prints an exhaustive list of all available arguments.
+If the \ic{haxelib} command is executed without any arguments, it prints an exhaustive list of all available arguments. Access the \url{http://lib.haxe.org} website to view all the libraries available. 
+
+The following commands are available:
+
+\begin{description}
+	\item[Basic] \\
+		\begin{description}
+			\item[\ic{haxelib install \[project-name\] \[version\]}] will install the given project. You can optionally specify a specific version to be installed. By default, latest released version will be installed.
+			\item[\ic{haxelib update \[project-name\]}] update a single library to their latest version. 
+			\item[\ic{haxelib upgrade}] upgrade all the installed projects to their latest version. This command prompts a confirmation for each upgradeable project.
+			\item[\ic{haxelib remove project-name \[version\]}] will remove a complete project or only a specified version if specified.
+			\item[\ic{haxelib list}] will list all the installed projects and their versions. For each project, the version surrounded by brackets is the current one.
+			\item[\ic{haxelib set \[project-name\] \[version\]}] this will change the current version for a given project. The version must be already installed.
+		\end{description}
+		
+	\item[Information] \\
+		\begin{description}
+			\item[\ic{haxelib search \[word\]}] will list the projects which have either a name or description matching specified word.
+			\item[\ic{haxelib info \[project-name\]}] will give you information about a given project.
+			\item[\ic{haxelib user \[user-name\]}] list information on a given Haxelib user
+			\item[\ic{haxelib config}] print the Haxelib repository path. This is where Haxelib get installed by default.
+			\item[\ic{haxelib path \[project-name\]}] prints paths to libraries and its dependencies (defined in \ic{haxelib.xml})
+		\end{description}
+		
+	\item[Development] \\
+		\begin{description}
+			\item[\ic{haxelib submit \[project.zip\]}] submits a package to Haxelib. If the user name is unknown, you'll be first asked to register an account. If the user already exists, you will be prompted for your password. If the project does not exist yet, it will be created, but no version will be added. You will have to submit it a second time to add the first released version. If you want to modify the project url or description, simply modify your \ic{haxelib.xml} (keeping version information unchanged) and submit it again.
+			\item[\ic{haxelib register \[project-name\]}] submit or update a library package
+			\item[\ic{haxelib local \[project-name\]}] tests the library package. Make sure everything (both installation and usage) is working correctly before submitting, since once submitted, a given version cannot be updated.
+			\item[\ic{haxelib dev \[project-name\] \[directory\]}] will set a development directory for the given project. To set project directory back to global location, run command and omit directory.
+			\item[\ic{haxelib git \[project-name\] \[git-clone-path\] \[branch\] \[subdirectory\]}] use git repository as library. This is useful for using a more up-to-date development version, a fork of the original project, or for having a private library that you do not wish to post to Haxelib. When you use \ic{haxelib upgrade} any libraries that are installed using GIT will automatically pull the latest version.
+		\end{description}
+		
+	\item[Miscellaneous] \\
+		\begin{description}
+			\item[\ic{haxelib setup}] set the Haxelib repository path. To print current path use \ic{haxelib config}.
+			\item[\ic{haxelib selfupdate}] update Haxelib itself. It will ask to run \ic{haxe update.hxml} after this update.
+			\item[\ic{haxelib convertxml}] convert \ic{haxelib.xml} file to \ic{haxelib.json}
+			\item[\ic{haxelib run \[project-name\] \[parameters\]}] run the specified library with parameters. Requires  a precompiled Haxe/Neko \ic{run.n} file in the library package. This is useful if you want users to be able to do some post-install script that will configure some additional things on the system. Be careful to trust the project you are running since the script can damage your system.
+			\item[\ic{haxelib proxy}] setup the Http proxy
+		\end{description}
+\end{description}
