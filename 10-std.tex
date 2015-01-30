@@ -295,9 +295,9 @@ It is common to see \Fullref{lf-static-extension} used with the math library.  T
 \section{Lambda}
 \label{std-Lambda}
 
-\define{Lambda}{define-lambda}{Lambda is a functional language concept within Haxe that allows you to apply a function to a set or \tref{custom iterators}{lf-iterators}. The Lambda class is a collection of functional methods in order to use functional-style programming with Haxe.}
+\define{Lambda}{define-lambda}{Lambda is a functional language concept within Haxe that allows you to apply a function to a list or \tref{iterators}{lf-iterators}. The Lambda class is a collection of functional methods in order to use functional-style programming with Haxe.}
 
-It is ideally used with \expr{using Lambda} (read \tref{Static Extension}{lf-static-extension}) and then acts as an extension to \type{Iterable} types. 
+It is ideally used with \expr{using Lambda} (see \tref{Static Extension}{lf-static-extension}) and then acts as an extension to \type{Iterable} types. 
 
 On static platforms, working with the \type{Iterable} structure might be slower than performing the operations directly on known types, such as \type{Array} and \type{List}.
 
@@ -315,22 +315,22 @@ static function exists<A>( it : Iterable<A>, f : A -> Bool ) : Bool
 Most Lambda functions are called in similar ways. The first argument for all of the Lambda functions is the \type{Iterable} on which to operate. Many also take a function as an argument.
 
 \begin{description}
-	\item[\expr{Lambda.array}, \expr{Lambda.list}] Convert Iterable to \type{Array} or \type{List}. It returns a copy if it's already of that type.
+	\item[\expr{Lambda.array}, \expr{Lambda.list}] Convert Iterable to \type{Array} or \type{List}. It always returns a new instance.
 	\item[\expr{Lambda.count}] Count the number of elements.  If the Iterable is a \type{Array} or \type{List} it is faster to use its length property.
 	\item[\expr{Lambda.empty}] Determine if the Iterable is empty. For all Iterables it is best to use the this function; it's also faster than compare the length (or result of Lambda.count) to zero.
 	\item[\expr{Lambda.has}] Determine if the specified element is in the Iterable.
-	\item[\expr{Lambda.exists}] Determine if any element satisfies a criteria.
+	\item[\expr{Lambda.exists}] Determine if given element satisfies a criteria.
 	\item[\expr{Lambda.indexOf}] Find out the index of the specified element.
 	\item[\expr{Lambda.find}] Find first element of given search function.
 	\item[\expr{Lambda.foreach}] Determine if every element satisfies a criteria.
 	\item[\expr{Lambda.iter}] Call a function for each element.
-	\item[\expr{Lambda.concat}] Merg two Iterables, returning a new List.
+	\item[\expr{Lambda.concat}] Merge two Iterables, returning a new List.
 	\item[\expr{Lambda.filter}] Find the elements that satisfy a criteria, returning a new List.
 	\item[\expr{Lambda.map}, \expr{Lambda.mapi}] Apply a conversion to each element, returning a new List.
 	\item[\expr{Lambda.fold}] Functional fold, which is also known as reduce, accumulate, compress or inject.
 \end{description}
 
-This example demonstrates the Lamda filter and map on a set of strings:
+This example demonstrates the Lambda filter and map on a set of strings:
 
 \begin{lstlisting}
 using Lambda;
