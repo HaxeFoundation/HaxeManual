@@ -9,7 +9,7 @@
 \label{target-javascript-getting-started}
 
 Developing Javascript applications is really powerful with Haxe. Let's see our first sample.
-This is a very simple example showing most of the toolchain. 
+This is a very simple example showing the toolchain. 
 
 Create a new folder, save this class as \ic{Main.hx}.
 
@@ -47,7 +47,7 @@ The output will be a main-javascript.js, which creates and adds clickable button
 
 \paragraph{Run the Javascript}
 
-To display the output in a javascript-enabled browser, you need to create a html-document called \ic{index.html} and open it.
+To display the output in a browser, you need to create a HTML-document called \ic{index.html} and open it.
 
 \begin{lstlisting}
 <!DOCTYPE html>
@@ -60,12 +60,95 @@ To display the output in a javascript-enabled browser, you need to create a html
 
 \paragraph{Differences}
 
-The \tref{standard classes}{std} such as \type{Date}, \type{Array}, \type{String} can have some changes in Haxe since they are common to all Haxe platforms. 
-The \ic{XML} and \ic{XMLNode} classes are merged into one single \type{Xml} class, and provides and extended API.
+The \tref{standard classes}{std} such as \type{Date}, \type{Array}, \type{Xml} or \type{Http} can have some changes in Haxe since they are common to all Haxe platforms.
 
-Apart from these minor differences, you can use the existing Javascript API if you know it already. 
-You can read the more about the Javascript documentation in the \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript}{MDN}.
+Apart from these minor differences, you can easily start using Javascript.  
 
+\paragraph{More information}
+
+\begin{itemize}
+	\item \href{http://api.haxe.org/js/}{Haxe Javascript API docs}
+	\item \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference}{MDN JavaScript Reference}
+\end{itemize}
+
+\subsection{Using external Javascript libraries}
+\label{target-javascript-external-libraries}
+
+The Haxe Standard Library comes with many externs for the Javascript target. They allow accessing the native APIs in a type-safe manner.
+The \tref{externs mechanism}{lf-externs} assumes that the defined types exist at runtime, but assumes nothing about how and where those types are defined. 
+To clarify, in most cases you have to add a \ic{<script>}-tag that links to the external library manually to your HTML-document.
+
+
+An example of an extern class is the \href{https://github.com/HaxeFoundation/haxe/blob/development/std/js/JQuery.hx#L83}{jQuery class} of the Standard Library. 
+To illustrate here is a part of this extern class:
+
+\begin{lstlisting}
+@:initPackage
+extern class JQuery implements ArrayAccess<Element> {
+	function addClass( className : String ) : JQuery;
+	function removeClass( ?className : String ) : JQuery;
+	function hasClass( className : String ) : Bool;
+	
+	@:overload(function(html:String):JQuery{})
+	@:overload(function(html:JQuery):JQuery{})
+	function html() : String;
+..
+\end{lstlisting}
+
+Note that (only) in extern classes you can overload functions to accept different types of arguments and return values, using the \expr{@:overload} metatag.
+Using this extern, we can use jQuery like this:
+
+\begin{lstlisting}
+new JQuery("#my-div").addClass("brand-success").html("haxe is great!");
+\end{lstlisting}
+
+Beside externs, \tref{Typedefs}{type-system-typedef} can be a great way to name (or alias) complex Javascript or JSON structures.
+
+The package and class name of the extern should be in the same as defined in the external library. If that doesn't, you can rewrites the path of a class using \expr{@:native}.
+
+\begin{lstlisting}
+package my.application.media;
+
+@:native('external.library.media.video')
+extern class Video {
+..
+\end{lstlisting}
+
+From Haxe, it is possible to call an exposed functions thanks to the \expr{untyped} keyword. This can be useful in some cases if you don't want to write externs. Anything untyped that is valid syntax will generated as it is.
+
+\begin{lstlisting}
+untyped window.trackEvent("page1");  
+\end{lstlisting}
+
+Using the magic \expr{__js__} function you can inject pure Javascript code fragments into the output. This code can not be validated, so it accepts invalid and code in the output, which is error-prone.
+For example this writes a Javascript comment in the output.
+
+\begin{lstlisting}
+untyped __js__('// haxe is great!');
+\end{lstlisting}
+
+The standard compilation options also provides you more Haxe sources to be added to your project:
+
+\begin{itemize}
+	\item To add a \tref{Haxelib library}{haxelib} you can use \expr{-lib <library-name>}. There are many externs for popular native libraries.
+	\item To add another class path you can use \expr{-cp <directory>}.
+	\item To force a whole package to be included in the project, use \expr{--macro include('mypackage')} that will include all the classes declared in the given package and subpackages. 
+\end{itemize}
+
+
+\subsection{Using Javascript Metatags}
+\label{target-javascript-metatags}
+
+This is the list of Javascript specific metatags. See also the complete list of all \tref{Haxe built-in metatags}{cr-metadata}.
+
+\begin{center}
+\begin{tabular}{| l | l | l |}
+	\hline
+	\multicolumn{3}{|c|}{Javascript metatags} \\ \hline
+	Metatag &  Description & Target \\ \hline
+	@:expose \_(?Name=Class path)\_  &  Makes the class available on the \expr{window} object  & js  \\
+\end{tabular}
+\end{center}
 
 \subsection{Loading extern classes using "require" function}
 \label{target-javascript-require}
