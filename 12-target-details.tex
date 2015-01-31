@@ -89,8 +89,7 @@ To display the output in a browser using the Flash-plugin, you need to create a 
 
 \paragraph{Differences}
 
-The \tref{standard classes}{std} such as \type{Date}, \type{Array}, \type{String} can have some changes in Haxe since they are common to all Haxe platforms. 
-The \ic{XML} and \ic{XMLNode} classes are merged into one single \type{Xml} class, and provides and extended API.
+The \tref{standard classes}{std} such as \type{Date}, \type{Array}, \type{Xml} or \type{Http} can have some changes in Haxe since they are common to all Haxe platforms.
 
 Apart from these minor differences, you can easily use all of the existing Flash API if you know it already. 
 You can read the more about the Actionscript 3 documentation in the \href{http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/}{Adobe Livedocs}.
@@ -116,7 +115,7 @@ class Main {
 class MyBitmapData extends BitmapData { }
 \end{lstlisting}
 
-\subsection{Using external libraries}
+\subsection{Using external Flash libraries}
 \label{target-flash-external-libraries}
 
 To embed external \ic{.swf} or \ic{.swc} libraries, you have the following \href{http://haxe.org/documentation/introduction/compiler-usage.html}{compilation options}:
@@ -126,7 +125,7 @@ To embed external \ic{.swf} or \ic{.swc} libraries, you have the following \href
 	\item[\expr{-swf-lib-extern <file>}] Add the SWF library for type checking but don't include it in the compiled SWF.
 \end{description}
 
-The standard compilation options also provide you more to add to your project:
+The standard compilation options also provides you more Haxe sources to be added to your project:
 
 \begin{itemize}
 	\item To add another class path you can use \expr{-cp <directory>}.
