@@ -5,6 +5,68 @@
 \label{target-javascript}
 \state{NoContent}
 
+\subsection{Getting started with Javascript}
+\label{target-javascript-getting-started}
+
+Developing Javascript applications is really powerful with Haxe. Let's see our first sample.
+This is a very simple example showing most of the toolchain. 
+
+Create a new folder, save this class as \ic{Main.hx}.
+
+\begin{lstlisting}
+import js.Lib;
+import js.Browser;
+class Test {
+    static function main() {
+        var button = Browser.document.createButtonElement();
+        button.textContent = "Click me!";
+        button.onclick = function(event) {
+            Lib.alert("Haxe is great");
+        }
+        Browser.document.body.appendChild(button);
+    }
+}
+\end{lstlisting}
+
+To compile, you can run this from the command line:
+
+\begin{lstlisting}
+haxe -js main-javascript.js -main Main -D js-flatten -dce full
+\end{lstlisting}
+
+.. or create and run (double-click) a file called \ic{compile.hxml}. In this example the hxml-file should be in the same directory as the example class.
+
+\begin{lstlisting}
+-js main-javascript.js
+-main Main
+-D js-flatten
+-dce full
+\end{lstlisting}
+
+The output will be a main-javascript.js, which creates and adds clickable button to the document body.
+
+\paragraph{Run the Javascript}
+
+To display the output in a javascript-enabled browser, you need to create a html-document called \ic{index.html} and open it.
+
+\begin{lstlisting}
+<!DOCTYPE html>
+<html>
+	<body>
+		<script src="main-javascript.js">
+	</body>
+</html>
+\end{lstlisting}
+
+\paragraph{Differences}
+
+The \tref{standard classes}{std} such as \type{Date}, \type{Array}, \type{String} can have some changes in Haxe since they are common to all Haxe platforms. 
+The \ic{XML} and \ic{XMLNode} classes are merged into one single \type{Xml} class, and provides and extended API.
+
+Apart from these minor differences, you can use the existing Javascript API if you know it already. 
+You can read the more about the Javascript documentation in the \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript}{MDN}.
+
+
 \subsection{Loading extern classes using "require" function}
 \label{target-javascript-require}
 \since{3.2.0}
