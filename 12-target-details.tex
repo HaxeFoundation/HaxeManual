@@ -55,7 +55,7 @@ class Main {
 }
 \end{lstlisting}
 
-To compile, you can run this from the command line:
+To compile, run from the command line:
 
 \begin{lstlisting}
 haxe -swf main-flash.swf -main Main -swf-version 15 -swf-header 960:640:60:f68712
@@ -74,9 +74,9 @@ The output will be a main-flash.swf with size 960x640 pixels at 60 FPS with a or
 
 \paragraph{Display the Flash}
 
-You can run the SWF standalone using the \href{https://www.adobe.com/support/flashplayer/downloads.html}{Standalone Debugger FlashPlayer}. 
+Run the SWF standalone using the \href{https://www.adobe.com/support/flashplayer/downloads.html}{Standalone Debugger FlashPlayer}. 
 
-To display the output in a browser using the Flash-plugin, you need to create a html-document called \ic{index.html} and open it.
+To display the output in a browser using the Flash-plugin, create a html-document called \ic{index.html} and open it.
 
 \begin{lstlisting}
 <!DOCTYPE html>
@@ -87,17 +87,17 @@ To display the output in a browser using the Flash-plugin, you need to create a 
 </html>
 \end{lstlisting}
 
-\paragraph{Differences}
+\paragraph{More information}
 
-The \tref{standard classes}{std} such as \type{Date}, \type{Array}, \type{Xml} or \type{Http} can have some changes in Haxe since they are common to all Haxe platforms.
-
-Apart from these minor differences, you can easily use all of the existing Flash API if you know it already. 
-You can read the more about the Actionscript 3 documentation in the \href{http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/}{Adobe Livedocs}.
+\begin{itemize}
+	\item \href{http://api.haxe.org/flash/}{Haxe Flash API docs}
+	\item \href{http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/}{Adobe Livedocs}
+\end{itemize}
 
 \subsection{Embedding resources}
 \label{target-flash-resources}
 
-Embedding resources is different in Haxe compared to Actionscript 3. Instead of using \ic{\[embed\]} (AS3-metatag) you'll have to use \tref{Flash specific compiler metatags}{target-flash-metatags} like \ic{@:bitmap}, \ic{@:font}, \ic{@:sound} or \ic{@:file}.
+Embedding resources is different in Haxe compared to Actionscript 3. Instead of using \ic{\[embed\]} (AS3-metatag) use \tref{Flash specific compiler metatags}{target-flash-metatags} like \ic{@:bitmap}, \ic{@:font}, \ic{@:sound} or \ic{@:file}.
 
 \begin{lstlisting}
 import flash.Lib;
@@ -118,18 +118,18 @@ class MyBitmapData extends BitmapData { }
 \subsection{Using external Flash libraries}
 \label{target-flash-external-libraries}
 
-To embed external \ic{.swf} or \ic{.swc} libraries, you have the following \href{http://haxe.org/documentation/introduction/compiler-usage.html}{compilation options}:
+To embed external \ic{.swf} or \ic{.swc} libraries, use the following \href{http://haxe.org/documentation/introduction/compiler-usage.html}{compilation options}:
 
 \begin{description}
 	\item[\expr{-swf-lib <file>}] Embeds the SWF library in the compiled SWF.
 	\item[\expr{-swf-lib-extern <file>}] Add the SWF library for type checking but don't include it in the compiled SWF.
 \end{description}
 
-The standard compilation options also provides you more Haxe sources to be added to your project:
+The standard compilation options also provides more Haxe sources to be added to the project:
 
 \begin{itemize}
-	\item To add another class path you can use \expr{-cp <directory>}.
-	\item To add a \tref{Haxelib library}{haxelib} you can use \expr{-lib <library-name>}.
+	\item To add another class path use \expr{-cp <directory>}.
+	\item To add a \tref{Haxelib library}{haxelib} use \expr{-lib <library-name>}.
 	\item To force a whole package to be included in the project, use \expr{--macro include('mypackage')} that will include all the classes declared in the given package and subpackages. 
 \end{itemize}
 
@@ -142,7 +142,7 @@ This is the list of Flash specific metatags. See also the complete list of all \
 \begin{tabular}{| l | l | l |}
 	\hline
 	\multicolumn{3}{|c|}{Flash metatags} \\ \hline
-	Metatag &  Description  &  Platform \\ \hline
+	Metatag &  Description  &  Target \\ \hline
 	@:bind  &  Override Swf class declaration  &  flash \\
 	@:bitmap \_(Bitmap file path)\_  &  \_Embeds given bitmap data into the class (must extend \expr{flash.display.BitmapData})   &  flash \\
 	@:debug  &  Forces debug information to be generated into the Swf even without \expr{-debug}   &  flash \\
