@@ -8,7 +8,7 @@ Create a new folder and save this class as `Main.hx`.
 ```haxe
 import js.Lib;
 import js.Browser;
-class Test {
+class Main {
     static function main() {
         var button = Browser.document.createButtonElement();
         button.textContent = "Click me!";
