@@ -31,10 +31,10 @@ If we need to load custom JavaScript objects in runtime, a \expr{js.Lib.require}
 \subsection{Getting started with Flash}
 \label{target-flash-getting-started}
 
-Developing Flash applications is really easy with Haxe. Let's see our first sample.
-This is a very simple example showing most of the toolchain. 
+Developing Flash applications is really easy with Haxe. Let's look at our first code sample.
+This is a basic example showing most of the toolchain. 
 
-Create a new folder, save this class as \ic{Main.hx}.
+Create a new folder and save this class as \ic{Main.hx}.
 
 \begin{lstlisting}
 import flash.Lib;
@@ -55,7 +55,7 @@ class Main {
 }
 \end{lstlisting}
 
-To compile, run from the command line:
+To compile this, either run the following from the command line:
 
 \begin{lstlisting}
 haxe -swf main-flash.swf -main Main -swf-version 15 -swf-header 960:640:60:f68712
@@ -70,13 +70,13 @@ haxe -swf main-flash.swf -main Main -swf-version 15 -swf-header 960:640:60:f6871
 -swf-header 960:640:60:f68712
 \end{lstlisting}
 
-The output will be a main-flash.swf with size 960x640 pixels at 60 FPS with a orange background color and a gray square in the center.
+The output will be a main-flash.swf with size 960x640 pixels at 60 FPS with an orange background color and a gray square in the center.
 
 \paragraph{Display the Flash}
 
 Run the SWF standalone using the \href{https://www.adobe.com/support/flashplayer/downloads.html}{Standalone Debugger FlashPlayer}. 
 
-To display the output in a browser using the Flash-plugin, create a html-document called \ic{index.html} and open it.
+To display the output in a browser using the Flash-plugin, create an HTML-document called \ic{index.html} and open it.
 
 \begin{lstlisting}
 <!DOCTYPE html>
@@ -122,21 +122,21 @@ To embed external \ic{.swf} or \ic{.swc} libraries, use the following \href{http
 
 \begin{description}
 	\item[\expr{-swf-lib <file>}] Embeds the SWF library in the compiled SWF.
-	\item[\expr{-swf-lib-extern <file>}] Add the SWF library for type checking but don't include it in the compiled SWF.
+	\item[\expr{-swf-lib-extern <file>}] Adds the SWF library for type checking but doesn't include it in the compiled SWF.
 \end{description}
 
-The standard compilation options also provides more Haxe sources to be added to the project:
+The standard compilation options also provide more Haxe sources to be added to the project:
 
 \begin{itemize}
 	\item To add another class path use \expr{-cp <directory>}.
 	\item To add a \tref{Haxelib library}{haxelib} use \expr{-lib <library-name>}.
-	\item To force a whole package to be included in the project, use \expr{--macro include('mypackage')} that will include all the classes declared in the given package and subpackages. 
+	\item To force a whole package to be included in the project, use \expr{--macro include('mypackage')} which will include all the classes declared in the given package and subpackages. 
 \end{itemize}
 
 \subsection{Flash target Metatags}
 \label{target-flash-metatags}
 
-This is the list of Flash specific metatags. See also the complete list of all \tref{Haxe built-in metatags}{cr-metadata}.
+This is the list of Flash specific metatags. For a complete list see \tref{Haxe built-in metatags}{cr-metadata}.
 
 \begin{center}
 \begin{tabular}{| l | l | l |}
