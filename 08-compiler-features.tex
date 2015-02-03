@@ -111,7 +111,7 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 \section{Dead Code Elimination}
 \label{cr-dce}
 
-Dead Code Elimination, or \emph{DCE}, is a compiler feature which removes unused code from the output. After typing, the compiler evaluates the DCE entry-points (usually the main-method) and recursively determines which fields and types are used. Used fields are marked accordingly and unmarked fields are then removed from their classes.
+Dead Code Elimination or \emph{DCE} is a compiler feature which removes unused code from the output. After typing, the compiler evaluates the DCE entry-points (usually the main-method) and recursively determines which fields and types are used. Used fields are marked accordingly and unmarked fields are then removed from their classes.
 
 DCE has three modes which are set when invoking the command line:
 
@@ -139,7 +139,7 @@ The compiler automatically defines the flag \expr{dce} with a value of either \e
 \section{Completion}
 \label{cr-completion}
 
-Because of the high number of Haxe features and its powerful type inference, \href{http://haxe.org/documentation/introduction/editors-and-ides.html}{IDE and code editors} cannot easily handle completion by parsing the Haxe files. Haxe provides completion support for IDE directly built in the compiler thanks to the \ic{--display} commandline parameter.
+Because of the high number of Haxe features and its powerful type inference, \href{http://haxe.org/documentation/introduction/editors-and-ides.html}{IDE and code editors} cannot easily handle completion by parsing the Haxe files. Haxe provides completion support for IDEs directly built in the compiler thanks to the \ic{--display} commandline parameter.
 
 Let's have a look at the following example :
 \begin{lstlisting}
@@ -150,13 +150,15 @@ class Test {
 }
 \end{lstlisting}
 
-The vertical bar indicates the cursor position after the dot has been pressed. At this time, this is the job of the IDE to call the Haxe compiler with usual compilation parameters, plus an additional one \ic{--display Test.hx@73}.
+The vertical bar indicates the cursor position after the dot has been pressed. At this time, it is the job of the IDE to call the Haxe compiler with usual compilation parameters, plus an additional one \ic{--display Test.hx@73}.
 
-This parameter tells the file in which we want some completion and the byte position of the cursor in the file. In that example if you count characters with windows CRLF lines ending, you should get 73.
+This parameter determines the file in which we want some completion and the byte position of the cursor in the file. In the example given, you should get 73 if you count characters with windows CRLF lines ending.
 
-Haxe will perform all the parsing and typing as it would do for normal compilation, except that it will not generate any code. If during its compilation it is reaching the byte 73 in file Test.hx it will output the informations about the type of the expression that is on the left of the dot.
 
-In our case, that would be String. Except that in the cases of an anonymous object or a class instance, the compiler will instead list the different fields in an XML and print them to the standard error output. Here's an example of output:
+Haxe will perform all the parsing and typing as it would do for normal compilation, except that it will not generate any code. If it reaches the byte 73 in the file \ic{Test.hx} during compilation, it will output the information about the type of the expression on the left of the dot.
+
+
+In our case, that would be \type{String}. The exception being that in the case of an anonymous object or a class instance, the compiler will instead list the different fields in an XML and print them to a possible output:
 
 \begin{lstlisting}
 <list>
@@ -171,10 +173,10 @@ In our case, that would be String. Except that in the cases of an anonymous obje
 </list>
 \end{lstlisting}
 
-In that case, all public methods and fields of String are listed. This information can directly be used by the IDE to provide code hints and completion.
+In that case, all public methods and fields of \type{String} are listed. This information can directly be used by the IDE to provide code hints and completion.
 
 \paragraph{Functions completion}
-This completion mechanism works with both dot and opening parenthesis, so you can get type informations about fields list and function call arguments types:
+This completion mechanism works with both dot and opening parenthesis, so you can get type information about fields lists and function call arguments types:
 
 \begin{lstlisting}
 class Test {
@@ -184,10 +186,10 @@ class Test {
 }
 \end{lstlisting}
 
-This will give you the following result: \expr{<type>delimiter : String -> Array<String></type>} \_(Please note that in real output, the content of the type not is html-escaped)\_
+This will give you the following result: \expr{<type>delimiter : String -> Array<String></type>} \_(please note that the content of the type is not html-escaped in the real output)\_
 
 \paragraph{Package completion}
-It also works with packages, by scanning the .hx files available in the classpath:
+It also works with packages by scanning the .hx files available in the classpath:
 
 \begin{lstlisting}
 import haxe.|
@@ -207,43 +209,43 @@ Will return :
 \paragraph{Error Handling}
 When run in completion mode, the compiler will not display errors but instead try to ignore them or recover from them. 
 
-In case a not recoverable error occur while getting completion, the Haxe compiler will print the error message instead of the completion output. You can then treat any not-XML output as an error message which prevent the completion from being performed.
+If a not recoverable error occurs while getting completion, the Haxe compiler will print the error message instead of the completion output. You can then treat any not-XML output as an error message which prevents the completion.
 
 \paragraph{Compilation cache server}
 \since{2.09}
 
-To get best speed for both compilation and completion, you can use the \ic{--wait} commandline parameter to start a Haxe compilation server. You can also use \ic{-v} to have the server printing the log. Here's an example:
+Get the best speed for both compilation and completion, you can use the \ic{--wait} commandline parameter to start a Haxe compilation server. You can also use \ic{-v} to have the server print the log. Here's an example:
 
 \begin{lstlisting}
 haxe -v --wait 6000
 \end{lstlisting}
 
-You can then connect to the Haxe server, send commandline parameters followed by a 0 byte, then read the response (either completion result or errors).
+You can then connect to the Haxe server, send commandline parameters followed by a 0 byte and then read the response (either completion result or errors).
 
-You can use the \ic{--connect} commandline parameter to have haxe send its compilation commands to the server instead of executing them directly :
+Use the \ic{--connect} commandline parameter to have Haxe send its compilation commands to the server instead of executing them directly :
 
 \begin{lstlisting}
 haxe --connect 6000 myproject.hxml
 \end{lstlisting}
 
-Please notice that you can use \ic{--cwd} as the first sent commandline parameter in order to change the Haxe server current working directory, since usually class paths and other files are relative to your project.
+Please note that you can use \ic{--cwd} at the first sent commandline parameter to change the Haxe server's current working directory. Usually class paths and other files are relative to your project.
 
 \paragraph{How it works}
 The compilation server will cache the following things:
 
 \begin{description}
-	\item[parsed files] the files will only get parsed again if they are modified, or if there was a parse error
+	\item[parsed files] the files will only get parsed again if they are modified or if there was a parse error
 	\item[haxelib calls] the previous results of haxelib calls will be reused (only for completion : they are ignored when doing a compilation)
-	\item[typed modules] compilation modules will be cached after a successful compilation, and can be reused in later compilation/completions if none of their dependencies have been modified
+	\item[typed modules] compilation modules will be cached after a successful compilation and can be reused in later compilation/completions if none of their dependencies have been modified
 \end{description}
 
-You can get precise timing of the times spent by the compiler and how using the compilation server affects it by adding the \ic{--times} command line.
+You can get precise reading of the times spent by the compiler and how using the compilation server affects it by adding the \ic{--times} command line.
 
 \paragraph{Protocol}
-As the following Haxe/Neko example show, you can simply connect on the server port and send all commands (one per line) ending with a 0 binary char. You can then read the results.
+As the following Haxe/Neko example shows, you can simply connect on the server port and send all commands (one per line) ending with a 0 binary char. You can then read the results.
 
-Macros and other commands can log some data which are not errors. In command line we can make the difference between what is printed on stdout and what is print on stderr, but this is not the case in socket mode. In order to differentiate between the two, log messages (not errors) are prefixed with a \ic{\\x01} character, and all newlines in the message are replaced by the same \ic{\\x01} character.
-warnings and other messages can also be considered errors, but are not fatal ones, if a fatal error occurred, we will send a single \ic{\\x02} message-line
+Macros and other commands can log events which are not errors. From the command line we can see the difference between what is printed on \ic{stdout} and what is print on \ic{stderr}. This is not the case in socket mode. In order to differentiate between the two, log messages (not errors) are prefixed with a \ic{\\x01} character and all newline-characters in the message are replaced by the same \ic{\\x01} character.
+warnings and other messages can also be considered errors, but are not fatal ones. If a fatal error occurred, we will send a single \ic{\\x02} message-line
 Here's some code that will treat connect to the server and handle the protocol details :
 
 \begin{lstlisting}
@@ -382,7 +384,7 @@ The type \type{haxe.rtti.Rtti} has been introduced in order to simplify working 
 	\item[interfaces:] The list of interfaces defined by their type path and list of type parameters.
 	\item[fields:] The list of member \tref{class fields}{class-field}, described in \Fullref{cr-rtti-class-field-information}.
 	\item[statics:] The list of static class fields, described in \Fullref{cr-rtti-class-field-information}.
-	\item[tdynamic:] The type which is \tref{dynamically implemented}{types-dynamic-implemented} by the class, or \expr{null} if no such type exists.
+	\item[tdynamic:] The type which is \tref{dynamically implemented}{types-dynamic-implemented} by the class or \expr{null} if no such type exists.
 \end{description}
 
 \paragraph{Enum type information}
@@ -417,7 +419,7 @@ The type \type{haxe.rtti.Rtti} has been introduced in order to simplify working 
 	\item[platforms:] A list of strings representing the targets where the field is available.
 	\item[meta:] The meta data the field was annotated with.
 	\item[line:] The line number where the field is defined. This information is only available if the field has an expression. Otherwise the value is \expr{null}.
-	\item[overloads:] The list of available overloads for the fields, or \expr{null} if no overloads exists.
+	\item[overloads:] The list of available overloads for the fields or \expr{null} if no overloads exists.
 \end{description}
 
 \paragraph{Enum constructor information}
@@ -425,7 +427,7 @@ The type \type{haxe.rtti.Rtti} has been introduced in order to simplify working 
 
 \begin{description}
 	\item[name:] The name of the constructor.
-	\item[args:] The list of arguments the constructor has, or \expr{null} if no arguments are available.
+	\item[args:] The list of arguments the constructor has or \expr{null} if no arguments are available.
 	\item[doc:] The documentation of the constructor. This information is only available if the \tref{compiler flag}{define-compiler-flag} \expr{-D use_rtti_doc} was in place. Otherwise, or if the constructor has no documentation, the value is \expr{null}.
 	\item[platforms:] A list of strings representing the targets where the constructor is available.
 	\item[meta:] The meta data the constructor was annotated with.
