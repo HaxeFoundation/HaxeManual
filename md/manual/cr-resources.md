@@ -59,6 +59,6 @@ Haxe uses the target platform's native resource embedding if there is one, other
 
 ---
 
-Previous section: [Completion](#)
+Previous section: [Completion](cr-completion.md)
 
 Next section: [Runtime Type Information](cr-rtti.md)

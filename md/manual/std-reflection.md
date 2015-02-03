@@ -83,6 +83,6 @@ While the method `reflective` could interally work with reflection (and `Dynamic
 
 ---
 
-Previous section: [Extensions](std-math-extensions.md)
+Previous section: [Lambda](std-Lambda.md)
 
 Next section: [Serialization](std-serialization.md)

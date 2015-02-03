@@ -118,6 +118,11 @@ Further limitations follow from the usage context, which are checked upon typing
 ##### Int
 Represents an integral number.
 
+<a id="define-lambda" class="anch"></a>
+
+##### Lambda
+Lambda is a functional language concept within Haxe that allows you to apply a function to a list or [iterators](lf-iterators.md). The Lambda class is a collection of functional methods in order to use functional-style programming with Haxe.
+
 <a id="define-macro-context" class="anch"></a>
 
 ##### Macro Context

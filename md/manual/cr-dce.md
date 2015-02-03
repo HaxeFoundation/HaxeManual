@@ -1,6 +1,6 @@
 ## 8.2 Dead Code Elimination
 
-Dead Code Elimination, or **DCE**, is a compiler feature which removes unused code from the output. After typing, the compiler evaluates the DCE entry-points (usually the main-method) and recursively determines which fields and types are used. Used fields are marked accordingly and unmarked fields are then removed from their classes.
+Dead Code Elimination or **DCE** is a compiler feature which removes unused code from the output. After typing, the compiler evaluates the DCE entry-points (usually the main-method) and recursively determines which fields and types are used. Used fields are marked accordingly and unmarked fields are then removed from their classes.
 
 DCE has three modes which are set when invoking the command line:
 
@@ -28,6 +28,6 @@ The compiler automatically defines the flag `dce` with a value of either `"std"`
 
 ---
 
-Previous section: [Compiler Features](cr-features.md)
+Previous section: [Built-in Compiler Metadata](cr-metadata.md)
 
-Next section: [Completion](#)
+Next section: [Completion](cr-completion.md)

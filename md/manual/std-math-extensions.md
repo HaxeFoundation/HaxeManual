@@ -27,4 +27,4 @@ class TestMath{
 
 Previous section: [Integer Math](std-math-integer-math.md)
 
-Next section: [Reflection](std-reflection.md)
+Next section: [Lambda](std-Lambda.md)

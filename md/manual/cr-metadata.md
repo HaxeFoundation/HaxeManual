@@ -1,4 +1,4 @@
-## 6.9.1 Global Metadata
+## 8.1 Built-in Compiler Metadata
 
 Starting from Haxe 3.0, you can get the list of defined compiler metadata by running `haxe --help-metas`
 
@@ -102,6 +102,6 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 
 ---
 
-Previous section: [Metadata](lf-metadata.md)
+Previous section: [Compiler Features](cr-features.md)
 
-Next section: [Access Control](lf-access-control.md)
+Next section: [Dead Code Elimination](cr-dce.md)

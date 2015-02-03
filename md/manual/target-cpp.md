@@ -6,6 +6,6 @@
 
 ---
 
-Previous section: [Loading extern classes using "require" function](target-javascript-require.md)
+Previous section: [Flash target Metatags](target-flash-metatags.md)
 
 Next section: [Using C++ Defines](target-cpp-defines.md)

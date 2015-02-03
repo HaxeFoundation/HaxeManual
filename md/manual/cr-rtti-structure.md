@@ -19,7 +19,7 @@
 * interfaces: The list of interfaces defined by their type path and list of type parameters.
 * fields: The list of member [class fields](class-field.md), described in [Class field information](cr-rtti-structure.md#class-field-information).
 * statics: The list of static class fields, described in [Class field information](cr-rtti-structure.md#class-field-information).
-* tdynamic: The type which is [dynamically implemented](types-dynamic-implemented.md) by the class, or `null` if no such type exists.
+* tdynamic: The type which is [dynamically implemented](types-dynamic-implemented.md) by the class or `null` if no such type exists.
 
 ###### Enum type information
 
@@ -46,12 +46,12 @@
 * platforms: A list of strings representing the targets where the field is available.
 * meta: The meta data the field was annotated with.
 * line: The line number where the field is defined. This information is only available if the field has an expression. Otherwise the value is `null`.
-* overloads: The list of available overloads for the fields, or `null` if no overloads exists.
+* overloads: The list of available overloads for the fields or `null` if no overloads exists.
 
 ###### Enum constructor information
 
 * name: The name of the constructor.
-* args: The list of arguments the constructor has, or `null` if no arguments are available.
+* args: The list of arguments the constructor has or `null` if no arguments are available.
 * doc: The documentation of the constructor. This information is only available if the [compiler flag](dictionary.md#define-compiler-flag) `-D use_rtti_doc` was in place. Otherwise, or if the constructor has no documentation, the value is `null`.
 * platforms: A list of strings representing the targets where the constructor is available.
 * meta: The meta data the constructor was annotated with.
