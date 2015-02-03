@@ -46,7 +46,6 @@ Missing Content:
 10.11 - Sys/sys
 12.3 - Neko
 12.4 - PHP
-12.5 - C++
 12.5.2 - Using C++ Pointers
 12.6 - Java
 12.7 - C#
