@@ -28,6 +28,134 @@ If we need to load custom JavaScript objects in runtime, a \expr{js.Lib.require}
 \section{Flash}
 \label{target-flash}
 
+\subsection{Getting started with Flash}
+\label{target-flash-getting-started}
+
+Developing Flash applications is really easy with Haxe. Let's look at our first code sample.
+This is a basic example showing most of the toolchain. 
+
+Create a new folder and save this class as \ic{Main.hx}.
+
+\begin{lstlisting}
+import flash.Lib;
+import flash.display.Shape;
+class Main {
+    static function main() {
+        var stage = Lib.current.stage;
+        
+        // create a center aligned rounded gray square
+        var shape = new Shape();
+        shape.graphics.beginFill(0x333333);
+		shape.graphics.drawRoundRect(0, 0, 100, 100, 10);
+		shape.x = (stage.stageWidth - 100) / 2;
+		shape.y = (stage.stageHeight - 100) / 2;
+		
+		stage.addChild(shape);
+    }    
+}
+\end{lstlisting}
+
+To compile this, either run the following from the command line:
+
+\begin{lstlisting}
+haxe -swf main-flash.swf -main Main -swf-version 15 -swf-header 960:640:60:f68712
+\end{lstlisting}
+
+.. or create and run (double-click) a file called \ic{compile.hxml}. In this example the hxml-file should be in the same directory as the example class.
+
+\begin{lstlisting}
+-swf main-flash.swf
+-main Main
+-swf-version 15
+-swf-header 960:640:60:f68712
+\end{lstlisting}
+
+The output will be a main-flash.swf with size 960x640 pixels at 60 FPS with an orange background color and a gray square in the center.
+
+\paragraph{Display the Flash}
+
+Run the SWF standalone using the \href{https://www.adobe.com/support/flashplayer/downloads.html}{Standalone Debugger FlashPlayer}. 
+
+To display the output in a browser using the Flash-plugin, create an HTML-document called \ic{index.html} and open it.
+
+\begin{lstlisting}
+<!DOCTYPE html>
+<html>
+	<body>
+		<embed src="main-flash.swf" width="960" height="640">
+	</body>
+</html>
+\end{lstlisting}
+
+\paragraph{More information}
+
+\begin{itemize}
+	\item \href{http://api.haxe.org/flash/}{Haxe Flash API docs}
+	\item \href{http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/}{Adobe Livedocs}
+\end{itemize}
+
+\subsection{Embedding resources}
+\label{target-flash-resources}
+
+Embedding resources is different in Haxe compared to Actionscript 3. Instead of using \ic{\[embed\]} (AS3-metatag) use \tref{Flash specific compiler metatags}{target-flash-metatags} like \ic{@:bitmap}, \ic{@:font}, \ic{@:sound} or \ic{@:file}.
+
+\begin{lstlisting}
+import flash.Lib;
+import flash.display.BitmapData;
+import flash.display.Bitmap;
+
+class Main {
+  public static function main() {
+    var img = new Bitmap( new MyBitmapData(0, 0) );
+    Lib.current.addChild(img);
+  }
+}
+
+@:bitmap("relative/path/to/myfile.png") 
+class MyBitmapData extends BitmapData { }
+\end{lstlisting}
+
+\subsection{Using external Flash libraries}
+\label{target-flash-external-libraries}
+
+To embed external \ic{.swf} or \ic{.swc} libraries, use the following \href{http://haxe.org/documentation/introduction/compiler-usage.html}{compilation options}:
+
+\begin{description}
+	\item[\expr{-swf-lib <file>}] Embeds the SWF library in the compiled SWF.
+	\item[\expr{-swf-lib-extern <file>}] Adds the SWF library for type checking but doesn't include it in the compiled SWF.
+\end{description}
+
+The standard compilation options also provide more Haxe sources to be added to the project:
+
+\begin{itemize}
+	\item To add another class path use \expr{-cp <directory>}.
+	\item To add a \tref{Haxelib library}{haxelib} use \expr{-lib <library-name>}.
+	\item To force a whole package to be included in the project, use \expr{--macro include('mypackage')} which will include all the classes declared in the given package and subpackages. 
+\end{itemize}
+
+\subsection{Flash target Metatags}
+\label{target-flash-metatags}
+
+This is the list of Flash specific metatags. For a complete list see \tref{Haxe built-in metatags}{cr-metadata}.
+
+\begin{center}
+\begin{tabular}{| l | l | l |}
+	\hline
+	\multicolumn{3}{|c|}{Flash metatags} \\ \hline
+	Metatag &  Description  &  Target \\ \hline
+	@:bind  &  Override Swf class declaration  &  flash \\
+	@:bitmap \_(Bitmap file path)\_  &  \_Embeds given bitmap data into the class (must extend \expr{flash.display.BitmapData})   &  flash \\
+	@:debug  &  Forces debug information to be generated into the Swf even without \expr{-debug}   &  flash \\
+	@:file(File path)  &  Includes a given binary file into the target Swf and associates it with the class (must extend \expr{flash.utils.ByteArray})  &  flash \\
+	@:font \_(TTF path Range String)\_  &  Embeds the given TrueType font into the class (must extend \expr{flash.text.Font})  &  flash \\
+	@:getter \_(Class field name)\_  &  Generates a native getter function on the given field   &  flash \\
+	@:noDebug &  Does not generate debug information into the Swf even if \expr{-debug} is set   &  flash \\
+	@:ns  &  Internally used by the Swf generator to handle namespaces   &  flash \\
+	@:setter \_(Class field name)\_  &  Generates a native getter function on the given field   &  flash \\
+	@:sound \_(File path)\_  &  Includes a given \_.wav\_ or \_.mp3\_ file into the target Swf and associates it with the class (must extend \expr{flash.media.Sound})  &  flash \\
+\end{tabular}
+\end{center}
+
 \section{Neko}
 \label{target-neko}
 
