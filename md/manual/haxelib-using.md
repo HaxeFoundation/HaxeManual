@@ -38,4 +38,4 @@ The following commands are available:
 
 Previous section: [extraParams.hxml](haxelib-extraParams.md)
 
-Next section: [Target Details](#)
+Next section: [Target Details](target-details.md)

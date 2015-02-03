@@ -10,6 +10,6 @@
 
 ---
 
-Previous section: [Target Details](#)
+Previous section: [Target Details](target-details.md)
 
 Next section: [Getting started with Javascript](target-javascript-getting-started.md)

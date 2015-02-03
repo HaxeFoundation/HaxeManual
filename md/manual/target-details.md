@@ -2,7 +2,7 @@
 
 12.1: [Javascript](target-javascript.md)
 
-12.2: [Flash](#)
+12.2: [Flash](target-flash.md)
 
 12.3: [Neko](#)
 

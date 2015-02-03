@@ -63,6 +63,6 @@ To display the output in a browser using the Flash-plugin, create an HTML-docume
 
 ---
 
-Previous section: [Flash](#)
+Previous section: [Flash](target-flash.md)
 
 Next section: [Embedding resources](target-flash-resources.md)

@@ -33,7 +33,7 @@ We continue with the Haxe compiler reference, which first handles the basics in 
 
 In the following chapter, [Standard Library](std.md), we explore important types and concepts from the Haxe Standard Library. We then learn about Haxe's package manager Haxelib in [Haxelib](haxelib.md).
 
-Haxe abstracts away many target differences, but sometimes it is important to interact with a target directly, which is the subject of [Target Details](#).
+Haxe abstracts away many target differences, but sometimes it is important to interact with a target directly, which is the subject of [Target Details](target-details.md).
 
 ---
 

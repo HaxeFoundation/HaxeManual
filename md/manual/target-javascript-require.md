@@ -35,4 +35,4 @@ If we need to load custom JavaScript objects in runtime, a `js.Lib.require` func
 
 Previous section: [Javascript target Metatags](target-javascript-metatags.md)
 
-Next section: [Flash](#)
+Next section: [Flash](target-flash.md)

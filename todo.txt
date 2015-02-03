@@ -44,8 +44,6 @@ Missing Content:
 10.9 - Xml
 10.10 - Input/Output
 10.11 - Sys/sys
-12 - Target Details
-12.2 - Flash
 12.3 - Neko
 12.4 - PHP
 12.5 - C++
