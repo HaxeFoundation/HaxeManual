@@ -301,6 +301,54 @@ This is the list of Flash specific metatags. For a complete list see \tref{Haxe 
 
 \section{PHP}
 \label{target-php}
+\state{NoContent}
+
+\subsection{Getting started with PHP}
+\label{target-php-getting-started}
+
+Haxe can be a powerful tool for developing PHP applications. Let's look at our first sample.
+This is a very simple example showing the toolchain. 
+
+Create a new folder and save this class as \ic{Main.hx}.
+
+\haxe{assets/HelloPHP.hx}
+
+To compile, either run this from the command line:
+
+\begin{lstlisting}
+haxe -php bin -main Main
+\end{lstlisting}
+
+.. or create and run (double-click) a file called \ic{compile.hxml}. In this example the hxml-file should be in the same directory as the example class.
+
+\begin{lstlisting}
+-php bin
+-main Main
+\end{lstlisting}
+
+The compiler will output a \emph{bin}-folder, which contains the generated PHP classes that prints a basic HTML-page when you run it.
+
+\paragraph{Run the PHP}
+
+To run the PHP you need a web server, such as \href{http://httpd.apache.org/}{Apache}. If you need an easy-to-install Apache distribution you might want to install \href{https://www.apachefriends.org/download.html}{XAMPP}.
+To display the content in a browser, you need either copy the content of the \emph{bin}-folder to the \emph{htdocs}-folder of Apache or change the \ic{DocumentRoot} in \ic{httpd.conf} to your project directory.
+
+The generated PHP-code runs for version 5.1.0 and later.
+
+\paragraph{More information}
+
+\begin{itemize}
+	\item \href{http://api.haxe.org/php/}{Haxe PHP API docs}
+	\item \href{http://php.net/docs.php}{PHP.net Documentation}
+	\item \href{http://phptohaxe.haqteam.com/code.php}{PHP to Haxe tool}
+\end{itemize}
+
+\subsection{PHP target Metatags}
+\label{target-php-metatags}
+
+There are no specific metatags for the PHP target. 
+
+For the complete list see \tref{Haxe built-in metatags}{cr-metadata}.
 
 \section{C++}
 \label{target-cpp}
