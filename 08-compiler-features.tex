@@ -73,7 +73,7 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 	@:noDebug &  Does not generate debug information into the Swf even if \expr{-debug} is set   &  flash \\
 	@:noDoc  &  Prevents a type from being included in documentation generation  &  all \\
 	@:noImportGlobal  &  Prevents a static field from being imported with \expr{import Class.*}  &  all \\
-	@:noPackageRestrict  &    &  all \\
+	@:noPackageRestrict  &  Allows a module to be accessed across all targets if found on its first type.  &  all \\
 	@:noStack &     &  cpp \\
 	@:noUsing &  Prevents a field from being used with \expr{using}  &  all \\
 	@:notNull &  Declares an abstract type as not accepting \tref{\expr{null} values}{types-nullability}  &  all \\
@@ -97,7 +97,7 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 	@:struct  &  Marks a class definition as a struct.   &  cs \\
 	@:suppressWarnings  &  Adds a SuppressWarnings annotation for the generated Java class  &  java \\
 	@:throws \_(Type as String)\_  &  Adds a \expr{throws} declaration to the generated function.   &  java \\
-	@:to  &  Specifies that the field of the abstract is a cast operation to the type identified in the function. See \tref{Implicit Casts}{types-abstract-implicit-casts} & ~ \\
+	@:to  &  Specifies that the field of the abstract is a cast operation to the type identified in the function. See \tref{Implicit Casts}{types-abstract-implicit-casts} & all \\
 	@:transient  &  Adds the \expr{transient} flag to the class field  &  java \\
 	@:unbound  &  Compiler internal to denote unbounded global variable  &  all \\
 	@:unifyMinDynamic  &  Allows a collection of types to unify to Dynamic  &  all \\
