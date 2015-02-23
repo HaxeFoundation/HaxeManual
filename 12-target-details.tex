@@ -6,7 +6,7 @@
 \label{target-javascript}
 \state{NoContent}
 
-\subsection{Getting started with Javascript}
+\subsection{Getting started with Haxe/Javascript}
 \label{target-javascript-getting-started}
 
 Haxe can be a powerful tool for developing Javascript applications. Let's look at our first sample.
@@ -29,13 +29,13 @@ class Main {
 }
 \end{lstlisting}
 
-To compile, either run this from the command line:
+To compile, either run the following from the command line:
 
 \begin{lstlisting}
 haxe -js main-javascript.js -main Main -D js-flatten -dce full
 \end{lstlisting}
 
-.. or create and run (double-click) a file called \ic{compile.hxml}. In this example the hxml-file should be in the same directory as the example class.
+Another possibility is to create and run (double-click) a file called \ic{compile.hxml}. In this example the hxml-file should be in the same directory as the example class.
 
 \begin{lstlisting}
 -js main-javascript.js
@@ -168,7 +168,7 @@ If we need to load custom JavaScript objects in runtime, a \expr{js.Lib.require}
 \label{target-flash}
 \state{NoContent}
 
-\subsection{Getting started with Flash}
+\subsection{Getting started with Haxe/Flash}
 \label{target-flash-getting-started}
 
 Developing Flash applications is really easy with Haxe. Let's look at our first code sample.
@@ -201,7 +201,7 @@ To compile this, either run the following from the command line:
 haxe -swf main-flash.swf -main Main -swf-version 15 -swf-header 960:640:60:f68712
 \end{lstlisting}
 
-.. or create and run (double-click) a file called \ic{compile.hxml}. In this example the hxml-file should be in the same directory as the example class.
+Another possibility is to create and run (double-click) a file called \ic{compile.hxml}. In this example the hxml-file should be in the same directory as the example class.
 
 \begin{lstlisting}
 -swf main-flash.swf
@@ -303,22 +303,20 @@ This is the list of Flash specific metatags. For a complete list see \tref{Haxe 
 \label{target-php}
 \state{NoContent}
 
-\subsection{Getting started with PHP}
+\subsection{Getting started with Haxe/PHP}
 \label{target-php-getting-started}
 
-Haxe can be a powerful tool for developing PHP applications. Let's look at our first example showing the toolchain. 
-
-Create a new folder and save this class as \ic{Main.hx}.
+To get started with Haxe/PHP, create a new folder and save this class as \ic{Main.hx}.
 
 \haxe{assets/HelloPHP.hx}
 
-To compile, either run this from the command line:
+To compile, either run the following from the command line:
 
 \begin{lstlisting}
 haxe -php bin -main Main
 \end{lstlisting}
 
-.. or create and run (double-click) a file called \ic{compile.hxml}. In this example the hxml-file should be in the same directory as the example class.
+Another possibility is to create and run (double-click) a file called \ic{compile.hxml}. In this example the hxml-file should be in the same directory as the example class.
 
 \begin{lstlisting}
 -php bin
