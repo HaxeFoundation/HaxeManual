@@ -752,7 +752,12 @@ Overloading unary operators is analogous:
 \haxe{assets/AbstractUnopOverload.hx}
 Both binary and unary operator overloads can return any type.
 
+\paragraph{Exposing underlying type operations}
+
 It is also possible to omit the method body of a \expr{@:op} function, but only if the underlying type of the abstract allows the operation in question and if the resulting type can be assigned back to the abstract.
+
+\haxe{assets/AbstractExposeTypeOperations.hx}
+
 \todo{please review for correctness}
 
 
