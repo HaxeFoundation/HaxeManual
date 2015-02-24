@@ -148,23 +148,11 @@ This is the list of Javascript specific metatags. For more information, see also
 \label{target-javascript-expose}
 
 It is possible to make Haxe classes or static fields available for usage in plain Javascript. 
-To expose, apply the \expr{@:expose} metatag on the desired class or static fields.
+To expose, apply the \expr{@:expose} metadata on the desired class or static fields.
 
 This example exposes the Haxe class \ic{MyClass}.
 
-\begin{lstlisting}
-@:expose 
-class MyClass {
-    var name:String;
-    
-    function new(name:String) {
-    	this.name = name;
-    }
-    public function foo() {
-    	return 'Greetings from $name!';
-    }
-}
-\end{lstlisting}
+\haxe{assets/ClassExpose.hx}
 
 This generates the following Javascript output:
 
@@ -193,7 +181,29 @@ console.log(instance.foo()); // logs a message in the console
 
 The package path of the Haxe class is in the same way fully exposed. To rename the class or define a different package for the exposed class use \expr{@:expose("my.package.MyExternalClass")}
 
-Make sure the Haxe Javascript generated sources are loaded before accessing them.
+\paragraph{Shallow expose}
+
+When the Haxe generated code is part of a larger Javascript project and wrapped in a large closure it is not always necessary to expose the Haxe types to global variables.
+Compiling the project using \ic{-D shallow-expose} permits the types or static fiels to be available for the surrounding scope of the Haxe generated closure only.
+
+When the code is compiled using \ic{-D shallow-expose} the generated output will look like this:
+
+\begin{lstlisting}
+var $hx_exports = $hx_exports || {};
+(function () { "use strict";
+var MyClass = $hx_exports.MyClass = function(name) {
+	this.name = name;
+};
+MyClass.prototype = {
+	foo: function() {
+		return "Greetings from " + this.name + "!";
+	}
+};
+})();
+var MyClass = $hx_exports.MyClass;
+\end{lstlisting}
+
+In this pattern, a var statement is used to expose the module; it doesn't write to the \ic{window} or \ic{exports} object. 
 
 \subsection{Loading extern classes using "require" function}
 \label{target-javascript-require}
