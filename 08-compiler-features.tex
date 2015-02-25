@@ -152,7 +152,7 @@ class Test {
 
 The vertical bar indicates the cursor position after the dot has been pressed. At this time, it is the job of the IDE to call the Haxe compiler with usual compilation parameters, plus an additional one \ic{--display Test.hx@73}.
 
-This parameter determines the file in which we want some completion and the byte position of the cursor in the file. In the example given, you should get 73 if you count characters with windows CRLF lines ending.
+This parameter determines the file in which we want some completion and the byte position (not char positions) of the cursor in the file. In the example given, you should get 73 if you count characters with windows CRLF lines ending.
 
 
 Haxe will perform all the parsing and typing as it would do for normal compilation, except that it will not generate any code. If it reaches the byte 73 in the file \ic{Test.hx} during compilation, it will output the information about the type of the expression on the left of the dot.
