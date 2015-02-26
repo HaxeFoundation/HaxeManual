@@ -121,16 +121,18 @@ It seems unusual to see the explicit type \type{MyArray<String>} here as we usua
 
 \begin{lstlisting}
 (function () { "use strict";
-var Main = function() { }
-Main.main = function() {
-	var a = new MyArray_String();
-	var b = new MyArray_Int();
-}
-var MyArray_Int = function() {
+var Test = function() { };
+Test.main = function() {
+	var a = new MyValue_String("Hello");
+	var b = new MyValue_Int(5);
 };
-var MyArray_String = function() {
+var MyValue_Int = function(value) {
+	this.value = value;
 };
-Main.main();
+var MyValue_String = function(value) {
+	this.value = value;
+};
+Test.main();
 })();
 \end{lstlisting}
 
