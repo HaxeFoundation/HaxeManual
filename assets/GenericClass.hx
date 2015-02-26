@@ -6,7 +6,7 @@ class MyValue<T> {
 	}
 }
 
-class Test {
+class Main {
 	static public function main() {
 		var a = new MyValue<String>("Hello");
 		var b = new MyValue<Int>(42);
