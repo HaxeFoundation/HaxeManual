@@ -1,7 +1,26 @@
 HaxeManual
 ==========
 
-For contributions please edit the .tex file (the .md files are generated from it).
+For contributions please edit the .tex file.  The .md files are generated from it.
+
+To rebuild the .pdf from the command line, run `latexmk -xelatex HaxeDoc.tex`.
+A recent version of [TeX Live] should provide latexmk and all needed packages
+and their dependencies:
+
+ - xelatex
+ - cleveref
+ - courier
+ - framed
+ - fullpage
+ - geometry
+ - graphicx
+ - hyperref
+ - listings
+ - palatino
+ - tikz, tkz-euclide, tkz-qtree
+ - todonotes
+ - underscore
+ - xcolor
 
 
 Markdown generation
@@ -24,6 +43,13 @@ Requirements for `compileEnv`
 
 At the time of writing, `compileEnv` depends on the following.
 
-- `xelatex` being in path. [TexLive](http://www.tug.org/texlive/) 2013 version should be sufficient. Used to compile custom LaTeX environment snippets to PDF.
-- `mudraw` being in path. This is a part of [MuPDF](http://www.mupdf.com/). Used for rendering PDF to a PNG image.
-- [Source Sans Pro](http://sourceforge.net/projects/sourcesans.adobe/) and [Source Code Pro](http://sourceforge.net/projects/sourcecodepro.adobe/) fonts being installed.
+- `xelatex` being in path. [TeX Live] 2013 version should be sufficient. Used to compile custom LaTeX environment snippets to PDF.
+- `mudraw` being in path. This is a part of [MuPDF]. Used for rendering PDF to a PNG image.
+- [Source Sans Pro] and [Source Code Pro] fonts being installed.
+
+
+[TeX Live]:http://www.tug.org/texlive/
+[MuPDF]:http://www.mupdf.com/
+[Source Sans Pro]:http://sourceforge.net/projects/sourcesans.adobe/
+[Source Code Pro]:http://sourceforge.net/projects/sourcecodepro.adobe/
+
