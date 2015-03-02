@@ -230,11 +230,10 @@ A regular expression can also be used to split a string into several substrings:
 \subsection{Map}
 \label{std-regex-map}
 
-The \expr{map} method of a regular expression object can be used to replace matched substrings using a custom function:
+The \expr{map} method of a regular expression object can be used to replace matched substrings using a custom function.  This function takes a regular expression object as its first argument so we may use it to get additional information about the match being done and do conditional replacement.  For example:
 
 \haxe{assets/ERegMap.hx}
 
-This function takes a regular expression object as its first argument so we may use it to get additional information about the match being done.
 
 \subsection{Implementation Details}
 \label{std-regex-implementation-details}
