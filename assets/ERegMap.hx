@@ -1,6 +1,6 @@
 class Main {
   static function main() {
-    var r = new EReg("(dog|fox)", "g");
+    var r = ~/(dog|fox)/g;
     var s = "The quick brown fox jumped over the lazy dog.";
     var s2 = r.map(s, function(r) {
         var match = r.matched(0);
