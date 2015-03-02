@@ -230,11 +230,10 @@ A regular expression can also be used to split a string into several substrings:
 \subsection{Map}
 \label{std-regex-map}
 
-The \expr{map} method of a regular expression object can be used to replace matched substrings using a custom function:
+The \expr{map} method of a regular expression object can be used to replace matched substrings using a custom function. This function takes a regular expression object as its first argument so we may use it to get additional information about the match being done and do conditional replacement. For example:
 
 \haxe{assets/ERegMap.hx}
 
-This function takes a regular expression object as its first argument so we may use it to get additional information about the match being done.
 
 \subsection{Implementation Details}
 \label{std-regex-implementation-details}
@@ -252,7 +251,7 @@ Regular Expressions are implemented:
 \section{Math}
 \label{std-math}
 
-Haxe includes a floating point math library for some common mathematical operations.  Most of the fuctions operate on and return \type{floats}.  However, an \type{Int} can be used where a \type{Float} is expected, and Haxe also converts \type{Int} to \type{Float} during most numeric operations  (see \Fullref{types-numeric-operators} for more details).
+Haxe includes a floating point math library for some common mathematical operations. Most of the functions operate on and return \type{floats}. However, an \type{Int} can be used where a \type{Float} is expected, and Haxe also converts \type{Int} to \type{Float} during most numeric operations  (see \Fullref{types-numeric-operators} for more details).
 
 Here are some example uses of the math library.  See the \href{http://api.haxe.org/Math.html}{Math API} for all available functions.
 
