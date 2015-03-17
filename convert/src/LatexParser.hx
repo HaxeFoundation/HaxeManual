@@ -298,7 +298,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 			case [TCommand(CLeft)]: "";
 			case [TCommand(CRight)]: "";
 			case [TCustomCommand("target"), s = inBraces(text)]: s;
-			case [TCustomCommand("expr")]:
+			case [TCustomCommand("expr" | "ic")]:
 				exprMode = true;
 				var s = switch stream {
 					case [TBrOpen, s = text(), TBrClose]:
@@ -314,7 +314,6 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 				s;
 			case [TCommand(CTexttt), s = inBraces(text)]: '`$s`';
 			case [TCustomCommand("type"), s = inBraces(text)]: '`$s`';
-			case [TCustomCommand("ic"), s = inBraces(text)]: '`$s`';
 			case [s = ref()]: s;
 			case [TCustomCommand("href"), s1 = inBraces(text), s2 = inBraces(text)]: '[$s2]($s1)';
 			case [TCommand(CUrl), s = inBraces(text)]: '<$s>';

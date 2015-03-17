@@ -17,14 +17,14 @@ class LexerError {
 }
 
 class LatexLexer extends hxparse.Lexer implements hxparse.RuleBuilder {
-	
+
 	static public var customEnvironments:Map<String, String->String> = new Map();
-	
+
 	static var commands = @:mapping(1) LatexCommand;
-	
+
 	static var buf = new StringBuf();
 	static var lastCustomEnvironment:String;
-	
+
 	static public var tok = @:rule [
 		"[" => TBkOpen,
 		"]" => TBkClose,
@@ -69,12 +69,12 @@ class LatexLexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"[^\\\\{}\\[\\]\n\r\t$%&\\`']+" => TText(lexer.current),
 		"" => TEof,
 	];
-	
+
 	static public var comment = @:rule [
 		"(\n|\r\n)" => lexer.token(tok),
 		"[^\n\r]" => lexer.token(comment)
 	];
-	
+
 	static public var customEnvironment = @:rule [
 		// TODO better/saner regexps
 		"[^\\\\]+" => {
