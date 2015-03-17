@@ -84,13 +84,7 @@ class Main {
 		LatexLexer.customEnvironments["flowchart"] = FlowchartHandler.handle;
 		var input = byte.ByteData.ofString(sys.io.File.getContent("HaxeDoc.tex"));
 		parser = new LatexParser(input, "HaxeDoc.tex");
-		var sections = try {
-			parser.parse();
-		} catch(e:hxparse.NoMatch<Dynamic>) {
-			throw e.pos.format(input) + ": Unexpected " +e.token;
-		} catch(e:hxparse.Unexpected<Dynamic>) {
-			throw e.pos.format(input) + ": Unexpected " +e.token;
-		}
+		var sections = hxparse.Utils.catchErrors(input, parser.parse);
 		return sections;
 	}
 
