@@ -12,4 +12,4 @@ Most of this document's content was written by Simon Krajewski while working for
 
 Previous section: [About this Document](introduction-about-this-document.md)
 
-Next section: [Hello World](introduction-hello-world.md)
+Next section: [License](introduction-license.md)

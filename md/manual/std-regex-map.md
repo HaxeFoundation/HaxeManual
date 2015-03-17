@@ -1,22 +1,25 @@
 ## 10.3.5 Map
 
-The `map` method of a regular expression object can be used to replace matched substrings using a custom function:
+The `map` method of a regular expression object can be used to replace matched substrings using a custom function. This function takes a regular expression object as its first argument so we may use it to get additional information about the match being done and do conditional replacement. For example:
 
 ```haxe
 class Main {
   static function main() {
-    var r = ~/world/;
-    var s = "Hello, world!";
+    var r = ~/(dog|fox)/g;
+    var s = "The quick brown fox jumped over the lazy dog.";
     var s2 = r.map(s, function(r) {
-    return "Haxe";
+        var match = r.matched(0);
+        switch (match) {
+            case 'dog': return 'fox';
+            case 'fox': return 'dog';
+            default: throw 'Unknown animal: $match';
+        };
     });
-  trace(s2); // Hello, Haxe!
+  trace(s2); // The quick brown dog jumped over the lazy fox.
   }
 }
 
 ```
-
-This function takes a regular expression object as its first argument so we may use it to get additional information about the match being done.
 
 ---
 

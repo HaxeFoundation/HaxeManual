@@ -22,8 +22,6 @@
 
 6.11: [Inline constructors](lf-inline-constructor.md)
 
-6.12: [Remoting](#)
-
 ---
 
 Previous section: [type check](expression-type-check.md)

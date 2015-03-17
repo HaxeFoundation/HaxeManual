@@ -12,6 +12,6 @@
 
 ---
 
-Previous section: [Inline constructors](lf-inline-constructor.md)
+Previous section: [Compiler Usage](compiler-usage.md)
 
 Next section: [Built-in Compiler Metadata](cr-metadata.md)

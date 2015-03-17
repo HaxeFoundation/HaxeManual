@@ -2,7 +2,7 @@
 
 The Haxe Standard Library comes with many externs for the Javascript target. They provide access to the native APIs in a type-safe manner.
 The [externs mechanism](lf-externs.md) assumes that the defined types exist at run-time but assumes nothing about how and where those types are defined. 
-To clarify, in most cases we have to add a `<script>`-tag that links to the external library manually to the HTML-document.
+To clarify, in most cases we have to add a `<script>`-tag that links the external library manually to the HTML-document.
 
 An example of an extern class is the [jQuery class](https://github.com/HaxeFoundation/haxe/blob/development/std/js/JQuery.hx#L83) of the Haxe Standard Library. 
 To illustrate, here is a part of this extern class:
@@ -39,7 +39,7 @@ extern class Video {
 ..
 ```
 
-In Haxe, it is possible to call an exposed functions thanks to the `untyped` keyword. This can be useful in some cases if we don't want to write externs. Anything untyped that is valid syntax will be generated as it is.
+In Haxe, it is possible to call an exposed function thanks to the `untyped` keyword. This can be useful in some cases if we don't want to write externs. Anything untyped that is valid syntax will be generated as it is.
 
 ```haxe
 untyped window.trackEvent("page1");  

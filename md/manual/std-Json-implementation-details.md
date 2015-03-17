@@ -10,4 +10,4 @@ Older browsers (Internet Explorer 7, for instance) may not have native **JSON** 
 
 Previous section: [Encoding JSON](std-Json-encoding.md)
 
-Next section: [Haxelib](haxelib.md)
+Next section: [Remoting](std-remoting.md)

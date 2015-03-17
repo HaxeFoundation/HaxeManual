@@ -29,7 +29,7 @@ In [Expressions](expression.md) we see how to actually get programs to do someth
 
 [Language Features](lf.md) describes some of the Haxe features in detail such as **pattern matching**, **string interpolation** and **dead code elimination**. This concludes the Haxe language reference.
 
-We continue with the Haxe compiler reference, which first handles the basics in [Compiler Usage](#) before getting into the advanced features in [Compiler Features](cr-features.md). Finally, we will venture into the exciting land of **haxe macros** in [Macros](macro.md) to see how some common tasks can be greatly simplified.
+We continue with the Haxe compiler reference, which first handles the basics in [Compiler Usage](compiler-usage.md) before getting into the advanced features in [Compiler Features](cr-features.md). Finally, we will venture into the exciting land of **haxe macros** in [Macros](macro.md) to see how some common tasks can be greatly simplified.
 
 In the following chapter, [Standard Library](std.md), we explore important types and concepts from the Haxe Standard Library. We then learn about Haxe's package manager Haxelib in [Haxelib](haxelib.md).
 

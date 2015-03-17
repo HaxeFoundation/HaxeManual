@@ -6,10 +6,10 @@ This is the list of Javascript specific metatags. For more information, see also
  
  Metatag  |  Description  | Target 
  --- | --- | ---
-@:expose _(?Name=Class path)_   |  Makes the class available on the <code>window</code> object   | js
+@:expose _(?Name=Class path)_   |  Makes the class available on the <code>window</code> object or <code>exports</code> for node.js   | js
 
 ---
 
 Previous section: [Using external Javascript libraries](target-javascript-external-libraries.md)
 
-Next section: [Loading extern classes using "require" function](target-javascript-require.md)
+Next section: [Exposing Haxe classes for Javascript](target-javascript-expose.md)

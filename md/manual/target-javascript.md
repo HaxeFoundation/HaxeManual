@@ -6,7 +6,9 @@
 
 12.1.3: [Javascript target Metatags](target-javascript-metatags.md)
 
-12.1.4: [Loading extern classes using "require" function](target-javascript-require.md)
+12.1.4: [Exposing Haxe classes for Javascript](target-javascript-expose.md)
+
+12.1.5: [Loading extern classes using "require" function](target-javascript-require.md)
 
 ---
 

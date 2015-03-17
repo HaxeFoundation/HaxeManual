@@ -29,10 +29,10 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 @:defParam   |     |  all 
 @:delegate   |  Automatically added by <code>-net-lib</code> on delegates    |  cs 
 @:depend   |      |  cpp 
-@:deprecated    |  Automatically added by <code>-java-lib</code> on class fields annotated with <code>@Deprecated</code> annotation. Has no effect on types compiled by Haxe. _   |  java 
-@:event   |  Automatically added by <code>-net-lib</code> on events. Has no effect on types compiled by Haxe.    |  cs 
+@:deprecated    |  Automatically added by <code>-java-lib</code> on class fields annotated with <code>@Deprecated</code> annotation. Has no effect on types compiled by Haxe   |  java 
+@:event   |  Automatically added by <code>-net-lib</code> on events. Has no effect on types compiled by Haxe    |  cs 
 @:enum   |  Defines finite value sets to abstract definitions. See [enum abstracts](types-abstract-enum.md)   |  all 
-@:expose _(?Name=Class path)_   |  Makes the class available on the <code>window</code> object    |  js 
+@:expose _(?Name=Class path)_   |  Makes the class available on the <code>window</code> object or <code>exports</code> for node.js. See [exposing Haxe classes for Javascript](target-javascript-expose.md)  |  js 
 @:extern   |  Marks the field as extern so it is not generated   |  all 
 @:fakeEnum _(Type name)_   |  Treat enum as collection of values of the specified type   |  all 
 @:file(File path)   |  Includes a given binary file into the target Swf and associates it with the class (must extend <code>flash.utils.ByteArray</code>)   |  flash 
@@ -67,14 +67,14 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 @:noDebug  |  Does not generate debug information into the Swf even if <code>-debug</code> is set    |  flash 
 @:noDoc   |  Prevents a type from being included in documentation generation   |  all 
 @:noImportGlobal   |  Prevents a static field from being imported with <code>import Class.*</code>   |  all 
-@:noPackageRestrict   |     |  all 
+@:noPackageRestrict   |  Allows a module to be accessed across all targets if found on its first type.   |  all 
 @:noStack  |      |  cpp 
 @:noUsing  |  Prevents a field from being used with <code>using</code>   |  all 
 @:notNull  |  Declares an abstract type as not accepting [<code>null</code> values](types-nullability.md)   |  all 
 @:ns   |  Internally used by the Swf generator to handle namespaces    |  flash 
 @:op _(The operation)_   |   Declares an abstract field as being an [operator overload](types-abstract-operator-overloading.md)   |  all 
 @:optional   |  Marks the field of a structure as optional. See [Optional Arguments](types-nullability-optional-arguments.md)   |  all 
-@:overload _(Function specification)_   |  Allows the field to be called with different argument types. Function specification cannot be an expression.   |  all 
+@:overload _(Function specification)_   |  Allows the field to be called with different argument types. Function specification cannot be an expression   |  all 
 @:privateAccess   |  Allow private access to anything for the annotated expression   |  all 
 @:property   |  Marks a property field to be compiled as a native C# property    |  cs 
 @:protected   |  Marks a class field as being protected   |  all 
@@ -86,12 +86,12 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 @:rtti    |  Adds runtime type informations. See [RTTI](cr-rtti.md)   |  all 
 @:runtime   |     |  all 
 @:runtimeValue   |  Marks an abstract as being a runtime value   |  all 
-@:setter _(Class field name)_   |  Generates a native getter function on the given field    |  flash 
+@:setter _(Class field name)_   |  Generates a native setter function on the given field    |  flash 
 @:sound _(File path)_   |  Includes a given _.wav_ or _.mp3_ file into the target Swf and associates it with the class (must extend <code>flash.media.Sound</code>)   |  flash 
 @:struct   |  Marks a class definition as a struct.    |  cs 
 @:suppressWarnings   |  Adds a SuppressWarnings annotation for the generated Java class   |  java 
-@:throws _(Type as String)_   |  Adds a <code>throws</code> declaration to the generated function.    |  java 
-@:to   |  Specifies that the field of the abstract is a cast operation to the type identified in the function. See [Implicit Casts](types-abstract-implicit-casts.md)  | ~ 
+@:throws _(Type as String)_   |  Adds a <code>throws</code> declaration to the generated function    |  java 
+@:to   |  Specifies that the field of the abstract is a cast operation to the type identified in the function. See [Implicit Casts](types-abstract-implicit-casts.md)  | all 
 @:transient   |  Adds the <code>transient</code> flag to the class field   |  java 
 @:unbound   |  Compiler internal to denote unbounded global variable   |  all 
 @:unifyMinDynamic   |  Allows a collection of types to unify to Dynamic   |  all 

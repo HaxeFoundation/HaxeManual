@@ -14,6 +14,8 @@
 
 12.7: [C#](#)
 
+12.8: [Python](target-python.md)
+
 ---
 
 Previous section: [Using Haxelib](haxelib-using.md)

@@ -6,32 +6,38 @@ A class or function can be made **generic** by attributing it with the `:generic
 
 ```haxe
 @:generic
-class MyArray<T> {
-  public function new() { }
+class MyValue<T> {
+	public var value:T;
+		public function new(value:T) {
+		this.value = value;
+	}
 }
 
 class Main {
-  static public function main() {
-    var a = new MyArray<String>();
-    var b = new MyArray<Int>();
-  }
+	static public function main() {
+		var a = new MyValue<String>("Hello");
+		var b = new MyValue<Int>(42);
+	}
 }
+
 ```
 
 It seems unusual to see the explicit type `MyArray<String>` here as we usually let [type inference](type-system-type-inference.md) deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The Javascript output shows the result:
 
 ```haxe
 (function () { "use strict";
-var Main = function() { }
-Main.main = function() {
-	var a = new MyArray_String();
-	var b = new MyArray_Int();
-}
-var MyArray_Int = function() {
+var Test = function() { };
+Test.main = function() {
+	var a = new MyValue_String("Hello");
+	var b = new MyValue_Int(5);
 };
-var MyArray_String = function() {
+var MyValue_Int = function(value) {
+	this.value = value;
 };
-Main.main();
+var MyValue_String = function(value) {
+	this.value = value;
+};
+Test.main();
 })();
 ```
 

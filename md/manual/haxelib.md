@@ -6,6 +6,6 @@ A basic Haxe library is a collection of `.hx` files. That is, libraries are dist
 
 ---
 
-Previous section: [Implementation details](std-Json-implementation-details.md)
+Previous section: [Implementation details](std-remoting-implementation-details.md)
 
 Next section: [Using a Haxe library with the Haxe Compiler](haxelib-using-haxe.md)

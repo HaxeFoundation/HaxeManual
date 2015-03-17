@@ -32,8 +32,6 @@ Missing Content:
 2.5.3 - Optional Fields
 5.3 - Binary Operators
 5.4 - Unary Operators
-6.12 - Remoting
-7 - Compiler Usage
 8.3.1 - Field Access
 8.3.2 - Call Arguments
 8.3.3 - Usage
@@ -54,6 +52,7 @@ Unreviewed:
 1.1 - What is Haxe?
 1.2 - About this Document
 1.2.1 - Authors and contributions
+1.2.2 - License
 1.3 - Hello World
 2 - Types
 2.1 - Basic Types
@@ -172,6 +171,7 @@ Unreviewed:
 6.9 - Metadata
 6.10 - Access Control
 6.11 - Inline constructors
+7 - Compiler Usage
 8.1 - Built-in Compiler Metadata
 8.2 - Dead Code Elimination
 8.3 - Completion
@@ -226,6 +226,9 @@ Unreviewed:
 10.8.1 - Parsing JSON
 10.8.2 - Encoding JSON
 10.8.3 - Implementation details
+10.12 - Remoting
+10.12.1 - Remoting Connection
+10.12.2 - Implementation details
 11 - Haxelib
 11.1 - Using a Haxe library with the Haxe Compiler
 11.2 - haxelib.json
@@ -236,7 +239,8 @@ Unreviewed:
 12.1.1 - Getting started with Javascript
 12.1.2 - Using external Javascript libraries
 12.1.3 - Javascript target Metatags
-12.1.4 - Loading extern classes using "require" function
+12.1.4 - Exposing Haxe classes for Javascript
+12.1.5 - Loading extern classes using "require" function
 12.2.1 - Getting started with Flash
 12.2.2 - Embedding resources
 12.2.3 - Using external Flash libraries

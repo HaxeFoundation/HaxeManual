@@ -41,4 +41,4 @@ Main.main = function() {
 
 Previous section: [Access Control](lf-access-control.md)
 
-Next section: [Compiler Features](cr-features.md)
+Next section: [Compiler Usage](compiler-usage.md)

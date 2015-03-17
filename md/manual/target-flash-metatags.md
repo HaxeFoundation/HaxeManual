@@ -14,7 +14,7 @@ This is the list of Flash specific metatags. For a complete list see [Haxe built
 @:getter _(Class field name)_   |  Generates a native getter function on the given field    |  flash 
 @:noDebug  |  Does not generate debug information into the Swf even if <code>-debug</code> is set    |  flash 
 @:ns   |  Internally used by the Swf generator to handle namespaces    |  flash 
-@:setter _(Class field name)_   |  Generates a native getter function on the given field    |  flash 
+@:setter _(Class field name)_   |  Generates a native setter function on the given field    |  flash 
 @:sound _(File path)_   |  Includes a given _.wav_ or _.mp3_ file into the target Swf and associates it with the class (must extend <code>flash.media.Sound</code>)   |  flash
 
 ---
