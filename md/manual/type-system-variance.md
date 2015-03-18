@@ -16,7 +16,7 @@ class Main {
     // Type parameters are invariant
     // Child should be Base
     var bases:Array<Base> = children;
-    }
+  }
 }
 ```
 

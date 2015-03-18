@@ -10,6 +10,6 @@
 
 ---
 
-Previous section: [@:autoBuild](macro-auto-build.md)
+Previous section: [@:genericBuild](macro-generic-build.md)
 
 Next section: [Static extension](macro-limitations-static-extension.md)

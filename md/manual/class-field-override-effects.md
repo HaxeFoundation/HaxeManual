@@ -14,8 +14,7 @@ class Child extends Base {
 }
 
 class ChildChild extends Child {
-  public override function
-  method(obj:Base):ChildChild {
+  public override function method(obj:Base):ChildChild {
     return null;
   }
 }

@@ -32,8 +32,7 @@ If this is not the case, access to the field from within an accessor method caus
 
 ```haxe
 class Main {
-  // This field cannot be accessed because it
-  // is not a real variable
+  // This field cannot be accessed because it is not a real variable
   public var x(get, set):Int;
 
   function get_x() {
@@ -53,8 +52,7 @@ If a physical field is indeed intended, it can be forced by attributing the fiel
 
 ```haxe
 class Main {
-  // @isVar forces the field to be physical
-  // allowing the program to compile.
+  // @isVar forces the field to be physical allowing the program to compile.
   @:isVar public var x(get, set):Int;
 
   function get_x() {

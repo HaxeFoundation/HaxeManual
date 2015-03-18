@@ -15,8 +15,7 @@ class Main {
     //1.identity();
   }
 
-  macro static function
-  identity(e:ExprOf<String>) {
+  macro static function identity(e:ExprOf<String>) {
     return e;
   }
 }

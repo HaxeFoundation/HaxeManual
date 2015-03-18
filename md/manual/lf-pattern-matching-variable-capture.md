@@ -3,8 +3,7 @@
 It is possible to catch any value of a sub-pattern by matching it against an identifier:
 
 ```haxe
-    var myTree = Node(Leaf("foo"),
-      Node(Leaf("bar"), Leaf("foobar")));
+    var myTree = Node(Leaf("foo"), Node(Leaf("bar"), Leaf("foobar")));
     var name = switch(myTree) {
       case Leaf(s): s;
       case Node(Leaf(s), _): s;
@@ -23,8 +22,7 @@ It is also possible to use = to capture values which are further matched:
 
 ```haxe
     var node = switch(myTree) {
-      case Node(leafNode = Leaf("foo"), _):
-        leafNode;
+      case Node(leafNode = Leaf("foo"), _): leafNode;
       case x: x;
     }
     trace(node); // Leaf(foo)

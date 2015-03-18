@@ -3,11 +3,11 @@
 Use the `haxe.Json.parse` static method to parse **JSON** data and obtain a Haxe value from it:
 ```haxe
 class Main {
-    static function main() {
-        var s = '{"rating": 5}';
-        var o = haxe.Json.parse(s);
-        trace(o); // { rating: 5 }
-    }
+	static function main() {
+    var s = '{"rating": 5}';
+    var o = haxe.Json.parse(s);
+    trace(o); // { rating: 5 }
+	}
 }
 
 ```
@@ -15,8 +15,8 @@ class Main {
 Note that the type of the object returned by `haxe.Json.parse` is `Dynamic`, so if the structure of our data is well-known, we may want to specify a type using [anonymous structures](types-anonymous-structure.md). This way we provide compile-time checks for accessing our data and most likely more optimal code generation, because compiler knows about types in a structure:
 ```haxe
 typedef MyData = {
-    var name:String;
-    var tags:Array<String>;
+  var name:String;
+  var tags:Array<String>;
 }
 
 class Main {

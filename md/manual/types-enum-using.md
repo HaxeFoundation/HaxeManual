@@ -17,8 +17,7 @@ class Main {
       case Red: trace("Color was red");
       case Green: trace("Color was green");
       case Blue: trace("Color was blue");
-      case Rgb(r, g, b):
-        trace("Color had a red value of " +r);
+      case Rgb(r, g, b): trace("Color had a red value of " +r);
     }
   }
 

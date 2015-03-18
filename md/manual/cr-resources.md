@@ -36,8 +36,7 @@ While it's not recommended to embed large binary files in the application, it st
 ```haxe
 class Main {
   static function main() {
-    var bytes =
-      haxe.Resource.getBytes("welcome");
+    var bytes = haxe.Resource.getBytes("welcome");
     trace(bytes.readString(0, bytes.length));
   }
 }

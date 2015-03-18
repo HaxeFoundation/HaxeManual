@@ -32,6 +32,8 @@ The conditions after `#if` and `#elseif` allow the following expressions:
 * The operators `==`, `!=`, `>`, `>=`, `<`, `<=` can be used to compare values.
 * Parentheses `()` can be used to group expressions as usual.
 
+The Haxe parser does not parse `some-flag` as a single token and instead reads it as a subtraction binary operator `some - flag`. In cases like this the underscore version `some_flag` has to be used.
+
 ###### Built-in Compiler Flags
 An exhaustive list of all built-in defines can be obtained by invoking the Haxe Compiler with the `--help-defines` argument. The Haxe Compiler allows multiple `-D` flags per compilation.
 

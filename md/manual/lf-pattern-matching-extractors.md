@@ -80,8 +80,7 @@ It is currently not possible to use extractors within [or-patterns](lf-pattern-m
 class Main {
   static public function main() {
     switch("foo") {
-      // Extractors in or patterns are not
-      // allowed
+      // Extractors in or patterns are not allowed
       case (_.toLowerCase() => "foo") | "bar":
     }
   }

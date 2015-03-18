@@ -3,8 +3,7 @@
 Enums can be matched by their constructors in a natural way:
 
 ```haxe
-    var myTree = Node(Leaf("foo"),
-      Node(Leaf("bar"), Leaf("foobar")));
+    var myTree = Node(Leaf("foo"), Node(Leaf("bar"), Leaf("foobar")));
     var match = switch(myTree) {
       // matches any Leaf
       case Leaf(_): "0";

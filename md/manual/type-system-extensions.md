@@ -38,8 +38,7 @@ typedef IterableWithLengthAndPush<T> = {
 class Extension2 {
   static public function main() {
     var array = [1, 2, 3];
-    var t:IterableWithLengthAndPush<Int> =
-      array;
+    var t:IterableWithLengthAndPush<Int> = array;
   }
 }
 ```

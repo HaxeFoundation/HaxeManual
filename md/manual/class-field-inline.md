@@ -40,19 +40,19 @@ It is important to remember this when relying on inline:
 
 ```haxe
 class Main {
-    public static function main () { }
+  public static function main () { }
 
-	static function test() {
-		if (Math.random() > 0.5) {
-			return "ok";
-		} else {
-			error("random failed");
-		}
-	}
+  static function test() {
+    if (Math.random() > 0.5) {
+      return "ok";
+    } else {
+      error("random failed");
+    }
+  }
 
-	static inline function error(s:String) {
-		throw s;
-	}
+  static inline function error(s:String) {
+    throw s;
+  }
 }
 ```
 

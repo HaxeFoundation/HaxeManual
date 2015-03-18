@@ -8,8 +8,7 @@ abstract MyAbstract<T>(T) from T {
 
   function get() return this;
 
-  static public function
-  getString(v:MyAbstract<String>):String {
+  static public function getString(v:MyAbstract<String>):String {
     return v.get();
   }
 }

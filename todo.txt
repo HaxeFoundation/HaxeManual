@@ -20,7 +20,6 @@ Todo:
 2.8.3 - Array Access: You have marked "Map" for some reason
 3.5 - Unification: Mention toString()/String conversion somewhere in this chapter.
 3.5.1 - Between Class/Interface: "parent class" should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.
-3.7.2 - Import: Describe import a.*
 3.7.3 - Resolution Order: proper label and caption + code/identifier styling for diagram
 6.4.10 - Exhaustiveness checks: Figure out wtf our rules are now for when this is checked.
 6.6 - Array Comprehension: Comprehensions are only listing Arrays, not Maps
@@ -196,6 +195,7 @@ Unreviewed:
 9.5 - Type Building
 9.5.1 - Enum building
 9.5.2 - @:autoBuild
+9.5.3 - @:genericBuild
 9.6.2 - Static extension
 9.6.3 - Build Order
 9.7 - Initialization macros

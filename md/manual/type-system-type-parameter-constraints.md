@@ -15,8 +15,7 @@ class Constraints {
     //test("foo");
   }
 
-  static function
-  test<T:(Iterable<String>, Measurable)>(a:T) {
+  static function test<T:(Iterable<String>, Measurable)>(a:T) {
     if (a.length == 0) return "empty";
     return a.iterator().next();
   }

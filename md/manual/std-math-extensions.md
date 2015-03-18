@@ -4,10 +4,8 @@ It is common to see [Static Extension](lf-static-extension.md) used with the mat
 ```haxe
 class MathStaticExtension {
   /* Converts an angle in radians to degrees */
-  inline public static function
-  toDegrees (radians :Float) :Float
-  {
-    return radians * 180/Math.PI;
+  inline public static function toDegrees(radians:Float):Float {
+    return radians * 180 / Math.PI;
   }
 }
 
@@ -15,6 +13,7 @@ class MathStaticExtension {
 ```
 ```haxe
 using MathStaticExtension;
+
 class TestMath{
   public static function main(){
     var ang = 1/2*Math.PI;

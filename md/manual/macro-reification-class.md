@@ -4,8 +4,7 @@ It is also possible to use reification to obtain an instance of `haxe.macro.Expr
 
 ```haxe
 class Main {
-  macro static function
-  generateClass(funcName:String) {
+  macro static function generateClass(funcName:String) {
     var c = macro class MyClass {
       public function new() { }
       public function $funcName() {
@@ -16,10 +15,10 @@ class Main {
     return macro new MyClass();
   }
 
-    public static function main() {
+  public static function main() {
     var c = generateClass("myFunc");
     c.myFunc();
-    }
+  }
 }
 ```
 

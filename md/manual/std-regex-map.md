@@ -15,10 +15,9 @@ class Main {
             default: throw 'Unknown animal: $match';
         };
     });
-  trace(s2); // The quick brown dog jumped over the lazy fox.
+    trace(s2); // The quick brown dog jumped over the lazy fox.
   }
 }
-
 ```
 
 ---

@@ -35,6 +35,38 @@ The Flash, Java and C# targets allow direct inclusion of native libraries from [
 
 Some targets such as Python or JavaScript may require generating additional "import" code that loads an `extern` class from a native module. Haxe provides ways to declare such dependencies also described in respective sections [Target Details](target-details.md).
 
+###### Rest arguments and type choices
+##### since Haxe 3.2.0
+
+The haxe.extern package provides two types that help mapping native semantics to Haxe:
+
+* `Rest<T>`: This type can be used as a final function argument to allow passing an arbitrary number of additional call arguments. The type parameter can be used to constrain these arguments to a specific type.
+* `EitherType<T1,T2>`: This type allows using either of its parameter types, thus representing a type choice. It can be nested to allow more than two different types.
+
+We demonstrate the usage in this code sample:
+
+```haxe
+import haxe.extern.Rest;
+import haxe.extern.EitherType;
+
+extern class MyExtern {
+  static function f1(s:String, r:Rest<Int>):Void;
+  static function f2(e:EitherType<Int, String>):Void;
+}
+
+class Main {
+  static function main() {
+    MyExtern.f1("foo", 1, 2, 3); // use 1, 2, 3 as rest argument
+    MyExtern.f1("foo"); // no rest argument
+    //MyExtern.f1("foo", "bar"); // String should be Int
+
+    MyExtern.f2("foo");
+    MyExtern.f2(12);
+    //MyExtern.f2(true); // Bool should be EitherType<Int, String>
+  }
+}
+```
+
 ---
 
 Previous section: [Global Compiler Flags](lf-condition-compilation-flags.md)

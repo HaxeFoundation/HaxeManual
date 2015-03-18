@@ -8,13 +8,13 @@ This example exposes the Haxe class `MyClass`.
 ```haxe
 @:expose
 class MyClass {
-	var name:String;
-	function new(name:String) {
-		this.name = name;
-	}
-	public function foo() {
-		return 'Greetings from $name!';
-	}
+  var name:String;
+  function new(name:String) {
+    this.name = name;
+  }
+  public function foo() {
+    return 'Greetings from $name!';
+  }
 }
 ```
 

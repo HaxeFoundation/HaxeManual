@@ -6,8 +6,7 @@ When using `get` or `set` access identifier, the compiler ensures that the gette
 
 ```haxe
 class Main {
-  // Method get_x required by property x is
-  // missing
+  // Method get_x required by property x is missing
   public var x(get, null):Int;
   static public function main() {}
 }

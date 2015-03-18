@@ -17,8 +17,7 @@ class Main {
     var msg = printStatus(status);
   }
 
-  static function
-  printStatus(status:HttpStatus) {
+  static function printStatus(status:HttpStatus) {
     return switch(status) {
       case NotFound:
         "Not found";

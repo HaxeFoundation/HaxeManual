@@ -9,15 +9,13 @@ import haxe.macro.Expr;
 class AutoBuildingMacro {
   macro static public
   function fromInterface():Array<Field> {
-    trace("fromInterface: "
-      + Context.getLocalType());
+    trace("fromInterface: " + Context.getLocalType());
     return null;
   }
 
   macro static public
   function fromBaseClass():Array<Field> {
-    trace("fromBaseClass: "
-      + Context.getLocalType());
+    trace("fromBaseClass: " + Context.getLocalType());
     return null;
   }
 }
@@ -53,4 +51,4 @@ It is important to keep in mind that the order of these macro executions is unde
 
 Previous section: [Enum building](macro-enum-building.md)
 
-Next section: [Limitations](macro-limitations.md)
+Next section: [@:genericBuild](macro-generic-build.md)

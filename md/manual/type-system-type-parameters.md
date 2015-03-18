@@ -37,8 +37,7 @@ class FunctionTypeParameter {
     equals(1, "foo");
   }
 
-  static function
-  equals<T>(expected:T, actual:T) {
+  static function equals<T>(expected:T, actual:T) {
     if (actual != expected) {
       trace('$actual should be $expected');
     }
