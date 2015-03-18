@@ -92,6 +92,8 @@ Expression reification is used to create instances of \type{haxe.macro.Expr} in 
 	\item[\expr{\$v\{\}}:] \type{Dynamic -> Expr} Generates an expression depending on the type of its argument. This is only guaranteed to work for \tref{basic types}{types-basic-types} and \tref{enum instances}{types-enum-instance}.
 \end{description}
 
+Additionally the \tref{metadata}{lf-metadata} \expr{@:pos(p)} can be used to map the position of the annotated expression to \expr{p} instead of the place it is reified at.
+
 This kind of reification only works in places where the internal structure expects an expression. This disallows \expr{object.\$\{fieldName\}}, but \expr{object.\$fieldName} works. This is true for all places where the internal structure expects a string:
 
 \begin{itemize}
