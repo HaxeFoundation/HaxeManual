@@ -25,6 +25,9 @@ The conditions after \expr{\#if} and \expr{\#elseif} allow the following express
 	\item Parentheses \expr{()} can be used to group expressions as usual.
 \end{itemize}
 
+The Haxe parser does not parse \expr{some-flag} as a single token and instead reads it as a subtraction binary operator \expr{some - flag}. In cases like this the underscore version \expr{some_flag} has to be used.
+
+
 \paragraph{Built-in Compiler Flags}
 An exhaustive list of all built-in defines can be obtained by invoking the Haxe Compiler with the \expr{--help-defines} argument. The Haxe Compiler allows multiple \expr{-D} flags per compilation.
 
