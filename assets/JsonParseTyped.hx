@@ -1,6 +1,6 @@
 typedef MyData = {
-    var name:String;
-    var tags:Array<String>;
+  var name:String;
+  var tags:Array<String>;
 }
 
 class Main {

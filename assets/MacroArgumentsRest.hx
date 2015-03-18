@@ -5,8 +5,7 @@ class Main {
     myMacro("foo", a, b, c);
   }
 
-  macro static function
-  myMacro(e1:Expr, extra:Array<Expr>) {
+  macro static function myMacro(e1:Expr, extra:Array<Expr>) {
     for (e in extra) {
       trace(e);
     }

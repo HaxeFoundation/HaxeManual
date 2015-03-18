@@ -1,4 +1,3 @@
-
 // while counter
 var i = 0;
 while( i < 10){
@@ -8,7 +7,7 @@ while( i < 10){
 
 // same counter as a do-while
 var j = 0;
-do{
+do {
   trace(j);
   j ++;
 } while( j < 10 );

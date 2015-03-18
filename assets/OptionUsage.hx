@@ -11,8 +11,7 @@ class Main {
     }
   }
 
-  static function
-  trySomething():Option<String> {
+  static function trySomething():Option<String> {
     if (Math.random() > 0.5) {
       return None;
     } else {

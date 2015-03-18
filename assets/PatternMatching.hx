@@ -5,8 +5,7 @@ enum Tree<T> {
 
 class Main {
   static public function main() {
-    var myTree = Node(Leaf("foo"),
-      Node(Leaf("bar"), Leaf("foobar")));
+    var myTree = Node(Leaf("foo"), Node(Leaf("bar"), Leaf("foobar")));
     var match = switch(myTree) {
       // matches any Leaf
       case Leaf(_): "0";
@@ -22,8 +21,7 @@ class Main {
     trace(match); // 2
 
 
-    var myTree = Node(Leaf("foo"),
-      Node(Leaf("bar"), Leaf("foobar")));
+    var myTree = Node(Leaf("foo"), Node(Leaf("bar"), Leaf("foobar")));
     var name = switch(myTree) {
       case Leaf(s): s;
       case Node(Leaf(s), _): s;
@@ -32,8 +30,7 @@ class Main {
     trace(name); // foo
 
     var node = switch(myTree) {
-      case Node(leafNode = Leaf("foo"), _):
-        leafNode;
+      case Node(leafNode = Leaf("foo"), _): leafNode;
       case x: x;
     }
     trace(node); // Leaf(foo)
@@ -51,7 +48,6 @@ class Main {
         "no awesome language found";
     }
     trace(value); // haxe
-
 
     var myArray = [1, 6];
     var match = switch(myArray) {

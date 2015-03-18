@@ -12,8 +12,7 @@ class Main {
     #end
   }
 
-  macro static function
-  test(e:ExprOf<String>) {
+  macro static function test(e:ExprOf<String>) {
     trace(e.toString()); // @:this this
     // TInst(String,[])
     trace(Context.typeof(e));
