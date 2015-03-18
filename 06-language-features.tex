@@ -149,6 +149,21 @@ The \target{Flash}, \target{Java} and \target{C\#} targets allow direct inclusio
 
 Some targets such as \target{Python} or \target{JavaScript} may require generating additional "import" code that loads an \expr{extern} class from a native module. Haxe provides ways to declare such dependencies also described in respective sections \Fullref{target-details}.
 
+\paragraph{Rest arguments and type choices}
+\since{3.2.0}
+
+The haxe.extern package provides two types that help mapping native semantics to Haxe:
+
+\begin{description}
+	\item[\type{Rest<T>}:] This type can be used as a final function argument to allow passing an arbitrary number of additional call arguments. The type parameter can be used to constrain these arguments to a specific type.
+	\item[\type{EitherType<T1,T2>}:] This type allows using either of its parameter types, thus representing a type choice. It can be nested to allow more than two different types.
+\end{description}
+
+We demonstrate the usage in this code sample:
+
+\haxe{assets/RestAndEitherType.hx}
+
+
 \section{Static Extension}
 \label{lf-static-extension}
 
