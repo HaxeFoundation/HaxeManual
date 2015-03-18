@@ -242,6 +242,29 @@ It is important to keep in mind that the order of these macro executions is unde
 
 
 
+\subsection{@:genericBuild}
+\since{3.1.0}
+
+Normal \tref{build-macros}{macro-type-building} are run per-type and are already very powerful. In some cases it is useful to run a build macro per type \emph{usage} instead, i.e. whenever it actually appears in the code. Among other things this allows accessing the concrete type parameters in the macro.
+
+\expr{@:genericBuild} is used just like \expr{@:build} by adding it to a type with the argument being a macro call:
+
+\haxe{assets/GenericBuild1.hx}
+
+When running this example the compiler outputs \ic{TAbstract(Int,[])} and \ic{TInst(String,[])}, indicating that it is indeed aware of the concrete type parameters of \type{MyType}. The macro logic could use this information to generate a custom type (using \expr{haxe.macro.Context.defineType}) or refer to an existing one. For brevity we return \expr{null} here which asks the compiler to \tref{infer}{type-system-type-inference} the type.
+
+In Haxe 3.1 the return type of a \expr{@:genericBuild} macro has to be a \type{haxe.macro.Type}. Haxe 3.2 allows (and prefers) returning a \type{haxe.macro.ComplexType} instead which is the syntactic representation of a type. This is easier to work with in many cases because types can simply be referenced by their paths.
+
+\paragraph{Const type parameter}
+
+Haxe allows passing \tref{constant expression}{expression-constants} as a type parameter if the type parameter name is \expr{Const}. This can be utilized in the context of \expr{@:genericBuild} macros to pass information from the syntax directly to the macro:
+
+\haxe{assets/GenericBuild2.hx}
+
+Here the macro logic could load a file and use its contents to generate a custom type.
+
+
+
 \section{Limitations}
 \label{macro-limitations}
 \state{NoContent}
