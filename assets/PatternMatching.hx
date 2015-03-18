@@ -85,5 +85,5 @@ class Main {
       case [_, false, _]: "2";
     }
     trace(s); // 2
-    }
+  }
 }

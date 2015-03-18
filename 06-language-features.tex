@@ -239,7 +239,7 @@ Some pattern matcher basics include:
 
 Enums can be matched by their constructors in a natural way:
 
-\haxe[firstline=8,lastline=22]{assets/PatternMatching.hx}
+\haxe[firstline=8,lastline=21]{assets/PatternMatching.hx}
 
 The pattern matcher will check each case from top to bottom and pick the first one that matches the input value. The following manual interpretation of each case rule helps understanding the process:
 
@@ -255,7 +255,7 @@ The pattern matcher will check each case from top to bottom and pick the first o
 
 It is possible to catch any value of a sub-pattern by matching it against an identifier:
 
-\haxe[firstline=25,lastline=32]{assets/PatternMatching.hx}
+\haxe[firstline=24,lastline=30]{assets/PatternMatching.hx}
 
 This would return one of the following:
 
@@ -267,7 +267,7 @@ This would return one of the following:
 
 It is also possible to use = to capture values which are further matched:
 
-\haxe[firstline=34,lastline=39]{assets/PatternMatching.hx}
+\haxe[firstline=32,lastline=36]{assets/PatternMatching.hx}
 
 Here, \expr{leafNode} is bound to \expr{Leaf("foo")} if the input matches that. In all other cases, \expr{myTree} itself is returned: \expr{case x} works similar to \expr{case _} in that it matches anything, but with an identifier name like \expr{x} it also binds the matched value to that variable.
 
@@ -276,7 +276,7 @@ Here, \expr{leafNode} is bound to \expr{Leaf("foo")} if the input matches that. 
 
 It is also possible to match against the fields of anonymous structures and instances:
 
-\haxe[firstline=41,lastline=53]{assets/PatternMatching.hx}
+\haxe[firstline=38,lastline=50]{assets/PatternMatching.hx}
 
 In the second case we bind the matched \expr{name} field to identifier \expr{n} if \expr{rating} matches \expr{"awesome"}. Of course this structure could also be put into the \type{Tree} from the previous example to combine structure and enum matching.
 
@@ -287,7 +287,7 @@ A limitation with regards to class instances is that you cannot match against fi
 
 Arrays can be matched on fixed length:
 
-\haxe[firstline=56,lastline=64]{assets/PatternMatching.hx}
+\haxe[firstline=52,lastline=60]{assets/PatternMatching.hx}
 
 This will trace \expr{1} because \expr{array[1]} matches \expr{6}, and \expr{array[0]} is allowed to be anything.
 
@@ -296,7 +296,7 @@ This will trace \expr{1} because \expr{array[1]} matches \expr{6}, and \expr{arr
 
 The \expr{|} operator can be used anywhere within patterns to describe multiple accepted patterns:
 
-\haxe[firstline=67,lastline=72]{assets/PatternMatching.hx}
+\haxe[firstline=63,lastline=68]{assets/PatternMatching.hx}
 
 If there is a captured variable in an or-pattern, it must appear in both its sub-patterns.
 
@@ -305,7 +305,7 @@ If there is a captured variable in an or-pattern, it must appear in both its sub
 
 It is also possible to further restrict patterns with the \expr{case ... if(condition):} syntax:
 
-\haxe[firstline=75,lastline=83]{assets/PatternMatching.hx}
+\haxe[firstline=71,lastline=79]{assets/PatternMatching.hx}
 
 The first case has an additional guard condition \expr{if (b > a)}. It will only be selected if that condition holds, otherwise matching continues with the next case.
 
@@ -314,7 +314,7 @@ The first case has an additional guard condition \expr{if (b > a)}. It will only
 
 Array syntax can be used to match on multiple values:
 
-\haxe[firstline=86,lastline=91]{assets/PatternMatching.hx}
+\haxe[firstline=82,lastline=87]{assets/PatternMatching.hx}
 
 This is quite similar to usual array matching, but there are differences:
 
