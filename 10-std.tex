@@ -533,8 +533,8 @@ The result of the serialization (here stored in local variable \expr{s}) is a \t
 Serialization can be configured in two ways. For both a static variable can be set to influence all \type{haxe.Serializer} instances, and a member variable can be set to only influence a specific instance:
 
 \begin{description}
-	\item[\expr{USE_CACHE}, \expr{useCache}:] If true, repeated objects are serialized by reference. This can avoid infinite loops for recursive data at the expense of longer serialization time. By default, this value is \expr{false}.
-	\item[\expr{USE_ENUM_INDEX}, \expr{useEnumIndex}:] If true, enum constructors are serialized by their index instead of their name. This can make the serialization string shorter but breaks if enum constructors are inserted into the type before deserialization. By default, this value is \expr{false}.
+	\item[\expr{USE_CACHE}, \expr{useCache}:] If true, repeated structures or class\slash enum instances are serialized by reference. This can avoid infinite loops for recursive data at the expense of longer serialization time. By default, object caching is disabled; strings however are always cached.
+	\item[\expr{USE_ENUM_INDEX}, \expr{useEnumIndex}:] If true, enum constructors are serialized by their index instead of their name. This can make the resulting string shorter, but breaks if enum constructors are inserted into the type before deserialization. This behavior is disabled by default.
 \end{description}
 
 \paragraph{Deserialization behavior}
@@ -564,34 +564,38 @@ Each supported value is translated to a distinct prefix character, followed by t
 
 \begin{description}
 	\item[\expr{null}:] \expr{n}
-	\item[\type{Int}:] \expr{z} for zero, or \expr{i} followed by the integer itself (e.g. \expr{i456})
-	\item[\type{Float}:]
+	\item[\type{Int}:] \expr{z} for zero, or \expr{i} followed by the integer display (e.g. \expr{i456})
+	\item[\type{Float}:] \mbox{}
 		\begin{description}
 			\item[\expr{NaN}:] \expr{k}
 			\item[negative infinity:] \expr{m}
 			\item[positive infinity:] \expr{p}
-			\item[normal Float:] \expr{d} followed by the float display (e.g. \expr{d1.45e-8})
+			\item[finite floats:] \expr{d} followed by the float display (e.g. \expr{d1.45e-8})
 		\end{description}
 	\item[\type{Bool}:] \expr{t} for \expr{true}, \expr{f} for \expr{false}
-	\item[\type{String}:] \expr{y} followed by the url encoded string length, then \expr{:} and the url encoded string (e.g. \expr{y10:hi\%20there for "hi there".}.
-	\item[\type{String} (cached):] \expr{R} followed by the string cache ID (e.g. \expr{R456}). String caching is always enabled.
-	\item[name-value pairs:] a serialized string representing the namee, followed by the value
-	\item[structure:] \expr{o} followed by the list of name-value pairs, followed by \expr{g} (e.g. \expr{oy1:xi2y1:kng} for \expr{\{x:2, k:null\}})
+	\item[\type{String}:] \expr{y} followed by the url encoded string length, then \expr{:} and the url encoded string (e.g. \expr{y10:hi\%20there for "hi there".}
+	\item[name-value pairs:] a serialized string representing the name followed by the serialized value
+	\item[structure:] \expr{o} followed by the list of name-value pairs and terminated by \expr{g} (e.g. \expr{oy1:xi2y1:kng} for \expr{\{x:2, k:null\}})
 	\item[\type{List}:] \expr{l} followed by the list of serialized items, followed by \expr{h} (e.g. \expr{lnnh} for a list of two \expr{null} values)
 	\item[\type{Array}:] \expr{a} followed by the list of serialized items, followed by \expr{h}. For multiple consecutive \expr{null} values, \expr{u} followed by the number of \expr{null} values is used (e.g. \expr{ai1i2u4i7ni9h for [1,2,null,null,null,null,7,null,9]})
-	\item[\type{Date}:] \expr{v} followed by the date itself (e.g. \expr{d2010-01-01 12:45:10})
+	\item[\type{Date}:] \expr{v} followed by the date itself (e.g. \expr{v2010-01-01 12:45:10})
 	\item[\type{haxe.ds.StringMap}:] \expr{b} followed by the name-value pairs, followed by \expr{h} (e.g. \expr{by1:xi2y1:knh} for \expr{\{"x" => 2, "k" => null\}})
 	\item[\type{haxe.ds.IntMap}:] \expr{q} followed by the key-value pairs, followed by \expr{h}. Each key is represented as \expr{:<int>} (e.g. \expr{q:4n:5i45:6i7h} for \expr{\{4 => null, 5 => 45, 6 => 7\}})
 	\item[\type{haxe.ds.ObjectMap}:] \expr{M} followed by serialized value pairs representing the key and value, followed by \expr{h}
-	\item[\type{haxe.io.Bytes}:] \expr{s} followed by the length of the base64 encoded bytes, then \expr{:} and the byte representation using the codes \expr{A-Za-z0-9\%} (e.g. \expr{s3:AAA} for 2 bytes equal to \expr{0}, \expr{s10:SGVsbG8gIQ} for \expr{haxe.io.Bytes.ofString("Hello !")})
+	\item[\type{haxe.io.Bytes}:] \expr{s} followed by the length of the base64 encoded bytes, then \expr{:} and the byte representation using the codes \expr{A-Za-z0-9\%} (e.g. \expr{s3:AAA} for 2 bytes equal to \expr{0}, and \expr{s10:SGVsbG8gIQ} for \expr{haxe.io.Bytes.ofString("Hello !")})
 	\item[exception:] \expr{x} followed by the exception value
 	\item[class instance:] \expr{c} followed by the serialized class name, followed by the name-value pairs of the fields, followed by \expr{g} (e.g. \expr{cy5:Pointy1:xzy1:yzg} for \expr{new Point(0, 0)} (having two integer fields \expr{x} and \expr{y})
-	\item[enum instance (by name):] \expr{w} followed by the serialized enum name, followed by the serialized constructor name, followed by the number of arguments, followed by the argument values (e.g. \expr{wy3:Fooy1:A0} for \expr{Foo.A} (with no arguments), \expr{wy3:Fooy1:B2i4n} for \expr{Foo.B(4,null)})
-	\item[enum instance (by index):] \expr{j} followed by the serialized enum name, followed by \expr{:}, followed by the constructor index, followed by the number of arguments, followed by the argument values (e.g. \expr{wy3:Foo0:0} for \expr{Foo.A} (with no arguments), \expr{wy3:Foo1:2i4n} for \expr{Foo.B(4,null)})
+        \item[enum instance (by name):] \expr{w} followed by the serialized enum name, followed by the serialized constructor name, followed by \expr{:}, followed by the number of arguments, followed by the argument values (e.g. \expr{wy3:Fooy1:A:0} for \expr{Foo.A} (with no arguments), \expr{wy3:Fooy1:B:2i4n} for \expr{Foo.B(4,null)})
+	\item[enum instance (by index):] \expr{j} followed by the serialized enum name, followed by \expr{:}, followed by the constructor index (starting from 0), followed by \expr{:}, followed by the number of arguments, followed by the argument values (e.g. \expr{wy3:Foo:0:0} for \expr{Foo.A} (with no arguments), \expr{wy3:Foo:1:2i4n} for \expr{Foo.B(4,null)})
+	\item[cache references:] \mbox{}
+		\begin{description}
+			\item[\type{String}:] \expr{R} followed by the corresponding index in the string cache (e.g. \expr{R456})
+			\item[class, enum or structure] \expr{r} followed by the corresponding index in the object cache (e.g. \expr{r42})
+		\end{description}
 	\item[custom:] \expr{C} followed by the class name, followed by the custom serialized data, followed by \expr{g}
-	\item[cache references:] \expr{r} followed by the cache index 
 \end{description}
 
+\noindent Cached elements and enum constructors are indexed from zero.
 
 \section{Json}
 \label{std-Json}
