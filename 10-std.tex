@@ -397,7 +397,7 @@ It is possible to test conditions using \ic{::if flag1::}. Optionally, the condi
 ::if isValid:: valid ::else:: invalid ::end::
 \end{lstlisting} 
 
-Operators can be used, but it doesn't deal with operator precedence. Therefore it is required to enclose each operation in parentheses \ic{()}. The current operators are allowed: \ic{+}, \ic{-}, \ic{*}, \ic{/}, \ic{>}, \ic{<},  \ic{>=}, \ic{<=}, \ic{==}, \ic{!=}, \ic{&&} and \ic{||}.
+Operators can be used but they don't deal with operator precedence. Therefore it is required to enclose each operation in parentheses \ic{()}. Currently, the following operators are allowed: \ic{+}, \ic{-}, \ic{*}, \ic{/}, \ic{>}, \ic{<},  \ic{>=}, \ic{<=}, \ic{==}, \ic{!=}, \ic{&&} and \ic{||}.
 
 For example \ic{::((1 + 3) == (2 + 2))::} will display true. 
 
@@ -428,7 +428,7 @@ Iterate on a structure by using \ic{::foreach::}. End the loop with \ic{::end::}
 \end{lstlisting} 
 
 \paragraph{Sub-templates}
-To include templates inside other templates, pass the sub-template result string as a parameter.
+To include templates in other templates, pass the sub-template result string as a parameter.
 \begin{lstlisting} 
 var users = [{name:"Mark", age:30}, {name:"John", age:45}];
 
@@ -441,15 +441,15 @@ trace(output);
 \end{lstlisting} 
 The console will trace \ic{The users are Mark(30) John(45)}.
 
-\paragraph{Macros}
-To callback code while parts of the template are rendered, providing a \expr{macros} object to the argument of \expr{Template.execute}. The key will act the template variable name, the value refers to a callback function that should return a \type{String}. The first argument of this macro function is always a \expr{resolve()} method, followed by the given arguments. The resolve function can be called to retreive values from the Template context. If \expr{macros} has no such field, the result is unspecified.
+\paragraph{Template macros}
+To call custom functions while parts of the template are being rendered, provide a \expr{macros} object to the argument of \expr{Template.execute}. The key will act as the template variable name, the value refers to a callback function that should return a \type{String}. The first argument of this macro function is always a \expr{resolve()} method, followed by the given arguments. The resolve function can be called to retrieve values from the template context. If \expr{macros} has no such field, the result is unspecified.
 
-The following example passes itself as macro function context, and executes \ic{display} from the template.
+The following example passes itself as macro function context and executes \ic{display} from the template.
 \haxe{assets/TemplateMacros.hx}
 The console will trace \ic{The results: Mark ran 3.5 kilometers in 15 minutes}.
 
 \paragraph{Globals}
-Use the \expr{Template.globals} object to store those values that should be applied across all Template instances. This has lower priority than the context argument of \expr{Template.execute}.
+Use the \expr{Template.globals} object to store values that should be applied across all \type{haxe.Template} instances. This has lower priority than the context argument of \expr{Template.execute}.
 
 \paragraph{Using resources}
 
