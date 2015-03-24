@@ -38,6 +38,8 @@ enum LatexCommand {
 	CTextwidth;
 	CCaption;
 	CInput;
+	CNoindent;
+	CMbox;
 
 	CTextless;
 	CTextgreater;
@@ -47,4 +49,5 @@ enum LatexCommand {
 	CTextit;
 	CTextbf;
 	CTextasciicircum;
+	CSlash;
 }
