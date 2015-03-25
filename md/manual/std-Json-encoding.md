@@ -1,4 +1,4 @@
-## 10.8.2 Encoding JSON
+## 10.9.2 Encoding JSON
 
 Use the `haxe.Json.stringify` static method to encode a Haxe value into a **JSON** string:
 ```haxe

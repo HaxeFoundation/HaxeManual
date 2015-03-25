@@ -1,4 +1,4 @@
-## 10.7 Serialization
+## 10.8 Serialization
 
 Many runtime values can be serialized and deserialized using the `haxe.Serializer` and `haxe.Unserializer` classes. Both support two usages:
 
@@ -45,8 +45,8 @@ The result of the serialization (here stored in local variable `s`) is a [String
 
 Serialization can be configured in two ways. For both a static variable can be set to influence all `haxe.Serializer` instances, and a member variable can be set to only influence a specific instance:
 
-* `USE_CACHE`, `useCache`: If true, repeated objects are serialized by reference. This can avoid infinite loops for recursive data at the expense of longer serialization time. By default, this value is `false`.
-* `USE_ENUM_INDEX`, `useEnumIndex`: If true, enum constructors are serialized by their index instead of their name. This can make the serialization string shorter but breaks if enum constructors are inserted into the type before deserialization. By default, this value is `false`.
+* `USE_CACHE`, `useCache`: If true, repeated structures or class/ enum instances are serialized by reference. This can avoid infinite loops for recursive data at the expense of longer serialization time. By default, object caching is disabled; strings however are always cached.
+* `USE_ENUM_INDEX`, `useEnumIndex`: If true, enum constructors are serialized by their index instead of their name. This can make the resulting string shorter, but breaks if enum constructors are inserted into the type before deserialization. This behavior is disabled by default.
 
 ###### Deserialization behavior
 

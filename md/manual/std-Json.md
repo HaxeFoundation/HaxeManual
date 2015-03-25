@@ -1,4 +1,4 @@
-## 10.8 Json
+## 10.9 Json
 
 Haxe provides built-in support for (de-)serializing **JSON** data via the `haxe.Json` class.
 

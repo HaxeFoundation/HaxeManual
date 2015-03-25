@@ -1,4 +1,4 @@
-## 10.6 Reflection
+## 10.7 Reflection
 
 Haxe supports runtime reflection of types and fields. Special care has to be taken here because runtime representation generally varies between targets. In order to use reflection correctly it is necessary to understand what kind of operations are supported and what is not. Given the dynamic nature of reflection, this can not always be determined at compile-time.
 
@@ -81,6 +81,6 @@ While the method `reflective` could interally work with reflection (and `Dynamic
 
 ---
 
-Previous section: [Lambda](std-Lambda.md)
+Previous section: [Template](std-template.md)
 
 Next section: [Serialization](std-serialization.md)

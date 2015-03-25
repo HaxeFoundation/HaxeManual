@@ -1,4 +1,4 @@
-## 10.8.3 Implementation details
+## 10.9.3 Implementation details
 
 The `haxe.Json` API automatically uses native implementation on targets where it is available, i.e. **JavaScript**, **Flash** and **PHP** and provides its own implementation for other targets.
 

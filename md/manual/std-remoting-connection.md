@@ -1,4 +1,4 @@
-## 10.12.1 Remoting Connection
+## 10.13.1 Remoting Connection
 
 In order to use remoting, there must be a connection established. There are two kinds of Haxe Remoting connections: 
 

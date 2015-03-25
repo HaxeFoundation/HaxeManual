@@ -1,4 +1,4 @@
-## 10.8.1 Parsing JSON
+## 10.9.1 Parsing JSON
 
 Use the `haxe.Json.parse` static method to parse **JSON** data and obtain a Haxe value from it:
 ```haxe

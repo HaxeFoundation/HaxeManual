@@ -78,4 +78,4 @@ class Main {
 
 Previous section: [Extensions](std-math-extensions.md)
 
-Next section: [Reflection](std-reflection.md)
+Next section: [Template](std-template.md)

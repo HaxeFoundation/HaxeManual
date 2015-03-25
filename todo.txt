@@ -38,9 +38,9 @@ Missing Content:
 8.3.5 - Toplevel
 9.6.1 - Macro-in-Macro
 9.6.4 - Type Parameters
-10.9 - Xml
-10.10 - Input/Output
-10.11 - Sys/sys
+10.10 - Xml
+10.11 - Input/Output
+10.12 - Sys/sys
 12.3 - Neko
 12.4 - PHP
 12.5.2 - Using C++ Pointers
@@ -219,16 +219,17 @@ Unreviewed:
 10.4.3 - Integer Math
 10.4.4 - Extensions
 10.5 - Lambda
-10.6 - Reflection
-10.7 - Serialization
-10.7.1 - Serialization format
-10.8 - Json
-10.8.1 - Parsing JSON
-10.8.2 - Encoding JSON
-10.8.3 - Implementation details
-10.12 - Remoting
-10.12.1 - Remoting Connection
-10.12.2 - Implementation details
+10.6 - Template
+10.7 - Reflection
+10.8 - Serialization
+10.8.1 - Serialization format
+10.9 - Json
+10.9.1 - Parsing JSON
+10.9.2 - Encoding JSON
+10.9.3 - Implementation details
+10.13 - Remoting
+10.13.1 - Remoting Connection
+10.13.2 - Implementation details
 11 - Haxelib
 11.1 - Using a Haxe library with the Haxe Compiler
 11.2 - haxelib.json

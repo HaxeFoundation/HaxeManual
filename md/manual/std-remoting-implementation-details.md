@@ -1,4 +1,4 @@
-## 10.12.2 Implementation details
+## 10.13.2 Implementation details
 
 ###### Javascript security specifics
 
