@@ -139,7 +139,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 				case [TCommand(CTableofcontents)]:
 				case [TCommand(CMaketitle)]:
 				case [TCommand(CNoindent)]:
-				case [TCommand(CMbox), TBrOpen, TBrClose]:
+				case [TCommand(CMbox), s = inBraces(text)]:
 				case [TCustomCommand("todototoc")]:
 				case [TCustomCommand("listoftodos")]:
 
@@ -427,9 +427,13 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 		}
 	}
 
-	function inBraces<T>(f:Void->T) {
+	function inBraces(f:Void->String) {
 		return switch stream {
-			case [TBrOpen, r = f(), TBrClose]: r;
+			case [TBrOpen]:
+				switch stream {
+					case [r = f(), TBrClose]: r;
+					case [TBrClose]: "";
+				}
 		}
 	}
 
