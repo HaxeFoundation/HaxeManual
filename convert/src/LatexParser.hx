@@ -138,6 +138,8 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 				case [TCommand(CClearpage)]:
 				case [TCommand(CTableofcontents)]:
 				case [TCommand(CMaketitle)]:
+				case [TCommand(CNoindent)]:
+				case [TCommand(CMbox), TBrOpen, TBrClose]:
 				case [TCustomCommand("todototoc")]:
 				case [TCustomCommand("listoftodos")]:
 
@@ -288,6 +290,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 				}
 			case [TCommand(CTextasciitilde)]: "~";
 			case [TCommand(CTextbackslash)]: "\\\\";
+			case [TCommand(CSlash)]: "/";
 			case [TCommand(CEmph), s = inBraces(text)]: '**$s**';
 			case [TCommand(CTextwidth)]: "";
 			case [TCommand(CTextsuperscript), s = inBraces(text)]:'<sup>$s</sup>';
