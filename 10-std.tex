@@ -346,7 +346,7 @@ class Main {
 }
 \end{lstlisting} 
 
-This example demonstrates the Lamda count, has, foreach and fold function on a set of ints.
+This example demonstrates the Lambda count, has, foreach and fold function on a set of ints.
 
 \begin{lstlisting}
 using Lambda;
@@ -624,7 +624,7 @@ The \type{haxe.Json} API automatically uses native implementation on targets whe
 
 Usage of Haxe own implementation can be forced with \expr{-D haxeJSON} compiler argument. This will also provide serialization of \tref{enums}{types-enum-instance} by their index, \tref{maps}{std-Map} with string keys and class instances.
 
-Older browsers (Internet Explorer 7, for instance) may not have native \emph{JSON} implementation. In case it's required to support them, we can include one of the JSON implementations available on the internet in the HTML page. Alternatively, a \expr{-D old_browser} compiler argument that will make \type{haxe.Json} try to use native JSON and fallback to its own implementation in case it's not available can be used.
+Older browsers (Internet Explorer 7, for instance) may not have native \emph{JSON} implementation. In case it's required to support them, we can include one of the JSON implementations available on the internet in the HTML page. Alternatively, a \expr{-D old_browser} compiler argument that will make \type{haxe.Json} try to use native JSON and, in case it's not available, fallback to its own implementation.
 
 \section{Xml}
 \label{std-Xml}
@@ -638,7 +638,7 @@ Older browsers (Internet Explorer 7, for instance) may not have native \emph{JSO
 \section{Remoting}
 \label{std-remoting}
 
-Haxe remoting is a way to communicate between different platforms. With Haxe remoting applications can transmit data transparently, send data and call methods, between server and client side.
+Haxe remoting is a way to communicate between different platforms. With Haxe remoting, applications can transmit data transparently, send data and call methods between server and client side.
 
 \subsection{Remoting Connection}
 \label{std-remoting-connection}
