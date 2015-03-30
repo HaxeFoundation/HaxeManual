@@ -254,7 +254,7 @@ Normal \tref{build-macros}{macro-type-building} are run per-type and are already
 
 When running this example the compiler outputs \ic{TAbstract(Int,[])} and \ic{TInst(String,[])}, indicating that it is indeed aware of the concrete type parameters of \type{MyType}. The macro logic could use this information to generate a custom type (using \expr{haxe.macro.Context.defineType}) or refer to an existing one. For brevity we return \expr{null} here which asks the compiler to \tref{infer}{type-system-type-inference} the type.
 
-In Haxe 3.1 the return type of a \expr{@:genericBuild} macro has to be a \type{haxe.macro.Type}. Haxe 3.2 allows (and prefers) returning a \type{haxe.macro.ComplexType} instead which is the syntactic representation of a type. This is easier to work with in many cases because types can simply be referenced by their paths.
+In Haxe 3.1 the return type of a \expr{@:genericBuild} macro has to be a \type{haxe.macro.Type}. Haxe 3.2 allows (and prefers) returning a \type{haxe.macro.ComplexType} instead, which is the syntactic representation of a type. This is easier to work with in many cases because types can simply be referenced by their paths.
 
 \paragraph{Const type parameter}
 
