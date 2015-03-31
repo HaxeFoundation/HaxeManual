@@ -152,13 +152,13 @@ class Test {
 
 The vertical bar indicates the cursor position after the dot has been pressed. At this time, it is the job of the IDE to call the Haxe compiler with usual compilation parameters, plus an additional one \ic{--display Test.hx@73}.
 
-This parameter determines the file in which we want some completion and the byte position (not char positions) of the cursor in the file. In the example given, you should get 73 if you count characters with windows CRLF lines ending.
+This parameter determines the file in which we want some completion and the byte position (not char positions) of the cursor in the file. In the example given, you should get 73 if you count characters with Windows' CRLF lines ending.
 
 
 Haxe will perform all the parsing and typing as it would do for normal compilation, except that it will not generate any code. If it reaches the byte 73 in the file \ic{Test.hx} during compilation, it will output the information about the type of the expression on the left of the dot.
 
 
-In our case, that would be \type{String}. The exception being that in the case of an anonymous object or a class instance, the compiler will instead list the different fields in an XML and print them to a possible output:
+In our case, that would be \type{String}. The exception being that in the case of an anonymous object or a class instance, the compiler will, instead, list the different fields in an XML and print them to a possible output:
 
 \begin{lstlisting}
 <list>
@@ -207,20 +207,20 @@ Will return :
 \end{lstlisting}
 
 \paragraph{Error Handling}
-When run in completion mode, the compiler will not display errors but instead try to ignore them or recover from them. 
+When run in completion mode, the compiler will not display errors, but instead, try to ignore them or recover from them. 
 
-If a not recoverable error occurs while getting completion, the Haxe compiler will print the error message instead of the completion output. You can then treat any not-XML output as an error message which prevents the completion.
+If a not recoverable error occurs while getting completion, the Haxe compiler will print the error message instead of the completion output. You can, then, treat any not-XML output as an error message which prevents the completion.
 
 \paragraph{Compilation cache server}
 \since{2.09}
 
-Get the best speed for both compilation and completion, you can use the \ic{--wait} commandline parameter to start a Haxe compilation server. You can also use \ic{-v} to have the server print the log. Here's an example:
+To get the best speed for both compilation and completion, you can use the \ic{--wait} commandline parameter to start a Haxe compilation server. You can also use \ic{-v} to have the server print the log. Here's an example:
 
 \begin{lstlisting}
 haxe -v --wait 6000
 \end{lstlisting}
 
-You can then connect to the Haxe server, send commandline parameters followed by a 0 byte and then read the response (either completion result or errors).
+You can then connect to the Haxe server, send commandline parameters followed by a 0 byte and, then, read the response (either completion result or errors).
 
 Use the \ic{--connect} commandline parameter to have Haxe send its compilation commands to the server instead of executing them directly :
 
@@ -228,7 +228,7 @@ Use the \ic{--connect} commandline parameter to have Haxe send its compilation c
 haxe --connect 6000 myproject.hxml
 \end{lstlisting}
 
-Please note that you can use \ic{--cwd} at the first sent commandline parameter to change the Haxe server's current working directory. Usually class paths and other files are relative to your project.
+Please, note that you can use the parameter \ic{--cwd} at the first sent command line to change the Haxe server's current working directory. Usually class paths and other files are relative to your project.
 
 \paragraph{How it works}
 The compilation server will cache the following things:
@@ -239,14 +239,16 @@ The compilation server will cache the following things:
 	\item[typed modules] compilation modules will be cached after a successful compilation and can be reused in later compilation/completions if none of their dependencies have been modified
 \end{description}
 
-You can get precise reading of the times spent by the compiler and how using the compilation server affects it by adding the \ic{--times} command line.
+You can get precise reading of the times spent by the compiler and how using the compilation server affects them by adding \ic{--times} to the command line.
 
 \paragraph{Protocol}
-As the following Haxe/Neko example shows, you can simply connect on the server port and send all commands (one per line) ending with a 0 binary char. You can then read the results.
+As the following Haxe/Neko example shows, you can simply connect on the server port and send all commands (one per line) ending with a 0 binary char. You can, then, read the results.
 
-Macros and other commands can log events which are not errors. From the command line we can see the difference between what is printed on \ic{stdout} and what is print on \ic{stderr}. This is not the case in socket mode. In order to differentiate between the two, log messages (not errors) are prefixed with a \ic{\\x01} character and all newline-characters in the message are replaced by the same \ic{\\x01} character.
-warnings and other messages can also be considered errors, but are not fatal ones. If a fatal error occurred, we will send a single \ic{\\x02} message-line
-Here's some code that will treat connect to the server and handle the protocol details :
+Macros and other commands can log events which are not errors. From the command line, we can see the difference between what is printed on \ic{stdout} and what is print on \ic{stderr}. This is not the case in socket mode. In order to differentiate between the two, log messages (not errors) are prefixed with a \ic{\\x01} character and all newline-characters in the message are replaced by the same \ic{\\x01} character.
+
+Warnings and other messages can also be considered errors, but are not fatal ones. If a fatal error occurred, it will send a single \ic{\\x02} message-line.
+
+Here's some code that will treat connection to the server and handle the protocol details :
 
 \begin{lstlisting}
 class Test {
