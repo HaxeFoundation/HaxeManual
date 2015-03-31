@@ -776,3 +776,57 @@ When Flash accesses a server from a different domain, set up a \ic{crossdomain.x
 There is no guarantee of any kind that the arguments types will be respected when a method is called using remoting. 
 That means even if the arguments of function \expr{foo} are typed to \type{Int}, the client will still be able to use strings while calling the method. 
 This can lead to security issues in some cases. When in doubt, check the argument type when the function is called by using the \expr{Std.is} method.
+
+\section{Unit testing}
+\label{std-unit-testing}
+
+The Haxe Standard Library provides basic unit testing classes from the \type{haxe.unit} package. 
+
+\paragraph{Creating new test cases}
+
+First, create a new class extending \type{haxe.unit.TestCase} and add own test methods. Every test method name must start with "\ic{test}".
+
+\haxe{assets/UnitTestCase.hx}
+
+\paragraph{Running unit tests}
+To run the test, an instance of \type{haxe.unit.TestRunner} has to be created. Add the \expr{TestCase} using the \expr{add} method and call \expr{run} to start the test.
+
+\haxe{assets/UnitTestRunner.hx}
+
+The result of the test looks like this:
+\begin{lstlisting} 
+Class: MyTestCase
+.
+OK 1 tests, 0 failed, 1 success
+\end{lstlisting} 
+
+\paragraph{Test functions}
+The \type{haxe.unit.TestCase} class comes with three test functions.
+
+\begin{description}
+	\item[\expr{assertEquals(a, b)}] Succeeds if \ic{a} and \ic{b} are equal, where \ic{a} is value tested and \ic{b} is the expected value.
+	\item[\expr{assertTrue(a)}] Succeeds if \ic{a} is \expr{true}
+	\item[\expr{assertFalse(a)}] Succeeds if \ic{a} is \expr{false}
+\end{description}
+
+\paragraph{Setup and tear down}
+
+To run code before or after the test, override the functions \expr{setup} and \expr{tearDown} in the \expr{TestCase}. 
+
+\begin{description}
+	\item[\expr{setup}] is called before each test runs.
+	\item[\expr{tearDown}] is called once after all tests are run.
+\end{description}
+
+\haxe{assets/UnitTestSetup.hx}
+
+\paragraph{Comparing Complex Objects}
+
+With complex objects it can be difficult to generate expected values to compare to the actual ones. It can also be a problem that \expr{assertEquals} doesn't do a deep comparison. One way around these issues is to use a string as the expected value and compare it to the actual value converted to a string using \expr{Std.string}. Below is a trivial example using an array.
+
+\begin{lstlisting} 
+public function testArray() {
+  var actual = [1,2,3];
+  assertEquals("[1, 2, 3]", Std.string(actual));
+}
+\end{lstlisting} 
