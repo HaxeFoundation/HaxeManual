@@ -209,7 +209,7 @@ Will return :
 \paragraph{Error Handling}
 When run in completion mode, the compiler will not display errors, but instead, try to ignore them or recover from them. 
 
-If a not recoverable error occurs while getting completion, the Haxe compiler will print the error message instead of the completion output. You can, then, treat any not-XML output as an error message which prevents the completion.
+If a not recoverable error occurs while getting completion, the Haxe compiler will print the error message instead of the completion output. You can then treat any not-XML output as an error message which prevents the completion.
 
 \paragraph{Compilation cache server}
 \since{2.09}
@@ -228,7 +228,7 @@ Use the \ic{--connect} commandline parameter to have Haxe send its compilation c
 haxe --connect 6000 myproject.hxml
 \end{lstlisting}
 
-Please, note that you can use the parameter \ic{--cwd} at the first sent command line to change the Haxe server's current working directory. Usually class paths and other files are relative to your project.
+Please note that you can use the parameter \ic{--cwd} at the first sent command line to change the Haxe server's current working directory. Usually class paths and other files are relative to your project.
 
 \paragraph{How it works}
 The compilation server will cache the following things:
@@ -248,7 +248,7 @@ Macros and other commands can log events which are not errors. From the command 
 
 Warnings and other messages can also be considered errors, but are not fatal ones. If a fatal error occurred, it will send a single \ic{\\x02} message-line.
 
-Here's some code that will treat connection to the server and handle the protocol details :
+Here's some code that will treat connection to the server and handle the protocol details:
 
 \begin{lstlisting}
 class Test {
