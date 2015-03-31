@@ -776,3 +776,442 @@ When Flash accesses a server from a different domain, set up a \ic{crossdomain.x
 There is no guarantee of any kind that the arguments types will be respected when a method is called using remoting. 
 That means even if the arguments of function \expr{foo} are typed to \type{Int}, the client will still be able to use strings while calling the method. 
 This can lead to security issues in some cases. When in doubt, check the argument type when the function is called by using the \expr{Std.is} method.
+
+
+\section{SPOD}
+\label{std-spod}
+
+The Simple Persistent Objects Database library, also known as SPOD, makes it possible to write Haxe expressions instead of database queries, while keeping type-safety.
+
+\subsection{SPOD Objects}
+\label{std-spod-objects}
+
+Declare a SPOD Object by extending the \expr{sys.db.Object} class:
+
+\begin{lstlisting} 
+import sys.db.Types;
+class User extends sys.db.Object {
+    public var id:SId;
+    public var name:SString<32>;
+    public var birthday:SDate;
+    public var phoneNumber:SNull<SText>;
+}
+\end{lstlisting} 
+
+Special types are declared in \expr{sys.db.Types} in order to provide additional information for SPOD. See \tref{complete list of types and related SQL types}{std-spod-supported-types}.
+
+\paragraph{Insert}
+In order to insert a new SPOD, simply do the following:
+
+\begin{lstlisting} 
+var user = new User();
+user.name = "Random156";
+user.birthday = Date.now();
+user.insert();
+\end{lstlisting} 
+
+After the \expr{insert()} is done, the auto increment unique id will be set and all fields that were null but not declared as nullable will be set to their default value (\expr{0} for numbers, \expr{""} for strings and empty bytes for binaries).
+
+\paragraph{Update}
+Once there is an instance of the SPOD object, modify its fields and call \expr{update()} to send these changes to the database.
+
+\begin{lstlisting} 
+var user = User.manager.get(1);
+if( user.phoneNumber == null) user.phoneNumber = "+3360000000";
+user.update();
+\end{lstlisting} 
+
+\paragraph{Delete}
+Use \expr{delete()} to delete the SPOD object from the database.
+
+\begin{lstlisting} 
+var user = User.manager.get(1);
+if (user != null) user.delete();
+\end{lstlisting} 
+
+\subsection{Initialization}
+\label{std-spod-initialization}
+
+There are two static methods that might be needed to call before/after using SPOD:
+
+\begin{description}
+	\item[\expr{sys.db.Manager.initialize()}] will initialize the created managers. Make sure to call it at least once before using SPOD.
+	\item[\expr{sys.db.Manager.cleanup()}] will cleanup the temporary object cache. This can be done if you are using server module caching to free memory or after a rollback to make sure that we don't use the cached object version.
+\end{description}
+
+\subsection{Making connection}
+\label{std-spod-connection}
+
+Connect to your database and create tables directly from code without writing SQL. For instance, by using \type{sys.db.Mysql}. 
+
+\begin{lstlisting} 
+var cnx = sys.db.Mysql.connect({
+   host : "localhost",
+   port : null,
+   user : "root",
+   pass : "",
+   database : "testBase",
+   socket : null,
+});
+sys.db.Manager.cnx = cnx;
+\end{lstlisting} 
+
+\subsection{Creating tables}
+\label{std-spod-tables}
+
+Calling \expr{sys.db.TableCreate.create} will execute a \ic{CREATE TABLE SQL} request based on the SPOD infos.
+
+\begin{lstlisting} 
+if (!sys.db.TableCreate.exists(User.manager)) {
+    sys.db.TableCreate.create(User.manager);
+}
+\end{lstlisting} 
+
+Please note that currently \type{TableCreate} will not create the index or initialize the relations of your table.
+\todo{Find out if this is still true and if this is something that can be fixed}
+
+\subsection{SPOD Supported types}
+\label{std-spod-supported-types}
+
+\begin{center}
+\begin{tabular}{| l | l | l |}
+	\hline
+	\multicolumn{3}{|c|}{Supported types} \\ \hline
+	Haxe Type &  SQL Type  &  Description \\ \hline
+	\type{Int}, \expr{SInt} & \expr{SSQL} INT & a classic 32 bits signed integer \\
+	\type{Float}, \expr{SFloat} & \expr{SQL DOUBLE} & a double precision float value  \\
+	\type{Bool} \expr{SBool}  & \expr{SQL TINYINT(1)} or \expr{BOOL} & a boolean value \\
+	\type{Date}, \expr{SDateTime}  & \expr{SQL DATETIME} & a complete date value \\
+	\type{SDate}  & \expr{SQL DATE} & a date-only value \\
+	\type{SString<K>}  & \expr{SQL VARCHAR(K)} & a size-limited string value \\
+	\type{String}, \expr{SText}  & \expr{SQL MEDIUMTEXT} & a text up to 16 MB \\
+	\type{SBytes<K>}  & \expr{SQL BINARY(K)} & a fixed-size bytes value \\
+	\type{SBinary}, \type{haxe.io.Bytes}  & \expr{SQL MEDIUMBLOB} & up to 16 MB bytes \\
+	\type{SId}  & \expr{SQL INT AUTO INCREMENT} & same as \expr{SInt} but used as an unique ID with auto increment \\
+	\type{SEnum<E>}  & \expr{SQL TINYINT UNSIGNED} & a single enum without parameters which index is stored as a small integer \\
+	\type{SFlags<E>}  &  & a 32 bits flag that uses an enum as bit markers. See \type{haxe.EnumFlags} \\
+	\type{SData<Anything>}  &   & allow arbitrary serialized data (see below) \\
+	\type{Null<T>}, \type{SNull<T>} & & tells that this field can be \ic{NULL} in the database \\
+\end{tabular}
+\end{center}
+
+\paragraph{Advanced Types}
+
+The following advanced types are also available to use specific storage size:
+
+\begin{center}
+\begin{tabular}{| l | l | l |}
+	\hline
+	\multicolumn{3}{|c|}{Supported advanced types} \\ \hline
+	Haxe Type &  SQL Type  &  Description \\ \hline
+	\expr{SUInt} & \expr{SQL UNSIGNED INT} & an unsigned 32 bits integer \\
+	\expr{STinyInt}, \expr{STinyUInt} & \expr{SQL TINYINT} & a small 8 bits signed/unsigned integer \\
+	\expr{SSmallInt}, \expr{SSmallUInt} & \expr{SQL SMALLINT} & a small 16 bits signed/unsigned integer \\
+	\expr{SMediumIInt}, \expr{SMediumUInt} & \expr{SQL MEDIUMINT} & a small 24 bits signed/unsigned integer \\
+	\expr{SBigInt} & \expr{SQL BIGINT} & a 64 bits signed integer - typed as Float in Haxe \\
+	\expr{SSingle} & \expr{SQL FLOAT} & a single precision float value \\
+	\expr{STinyText} & \expr{SQL TINYTEXT} & a text up to 255 bytes \\
+	\expr{SSmallText} & \expr{SQL TEXT} & a text up to 65KB \\
+	\expr{STimeStamp} & \expr{SQL TIMESTAMP} & a 32-bits date timestamp \\
+	\expr{SSmallBinary} & \expr{SQL BLOB} & up to 65 KB bytes \\
+	\expr{SLongBinary} & \expr{SQL LONGBLOB} & up to 4GB bytes \\
+	\expr{SUId} & \expr{SQL INT UNSIGNED AUTO INCREMENT} & same as \expr{SUInt} but used as an unique ID with auto increment \\
+	\expr{SBigId} & \expr{SQL BIGINT AUTO INCREMENT} & same as \expr{SBigInt} but used as an unique ID with auto increment - compiled as \type{Float} in Haxe \\
+	\expr{SSmallFlags<E>} &   & similar to \expr{SFlags} except that the integer used to store the data is based on the number of flags allowed \\
+\end{tabular}
+\end{center}
+	
+	
+\subsection{SPOD Metadata}
+\label{std-spod-metadata}
+
+Metadata can be added to SPOD classes to declare additional information that will be used by SPOD.
+
+\begin{center}
+\begin{tabular}{| l | l |}
+	\hline
+	\multicolumn{2}{|c|}{Before each class field} \\ \hline
+	Metatag &  Description \\ \hline
+	\expr{@:skip} & ignore this field, which will not be part of the database schema \\
+	\expr{@:relation} & declare this field as a relation (see \tref{relations}{std-spod-relations}) \\
+\end{tabular}
+\end{center}
+	
+\begin{center}
+\begin{tabular}{| l | l |}
+	\hline
+	\multicolumn{2}{|c|}{Before the SPOD class} \\ \hline
+	Metatag &  Description \\ \hline
+	\expr{@:table("myTableName")} & change the table name (by default it's the same as the class name) \\
+	\expr{@:id(field1,field2,...)} & specify the primary key fields for this table.  \\
+	\expr{@:index(field1,field2,...,[unique])} & declare an index consisting of the specified classes fields - in that order. If the last field is unique then it means that's an unique index (each combination of fields values can only occur once) \\
+\end{tabular}
+\end{center}	
+	
+The following class does not have a unique id with auto increment, but a two-fields unique primary key:
+
+\begin{lstlisting} 
+@:id(uid, gid)
+class UserGroup extends sys.db.Object {
+    public var uid:SInt;
+    public var gid:SInt;
+}
+\end{lstlisting} 
+
+\subsection{SPOD Manager}
+\label{std-spod-manager}
+
+\paragraph{Manager}
+
+Each SPOD object need its own manager. The SPOD Macros will add this manager automatically. To define a custom manager (should extend \type{sys.db.Manager}), add the following line to your SPOD class body:
+
+\begin{lstlisting} 
+public static var manager = new sys.db.Manager<User>(User);
+\end{lstlisting} 
+
+
+\paragraph{Get}
+
+In order to retrieve an instance of SPOD, call the \expr{Manager.get} method by using the object unique identifier (primary key).
+
+\begin{lstlisting} 
+var user = User.manager.get(1);
+if (user == null) throw "User #1 not found";
+trace(u.name);
+\end{lstlisting} 
+
+If a primary key with multiple values is defined, use the following declaration:
+
+\begin{lstlisting} 
+var userGroup = UserGroup.manager.get({uid:1, gid:2});
+\end{lstlisting} 
+
+
+\paragraph{Select}
+To return the first result object, use the \expr{Manager.select} method.
+
+\begin{lstlisting} 
+var user = User.manager.select($name == "John");
+\end{lstlisting} 
+
+\paragraph{Count}
+Use the \expr{Manager.count} method to count the number of objects matching the given search query:
+
+\begin{lstlisting} 
+var count = User.manager.count($name.like("J\%") && $phoneNumber != null);
+\end{lstlisting} 
+
+\paragraph{Delete}
+Delete all objects matching the given query:
+
+\begin{lstlisting} 
+User.manager.delete($id > 1000);
+\end{lstlisting} 
+
+
+\paragraph{Search}
+
+To search for objects, use the \expr{Manager.search} method.
+
+\begin{lstlisting} 
+var minId = 10;
+for(user in User.manager.search($id < minId)) {
+    trace(user);
+}
+\end{lstlisting} 
+
+In order to differentiate between the database fields and the Haxe variables, all the database fields are prefixed with a dollar in search queries.
+
+Search queries are checked at compile-time and the following SQL code is generated instead:
+
+\begin{lstlisting} 
+unsafeSearch("SELECT * FROM User WHERE id < " + Manager.quoteInt(minId));
+\end{lstlisting} 
+
+The code generator also makes sure that no SQL injection is ever possible.
+
+\paragraph{Supported search syntax}
+
+\begin{description}
+	\item[constants] integers, floats, strings, null, true, false
+	\item[all operations] \expr{+}, \expr{-}, \expr{*}, \expr{/}, \expr{\%}, \expr{|}, \expr{&}, \expr{^}, \expr{>>}, \expr{<<}, \expr{>>>}
+	\item[unary operations] \expr{!}, \expr{-}, \expr{~}
+	\item[all comparisons] \expr{==} , \expr{>=} , \expr{<=}, \expr{>}, \expr{<}, \expr{!=}
+	\item[bool tests] \expr{&&}, \expr{||}
+	\item[parenthesizes] \expr{()}
+	\item[calls and fields accesses] compiled as Haxe expressions
+\end{description} 
+
+When comparing two values with \expr{==} or \expr{!=} and when one of them can be \ic{NULL}, the SQL generator is using the \expr{<=>} SQL operator to ensure that \expr{NULL == NULL} returns true and \expr{NULL != NULL} returns false.
+
+\paragraph{Additional search syntax}
+
+It is also possible to use anonymous objects to match exact values for some fields (similar to previous SPOD but typed :
+
+\begin{lstlisting} 
+User.manager.search({id:1, name: "Nicolas"})
+// same as :
+User.manager.search($id == 1 && $name == "Nicolas")
+// same as :
+User.manager.search($id == 1 && {name: "Nicolas"})
+\end{lstlisting} 
+
+Use if-conditions to generate different SQL based on Haxe variables (it is not possible to use database fields in if-test) :
+
+\begin{lstlisting} 
+function listName( ?name : String ) {
+    return User.manager.search($id < 10 && if (name == null) true else $name == name);
+}
+\end{lstlisting} 
+
+\subsection{SQL functions}
+\label{std-spod-sql}
+
+\paragraph{SQL global functions}
+The following SQL global functions are possible in search queries:
+
+\begin{center}
+\begin{tabular}{| l | l | 1 | 1 |}
+	\hline
+	\multicolumn{4}{|c|}{functions} \\ \hline
+	Function & Haxe Type & SQL Type &  Description \\ \hline
+	\expr{$now()} & \expr{SDateTime} & \ic{SQL NOW()} & returns the current datetime \\
+	\expr{$curDate()} & \expr{SDate} & \ic{SQL CURDATE()} & returns the current date \\
+	\expr{$date(v:SDateTime)} & \expr{SDate} & \ic{SQL DATE()} & returns the date part of the \expr{DateTime} \\
+	\expr{$seconds(v:Float)} & \expr{SInterval} & \ic{SQL INTERVAL v SECOND} & returns the date interval in seconds  \\
+	\expr{$minutes(v:Float)} & \expr{SInterval} & \ic{SQL INTERVAL v MINUTE} & returns the date interval in minutes \\
+	\expr{$hours(v:Float)} & \expr{SInterval} & \ic{SQL INTERVAL v HOUR} & returns the date interval in hours \\
+	\expr{$days(v:Float)} & \expr{SInterval} & \ic{SQL INTERVAL v DAY} & returns the date interval in days \\
+	\expr{$months(v:Float)} & \expr{SInterval} & \ic{SQL INTERVAL v MONTH} & returns the date interval in months \\
+	\expr{$years(v:Float)} & \expr{SInterval} & \ic{SQL INTERVAL v YEAR} & returns the date interval in years \\
+\end{tabular}
+\end{center}
+
+\paragraph{SQL global operations}
+The following SQL global operators are possible in search queries:
+
+\begin{center}
+\begin{tabular}{| l | l | 1 |}
+	\hline
+	\multicolumn{3}{|c|}{operators} \\ \hline
+	Search operator & SQL operator &  Description \\ \hline
+	\expr{stringA.like(stringB)} & SQL LIKE & find if \ic{stringB} is contained into \ic{stringA} \\
+	\expr{$name in ["a", "b", "c"]}  &  & Pass any \ic{Iterable} to the in operator. An empty iterable will emit a false statement to prevent SQL errors when doing \ic{IN ()}. \\
+\end{tabular}
+\end{center}
+
+\subsection{Search options}
+\label{std-spod-search-options}
+
+After the search query, specify some search options:
+
+\begin{lstlisting} 
+// retrieve the first 20 users ordered by ascending name
+User.manager.search(true, {orderBy: name, limit: 20});
+\end{lstlisting} 
+
+The following options are supported:
+
+\begin{itemize} 
+	\item[\expr{orderBy}] specify one of several order database fields and use a minus operation in front of the field to sort in descending order. For instance \ic{\{orderBy: \[-name, id\]\}} will generate \ic{SQL ORDER BY name DESC, id}
+	\item[\expr{limit}] specify which result range to obtain. Use Haxe variables and expressions in limit values, for instance \ic{\{ limit: \[pos, length\]\}}
+	\item[\expr{forceIndex}] force this search to use the specific index. For example to force a two-fields index use \ic{\{ forceIndex: \[name, date\]\}}. The index name used in that case will be \ic{TableName_name_date}
+\end{itemize} 
+
+\subsection{SPOD Dynamic search}
+\label{std-spod-dynamic-search}
+
+To build own exact-values search criteria at runtime, use \expr{Manager.dynamicSearch} that will build the SQL query based on the values you pass it. Please note that you can get runtime errors if your object contain fields that are not in the database table.
+
+\begin{lstlisting} 
+var query = {name: "John", phoneNumber: "+818123456"};
+var users = User.manager.dynamicSearch(query);
+\end{lstlisting} 
+
+\subsection{SPOD Relation search}
+\label{std-spod-relation-search}
+
+Search a given \tref{relation}{std-spod-relations} by using either the relation key or the relation property.
+
+\begin{lstlisting} 
+var user = User.manager.get(1);
+var groups = UserGroup.manager.search($uid == user.id);
+
+// same as:
+var groups = UserGroup.manager.search($user == user);
+\end{lstlisting} 
+The second case is more strictly typed since it does not only check that the key have the same type, and it also safer because it will use null id if the user value is null at runtime.
+
+\subsection{SPOD Relations}
+\label{std-spod-relations}
+
+Declare relations between database classes by using the \ic{@:relation} metadata.
+
+\begin{lstlisting} 
+class User extends sys.db.Object {
+    public var id:SId;
+    // ....
+}
+class Group extends sys.db.Object {
+   public var id:SId;
+   // ...
+}
+
+@:id(gid, uid)
+class UserGroup extends sys.db.Object {
+    @:relation(uid) public var user:User;
+    @:relation(gid) public var group:Group;
+}
+\end{lstlisting} 
+
+The first time the user field from an UserGroup instance gets read by SPOD Macros, SPOD will fetch the User instance corresponding to the current uid value and cache it. When the user field gets set, it will modify the uid value as the same time.
+
+\paragraph{Locking}
+When using transactions, the default behavior for relations is that they are not locked. Lock the row (\ic{SQL SELECT...FOR UPDATE}) by adding the lock keyword after the relation key:
+
+\begin{lstlisting} 
+@:relation(uid, lock) public var user:User;
+\end{lstlisting} 
+
+\paragraph{Cascading}
+
+Relations can be strongly enforced by using \ic{CONSTRAINT}/\ic{FOREIGN KEY} with MySQL/InnoDB. This way when an User instance is deleted, all the corresponding UserGroup for the given user will be deleted as well. However if the relation field can be nullable, the value will be set to \ic{NULL}. To enforce cascading for nullable-field relations, add the cascade keyword after the relation key.
+
+\begin{lstlisting} 
+@:relation(uid,cascade) var user:Null<User>;
+\end{lstlisting} 
+
+
+\subsection{SPOD Serialized Data}
+\label{std-spod-serialized-data}
+
+\since{Haxe 2.11}
+
+In order to store arbitrary serialized data in a SPOD object, use the \expr{SData} type. For example:
+
+\begin{lstlisting} 
+import sys.db.Types
+enum PhoneKind {
+    AtHome;
+    AtWork;
+    Mobile;
+}
+class User extends sys.db.Object {
+    public var id : SId;
+    ...
+    public var phones : SData<Array<{kind:PhoneKind, number:String}>>;
+}
+\end{lstlisting} 
+
+\begin{itemize}
+	\item When the phones field is accessed for reading (the first time only), it is unserialized. By default the data is stored as an Haxe-serialized String, but is possible to override the \expr{doSerialize} and \expr{doUnserialize} methods of the Manager to have a specific serialization for a specific table or field.
+	\item When the phones field has been either read or written, a flag will be set to remember that potential changes were made.
+	\item When the SPOD object is either inserted or updated, the modified data is serialized and eventually sent to the database if some actual change have been done.
+\end{itemize}
+
+As a consequence, pushing data into the phones \type{Array} or directly modifying the phone number will be noticed by the SPOD engine.
+
+The SQL data type for \expr{SData} is a binary blob, in order to allow any kind of serialization (text or binary), so the actual runtime value of the phones field is a Bytes. It will however only be accessible by reflection, since SPOD is changing the phones field into a property.
+
+\paragraph{Accessing the SPOD Infos}
+Get the database schema by calling the \expr{Manager.dbInfos()} method. It will return a \type{sys.db.SpodInfos} structure.
