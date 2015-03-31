@@ -784,12 +784,12 @@ The Haxe Standard Library provides basic unit testing classes from the \type{hax
 
 \paragraph{Creating new test cases}
 
-Create a new class extending \type{haxe.unit.TestCase} and add own test methods. Every test method name must start with "\ic{test}".
+First, create a new class extending \type{haxe.unit.TestCase} and add own test methods. Every test method name must start with "\ic{test}".
 
 \haxe{assets/UnitTestCase.hx}
 
 \paragraph{Running unit tests}
-To run the test, an instance of \type{haxe.unit.TestRunner} should be created. Add the \expr{TestCase} using the \expr{add} method and call \expr{run} to start the test.
+To run the test, an instance of \type{haxe.unit.TestRunner} has to be created. Add the \expr{TestCase} using the \expr{add} method and call \expr{run} to start the test.
 
 \haxe{assets/UnitTestRunner.hx}
 
@@ -804,7 +804,7 @@ OK 1 tests, 0 failed, 1 success
 The \type{haxe.unit.TestCase} class comes with three test functions.
 
 \begin{description}
-	\item[\expr{assertEquals(a, b)}] Succeeds if \ic{a} and \ic{b} are equal, Where \ic{a} is value tested and \ic{b} is the expected value.
+	\item[\expr{assertEquals(a, b)}] Succeeds if \ic{a} and \ic{b} are equal, where \ic{a} is value tested and \ic{b} is the expected value.
 	\item[\expr{assertTrue(a)}] Succeeds if \ic{a} is \expr{true}
 	\item[\expr{assertFalse(a)}] Succeeds if \ic{a} is \expr{false}
 \end{description}
