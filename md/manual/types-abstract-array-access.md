@@ -32,8 +32,7 @@ At this point it should not be surprising to see that calls to the array access 
 
 ```haxe
 map.set("foo",1);
-1;
-console.log(map.get("foo"));
+console.log(map.get("foo")); // 1
 ```
 
 ###### Order of array access resolving

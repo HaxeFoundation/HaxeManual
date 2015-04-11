@@ -7,8 +7,8 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
  Metatag  |  Description   |  Platform 
  --- | --- | ---
 @:abstract  |  Sets the underlying class implementation as [abstract type](types-abstract.md)   |  cs  java 
-@:access _(Target path)_   |   Forces private access to package  type or field  see [Access Control](lf-access-control.md)   |  all 
-@:allow _(Target path)_   |   Allows private access from package  typeor field  see [Access Control](lf-access-control.md)   |  all 
+@:access _(Target path)_   |   Forces private access to package  type or field,  see [Access Control](lf-access-control.md)   |  all 
+@:allow _(Target path)_   |   Allows private access from package  type or field,  see [Access Control](lf-access-control.md)   |  all 
 @:annotation   |  Annotation (<code>@interface</code>) definitions on <code>-java-lib</code> imports will be annotated with this metadata. Has no effect on types compiled by Haxe    |  java 
 @:arrayAccess   |  Allows [Array access](types-abstract-array-access.md) on an abstract   |  all 
 @:autoBuild _(Build macro call)_   |   Extends <code>@:build</code> metadata to all extending and implementing classes. See [Macro autobuild](macro-auto-build.md)   |  all 
@@ -67,7 +67,7 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 @:noDebug  |  Does not generate debug information into the Swf even if <code>-debug</code> is set    |  flash 
 @:noDoc   |  Prevents a type from being included in documentation generation   |  all 
 @:noImportGlobal   |  Prevents a static field from being imported with <code>import Class.*</code>   |  all 
-@:noPackageRestrict   |  Allows a module to be accessed across all targets if found on its first type.   |  all 
+@:noPackageRestrict   |  Allows a module to be accessed across all targets if found on its first type   |  all 
 @:noStack  |      |  cpp 
 @:noUsing  |  Prevents a field from being used with <code>using</code>   |  all 
 @:notNull  |  Declares an abstract type as not accepting [<code>null</code> values](types-nullability.md)   |  all 
@@ -88,7 +88,7 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 @:runtimeValue   |  Marks an abstract as being a runtime value   |  all 
 @:setter _(Class field name)_   |  Generates a native setter function on the given field    |  flash 
 @:sound _(File path)_   |  Includes a given _.wav_ or _.mp3_ file into the target Swf and associates it with the class (must extend <code>flash.media.Sound</code>)   |  flash 
-@:struct   |  Marks a class definition as a struct.    |  cs 
+@:struct   |  Marks a class definition as a struct    |  cs 
 @:suppressWarnings   |  Adds a SuppressWarnings annotation for the generated Java class   |  java 
 @:throws _(Type as String)_   |  Adds a <code>throws</code> declaration to the generated function    |  java 
 @:to   |  Specifies that the field of the abstract is a cast operation to the type identified in the function. See [Implicit Casts](types-abstract-implicit-casts.md)  | all 

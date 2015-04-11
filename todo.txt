@@ -31,11 +31,7 @@ Missing Content:
 2.5.3 - Optional Fields
 5.3 - Binary Operators
 5.4 - Unary Operators
-8.3.1 - Field Access
-8.3.2 - Call Arguments
-8.3.3 - Usage
-8.3.4 - Position
-8.3.5 - Toplevel
+8.3 - Completion
 9.6.1 - Macro-in-Macro
 9.6.4 - Type Parameters
 10.10 - Xml
@@ -173,7 +169,14 @@ Unreviewed:
 7 - Compiler Usage
 8.1 - Built-in Compiler Metadata
 8.2 - Dead Code Elimination
-8.3 - Completion
+8.3.1 - Overview
+8.3.2 - Field access completion
+8.3.3 - Call argument completion
+8.3.4 - Type path completion
+8.3.5 - Usage completion
+8.3.6 - Position completion
+8.3.7 - Top-level completion
+8.3.8 - Completion server
 8.4 - Resources
 8.4.1 - Embedding resources
 8.4.2 - Retrieving text resources
@@ -230,6 +233,7 @@ Unreviewed:
 10.13 - Remoting
 10.13.1 - Remoting Connection
 10.13.2 - Implementation details
+10.14 - Unit testing
 11 - Haxelib
 11.1 - Using a Haxe library with the Haxe Compiler
 11.2 - haxelib.json

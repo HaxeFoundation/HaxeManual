@@ -52,7 +52,7 @@ class Main {
 }
 ``` 
 
-This example demonstrates the Lamda count, has, foreach and fold function on a set of ints.
+This example demonstrates the Lambda count, has, foreach and fold function on a set of ints.
 
 ```haxe
 using Lambda;

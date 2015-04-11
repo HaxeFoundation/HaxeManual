@@ -58,6 +58,6 @@ Haxe uses the target platform's native resource embedding if there is one, other
 
 ---
 
-Previous section: [Completion](cr-completion.md)
+Previous section: [Completion server](cr-completion-server.md)
 
 Next section: [Runtime Type Information](cr-rtti.md)
