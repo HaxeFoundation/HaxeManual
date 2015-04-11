@@ -145,9 +145,9 @@ The compiler automatically defines the flag \expr{dce} with a value of either \e
 \subsection{Overview}
 \label{cr-completion-overview}
 
-The rich \tref{type system}{type-system} of the Haxe Compiler makes it difficult for IDEs and editors to provide accurate completion information. Between \tref{type inference}{type-system-type-inference} and \tref{macros}{macro} it would require a substantial amount of work to replicate the required processing. This is why the Haxe Compiler comes with a built-in completion mode for third-party software to use.
+The rich \tref{type system}{type-system} of the Haxe Compiler makes it difficult for IDEs and editors to provide accurate completion information. Between \tref{type inference}{type-system-type-inference} and \tref{macros}{macro}, it would require a substantial amount of work to replicate the required processing. This is why the Haxe Compiler comes with a built-in completion mode for third-party software to use.
 
-All completion is triggered using the \ic{--display file@position[@mode]} compiler argument. The requires arguments are:
+All completion is triggered using the \ic{--display file@position[@mode]} compiler argument. The required arguments are:
 
 \begin{description}
 	\item[file:] The file to check for completion. This must be an absolute or relative path to a .hx file. It does not respect any class paths or libraries.
@@ -166,7 +166,7 @@ We will look into the following completion modes in detail:
 	\item[\tref{Top-level}{cr-completion-top-level}:] Lists all identifiers which are available at a given position. (mode: \ic{"toplevel"})
 \end{description}
 
-Due to Haxe being a very fast compiler it is often sufficient to rely on the normal compiler invocation for completion. For bigger projects Haxe provides a \tref{server mode}{cr-completion-server} which ensures that only those files are re-compiled that actually changed or had any of their dependencies changes.
+Due to Haxe being a very fast compiler, it is often sufficient to rely on the normal compiler invocation for completion. For bigger projects Haxe provides a \tref{server mode}{cr-completion-server} which ensures that only those files are re-compiled that actually changed or had any of their dependencies changes.
 
 \paragraph{General notes on the interface}
 \label{cr-completion-interface-notes}
@@ -191,7 +191,7 @@ class Main {
 }
 \end{lstlisting}
 
-If this file is saved to Main.hx the completion can be invoked using the command \ic{haxe --display Main.hx@0}. The output looks similar to this (we omit several fields for brevity and improve the formatting for readability):
+If this file is saved to Main.hx, the completion can be invoked using the command \ic{haxe --display Main.hx@0}. The output looks similar to this (we omit several fields for brevity and improve the formatting for readability):
 
 \begin{lstlisting}
 <list>
@@ -225,7 +225,7 @@ If this file is saved to Main.hx the completion can be invoked using the command
 The XML structure follows:
 
 \begin{itemize}
-	\item The document node \ic{list} encloses several nodes \ic{i}, each of which representing a field.
+	\item The document node \ic{list} encloses several nodes \ic{i}, each representing a field.
 	\item The \ic{n} attribute contains the name of the field.
 	\item The \ic{t} node contains the type of the field.
 	\item the \ic{d} node contains the documentation of the field.
@@ -233,7 +233,7 @@ The XML structure follows:
 
 \since{3.2.0}
 
-When compiling with \ic{-D display-details} each field additionally has a \ic{k} attribute which can either be \ic{var} or \ic{method}. This allows distinguishing method fields from variable fields that have a function type.
+When compiling with \ic{-D display-details}, each field additionally has a \ic{k} attribute which can either be \ic{var} or \ic{method}. This allows distinguishing method fields from variable fields that have a function type.
 
 
 
@@ -250,7 +250,7 @@ class Main {
 }
 \end{lstlisting}
 
-If this file is saved to Main.hx the completion can be invoked using the command \ic{haxe --display Main.hx@0}. The output looks like this:
+If this file is saved to Main.hx, the completion can be invoked using the command \ic{haxe --display Main.hx@0}. The output looks like this:
 
 \begin{lstlisting}
 <type>
@@ -269,7 +269,7 @@ Type path completion can occur in \tref{import declarations}{type-system-import}
 
 \paragraph{package completion}
 
-This lists all sub-packages of the haxe package, as well as all modules in that package:
+This lists all sub-packages of the haxe package as well as all modules in that package:
 
 \begin{lstlisting}
 import haxe.|
@@ -313,7 +313,7 @@ import haxe.|
 
 \paragraph{import module completion}
 
-This lists all \tref{sub-types}{type-system-module-sub-types} of the module \type{haxe.Unserializer} as well as all its public static fields (because these can be imported as well):
+This lists all \tref{sub-types}{type-system-module-sub-types} of the module \type{haxe.Unserializer} as well as all its public static fields (because these can be imported too):
 
 \begin{lstlisting}
 import haxe.Unserializer.|
@@ -402,7 +402,7 @@ class Main {
 }
 \end{lstlisting}
 
-If this file is saved to Main.hx the completion can be invoked using the command \ic{haxe --display Main.hx@0@usage}. The output looks like this:
+If this file is saved to Main.hx, the completion can be invoked using the command \ic{haxe --display Main.hx@0@usage}. The output looks like this:
 
 \begin{lstlisting}
 <list>
@@ -426,7 +426,7 @@ class Main {
 }
 \end{lstlisting}
 
-If this file is saved to Main.hx the completion can be invoked using the command \ic{haxe --display Main.hx@0@position}. The output looks like this:
+If this file is saved to Main.hx, the completion can be invoked using the command \ic{haxe --display Main.hx@0@position}. The output looks like this:
 
 \begin{lstlisting}
 <list>
@@ -455,7 +455,7 @@ enum MyEnum {
 }
 \end{lstlisting}
 
-If this file is saved to Main.hx the completion can be invoked using the command \ic{haxe --display Main.hx@63@toplevel}. The output looks similar to this (we omit several entries for brevity):
+If this file is saved to Main.hx, the completion can be invoked using the command \ic{haxe --display Main.hx@63@toplevel}. The output looks similar to this (we omit several entries for brevity):
 
 \begin{lstlisting}
 <il>
