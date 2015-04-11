@@ -24,11 +24,11 @@ The second question usually comes down to providing an argument specifying the d
 * `-js file_name` Generates [Javascript](target-javascript.md) source code in specified file.
 * `-as3 directory` Generates Actionscript 3 source code in specified directory.
 * `-swf file_name` Generates the specified file as [Flash](target-flash.md) .swf.
-* `-neko file_name` Generates [Neko](target-neko.md) binary as specified file.
-* `-php directory` Generates [PHP](target-php.md) source code in specified directory.
+* `-neko file_name` Generates [Neko](#) binary as specified file.
+* `-php directory` Generates [PHP](#) source code in specified directory.
 * `-cpp directory` Generates [C++](target-cpp.md) source code in specified directory and compiles it using native C++ compiler.
-* `-cs directory` Generates [C#](target-cs.md) source code in specified directory.
-* `-java directory` Generates [Java](target-java.md) source code in specified directory and compiles it using the Java Compiler.
+* `-cs directory` Generates [C#](#) source code in specified directory.
+* `-java directory` Generates [Java](#) source code in specified directory and compiles it using the Java Compiler.
 * `-python file_name` Generates [Python](target-python.md) source code in the specified file.
 
 ---

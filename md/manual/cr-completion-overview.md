@@ -28,6 +28,6 @@ Due to Haxe being a very fast compiler, it is often sufficient to rely on the no
 
 ---
 
-Previous section: [Completion](#)
+Previous section: [Completion](cr-completion.md)
 
 Next section: [Field access completion](cr-completion-field-access.md)

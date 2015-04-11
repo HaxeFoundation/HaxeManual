@@ -31,7 +31,6 @@ Missing Content:
 2.5.3 - Optional Fields
 5.3 - Binary Operators
 5.4 - Unary Operators
-8.3 - Completion
 9.6.1 - Macro-in-Macro
 9.6.4 - Type Parameters
 10.10 - Xml

@@ -4,7 +4,7 @@
 
 8.2: [Dead Code Elimination](cr-dce.md)
 
-8.3: [Completion](#)
+8.3: [Completion](cr-completion.md)
 
 8.4: [Resources](cr-resources.md)
 
