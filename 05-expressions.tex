@@ -220,7 +220,7 @@ The typer ensures that the type of \expr{e1} can be iterated over, which is typi
 
 Variable \expr{v} is then available within loop body \expr{e2} and holds the value of the individual elements of collection \expr{e1}.
 
-The closest Haxe for-loops come to C-style for-loops is probably using the range operator \expr{...}. It is a binary operator taking two \expr{Int} arguments: \expr{min...max} returns an \expr{IntIterator} instance that iterates from \expr{min} (inclusive) to \expr{max} (exclusive). Note that \expr{max} may not be smaller than \expr{min}.
+Haxe has a special range operator to iterate over intervals. It is a binary operator taking two \type{Int} operands: \expr{min...max} returns an \expr{IntIterator} instance that iterates from \expr{min} (inclusive) to \expr{max} (exclusive). Note that \expr{max} may not be smaller than \expr{min}.
 
 \begin{lstlisting}
 for (i in 0...10) trace(i); // 0 to 9
