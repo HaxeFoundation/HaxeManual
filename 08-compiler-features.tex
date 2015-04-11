@@ -142,81 +142,347 @@ The compiler automatically defines the flag \expr{dce} with a value of either \e
 \section{Completion}
 \label{cr-completion}
 
-Because of the high number of Haxe features and its powerful type inference, \href{http://haxe.org/documentation/introduction/editors-and-ides.html}{IDE and code editors} cannot easily handle completion by parsing the Haxe files. Haxe provides completion support for IDEs directly built in the compiler thanks to the \ic{--display} commandline parameter.
+\subsection{Overview}
+\label{cr-completion-overview}
 
-Let's have a look at the following example:
+The rich \tref{type system}{type-system} of the Haxe Compiler makes it difficult for IDEs and editors to provide accurate completion information. Between \tref{type inference}{type-system-type-inference} and \tref{macros}{macro} it would require a substantial amount of work to replicate the required processing. This is why the Haxe Compiler comes with a built-in completion mode for third-party software to use.
+
+All completion is triggered using the \ic{--display file@position[@mode]} compiler argument. The requires arguments are:
+
+\begin{description}
+	\item[file:] The file to check for completion. This must be an absolute or relative path to a .hx file. It does not respect any class paths or libraries.
+	\item[position:] The byte position (not character position) of where to check for completion in the given file.
+	\item[mode:] The completion mode to use (see below).
+\end{description}
+
+We will look into the following completion modes in detail:
+
+\begin{description}
+	\item[\tref{Field access}{cr-completion-field-access}:] Provides a list of fields that can be accessed on a given type.
+	\item[\tref{Call argument}{cr-completion-call-argument}:] Reports the type of the function which is currently being called.
+	\item[\tref{Type path}{cr-completion-type-path}:] Lists sub-packages, sub-types and static fields.
+	\item[\tref{Usage}{cr-completion-usage}:] Lists all occurrences of a given type, field or variable in all compiled files. (mode: \ic{"usage"})
+	\item[\tref{Position}{cr-completion-position}:] Reports the position of where a given type, field or variable is defined. (mode: \ic{"position"})
+	\item[\tref{Top-level}{cr-completion-top-level}:] Lists all identifiers which are available at a given position. (mode: \ic{"toplevel"})
+\end{description}
+
+Due to Haxe being a very fast compiler it is often sufficient to rely on the normal compiler invocation for completion. For bigger projects Haxe provides a \tref{server mode}{cr-completion-server} which ensures that only those files are re-compiled that actually changed or had any of their dependencies changes.
+
+\paragraph{General notes on the interface}
+\label{cr-completion-interface-notes}
+
+\begin{itemize}
+	\item The position-argument can be set to 0 if the file in question contains a pipeline \ic{|} character at the position of interest. This is very useful for demonstration and testing as it allows us to ignore the byte-counting process a real IDE would have to do. The examples in this section are making use of this feature.
+	\item The output is HTML-escaped so that \ic{\&}, \ic{<} and \ic{>} become \ic{\&amp;}, \ic{\&lt;} and \ic{\&gt;} respectively.
+	\item Otherwise any documentation output is preserved which means longer documentation might include new-line and tab-characters as it does in the source files.
+	\item When run in completion mode, the compiler does not display errors but instead tries to ignore them or recover from them.  If a critical error occurs while getting completion, the Haxe Compiler prints the error message instead of the completion output. Any non-XML output can be treated as a critical error message.
+\end{itemize}
+
+\subsection{Field access completion}
+\label{cr-completion-field-access}
+
+Field completion is triggered after a dot \ic{.} character to list the fields that are available on the given type. The compiler parses and types everything up to the point of completion and then outputs the relevant information to stderr:
 
 \begin{lstlisting}
-class Test {
-    public static function main() {
-        trace("Hello".|
-    }
+class Main {
+  public static function main() {
+    trace("Hello".|
+  }
 }
 \end{lstlisting}
 
-The vertical bar indicates the cursor position after the dot has been pressed. At this time, it is the job of the IDE to call the Haxe compiler with usual compilation parameters, plus an additional one \ic{--display Test.hx@73}.
-
-This parameter determines the file in which we want some completion and the byte position (not char positions) of the cursor in the file. In the example given, you should get 73 if you count characters with Windows' CRLF lines ending.
-
-
-Haxe will perform all the parsing and typing as it would do for normal compilation, except that it will not generate any code. If it reaches the byte 73 in the file \ic{Test.hx} during compilation, it will output the information about the type of the expression on the left of the dot.
-
-
-In our case, that would be \type{String}. The exception being that in the case of an anonymous object or a class instance, the compiler will, instead, list the different fields in an XML and print them to a possible output:
+If this file is saved to Main.hx the completion can be invoked using the command \ic{haxe --display Main.hx@0}. The output looks similar to this (we omit several fields for brevity and improve the formatting for readability):
 
 \begin{lstlisting}
 <list>
-<i n="length"><t>Int</t><d>...</d></i>
-<i n="charAt"><t>index : Int -> String</t><d>...</d></i>
-<i n="charCodeAt"><t>index : Int -> Int</t><d>...</d></i>
-<i n="indexOf">
-  <t>value : String -> ?startIndex : Int -> Int</t>
-  <d>...</d>
+<i n="length">
+  <t>Int</t>
+  <d>
+    The number of characters in `this` String.
+  </d>
 </i>
-...
+<i n="charAt">
+  <t>index : Int -&gt; String</t>
+  <d>
+    Returns the character at position `index` of `this` String.
+    If `index` is negative or exceeds `this.length`, the empty String
+    "" is returned.
+  </d>
+</i>
+<i n="charCodeAt">
+  <t>index : Int -&gt; Null&lt;Int&gt;</t>
+  <d>
+    Returns the character code at position `index` of `this` String.
+    If `index` is negative or exceeds `this.length`, null is returned.
+    To obtain the character code of a single character, "x".code can
+    be used instead to inline the character code at compile time.
+    Note that this only works on String literals of length 1.
+  </d>
+</i>
 </list>
 \end{lstlisting}
 
-In that case, all public methods and fields of \type{String} are listed. This information can directly be used by the IDE to provide code hints and completion.
+The XML structure follows:
 
-\paragraph{Functions completion}
-This completion mechanism works with both dot and opening parenthesis, so you can get type information about fields lists and function call arguments types:
+\begin{itemize}
+	\item The document node \ic{list} encloses several nodes \ic{i}, each of which representing a field.
+	\item The \ic{n} attribute contains the name of the field.
+	\item The \ic{t} node contains the type of the field.
+	\item the \ic{d} node contains the documentation of the field.
+\end{itemize}
+
+\since{3.2.0}
+
+When compiling with \ic{-D display-details} each field additionally has a \ic{k} attribute which can either be \ic{var} or \ic{method}. This allows distinguishing method fields from variable fields that have a function type.
+
+
+
+\subsection{Call argument completion}
+\label{cr-completion-call-argument}
+
+Call argument completion is triggered after an opening parenthesis character \ic{(} to show the type of the function that is currently being called. It works for any function call as well as constructor calls:
 
 \begin{lstlisting}
-class Test {
-    public static function main() {
-        trace("Hello".split(|
-    }
+class Main {
+  public static function main() {
+    trace("Hello".split(|
+  }
 }
 \end{lstlisting}
 
-This will give you the following result: \expr{<type>delimiter : String -> Array<String></type>} \_(please note that the content of the type is not html-escaped in the real output)\_
+If this file is saved to Main.hx the completion can be invoked using the command \ic{haxe --display Main.hx@0}. The output looks like this:
 
-\paragraph{Package completion}
-It also works with packages by scanning the .hx files available in the classpath:
+\begin{lstlisting}
+<type>
+delimiter : String -&gt; Array&lt;String&gt;
+</type>
+\end{lstlisting}
+
+IDEs can parse this to recognize that the called function requires one argument named \ic{delimiter} of type \type{String} and returns an \type{Array<String>}.
+
+\trivia{Problems with the output structure}{We acknowledge that the current format requires a bit of manual parsing which can be annoying. In the future we might look into providing a more structured output, especially for functions.}
+
+\subsection{Type path completion}
+\label{cr-completion-type-path}
+
+Type path completion can occur in \tref{import declarations}{type-system-import}, \tref{using declarations}{lf-static-extension} or any place a type is referenced. We can identify three different cases:
+
+\paragraph{package completion}
+
+This lists all sub-packages of the haxe package, as well as all modules in that package:
 
 \begin{lstlisting}
 import haxe.|
-Will return :
+\end{lstlisting}
 
+\begin{lstlisting}
 <list>
-    <i n="BaseCode"><t></t><d></d></i>
-    <i n="EnumFlags"><t></t><d></d></i>
-    ...
-    <i n="io"><t></t><d></d></i>
-    <i n="macro"><t></t><d></d></i>
-    <i n="remoting"><t></t><d></d></i>
-    ...
+<i n="CallStack"><t></t><d></d></i>
+<i n="Constraints"><t></t><d></d></i>
+<i n="DynamicAccess"><t></t><d></d></i>
+<i n="EnumFlags"><t></t><d></d></i>
+<i n="EnumTools"><t></t><d></d></i>
+<i n="Http"><t></t><d></d></i>
+<i n="Int32"><t></t><d></d></i>
+<i n="Int64"><t></t><d></d></i>
+<i n="Json"><t></t><d></d></i>
+<i n="Log"><t></t><d></d></i>
+<i n="PosInfos"><t></t><d></d></i>
+<i n="Resource"><t></t><d></d></i>
+<i n="Serializer"><t></t><d></d></i>
+<i n="Template"><t></t><d></d></i>
+<i n="Timer"><t></t><d></d></i>
+<i n="Ucs2"><t></t><d></d></i>
+<i n="Unserializer"><t></t><d></d></i>
+<i n="Utf8"><t></t><d></d></i>
+<i n="crypto"><t></t><d></d></i>
+<i n="ds"><t></t><d></d></i>
+<i n="extern"><t></t><d></d></i>
+<i n="format"><t></t><d></d></i>
+<i n="io"><t></t><d></d></i>
+<i n="macro"><t></t><d></d></i>
+<i n="remoting"><t></t><d></d></i>
+<i n="rtti"><t></t><d></d></i>
+<i n="unit"><t></t><d></d></i>
+<i n="web"><t></t><d></d></i>
+<i n="xml"><t></t><d></d></i>
+<i n="zip"><t></t><d></d></i>
 </list>
 \end{lstlisting}
 
-\paragraph{Error Handling}
-When run in completion mode, the compiler will not display errors, but instead, try to ignore them or recover from them. 
 
-If a not recoverable error occurs while getting completion, the Haxe compiler will print the error message instead of the completion output. You can then treat any not-XML output as an error message which prevents the completion.
+\paragraph{import module completion}
 
-\paragraph{Compilation cache server}
-\since{2.09}
+This lists all \tref{sub-types}{type-system-module-sub-types} of the module \type{haxe.Unserializer} as well as all its public static fields (because these can be imported as well):
+
+\begin{lstlisting}
+import haxe.Unserializer.|
+\end{lstlisting}
+
+\begin{lstlisting}
+<list>
+<i n="DEFAULT_RESOLVER">
+  <t>haxe.TypeResolver</t>
+  <d>
+    This value can be set to use custom type resolvers.
+
+    A type resolver finds a Class or Enum instance from a given String.
+    By default, the haxe Type Api is used.
+
+    A type resolver must provide two methods:
+
+    1. resolveClass(name:String):Class&lt;Dynamic&gt; is called to
+      determine a Class from a class name
+    2. resolveEnum(name:String):Enum&lt;Dynamic&gt; is called to
+      determine an Enum from an enum name
+
+    This value is applied when a new Unserializer instance is created.
+    Changing it afterwards has no effect on previously created
+    instances.
+  </d>
+</i>
+<i n="run">
+  <t>v : String -&gt; Dynamic</t>
+  <d>
+    Unserializes `v` and returns the according value.
+
+    This is a convenience function for creating a new instance of
+    Unserializer with `v` as buffer and calling its unserialize()
+    method once.
+  </d>
+</i>
+<i n="TypeResolver"><t></t><d></d></i>
+<i n="Unserializer"><t></t><d></d></i>
+</list>
+\end{lstlisting}
+
+
+\begin{lstlisting}
+using haxe.Unserializer.|
+\end{lstlisting}
+
+
+\paragraph{other module completion}
+
+This lists all \tref{sub-types}{type-system-module-sub-types} of the module \type{haxe.Unserializer}:
+
+\begin{lstlisting}
+using haxe.Unserializer.|
+\end{lstlisting}
+
+\begin{lstlisting}
+class Main {
+  static public function main() {
+    var x:haxe.Unserializer.|
+  }
+}
+\end{lstlisting}
+
+\begin{lstlisting}
+<list>
+<i n="TypeResolver"><t></t><d></d></i>
+<i n="Unserializer"><t></t><d></d></i>
+</list>
+\end{lstlisting}
+
+
+\subsection{Usage completion}
+\label{cr-completion-usage}
+
+Usage completion is enabled by using the \ic{"usage"} mode argument (see \Fullref{cr-completion-overview}). We demonstrate it here using a local variable. Note that it would work with fields and types the same way:
+
+\begin{lstlisting}
+class Main {
+  public static function main() {
+    var a = 1;
+    var b = a + 1;
+    trace(a);
+    a.|
+  }
+}
+\end{lstlisting}
+
+If this file is saved to Main.hx the completion can be invoked using the command \ic{haxe --display Main.hx@0@usage}. The output looks like this:
+
+\begin{lstlisting}
+<list>
+<pos>main.hx:4: characters 9-10</pos>
+<pos>main.hx:5: characters 7-8</pos>
+<pos>main.hx:6: characters 1-2</pos>
+</list>
+\end{lstlisting}
+
+
+
+\subsection{Position completion}
+\label{cr-completion-position}
+
+Position completion is enabled by using the \ic{"position"} mode argument (see \Fullref{cr-completion-overview}). We demonstrate it using a field. Note that it would work with local variables and types the same way:
+
+\begin{lstlisting}
+class Main {
+  static public function main() {
+    "foo".split.|
+}
+\end{lstlisting}
+
+If this file is saved to Main.hx the completion can be invoked using the command \ic{haxe --display Main.hx@0@position}. The output looks like this:
+
+\begin{lstlisting}
+<list>
+<pos>std/string.hx:124: characters 1-54</pos>
+</list>
+\end{lstlisting}
+
+\trivia{Effects of omitting a target specifier}{In this example the compiler reports the standard String.hx definition which does not actually have an implementation. This happens because we did not specify any target, which is allowed in completion-mode. If the command line arguments included, say, \ic{-neko neko.n}, the reported position would instead be \ic{std/neko/_std/string.hx:84: lines 84-98}.}
+
+
+\subsection{Top-level completion}
+\label{cr-completion-top-level}
+
+Top-level completion displays all identifiers which the Haxe Compiler knows about at a given compilation position. This is the only completion method for which we need a real position argument in order to demonstrate its effect:
+
+\begin{lstlisting}
+class Main {
+  static public function main() {
+    var a = 1;
+  }
+}
+
+enum MyEnum {
+  MyConstructor1;
+  MyConstructor2(s:String);
+}
+\end{lstlisting}
+
+If this file is saved to Main.hx the completion can be invoked using the command \ic{haxe --display Main.hx@63@toplevel}. The output looks similar to this (we omit several entries for brevity):
+
+\begin{lstlisting}
+<il>
+<i k="local" t="Int">a</i>
+<i k="static" t="Void -&gt; Unknown&lt;0&gt;">main</i>
+<i k="enum" t="MyEnum">MyConstructor1</i>
+<i k="enum" t="s : String -&gt; MyEnum">MyConstructor2</i>
+<i k="package">sys</i>
+<i k="package">haxe</i>
+<i k="type" p="Int">Int</i>
+<i k="type" p="Float">Float</i>
+<i k="type" p="MyEnum">MyEnum</i>
+<i k="type" p="Main">Main</i>
+</il>
+\end{lstlisting}
+
+The structure of the XML depends on the \ic{k} attribute of each entry. In all cases the node value of the \ic{i} nodes contains the relevant name.
+
+\begin{description}
+	\item[\ic{local}, \ic{member}, \ic{static}, \ic{enum}, \ic{global}:] The \ic{t} attribute holds the type of the variable or field.
+	\item[\ic{global}, \ic{type}:] The \ic{p} attribute holds the path of the module which contains the type or field.
+\end{description}
+
+
+
+\subsection{Completion server}
+\label{cr-completion-server}
 
 To get the best speed for both compilation and completion, you can use the \ic{--wait} commandline parameter to start a Haxe compilation server. You can also use \ic{-v} to have the server print the log. Here's an example:
 
@@ -284,20 +550,7 @@ class Test {
 \paragraph{Effect on macros}
 The compilation server can have some side effects on \tref{macro execution}{macro}.
 
-\subsection{Field Access}
-\label{cr-completion-field-access}
 
-\subsection{Call Arguments}
-\label{cr-completion-call-arguments}
-
-\subsection{Usage}
-\label{cr-completion-usage}
-
-\subsection{Position}
-\label{cr-completion-position}
-
-\subsection{Toplevel}
-\label{cr-completion-toplevel}
 
 \section{Resources}
 \label{cr-resources}
