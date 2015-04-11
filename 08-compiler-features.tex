@@ -136,12 +136,16 @@ The compiler automatically defines the flag \expr{dce} with a value of either \e
 
 \trivia{DCE and try.haxe.org}{DCE for the \type{Javascript} target saw vast improvements when the website \url{http://try.haxe.org} was published. Initial reception of the generated \target{Javascript} code was mixed, leading to a more fine-grained selection of which code to eliminate.}
 
+
+
+
 \section{Completion}
 \label{cr-completion}
 
 Because of the high number of Haxe features and its powerful type inference, \href{http://haxe.org/documentation/introduction/editors-and-ides.html}{IDE and code editors} cannot easily handle completion by parsing the Haxe files. Haxe provides completion support for IDEs directly built in the compiler thanks to the \ic{--display} commandline parameter.
 
-Let's have a look at the following example :
+Let's have a look at the following example:
+
 \begin{lstlisting}
 class Test {
     public static function main() {
