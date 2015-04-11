@@ -68,8 +68,6 @@ typedef Definition = {
 
 class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> implements hxparse.ParserBuilder {
 
-	static public inline var linkPrefix = #if epub "#" #else "" #end;
-
 	public var labelMap:Map<String, Label>;
 	public var definitions:Array<Definition>;
 	public var todos:Array<String>;
@@ -404,7 +402,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 		return switch stream {
 			case [TCommand(CRef), TBrOpen, s = text(), TBrClose]: '~~~$s~~~';
 			case [TCustomCommand("Fullref"), TBrOpen, s = text(), TBrClose]: '~~~$s~~~';
-			case [TCustomCommand("tref"), TBrOpen, s1 = text(), TBrClose, TBrOpen, s2 = text(), TBrClose]: '[$s1]($linkPrefix~~$s2~~)';
+			case [TCustomCommand("tref"), TBrOpen, s1 = text(), TBrClose, TBrOpen, s2 = text(), TBrClose]: '[$s1](~~$s2~~)';
 		}
 	}
 

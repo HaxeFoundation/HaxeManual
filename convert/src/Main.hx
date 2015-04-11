@@ -11,6 +11,9 @@ typedef SectionInfo = {
 }
 
 class Main {
+
+	static inline var linkPrefix = #if epub "#" #else "" #end;
+
 	static function main() {
 		new Main();
 	}
@@ -151,17 +154,26 @@ class Main {
 		Sys.command("pandoc", ["-t", "epub", "-f", "markdown_github", "-o", "HaxeManual.epub", "--table-of-contents", "--epub-metadata=epub_metadata.xml"].concat(files).concat(['$out/dictionary.md']));
 	}
 
+	function isLinkable(sec:Section) {
+		return !sectionInfo.noContent.has(sec);
+	}
+
 	function link(sec:Section) {
-		if (sectionInfo.noContent.has(sec)) {
+		if (!isLinkable(sec)) {
 			return #if epub '${sec.title}' #else '[${sec.title}](#)' #end;
 		}
-		return '[${sec.title}](${LatexParser.linkPrefix}${url(sec)})';
+		return '[${sec.title}](${linkPrefix}${url(sec)})';
 	}
 
 	function process(s:String):String {
 		function labelUrl(label:Label) {
 			return switch(label.kind) {
-				case Section(sec): url(sec);
+				case Section(sec):
+					if (isLinkable(sec)) {
+						url(sec);
+					} else {
+						'#';
+					}
 				case Definition:
 					#if epub
 					'dictionary.md-${escapeAnchor(label.name)}';
