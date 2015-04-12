@@ -6,10 +6,8 @@ The Haxe Compiler employs a rich type system which helps detecting type-related 
 In some languages this additional safety comes at a price because programmers are forced to explicitly assign types to syntactic constructs:
 
 \begin{lstlisting}
-var myButton:MySpecialButton =
-  new MySpecialButton(); // As3
-MySpecialButton* myButton =
-  new MySpecialButton(); // C++ 
+var myButton:MySpecialButton = new MySpecialButton(); // As3
+MySpecialButton* myButton = new MySpecialButton(); // C++ 
 \end{lstlisting}
 The explicit type annotations are not required in Haxe, because the compiler can \emph{infer} the type:
 
@@ -139,8 +137,7 @@ Values of type \type{Bool} are a common occurence in \emph{conditions} such as \
 Haxe guarantees that compound boolean expressions are evaluated from left to right and only as far as necessary at run-time. For instance, an expression like \expr{A \&\& B} will evaluate \expr{A} first and evaluate \expr{B} only if the evaluation of \expr{A} yielded \expr{true}. Likewise, the expressions \expr{A || B} will not evaluate \expr{B} if the evaluation of \expr{A} yielded \expr{true}, because the value of \expr{B} is irrelevant in that case. This is important in cases such as this:
 
 \begin{lstlisting}
-if (object != null && object.field == 1)
-  { ... }
+if (object != null && object.field == 1) { }
 \end{lstlisting}
 
 Accessing \expr{object.field} if \expr{object} is \expr{null} would lead to a run-time error, but the check for \expr{object != null} guards against it.
@@ -164,8 +161,7 @@ Haxe does not allow fields and variables of type \type{Void} and will complain i
 \todo{review please, sounds weird}
 
 \begin{lstlisting}
-// Arguments and variables of type Void
-// are not allowed
+// Arguments and variables of type Void are not allowed
 var x:Void;
 \end{lstlisting}
 
@@ -235,11 +231,11 @@ In particular, there must be a distinction between \emph{native} optional argume
 
 \begin{lstlisting}
 // x is a native Int (not nullable)
-function foo(x : Int = 0) {...}
+function foo(x : Int = 0) {}
 // y is Null<Int> (nullable)
-function bar( ?y : Int) {...}
+function bar( ?y : Int) {}
 // z is also Null<Int>
-function opt( ?z : Int = -1) {...}
+function opt( ?z : Int = -1) {}
 \end{lstlisting}
 \todo{Is there a difference between \type{?y : Int} and \type{y : Null$<$Int$>$} or can you even do the latter? Some more explanation and examples with native optional and Haxe optional arguments and how they relate to nullability would be nice.}
 
@@ -698,10 +694,8 @@ In the example the method \expr{fromString} allows the assignment of value \expr
 When using this kind of cast, calls to the cast-functions are inserted where required. This becomes obvious when looking at the \target{Javascript} output:
 
 \begin{lstlisting}
-var a = _ImplicitCastField.MyAbstract_Impl_
-  .fromString("3");
-var b = _ImplicitCastField.MyAbstract_Impl_
-  .toArray(a);
+var a = _ImplicitCastField.MyAbstract_Impl_.fromString("3");
+var b = _ImplicitCastField.MyAbstract_Impl_.toArray(a);
 \end{lstlisting}
 This can be further optimized by \tref{inlining}{class-field-inline} both cast functions, turning the output into the following:
 \todo{please review your use of ``this'' and try to vary somewhat to avoid too much word repetition}
@@ -768,10 +762,12 @@ Array access describes the particular syntax traditionally used to access the va
 \todo{You have marked ``Map'' for some reason}
 
 \begin{lstlisting}
-@:arrayAccess public inline function
-get(key:K) return this.get(key);
-@:arrayAccess public inline function
-arrayWrite(k:K, v:V):V {
+@:arrayAccess
+public inline function get(key:K) {
+  return this.get(key);
+}
+@:arrayAccess
+public inline function arrayWrite(k:K, v:V):V {
 	this.set(k, v);
 	return v;
 }
