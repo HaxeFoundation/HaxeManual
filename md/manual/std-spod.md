@@ -16,7 +16,7 @@ class User extends sys.db.Object {
 }
 ``` 
 
-Special types are declared in `sys.db.Types` in order to provide additional information for SPOD. See [complete list of types and related SQL types](std-spod-supported-types.md).
+Special types are declared in `sys.db.Types` in order to provide additional information for SPOD. See [complete list of types and related SQL types](std-spod.md#10145-spod-supported-types).
 
 ###### Insert
 In order to insert a new SPOD, simply do the following:
@@ -135,7 +135,7 @@ Metadata can be added to SPOD classes to declare additional information that wil
  Metatag  |  Description 
  --- | ---
 <code>@:skip</code>  | ignore this field, which will not be part of the database schema 
-<code>@:relation</code>  | declare this field as a relation (see [relations](std-spod-relations.md)) 
+<code>@:relation</code>  | declare this field as a relation (see [relations](std-spod.md#101412-spod-relations)) 
 
 ##### Before the SPOD class
  
@@ -311,7 +311,7 @@ var users = User.manager.dynamicSearch(query);
 
 ### 10.14.11 SPOD Relation search
 
-Search a given [relation](std-spod-relations.md) by using either the relation key or the relation property.
+Search a given [relation](std-spod.md#101412-spod-relations) by using either the relation key or the relation property.
 
 ```haxe 
 var user = User.manager.get(1);

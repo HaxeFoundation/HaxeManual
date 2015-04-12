@@ -215,7 +215,8 @@ class Main {
 	}
 
 	static function escapeAnchor(s:String) {
-		return s.toLowerCase().replace(" ", "-");
+		// TODO: The . replace is weird, but it looks like github does that?
+		return s.toLowerCase().replace(" ", "-").replace(".", "");
 	}
 
 	static function url(sec:Section) {
