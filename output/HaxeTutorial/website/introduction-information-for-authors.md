@@ -4,17 +4,17 @@ Each article should be placed in a directory under /HaxeTutorials. The directory
 
 Each article has to start with three self-explanatory commands:
 
-*\article{name}
-*\label{label}
-*\maintainer{author name}
+* \article{name}
+* \label{label}
+* \maintainer{author name}
 
 Note that the label is what is used for the URL of the article so it should not contain any spaces.
 
 The document can be structured using these commands:
 
-*\section*{name}
-*\subsection*{name}
-*\paragraph{name}
+* \section*{name}
+* \subsection*{name}
+* \paragraph{name}
 
 The asterisk is necessary to suppress section numbering. Furthermore, both section and subsection require a label so a URL can be determined.
 
