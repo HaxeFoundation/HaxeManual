@@ -1,6 +1,6 @@
 ## Creating and saving the code
 
-Copy and paste the following code into any editor and IDE of your choice:
+Copy and paste the following code into any editor or IDE of your choice:
 
 ```haxe
 class HelloWorld {
