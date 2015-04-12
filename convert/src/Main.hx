@@ -15,7 +15,8 @@ class Main {
 	static inline var linkPrefix = #if epub "#" #else "" #end;
 
 	static function main() {
-		new Main("../HaxeManual", "HaxeManual.tex", #if epub "../output/HaxeManual/epub" #else "../output/HaxeManual/website" #end);
+		//new Main("../HaxeManual", "HaxeManual.tex", #if epub "../output/HaxeManual/epub" #else "../output/HaxeManual/website" #end);
+		new Main("../HaxeTutorials", "HaxeTutorials.tex", "../output/HaxeTutorial/website");
 	}
 
 	var parser:LatexParser;

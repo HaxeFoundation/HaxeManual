@@ -240,12 +240,16 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					lastSection.state = state;
 				case [TCustomCommand("flag"), key = inBraces(text), value = inBraces(text)]:
 					lastSection.flags[key] = value;
+				case [TCustomCommand("maintainer"), s = inBraces(text)]:
+					buffer.add('Written and maintained by $s');
 				// section
 				case [TCommand(CPart), s = inBraces(text)]:
 					// TODO: handle this
 				case [TCommand(CChapter), s = inBraces(text)]:
 					sections.push(mkSection(s, null, sections.length + 1));
-				case [TCommand(CSection), s = inBraces(text)]:
+				case [TCustomCommand("article"), s = inBraces(text)]:
+					sections.push(mkSection(s, null, sections.length + 1));
+				case [TCommand(CSection), _ = popt(star), s = inBraces(text)]:
 					var sec = sections[sections.length - 1];
 					sec.sub.push(mkSection(s, sec, sec.sub.length + 1));
 				case [TCommand(CSubsection), s = inBraces(text)]:
@@ -288,7 +292,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					"&";
 				}
 			case [TCommand(CTextasciitilde)]: "~";
-			case [TCommand(CTextbackslash)]: "\\\\";
+			case [TCommand(CTextbackslash)]: "\\";
 			case [TCommand(CSlash)]: "/";
 			case [TCommand(CEmph), s = inBraces(text)]: '**$s**';
 			case [TCommand(CTextwidth)]: "";
@@ -347,6 +351,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 			case [TNewline]: tableMode || listMode.length > 0 ? "" : "\n";
 			case [TDoubleBackslash]: "\n";
 			case [TCommand(CTextasciicircum)]: "^";
+			case [s = inBraces(text)]: s;
 		}
 	}
 
@@ -433,6 +438,13 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					case [r = f(), TBrClose]: r;
 					case [TBrClose]: "";
 				}
+		}
+	}
+
+	function star() {
+		return switch stream {
+			case [TText("*")]:
+				true;
 		}
 	}
 
