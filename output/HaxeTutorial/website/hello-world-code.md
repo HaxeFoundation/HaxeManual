@@ -1,4 +1,4 @@
-##  Creating and saving the code
+## Creating and saving the code
 
 Copy and paste the following code into any editor and IDE of your choice:
 

@@ -1,4 +1,4 @@
-##  Information for authors
+## Information for authors
 
 Each article should be placed in a directory under /HaxeTutorials. The directory name should start with the difficulty level (Beginner, Intermediate, Advanced) and not contain any spaces (we recommend using dashes instead). Within this directory the author has free reign, but we recommend to have a single entry-point .tex file so it can easily be included in HaxeTutorials.tex.
 

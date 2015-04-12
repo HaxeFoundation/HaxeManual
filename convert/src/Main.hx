@@ -44,7 +44,7 @@ class Main {
 		function generateTitleString(sec:Section, prefix = "##") {
 			return
 				#if epub '<a id="${url(sec)}"></a>\n' + #end
-				'$prefix ${sec.id} ${sec.title}\n\n';
+				'$prefix ${sec.id.length > 0 ? sec.id + " " : ""}${sec.title}\n\n';
 		}
 
 		for (sec in sectionInfo.all) {
@@ -110,7 +110,7 @@ class Main {
 	}
 
 	function makeSubToc(sec:Section) {
-		return sec.sub.map(function(sec) return sec.id + ": " +link(sec)).join("\n\n");
+		return sec.sub.map(function(sec) return (sec.id.length > 0 ? sec.id + ": " : "") +link(sec)).join("\n\n");
 	}
 
 	function collectSectionInfo(sections:Array<Section>):SectionInfo {
@@ -247,7 +247,7 @@ class Main {
 	static function url(sec:Section) {
 		if (sec.flags["folded"] == "true") {
 			// TODO: nested folding?
-			return url(sec.parent) + "#" + escapeAnchor(sec.id + " " + sec.title);
+			return url(sec.parent) + "#" + escapeAnchor((sec.id.length > 0 ? sec.id + " " : "") + sec.title);
 		}
 		return sec.label #if !epub + ".md" #end;
 	}

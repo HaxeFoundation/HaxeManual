@@ -1,4 +1,4 @@
-##  About this document
+## About this document
 
 This document is a collection of independent articles about Haxe. The idea is to have several community members contribute and maintain documentation on interesting Haxe projects for others to read and, ideally, replicate in order to get (more) familiar with Haxe. These articles are grouped by difficulty, roughly following these guidelines:
 
