@@ -270,11 +270,17 @@ These rules are transitive, meaning that a child class can also be assigned to t
 
 \define{Structural Subtyping}{define-structural-subtyping}{Structural subtyping defines an implicit relation between types that have the same structure.}
 
-In Haxe, structural subtyping is only possible when assigning a class instance to a structure. The following example is part of the \type{Lambda} class of the \tref{Haxe Standard Library}{std}:
+Structural sub-typing in Haxe is allowed when unifying
+
+\begin{itemize}
+	\item a \tref{class}{types-class-instance} with a \tref{structure}{types-anonymous-structure} and
+	\item a structure with another structure.
+\end{itemize}
+
+The following example is part of the \type{Lambda} class of the \tref{Haxe Standard Library}{std}:
 
 \begin{lstlisting}
-public static function
-empty<T>(it : Iterable<T>):Bool {
+public static function empty<T>(it : Iterable<T>):Bool {
 	return !it.iterator().hasNext();
 }
 \end{lstlisting}
