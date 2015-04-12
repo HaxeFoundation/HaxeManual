@@ -1,4 +1,4 @@
-## 2.1 Introduction
+##  Introduction
 
 This tutorial demonstrates how to write and compile a Hello World Haxe program. It explains the involved file-formats (.hx and .hxml files) and gives a basic explanation of what the Haxe Compiler does with them.
 

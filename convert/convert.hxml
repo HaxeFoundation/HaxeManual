@@ -6,3 +6,4 @@
 -cmd neko convert.n
 #-D epub
 #-D mobi
+-D omit-ids

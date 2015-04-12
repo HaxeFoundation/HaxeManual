@@ -460,7 +460,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 			lastSection.content = getBuffer();
 			buffer = new StringBuf();
 		}
-		var id = (parent != null ? parent.id + "." : "") + index;
+		var id = #if omit_ids "" #else (parent != null ? parent.id + "." : "") + index #end;
 		var source = {
 			file: stream.curPos().psource,
 			lineMin: stream.curPos().getLinePosition(input).lineMin,
@@ -472,7 +472,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 			content: "",
 			sub: [],
 			parent: parent,
-			index:index,
+			index: index,
 			id: id,
 			state: New,
 			source: source,

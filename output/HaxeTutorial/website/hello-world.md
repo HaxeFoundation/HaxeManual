@@ -1,4 +1,4 @@
-## 2 Hello World
+##  Hello World
 
 Written and maintained by Simon Krajewski
 

@@ -1,4 +1,4 @@
-## 2.3 Executing Haxe to interpret the code
+##  Executing Haxe to interpret the code
 
 Open a command prompt and navigate directories to where you saved "HelloWorld.hx" to in the [previous step](hello-world-code.md). Afterwards, execute this command:
 
