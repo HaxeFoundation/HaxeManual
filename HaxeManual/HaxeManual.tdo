@@ -1,0 +1,25 @@
+\contentsline {todo}{Could we have a big Haxe logo in the First Manual Page (Introduction) under the menu (a bit like a book cover ?) It looks a bit empty now and is a landing page for "Manual"}{8}{section*.3}
+\contentsline {todo}{This generates the following output: too many 'this'. You may like a passive sentence: the following output will be generated...though this is to be avoided, generally}{10}{section*.4}
+\contentsline {todo}{make sure the types are right for inc, dec, negate, and bitwise negate}{14}{section*.5}
+\contentsline {todo}{While introducing the different operations, we should include that information as well, including how they differ with the "C" standard, see http://haxe.org/manual/operators}{14}{section*.6}
+\contentsline {todo}{please review, doubled content}{16}{section*.7}
+\contentsline {todo}{review please, sounds weird}{16}{section*.8}
+\contentsline {todo}{for starters...please review}{17}{section*.9}
+\contentsline {todo}{Is there a difference between \texttt {?y : Int} and \texttt {y : Null$<$Int$>$} or can you even do the latter? Some more explanation and examples with native optional and Haxe optional arguments and how they relate to nullability would be nice.}{18}{section*.10}
+\contentsline {todo}{please review future tense}{18}{section*.11}
+\contentsline {todo}{Same as in 2.2, what is \texttt {Enum$<$T$>$} syntax?}{21}{section*.12}
+\contentsline {todo}{list arguments}{21}{section*.13}
+\contentsline {todo}{please reformat}{23}{section*.14}
+\contentsline {todo}{I don't really know how these work yet.}{25}{section*.15}
+\contentsline {todo}{It seems a bit convoluted explanations. Should we maybe start by "decoding" the meaning of Void -> Void, then Int -> Bool -> Float, then maybe have samples using \$type}{25}{section*.16}
+\contentsline {todo}{please review your use of ``this'' and try to vary somewhat to avoid too much word repetition}{32}{section*.17}
+\contentsline {todo}{please review for correctness}{35}{section*.19}
+\contentsline {todo}{You have marked ``Map'' for some reason}{35}{section*.20}
+\contentsline {todo}{Mention toString()/String conversion somewhere in this chapter.}{47}{section*.22}
+\contentsline {todo}{''parent class'' should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.}{48}{section*.23}
+\contentsline {todo}{proper label and caption + code/identifier styling for diagram}{55}{section*.26}
+\contentsline {todo}{Figure out wtf our rules are now for when this is checked.}{90}{section*.29}
+\contentsline {todo}{Comprehensions are only listing Arrays, not Maps}{91}{section*.30}
+\contentsline {todo}{what to use for listing of non-haxe code like hxml?}{111}{section*.41}
+\contentsline {todo}{Check if we can build GADTs this way.}{122}{section*.48}
+\contentsline {todo}{I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?}{138}{section*.50}

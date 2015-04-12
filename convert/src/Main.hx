@@ -15,17 +15,17 @@ class Main {
 	static inline var linkPrefix = #if epub "#" #else "" #end;
 
 	static function main() {
-		new Main();
+		new Main("../HaxeManual", "HaxeManual.tex", #if epub "../output/HaxeManual/epub" #else "../output/HaxeManual/website" #end);
 	}
 
 	var parser:LatexParser;
 	var out:String;
 	var sectionInfo:SectionInfo;
 
-	function new() {
-		Sys.setCwd("../");
-		var sections = parse();
-		out = #if epub "md_epub/manual" #else "md/manual" #end;
+	function new(directory:String, source:String, target:String) {
+		Sys.setCwd(directory);
+		var sections = parse(source);
+		out = target;
 
 		sectionInfo = collectSectionInfo(sections);
 
@@ -56,6 +56,10 @@ class Main {
 		unlink(out);
 		sys.FileSystem.createDirectory(out);
 
+		#if epub
+		var sectionContent = [];
+		#end
+
 		for (i in 0...sectionInfo.all.length) {
 			var sec = sectionInfo.all[i];
 			sec.content = generateTitleString(sec) + sec.content + "\n";
@@ -63,8 +67,10 @@ class Main {
 			sec.content += "\n---";
 			if (i != 0) sec.content += '\n\nPrevious section: ${link(sectionInfo.all[i - 1])}';
 			if (i != sectionInfo.all.length - 1) sec.content += '\n\nNext section: ${link(sectionInfo.all[i + 1])}';
-			#end
 			sys.io.File.saveContent('$out/${url(sec)}', sec.content);
+			#else
+			sectionContent.push(sec.content);
+			#end
 		}
 		generateDictionary();
 		generateTodo();
@@ -72,14 +78,15 @@ class Main {
 		function prepare(sec:Section) {
 			Reflect.deleteField(sec, "content");
 			Reflect.deleteField(sec, "parent");
-			Reflect.deleteField(sec, "flags");
 			sec.sub.iter(prepare);
 		}
 		sections.iter(prepare);
 		sys.io.File.saveContent('$out/sections.txt', haxe.Json.stringify(sections));
 
 		#if epub
-		generateEPub();
+		var filePath = '$out/content.md';
+		sys.io.File.saveContent(filePath, sectionContent.join("\n"));
+		generateEPub(filePath);
 		#end
 
 		#if mobi
@@ -90,10 +97,10 @@ class Main {
 		#end
 	}
 
-	function parse() {
+	function parse(source:String) {
 		LatexLexer.customEnvironments["flowchart"] = FlowchartHandler.handle;
-		var input = byte.ByteData.ofString(sys.io.File.getContent("HaxeDoc.tex"));
-		parser = new LatexParser(input, "HaxeDoc.tex");
+		var input = byte.ByteData.ofString(sys.io.File.getContent(source));
+		parser = new LatexParser(input, source);
 		var sections = hxparse.Utils.catchErrors(input, parser.parse);
 		return sections;
 	}
@@ -159,9 +166,8 @@ class Main {
 		sys.io.File.saveContent('todo.txt', todo);
 	}
 
-	function generateEPub() {
-		var files = sectionInfo.all.map(function(sec) return out + "/" + url(sec));
-		Sys.command("pandoc", ["-t", "epub", "-f", "markdown_github", "-o", "HaxeManual.epub", "--table-of-contents", "--epub-metadata=epub_metadata.xml"].concat(files).concat(['$out/dictionary.md']));
+	function generateEPub(filePath:String) {
+		Sys.command("pandoc", ["-t", "epub", "-f", "markdown_github", "-o", '$out/out.epub', "--table-of-contents", "--epub-metadata=epub_metadata.xml", filePath].concat(['$out/dictionary.md']));
 	}
 
 	function isLinkable(sec:Section) {
@@ -227,7 +233,7 @@ class Main {
 	}
 
 	static function escapeAnchor(s:String) {
-		return s.toLowerCase().replace(" ", "-");
+		return s.toLowerCase().replace(" ", "-").replace(".", "");
 	}
 
 	static function url(sec:Section) {
@@ -235,7 +241,7 @@ class Main {
 			// TODO: nested folding?
 			return url(sec.parent) + "#" + escapeAnchor(sec.id + " " + sec.title);
 		}
-		return sec.label + ".md";
+		return sec.label #if !epub + ".md" #end;
 	}
 
 	static function unlink(path:String) {

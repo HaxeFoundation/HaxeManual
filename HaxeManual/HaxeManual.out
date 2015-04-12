@@ -1,0 +1,241 @@
+\BOOKMARK [0][-]{Doc-Start}{Todo list}{}% 1
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 2
+\BOOKMARK [1][-]{section.1.1}{What is Haxe?}{chapter.1}% 3
+\BOOKMARK [1][-]{section.1.2}{About this Document}{chapter.1}% 4
+\BOOKMARK [2][-]{subsection.1.2.1}{Authors and contributions}{section.1.2}% 5
+\BOOKMARK [2][-]{subsection.1.2.2}{License}{section.1.2}% 6
+\BOOKMARK [1][-]{section.1.3}{Hello World}{chapter.1}% 7
+\BOOKMARK [1][-]{section.1.4}{History}{chapter.1}% 8
+\BOOKMARK [-1][-]{part.1}{I Language Reference}{}% 9
+\BOOKMARK [0][-]{chapter.2}{Types}{part.1}% 10
+\BOOKMARK [1][-]{section.2.1}{Basic Types}{chapter.2}% 11
+\BOOKMARK [2][-]{subsection.2.1.1}{Numeric types}{section.2.1}% 12
+\BOOKMARK [2][-]{subsection.2.1.2}{Overflow}{section.2.1}% 13
+\BOOKMARK [2][-]{subsection.2.1.3}{Numeric Operators}{section.2.1}% 14
+\BOOKMARK [2][-]{subsection.2.1.4}{Bool}{section.2.1}% 15
+\BOOKMARK [2][-]{subsection.2.1.5}{Void}{section.2.1}% 16
+\BOOKMARK [1][-]{section.2.2}{Nullability}{chapter.2}% 17
+\BOOKMARK [2][-]{subsection.2.2.1}{Optional Arguments and Nullability}{section.2.2}% 18
+\BOOKMARK [1][-]{section.2.3}{Class Instance}{chapter.2}% 19
+\BOOKMARK [2][-]{subsection.2.3.1}{Class constructor}{section.2.3}% 20
+\BOOKMARK [2][-]{subsection.2.3.2}{Inheritance}{section.2.3}% 21
+\BOOKMARK [2][-]{subsection.2.3.3}{Interfaces}{section.2.3}% 22
+\BOOKMARK [1][-]{section.2.4}{Enum Instance}{chapter.2}% 23
+\BOOKMARK [2][-]{subsection.2.4.1}{Enum Constructor}{section.2.4}% 24
+\BOOKMARK [2][-]{subsection.2.4.2}{Using enums}{section.2.4}% 25
+\BOOKMARK [1][-]{section.2.5}{Anonymous Structure}{chapter.2}% 26
+\BOOKMARK [2][-]{subsection.2.5.1}{JSON for Structure Values}{section.2.5}% 27
+\BOOKMARK [2][-]{subsection.2.5.2}{Class Notation for Structure Types}{section.2.5}% 28
+\BOOKMARK [2][-]{subsection.2.5.3}{Optional Fields}{section.2.5}% 29
+\BOOKMARK [2][-]{subsection.2.5.4}{Impact on Performance}{section.2.5}% 30
+\BOOKMARK [1][-]{section.2.6}{Function Type}{chapter.2}% 31
+\BOOKMARK [2][-]{subsection.2.6.1}{Optional Arguments}{section.2.6}% 32
+\BOOKMARK [2][-]{subsection.2.6.2}{Default values}{section.2.6}% 33
+\BOOKMARK [1][-]{section.2.7}{Dynamic}{chapter.2}% 34
+\BOOKMARK [2][-]{subsection.2.7.1}{Dynamic with Type Parameter}{section.2.7}% 35
+\BOOKMARK [2][-]{subsection.2.7.2}{Implementing Dynamic}{section.2.7}% 36
+\BOOKMARK [1][-]{section.2.8}{Abstract}{chapter.2}% 37
+\BOOKMARK [2][-]{subsection.2.8.1}{Implicit Casts}{section.2.8}% 38
+\BOOKMARK [2][-]{subsection.2.8.2}{Operator Overloading}{section.2.8}% 39
+\BOOKMARK [2][-]{subsection.2.8.3}{Array Access}{section.2.8}% 40
+\BOOKMARK [2][-]{subsection.2.8.4}{Selective Functions}{section.2.8}% 41
+\BOOKMARK [2][-]{subsection.2.8.5}{Enum abstracts}{section.2.8}% 42
+\BOOKMARK [2][-]{subsection.2.8.6}{Forwarding abstract fields}{section.2.8}% 43
+\BOOKMARK [2][-]{subsection.2.8.7}{Core-type abstracts}{section.2.8}% 44
+\BOOKMARK [1][-]{section.2.9}{Monomorph}{chapter.2}% 45
+\BOOKMARK [0][-]{chapter.3}{Type System}{part.1}% 46
+\BOOKMARK [1][-]{section.3.1}{Typedef}{chapter.3}% 47
+\BOOKMARK [2][-]{subsection.3.1.1}{Extensions}{section.3.1}% 48
+\BOOKMARK [1][-]{section.3.2}{Type Parameters}{chapter.3}% 49
+\BOOKMARK [2][-]{subsection.3.2.1}{Constraints}{section.3.2}% 50
+\BOOKMARK [1][-]{section.3.3}{Generic}{chapter.3}% 51
+\BOOKMARK [2][-]{subsection.3.3.1}{Construction of generic type parameters}{section.3.3}% 52
+\BOOKMARK [1][-]{section.3.4}{Variance}{chapter.3}% 53
+\BOOKMARK [1][-]{section.3.5}{Unification}{chapter.3}% 54
+\BOOKMARK [2][-]{subsection.3.5.1}{Between Class/Interface}{section.3.5}% 55
+\BOOKMARK [2][-]{subsection.3.5.2}{Structural Subtyping}{section.3.5}% 56
+\BOOKMARK [2][-]{subsection.3.5.3}{Monomorphs}{section.3.5}% 57
+\BOOKMARK [2][-]{subsection.3.5.4}{Function Return}{section.3.5}% 58
+\BOOKMARK [2][-]{subsection.3.5.5}{Common Base Type}{section.3.5}% 59
+\BOOKMARK [1][-]{section.3.6}{Type Inference}{chapter.3}% 60
+\BOOKMARK [2][-]{subsection.3.6.1}{Top-down Inference}{section.3.6}% 61
+\BOOKMARK [2][-]{subsection.3.6.2}{Limitations}{section.3.6}% 62
+\BOOKMARK [1][-]{section.3.7}{Modules and Paths}{chapter.3}% 63
+\BOOKMARK [2][-]{subsection.3.7.1}{Module Sub-Types}{section.3.7}% 64
+\BOOKMARK [2][-]{subsection.3.7.2}{Import}{section.3.7}% 65
+\BOOKMARK [2][-]{subsection.3.7.3}{Resolution Order}{section.3.7}% 66
+\BOOKMARK [0][-]{chapter.4}{Class Fields}{part.1}% 67
+\BOOKMARK [1][-]{section.4.1}{Variable}{chapter.4}% 68
+\BOOKMARK [1][-]{section.4.2}{Property}{chapter.4}% 69
+\BOOKMARK [2][-]{subsection.4.2.1}{Common accessor identifier combinations}{section.4.2}% 70
+\BOOKMARK [2][-]{subsection.4.2.2}{Impact on the type system}{section.4.2}% 71
+\BOOKMARK [2][-]{subsection.4.2.3}{Rules for getter and setter}{section.4.2}% 72
+\BOOKMARK [1][-]{section.4.3}{Method}{chapter.4}% 73
+\BOOKMARK [2][-]{subsection.4.3.1}{Overriding Methods}{section.4.3}% 74
+\BOOKMARK [2][-]{subsection.4.3.2}{Effects of variance and access modifiers}{section.4.3}% 75
+\BOOKMARK [1][-]{section.4.4}{Access Modifier}{chapter.4}% 76
+\BOOKMARK [2][-]{subsection.4.4.1}{Visibility}{section.4.4}% 77
+\BOOKMARK [2][-]{subsection.4.4.2}{Inline}{section.4.4}% 78
+\BOOKMARK [2][-]{subsection.4.4.3}{Dynamic}{section.4.4}% 79
+\BOOKMARK [2][-]{subsection.4.4.4}{Override}{section.4.4}% 80
+\BOOKMARK [0][-]{chapter.5}{Expressions}{part.1}% 81
+\BOOKMARK [1][-]{section.5.1}{Blocks}{chapter.5}% 82
+\BOOKMARK [1][-]{section.5.2}{Constants}{chapter.5}% 83
+\BOOKMARK [1][-]{section.5.3}{Binary Operators}{chapter.5}% 84
+\BOOKMARK [1][-]{section.5.4}{Unary Operators}{chapter.5}% 85
+\BOOKMARK [1][-]{section.5.5}{Array Declaration}{chapter.5}% 86
+\BOOKMARK [1][-]{section.5.6}{Object Declaration}{chapter.5}% 87
+\BOOKMARK [1][-]{section.5.7}{Field Access}{chapter.5}% 88
+\BOOKMARK [1][-]{section.5.8}{Array Access}{chapter.5}% 89
+\BOOKMARK [1][-]{section.5.9}{Function Call}{chapter.5}% 90
+\BOOKMARK [1][-]{section.5.10}{var}{chapter.5}% 91
+\BOOKMARK [1][-]{section.5.11}{Local functions}{chapter.5}% 92
+\BOOKMARK [1][-]{section.5.12}{new}{chapter.5}% 93
+\BOOKMARK [1][-]{section.5.13}{for}{chapter.5}% 94
+\BOOKMARK [1][-]{section.5.14}{while}{chapter.5}% 95
+\BOOKMARK [1][-]{section.5.15}{do-while}{chapter.5}% 96
+\BOOKMARK [1][-]{section.5.16}{if}{chapter.5}% 97
+\BOOKMARK [1][-]{section.5.17}{switch}{chapter.5}% 98
+\BOOKMARK [1][-]{section.5.18}{try/catch}{chapter.5}% 99
+\BOOKMARK [1][-]{section.5.19}{return}{chapter.5}% 100
+\BOOKMARK [1][-]{section.5.20}{break}{chapter.5}% 101
+\BOOKMARK [1][-]{section.5.21}{continue}{chapter.5}% 102
+\BOOKMARK [1][-]{section.5.22}{throw}{chapter.5}% 103
+\BOOKMARK [1][-]{section.5.23}{cast}{chapter.5}% 104
+\BOOKMARK [2][-]{subsection.5.23.1}{unsafe cast}{section.5.23}% 105
+\BOOKMARK [2][-]{subsection.5.23.2}{safe cast}{section.5.23}% 106
+\BOOKMARK [1][-]{section.5.24}{type check}{chapter.5}% 107
+\BOOKMARK [0][-]{chapter.6}{Language Features}{part.1}% 108
+\BOOKMARK [1][-]{section.6.1}{Conditional Compilation}{chapter.6}% 109
+\BOOKMARK [2][-]{subsection.6.1.1}{Global Compiler Flags}{section.6.1}% 110
+\BOOKMARK [1][-]{section.6.2}{Externs}{chapter.6}% 111
+\BOOKMARK [1][-]{section.6.3}{Static Extension}{chapter.6}% 112
+\BOOKMARK [2][-]{subsection.6.3.1}{In the Haxe Standard Library}{section.6.3}% 113
+\BOOKMARK [1][-]{section.6.4}{Pattern Matching}{chapter.6}% 114
+\BOOKMARK [2][-]{subsection.6.4.1}{Introduction}{section.6.4}% 115
+\BOOKMARK [2][-]{subsection.6.4.2}{Enum matching}{section.6.4}% 116
+\BOOKMARK [2][-]{subsection.6.4.3}{Variable capture}{section.6.4}% 117
+\BOOKMARK [2][-]{subsection.6.4.4}{Structure matching}{section.6.4}% 118
+\BOOKMARK [2][-]{subsection.6.4.5}{Array matching}{section.6.4}% 119
+\BOOKMARK [2][-]{subsection.6.4.6}{Or patterns}{section.6.4}% 120
+\BOOKMARK [2][-]{subsection.6.4.7}{Guards}{section.6.4}% 121
+\BOOKMARK [2][-]{subsection.6.4.8}{Match on multiple values}{section.6.4}% 122
+\BOOKMARK [2][-]{subsection.6.4.9}{Extractors}{section.6.4}% 123
+\BOOKMARK [2][-]{subsection.6.4.10}{Exhaustiveness checks}{section.6.4}% 124
+\BOOKMARK [2][-]{subsection.6.4.11}{Useless pattern checks}{section.6.4}% 125
+\BOOKMARK [1][-]{section.6.5}{String Interpolation}{chapter.6}% 126
+\BOOKMARK [1][-]{section.6.6}{Array Comprehension}{chapter.6}% 127
+\BOOKMARK [1][-]{section.6.7}{Iterators}{chapter.6}% 128
+\BOOKMARK [1][-]{section.6.8}{Function Bindings}{chapter.6}% 129
+\BOOKMARK [1][-]{section.6.9}{Metadata}{chapter.6}% 130
+\BOOKMARK [1][-]{section.6.10}{Access Control}{chapter.6}% 131
+\BOOKMARK [1][-]{section.6.11}{Inline constructors}{chapter.6}% 132
+\BOOKMARK [-1][-]{part.2}{II Compiler Reference}{}% 133
+\BOOKMARK [0][-]{chapter.7}{Compiler Usage}{part.2}% 134
+\BOOKMARK [0][-]{chapter.8}{Compiler Features}{part.2}% 135
+\BOOKMARK [1][-]{section.8.1}{Built-in Compiler Metadata}{chapter.8}% 136
+\BOOKMARK [1][-]{section.8.2}{Dead Code Elimination}{chapter.8}% 137
+\BOOKMARK [1][-]{section.8.3}{Completion}{chapter.8}% 138
+\BOOKMARK [2][-]{subsection.8.3.1}{Overview}{section.8.3}% 139
+\BOOKMARK [2][-]{subsection.8.3.2}{Field access completion}{section.8.3}% 140
+\BOOKMARK [2][-]{subsection.8.3.3}{Call argument completion}{section.8.3}% 141
+\BOOKMARK [2][-]{subsection.8.3.4}{Type path completion}{section.8.3}% 142
+\BOOKMARK [2][-]{subsection.8.3.5}{Usage completion}{section.8.3}% 143
+\BOOKMARK [2][-]{subsection.8.3.6}{Position completion}{section.8.3}% 144
+\BOOKMARK [2][-]{subsection.8.3.7}{Top-level completion}{section.8.3}% 145
+\BOOKMARK [2][-]{subsection.8.3.8}{Completion server}{section.8.3}% 146
+\BOOKMARK [1][-]{section.8.4}{Resources}{chapter.8}% 147
+\BOOKMARK [2][-]{subsection.8.4.1}{Embedding resources}{section.8.4}% 148
+\BOOKMARK [2][-]{subsection.8.4.2}{Retrieving text resources}{section.8.4}% 149
+\BOOKMARK [2][-]{subsection.8.4.3}{Retrieving binary resources}{section.8.4}% 150
+\BOOKMARK [2][-]{subsection.8.4.4}{Implementation details}{section.8.4}% 151
+\BOOKMARK [1][-]{section.8.5}{Runtime Type Information}{chapter.8}% 152
+\BOOKMARK [2][-]{subsection.8.5.1}{RTTI structure}{section.8.5}% 153
+\BOOKMARK [0][-]{chapter.9}{Macros}{part.2}% 154
+\BOOKMARK [1][-]{section.9.1}{Macro Context}{chapter.9}% 155
+\BOOKMARK [1][-]{section.9.2}{Arguments}{chapter.9}% 156
+\BOOKMARK [2][-]{subsection.9.2.1}{ExprOf}{section.9.2}% 157
+\BOOKMARK [2][-]{subsection.9.2.2}{Constant Expressions}{section.9.2}% 158
+\BOOKMARK [2][-]{subsection.9.2.3}{Rest Argument}{section.9.2}% 159
+\BOOKMARK [1][-]{section.9.3}{Reification}{chapter.9}% 160
+\BOOKMARK [2][-]{subsection.9.3.1}{Expression Reification}{section.9.3}% 161
+\BOOKMARK [2][-]{subsection.9.3.2}{Type Reification}{section.9.3}% 162
+\BOOKMARK [2][-]{subsection.9.3.3}{Class Reification}{section.9.3}% 163
+\BOOKMARK [1][-]{section.9.4}{Tools}{chapter.9}% 164
+\BOOKMARK [1][-]{section.9.5}{Type Building}{chapter.9}% 165
+\BOOKMARK [2][-]{subsection.9.5.1}{Enum building}{section.9.5}% 166
+\BOOKMARK [2][-]{subsection.9.5.2}{@:autoBuild}{section.9.5}% 167
+\BOOKMARK [2][-]{subsection.9.5.3}{@:genericBuild}{section.9.5}% 168
+\BOOKMARK [1][-]{section.9.6}{Limitations}{chapter.9}% 169
+\BOOKMARK [2][-]{subsection.9.6.1}{Macro-in-Macro}{section.9.6}% 170
+\BOOKMARK [2][-]{subsection.9.6.2}{Static extension}{section.9.6}% 171
+\BOOKMARK [2][-]{subsection.9.6.3}{Build Order}{section.9.6}% 172
+\BOOKMARK [2][-]{subsection.9.6.4}{Type Parameters}{section.9.6}% 173
+\BOOKMARK [1][-]{section.9.7}{Initialization macros}{chapter.9}% 174
+\BOOKMARK [-1][-]{part.3}{III Standard Library}{}% 175
+\BOOKMARK [0][-]{chapter.10}{Standard Library}{part.3}% 176
+\BOOKMARK [1][-]{section.10.1}{String}{chapter.10}% 177
+\BOOKMARK [1][-]{section.10.2}{Data Structures}{chapter.10}% 178
+\BOOKMARK [2][-]{subsection.10.2.1}{Array}{section.10.2}% 179
+\BOOKMARK [2][-]{subsection.10.2.2}{Vector}{section.10.2}% 180
+\BOOKMARK [2][-]{subsection.10.2.3}{List}{section.10.2}% 181
+\BOOKMARK [2][-]{subsection.10.2.4}{GenericStack}{section.10.2}% 182
+\BOOKMARK [2][-]{subsection.10.2.5}{Map}{section.10.2}% 183
+\BOOKMARK [2][-]{subsection.10.2.6}{Option}{section.10.2}% 184
+\BOOKMARK [1][-]{section.10.3}{Regular Expressions}{chapter.10}% 185
+\BOOKMARK [2][-]{subsection.10.3.1}{Matching}{section.10.3}% 186
+\BOOKMARK [2][-]{subsection.10.3.2}{Groups}{section.10.3}% 187
+\BOOKMARK [2][-]{subsection.10.3.3}{Replace}{section.10.3}% 188
+\BOOKMARK [2][-]{subsection.10.3.4}{Split}{section.10.3}% 189
+\BOOKMARK [2][-]{subsection.10.3.5}{Map}{section.10.3}% 190
+\BOOKMARK [2][-]{subsection.10.3.6}{Implementation Details}{section.10.3}% 191
+\BOOKMARK [1][-]{section.10.4}{Math}{chapter.10}% 192
+\BOOKMARK [2][-]{subsection.10.4.1}{Special Numbers}{section.10.4}% 193
+\BOOKMARK [2][-]{subsection.10.4.2}{Mathematical Errors}{section.10.4}% 194
+\BOOKMARK [2][-]{subsection.10.4.3}{Integer Math}{section.10.4}% 195
+\BOOKMARK [2][-]{subsection.10.4.4}{Extensions}{section.10.4}% 196
+\BOOKMARK [1][-]{section.10.5}{Lambda}{chapter.10}% 197
+\BOOKMARK [1][-]{section.10.6}{Template}{chapter.10}% 198
+\BOOKMARK [1][-]{section.10.7}{Reflection}{chapter.10}% 199
+\BOOKMARK [1][-]{section.10.8}{Serialization}{chapter.10}% 200
+\BOOKMARK [2][-]{subsection.10.8.1}{Serialization format}{section.10.8}% 201
+\BOOKMARK [1][-]{section.10.9}{Json}{chapter.10}% 202
+\BOOKMARK [2][-]{subsection.10.9.1}{Parsing JSON}{section.10.9}% 203
+\BOOKMARK [2][-]{subsection.10.9.2}{Encoding JSON}{section.10.9}% 204
+\BOOKMARK [2][-]{subsection.10.9.3}{Implementation details}{section.10.9}% 205
+\BOOKMARK [1][-]{section.10.10}{Xml}{chapter.10}% 206
+\BOOKMARK [1][-]{section.10.11}{Input/Output}{chapter.10}% 207
+\BOOKMARK [1][-]{section.10.12}{Sys/sys}{chapter.10}% 208
+\BOOKMARK [1][-]{section.10.13}{Remoting}{chapter.10}% 209
+\BOOKMARK [2][-]{subsection.10.13.1}{Remoting Connection}{section.10.13}% 210
+\BOOKMARK [2][-]{subsection.10.13.2}{Implementation details}{section.10.13}% 211
+\BOOKMARK [1][-]{section.10.14}{Unit testing}{chapter.10}% 212
+\BOOKMARK [-1][-]{part.4}{IV Miscellaneous}{}% 213
+\BOOKMARK [0][-]{chapter.11}{Haxelib}{part.4}% 214
+\BOOKMARK [1][-]{section.11.1}{Using a Haxe library with the Haxe Compiler}{chapter.11}% 215
+\BOOKMARK [1][-]{section.11.2}{haxelib.json}{chapter.11}% 216
+\BOOKMARK [2][-]{subsection.11.2.1}{Versioning}{section.11.2}% 217
+\BOOKMARK [2][-]{subsection.11.2.2}{Dependencies}{section.11.2}% 218
+\BOOKMARK [1][-]{section.11.3}{extraParams.hxml}{chapter.11}% 219
+\BOOKMARK [1][-]{section.11.4}{Using Haxelib}{chapter.11}% 220
+\BOOKMARK [0][-]{chapter.12}{Target Details}{part.4}% 221
+\BOOKMARK [1][-]{section.12.1}{Javascript}{chapter.12}% 222
+\BOOKMARK [2][-]{subsection.12.1.1}{Getting started with Haxe/Javascript}{section.12.1}% 223
+\BOOKMARK [2][-]{subsection.12.1.2}{Using external Javascript libraries}{section.12.1}% 224
+\BOOKMARK [2][-]{subsection.12.1.3}{Javascript target Metatags}{section.12.1}% 225
+\BOOKMARK [2][-]{subsection.12.1.4}{Exposing Haxe classes for Javascript}{section.12.1}% 226
+\BOOKMARK [2][-]{subsection.12.1.5}{Loading extern classes using "require" function}{section.12.1}% 227
+\BOOKMARK [1][-]{section.12.2}{Flash}{chapter.12}% 228
+\BOOKMARK [2][-]{subsection.12.2.1}{Getting started with Haxe/Flash}{section.12.2}% 229
+\BOOKMARK [2][-]{subsection.12.2.2}{Embedding resources}{section.12.2}% 230
+\BOOKMARK [2][-]{subsection.12.2.3}{Using external Flash libraries}{section.12.2}% 231
+\BOOKMARK [2][-]{subsection.12.2.4}{Flash target Metatags}{section.12.2}% 232
+\BOOKMARK [1][-]{section.12.3}{Neko}{chapter.12}% 233
+\BOOKMARK [1][-]{section.12.4}{PHP}{chapter.12}% 234
+\BOOKMARK [2][-]{subsection.12.4.1}{Getting started with Haxe/PHP}{section.12.4}% 235
+\BOOKMARK [1][-]{section.12.5}{C++}{chapter.12}% 236
+\BOOKMARK [2][-]{subsection.12.5.1}{Using C++ Defines}{section.12.5}% 237
+\BOOKMARK [2][-]{subsection.12.5.2}{Using C++ Pointers}{section.12.5}% 238
+\BOOKMARK [1][-]{section.12.6}{Java}{chapter.12}% 239
+\BOOKMARK [1][-]{section.12.7}{C\043}{chapter.12}% 240
+\BOOKMARK [1][-]{section.12.8}{Python}{chapter.12}% 241

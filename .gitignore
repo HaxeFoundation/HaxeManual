@@ -1,16 +1,14 @@
-HaxeDoc.aux
-HaxeDoc.bbl
-HaxeDoc.blg
-HaxeDoc.out
-HaxeDoc.tcp
-HaxeDoc.toc
-HaxeDoc.tps
+*.aux
+*.bbl
+*.blg
+*.out
+*.toc
+*.tps
+*.log
+*.dvi
+*.tdo
 convert/convert.n
-HaxeDoc.log
-HaxeDoc.dvi
-HaxeDoc.tdo
 
 latextemp/
 HaxeDoc.synctex.gz
 toc.sv
-md_epub/

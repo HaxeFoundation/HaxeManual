@@ -7,6 +7,8 @@ The Haxe Standard Library comes with a set of tool-classes to simplify working w
 * `MacroStringTools`: Offers useful operations on strings and string expressions in macro context.
 * `TypeTools`: Allows printing `Type` instances in a human-readable way. Also offers several useful operations on types, such as [unifying](type-system-unification.md) them or getting their corresponding `ComplexType`.
 
+Furthermore the `haxe.macro.Printer` class has public methods for printing various types as a human-readable format. This can be helpful when debugging macros.
+
 > ##### Trivia: The tinkerbell library and why Tools.hx works
 >
 > We learned about static extensions that using a **module** implies that all its types are brought into static extension context. As it turns out, such a type can also be a [typedef](type-system-typedef.md) to another type. The compiler then considers this type part of the module, and extends static extension accordingly.
