@@ -242,6 +242,8 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					lastSection.flags[key] = value;
 				case [TCustomCommand("maintainer"), s = inBraces(text)]:
 					buffer.add('Written and maintained by $s');
+				case [TCustomCommand("subtoc")]:
+					buffer.add("~subtoc~");
 				// section
 				case [TCommand(CPart), s = inBraces(text)]:
 					// TODO: handle this

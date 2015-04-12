@@ -31,11 +31,14 @@ class Main {
 		sectionInfo = collectSectionInfo(sections);
 
 		for (sec in sectionInfo.all) {
+			var subToc = makeSubToc(sec);
 			if (sec.content.length == 0 && sec.sub.length > 0) {
-				sec.content = sec.sub.map(function(sec) return sec.id + ": " +link(sec)).join("\n\n");
+				sec.content = subToc;
 			} else {
 				sec.content = process(sec.content);
 			}
+
+			sec.content = sec.content.replace("~subtoc~", subToc);
 		}
 
 		function generateTitleString(sec:Section, prefix = "##") {
@@ -104,6 +107,10 @@ class Main {
 		parser = new LatexParser(input, source);
 		var sections = hxparse.Utils.catchErrors(input, parser.parse);
 		return sections;
+	}
+
+	function makeSubToc(sec:Section) {
+		return sec.sub.map(function(sec) return sec.id + ": " +link(sec)).join("\n\n");
 	}
 
 	function collectSectionInfo(sections:Array<Section>):SectionInfo {
