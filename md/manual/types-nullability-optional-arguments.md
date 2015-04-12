@@ -6,11 +6,11 @@ In particular, there must be a distinction between **native** optional arguments
 
 ```haxe
 // x is a native Int (not nullable)
-function foo(x : Int = 0) {...}
+function foo(x : Int = 0) {}
 // y is Null<Int> (nullable)
-function bar( ?y : Int) {...}
+function bar( ?y : Int) {}
 // z is also Null<Int>
-function opt( ?z : Int = -1) {...}
+function opt( ?z : Int = -1) {}
 ```
 
 > ##### Trivia: Argument vs. Parameter

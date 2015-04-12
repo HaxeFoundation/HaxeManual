@@ -1,4 +1,4 @@
-## 12.2.1 Getting started with Flash
+## 12.2.1 Getting started with Haxe/Flash
 
 Developing Flash applications is really easy with Haxe. Let's look at our first code sample.
 This is a basic example showing most of the toolchain. 
@@ -30,7 +30,7 @@ To compile this, either run the following from the command line:
 haxe -swf main-flash.swf -main Main -swf-version 15 -swf-header 960:640:60:f68712
 ```
 
-.. or create and run (double-click) a file called `compile.hxml`. In this example the hxml-file should be in the same directory as the example class.
+Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml-file should be in the same directory as the example class.
 
 ```haxe
 -swf main-flash.swf

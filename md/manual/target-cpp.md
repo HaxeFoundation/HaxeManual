@@ -6,6 +6,6 @@
 
 ---
 
-Previous section: [Flash target Metatags](target-flash-metatags.md)
+Previous section: [Getting started with Haxe/PHP](target-php-getting-started.md)
 
 Next section: [Using C++ Defines](target-cpp-defines.md)

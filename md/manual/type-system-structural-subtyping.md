@@ -4,11 +4,15 @@
 >
 > Structural subtyping defines an implicit relation between types that have the same structure.
 
-In Haxe, structural subtyping is only possible when assigning a class instance to a structure. The following example is part of the `Lambda` class of the [Haxe Standard Library](std.md):
+Structural sub-typing in Haxe is allowed when unifying
+
+* a [class](types-class-instance.md) with a [structure](types-anonymous-structure.md) and
+* a structure with another structure.
+
+The following example is part of the `Lambda` class of the [Haxe Standard Library](std.md):
 
 ```haxe
-public static function
-empty<T>(it : Iterable<T>):Bool {
+public static function empty<T>(it : Iterable<T>):Bool {
 	return !it.iterator().hasNext();
 }
 ```

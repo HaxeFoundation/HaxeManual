@@ -19,8 +19,7 @@ The function type will be explored in detail in the section [Function Type](type
 Haxe does not allow fields and variables of type `Void` and will complain if an attempt at declaring such is made:
 
 ```haxe
-// Arguments and variables of type Void
-// are not allowed
+// Arguments and variables of type Void are not allowed
 var x:Void;
 ```
 

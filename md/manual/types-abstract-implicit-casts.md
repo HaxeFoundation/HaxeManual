@@ -59,10 +59,8 @@ In the example the method `fromString` allows the assignment of value `"3"` to v
 When using this kind of cast, calls to the cast-functions are inserted where required. This becomes obvious when looking at the Javascript output:
 
 ```haxe
-var a = _ImplicitCastField.MyAbstract_Impl_
-  .fromString("3");
-var b = _ImplicitCastField.MyAbstract_Impl_
-  .toArray(a);
+var a = _ImplicitCastField.MyAbstract_Impl_.fromString("3");
+var b = _ImplicitCastField.MyAbstract_Impl_.toArray(a);
 ```
 This can be further optimized by [inlining](class-field-inline.md) both cast functions, turning the output into the following:
 

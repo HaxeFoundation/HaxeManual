@@ -2,7 +2,7 @@
 
 ##### Arithmetic
  
- Operator  | Operation  | Argument 1  | Argument 2  | Return 
+ Operator  | Operation  | Operand 1  | Operand 2  | Return 
  --- | --- | --- | --- | ---
 <code>++</code> | increment  | `Int`  | N/A  | `Int`
  |  | `Float`  | N/A  | `Float`
@@ -31,7 +31,7 @@
  
 ##### Comparison
  
- Operator  | Operation  | Argument 1  | Argument 2  | Return 
+ Operator  | Operation  | Operand 1  | Operand 2  | Return 
  --- | --- | --- | --- | --- | --- | --- | --- | ---
 <code>==</code>  | equal  | `Float/Int`  | `Float/Int`  | `Bool` 
 <code>!=</code>  | not equal  | `Float/Int`  | `Float/Int`  | `Bool` 
@@ -42,7 +42,7 @@
  
 ##### Bitwise
  
- Operator  | Operation  | Argument 1  | Argument 2  | Return 
+ Operator  | Operation  | Operand 1  | Operand 2  | Return 
  --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ---
 <code>~</code>  | bitwise negation  | `Int`  | N/A  | `Int` 
 <code>&amp;</code>  | bitwise and  | `Int`  | `Int`  | `Int` 

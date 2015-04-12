@@ -1,4 +1,4 @@
-## 12.1.1 Getting started with Javascript
+## 12.1.1 Getting started with Haxe/Javascript
 
 Haxe can be a powerful tool for developing Javascript applications. Let's look at our first sample.
 This is a very simple example showing the toolchain. 
@@ -20,13 +20,13 @@ class Main {
 }
 ```
 
-To compile, either run this from the command line:
+To compile, either run the following from the command line:
 
 ```haxe
 haxe -js main-javascript.js -main Main -D js-flatten -dce full
 ```
 
-.. or create and run (double-click) a file called `compile.hxml`. In this example the hxml-file should be in the same directory as the example class.
+Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml-file should be in the same directory as the example class.
 
 ```haxe
 -js main-javascript.js

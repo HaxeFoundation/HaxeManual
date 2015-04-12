@@ -60,6 +60,6 @@ The standard compilation options also provide more Haxe sources to be added to t
 
 ---
 
-Previous section: [Getting started with Javascript](target-javascript-getting-started.md)
+Previous section: [Getting started with Haxe/Javascript](target-javascript-getting-started.md)
 
 Next section: [Javascript target Metatags](target-javascript-metatags.md)

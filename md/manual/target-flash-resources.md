@@ -20,6 +20,6 @@ class MyBitmapData extends BitmapData { }
 
 ---
 
-Previous section: [Getting started with Flash](target-flash-getting-started.md)
+Previous section: [Getting started with Haxe/Flash](target-flash-getting-started.md)
 
 Next section: [Using external Flash libraries](target-flash-external-libraries.md)

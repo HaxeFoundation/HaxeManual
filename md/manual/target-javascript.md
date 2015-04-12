@@ -1,6 +1,6 @@
 ## 12.1 Javascript
 
-12.1.1: [Getting started with Javascript](target-javascript-getting-started.md)
+12.1.1: [Getting started with Haxe/Javascript](target-javascript-getting-started.md)
 
 12.1.2: [Using external Javascript libraries](target-javascript-external-libraries.md)
 
@@ -14,4 +14,4 @@
 
 Previous section: [Target Details](target-details.md)
 
-Next section: [Getting started with Javascript](target-javascript-getting-started.md)
+Next section: [Getting started with Haxe/Javascript](target-javascript-getting-started.md)

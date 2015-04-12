@@ -37,7 +37,6 @@ Missing Content:
 10.11 - Input/Output
 10.12 - Sys/sys
 12.3 - Neko
-12.4 - PHP
 12.5.2 - Using C++ Pointers
 12.6 - Java
 12.7 - C#
@@ -240,15 +239,16 @@ Unreviewed:
 11.2.2 - Dependencies
 11.3 - extraParams.hxml
 11.4 - Using Haxelib
-12.1.1 - Getting started with Javascript
+12.1.1 - Getting started with Haxe/Javascript
 12.1.2 - Using external Javascript libraries
 12.1.3 - Javascript target Metatags
 12.1.4 - Exposing Haxe classes for Javascript
 12.1.5 - Loading extern classes using "require" function
-12.2.1 - Getting started with Flash
+12.2.1 - Getting started with Haxe/Flash
 12.2.2 - Embedding resources
 12.2.3 - Using external Flash libraries
 12.2.4 - Flash target Metatags
+12.4.1 - Getting started with Haxe/PHP
 12.5.1 - Using C++ Defines
 
 Modified:
