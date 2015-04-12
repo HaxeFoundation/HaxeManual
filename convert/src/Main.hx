@@ -62,10 +62,17 @@ class Main {
 			if (i != sectionInfo.all.length - 1) sec.content += '\n\nNext section: ${link(sectionInfo.all[i + 1])}';
 			#end
 			sys.io.File.saveContent('$out/${url(sec)}', sec.content);
-			Reflect.deleteField(sec, "content");
 		}
 		generateDictionary();
 		generateTodo();
+
+		function prepare(sec:Section) {
+			Reflect.deleteField(sec, "content");
+			Reflect.deleteField(sec, "parent");
+			Reflect.deleteField(sec, "flags");
+			sec.sub.iter(prepare);
+		}
+		sections.iter(prepare);
 		sys.io.File.saveContent('$out/sections.txt', haxe.Json.stringify(sections));
 
 		#if epub
@@ -111,8 +118,11 @@ class Main {
 				case Reviewed | NoContent:
 			}
 			allSections.push(sec);
-			for (sec in sec.sub) {
-				add(sec);
+			for (sub in sec.sub) {
+				if (sec.flags.exists("fold")) {
+					sub.flags["folded"] = "true";
+				}
+				add(sub);
 			}
 		}
 		for (sec in sections) {
@@ -209,6 +219,10 @@ class Main {
 	}
 
 	static function url(sec:Section) {
+		if (sec.flags["folded"] == "true") {
+			// TODO: nested folding?
+			return url(sec.parent) + "#" + escapeAnchor(sec.id + " " + sec.title);
+		}
 		return sec.label + ".md";
 	}
 
