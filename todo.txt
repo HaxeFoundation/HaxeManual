@@ -26,6 +26,7 @@ Todo:
 8.4.1 - Embedding resources: what to use for listing of non-haxe code like hxml?
 9.5.1 - Enum building: Check if we can build GADTs this way.
 10.4.3 - Integer Math: I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?
+10.14.4 - Creating tables: Find out if this is still true and if this is something that can be fixed
 
 Missing Content:
 2.5.3 - Optional Fields
@@ -230,6 +231,20 @@ Unreviewed:
 10.13 - Remoting
 10.13.1 - Remoting Connection
 10.13.2 - Implementation details
+10.14 - SPOD
+10.14.1 - SPOD Objects
+10.14.2 - Initialization
+10.14.3 - Making connection
+10.14.4 - Creating tables
+10.14.5 - SPOD Supported types
+10.14.6 - SPOD Metadata
+10.14.7 - SPOD Manager
+10.14.8 - SQL functions
+10.14.9 - Search options
+10.14.10 - SPOD Dynamic search
+10.14.11 - SPOD Relation search
+10.14.12 - SPOD Relations
+10.14.13 - SPOD Serialized Data
 11 - Haxelib
 11.1 - Using a Haxe library with the Haxe Compiler
 11.2 - haxelib.json
