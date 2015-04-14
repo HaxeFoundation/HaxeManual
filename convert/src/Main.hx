@@ -15,18 +15,50 @@ class Main {
 	static inline var linkPrefix = #if epub "#" #else "" #end;
 
 	static function main() {
-		//new Main("../HaxeManual", "HaxeManual.tex", #if epub "../output/HaxeManual/epub" #else "../output/HaxeManual/website" #end);
-		new Main("../HaxeTutorials", "HaxeTutorials.tex", "../output/HaxeTutorial/website");
+		var config = {
+			sourceDirectory: ".",
+			sourceFile: null,
+			outputDirectory: "output",
+			omitIds: false,
+		}
+
+		var handler = hxargs.Args.generate([
+			@doc("Sets the input directory")
+			"-i" => function(directory:String) {
+				config.sourceDirectory = directory;
+			},
+			@doc("Sets the input file")
+			"-o" => function(directory:String) {
+				config.outputDirectory = directory;
+			},
+			@doc("Omit chapter and section IDs")
+			"--omit-ids" => function() {
+				config.omitIds = true;
+			},
+			@doc("Sets the output directory")
+			_ => function(file:String) {
+				config.sourceFile = file;
+			}
+		]);
+		handler.parse(Sys.args());
+		if (config.sourceFile == null) {
+			Sys.println('Missing source file');
+			Sys.println(handler.getDoc());
+			Sys.exit(1);
+		}
+		new Main(config);
 	}
 
 	var parser:LatexParser;
 	var out:String;
+	var config:Config;
 	var sectionInfo:SectionInfo;
 
-	function new(directory:String, source:String, target:String) {
-		Sys.setCwd(directory);
-		var sections = parse(source);
-		out = target;
+	function new(config:Config) {
+		this.config = config;
+		Sys.setCwd(config.sourceDirectory);
+		var sections = parse(config.sourceFile);
+		out = config.outputDirectory;
 
 		sectionInfo = collectSectionInfo(sections);
 
@@ -104,7 +136,7 @@ class Main {
 	function parse(source:String) {
 		LatexLexer.customEnvironments["flowchart"] = FlowchartHandler.handle;
 		var input = byte.ByteData.ofString(sys.io.File.getContent(source));
-		parser = new LatexParser(input, source);
+		parser = new LatexParser(input, source, config);
 		var sections = hxparse.Utils.catchErrors(input, parser.parse);
 		return sections;
 	}

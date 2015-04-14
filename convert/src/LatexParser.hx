@@ -84,12 +84,14 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 	var listMode:Array<ListMode>;
 	var lastLabelTarget:LabelKind;
 	var input:byte.ByteData;
+	var config:Config;
 
-	public function new(input, sourceName) {
+	public function new(input, sourceName, config:Config) {
 		var lexer = new LatexLexer(input, sourceName);
 		var source = new hxparse.LexerTokenSource(lexer, LatexLexer.tok);
 		super(source);
 		this.input = input;
+		this.config = config;
 		buffer = new StringBuf();
 		todos = [];
 		sections = [];
@@ -462,7 +464,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 			lastSection.content = getBuffer();
 			buffer = new StringBuf();
 		}
-		var id = #if omit_ids "" #else (parent != null ? parent.id + "." : "") + index #end;
+		var id = config.omitIds ? "" : (parent != null ? parent.id + "." : "") + index;
 		var source = {
 			file: stream.curPos().psource,
 			lineMin: stream.curPos().getLinePosition(input).lineMin,
