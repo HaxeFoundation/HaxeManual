@@ -23,7 +23,7 @@ We can use standard regular expression patterns such as:
 * `+` repeat one-or-more
 * `?` optional zero-or-one
 * `[A-Z0-9]` character ranges
-* `[^\\ r\\ n\\ t]` character not-in-range
+* `[^\ r\ n\ t]` character not-in-range
 * `(...)` parenthesis to match groups of characters
 * `^` beginning of the string (beginning of a line in multiline matching mode)
 * `$` end of the string (end of a line in multiline matching mode)

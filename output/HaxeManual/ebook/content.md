@@ -1,13 +1,13 @@
 <a id="introduction"></a>
 ## 1 Introduction
 
-1.1: [What is Haxe?](#introduction-what-is-haxe)
+1.1: [What is Haxe?](introduction-what-is-haxe)
 
-1.2: [About this Document](#introduction-about-this-document)
+1.2: [About this Document](introduction-about-this-document)
 
-1.3: [Hello World](#introduction-hello-world)
+1.3: [Hello World](introduction-hello-world)
 
-1.4: [History](#introduction-haxe-history)
+1.4: [History](introduction-haxe-history)
 
 <a id="introduction-what-is-haxe"></a>
 ## 1.1 What is Haxe?
@@ -31,21 +31,21 @@ Flash  | Bytecode  | Browser, Desktop, Mobile
 C#  | Sourcecode  | Desktop, Mobile, Server 
  
 
-The remainder of section [Introduction](#introduction) gives a brief overview of what a Haxe program looks like and how Haxe evolved since its inception in 2005.
+The remainder of section [Introduction](introduction) gives a brief overview of what a Haxe program looks like and how Haxe evolved since its inception in 2005.
 
-[Types](#types) introduces the seven different kinds of types in Haxe and how they interact with each other. The discussion of types is continued in [Type System](#type-system), where features like **unification**, **type parameters** and **type inference** are explained.
+[Types](types) introduces the seven different kinds of types in Haxe and how they interact with each other. The discussion of types is continued in [Type System](type-system), where features like **unification**, **type parameters** and **type inference** are explained.
 
-[Class Fields](#class-field) is all about the structure of Haxe classes and, among other topics, deals with **properties**, **inline fields** and **generic functions**.
+[Class Fields](class-field) is all about the structure of Haxe classes and, among other topics, deals with **properties**, **inline fields** and **generic functions**.
 
-In [Expressions](#expression) we see how to actually get programs to do something by using **expressions**.
+In [Expressions](expression) we see how to actually get programs to do something by using **expressions**.
 
-[Language Features](#lf) describes some of the Haxe features in detail such as **pattern matching**, **string interpolation** and **dead code elimination**. This concludes the Haxe language reference.
+[Language Features](lf) describes some of the Haxe features in detail such as **pattern matching**, **string interpolation** and **dead code elimination**. This concludes the Haxe language reference.
 
-We continue with the Haxe compiler reference, which first handles the basics in [Compiler Usage](#compiler-usage) before getting into the advanced features in [Compiler Features](#cr-features). Finally, we will venture into the exciting land of **haxe macros** in [Macros](#macro) to see how some common tasks can be greatly simplified.
+We continue with the Haxe compiler reference, which first handles the basics in [Compiler Usage](compiler-usage) before getting into the advanced features in [Compiler Features](cr-features). Finally, we will venture into the exciting land of **haxe macros** in [Macros](macro) to see how some common tasks can be greatly simplified.
 
-In the following chapter, [Standard Library](#std), we explore important types and concepts from the Haxe Standard Library. We then learn about Haxe's package manager Haxelib in [Haxelib](#haxelib).
+In the following chapter, [Standard Library](std), we explore important types and concepts from the Haxe Standard Library. We then learn about Haxe's package manager Haxelib in [Haxelib](haxelib).
 
-Haxe abstracts away many target differences, but sometimes it is important to interact with a target directly, which is the subject of [Target Details](#target-details).
+Haxe abstracts away many target differences, but sometimes it is important to interact with a target directly, which is the subject of [Target Details](target-details).
 
 <a id="introduction-about-this-document"></a>
 ## 1.2 About this Document
@@ -144,7 +144,7 @@ The explicit type annotations are not required in Haxe, because the compiler can
 ```haxe
 var myButton = new MySpecialButton(); // Haxe
 ```
-We will explore type inference in detail later in [Type Inference](#type-system-type-inference). For now, it is sufficient to say that the variable `myButton` in the above code is known to be an **instance of class** `MySpecialButton`. 
+We will explore type inference in detail later in [Type Inference](type-system-type-inference). For now, it is sufficient to say that the variable `myButton` in the above code is known to be an **instance of class** `MySpecialButton`. 
 
 The Haxe type system knows seven type groups:
 
@@ -290,7 +290,7 @@ class HelloWorld {
 }
 ```
 
-The function type will be explored in detail in the section [Function Type](#types-function) but a quick preview helps here: The type of the function `main` in the example above is `Void->Void`, which reads as "it has no arguments and returns nothing".
+The function type will be explored in detail in the section [Function Type](types-function) but a quick preview helps here: The type of the function `main` in the example above is `Void->Void`, which reads as "it has no arguments and returns nothing".
 Haxe does not allow fields and variables of type `Void` and will complain if an attempt at declaring such is made:
 
 ```haxe
@@ -378,12 +378,12 @@ function opt( ?z : Int = -1) {}
 
 > ##### Trivia: Argument vs. Parameter
 >
-> In some other programming languages, **argument** and **parameter** are used interchangeably.  In Haxe, **argument** is used when referring to methods and **parameter** refers to [Type Parameters](#type-system-type-parameters).
+> In some other programming languages, **argument** and **parameter** are used interchangeably.  In Haxe, **argument** is used when referring to methods and **parameter** refers to [Type Parameters](type-system-type-parameters).
 
 <a id="types-class-instance"></a>
 ## 2.3 Class Instance
 
-Similar to many object-oriented languages, classes are the primary data structure for the majority of programs in Haxe. Each Haxe class has an explicit name, an implied path and zero or more class fields. Here we will focus on the general structure of classes and their relations, while leaving the details of class fields for [Class Fields](#class-field).
+Similar to many object-oriented languages, classes are the primary data structure for the majority of programs in Haxe. Each Haxe class has an explicit name, an implied path and zero or more class fields. Here we will focus on the general structure of classes and their relations, while leaving the details of class fields for [Class Fields](class-field).
 
 The following code example serves as basis for the remainder of this section:
 
@@ -426,7 +426,7 @@ Instances of classes are created by calling the class constructor - a process co
 ```haxe
 var p = new Point(-1, 65);
 ```
-This will yield an instance of class `Point`, which is assigned to a variable named `p`. The constructor of `Point` receives the two arguments `-1` and `65` and assigns them to the instance variables `x` and `y` respectively (compare its definition in [Class Instance](#types-class-instance)). We will revisit the exact meaning of the `new` expression later in the section [new](#expression-new). For now, we just think of it as calling the class constructor and returning the appropriate object.
+This will yield an instance of class `Point`, which is assigned to a variable named `p`. The constructor of `Point` receives the two arguments `-1` and `65` and assigns them to the instance variables `x` and `y` respectively (compare its definition in [Class Instance](types-class-instance)). We will revisit the exact meaning of the `new` expression later in the section [new](expression-new). For now, we just think of it as calling the class constructor and returning the appropriate object.
 
 <a id="types-class-inheritance"></a>
 ## 2.3.2 Inheritance
@@ -451,7 +451,7 @@ The code above is very similar to the original `Point` class, with two new const
 
 It is not necessary for child classes to define their own constructors, but if they do, a call to `super()` is mandatory. Unlike some other object-oriented languages, this call can appear anywhere in the constructor code and does not have to be the first expression.
 
-A class may override [methods](class-field-method) of its parent class, which requires the explicit `override` keyword. The effects and restrictions of this are detailed in [Overriding Methods](#class-field-overriding).
+A class may override [methods](class-field-method) of its parent class, which requires the explicit `override` keyword. The effects and restrictions of this are detailed in [Overriding Methods](class-field-overriding).
 
 <a id="types-interfaces"></a>
 ## 2.3.3 Interfaces
@@ -695,7 +695,7 @@ While any string literal is allowed, the field is only considered part of the ty
 <a id="types-structure-class-notation"></a>
 ## 2.5.2 Class Notation for Structure Types
 
-When defining a structure type, Haxe allows using the same syntax as described in [Class Fields](#class-field). The following [typedef](type-system-typedef) declares a `Point` type with variable fields `x` and `y` of type `Int`:
+When defining a structure type, Haxe allows using the same syntax as described in [Class Fields](class-field). The following [typedef](type-system-typedef) declares a `Point` type with variable fields `x` and `y` of type `Int`:
 
 ```haxe
 typedef Point = {
@@ -791,7 +791,7 @@ class DefaultValues {
   }
 }
 ```
-This example is very similar to the one from [Optional Arguments](#types-function-optional-arguments), with the only difference being that the values `12` and `"bar"` are assigned to the function arguments `i` and `s` respectively. The effect is that the default values are used instead of `null` should an argument be omitted from the call.
+This example is very similar to the one from [Optional Arguments](types-function-optional-arguments), with the only difference being that the values `12` and `"bar"` are assigned to the function arguments `i` and `s` respectively. The effect is that the default values are used instead of `null` should an argument be omitted from the call.
 
 Default values in Haxe are not part of the type and are not replaced at call-site (unless the function is [inlined](class-field-inline), which can be considered as a more typical approach. On some targets the compiler may still pass `null` for omitted argument values and generate code similar to this into the function:
 ```haxe
@@ -811,7 +811,7 @@ While Haxe has a static type system, this type system can, in effect, be turned 
 * The compiler can no longer type-check assignments, function calls and other constructs where specific types are expected.
 * Certain optimizations, in particular when compiling to static targets, can no longer be employed.
 * Some common errors, e.g. a typo in a field access, can not be caught at compile-time and likely cause an error at runtime.
-* [Dead Code Elimination](#cr-dce) cannot detect used fields if they are used through `Dynamic`.
+* [Dead Code Elimination](cr-dce) cannot detect used fields if they are used through `Dynamic`.
 
 It is very easy to come up with examples where the usage of `Dynamic` can cause problems at runtime. Consider compiling the following two lines to a static target:
 
@@ -826,7 +826,7 @@ Trying to run a compiled program in the Flash Player yields an error `Property f
 >
 > The Haxe 3 compiler never infers a type to `Dynamic`, so users must be explicit about it. Previous Haxe versions used to infer arrays of mixed types, e.g. `[1, true, "foo"]`, as `Array<Dynamic>`. We found that this behavior introduced too many type problems and thus removed it for Haxe 3.
 
-Use of `Dynamic` should be minimized as there are better options in many situations but sometimes it is just practical to use it. Parts of the Haxe [Reflection](#std-reflection) API use it and it is sometimes the best option when dealing with custom data structures that are not known at compile-time.
+Use of `Dynamic` should be minimized as there are better options in many situations but sometimes it is just practical to use it. Parts of the Haxe [Reflection](std-reflection) API use it and it is sometimes the best option when dealing with custom data structures that are not known at compile-time.
 
 `Dynamic` behaves in a special way when being [unified](type-system-unification) with a [monomorph](types-monomorph). Monomorphs are never bound to `Dynamic` which can have surprising results in examples such as this:
 
@@ -854,7 +854,7 @@ Although the return type of `Json.parse` is `Dynamic`, the type of local variabl
 <a id="types-dynamic-with-type-parameter"></a>
 ## 2.7.1 Dynamic with Type Parameter
 
-`Dynamic` is a special type because it allows explicit declaration with and without a [type parameter](type-system-type-parameters). If such a type parameter is provided, the semantics described in [Dynamic](#types-dynamic) are constrained to all fields being compatible with the parameter type:
+`Dynamic` is a special type because it allows explicit declaration with and without a [type parameter](type-system-type-parameters). If such a type parameter is provided, the semantics described in [Dynamic](types-dynamic) are constrained to all fields being compatible with the parameter type:
 
 ```haxe
 var att : Dynamic<String> = xml.attributes;
@@ -956,7 +956,7 @@ As mentioned before, abstracts are a compile-time feature, so it is interesting 
 var a = 12;
 console.log(a);
 ```
-The abstract type `Abstract` completely disappeared from the output and all that is left is a value of its underlying type, `Int`. This is because the constructor of `Abstract` is inlined - something we shall learn about later in the section [Inline](#class-field-inline) - and its inlined expression assigns a value to `this`. This might be surprising when thinking in terms of classes. However, it is precisely what we want to express in the context of abstracts. Any **inlined member method** of an abstract can assign to `this`, and thus modify the "internal value".
+The abstract type `Abstract` completely disappeared from the output and all that is left is a value of its underlying type, `Int`. This is because the constructor of `Abstract` is inlined - something we shall learn about later in the section [Inline](class-field-inline) - and its inlined expression assigns a value to `this`. This might be surprising when thinking in terms of classes. However, it is precisely what we want to express in the context of abstracts. Any **inlined member method** of an abstract can assign to `this`, and thus modify the "internal value".
 
 A good question at this point is "What happens if a member function is not declared inline" because the code obviously has to go somewhere. Haxe creates a private class, known to be the **implementation class**, which has all the abstract member functions as static functions accepting an additional first argument `this` of the underlying type. While technically this is an implementation detail, it can be used for [selective functions](types-abstract-selective-functions).
 
@@ -1378,11 +1378,11 @@ A monomorph is a type which may, through [unification](type-system-unification),
 <a id="type-system"></a>
 ## 3 Type System
 
-We learned about the different kinds of types in [Types](#types) and it is now time to see how they interact with each other. We start off easy by introducing [typedef](type-system-typedef), a mechanism to give a name (or alias) to a more complex type. Among other things, this will come in handy when working with types having [type parameters](type-system-type-parameters).
+We learned about the different kinds of types in [Types](types) and it is now time to see how they interact with each other. We start off easy by introducing [typedef](type-system-typedef), a mechanism to give a name (or alias) to a more complex type. Among other things, this will come in handy when working with types having [type parameters](type-system-type-parameters).
 
-A lot of type-safety is achieved by checking if two given types of the type groups above are compatible. Meaning, the compiler tries to perform **unification** between them as detailed in [Unification](#type-system-unification).
+A lot of type-safety is achieved by checking if two given types of the type groups above are compatible. Meaning, the compiler tries to perform **unification** between them as detailed in [Unification](type-system-unification).
 
-All types are organized in **modules** and can be addressed through **paths**. [Modules and Paths](#type-system-modules-and-paths) will give a detailed explanation of the related mechanics.
+All types are organized in **modules** and can be addressed through **paths**. [Modules and Paths](type-system-modules-and-paths) will give a detailed explanation of the related mechanics.
 
 <a id="type-system-typedef"></a>
 ## 3.1 Typedef
@@ -1770,7 +1770,7 @@ In this particular case, the unification is triggered by an **assignment**, a co
 * Assignment: If `a` is assigned to `b`, the type of `a` is unified with the type of `b`.
 * Function call: We have briefly seen this one while introducing the [function](types-function) type. In general, the compiler tries to unify the first given argument type with the first expected argument type, the second given argument type with the second expected argument type and so on until all argument types are handled.
 * Function return: Whenever a function has a `return e` expression, the type of `e` is unified with the function return type. If the function has no explicit return type, it is inferred to the type of `e` and subsequent `return` expressions are inferred against it.
-* Array declaration: The compiler tries to find a minimal type between all given types in an array declaration. Refer to [Common Base Type](#type-system-unification-common-base-type) for details.
+* Array declaration: The compiler tries to find a minimal type between all given types in an array declaration. Refer to [Common Base Type](type-system-unification-common-base-type) for details.
 * Object declaration: If an object is declared "against" a given type, the compiler unifies each given field type with each expected field type.
 * Operator unification: Certain operators expect certain types which the given types are unified against. For instance, the expression `a && b` unifies both `a` and `b` with `Bool` and the expression `a == b` unifies `a` with `b`.
 
@@ -1808,12 +1808,12 @@ public static function empty<T>(it : Iterable<T>):Bool {
 ```
 The `empty`-method checks if an `Iterable` has an element. For this purpose, it is not necessary to know anything about the argument type other than the fact that it is considered an iterable. This allows calling the `empty`-method with any type that unifies with `Iterable<T>` which applies to a lot of types in the Haxe Standard Library.
 
-This kind of typing can be very convenient but extensive use may be detrimental to performance on static targets, which  is detailed in [Impact on Performance](#types-structure-performance).
+This kind of typing can be very convenient but extensive use may be detrimental to performance on static targets, which  is detailed in [Impact on Performance](types-structure-performance).
 
 <a id="type-system-monomorphs"></a>
 ## 3.5.3 Monomorphs
 
-Unification of types having or being a [monomorph](types-monomorph) is detailed in [Type Inference](#type-system-type-inference).
+Unification of types having or being a [monomorph](types-monomorph) is detailed in [Type Inference](type-system-type-inference).
 
 <a id="type-system-unification-function-return"></a>
 ## 3.5.4 Function Return
@@ -1869,7 +1869,7 @@ class TypeInference {
   }
 }
 ```
-The special construct `$type` was previously mentioned in order to simplify the explanation of the [Function Type](#types-function) type, so let us now introduce it officially:
+The special construct `$type` was previously mentioned in order to simplify the explanation of the [Function Type](types-function) type, so let us now introduce it officially:
 
 > ##### Define: `$type`
 >
@@ -1877,7 +1877,7 @@ The special construct `$type` was previously mentioned in order to simplify the 
 
 In the example above, the first `$type` prints `Unknown<0>`. This is a [monomorph](types-monomorph), a type that is not yet known. The next line `x = "foo"` assigns a `String` literal to `x`, which causes the [unification](type-system-unification) of the monomorph with `String`. We then see that the type of `x` indeed has changed to `String`.
 
-Whenever a type other than [Dynamic](#types-dynamic) is unified with a monomorph, that monomorph **becomes** that type: it **morphs** into that type. Therefore it cannot morph into a different type afterwards, a property expressed in the **mono** part of its name.
+Whenever a type other than [Dynamic](types-dynamic) is unified with a monomorph, that monomorph **becomes** that type: it **morphs** into that type. Therefore it cannot morph into a different type afterwards, a property expressed in the **mono** part of its name.
 
 Following the rules of unification, type inference can occur in compound types:
 
@@ -1902,7 +1902,7 @@ Most of the time, types are inferred on their own and may then be unified with a
 >
 > Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is argument to a function call. They can influence typing of that expression through what is called [top-down inference](type-system-top-down-inference).
 
-A good example are arrays of mixed types. As mentioned in [Dynamic](#types-dynamic), the compiler refuses `[1, "foo"]` because it cannot determine an element type. Employing top-down inference, this can be overcome:
+A good example are arrays of mixed types. As mentioned in [Dynamic](types-dynamic), the compiler refuses `[1, "foo"]` because it cannot determine an element type. Employing top-down inference, this can be overcome:
 
 ```haxe
 class Main {
@@ -2031,7 +2031,7 @@ The type `Binop` is an [enum](types-enum-instance) declared in the module `haxe.
 
 There are several aspects worth knowing about importing:
 
-* The bottommost import takes priority (detailed in [Resolution Order](#type-system-resolution-order)).
+* The bottommost import takes priority (detailed in [Resolution Order](type-system-resolution-order)).
 * The [static extension](lf-static-extension) keyword `using` implies the effect of `import`.
 * If an enum is imported (directly or as part of a module import), all its [enum constructors](types-enum-constructor) are also imported (this is what allows the `OpAdd` usage in the above example).
 
@@ -2464,7 +2464,7 @@ class Main {
 }
 ```
 
-Arguments are given by an opening parenthesis `(` after the field name, a comma `,` separated list of argument specifications and a closing parenthesis `)`. Additional information on the argument specification is described in [Function Type](#types-function).
+Arguments are given by an opening parenthesis `(` after the field name, a comma `,` separated list of argument specifications and a closing parenthesis `)`. Additional information on the argument specification is described in [Function Type](types-function).
 
 The example demonstrates how [type inference](type-system-type-inference) can be used for both argument and return types. The method `myFunc` has two arguments but only explicitly gives the type of the first one, `f`, as `String`. The second one, `i`, is not type-hinted and it is left to the compiler to infer its type from calls made to it. Likewise, the return type of the method is inferred from the `return true` expression as `Bool`.
 
@@ -2540,13 +2540,13 @@ It is not possible to override fields which are declared as [`inline`](class-fie
 <a id="class-field-access-modifier"></a>
 ## 4.4 Access Modifier
 
-4.4.1: [Visibility](#class-field-visibility)
+4.4.1: [Visibility](class-field-visibility)
 
-4.4.2: [Inline](#class-field-inline)
+4.4.2: [Inline](class-field-inline)
 
-4.4.3: [Dynamic](#class-field-dynamic)
+4.4.3: [Dynamic](class-field-dynamic)
 
-4.4.4: [Override](#class-field-override)
+4.4.4: [Override](class-field-override)
 
 <a id="class-field-visibility"></a>
 ## 4.4.1 Visibility
@@ -2699,7 +2699,7 @@ Dynamic fields cannot be `inline` for obvious reasons: While inlining is done at
 
 The access modifier `override` is required when a field is declared which also exists on a [parent class](types-class-inheritance). Its purpose is to ensure that the author of a class is aware of the override as this may not always be obvious in large class hierarchies. Likewise, having `override` on a field which does not actually override anything (e.g. due to a misspelled field name) triggers an error.
 
-The effects of overriding fields are detailed in [Overriding Methods](#class-field-overriding). This modifier is only allowed on [method](class-field-method) fields.
+The effects of overriding fields are detailed in [Overriding Methods](class-field-overriding). This modifier is only allowed on [method](class-field-method) fields.
 
 <a id="expression"></a>
 ## 5 Expressions
@@ -2788,7 +2788,7 @@ a.push(3);
 ```
 This should be considered when deciding if a function should be [inlined](class-field-inline) as it may inline more code than visible in the syntax.
 
-Advanced initialization techniques are described in [Array Comprehension](#lf-array-comprehension).
+Advanced initialization techniques are described in [Array Comprehension](lf-array-comprehension).
 
 <a id="expression-object-declaration"></a>
 ## 5.6 Object Declaration
@@ -2860,7 +2860,7 @@ var c = 1;
 var d,e = 2;
 ```
 
-The scoping behavior of local variables is described in [Blocks](#expression-block).
+The scoping behavior of local variables is described in [Blocks](expression-block).
 
 <a id="expression-function"></a>
 ## 5.11 Local functions
@@ -3016,7 +3016,7 @@ Case body expressions never "fall through", so the [`break`](expression-break) k
 
 Switch expressions can be used as value; in that case the types of all case body expressions and the default expression must [unify](type-system-unification).
 
-Further details on syntax of pattern expressions are detailed in [Pattern Matching](#lf-pattern-matching).
+Further details on syntax of pattern expressions are detailed in [Pattern Matching](lf-pattern-matching).
 
 <a id="expression-try-catch"></a>
 ## 5.18 try/catch
@@ -3201,27 +3201,27 @@ This has the usual effect of both operations such as the given type being used a
 <a id="lf"></a>
 ## 6 Language Features
 
-6.1: [Conditional Compilation](#lf-condition-compilation)
+6.1: [Conditional Compilation](lf-condition-compilation)
 
-6.2: [Externs](#lf-externs)
+6.2: [Externs](lf-externs)
 
-6.3: [Static Extension](#lf-static-extension)
+6.3: [Static Extension](lf-static-extension)
 
-6.4: [Pattern Matching](#lf-pattern-matching)
+6.4: [Pattern Matching](lf-pattern-matching)
 
-6.5: [String Interpolation](#lf-string-interpolation)
+6.5: [String Interpolation](lf-string-interpolation)
 
-6.6: [Array Comprehension](#lf-array-comprehension)
+6.6: [Array Comprehension](lf-array-comprehension)
 
-6.7: [Iterators](#lf-iterators)
+6.7: [Iterators](lf-iterators)
 
-6.8: [Function Bindings](#lf-function-bindings)
+6.8: [Function Bindings](lf-function-bindings)
 
-6.9: [Metadata](#lf-metadata)
+6.9: [Metadata](lf-metadata)
 
-6.10: [Access Control](#lf-access-control)
+6.10: [Access Control](lf-access-control)
 
-6.11: [Inline constructors](#lf-inline-constructor)
+6.11: [Inline constructors](lf-inline-constructor)
 
 <a id="lf-condition-compilation"></a>
 ## 6.1 Conditional Compilation
@@ -3379,9 +3379,9 @@ This works because the return type of method `floor` is declared to be `Int`.
 
 The Haxe Standard Library comes with many externs for the Flash and Javascript target. They allow accessing the native APIs in a type-safe manner and are instrumental for designing higher-level APIs. There are also externs for many popular native libraries on [haxelib](haxelib).
 
-The Flash, Java and C# targets allow direct inclusion of native libraries from [command line](compiler-usage). Target-specific details are explained in the respective sections of [Target Details](#target-details).
+The Flash, Java and C# targets allow direct inclusion of native libraries from [command line](compiler-usage). Target-specific details are explained in the respective sections of [Target Details](target-details).
 
-Some targets such as Python or JavaScript may require generating additional "import" code that loads an `extern` class from a native module. Haxe provides ways to declare such dependencies also described in respective sections [Target Details](#target-details).
+Some targets such as Python or JavaScript may require generating additional "import" code that loads an `extern` class from a native module. Haxe provides ways to declare such dependencies also described in respective sections [Target Details](target-details).
 
 ###### Rest arguments and type choices
 ##### since Haxe 3.2.0
@@ -3448,7 +3448,7 @@ Clearly, `Int` does not natively provide a `triple` method, yet this program com
 
 Static extensions are usually considered syntactic sugar and indeed they are, but it is worth noting that they can have a dramatic effect on code readability: Instead of nested calls in the form of `f1(f2(f3(f4(x))))`, chained calls in the form of `x.f4().f3().f2().f1()` can be used.
 
-Following the rules previously described in [Resolution Order](#type-system-resolution-order), multiple `using` expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see [Modules and Paths](#type-system-modules-and-paths)) as static extension brings all its types into context.
+Following the rules previously described in [Resolution Order](type-system-resolution-order), multiple `using` expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see [Modules and Paths](type-system-modules-and-paths)) as static extension brings all its types into context.
 
 <a id="lf-static-extension-in-std"></a>
 ## 6.3.1 In the Haxe Standard Library
@@ -3478,7 +3478,7 @@ The following classes from the Haxe Standard Library are designed to be used as 
 * `StringTools`: Provides extended functionality on strings, such as replacing or trimming.
 * `Lambda`: Provides functional methods on iterables.
 * `haxe.EnumTools`: Provides type information functionality on enums and their instances.
-* `haxe.macro.Tools`: Provides different extensions for working with macros (see [Tools](#macro-tools)).
+* `haxe.macro.Tools`: Provides different extensions for working with macros (see [Tools](macro-tools)).
 
 > ##### Trivia: "using" using
 >
@@ -3487,27 +3487,27 @@ The following classes from the Haxe Standard Library are designed to be used as 
 <a id="lf-pattern-matching"></a>
 ## 6.4 Pattern Matching
 
-6.4.1: [Introduction](#lf-pattern-matching-introduction)
+6.4.1: [Introduction](lf-pattern-matching-introduction)
 
-6.4.2: [Enum matching](#lf-pattern-matching-enums)
+6.4.2: [Enum matching](lf-pattern-matching-enums)
 
-6.4.3: [Variable capture](#lf-pattern-matching-variable-capture)
+6.4.3: [Variable capture](lf-pattern-matching-variable-capture)
 
-6.4.4: [Structure matching](#lf-pattern-matching-structure)
+6.4.4: [Structure matching](lf-pattern-matching-structure)
 
-6.4.5: [Array matching](#lf-pattern-matching-array)
+6.4.5: [Array matching](lf-pattern-matching-array)
 
-6.4.6: [Or patterns](#lf-pattern-matching-or)
+6.4.6: [Or patterns](lf-pattern-matching-or)
 
-6.4.7: [Guards](#lf-pattern-matching-guards)
+6.4.7: [Guards](lf-pattern-matching-guards)
 
-6.4.8: [Match on multiple values](#lf-pattern-matching-tuples)
+6.4.8: [Match on multiple values](lf-pattern-matching-tuples)
 
-6.4.9: [Extractors](#lf-pattern-matching-extractors)
+6.4.9: [Extractors](lf-pattern-matching-extractors)
 
-6.4.10: [Exhaustiveness checks](#lf-pattern-matching-exhaustiveness)
+6.4.10: [Exhaustiveness checks](lf-pattern-matching-exhaustiveness)
 
-6.4.11: [Useless pattern checks](#lf-pattern-matching-unused)
+6.4.11: [Useless pattern checks](lf-pattern-matching-unused)
 
 <a id="lf-pattern-matching-introduction"></a>
 ## 6.4.1 Introduction
@@ -4208,7 +4208,7 @@ The second question usually comes down to providing an argument specifying the d
 **Input:**
 
 * `-cp path` Adds a class path where `.hx` source files or packages (sub-directories) can be found.
-* `-lib library_name` Adds a [Haxelib](#haxelib) library.
+* `-lib library_name` Adds a [Haxelib](haxelib) library.
 * `-main dot_path` Sets the main class.
 
 **Output:**
@@ -4226,15 +4226,15 @@ The second question usually comes down to providing an argument specifying the d
 <a id="cr-features"></a>
 ## 8 Compiler Features
 
-8.1: [Built-in Compiler Metadata](#cr-metadata)
+8.1: [Built-in Compiler Metadata](cr-metadata)
 
-8.2: [Dead Code Elimination](#cr-dce)
+8.2: [Dead Code Elimination](cr-dce)
 
-8.3: [Completion](#cr-completion)
+8.3: [Completion](cr-completion)
 
-8.4: [Resources](#cr-resources)
+8.4: [Resources](cr-resources)
 
-8.5: [Runtime Type Information](#cr-rtti)
+8.5: [Runtime Type Information](cr-rtti)
 
 <a id="cr-metadata"></a>
 ## 8.1 Built-in Compiler Metadata
@@ -4371,21 +4371,21 @@ The compiler automatically defines the flag `dce` with a value of either `"std"`
 <a id="cr-completion"></a>
 ## 8.3 Completion
 
-8.3.1: [Overview](#cr-completion-overview)
+8.3.1: [Overview](cr-completion-overview)
 
-8.3.2: [Field access completion](#cr-completion-field-access)
+8.3.2: [Field access completion](cr-completion-field-access)
 
-8.3.3: [Call argument completion](#cr-completion-call-argument)
+8.3.3: [Call argument completion](cr-completion-call-argument)
 
-8.3.4: [Type path completion](#cr-completion-type-path)
+8.3.4: [Type path completion](cr-completion-type-path)
 
-8.3.5: [Usage completion](#cr-completion-usage)
+8.3.5: [Usage completion](cr-completion-usage)
 
-8.3.6: [Position completion](#cr-completion-position)
+8.3.6: [Position completion](cr-completion-position)
 
-8.3.7: [Top-level completion](#cr-completion-top-level)
+8.3.7: [Top-level completion](cr-completion-top-level)
 
-8.3.8: [Completion server](#cr-completion-server)
+8.3.8: [Completion server](cr-completion-server)
 
 <a id="cr-completion-overview"></a>
 ## 8.3.1 Overview
@@ -4621,7 +4621,7 @@ class Main {
 <a id="cr-completion-usage"></a>
 ## 8.3.5 Usage completion
 
-Usage completion is enabled by using the `"usage"` mode argument (see [Overview](#cr-completion-overview)). We demonstrate it here using a local variable. Note that it would work with fields and types the same way:
+Usage completion is enabled by using the `"usage"` mode argument (see [Overview](cr-completion-overview)). We demonstrate it here using a local variable. Note that it would work with fields and types the same way:
 
 ```haxe
 class Main {
@@ -4647,7 +4647,7 @@ If this file is saved to Main.hx, the completion can be invoked using the comman
 <a id="cr-completion-position"></a>
 ## 8.3.6 Position completion
 
-Position completion is enabled by using the `"position"` mode argument (see [Overview](#cr-completion-overview)). We demonstrate it using a field. Note that it would work with local variables and types the same way:
+Position completion is enabled by using the `"position"` mode argument (see [Overview](cr-completion-overview)). We demonstrate it using a field. Note that it would work with local variables and types the same way:
 
 ```haxe
 class Main {
@@ -4751,19 +4751,19 @@ Here's some code that will treat connection to the server and handle the protoco
 ```haxe
 class Test {
     static function main() {
-		var newline = "\\ n";
+		var newline = "\ n";
         var s = new neko.net.Socket();
         s.connect(new neko.net.Host("127.0.0.1"),6000);
         s.write("--cwd /my/project" + newline);
         s.write("myproject.hxml" + newline);
-        s.write("\\ 000");
+        s.write("\ 000");
 
         var hasError = false;
         for (line in s.read().split(newline))
 		{
             switch (line.charCodeAt(0)) {
 				case 0x01: 
-					neko.Lib.print(line.substr(1).split("\\ x01").join(newline));
+					neko.Lib.print(line.substr(1).split("\ x01").join(newline));
 				case 0x02: 
 					hasError = true;
 				default: 
@@ -4844,7 +4844,7 @@ Haxe uses the target platform's native resource embedding if there is one, other
 <a id="cr-rtti"></a>
 ## 8.5 Runtime Type Information
 
-The Haxe compiler generates runtime type information (RTTI) for classes that are annotated or extend classes that are annotated with the `:rtti` metadata. This information is stored as a XML string in a static field `__rtti` and can be processed through `haxe.rtti.XmlParser`. The resulting structure is described in [RTTI structure](#cr-rtti-structure).
+The Haxe compiler generates runtime type information (RTTI) for classes that are annotated or extend classes that are annotated with the `:rtti` metadata. This information is stored as a XML string in a static field `__rtti` and can be processed through `haxe.rtti.XmlParser`. The resulting structure is described in [RTTI structure](cr-rtti-structure).
 
 ##### since Haxe 3.2.0
 
@@ -4935,8 +4935,8 @@ A basic macro is a **syntax-transformation**. It receives zero or more [expressi
 
 We can identify different kinds of macros, which are run at specific compilation stages:
 
-* Initialization Macros: These are provided by command line using the `--macro` compiler parameter. They are executed after the compiler arguments were processed and the **typer context** has been created, but before any typing was done (see [Initialization macros](#macro-initialization)).
-* Build Macros: These are defined for classes, enums and abstracts through the `@:build` or `@:autoBuild` [metadata](lf-metadata). They are executed per-type, after the type has been set up (including its relation to other types, such as inheritance for classes) but before its fields are typed (see [Type Building](#macro-type-building)).
+* Initialization Macros: These are provided by command line using the `--macro` compiler parameter. They are executed after the compiler arguments were processed and the **typer context** has been created, but before any typing was done (see [Initialization macros](macro-initialization)).
+* Build Macros: These are defined for classes, enums and abstracts through the `@:build` or `@:autoBuild` [metadata](lf-metadata). They are executed per-type, after the type has been set up (including its relation to other types, such as inheritance for classes) but before its fields are typed (see [Type Building](macro-type-building)).
 * Expression Macros: These are normal functions which are executed as soon as they are typed.
 
 <a id="macro-context"></a>
@@ -4952,7 +4952,7 @@ Haxe macros have access to different contextual information depending on the mac
 * Only build macros get a proper return value from `Context.getBuildFields()`. There are no fields being built for the other macro kinds.
 * Build macros have a local type (if incomplete), but no local method, so `Context.getLocalMethod()` returns `null`.
 
-The context API is complemented by the `haxe.macro.Compiler` API detailed in [Initialization macros](#macro-initialization). While this API is available to all macro kinds, care has to be taken for any modification outside of initialization macros. This stems from the natural limitation of undefined [build order](macro-limitations-build-order), which could cause e.g. a flag definition through `Compiler.define()` to take effect before or after a [conditional compilation](lf-condition-compilation) check against that flag.
+The context API is complemented by the `haxe.macro.Compiler` API detailed in [Initialization macros](macro-initialization). While this API is available to all macro kinds, care has to be taken for any modification outside of initialization macros. This stems from the natural limitation of undefined [build order](macro-limitations-build-order), which could cause e.g. a flag definition through `Compiler.define()` to take effect before or after a [conditional compilation](lf-condition-compilation) check against that flag.
 
 <a id="macro-arguments"></a>
 ## 9.2 Arguments
@@ -5310,7 +5310,7 @@ AutoBuildingMacro.hx:11:
   fromBaseClass: TInst(Main,[])
 ```
 
-It is important to keep in mind that the order of these macro executions is undefined, which is detailed in [Build Order](#macro-limitations-build-order).
+It is important to keep in mind that the order of these macro executions is undefined, which is detailed in [Build Order](macro-limitations-build-order).
 
 <a id="macro-generic-build"></a>
 ## 9.5.3 @:genericBuild
@@ -5394,9 +5394,9 @@ Here the macro logic could load a file and use its contents to generate a custom
 
 9.6.1: Macro-in-Macro
 
-9.6.2: [Static extension](#macro-limitations-static-extension)
+9.6.2: [Static extension](macro-limitations-static-extension)
 
-9.6.3: [Build Order](#macro-limitations-build-order)
+9.6.3: [Build Order](macro-limitations-build-order)
 
 9.6.4: Type Parameters
 
@@ -5497,17 +5497,17 @@ Standard library
 <a id="std-ds"></a>
 ## 10.2 Data Structures
 
-10.2.1: [Array](#std-Array)
+10.2.1: [Array](std-Array)
 
-10.2.2: [Vector](#std-vector)
+10.2.2: [Vector](std-vector)
 
-10.2.3: [List](#std-List)
+10.2.3: [List](std-List)
 
-10.2.4: [GenericStack](#std-GenericStack)
+10.2.4: [GenericStack](std-GenericStack)
 
-10.2.5: [Map](#std-Map)
+10.2.5: [Map](std-Map)
 
-10.2.6: [Option](#std-Option)
+10.2.6: [Option](std-Option)
 
 <a id="std-Array"></a>
 ## 10.2.1 Array
@@ -5609,12 +5609,12 @@ class Main {
 
 ```
 
-`haxe.ds.Vector` is implemented as an abstract type ([Abstract](#types-abstract)) over a native array implementation for given target and can be faster for fixed-size collections, because the memory for storing its elements is pre-allocated.
+`haxe.ds.Vector` is implemented as an abstract type ([Abstract](types-abstract)) over a native array implementation for given target and can be faster for fixed-size collections, because the memory for storing its elements is pre-allocated.
 
 <a id="std-List"></a>
 ## 10.2.3 List
 
-A `List` is a **collection** for storing elements.  On the surface, a list is similar to an [Array](#std-Array).  However, the underlying implementation is very different.  This results in several functional differences:
+A `List` is a **collection** for storing elements.  On the surface, a list is similar to an [Array](std-Array).  However, the underlying implementation is very different.  This results in several functional differences:
 
 1. A list can not be indexed using square brackets, i.e. `[0]`.
 2. A list can not be initialized.
@@ -5657,7 +5657,7 @@ class GenericStackExample {
 > ##### Trivia: FastList
 >
 > In Haxe 2, the GenericStack class was known as FastList.  Since its behavior more closely resembled a typical stack, the name was changed for Haxe 3.
-The **Generic** in `GenericStack` is literal.  It is attributed with the `:generic` metadata.  Depending on the target, this can lead to improved performance on static targets.  See [Generic](#type-system-generic) for more details.
+The **Generic** in `GenericStack` is literal.  It is attributed with the `:generic` metadata.  Depending on the target, this can lead to improved performance on static targets.  See [Generic](type-system-generic) for more details.
 
 <a id="std-Map"></a>
 ## 10.2.5 Map
@@ -5794,7 +5794,7 @@ We can use standard regular expression patterns such as:
 * `+` repeat one-or-more
 * `?` optional zero-or-one
 * `[A-Z0-9]` character ranges
-* `[^\\ r\\ n\\ t]` character not-in-range
+* `[^\ r\ n\ t]` character not-in-range
 * `(...)` parenthesis to match groups of characters
 * `^` beginning of the string (beginning of a line in multiline matching mode)
 * `$` end of the string (end of a line in multiline matching mode)
@@ -5969,7 +5969,7 @@ Regular Expressions are implemented:
 <a id="std-math"></a>
 ## 10.4 Math
 
-Haxe includes a floating point math library for some common mathematical operations. Most of the functions operate on and return `floats`. However, an `Int` can be used where a `Float` is expected, and Haxe also converts `Int` to `Float` during most numeric operations  (see [Numeric Operators](#types-numeric-operators) for more details).
+Haxe includes a floating point math library for some common mathematical operations. Most of the functions operate on and return `floats`. However, an `Int` can be used where a `Float` is expected, and Haxe also converts `Int` to `Float` during most numeric operations  (see [Numeric Operators](types-numeric-operators) for more details).
 
 Here are some example uses of the math library.  See the [Math API](http://api.haxe.org/Math.html) for all available functions.
 
@@ -6025,7 +6025,7 @@ If you are targeting a platform that can utilize integer operations, e.g. intege
 <a id="std-math-extensions"></a>
 ## 10.4.4 Extensions
 
-It is common to see [Static Extension](#lf-static-extension) used with the math library.  This code shows a simple example:  
+It is common to see [Static Extension](lf-static-extension) used with the math library.  This code shows a simple example:  
 ```haxe
 class MathStaticExtension {
   /* Converts an angle in radians to degrees */
@@ -6366,7 +6366,7 @@ class Main {
 }
 ```
 
-The result of the serialization (here stored in local variable `s`) is a [String](std-String) and can be passed around at will, even remotely. Its format is described in [Serialization format](#std-serialization-format).
+The result of the serialization (here stored in local variable `s`) is a [String](std-String) and can be passed around at will, even remotely. Its format is described in [Serialization format](std-serialization-format).
 
 ###### Supported values
 
@@ -6753,7 +6753,7 @@ A basic Haxe library is a collection of `.hx` files. That is, libraries are dist
 <a id="haxelib-using-haxe"></a>
 ## 11.1 Using a Haxe library with the Haxe Compiler
 
-Any installed Haxe library can be made available to the compiler through the `-lib <library-name>` argument. This is very similiar to the `-cp <path>` argument, but expects a library name instead of a directory path. These commands are explained thoroughly in [Compiler Usage](#compiler-usage).
+Any installed Haxe library can be made available to the compiler through the `-lib <library-name>` argument. This is very similiar to the `-cp <path>` argument, but expects a library name instead of a directory path. These commands are explained thoroughly in [Compiler Usage](compiler-usage).
 
 For our exemplary usage we chose a very simple Haxe library called "random". It provides a set of static convenience methods to achieve various random effects, such as picking a random element from an array.
 
@@ -6768,7 +6768,7 @@ class Main {
 
 Compiling this without any `-lib` argument causes an error message along the lines of `Unknown identifier : Random`. This shows that installed Haxe libraries are not available to the compiler by default unless they are explicitly added. A working command line for above program is `haxe -lib random -main Main --interp`.
 
-If the compiler emits an error `Error: Library random is not installed : run 'haxelib install random'` the library has to be installed via the `haxelib` command first. As the error message suggests, this is achieved through `haxelib install random`. We will learn more about the `haxelib` command in [Using Haxelib](#haxelib-using).
+If the compiler emits an error `Error: Library random is not installed : run 'haxelib install random'` the library has to be installed via the `haxelib` command first. As the error message suggests, this is achieved through `haxelib install random`. We will learn more about the `haxelib` command in [Using Haxelib](haxelib-using).
 
 <a id="haxelib-json"></a>
 ## 11.2 haxelib.json
@@ -6780,11 +6780,11 @@ Each Haxe library requires a `haxelib.json` file in which the following attribut
 * license: The license under which the library is released. Can be `GPL`, `LGPL`, `BSD`, `Public` (for Public Domain) or `MIT`.
 * tags: An array of tag-strings which are used on the repository website to sort libraries.
 * description: The description of what the library is doing.
-* version: The version string of the library. This is detailed in [Versioning](#haxelib-json-versioning).
+* version: The version string of the library. This is detailed in [Versioning](haxelib-json-versioning).
 * classPath: The path string to the source files.
 * releasenote: The release notes of the current version.
 * contributors: An array of user names which identify contributors to the library. 
-* dependencies: An object describing the dependencies of the library. This is detailed in [Dependencies](#haxelib-json-dependencies).
+* dependencies: An object describing the dependencies of the library. This is detailed in [Dependencies](haxelib-json-dependencies).
 
 The following JSON is a simple example of a haxelib.json:
 
@@ -6850,7 +6850,7 @@ Examples:
 <a id="haxelib-json-dependencies"></a>
 ## 11.2.2 Dependencies
 
-As of Haxe 3.1.0, haxelib supports only exact version matching for dependencies. Dependencies are defined as part of the [haxelib.json](haxelib-json), with the library name serving as key and the expected version (if required) as value in the format described in [Versioning](#haxelib-json-versioning).
+As of Haxe 3.1.0, haxelib supports only exact version matching for dependencies. Dependencies are defined as part of the [haxelib.json](haxelib-json), with the library name serving as key and the expected version (if required) as value in the format described in [Versioning](haxelib-json-versioning).
 
 We have seen an example of this when introducing haxelib.json:
 
@@ -6911,34 +6911,34 @@ The following commands are available:
 <a id="target-details"></a>
 ## 12 Target Details
 
-12.1: [Javascript](#target-javascript)
+12.1: [Javascript](target-javascript)
 
-12.2: [Flash](#target-flash)
+12.2: [Flash](target-flash)
 
 12.3: Neko
 
-12.4: [PHP](#target-php)
+12.4: [PHP](target-php)
 
-12.5: [C++](#target-cpp)
+12.5: [C++](target-cpp)
 
 12.6: Java
 
 12.7: C#
 
-12.8: [Python](#target-python)
+12.8: [Python](target-python)
 
 <a id="target-javascript"></a>
 ## 12.1 Javascript
 
-12.1.1: [Getting started with Haxe/Javascript](#target-javascript-getting-started)
+12.1.1: [Getting started with Haxe/Javascript](target-javascript-getting-started)
 
-12.1.2: [Using external Javascript libraries](#target-javascript-external-libraries)
+12.1.2: [Using external Javascript libraries](target-javascript-external-libraries)
 
-12.1.3: [Javascript target Metatags](#target-javascript-metatags)
+12.1.3: [Javascript target Metatags](target-javascript-metatags)
 
-12.1.4: [Exposing Haxe classes for Javascript](#target-javascript-expose)
+12.1.4: [Exposing Haxe classes for Javascript](target-javascript-expose)
 
-12.1.5: [Loading extern classes using "require" function](#target-javascript-require)
+12.1.5: [Loading extern classes using "require" function](target-javascript-require)
 
 <a id="target-javascript-getting-started"></a>
 ## 12.1.1 Getting started with Haxe/Javascript
@@ -7178,13 +7178,13 @@ If we need to load custom JavaScript objects in runtime, a `js.Lib.require` func
 <a id="target-flash"></a>
 ## 12.2 Flash
 
-12.2.1: [Getting started with Haxe/Flash](#target-flash-getting-started)
+12.2.1: [Getting started with Haxe/Flash](target-flash-getting-started)
 
-12.2.2: [Embedding resources](#target-flash-resources)
+12.2.2: [Embedding resources](target-flash-resources)
 
-12.2.3: [Using external Flash libraries](#target-flash-external-libraries)
+12.2.3: [Using external Flash libraries](target-flash-external-libraries)
 
-12.2.4: [Flash target Metatags](#target-flash-metatags)
+12.2.4: [Flash target Metatags](target-flash-metatags)
 
 <a id="target-flash-getting-started"></a>
 ## 12.2.1 Getting started with Haxe/Flash
@@ -7308,7 +7308,7 @@ This is the list of Flash specific metatags. For a complete list see [Haxe built
 <a id="target-php"></a>
 ## 12.4 PHP
 
-12.4.1: [Getting started with Haxe/PHP](#target-php-getting-started)
+12.4.1: [Getting started with Haxe/PHP](target-php-getting-started)
 
 <a id="target-php-getting-started"></a>
 ## 12.4.1 Getting started with Haxe/PHP
@@ -7350,7 +7350,7 @@ The compiler outputs in the given **bin**-folder, which contains the generated P
 <a id="target-cpp"></a>
 ## 12.5 C++
 
-12.5.1: [Using C++ Defines](#target-cpp-defines)
+12.5.1: [Using C++ Defines](target-cpp-defines)
 
 12.5.2: Using C++ Pointers
 
