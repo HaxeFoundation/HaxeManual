@@ -8,7 +8,7 @@ using StringTools;
 
 class FlowchartHandler {
 
-	static public function handle(s:String) {
+	static public function handle(config:Config, s:String) {
 		var envargRegexp = ~/{(.+)}{(.+)}/;
 		if (!envargRegexp.match(s)) throw "Custom environment definition doesn't match expected argument template.";
 		var envlabel = envargRegexp.matched(1);
@@ -18,12 +18,14 @@ class FlowchartHandler {
 		latexCompile(Resource.getString("tikzTemplate"), "\\begin{flowchart}" + s + "\\end{flowchart}", targetPath, targetName);
 		var filePath = targetPath + targetName + ".png";
 		var relativePath = "../../" + filePath;
-		#if epub
-		return '![$envtitle]($filePath)';
-		#else
-		return '<img src="$relativePath" alt="$envtitle" title="$envtitle" />\n\n_Figure: ${envtitle}_';
-		#end
+		switch (config.outputMode) {
+			case EPub | Mobi:
+				return '![$envtitle]($filePath)';
+			case Markdown:
+				return '<img src="$relativePath" alt="$envtitle" title="$envtitle" />\n\n_Figure: ${envtitle}_';
+		}
 	}
+
 	static function latexCompile(template:String, content:String, targetPath:String, targetName:String) {
 		// TODO: error checking for latex / mudraw
 		#if !(compileEnv || recompileEnv)
