@@ -1,6 +1,170 @@
 \chapter{Language Features}
 \label{lf}
-\state{NoContent}
+
+\emph{\tref{Abstract types}{types-abstract}:}
+
+An abstract type is a compile-time construct which is represented in a different way at runtime. This allows giving a whole new meaning to existing types.
+
+\emph{\tref{Extern classes}{lf-externs}:}
+
+Externs can be used to describe target-specific interaction in a type-safe manner.
+
+\emph{\tref{Anonymous structures}{types-anonymous-structure}:}
+
+Data can easily be grouped in anonymous structures, minimizing the necessity of small data classes.
+
+\begin{lstlisting}
+var point = { x: 0, y: 10 };
+point.x += 10;
+\end{lstlisting}
+
+\emph{\tref{Array Comprehension}{lf-array-comprehension}:}
+
+Create and populate arrays quickly using for loops and logic.
+
+\begin{lstlisting}
+var evenNumbers = [ for (i in 0...100) if (i\%2==0) i ];
+\end{lstlisting}
+
+\emph{\tref{Classes, interfaces and inheritance}{types-class-instance}:}
+
+Haxe allows structuring code in classes, making it an object-oriented language. Common related features known from languages such as Java are supported, including inheritance and interfaces.
+
+\emph{\tref{Conditional compilation}{lf-condition-compilation}:}
+
+Conditional Compilation allows compiling specific code depending on compilation parameters. This is instrumental for abstracting target-specific differences, but can also be used for other purposes, such as more detailed debugging.
+
+\begin{lstlisting}
+\#if js
+    js.Lib.alert("Hello");
+\#elseif sys
+    Sys.println("Hello");
+\#end
+\end{lstlisting}
+
+\emph{\tref{(Generalized) Algebraic Data Types}{types-enum-instance}:}
+
+Structure can be expressed through algebraic data types (ADT), which are known as enums in the Haxe Language. Furthermore, Haxe supports their generalized variant known as GADT.
+
+\begin{lstlisting}
+enum Result {
+    Success(data:Array<Int>);
+    UserError(msg:String);
+    SystemError(msg:String, position:PosInfos);
+}
+\end{lstlisting}
+
+\emph{\tref{Inlined calls}{class-field-inline}:}
+
+Functions can be designed as being inline, allowing their code to be inserted at call-site. This can yield significant performance benefits without resorting to code duplication via manual inlining.
+
+\emph{\tref{Iterators}{lf-iterators}:}
+
+Iterating over a set of values, e.g. the elements of an array, is very easy in Haxe courtesy of iterators. Custom classes can quickly implement iterator functionality to allow iteration.
+
+\begin{lstlisting}
+for (i in [1, 2, 3]) {
+    trace(i);
+}
+\end{lstlisting}
+
+\emph{\tref{Local functions and closures}{expression-function}:}
+
+Functions in Haxe are not limited to class fields and can be declared in expressions as well, allowing powerful closures.
+
+\begin{lstlisting}
+var buffer = "";
+function append(s:String) {
+    buffer += s;
+}
+append("foo");
+append("bar");
+trace(buffer); // foobar
+\end{lstlisting}
+
+\emph{\tref{Metadata}{lf-metadata}:}
+
+Add metadata to fields, classes or expressions. This can communicate information to the compiler, macros, or runtime classes.
+
+\begin{lstlisting}
+class MyClass {
+    @range(1, 8) var value:Int;
+}
+trace(haxe.rtti.Meta.getFields(MyClass).value.range); // [1,8]
+\end{lstlisting}
+
+\emph{\tref{Static Extensions}{lf-static-extension}:}
+
+Existing classes and other types can be augmented with additional functionality through using static extensions.
+
+\begin{lstlisting}
+using StringTools;
+"  Me & You    ".trim().htmlEscape();
+\end{lstlisting}
+
+\emph{\tref{String Interpolation}{lf-string-interpolation}:}
+
+Strings declared with a single quotes are able to access variables in the current context.
+
+\begin{lstlisting}
+trace('My name is $name and I work in ${job.industry}');
+\end{lstlisting}
+
+\emph{\tref{Partial function application}{lf-function-bindings}:} 
+
+Any function can be applied partially, providing the values of some arguments and leaving the rest to be filled in later.
+
+\begin{lstlisting}
+var map = new haxe.ds.IntMap();
+var setToTwelve = map.set.bind(_, 12);
+setToTwelve(1);
+setToTwelve(2);
+\end{lstlisting}
+
+\emph{\tref{Pattern Matching}{lf-pattern-matching}:} 
+
+Complex structures can be matched against patterns, extracting information from an enum or a structure and defining specific operations for specific value combination.
+
+\begin{lstlisting}
+var a = { foo: 12 };
+switch (a) {
+    case { foo: i }: trace(i);
+    default:
+}
+\end{lstlisting}
+
+\emph{\tref{Properties}{class-field-property}:}
+
+Variable class fields can be designed as properties with custom read and write access, allowing fine grained access control.
+\begin{lstlisting}
+public var color(get,set);
+function get_color() {
+    return element.style.backgroundColor;
+}
+function set_color(c:String) {
+    trace('Setting background of element to $c');
+    return element.style.backgroundColor = c;
+}
+\end{lstlisting}
+
+\emph{\tref{Access control}{lf-access-control}:}
+
+The access control language feature uses the Haxe metadata syntax to force or allow access classes or fields.
+
+\emph{\tref{Type Parameters, Constraints and Variance}{type-system-type-parameters}:}
+
+Types can be parametrized with type parameters, allowing typed containers and other complex data structures. Type parameters can also be constrained to certain types and respect variance rules.
+
+\begin{lstlisting}
+class Main<A> {
+    static function main() {
+        new Main<String>("foo");
+        new Main(12); // use type inference
+    }
+
+    function new(a:A) { }
+}
+\end{lstlisting}
 
 \section{Conditional Compilation}
 \label{lf-condition-compilation}
