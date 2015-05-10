@@ -4,7 +4,7 @@
 
 12.1.2: [Using external Javascript libraries](target-javascript-external-libraries.md)
 
-12.1.3: [Javascript target Metatags](target-javascript-metatags.md)
+12.1.3: [Javascript target Metadata](target-javascript-metadata.md)
 
 12.1.4: [Exposing Haxe classes for Javascript](target-javascript-expose.md)
 

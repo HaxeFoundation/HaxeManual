@@ -4,6 +4,6 @@
 
 ---
 
-Previous section: [Flash target Metatags](target-flash-metatags.md)
+Previous section: [Flash target Metadata](target-flash-metadata.md)
 
 Next section: [Getting started with Haxe/PHP](target-php-getting-started.md)

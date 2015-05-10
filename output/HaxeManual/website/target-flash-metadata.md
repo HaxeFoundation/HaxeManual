@@ -1,10 +1,10 @@
-## 12.2.4 Flash target Metatags
+## 12.2.4 Flash target Metadata
 
-This is the list of Flash specific metatags. For a complete list see [Haxe built-in metatags](cr-metadata.md).
+This is the list of Flash specific metadata. For a complete list see [Haxe built-in metadata](cr-metadata.md).
 
-##### Flash metatags
+##### Flash metadata
  
- Metatag  |  Description   |  Target 
+ Metadata  |  Description   |  Target 
  --- | --- | ---
 @:bind   |  Override Swf class declaration   |  flash 
 @:bitmap _(Bitmap file path)_   |  _Embeds given bitmap data into the class (must extend <code>flash.display.BitmapData</code>)    |  flash 

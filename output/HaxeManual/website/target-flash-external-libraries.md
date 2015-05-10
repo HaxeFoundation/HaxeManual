@@ -15,4 +15,4 @@ The standard compilation options also provide more Haxe sources to be added to t
 
 Previous section: [Embedding resources](target-flash-resources.md)
 
-Next section: [Flash target Metatags](target-flash-metatags.md)
+Next section: [Flash target Metadata](target-flash-metadata.md)

@@ -1,10 +1,10 @@
-## 12.1.3 Javascript target Metatags
+## 12.1.3 Javascript target Metadata
 
-This is the list of Javascript specific metatags. For more information, see also the complete list of all [Haxe built-in metatags](cr-metadata.md).
+This is the list of Javascript specific metadata. For more information, see also the complete list of all [Haxe built-in metadata](cr-metadata.md).
 
-##### Javascript metatags
+##### Javascript metadata
  
- Metatag  |  Description  | Target 
+ Metadata  |  Description  | Target 
  --- | --- | ---
 @:expose _(?Name=Class path)_   |  Makes the class available on the <code>window</code> object or <code>exports</code> for node.js   | js
 

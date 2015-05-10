@@ -6,7 +6,7 @@
 
 12.2.3: [Using external Flash libraries](target-flash-external-libraries.md)
 
-12.2.4: [Flash target Metatags](target-flash-metatags.md)
+12.2.4: [Flash target Metadata](target-flash-metadata.md)
 
 ---
 

@@ -20,7 +20,7 @@ extern class JQuery implements ArrayAccess<Element> {
 ..
 ```
 
-Note that functions can be overloaded to accept different types of arguments and return values, using the `@:overload` metatag. Function overloading works only in extern classes.
+Note that functions can be overloaded to accept different types of arguments and return values, using the `@:overload` metadata. Function overloading works only in extern classes.
 Using this extern, we can use jQuery like this:
 
 ```haxe
@@ -62,4 +62,4 @@ The standard compilation options also provide more Haxe sources to be added to t
 
 Previous section: [Getting started with Haxe/Javascript](target-javascript-getting-started.md)
 
-Next section: [Javascript target Metatags](target-javascript-metatags.md)
+Next section: [Javascript target Metadata](target-javascript-metadata.md)

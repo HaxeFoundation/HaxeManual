@@ -71,6 +71,6 @@ In this pattern, a var statement is used to expose the module; it doesn't write 
 
 ---
 
-Previous section: [Javascript target Metatags](target-javascript-metatags.md)
+Previous section: [Javascript target Metadata](target-javascript-metadata.md)
 
 Next section: [Loading extern classes using "require" function](target-javascript-require.md)

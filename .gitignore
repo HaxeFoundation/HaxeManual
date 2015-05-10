@@ -12,3 +12,6 @@ convert/convert.n
 latextemp/
 HaxeDoc.synctex.gz
 toc.sv
+output/HaxeManual/ebook/content.md
+output/HaxeManual/ebook/dictionary.md
+output/HaxeManual/ebook/sections.txt

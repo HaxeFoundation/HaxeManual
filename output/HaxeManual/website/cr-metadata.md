@@ -2,9 +2,9 @@
 
 Starting from Haxe 3.0, you can get the list of defined compiler metadata by running `haxe --help-metas`
 
-##### Global metatags
+##### Global metadata
  
- Metatag  |  Description   |  Platform 
+ Metadata  |  Description   |  Platform 
  --- | --- | ---
 @:abstract  |  Sets the underlying class implementation as [abstract type](types-abstract.md)   |  cs  java 
 @:access _(Target path)_   |   Forces private access to package  type or field,  see [Access Control](lf-access-control.md)   |  all 
