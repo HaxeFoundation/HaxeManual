@@ -17,7 +17,7 @@ class FlowchartHandler {
 		var targetName = envlabel;
 		latexCompile(Resource.getString("tikzTemplate"), "\\begin{flowchart}" + s + "\\end{flowchart}", targetPath, targetName);
 		var filePath = targetPath + targetName + ".png";
-		var relativePath = "../../" + filePath;
+		var relativePath = "../../../" + filePath;
 		switch (config.outputMode) {
 			case EPub | Mobi:
 				return '![$envtitle]($filePath)';
