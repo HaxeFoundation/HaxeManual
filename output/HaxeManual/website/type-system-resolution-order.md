@@ -13,7 +13,7 @@ We describe the resolution order algorithm here, which depends on the following 
 * the [expected type](dictionary.md#define-expected-type)
 * the expression being `untyped` or not
 
-<img src="../../../assets/graphics/generated/type-system-resolution-order-diagram.png" alt="Resolution order of identifier `i'" title="Resolution order of identifier `i'" />
+<img src="assets/graphics/generated/type-system-resolution-order-diagram.png" alt="Resolution order of identifier `i'" title="Resolution order of identifier `i'" />
 
 _Figure: Resolution order of identifier `i'_
 

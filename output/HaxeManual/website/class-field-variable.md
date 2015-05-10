@@ -24,7 +24,7 @@ The example first prints the initialization value of `member`, then sets it to `
 
 It should be noted that the explicit type is not required if there is an initialization value. The compiler will [infer](type-system-type-inference.md) it in this case.
 
-<img src="../../../assets/graphics/generated/class-field-variable-init-values.png" alt="Initialization values of a variable field." title="Initialization values of a variable field." />
+<img src="assets/graphics/generated/class-field-variable-init-values.png" alt="Initialization values of a variable field." title="Initialization values of a variable field." />
 
 _Figure: Initialization values of a variable field._
 
