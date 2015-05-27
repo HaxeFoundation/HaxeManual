@@ -1,6 +1,6 @@
 enum Tree<T> {
-    Leaf(v:T);
-    Node(l:Tree<T>, r:Tree<T>);
+  Leaf(v:T);
+  Node(l:Tree<T>, r:Tree<T>);
 }
 
 class Main {
