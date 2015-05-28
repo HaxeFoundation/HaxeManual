@@ -650,7 +650,7 @@ The syntax is reminiscent of classes and the semantics are indeed similar. In fa
 Furthermore, abstracts can be instantiated and used just like classes:
 
 \haxe[firstline=7,lastline=12]{assets/MyAbstract.hx}
-As mentioned before, abstracts are a compile-time feature, so it is interesting to see what the above actually generates. A suitable target for this is \target{Javascript}, which tends to generate concise and clean code. Compiling the above (using \texttt{haxe -main MyAbstract -js myabstract.js}) shows this \target{Javascript} code:
+As mentioned before, abstracts are a compile-time feature, so it is interesting to see what the above actually generates. A suitable target for this is \target{JavaScript}, which tends to generate concise and clean code. Compiling the above (using \texttt{haxe -main MyAbstract -js myabstract.js}) shows this \target{JavaScript} code:
 
 \begin{lstlisting}
 var a = 12;
@@ -691,7 +691,7 @@ Similarly, adding \expr{@:to} to a function qualifies it as implicit cast functi
 
 In the example the method \expr{fromString} allows the assignment of value \expr{"3"} to variable \expr{a} of type \type{MyAbstract} while the method \expr{toArray} allows assigning that abstract to variable \expr{b} of type \type{Array<Int>}.
 
-When using this kind of cast, calls to the cast-functions are inserted where required. This becomes obvious when looking at the \target{Javascript} output:
+When using this kind of cast, calls to the cast-functions are inserted where required. This becomes obvious when looking at the \target{JavaScript} output:
 
 \begin{lstlisting}
 var a = _ImplicitCastField.MyAbstract_Impl_.fromString("3");
@@ -731,7 +731,7 @@ While the individual casts from \type{A} to \type{B} and from \type{B} to \type{
 Abstracts allow overloading of unary and binary operators by adding the \expr{@:op} metadata to class fields:
 
 \haxe{assets/AbstractOperatorOverload.hx}
-By defining \expr{@:op(A * B)}, the function \expr{repeat} serves as operator method for the multiplication \expr{*} operator when the type of the left value is \type{MyAbstract} and the type of the right value is \type{Int}. The usage is shown in line 17, which turns into this when compiled to \target{Javascript}:
+By defining \expr{@:op(A * B)}, the function \expr{repeat} serves as operator method for the multiplication \expr{*} operator when the type of the left value is \type{MyAbstract} and the type of the right value is \type{Int}. The usage is shown in line 17, which turns into this when compiled to \target{JavaScript}:
 
 \begin{lstlisting}
 console.log(_AbstractOperatorOverload.
@@ -820,7 +820,7 @@ By adding the \expr{:enum} metadata to an abstract definition, that abstract can
 
 \haxe{assets/AbstractEnum.hx}
 
-The Haxe Compiler replaces all field access to the \type{HttpStatus} abstract with their values, as evident in the \target{Javascript} output:
+The Haxe Compiler replaces all field access to the \type{HttpStatus} abstract with their values, as evident in the \target{JavaScript} output:
 
 \begin{lstlisting}
 Main.main = function() {
@@ -856,7 +856,7 @@ When wrapping an underlying type, it is sometimes desirable to ``keep'' parts of
 
 The \type{MyArray} abstract in this example wraps \type{Array}. Its \expr{:forward} metadata has two arguments which correspond to the field names to be forwarded to the underlying type. In this example, the \expr{main} method instantiates \type{MyArray} and accesses its \expr{push} and \expr{pop} methods. The commented line demonstrates that the \expr{length} field is not available.
 
-As usual we can look at the \target{Javascript} output to see how the code is being generated:
+As usual we can look at the \target{JavaScript} output to see how the code is being generated:
 
 \begin{lstlisting}
 Main.main = function() {

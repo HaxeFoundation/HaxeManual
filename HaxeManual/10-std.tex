@@ -42,7 +42,7 @@ Arrays define an \tref{iterator}{lf-iterators} over their elements. This iterati
 
 \haxe{assets/ArrayIterator.hx}
 
-Haxe generates this optimized \target{Javascript} output:
+Haxe generates this optimized \target{JavaScript} output:
 
 \begin{lstlisting}
 Main.main = function() {
@@ -671,7 +671,7 @@ There are some target-specific constructors with different purposes that can be 
 				Allows remoting communications over a \href{http://api.haxe.org/haxe/remoting/LocalConnection.html}{Flash LocalConnection}
 		\end{description}
 		
-	\item[Javascript:]
+	\item[JavaScript:]
 		\begin{description}
 			\item[\expr{ExternalConnection.flashConnect(name:String, obj:String, ctx:Context)}]  
 				Allows a connection to a given Flash Object. The Haxe Flash content must be loaded and it must include the \expr{haxe.remoting.Connection} class. This only works with Flash 8 and higher. 
@@ -743,7 +743,7 @@ Haxe Remoting can send a lot of different kinds of data. See \tref{Serialization
 \subsection{Implementation details}
 \label{std-remoting-implementation-details}
 
-\paragraph{Javascript security specifics}
+\paragraph{JavaScript security specifics}
 
 The html-page wrapping the js client must be served from the same domain as the one where the server is running. The same-origin policy restricts how a document or script loaded from one origin can interact with a resource from another origin. The same-origin policy is used as a means to prevent some of the cross-site request forgery attacks.
 
