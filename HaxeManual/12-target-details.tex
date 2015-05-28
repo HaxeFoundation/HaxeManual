@@ -2,14 +2,14 @@
 \label{target-details}
 \state{NoContent}
 
-\section{Javascript}
+\section{JavaScript}
 \label{target-javascript}
 \state{NoContent}
 
-\subsection{Getting started with Haxe/Javascript}
+\subsection{Getting started with Haxe/JavaScript}
 \label{target-javascript-getting-started}
 
-Haxe can be a powerful tool for developing Javascript applications. Let's look at our first sample.
+Haxe can be a powerful tool for developing JavaScript applications. Let's look at our first sample.
 This is a very simple example showing the toolchain. 
 
 Create a new folder and save this class as \ic{Main.hx}.
@@ -46,7 +46,7 @@ Another possibility is to create and run (double-click) a file called \ic{compil
 
 The output will be a main-javascript.js, which creates and adds a clickable button to the document body.
 
-\paragraph{Run the Javascript}
+\paragraph{Run the JavaScript}
 
 To display the output in a browser, create an HTML-document called \ic{index.html} and open it.
 
@@ -62,14 +62,14 @@ To display the output in a browser, create an HTML-document called \ic{index.htm
 \paragraph{More information}
 
 \begin{itemize}
-	\item \href{http://api.haxe.org/js/}{Haxe Javascript API docs}
+	\item \href{http://api.haxe.org/js/}{Haxe JavaScript API docs}
 	\item \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference}{MDN JavaScript Reference}
 \end{itemize}
 
-\subsection{Using external Javascript libraries}
+\subsection{Using external JavaScript libraries}
 \label{target-javascript-external-libraries}
 
-The Haxe Standard Library comes with many externs for the Javascript target. They provide access to the native APIs in a type-safe manner.
+The Haxe Standard Library comes with many externs for the JavaScript target. They provide access to the native APIs in a type-safe manner.
 The \tref{externs mechanism}{lf-externs} assumes that the defined types exist at run-time but assumes nothing about how and where those types are defined. 
 To clarify, in most cases we have to add a \ic{<script>}-tag that links the external library manually to the HTML-document.
 
@@ -97,7 +97,7 @@ Using this extern, we can use jQuery like this:
 new JQuery("#my-div").addClass("brand-success").html("haxe is great!");
 \end{lstlisting}
 
-Beside externs, \tref{Typedefs}{type-system-typedef} can be another great way to name (or alias) complex Javascript or JSON structures.
+Beside externs, \tref{Typedefs}{type-system-typedef} can be another great way to name (or alias) complex JavaScript or JSON structures.
 
 The package and class name of the extern class should be the same as defined in the external library. If that is not the case, rewrite the path of a class using \expr{@:native}.
 
@@ -115,8 +115,8 @@ In Haxe, it is possible to call an exposed function thanks to the \expr{untyped}
 untyped window.trackEvent("page1");  
 \end{lstlisting}
 
-Using the magic \expr{__js__} function we can inject pure Javascript code fragments into the output. This code can not be validated, so it accepts invalid code in the output, which is error-prone.
-This could, for example, write a Javascript comment in the output.
+Using the magic \expr{__js__} function we can inject pure JavaScript code fragments into the output. This code can not be validated, so it accepts invalid code in the output, which is error-prone.
+This could, for example, write a JavaScript comment in the output.
 
 \begin{lstlisting}
 untyped __js__('// haxe is great!');
@@ -130,15 +130,15 @@ The standard compilation options also provide more Haxe sources to be added to t
 	\item To force a whole package to be included in the project, use \expr{--macro include('mypackage')} which will include all the classes declared in the given package and subpackages. 
 \end{itemize}
 
-\subsection{Javascript target Metadata}
+\subsection{JavaScript target Metadata}
 \label{target-javascript-metadata}
 
-This is the list of Javascript specific metadata. For more information, see also the complete list of all \tref{Haxe built-in metadata}{cr-metadata}.
+This is the list of JavaScript specific metadata. For more information, see also the complete list of all \tref{Haxe built-in metadata}{cr-metadata}.
 
 \begin{center}
 \begin{tabular}{| l | l |}
 	\hline
-	\multicolumn{2}{|c|}{Javascript metadata} \\ \hline
+	\multicolumn{2}{|c|}{JavaScript metadata} \\ \hline
 	Metadata &  Description \\ \hline
 	@:expose \_(?Name=Class path)\_  &  Makes the class available on the \expr{window} object or \expr{exports} for node.js  \\
 	@:jsRequire  &  Generate javascript module require expression for given extern \\
@@ -146,17 +146,17 @@ This is the list of Javascript specific metadata. For more information, see also
 \end{tabular}
 \end{center}
 
-\subsection{Exposing Haxe classes for Javascript}
+\subsection{Exposing Haxe classes for JavaScript}
 \label{target-javascript-expose}
 
-It is possible to make Haxe classes or static fields available for usage in plain Javascript. 
+It is possible to make Haxe classes or static fields available for usage in plain JavaScript. 
 To expose, add the \expr{@:expose} metadata to the desired class or static fields.
 
 This example exposes the Haxe class \ic{MyClass}.
 
 \haxe{assets/ClassExpose.hx}
 
-It generates the following Javascript output:
+It generates the following JavaScript output:
 
 \begin{lstlisting}
 (function ($hx_exports) { "use strict";
@@ -171,12 +171,12 @@ MyClass.prototype = {
 })(typeof window != "undefined" ? window : exports);
 \end{lstlisting}
 
-By passing globals (like \ic{window} or \ic{exports}) as parameters to our anonymous function in the Javascript module, it becomes available which allows to expose the Haxe generated module.
+By passing globals (like \ic{window} or \ic{exports}) as parameters to our anonymous function in the JavaScript module, it becomes available which allows to expose the Haxe generated module.
 
-In plain Javascript it is now possible to create an instance of the class and call its public functions.
+In plain JavaScript it is now possible to create an instance of the class and call its public functions.
 
 \begin{lstlisting}
-// Javascript code
+// JavaScript code
 var instance = new MyClass('Mark');
 console.log(instance.foo()); // logs a message in the console
 \end{lstlisting}
@@ -185,7 +185,7 @@ The package path of the Haxe class will be completely exposed. To rename the cla
 
 \paragraph{Shallow expose}
 
-When the code generated by Haxe is part of a larger Javascript project and wrapped in a large closure it is not always necessary to expose the Haxe types to global variables.
+When the code generated by Haxe is part of a larger JavaScript project and wrapped in a large closure it is not always necessary to expose the Haxe types to global variables.
 Compiling the project using \ic{-D shallow-expose} allows the types or static fields to be available for the surrounding scope of the generated closure only.
 
 When the code is compiled using \ic{-D shallow-expose}, the generated output will look like this:

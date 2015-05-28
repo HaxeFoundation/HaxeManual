@@ -117,7 +117,7 @@ A class or function can be made \emph{generic} by attributing it with the \expr{
 
 \haxe{assets/GenericClass.hx}
 
-It seems unusual to see the explicit type \type{MyArray<String>} here as we usually let \tref{type inference}{type-system-type-inference} deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The \target{Javascript} output shows the result:
+It seems unusual to see the explicit type \type{MyArray<String>} here as we usually let \tref{type inference}{type-system-type-inference} deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The \target{JavaScript} output shows the result:
 
 \begin{lstlisting}
 (function () { "use strict";
@@ -140,7 +140,7 @@ We can identify that \type{MyArray<String>} and \type{MyArray<Int>} have become 
 
 \haxe{assets/GenericFunction.hx}
 
-Again, the \target{Javascript} output makes it obvious:
+Again, the \target{JavaScript} output makes it obvious:
 
 \begin{lstlisting}
 (function () { "use strict";
@@ -174,7 +174,7 @@ It should be noted that \tref{top-down inference}{type-system-top-down-inference
 	\item be explicitly \tref{constrained}{type-system-type-parameter-constraints} to having a \tref{constructor}{types-class-constructor}.
 \end{enumerate}
 
-Here, 1. is given by \expr{make} having the \expr{@:generic} metadata, and 2. by \type{T} being constrained to \type{Constructible}. The constraint holds for both \type{String} and \type{haxe.Template} as both have a constructor accepting a singular \type{String} argument. Sure enough, the relevant \target{Javascript} output looks as expected:
+Here, 1. is given by \expr{make} having the \expr{@:generic} metadata, and 2. by \type{T} being constrained to \type{Constructible}. The constraint holds for both \type{String} and \type{haxe.Template} as both have a constructor accepting a singular \type{String} argument. Sure enough, the relevant \target{JavaScript} output looks as expected:
 
 \begin{lstlisting}
 var Main = function() { }

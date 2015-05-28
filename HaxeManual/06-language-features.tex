@@ -316,7 +316,7 @@ We see that externs can define both methods and variables (actually, \expr{PI} i
 
 This works because the return type of method \expr{floor} is declared to be \type{Int}.
 
-The Haxe Standard Library comes with many externs for the \target{Flash} and \target{Javascript} target. They allow accessing the native APIs in a type-safe manner and are instrumental for designing higher-level APIs. There are also externs for many popular native libraries on \tref{haxelib}{haxelib}.
+The Haxe Standard Library comes with many externs for the \target{Flash} and \target{JavaScript} target. They allow accessing the native APIs in a type-safe manner and are instrumental for designing higher-level APIs. There are also externs for many popular native libraries on \tref{haxelib}{haxelib}.
 
 The \target{Flash}, \target{Java} and \target{C\#} targets allow direct inclusion of native libraries from \tref{command line}{compiler-usage}. Target-specific details are explained in the respective sections of \Fullref{target-details}.
 
@@ -365,7 +365,7 @@ Several classes in the Haxe Standard Library are suitable for static extension u
 
 \haxe{assets/StaticExtension2.hx}
 
-While \type{String} does not have a \expr{replace} functionality by itself, the \expr{using StringTools} static extension provides one. As usual, the \target{Javascript} output nicely shows the transformation:
+While \type{String} does not have a \expr{replace} functionality by itself, the \expr{using StringTools} static extension provides one. As usual, the \target{JavaScript} output nicely shows the transformation:
 
 \begin{lstlisting}
 Main.main = function() {
@@ -780,7 +780,7 @@ The following example demonstrates constructor inlining:
 
 \haxe{assets/NewInline.hx}
 
-A look at the \target{Javascript} output reveals the effect:
+A look at the \target{JavaScript} output reveals the effect:
 
 \begin{lstlisting}
 Main.main = function() {
