@@ -1,7 +1,8 @@
 class Main {
   static public function main() {
     // Maps are initialized like arrays, but
-    // use '=>' operator. Maps can have their
+    // use the map literal syntax with the
+    // '=>' operator. Maps can have their
     // key value types defined explicity
     var map1:Map<Int, String> =
       [1 => "one", 2=>"two"];
