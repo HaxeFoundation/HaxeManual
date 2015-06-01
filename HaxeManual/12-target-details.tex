@@ -71,8 +71,6 @@ To display the output in a browser, create an HTML-document called \ic{index.htm
 
 The Haxe Standard Library comes with many externs for the JavaScript target. They provide access to the native APIs in a type-safe manner.
 The \tref{externs mechanism}{lf-externs} assumes that the defined types exist at run-time but assumes nothing about how and where those types are defined. 
-To clarify, in most cases we have to add a \ic{<script>}-tag that links the external library manually to the HTML-document.
-
 
 An example of an extern class is the \href{https://github.com/HaxeFoundation/haxe/blob/development/std/js/JQuery.hx#L83}{jQuery class} of the Haxe Standard Library. 
 To illustrate, here is a part of this extern class:
@@ -108,20 +106,6 @@ package my.application.media;
 extern class Video {
 ..
 \end{lstlisting}
-
-In Haxe, it is possible to call an exposed function thanks to the \expr{untyped} keyword. This can be useful in some cases if we don't want to write externs. Anything untyped that is valid syntax will be generated as it is.
-
-\begin{lstlisting}
-untyped window.trackEvent("page1");  
-\end{lstlisting}
-
-Using the magic \expr{__js__} function we can inject pure JavaScript code fragments into the output. This code can not be validated, so it accepts invalid code in the output, which is error-prone.
-This could, for example, write a JavaScript comment in the output.
-
-\begin{lstlisting}
-untyped __js__('// haxe is great!');
-\end{lstlisting}
-
 The standard compilation options also provide more Haxe sources to be added to the project:
 
 \begin{itemize}
@@ -129,6 +113,44 @@ The standard compilation options also provide more Haxe sources to be added to t
 	\item To add another class path, use \expr{-cp <directory>}.
 	\item To force a whole package to be included in the project, use \expr{--macro include('mypackage')} which will include all the classes declared in the given package and subpackages. 
 \end{itemize}
+
+\subsection{Inject raw JavaScript}
+\label{target-javascript-injection}
+
+In Haxe, it is possible to call an exposed function thanks to the \expr{untyped} keyword. This can be useful in some cases if we don't want to write externs. Anything untyped that is valid syntax will be generated as it is.
+
+\begin{lstlisting}
+untyped window.trackEvent("page1");  
+\end{lstlisting}
+
+\paragraph{Expression injection} 
+
+In some cases it may be needed to inject raw JavaScript code into Haxe-generated code. With the \expr{__js__} function we can inject pure JavaScript code fragments into the output. This code is always untyped and can not be validated, so it accepts invalid code in the output, which is error-prone.
+This could, for example, write a JavaScript comment in the output.
+
+\begin{lstlisting}
+untyped __js__('// haxe is great!');
+\end{lstlisting}
+
+A more useful demonstration would be to call a function and pass  arguments using the \expr{__js__} function. This example illustrates how to call this function and how to pass parameters. Note that the \emph{code interpolation} will wrap the quotes around strings in the generated output.
+
+\begin{lstlisting}
+// Haxe code:
+var myVar = untyped __js__('myObject.myJavaScriptFunction({0}, {1})', "Mark", 31);
+\end{lstlisting}
+
+This will generate the following JavaScript code:
+\begin{lstlisting}
+// JavaScript Code
+var myVar = myObject.myJavaScriptFunction("Mark", 31);
+\end{lstlisting}
+
+\subsection{Debugging Javascript}
+\label{target-javascript-debugging}
+
+Haxe is able to generate \href{http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/}{source maps}, allowing Javascript debuggers to map from generated JavaScript back to the original Haxe source. This makes reading error stack traces, debugging with breakpoints, and profiling much easier.
+
+Compiling with the \ic{-debug} flag will create a .map alongside the .js file. Enable it in Chrome by clicking on the cog settings button in the bottom right of the Developer Tools window, and checking "Enable source maps". The pause button on the bottom left can be toggled to pause on uncaught exceptions.
 
 \subsection{JavaScript target Metadata}
 \label{target-javascript-metadata}
