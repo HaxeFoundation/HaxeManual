@@ -13,6 +13,8 @@ env:
 
 install:
   - haxelib install hxcpp > /dev/null
+  - haxelib install random > /dev/null
+  - haxelib list
 
 script:
   - cd ./tests

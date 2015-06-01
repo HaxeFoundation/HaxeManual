@@ -44,7 +44,6 @@ class RunTravis
 		"Color.hx",
 		"ClassExpose.hx", // no main
 		"FunctionTypeParameter.hx",
-		"HaxelibRandom.hx", // needs a haxelib
 		"HelloPHP.hx", // PHP only
 		"ImplicitTransitiveCast.hx",
 		"JSRequireModule.hx",
@@ -73,6 +72,10 @@ class RunTravis
 		"EnumBuildingMacro.hx",
 		"MathStaticExtension.hx",
 		"TypeBuildingMacro.hx"
+	];
+	
+	static var haxelibs = [
+		"HaxelibRandom.hx" => ["random"]
 	];
 	
 	public static function main():Void {
@@ -114,12 +117,24 @@ class RunTravis
 	
 	static function hasExpectedResult(file:String, target:Target):ExitCode {
 		var expectedResult:ExitCode = requiredFailures.indexOf(file) == -1;
-		var compileResult = Sys.command("haxe", ["-main", "Main", '-$target', target]);
+		var compileResult = Sys.command("haxe", getCompileArgs(file, target));
 		
 		var result:ExitCode = compileResult == expectedResult;
 		if (result == ExitCode.Failure)
 			Sys.stderr().writeString('Unexpected result for $file: $compileResult, expected $expectedResult\n');
 		return result;
+	}
+	
+	static function getCompileArgs(file:String, target:Target):Array<String> {
+		var compileArgs = ["-main", "Main", '-$target', target];
+		var haxelibs = haxelibs[file];
+		if (haxelibs != null) {
+			for (haxelib in haxelibs) {
+				compileArgs.push("-lib");
+				compileArgs.push(haxelib);
+			}
+		}
+		return compileArgs;
 	}
 	
 	static function getResult(results:Array<ExitCode>):ExitCode {
