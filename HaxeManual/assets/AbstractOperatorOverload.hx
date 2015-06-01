@@ -12,7 +12,7 @@ abstract MyAbstract(String) {
   }
 }
 
-class AbstractOperatorOverload {
+class Main {
   static public function main() {
     var a = new MyAbstract("foo");
     trace(a * 3); // foofoofoo

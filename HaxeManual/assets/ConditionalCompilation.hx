@@ -1,4 +1,4 @@
-class ConditionalCompilation {
+class Main {
   public static function main(){
     #if !debug
       trace("ok");

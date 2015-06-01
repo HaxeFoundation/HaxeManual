@@ -1,4 +1,4 @@
-class Bind {
+class Main {
   static public function main() {
     var map = new Map<Int,String>();
     var f = map.set.bind(_, "12");

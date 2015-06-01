@@ -1,4 +1,4 @@
-class AdvArrayComprehension {
+class Main {
   static public function main() {
     var a = [
       for (a in 1...11)

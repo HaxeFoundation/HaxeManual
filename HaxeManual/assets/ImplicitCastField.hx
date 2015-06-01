@@ -14,7 +14,7 @@ abstract MyAbstract(Int) {
   }
 }
 
-class ImplicitCastField {
+class Main {
   static public function main() {
     var a:MyAbstract = "3";
     var b:Array<Int> = a;

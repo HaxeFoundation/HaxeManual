@@ -1,4 +1,4 @@
-class DefaultValues {
+class Main {
   static public function main() {
     // ?i : Int -> ?s : String -> String
     $type(test);

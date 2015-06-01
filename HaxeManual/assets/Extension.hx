@@ -4,7 +4,7 @@ typedef IterableWithLength<T> = {
   var length(default, null):Int;
 }
 
-class Extension {
+class Main {
   static public function main() {
     var array = [1, 2, 3];
     var t:IterableWithLength<Int> = array;

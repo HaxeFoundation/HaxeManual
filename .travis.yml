@@ -1,0 +1,20 @@
+language: haxe
+
+haxe:
+  - "3.2.0"
+  - "3.1.3"
+  - development
+  
+env: 
+  - TARGET=swf
+  - TARGET=js
+  - TARGET=neko
+  - TARGET=cpp
+
+install:
+  - haxelib install hxcpp > /dev/null
+
+script:
+  - cd ./tests
+  - haxe RunTravis.hxml
+  - neko RunTravis.n
