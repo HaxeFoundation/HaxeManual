@@ -121,7 +121,7 @@ class RunTravis
 		
 		var result:ExitCode = compileResult == expectedResult;
 		if (result == ExitCode.Failure)
-			Sys.stderr().writeString('Unexpected result for $file: $compileResult, expected $expectedResult\n');
+			printError('Unexpected result for $file: $compileResult, expected $expectedResult');
 		return result;
 	}
 	
@@ -142,6 +142,19 @@ class RunTravis
 			if (result != ExitCode.Success)
 			return ExitCode.Failure;
 		return ExitCode.Success;
+	}
+	
+	static function printError(error:String):Void {
+		setColor(31); // red
+		Sys.println(error);
+		setColor(); // no color
+	}
+	
+	static function setColor(?colorId:Int):Void {
+		if (Sys.systemName() == "Linux") {
+			var id = (colorId == null) ? "" : ';$colorId';
+			Sys.stderr().writeString("\033[0" + id + "m");
+		}
 	}
 	
 	static function runInDir(dir:String, func:Void->ExitCode):ExitCode {
