@@ -8,7 +8,7 @@ class Main {
     trace(test("foo")); // i: 12, s: foo
   }
 
-  static function test(i = 12, s = "bar") {
+  static function test(?i = 12, s = "bar") {
     return "i: " +i + ", s: " +s;
   }
 }
