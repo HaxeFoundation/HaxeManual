@@ -621,7 +621,7 @@ trace(root); // <root />
 
 \paragraph{Creating child elements}
 
-Adding child elements to the root can be done using the \expr{createElement} method.
+Adding child elements to the root can be done using the \expr{addChild} method.
 \begin{lstlisting}
 var child:Xml = Xml.createElement('child'); 
 root.addChild(child);
@@ -653,7 +653,7 @@ The difference between \expr{firstChild} and \expr{firstElement} is that the sec
 We can as well use other methods to iterate either over children or elements.
 \begin{lstlisting}
 for (child in xml) {
-	// iterate on all childs.
+	// iterate on all children.
 }
 for (elt in xml.elements()) {
 	// iterate on all elements.
@@ -669,7 +669,7 @@ for (att in xml.attributes()) {
 \subsection{Parsing Xml}
 \label{std-Xml-parsing}
 
-Use the \expr{Xml.parse} static method to parse \emph{XML} data and obtain a Haxe value from it:
+The static method \expr{Xml.parse} can be used to parse \emph{XML} data and obtain a Haxe value from it.
 
 \begin{lstlisting}
 var xml = Xml.parse('<root>Haxe is great!</root>').firstElement();
@@ -679,7 +679,7 @@ trace(xml.firstChild().nodeValue);
 \subsection{Encoding Xml}
 \label{std-Xml-encoding}
 
-Use the \expr{xml.toString()} method to encode a Haxe value into a \emph{XML} string:
+The method \expr{xml.toString()} can be used to obtain the \type{String} representation.
 \begin{lstlisting}
 var xml = Xml.createElement('root');
 xml.addChild(Xml.createElement('child1'));
@@ -688,10 +688,10 @@ xml.addChild(Xml.createElement('child2'));
 trace(xml.toString()); // <root><child1/><child2/></root>
 \end{lstlisting}
 
-\subsection{Fast Xml access}
-\label{std-Xml-Fast}
+\subsection{Simplified Xml access}
+\label{std-Xml-dot-syntax}
 
-While the base \type{Xml} API is easy to use, it is sometimes a bit painful to do all the checks of \type{Xml} correctness and can result in verbose code. The \href{http://api.haxe.org/haxe/xml/Fast.html}{haxe.xml.Fast} API is here to help by providing a fast dot-syntax access to the most common \type{Xml} methods.
+The \href{http://api.haxe.org/haxe/xml/Fast.html}{haxe.xml.Fast} API exists to help by providing a fast dot-syntax access to the most common \type{Xml} methods.
 
 Here's an example of fast XML usage:
 \begin{lstlisting}
