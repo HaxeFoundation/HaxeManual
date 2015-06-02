@@ -597,6 +597,97 @@ Each supported value is translated to a distinct prefix character, followed by t
 
 \noindent Cached elements and enum constructors are indexed from zero.
 
+\section{Xml}
+\label{std-Xml}
+
+Haxe provides built-in support for working with \emph{XML}\footnote{http://en.wikipedia.org/wiki/XML} data via the \type{haxe.Xml} class. 
+
+\subsection{Getting started with Xml}
+\label{std-Xml-getting-started}
+
+\paragraph{Creating a root element}
+
+A \type{Xml} root element can be created using the \expr{Xml.createElement} method.
+\begin{lstlisting}
+var root = Xml.createElement('root');
+trace(root); // <root />
+\end{lstlisting}
+
+An root node element can also be created by parsing a \type{String} containing the XML data.
+\begin{lstlisting}
+var root = Xml.parse('<root />').firstElement();
+trace(root); // <root />
+\end{lstlisting}
+
+\paragraph{Creating child elements}
+
+Adding child elements to the root can be done using the \expr{addChild} method.
+\begin{lstlisting}
+var child:Xml = Xml.createElement('child'); 
+root.addChild(child);
+trace(root); // <root><child/></root>
+\end{lstlisting}
+
+
+Adding attributes to an element can be done by using the \expr{set()} method.
+\begin{lstlisting}
+child.set('name', 'John');
+trace(root); // <root><child name="John"/></root>
+\end{lstlisting}
+
+\paragraph{Accessing elements and values}
+
+This code parses an XML string into an object structure \type{Xml} and then accesses properties of the object.
+\begin{lstlisting}
+var xmlString = '<hello name="world!">Haxe is great!</hello>';
+var xml:Xml = Xml.parse(xmlString).firstElement();
+	
+trace(xml.nodeName); // hello
+trace(xml.get('name')); // world!
+trace(xml.firstChild().nodeValue); // Haxe is great!
+\end{lstlisting}
+
+The difference between \expr{firstChild} and \expr{firstElement} is that the second function will return the first child with the type \type{Xml.Element}. 
+
+\paragraph{Iterate on Xml elements}
+We can as well use other methods to iterate either over children or elements.
+\begin{lstlisting}
+for (child in xml) {
+	// iterate on all children.
+}
+for (elt in xml.elements()) {
+	// iterate on all elements.
+}
+for (user in xml.elementsNamed("user")) {
+	// iterate on all elements with a nodeName "user".
+}
+for (att in xml.attributes()) {
+	// iterator on all attributes.
+}
+\end{lstlisting}
+
+\subsection{Parsing Xml}
+\label{std-Xml-parsing}
+
+The static method \expr{Xml.parse} can be used to parse \emph{XML} data and obtain a Haxe value from it.
+
+\begin{lstlisting}
+var xml = Xml.parse('<root>Haxe is great!</root>').firstElement();
+trace(xml.firstChild().nodeValue);
+\end{lstlisting}
+
+\subsection{Encoding Xml}
+\label{std-Xml-encoding}
+
+The method \expr{xml.toString()} can be used to obtain the \type{String} representation.
+\begin{lstlisting}
+var xml = Xml.createElement('root');
+xml.addChild(Xml.createElement('child1'));
+xml.addChild(Xml.createElement('child2'));
+
+trace(xml.toString()); // <root><child1/><child2/></root>
+\end{lstlisting}
+
 \section{Json}
 \label{std-Json}
 
