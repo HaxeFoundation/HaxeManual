@@ -597,6 +597,170 @@ Each supported value is translated to a distinct prefix character, followed by t
 
 \noindent Cached elements and enum constructors are indexed from zero.
 
+\section{Xml}
+\label{std-Xml}
+
+Haxe provides built-in support for working with \emph{XML}\footnote{http://en.wikipedia.org/wiki/XML} data via the \type{haxe.Xml} class. 
+
+\subsection{Getting started with Xml}
+\label{std-Xml-getting-started}
+
+\paragraph{Creating a root element}
+
+A \type{Xml} root element can be created using the \expr{Xml.createElement} method.
+\begin{lstlisting}
+var root = Xml.createElement('root');
+trace(root); // <root />
+\end{lstlisting}
+
+An root node element can also be created by parsing a \type{String} containing the XML data.
+\begin{lstlisting}
+var root = Xml.parse('<root />').firstElement();
+trace(root); // <root />
+\end{lstlisting}
+
+\paragraph{Creating child elements}
+
+Adding child elements to the root can be done using the \expr{createElement} method.
+\begin{lstlisting}
+var child:Xml = Xml.createElement('child'); 
+root.addChild(child);
+trace(root); // <root><child/></root>
+\end{lstlisting}
+
+
+Adding attributes to an element can be done by using the \expr{set()} method.
+\begin{lstlisting}
+child.set('name', 'John');
+trace(root); // <root><child name="John"/></root>
+\end{lstlisting}
+
+\paragraph{Accessing elements and values}
+
+This code parses an XML string into an object structure \type{Xml} and then accesses properties of the object.
+\begin{lstlisting}
+var xmlString = '<hello name="world!">Haxe is great!</hello>';
+var xml:Xml = Xml.parse(xmlString).firstElement();
+	
+trace(xml.nodeName); // hello
+trace(xml.get('name')); // world!
+trace(xml.firstChild().nodeValue); // Haxe is great!
+\end{lstlisting}
+
+The difference between \expr{firstChild} and \expr{firstElement} is that the second function will return the first child with the type \type{Xml.Element}. 
+
+\paragraph{Iterate on Xml elements}
+We can as well use other methods to iterate either over children or elements.
+\begin{lstlisting}
+for (child in xml) {
+	// iterate on all childs.
+}
+for (elt in xml.elements()) {
+	// iterate on all elements.
+}
+for (user in xml.elementsNamed("user")) {
+	// iterate on all elements with a nodeName "user".
+}
+for (att in xml.attributes()) {
+	// iterator on all attributes.
+}
+\end{lstlisting}
+
+\subsection{Parsing Xml}
+\label{std-Xml-parsing}
+
+Use the \expr{Xml.parse} static method to parse \emph{XML} data and obtain a Haxe value from it:
+
+\begin{lstlisting}
+var xml = Xml.parse('<root>Haxe is great!</root>').firstElement();
+trace(xml.firstChild().nodeValue);
+\end{lstlisting}
+
+\subsection{Encoding Xml}
+\label{std-Xml-encoding}
+
+Use the \expr{xml.toString()} method to encode a Haxe value into a \emph{XML} string:
+\begin{lstlisting}
+var xml = Xml.createElement('root');
+xml.addChild(Xml.createElement('child1'));
+xml.addChild(Xml.createElement('child2'));
+
+trace(xml.toString()); // <root><child1/><child2/></root>
+\end{lstlisting}
+
+\subsection{Fast Xml access}
+\label{std-Xml-Fast}
+
+While the base \type{Xml} API is easy to use, it is sometimes a bit painful to do all the checks of \type{Xml} correctness and can result in verbose code. The \href{http://api.haxe.org/haxe/xml/Fast.html}{haxe.xml.Fast} API is here to help by providing a fast dot-syntax access to the most common \type{Xml} methods.
+
+Here's an example of fast XML usage:
+\begin{lstlisting}
+// parse some XML data
+var xml = Xml.parse("
+  <user name='John'>
+    <phone>
+      <number>0000</number>
+      <number>111</number>
+    </phone>
+  </user>
+");
+// wrap the Xml for fast access
+var fast = new haxe.xml.Fast(xml.firstElement());
+
+// access attributes
+trace(fast.att.name); // attribute "name"
+if (fast.has.age) trace( fast.att.age ); // optional attribute
+
+// access the "phone" child, which is wrapped with haxe.xml.Fast too
+var phone = fast.node.phone;
+
+// iterate over numbers
+for (p in phone.nodes.number) {
+  trace(p.innerData);
+}
+\end{lstlisting}
+This code works the same on all platforms.
+
+\paragraph{Accessors}
+There are different accessors that can be used with the Fast API:
+\begin{description}
+	\item[\expr{.name}] returns the name of the current element (same as \expr{Xml.nodeName}).
+	\item[\expr{.x}] returns the current corresponding \type{Xml} node.
+	\item[\expr{.att.<name>}] access to a given attribute. An exception is thrown if the attribute doesn't exists.
+	\item[\expr{.has.<name>}] check the existence of an attribute.
+	\item[\expr{.elements}] the list of all sub-elements (which are the nodes with type \type{Xml.Element}).
+	\item[\expr{.node.<name>}] access to the first sub element with the given name. An exception is thrown if the element doesn't exists.
+	\item[\expr{.nodes.<name>}] returns a List of elements with the given name.
+	\item[\expr{.hasNode.<name>}] check the existence of a sub node with the given name.
+	\item[\expr{.innerData}] returns the inner \ic{PCDATA} or \ic{CDATA} of the node. An exception is thrown if there is no data or if there not only data but also other nodes.
+	\item[\expr{.innerHTML}] returns the XML string built with all the sub nodes, excluding the current one.
+\end{description}
+
+\paragraph{Self-closed nodes}
+Please note that we cannot access self-closed nodes as "regular" ones. 
+For example, provided this XML:
+
+\begin{lstlisting}
+var xml = Xml.parse("
+  <myNode1></myNode1>
+  <myNode2/>
+");
+
+var fast = new haxe.xml.Fast(xml.firstElement());
+
+var myNode1Value = fast.node.myNode1.innerData; 
+// no problem
+
+var myNode2Value = fast.node.myNode2.innerData; 
+// ERROR, an exception is thrown!
+\end{lstlisting}
+
+In case the application might get self-closed nodes, check \expr{hasNode.innerData} before and default to an alternative value.
+
+\begin{lstlisting}
+var myNode2Value = (fast.node.myNode2.hasNode.innerData) ? fast.node.myNode2.innerData : null; 
+\end{lstlisting}
+
 \section{Json}
 \label{std-Json}
 
