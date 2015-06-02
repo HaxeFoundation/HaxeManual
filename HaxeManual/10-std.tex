@@ -597,6 +597,81 @@ Each supported value is translated to a distinct prefix character, followed by t
 
 \noindent Cached elements and enum constructors are indexed from zero.
 
+\section{Simplified Xml access}
+\label{std-Xml-simplified-access}
+
+%TODO: if this will ever make it to the docs, it needs to be a subsection of Xml %
+
+The \href{http://api.haxe.org/haxe/xml/Fast.html}{haxe.xml.Fast} API exists to provide a fast dot-syntax access to the most common \type{Xml} methods.
+
+Here's an example of fast XML usage:
+\begin{lstlisting}
+// parse some XML data
+var xml = Xml.parse("
+  <user name='John'>
+    <phone>
+      <number>0000</number>
+      <number>111</number>
+    </phone>
+  </user>
+");
+// wrap the Xml for fast access
+var fast = new haxe.xml.Fast(xml.firstElement());
+
+// access attributes
+trace(fast.att.name); // attribute "name"
+if (fast.has.age) trace( fast.att.age ); // optional attribute
+
+// access the "phone" child, which is wrapped with haxe.xml.Fast too
+var phone = fast.node.phone;
+
+// iterate over numbers
+for (p in phone.nodes.number) {
+  trace(p.innerData);
+}
+\end{lstlisting}
+This code works the same on all platforms.
+
+\paragraph{Accessors}
+There are different accessors that can be used with the Fast API:
+\begin{description}
+	\item[\expr{.name}] returns the name of the current element (same as \expr{Xml.nodeName}).
+	\item[\expr{.x}] returns the current corresponding \type{Xml} node.
+	\item[\expr{.att.<name>}] access to a given attribute. An exception is thrown if the attribute doesn't exists.
+	\item[\expr{.has.<name>}] check the existence of an attribute.
+	\item[\expr{.elements}] the list of all sub-elements (which are the nodes with type \type{Xml.Element}).
+	\item[\expr{.node.<name>}] access to the first sub element with the given name. An exception is thrown if the element doesn't exists.
+	\item[\expr{.nodes.<name>}] returns a List of elements with the given name.
+	\item[\expr{.hasNode.<name>}] check the existence of a sub node with the given name.
+	\item[\expr{.innerData}] returns the inner \ic{PCDATA} or \ic{CDATA} of the node. An exception is thrown if there is no data or if there not only data but also other nodes.
+	\item[\expr{.innerHTML}] returns the XML string built with all the sub nodes, excluding the current one.
+\end{description}
+
+\paragraph{Self-closed nodes}
+Please note that we cannot access self-closed nodes as "regular" ones. 
+For example, provided this XML:
+
+\begin{lstlisting}
+var xml = Xml.parse("
+  <myNode1></myNode1>
+  <myNode2/>
+");
+
+var fast = new haxe.xml.Fast(xml.firstElement());
+
+var myNode1Value = fast.node.myNode1.innerData; 
+// no problem
+
+var myNode2Value = fast.node.myNode2.innerData; 
+// ERROR, an exception is thrown!
+\end{lstlisting}
+
+In case the application might get self-closed nodes, check \expr{hasNode.innerData} before and default to an alternative value.
+
+\begin{lstlisting}
+var myNode2Value = (fast.node.myNode2.hasNode.innerData) ? fast.node.myNode2.innerData : null; 
+\end{lstlisting}
+
 \section{Json}
 \label{std-Json}
 
