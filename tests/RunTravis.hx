@@ -70,6 +70,8 @@ class RunTravis
 	static var additionalModules = [
 		"AutoBuildingMacro.hx",
 		"EnumBuildingMacro.hx",
+		"GenericBuildMacro1.hx",
+		"GenericBuildMacro2.hx",
 		"MathStaticExtension.hx",
 		"TypeBuildingMacro.hx"
 	];
