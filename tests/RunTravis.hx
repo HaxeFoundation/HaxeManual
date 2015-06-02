@@ -76,17 +76,14 @@ class RunTravis
 		"WhileLoop.hx"
 	];
 	
-	/**
-		Additional .hx modules needed to compile an example -
-		these are not compiled themselves, but copied to /bin.
-	*/
+	/** Additional .hx modules needed to compile specific examples. */
 	static var additionalModules = [
-		"AutoBuildingMacro.hx",
-		"EnumBuildingMacro.hx",
-		"GenericBuildMacro1.hx",
-		"GenericBuildMacro2.hx",
-		"MathStaticExtension.hx",
-		"TypeBuildingMacro.hx"
+		"AutoBuilding.hx" => "AutoBuildingMacro.hx",
+		"EnumBuilding.hx" => "EnumBuildingMacro.hx",
+		"GenericBuild1.hx" => "GenericBuildMacro1.hx",
+		"GenericBuild2.hx" => "GenericBuildMacro2.hx",
+		"MathExtensionUsage.hx" => "MathStaticExtension.hx",
+		"TypeBuilding" => "TypeBuildingMacro.hx"
 	];
 	
 	static var haxelibs = [
@@ -100,7 +97,9 @@ class RunTravis
 			target = Target.Neko;
 		}
 		
-		excludedExamples = excludedExamples.concat(additionalModules);
+		for (additionalModule in additionalModules)
+			excludedExamples.push(additionalModule);
+		
 		Sys.exit(getResult([
 			buildExamples(target)
 		]));
@@ -130,10 +129,16 @@ class RunTravis
 	}
 	
 	static function compile(file:String, target:Target):ExitCode {
+		var dir = "bin/" + getFileName(file);
+		FileSystem.createDirectory(dir);
 		// workaround for "Module [name] does not define type [name]"
-		File.copy(file, "bin/Main.hx");
+		File.copy(file, '$dir/Main.hx');
 	
-		return runInDir("bin", function() {
+		var additional = additionalModules.get(file);
+		if (additional != null)
+			File.copy(additional, '$dir/$additional');
+		
+		return runInDir(dir, function() {
 			return hasExpectedResult(file, target);
 		});
 	}
@@ -187,5 +192,10 @@ class RunTravis
 		var result = func();
 		Sys.setCwd(oldCwd);
 		return result;
+	}
+	
+	static function getFileName(file:String):String {
+		var dotIndex = file.lastIndexOf(".");
+		return file.substring(0, dotIndex);
 	}
 }
