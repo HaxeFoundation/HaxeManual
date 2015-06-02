@@ -23,6 +23,19 @@ abstract ExitCode(Int) from Int to Int
 	static function fromBool(b:Bool):ExitCode {
 		return b ? ExitCode.Success : ExitCode.Failure;
 	}
+	
+	@:to
+	function toColor():Color {
+		return (this == ExitCode.Success) ? Color.Green : Color.Red; 
+	}
+}
+
+@:enum
+abstract Color(Int)
+{
+	var None = 0;
+	var Red = 31;
+	var Green = 32;
 }
 
 class RunTravis
@@ -105,7 +118,15 @@ class RunTravis
 		for (additionalModule in additionalModules)
 			File.copy(additionalModule, 'bin/$additionalModule');
 	
-		return getResult([for (example in examples) compile(example, target)]);
+		var results = [for (example in examples) compile(example, target)];
+		var successCount = results.filter(function(e) return e == ExitCode.Success).length;
+		var totalCount = examples.length;
+		var exitCode:ExitCode = !(successCount < totalCount);
+		Sys.println("");
+		printWithColor([for (i in 0...50) "-"].join(""), exitCode);
+		printWithColor('$successCount/$totalCount examples built successfully.', exitCode);
+		
+		return exitCode;
 	}
 	
 	static function compile(file:String, target:Target):ExitCode {
@@ -123,7 +144,8 @@ class RunTravis
 		
 		var result:ExitCode = compileResult == expectedResult;
 		if (result == ExitCode.Failure)
-			printError('Unexpected result for $file: $compileResult, expected $expectedResult');
+			printWithColor('Unexpected result for $file:' +
+				'$compileResult, expected $expectedResult', Color.Red);
 		return result;
 	}
 	
@@ -146,15 +168,15 @@ class RunTravis
 		return ExitCode.Success;
 	}
 	
-	static function printError(error:String):Void {
-		setColor(31); // red
-		Sys.println(error);
-		setColor(); // no color
+	static function printWithColor(message:String, color:Color):Void {
+		setColor(color);
+		Sys.println(message);
+		setColor(Color.None);
 	}
 	
-	static function setColor(?colorId:Int):Void {
+	static function setColor(color:Color):Void {
 		if (Sys.systemName() == "Linux") {
-			var id = (colorId == null) ? "" : ';$colorId';
+			var id = (color == Color.None) ? "" : ';$color';
 			Sys.stderr().writeString("\033[0" + id + "m");
 		}
 	}
