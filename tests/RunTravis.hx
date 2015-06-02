@@ -83,7 +83,7 @@ class RunTravis
 		"GenericBuild1.hx" => "GenericBuildMacro1.hx",
 		"GenericBuild2.hx" => "GenericBuildMacro2.hx",
 		"MathExtensionUsage.hx" => "MathStaticExtension.hx",
-		"TypeBuilding" => "TypeBuildingMacro.hx"
+		"TypeBuilding.hx" => "TypeBuildingMacro.hx"
 	];
 	
 	static var haxelibs = [
