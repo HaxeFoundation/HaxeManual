@@ -332,6 +332,12 @@ Interface fields are not limited to methods. They can be variables and propertie
 
 \haxe{assets/InterfaceWithVariables.hx}
 
+Interfaces can be extended from other interfaces using the \expr{extends} keyword:
+\begin{lstlisting}
+Interface Point3D extends Point
+\end{lstlisting}
+
+
 \trivia{Implements Syntax}{Haxe versions prior to 3.0 required multiple \expr{implements} keywords to be separated by a comma. We decided to adhere to the de-facto standard of Java and got rid of the comma. This was one of the breaking changes between Haxe 2 and 3.}
 
 
