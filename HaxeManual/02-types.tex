@@ -332,9 +332,9 @@ Interface fields are not limited to methods. They can be variables and propertie
 
 \haxe{assets/InterfaceWithVariables.hx}
 
-Interfaces can be extended from other interfaces using the \expr{extends} keyword:
+Interfaces can extend multiple other interfaces using the \expr{extends} keyword:
 \begin{lstlisting}
-Interface Point3D extends Point
+Interface Debugable extends Printable extends Serializable
 \end{lstlisting}
 
 
