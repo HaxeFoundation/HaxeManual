@@ -63,6 +63,7 @@ class RunTravis
 		"JSRequireObject.hx",
 		"Point.hx",
 		"Point3.hx",
+		"RestAndEitherType.hx", // requires an extern
 		"StringInterpolation.hx",
 		"StructureField.hx",
 		"SwitchEnum.hx",
