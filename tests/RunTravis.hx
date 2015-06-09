@@ -91,7 +91,7 @@ class RunTravis
 	];
 	
 	public static function main():Void {
-		var target:Target = Sys.getEnv("TARGET");
+		var target:Target = Sys.args()[0];
 		if (target == null) {
 			Sys.println("No TARGET defined. Defaulting to neko.");
 			target = Target.Neko;
@@ -101,16 +101,18 @@ class RunTravis
 			excludedExamples.push(additionalModule);
 		
 		Sys.exit(getResult([
-			buildExamples(target)
+			buildExamples(target, Sys.args().slice(1))
 		]));
 	}
 	
-	static function buildExamples(target:Target):ExitCode {
+	static function buildExamples(target:Target, ?included:Array<String>):ExitCode {
 		Sys.println("\nBuilding Haxe Manual examples...\n");
 		Sys.setCwd("../HaxeManual/assets");
 	
 		var examples = FileSystem.readDirectory(".").filter(function(f) {
 			return f.endsWith(".hx") && excludedExamples.indexOf(f) == -1;
+		}).filter(function(f) {
+			return included.length == 0 || included.indexOf(f) != -1;
 		});
 	
 		FileSystem.createDirectory("bin");
