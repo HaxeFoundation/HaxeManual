@@ -6,12 +6,18 @@ haxe:
   
 env: 
   - TARGET=swf
+  - TARGET=as3
   - TARGET=js
   - TARGET=neko
   - TARGET=cpp
+  - TARGET=cs
+  - TARGET=java
+  - TARGET=python
 
 install:
   - haxelib install hxcpp > /dev/null
+  - haxelib install hxcs > /dev/null
+  - haxelib install hxjava > /dev/null
   - haxelib install random > /dev/null
   - haxelib list
 
