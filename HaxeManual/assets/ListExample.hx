@@ -1,4 +1,4 @@
-class ListExample {
+class Main {
   static public function main() {
     var myList = new List<Int>();
     for (ii in 0...5)

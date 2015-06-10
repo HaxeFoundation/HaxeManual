@@ -1,4 +1,4 @@
-class MathExample {
+class Main {
   static public function main() {
     var x = 1/2;
     var y = 20.2;

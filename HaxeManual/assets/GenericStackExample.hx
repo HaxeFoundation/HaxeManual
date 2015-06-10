@@ -1,6 +1,6 @@
 import haxe.ds.GenericStack;
 
-class GenericStackExample {
+class Main {
   static public function main() {
     var myStack = new GenericStack<Int>();
     for (ii in 0...5)

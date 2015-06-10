@@ -1,4 +1,4 @@
-class FunctionType {
+class Main {
   static public function main() {
     // i : Int -> s : String -> Bool
     $type(test);

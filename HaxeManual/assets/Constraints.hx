@@ -2,7 +2,7 @@ typedef Measurable = {
   public var length(default, null):Int;
 }
 
-class Constraints {
+class Main {
   static public function main() {
     trace(test([]));
     trace(test(["bar", "foo"]));

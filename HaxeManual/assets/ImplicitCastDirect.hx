@@ -4,7 +4,7 @@ abstract MyAbstract(Int) from Int to Int {
   }
 }
 
-class ImplicitCastDirect {
+class Main {
   static public function main() {
     var a:MyAbstract = 12;
     var b:Int = a;

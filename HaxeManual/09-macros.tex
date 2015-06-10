@@ -252,6 +252,8 @@ Normal \tref{build-macros}{macro-type-building} are run per-type and are already
 
 \expr{@:genericBuild} is used just like \expr{@:build} by adding it to a type with the argument being a macro call:
 
+\haxe{assets/GenericBuildMacro1.hx}
+
 \haxe{assets/GenericBuild1.hx}
 
 When running this example the compiler outputs \ic{TAbstract(Int,[])} and \ic{TInst(String,[])}, indicating that it is indeed aware of the concrete type parameters of \type{MyType}. The macro logic could use this information to generate a custom type (using \expr{haxe.macro.Context.defineType}) or refer to an existing one. For brevity we return \expr{null} here which asks the compiler to \tref{infer}{type-system-type-inference} the type.
@@ -261,6 +263,8 @@ In Haxe 3.1 the return type of a \expr{@:genericBuild} macro has to be a \type{h
 \paragraph{Const type parameter}
 
 Haxe allows passing \tref{constant expression}{expression-constants} as a type parameter if the type parameter name is \expr{Const}. This can be utilized in the context of \expr{@:genericBuild} macros to pass information from the syntax directly to the macro:
+
+\haxe{assets/GenericBuildMacro2.hx}
 
 \haxe{assets/GenericBuild2.hx}
 

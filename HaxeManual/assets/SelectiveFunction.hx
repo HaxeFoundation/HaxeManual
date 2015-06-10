@@ -9,7 +9,7 @@ abstract MyAbstract<T>(T) from T {
   }
 }
 
-class SelectiveFunction {
+class Main {
   static public function main() {
     var a = new MyAbstract("foo");
     a.getString();

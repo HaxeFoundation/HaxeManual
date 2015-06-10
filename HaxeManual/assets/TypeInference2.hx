@@ -1,4 +1,4 @@
-class TypeInference2 {
+class Main {
   public static function main() {
     var x = [];
     $type(x); // Array<Unknown<0>>

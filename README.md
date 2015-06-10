@@ -1,6 +1,8 @@
 HaxeManual
 ==========
 
+[![Build Status](https://travis-ci.org/HaxeFoundation/HaxeManual.png)](https://travis-ci.org/HaxeFoundation/HaxeManual)
+
 For contributions please edit the .tex file.  The .md files are generated from it.
 
 To rebuild the .pdf from the command line, run `latexmk -xelatex HaxeDoc.tex`.

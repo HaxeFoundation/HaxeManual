@@ -1,4 +1,4 @@
-class VariableField {
+class Main {
   static var member:String = "bar";
 
   public static function main() {

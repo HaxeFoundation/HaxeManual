@@ -1,0 +1,28 @@
+language: haxe
+
+haxe:
+  - "3.2.0"
+  - development
+  
+env: 
+  - TARGET=swf
+  - TARGET=as3
+  - TARGET=js
+  - TARGET=neko
+  - TARGET=cpp
+  - TARGET=cs
+  - TARGET=java
+  - TARGET=python
+
+install:
+  - sudo apt-get install mono-devel mono-mcs -qq
+  - haxelib install hxcpp > /dev/null
+  - haxelib install hxcs > /dev/null
+  - haxelib install hxjava > /dev/null
+  - haxelib install random > /dev/null
+  - haxelib list
+
+script:
+  - cd ./tests
+  - haxe RunTravis.hxml
+  - neko RunTravis.n $TARGET
