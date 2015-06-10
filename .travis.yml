@@ -13,9 +13,14 @@ env:
   - TARGET=cs
   - TARGET=java
   - TARGET=python
+  
+addons:
+  apt:
+    packages:
+      - mono-devel
+      - mono-mcs
 
 install:
-  - sudo apt-get install mono-devel mono-mcs -qq
   - haxelib install hxcpp > /dev/null
   - haxelib install hxcs > /dev/null
   - haxelib install hxjava > /dev/null
