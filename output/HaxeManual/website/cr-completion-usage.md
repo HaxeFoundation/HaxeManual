@@ -1,5 +1,7 @@
 ## 8.3.5 Usage completion
 
+##### since Haxe 3.2.0
+
 Usage completion is enabled by using the `"usage"` mode argument (see [Overview](cr-completion-overview.md)). We demonstrate it here using a local variable. Note that it would work with fields and types the same way:
 
 ```haxe

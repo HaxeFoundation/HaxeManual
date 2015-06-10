@@ -1,4 +1,4 @@
-## 10.14 Unit testing
+## 10.15 Unit testing
 
 The Haxe Standard Library provides basic unit testing classes from the `haxe.unit` package. 
 
@@ -24,7 +24,7 @@ class Main {
     var r = new haxe.unit.TestRunner();
     r.add(new MyTestCase());
     // add other TestCases here
-    
+
     // finally, run the tests
     r.run();
   }

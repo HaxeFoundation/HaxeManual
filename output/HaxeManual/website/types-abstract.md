@@ -26,14 +26,14 @@ The syntax is reminiscent of classes and the semantics are indeed similar. In fa
 Furthermore, abstracts can be instantiated and used just like classes:
 
 ```haxe
-class MyAbstract {
+class Main {
   static public function main() {
     var a = new AbstractInt(12);
     trace(a); //12
   }
 }
 ```
-As mentioned before, abstracts are a compile-time feature, so it is interesting to see what the above actually generates. A suitable target for this is Javascript, which tends to generate concise and clean code. Compiling the above (using `haxe -main MyAbstract -js myabstract.js`) shows this Javascript code:
+As mentioned before, abstracts are a compile-time feature, so it is interesting to see what the above actually generates. A suitable target for this is JavaScript, which tends to generate concise and clean code. Compiling the above (using `haxe -main MyAbstract -js myabstract.js`) shows this JavaScript code:
 
 ```haxe
 var a = 12;

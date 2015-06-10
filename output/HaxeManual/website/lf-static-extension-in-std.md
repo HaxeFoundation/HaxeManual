@@ -12,7 +12,7 @@ class Main {
 }
 ```
 
-While `String` does not have a `replace` functionality by itself, the `using StringTools` static extension provides one. As usual, the Javascript output nicely shows the transformation:
+While `String` does not have a `replace` functionality by itself, the `using StringTools` static extension provides one. As usual, the JavaScript output nicely shows the transformation:
 
 ```haxe
 Main.main = function() {

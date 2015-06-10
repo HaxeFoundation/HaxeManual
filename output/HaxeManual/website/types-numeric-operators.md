@@ -1,5 +1,7 @@
 ## 2.1.3 Numeric Operators
 
+This the list of numeric operators in Haxe, grouped by descending priority.
+
 ##### Arithmetic
  
  Operator  | Operation  | Operand 1  | Operand 2  | Return 

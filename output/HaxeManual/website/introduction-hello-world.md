@@ -3,7 +3,7 @@
 The following program prints "Hello World" after being compiled and run:
 
 ```haxe
-class HelloWorld {
+class Main {
   static public function main():Void {
     trace("Hello World");
   }

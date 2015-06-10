@@ -5,7 +5,7 @@ Haxe includes a floating point math library for some common mathematical operati
 Here are some example uses of the math library.  See the [Math API](http://api.haxe.org/Math.html) for all available functions.
 
 ```haxe
-class MathExample {
+class Main {
   static public function main() {
     var x = 1/2;
     var y = 20.2;

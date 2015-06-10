@@ -1,4 +1,4 @@
-## 10.13.1 Remoting Connection
+## 10.14.1 Remoting Connection
 
 In order to use remoting, there must be a connection established. There are two kinds of Haxe Remoting connections: 
 
@@ -17,7 +17,7 @@ There are some target-specific constructors with different purposes that can be 
     * `AMFConnection.urlConnect(url:String)` and `AMFConnection.connect( cnx : NetConnection )`  Allows a connection to an [AMF Remoting server](http://en.wikipedia.org/wiki/Action_Message_Format) such as [Flash Media Server](http://www.adobe.com/products/adobe-media-server-family.html) or [AMFPHP](http://www.silexlabs.org/amfphp/).
     * `SocketConnection.create(sock:flash.XMLSocket)`  Allows remoting communications over an `XMLSocket`
     * `LocalConnection.connect(name:String)`  Allows remoting communications over a [Flash LocalConnection](http://api.haxe.org/haxe/remoting/LocalConnection.html)
-* Javascript:
+* JavaScript:
 
     * `ExternalConnection.flashConnect(name:String, obj:String, ctx:Context)`  Allows a connection to a given Flash Object. The Haxe Flash content must be loaded and it must include the `haxe.remoting.Connection` class. This only works with Flash 8 and higher. 
 * Neko:

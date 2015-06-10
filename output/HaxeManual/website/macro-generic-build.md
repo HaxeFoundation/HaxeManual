@@ -7,12 +7,11 @@ Normal [build-macros](macro-type-building.md) are run per-type and are already v
 `@:genericBuild` is used just like `@:build` by adding it to a type with the argument being a macro call:
 
 ```haxe
-// MyMacro.hx
 import haxe.macro.Expr;
 import haxe.macro.Context;
 import haxe.macro.Type;
 
-class MyMacro {
+class GenericBuildMacro1 {
   static public function build() {
     switch (Context.getLocalType()) {
       case TInst(_, [t1]):
@@ -23,9 +22,10 @@ class MyMacro {
     return null;
   }
 }
+```
 
-// Main.hx
-@:genericBuild(MyMacro.build())
+```haxe
+@:genericBuild(GenericBuildMacro1.build())
 class MyType<T> { }
 
 class Main {
@@ -49,7 +49,7 @@ import haxe.macro.Expr;
 import haxe.macro.Context;
 import haxe.macro.Type;
 
-class MyMacro {
+class GenericBuildMacro2 {
   static public function build() {
     switch (Context.getLocalType()) {
       case TInst(_,[TInst(_.get() => { kind: KExpr(macro $v{(s:String)}) },_)]):
@@ -60,9 +60,10 @@ class MyMacro {
     return null;
   }
 }
+```
 
-// Main.hx
-@:genericBuild(MyMacro.build())
+```haxe
+@:genericBuild(GenericBuildMacro2.build())
 class MyType<Const> { }
 
 class Main {

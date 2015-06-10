@@ -27,7 +27,7 @@ class Main {
 }
 ```
 
-A look at the Javascript output reveals the effect:
+A look at the JavaScript output reveals the effect:
 
 ```haxe
 Main.main = function() {

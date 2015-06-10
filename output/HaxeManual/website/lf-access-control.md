@@ -11,6 +11,8 @@ In this context, a **target** can be the [dot-path](dictionary.md#define-type-pa
 * a **class** or **abstract** type, or
 * a **package**.
 
+Target does **not** respect imports, so the fully qualified path has to be used.
+
 If it is a class or abstract type, access modification extends to all fields of that type. Likewise, if it is a package, access modification extends to all types of that package and recursively to all fields of these types.
 
 ```haxe

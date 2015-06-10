@@ -3,7 +3,7 @@
 Copy and paste the following code into any editor or IDE of your choice:
 
 ```haxe
-class HelloWorld {
+class Main {
   static public function main():Void {
     trace("Hello World");
   }

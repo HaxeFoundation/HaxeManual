@@ -3,7 +3,7 @@
 Anonymous structures can be used to group data without explicitly creating a type. The following example creates a structure with two fields `x` and `name`, and initializes their values to `12` and `"foo"` respectively:
 
 ```haxe
-class Structure {
+class Main {
   static public function main() {
     var myStructure = { x: 12, name: "foo"};
   }

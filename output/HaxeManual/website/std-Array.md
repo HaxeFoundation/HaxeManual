@@ -40,7 +40,7 @@ class Main {
 }
 ```
 
-Haxe generates this optimized Javascript output:
+Haxe generates this optimized JavaScript output:
 
 ```haxe
 Main.main = function() {

@@ -21,7 +21,7 @@ Due to Haxe being a very fast compiler, it is often sufficient to rely on the no
 
 ###### General notes on the interface
 
-* The position-argument can be set to 0 if the file in question contains a pipeline `|` character at the position of interest. This is very useful for demonstration and testing as it allows us to ignore the byte-counting process a real IDE would have to do. The examples in this section are making use of this feature.
+* The position-argument can be set to 0 if the file in question contains a pipeline `|` character at the position of interest. This is very useful for demonstration and testing as it allows us to ignore the byte-counting process a real IDE would have to do. The examples in this section are making use of this feature. Note that this only works in places where `|` is not valid syntax otherwise, e.g. after dots (`.|`) and opening parentheses (`(|`).
 * The output is HTML-escaped so that `&`, `<` and `>` become `&amp;`, `&lt;` and `&gt;` respectively.
 * Otherwise any documentation output is preserved which means longer documentation might include new-line and tab-characters as it does in the source files.
 * When run in completion mode, the compiler does not display errors but instead tries to ignore them or recover from them.  If a critical error occurs while getting completion, the Haxe Compiler prints the error message instead of the completion output. Any non-XML output can be treated as a critical error message.

@@ -8,12 +8,13 @@ abstract MyAbstract<T>(T) from T {
 
   function get() return this;
 
+  @:impl
   static public function getString(v:MyAbstract<String>):String {
     return v.get();
   }
 }
 
-class SelectiveFunction {
+class Main {
   static public function main() {
     var a = new MyAbstract("foo");
     a.getString();
@@ -22,6 +23,7 @@ class SelectiveFunction {
     b.getString();
   }
 }
+
 ```
 The method `getString` of abstract `MyAbstract` is defined to accept a first argument of `MyAbstract<String>`. This causes it to be available on variable `a` on line 14 (because the type of `a` is `MyAbstract<String>`), but not on variable `b` whose type is `MyAbstract<Int>`.
 

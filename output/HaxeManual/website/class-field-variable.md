@@ -3,7 +3,7 @@
 We have already seen variable fields in several code examples of previous sections. Variable fields hold values, a characteristic which they share with most (but not all) properties:
 
 ```haxe
-class VariableField {
+class Main {
   static var member:String = "bar";
 
   public static function main() {

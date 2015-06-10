@@ -1,5 +1,7 @@
 ## 8.3.6 Position completion
 
+##### since Haxe 3.2.0
+
 Position completion is enabled by using the `"position"` mode argument (see [Overview](cr-completion-overview.md)). We demonstrate it using a field. Note that it would work with local variables and types the same way:
 
 ```haxe

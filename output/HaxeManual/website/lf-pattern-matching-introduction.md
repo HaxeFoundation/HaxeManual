@@ -4,8 +4,8 @@ Pattern matching is the process of branching depending on a value matching given
 
 ```haxe
 enum Tree<T> {
-    Leaf(v:T);
-    Node(l:Tree<T>, r:Tree<T>);
+  Leaf(v:T);
+  Node(l:Tree<T>, r:Tree<T>);
 }
 ```
 

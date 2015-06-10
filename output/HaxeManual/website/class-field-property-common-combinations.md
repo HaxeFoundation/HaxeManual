@@ -39,7 +39,7 @@ class Main {
 }
 ```
 
-The Javascript output helps understand what the field access in the `main`-method is compiled to:
+The JavaScript output helps understand what the field access in the `main`-method is compiled to:
 
 ```haxe
 var Main = function() {

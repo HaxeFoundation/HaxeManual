@@ -1,5 +1,7 @@
 ## 8.3.7 Top-level completion
 
+##### since Haxe 3.2.0
+
 Top-level completion displays all identifiers which the Haxe Compiler knows about at a given compilation position. This is the only completion method for which we need a real position argument in order to demonstrate its effect:
 
 ```haxe

@@ -1,6 +1,6 @@
-## 10.13.2 Implementation details
+## 10.14.2 Implementation details
 
-###### Javascript security specifics
+###### JavaScript security specifics
 
 The html-page wrapping the js client must be served from the same domain as the one where the server is running. The same-origin policy restricts how a document or script loaded from one origin can interact with a resource from another origin. The same-origin policy is used as a means to prevent some of the cross-site request forgery attacks.
 

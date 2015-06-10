@@ -33,7 +33,7 @@ while(i < 10) a.push(i++);
 The loop expression can be anything, including conditions and nested loops, so the following works as expected:
 
 ```haxe
-class AdvArrayComprehension {
+class Main {
   static public function main() {
     var a = [
       for (a in 1...11)

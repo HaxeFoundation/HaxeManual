@@ -1,6 +1,6 @@
-## 12.1.1 Getting started with Haxe/Javascript
+## 12.1.1 Getting started with Haxe/JavaScript
 
-Haxe can be a powerful tool for developing Javascript applications. Let's look at our first sample.
+Haxe can be a powerful tool for developing JavaScript applications. Let's look at our first sample.
 This is a very simple example showing the toolchain. 
 
 Create a new folder and save this class as `Main.hx`.
@@ -37,7 +37,7 @@ Another possibility is to create and run (double-click) a file called `compile.h
 
 The output will be a main-javascript.js, which creates and adds a clickable button to the document body.
 
-###### Run the Javascript
+###### Run the JavaScript
 
 To display the output in a browser, create an HTML-document called `index.html` and open it.
 
@@ -52,11 +52,11 @@ To display the output in a browser, create an HTML-document called `index.html` 
 
 ###### More information
 
-* [Haxe Javascript API docs](http://api.haxe.org/js/)
+* [Haxe JavaScript API docs](http://api.haxe.org/js/)
 * [MDN JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
 
 ---
 
-Previous section: [Javascript](target-javascript.md)
+Previous section: [JavaScript](target-javascript.md)
 
-Next section: [Using external Javascript libraries](target-javascript-external-libraries.md)
+Next section: [Using external JavaScript libraries](target-javascript-external-libraries.md)

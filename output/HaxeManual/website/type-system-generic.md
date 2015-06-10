@@ -8,7 +8,7 @@ A class or function can be made **generic** by attributing it with the `:generic
 @:generic
 class MyValue<T> {
   public var value:T;
-    public function new(value:T) {
+  public function new(value:T) {
     this.value = value;
   }
 }
@@ -22,7 +22,7 @@ class Main {
 
 ```
 
-It seems unusual to see the explicit type `MyArray<String>` here as we usually let [type inference](type-system-type-inference.md) deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The Javascript output shows the result:
+It seems unusual to see the explicit type `MyArray<String>` here as we usually let [type inference](type-system-type-inference.md) deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The JavaScript output shows the result:
 
 ```haxe
 (function () { "use strict";
@@ -54,7 +54,7 @@ class Main {
 }
 ```
 
-Again, the Javascript output makes it obvious:
+Again, the JavaScript output makes it obvious:
 
 ```haxe
 (function () { "use strict";

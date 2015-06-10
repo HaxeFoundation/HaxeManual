@@ -9,7 +9,7 @@ A `List` is a **collection** for storing elements.  On the surface, a list is si
 
 See the [List API](http://api.haxe.org/List.html) for details about the list methods.  A simple example for working with lists:
 ```haxe
-class ListExample {
+class Main {
   static public function main() {
     var myList = new List<Int>();
     for (ii in 0...5)

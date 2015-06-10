@@ -6,9 +6,9 @@ To get started with Haxe/PHP, create a new folder and save this class as `Main.h
 import php.Lib;
 
 class Main {
-	static function main() {
-		Lib.println('Haxe is great!');
-	}
+  static function main() {
+    Lib.println('Haxe is great!');
+  }
 }
 
 ```

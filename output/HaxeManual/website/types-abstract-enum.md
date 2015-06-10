@@ -28,7 +28,7 @@ class Main {
 }
 ```
 
-The Haxe Compiler replaces all field access to the `HttpStatus` abstract with their values, as evident in the Javascript output:
+The Haxe Compiler replaces all field access to the `HttpStatus` abstract with their values, as evident in the JavaScript output:
 
 ```haxe
 Main.main = function() {

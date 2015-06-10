@@ -1,15 +1,17 @@
-## 12.1.3 Javascript target Metadata
+## 12.1.5 JavaScript target Metadata
 
-This is the list of Javascript specific metadata. For more information, see also the complete list of all [Haxe built-in metadata](cr-metadata.md).
+This is the list of JavaScript specific metadata. For more information, see also the complete list of all [Haxe built-in metadata](cr-metadata.md).
 
-##### Javascript metadata
+##### JavaScript metadata
  
- Metadata  |  Description  | Target 
- --- | --- | ---
-@:expose _(?Name=Class path)_   |  Makes the class available on the <code>window</code> object or <code>exports</code> for node.js   | js
+ Metadata  |  Description 
+ --- | ---
+@:expose _(?Name=Class path)_   |  Makes the class available on the <code>window</code> object or <code>exports</code> for node.js  
+@:jsRequire   |  Generate javascript module require expression for given extern 
+@:selfCall   |  Translates method calls into calling object directly
 
 ---
 
-Previous section: [Using external Javascript libraries](target-javascript-external-libraries.md)
+Previous section: [Debugging Javascript](target-javascript-debugging.md)
 
-Next section: [Exposing Haxe classes for Javascript](target-javascript-expose.md)
+Next section: [Exposing Haxe classes for JavaScript](target-javascript-expose.md)

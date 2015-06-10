@@ -33,9 +33,9 @@ Missing Content:
 5.4 - Unary Operators
 9.6.1 - Macro-in-Macro
 9.6.4 - Type Parameters
-10.10 - Xml
-10.11 - Input/Output
-10.12 - Sys/sys
+10.11 - Xml
+10.12 - Input/Output
+10.13 - Sys/sys
 12.3 - Neko
 12.5.2 - Using C++ Pointers
 12.6 - Java
@@ -225,14 +225,18 @@ Unreviewed:
 10.7 - Reflection
 10.8 - Serialization
 10.8.1 - Serialization format
-10.9 - Json
-10.9.1 - Parsing JSON
-10.9.2 - Encoding JSON
-10.9.3 - Implementation details
-10.13 - Remoting
-10.13.1 - Remoting Connection
-10.13.2 - Implementation details
-10.14 - Unit testing
+10.9 - Xml
+10.9.1 - Getting started with Xml
+10.9.2 - Parsing Xml
+10.9.3 - Encoding Xml
+10.10 - Json
+10.10.1 - Parsing JSON
+10.10.2 - Encoding JSON
+10.10.3 - Implementation details
+10.14 - Remoting
+10.14.1 - Remoting Connection
+10.14.2 - Implementation details
+10.15 - Unit testing
 11 - Haxelib
 11.1 - Using a Haxe library with the Haxe Compiler
 11.2 - haxelib.json
@@ -242,9 +246,11 @@ Unreviewed:
 11.4 - Using Haxelib
 12.1.1 - Getting started with Haxe/JavaScript
 12.1.2 - Using external JavaScript libraries
-12.1.3 - JavaScript target Metadata
-12.1.4 - Exposing Haxe classes for JavaScript
-12.1.5 - Loading extern classes using "require" function
+12.1.3 - Inject raw JavaScript
+12.1.4 - Debugging Javascript
+12.1.5 - JavaScript target Metadata
+12.1.6 - Exposing Haxe classes for JavaScript
+12.1.7 - Loading extern classes using "require" function
 12.2.1 - Getting started with Haxe/Flash
 12.2.2 - Embedding resources
 12.2.3 - Using external Flash libraries

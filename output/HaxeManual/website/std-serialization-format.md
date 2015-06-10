@@ -37,4 +37,4 @@ Each supported value is translated to a distinct prefix character, followed by t
 
 Previous section: [Serialization](std-serialization.md)
 
-Next section: [Json](std-Json.md)
+Next section: [Xml](std-Xml.md)

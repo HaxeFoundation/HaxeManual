@@ -9,7 +9,7 @@ Haxe allows conditional compilation by using `#if`, `#elseif` and `#else` and ch
 This example demonstrates usage of conditional compilation:
 
 ```haxe
-class ConditionalCompilation {
+class Main {
   public static function main(){
     #if !debug
       trace("ok");

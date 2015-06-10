@@ -17,14 +17,14 @@ abstract MyAbstract(String) {
   }
 }
 
-class AbstractOperatorOverload {
+class Main {
   static public function main() {
     var a = new MyAbstract("foo");
     trace(a * 3); // foofoofoo
   }
 }
 ```
-By defining `@:op(A * B)`, the function `repeat` serves as operator method for the multiplication `*` operator when the type of the left value is `MyAbstract` and the type of the right value is `Int`. The usage is shown in line 17, which turns into this when compiled to Javascript:
+By defining `@:op(A * B)`, the function `repeat` serves as operator method for the multiplication `*` operator when the type of the left value is `MyAbstract` and the type of the right value is `Int`. The usage is shown in line 17, which turns into this when compiled to JavaScript:
 
 ```haxe
 console.log(_AbstractOperatorOverload.
@@ -48,7 +48,7 @@ abstract MyAbstract(String) {
     return this + "post";
 }
 
-class AbstractUnopOverload {
+class Main {
   static public function main() {
     var a = new MyAbstract("foo");
     trace(++a); // prefoo

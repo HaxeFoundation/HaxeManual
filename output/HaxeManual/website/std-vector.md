@@ -4,7 +4,7 @@ A `Vector` is an optimized fixed-length **collection** of elements. Much like [A
 
 ```haxe
 class Main {
-	static function main() {
+  static function main() {
     var vec = new haxe.ds.Vector(10);
 
     for (i in 0...vec.length) {
@@ -14,7 +14,7 @@ class Main {
     trace(vec[0]); // 0
     trace(vec[5]); // 5
     trace(vec[9]); // 9
-	}
+  }
 }
 
 ```

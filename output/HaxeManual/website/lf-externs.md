@@ -29,7 +29,7 @@ class Main {
 
 This works because the return type of method `floor` is declared to be `Int`.
 
-The Haxe Standard Library comes with many externs for the Flash and Javascript target. They allow accessing the native APIs in a type-safe manner and are instrumental for designing higher-level APIs. There are also externs for many popular native libraries on [haxelib](haxelib.md).
+The Haxe Standard Library comes with many externs for the Flash and JavaScript target. They allow accessing the native APIs in a type-safe manner and are instrumental for designing higher-level APIs. There are also externs for many popular native libraries on [haxelib](haxelib.md).
 
 The Flash, Java and C# targets allow direct inclusion of native libraries from [command line](compiler-usage.md). Target-specific details are explained in the respective sections of [Target Details](target-details.md).
 
