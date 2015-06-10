@@ -9,7 +9,7 @@ class Main {
     }
   }
 
-  static inline function error(s:String) {
+  @:extern static inline function error(s:String) {
     throw s;
   }
 }
