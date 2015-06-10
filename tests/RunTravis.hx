@@ -62,12 +62,14 @@ class RunTravis
 		"ClassExpose.hx", // no main
 		"FunctionTypeParameter.hx",
 		"HelloPHP.hx", // PHP only
+		"Import.hx", // fails on 3.2.0/cpp
 		"ImplicitTransitiveCast.hx",
 		"JSRequireModule.hx",
 		"JSRequireObject.hx",
 		"Point.hx",
 		"Point3.hx",
 		"RestAndEitherType.hx", // requires an extern
+		"SafeCast.hx", // fails on 3.2.0/php
 		"StringInterpolation.hx",
 		"StructureField.hx",
 		"SwitchEnum.hx",
