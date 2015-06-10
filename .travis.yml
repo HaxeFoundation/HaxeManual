@@ -15,6 +15,7 @@ env:
   - TARGET=python
 
 install:
+  - sudo apt-get install mono-devel mono-mcs -qq
   - haxelib install hxcpp > /dev/null
   - haxelib install hxcs > /dev/null
   - haxelib install hxjava > /dev/null
