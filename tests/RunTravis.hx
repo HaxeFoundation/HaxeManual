@@ -42,6 +42,12 @@ abstract Color(Int)
 	var Green = 32;
 }
 
+enum InsertIn
+{
+	Function;
+	Module;
+}
+
 class RunTravis
 {
 	/** Examples that are expected to fail / *should* produce a compiler error. */
@@ -50,36 +56,30 @@ class RunTravis
 		"DynamicInferenceIssue.hx",
 		"ExprOf.hx",
 		"Extractor5.hx",
+		"FunctionTypeParameter.hx",
 		"GetterSetter2.hx",
+		"ImplicitTransitiveCast.hx",
 		"Property4.hx",
 		"SelectiveFunction.hx",
-		"Test.hx"
+		"SwitchEnum.hx",
+		"Test.hx",
+		"Variance.hx",
+		"Visibility.hx",
+		"Visibility2.hx"
 	];
 
 	/** Examples that are not included in the tests. */
 	static var excludedExamples = {
 		var a = [
-			"Color.hx",
-			"ClassExpose.hx", // no main
-			"FunctionTypeParameter.hx",
+			"ClassExpose.hx", // no main()
 			"HelloPHP.hx", // PHP only
-			"ImplicitTransitiveCast.hx",
 			"JSRequireModule.hx",
 			"JSRequireObject.hx",
-			"Point.hx",
-			"Point3.hx",
 			"RestAndEitherType.hx", // requires an extern
-			"StringInterpolation.hx",
-			"StructureField.hx",
-			"SwitchEnum.hx",
-			"SwitchStatement.hx",
+			"SwitchStatement.hx", // pseudo-code
 			"UnitTestCase.hx",
 			"UnitTestRunner.hx",
-			"UnitTestSetup.hx",
-			"Variance.hx",
-			"Visibility.hx",
-			"Visibility2.hx",
-			"WhileLoop.hx"
+			"UnitTestSetup.hx"
 		];
 		if (Sys.getEnv("TRAVIS") == "true" && Sys.getEnv("TRAVIS_HAXE_VERSION") == "3.2.0") {
 			a.push("SafeCast.hx"); // https://github.com/HaxeFoundation/haxe/issues/4310
@@ -88,20 +88,32 @@ class RunTravis
 		a;
 	}
 
-
 	/** Additional .hx modules needed to compile specific examples. */
 	static var additionalModules = [
 		"AutoBuilding.hx" => "AutoBuildingMacro.hx",
 		"EnumBuilding.hx" => "EnumBuildingMacro.hx",
 		"GenericBuild1.hx" => "GenericBuildMacro1.hx",
 		"GenericBuild2.hx" => "GenericBuildMacro2.hx",
+		"Point3.hx" => "Point.hx",
 		"MathExtensionUsage.hx" => "MathStaticExtension.hx",
 		"TypeBuilding.hx" => "TypeBuildingMacro.hx"
+	];
+	
+	/** Snippets that don't compile on their own */
+	static var incompleteSnippets = [
+		"Color.hx" => Module,
+		"Point.hx" => Module,
+		"Point3.hx" => Module,
+		"StringInterpolation.hx" => Function,
+		"StructureField.hx" => Module,
+		"WhileLoop.hx" => Function
 	];
 
 	static var haxelibs = [
 		"HaxelibRandom.hx" => ["random"]
 	];
+	
+	static var helperFile:String;
 
 	public static function main():Void {
 		var target:Target = Sys.args()[0];
@@ -112,7 +124,11 @@ class RunTravis
 
 		for (additionalModule in additionalModules)
 			excludedExamples.push(additionalModule);
-
+		// special case, both needed as an additional module and needs to compile on its own
+		excludedExamples.remove("Point.hx");
+	
+		helperFile = File.getContent("Helper.hx");
+	
 		Sys.exit(getResult([
 			buildExamples(target, Sys.args().slice(1))
 		]));
@@ -146,8 +162,20 @@ class RunTravis
 	static function compile(file:String, target:Target):ExitCode {
 		var dir = "bin/" + getFileName(file);
 		FileSystem.createDirectory(dir);
-		// workaround for "Module [name] does not define type [name]"
-		File.copy(file, '$dir/Main.hx');
+		
+		var insertIn = incompleteSnippets.get(file);
+		if (insertIn != null) {
+			var fileOutput = File.write('$dir/Main.hx');
+			var fileContent = File.getContent(file);
+			
+			fileOutput.writeString(helperFile
+				.replace("<module>", (insertIn == Module) ? fileContent : "")
+				.replace("<function>", (insertIn == Function) ? fileContent : ""));
+			fileOutput.close();
+		} else {
+			// workaround for "Module [name] does not define type [name]"
+			File.copy(file, '$dir/Main.hx');
+		}
 
 		var additional = additionalModules.get(file);
 		if (additional != null)

@@ -1,4 +1,4 @@
-class FunctionTypeParameter {
+class Main {
   static public function main() {
     equals(1, 1);
     // runtime message: bar should be foo

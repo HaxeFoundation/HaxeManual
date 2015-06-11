@@ -1,16 +1,17 @@
-enum Color{
+enum Color {
   Red;
   Green;
   Blue;
 }
 
-var myColor : Color
+class Main {
+  static function main() {
+    var myColor : Color = Blue;
 
-//...
-
-switch( myColor ){
-  case Red: 0xFF0000;
-  case Green: 0x00ff00;
+    // compiler error: Unmatched patterns: Blue
+    switch( myColor ){
+      case Red: 0xFF0000;
+      case Green: 0x00ff00;
+    }
+  }
 }
-// will cause a compile warning because 'Blue'
-// is missing
