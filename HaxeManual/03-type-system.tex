@@ -21,19 +21,27 @@ This enables us to use \expr{IA} in places where we would normally use \expr{Arr
 
 \begin{lstlisting}
 typedef User = {
-    var age : Int;
-    var name : String;
+  var age : Int;
+  var name : String;
 }
 \end{lstlisting}
 A typedef is not a textual replacement but actually a real type. It can even have \tref{type parameters}{type-system-type-parameters} as the \type{Iterable} type from the Haxe Standard Library demonstrates:
 
 \begin{lstlisting}
 typedef Iterable<T> = {
-	function iterator() : Iterator<T>;
+  function iterator() : Iterator<T>;
 }
 \end{lstlisting}
 
-
+\paragraph{Optional fields}
+Mark the field of a structure as optional using the \ic{@:optional} metadata.
+\begin{lstlisting}
+typedef User = {
+  var age : Int;
+  var name : String;
+  @:optional var phoneNumber : String;
+}
+\end{lstlisting}
 
 \subsection{Extensions}
 \label{type-system-extensions}
@@ -61,7 +69,7 @@ Haxe allows parametrization of a number of types, as well as \tref{class fields}
 
 \begin{lstlisting}
 class Array<T> {
-	function push(x : T) : Int;
+  function push(x : T) : Int;
 }
 \end{lstlisting}
 Whenever an instance of \type{Array} is created, its type parameter \type{T} becomes a \tref{monomorph}{types-monomorph}. That is, it can be bound to any type, but only one at a time. This binding can happen
@@ -230,10 +238,10 @@ Unification errors are very easy to trigger:
 
 \begin{lstlisting}
 class Main {
-	static public function main() {
+  static public function main() {
     // Int should be String
-		var s:String = 1;
-	}
+    var s:String = 1;
+  }
 }
 \end{lstlisting}
 We try to assign a value of type \type{Int} to a variable of type \type{String}, which causes the compiler to try and \emph{unify Int with String}. This is, of course, not allowed and makes the compiler emit the error \expr{Int should be String}.
@@ -281,7 +289,7 @@ The following example is part of the \type{Lambda} class of the \tref{Haxe Stand
 
 \begin{lstlisting}
 public static function empty<T>(it : Iterable<T>):Bool {
-	return !it.iterator().hasNext();
+  return !it.iterator().hasNext();
 }
 \end{lstlisting}
 The \expr{empty}-method checks if an \type{Iterable} has an element. For this purpose, it is not necessary to know anything about the argument type other than the fact that it is considered an iterable. This allows calling the \expr{empty}-method with any type that unifies with \type{Iterable$<$T$>$} which applies to a lot of types in the Haxe Standard Library.
