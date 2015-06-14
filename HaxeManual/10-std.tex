@@ -2,8 +2,6 @@
 \label{std}
 \state{NoContent}
 
-Standard library
-
 \section{String}
 \label{std-String}
 
@@ -17,6 +15,8 @@ Use the \ic{.code} property on a constant single-char string in order to compile
 \begin{lstlisting}
 "#".code // will compile as 35
 \end{lstlisting}
+
+See the \href{http://api.haxe.org/String.html}{String API} for details about its methods. 
 
 \section{Data Structures}
 \label{std-ds}
@@ -71,6 +71,7 @@ Haxe does not allow arrays of mixed types unless the parameter type is forced to
 
 \trivia{Dynamic Arrays}{In Haxe 2, mixed type array declarations were allowed. In Haxe 3, arrays can have mixed types only if they are explicitly declared as \expr{Array<Dynamic>}.}
 
+See the \href{http://api.haxe.org/Array.html}{Array API} for details about its methods. 
 
 \subsection{Vector}
 \label{std-vector}
@@ -80,6 +81,8 @@ A \type{Vector} is an optimized fixed-length \emph{collection} of elements. Much
 \haxe{assets/Vector.hx}
 
 \type{haxe.ds.Vector} is implemented as an abstract type (\ref{types-abstract}) over a native array implementation for given target and can be faster for fixed-size collections, because the memory for storing its elements is pre-allocated.
+
+See the \href{http://api.haxe.org/haxe/ds/Vector.html}{Vector API} for details about the vector methods. 
 
 \subsection{List}
 \label{std-List}
@@ -92,16 +95,20 @@ A \type{List} is a \emph{collection} for storing elements.  On the surface, a li
 	\item A list can freely modify/add/remove elements while iterating over them.
 \end{enumerate}
 
-See the \href{http://api.haxe.org/List.html}{List API} for details about the list methods.  A simple example for working with lists:
+A simple example for working with lists:
 \haxe{assets/ListExample.hx}
+
+See the \href{http://api.haxe.org/List.html}{List API} for details about the list methods. 
 
 \subsection{GenericStack}
 \label{std-GenericStack}
-A \type{GenericStack}, like \type{Array} and \type{List} is a container for storing elements.  It has one \tref{type parameter}{type-system-type-parameters} and all elements of the stack must be of the specified type. See the \href{http://api.haxe.org/haxe/ds/GenericStack.html}{GenericStack API} for details about its methods.  Here is a small example program for initializing and working with a \type{GenericStack}.
+A \type{GenericStack}, like \type{Array} and \type{List} is a container for storing elements.  It has one \tref{type parameter}{type-system-type-parameters} and all elements of the stack must be of the specified type.   Here is a small example program for initializing and working with a \type{GenericStack}.
 \haxe{assets/GenericStackExample.hx}
 \trivia{FastList}{In Haxe 2, the GenericStack class was known as FastList.  Since its behavior more closely resembled a typical stack, the name was changed for Haxe 3.}
 The \emph{Generic} in \type{GenericStack} is literal.  It is attributed with the \expr{:generic} metadata.  Depending on the target, this can lead to improved performance on static targets.  See \Fullref{type-system-generic} for more details.
 
+
+See the \href{http://api.haxe.org/haxe/ds/GenericStack.html}{GenericStack API} for details about its methods. 
 
 
 \subsection{Map}
@@ -110,8 +117,6 @@ The \emph{Generic} in \type{GenericStack} is literal.  It is attributed with the
 A \type{Map} is a container composed of \emph{key}, \emph{value} pairs.  A \type{Map} is also commonly referred to as an associative array, dictionary, or symbol table. The following code gives a short example of working with maps:
 
 \haxe{assets/MapExample.hx}
-
-See the \href{http://api.haxe.org/Map.html}{Map API} for details of its methods.
 
 Under the hood, a \type{Map} is an \tref{abstract}{types-abstract} type. At compile time, it gets converted to one of several specialized types depending on the \emph{key} type:
 \begin{itemize}
@@ -125,11 +130,12 @@ The \type{Map} type does not exist at runtime and has been replaced with one of 
 
 Map defines \tref{array access}{types-abstract-array-access} using its key type.
 
+See the \href{http://api.haxe.org/Map.html}{Map API} for details of its methods.
 
 \subsection{Option}
 \label{std-Option}
 
-An option is an \tref{enum}{types-enum-instance} in the Haxe Standard Library which is defined like so:
+An \href{http://api.haxe.org/haxe/ds/Option.html}{Option} is an \tref{enum}{types-enum-instance} in the Haxe Standard Library which is defined like so:
 
 \begin{lstlisting}
 enum Option<T> {
@@ -141,7 +147,6 @@ enum Option<T> {
 It can be used in various situations, such as communicating whether or not a method had a valid return and if so, what value it returned:
 
 \haxe{assets/OptionUsage.hx}
-
 
 
 \section{Regular Expressions}
@@ -192,6 +197,8 @@ The possible flags are the following:
 	\item \expr{s} the dot \expr{.} will also match newlines \emph{(Neko, C++, PHP, Flash and Java targets only)}
 	\item \expr{u} use UTF-8 matching \emph{(Neko and C++ targets only)}
 \end{itemize}
+
+See the \href{http://api.haxe.org/EReg.html}{EReg API} for details about its methods. 
 
 \subsection{Matching}
 \label{std-regex-match}
@@ -260,9 +267,11 @@ Regular Expressions are implemented:
 
 Haxe includes a floating point math library for some common mathematical operations. Most of the functions operate on and return \type{floats}. However, an \type{Int} can be used where a \type{Float} is expected, and Haxe also converts \type{Int} to \type{Float} during most numeric operations  (see \Fullref{types-numeric-operators} for more details).
 
-Here are some example uses of the math library.  See the \href{http://api.haxe.org/Math.html}{Math API} for all available functions.
+Here are some example uses of the math library:  
 
 \haxe{assets/MathExample.hx}
+
+See the \href{http://api.haxe.org/Math.html}{Math API} for all available functions.
 
 \subsection{Special Numbers}
 \label{std-math-special-numbers}
@@ -375,10 +384,12 @@ class Main {
 }
 \end{lstlisting} 
 
+See the \href{http://api.haxe.org/Lambda.html}{Lambda API} for all available functions.
+
 \section{Template}
 \label{std-template}
 
-Haxe comes with a standard template system with an easy to use syntax which is interpreted by a lightweight class called \type{haxe.Template}.
+Haxe comes with a standard template system with an easy to use syntax which is interpreted by a lightweight class called \href{http://api.haxe.org/haxe/Template.html}{haxe.Template}.
 
 A template is a string or a file that is used to produce any kind of string output depending on the input. Here is a small template example:
 
@@ -449,14 +460,14 @@ trace(output);
 The console will trace \ic{The users are Mark(30) John(45)}.
 
 \paragraph{Template macros}
-To call custom functions while parts of the template are being rendered, provide a \expr{macros} object to the argument of \expr{Template.execute}. The key will act as the template variable name, the value refers to a callback function that should return a \type{String}. The first argument of this macro function is always a \expr{resolve()} method, followed by the given arguments. The resolve function can be called to retrieve values from the template context. If \expr{macros} has no such field, the result is unspecified.
+To call custom functions while parts of the template are being rendered, provide a \expr{macros} object to the argument of \href{http://api.haxe.org/haxe/Template.html#execute}{Template.execute}. The key will act as the template variable name, the value refers to a callback function that should return a \type{String}. The first argument of this macro function is always a \expr{resolve()} method, followed by the given arguments. The resolve function can be called to retrieve values from the template context. If \expr{macros} has no such field, the result is unspecified.
 
 The following example passes itself as macro function context and executes \ic{display} from the template.
 \haxe{assets/TemplateMacros.hx}
 The console will trace \ic{The results: Mark ran 3.5 kilometers in 15 minutes}.
 
 \paragraph{Globals}
-Use the \expr{Template.globals} object to store values that should be applied across all \type{haxe.Template} instances. This has lower priority than the context argument of \expr{Template.execute}.
+Use the \href{http://api.haxe.org/haxe/Template.html#globals}{Template.globals} object to store values that should be applied across all \type{haxe.Template} instances. This has lower priority than the context argument of \expr{Template.execute}.
 
 \paragraph{Using resources}
 
@@ -466,6 +477,7 @@ Place the template-content in a new file called \ic{sample.mtt}, add \ic{-resour
 
 When running the template system on the server side, you can simply use \expr{neko.Lib.print} or \expr{php.Lib.print} instead of trace to display the HTML template to the user.
 
+See the \href{http://api.haxe.org/haxe/Template.html}{Template API} for details about its methods.
 
 \section{Reflection}
 \label{std-reflection}
@@ -479,7 +491,7 @@ The reflection API consists of two classes:
 	\item[Type:] A more robust API for working with classes and \tref{enums}{types-enum-instance}.
 \end{description}
 
-The available methods are detailed in the API for \href{http://api.haxe.org//Reflect.html}{Reflect} and \href{http://api.haxe.org//Type.html}{Type}.
+The available methods are detailed in the API for \href{http://api.haxe.org/Reflect.html}{Reflect} and \href{http://api.haxe.org/Type.html}{Type}.
 
 Reflection can be a powerful tool, but it is important to understand why it can also cause problems. As an example, several functions expect a \tref{String}{std-String} argument and try to resolve it to a type or field. This is vulnerable to typing errors:
 
@@ -507,7 +519,7 @@ While the method \expr{reflective} could interally work with reflection (and \ty
 \section{Serialization}
 \label{std-serialization}
 
-Many runtime values can be serialized and deserialized using the \type{haxe.Serializer} and \type{haxe.Unserializer} classes. Both support two usages:
+Many runtime values can be serialized and deserialized using the \href{http://api.haxe.org/haxe/Serializer.html}{haxe.Serializer} and \href{http://api.haxe.org/haxe/Unserializer.html}{haxe.Unserializer} classes. Both support two usages:
 
 \begin{enumerate}
 	\item Create an instance and continuously call the \expr{serialize}/\expr{unserialize} method to handle multiple values.
@@ -537,7 +549,7 @@ The result of the serialization (here stored in local variable \expr{s}) is a \t
 
 \paragraph{Serialization configuration}
 
-Serialization can be configured in two ways. For both a static variable can be set to influence all \type{haxe.Serializer} instances, and a member variable can be set to only influence a specific instance:
+Serialization can be configured in two ways. For both a static variable can be set to influence all \href{http://api.haxe.org/haxe/Serializer.html}{haxe.Serializer} instances, and a member variable can be set to only influence a specific instance:
 
 \begin{description}
 	\item[\expr{USE_CACHE}, \expr{useCache}:] If true, repeated structures or class\slash enum instances are serialized by reference. This can avoid infinite loops for recursive data at the expense of longer serialization time. By default, object caching is disabled; strings however are always cached.
@@ -561,8 +573,9 @@ If a class defines the member method \expr{hxSerialize}, that method is called b
 
 \haxe{assets/SerializationCustom.hx}
 
-In this example we decide that we want to ignore the value of member variable \expr{y} and do not serialize it. Instead we default it to \expr{-1} in \expr{hxUnserialize}. Both methods are annotated with the \expr{:keep} metadata to prevent \tref{dead code elimination}{cr-dce} from removing them as they are never properly referenced in the code.
+In this example we decide that we want to ignore the value of member variable \expr{y} and do not serialize it. Instead we default it to \expr{-1} in \expr{hxUnserialize}. Both methods are annotated with the \expr{@:keep} metadata to prevent \tref{dead code elimination}{cr-dce} from removing them as they are never properly referenced in the code.
 
+See \href{http://api.haxe.org/haxe/Serializer.html}{Serializer} and \href{http://api.haxe.org/haxe/Unserializer.html}{Unserializer} API documentation for details.
 
 \subsection{Serialization format}
 \label{std-serialization-format}
@@ -607,7 +620,7 @@ Each supported value is translated to a distinct prefix character, followed by t
 \section{Xml}
 \label{std-Xml}
 
-Haxe provides built-in support for working with \emph{XML}\footnote{http://en.wikipedia.org/wiki/XML} data via the \type{haxe.Xml} class. 
+Haxe provides built-in support for working with \emph{XML}\footnote{http://en.wikipedia.org/wiki/XML} data via the \href{http://api.haxe.org/Xml.html}{haxe.Xml} class. 
 
 \subsection{Getting started with Xml}
 \label{std-Xml-getting-started}
@@ -673,10 +686,13 @@ for (att in xml.attributes()) {
 }
 \end{lstlisting}
 
+See \href{http://api.haxe.org/Xml.html}{Xml} API documentation for details about its methods.
+
+
 \subsection{Parsing Xml}
 \label{std-Xml-parsing}
 
-The static method \expr{Xml.parse} can be used to parse \emph{XML} data and obtain a Haxe value from it.
+The static method \href{http://api.haxe.org/Xml.html#parse}{Xml.parse} can be used to parse \emph{XML} data and obtain a Haxe value from it.
 
 \begin{lstlisting}
 var xml = Xml.parse('<root>Haxe is great!</root>').firstElement();
@@ -686,7 +702,7 @@ trace(xml.firstChild().nodeValue);
 \subsection{Encoding Xml}
 \label{std-Xml-encoding}
 
-The method \expr{xml.toString()} can be used to obtain the \type{String} representation.
+The method \href{http://api.haxe.org/Xml.html#toString}{xml.toString()} can be used to obtain the \type{String} representation.
 \begin{lstlisting}
 var xml = Xml.createElement('root');
 xml.addChild(Xml.createElement('child1'));
@@ -698,12 +714,12 @@ trace(xml.toString()); // <root><child1/><child2/></root>
 \section{Json}
 \label{std-Json}
 
-Haxe provides built-in support for (de-)serializing \emph{JSON}\footnote{http://en.wikipedia.org/wiki/JSON} data via the \type{haxe.Json} class.
+Haxe provides built-in support for (de-)serializing \emph{JSON}\footnote{http://en.wikipedia.org/wiki/JSON} data via the \href{http://api.haxe.org/haxe/Json.html}{haxe.Json} class.
 
 \subsection{Parsing JSON}
 \label{std-Json-parsing}
 
-Use the \expr{haxe.Json.parse} static method to parse \emph{JSON} data and obtain a Haxe value from it:
+Use the \href{http://api.haxe.org/haxe/Json.html#parse}{haxe.Json.parse} static method to parse \emph{JSON} data and obtain a Haxe value from it:
 \haxe{assets/JsonParse.hx}
 
 Note that the type of the object returned by \expr{haxe.Json.parse} is \expr{Dynamic}, so if the structure of our data is well-known, we may want to specify a type using \tref{anonymous structures}{types-anonymous-structure}. This way we provide compile-time checks for accessing our data and most likely more optimal code generation, because compiler knows about types in a structure:
@@ -712,13 +728,13 @@ Note that the type of the object returned by \expr{haxe.Json.parse} is \expr{Dyn
 \subsection{Encoding JSON}
 \label{std-Json-encoding}
 
-Use the \expr{haxe.Json.stringify} static method to encode a Haxe value into a \emph{JSON} string:
+Use the \href{http://api.haxe.org/haxe/Json.html#stringify}{haxe.Json.stringify} static method to encode a Haxe value into a \emph{JSON} string:
 \haxe{assets/JsonStringify.hx}
 
 \subsection{Implementation details}
 \label{std-Json-implementation-details}
 
-The \type{haxe.Json} API automatically uses native implementation on targets where it is available, i.e. \emph{JavaScript}, \emph{Flash} and \emph{PHP} and provides its own implementation for other targets.
+The \href{http://api.haxe.org/haxe/Json.html}{haxe.Json} API automatically uses native implementation on targets where it is available, i.e. \emph{JavaScript}, \emph{Flash} and \emph{PHP} and provides its own implementation for other targets.
 
 Usage of Haxe own implementation can be forced with \expr{-D haxeJSON} compiler argument. This will also provide serialization of \tref{enums}{types-enum-instance} by their index, \tref{maps}{std-Map} with string keys and class instances.
 
@@ -735,13 +751,15 @@ Older browsers (Internet Explorer 7, for instance) may not have native \emph{JSO
 
 Haxe remoting is a way to communicate between different platforms. With Haxe remoting, applications can transmit data transparently, send data and call methods between server and client side.
 
+See the \href{http://api.haxe.org/haxe/remoting/}{remoting package} on the API documentation for more details on its classes.
+
 \subsection{Remoting Connection}
 \label{std-remoting-connection}
 
 In order to use remoting, there must be a connection established. There are two kinds of Haxe Remoting connections: 
 \begin{description}
-	\item[\expr{haxe.remoting.Connection}] is used for \emph{synchronous connections}, where the results can be directly obtained when calling a method. 
-	\item[\expr{haxe.remoting.AsyncConnection}] is used for \emph{asynchronous connections}, where the results are events that will happen later in the execution process.
+	\item[\href{http://api.haxe.org/haxe/remoting/Connection.html}{haxe.remoting.Connection}] is used for \emph{synchronous connections}, where the results can be directly obtained when calling a method. 
+	\item[\href{http://api.haxe.org/haxe/remoting/AsyncConnection.html}{haxe.remoting.AsyncConnection}] is used for \emph{asynchronous connections}, where the results are events that will happen later in the execution process.
 \end{description}
 
 \paragraph{Start a connection}
@@ -835,6 +853,9 @@ To make this work for the Neko target, setup a Neko Web Server, point the url in
 
 Haxe Remoting can send a lot of different kinds of data. See \tref{Serialization}{std-serialization}.
 
+
+See the \href{http://api.haxe.org/haxe/remoting/}{remoting package} on the API documentation for more details on its classes.
+
 \subsection{Implementation details}
 \label{std-remoting-implementation-details}
 
@@ -875,16 +896,16 @@ This can lead to security issues in some cases. When in doubt, check the argumen
 \section{Unit testing}
 \label{std-unit-testing}
 
-The Haxe Standard Library provides basic unit testing classes from the \type{haxe.unit} package. 
+The Haxe Standard Library provides basic unit testing classes from the \href{http://api.haxe.org/haxe/unit/}{haxe.unit} package. 
 
 \paragraph{Creating new test cases}
 
-First, create a new class extending \type{haxe.unit.TestCase} and add own test methods. Every test method name must start with "\ic{test}".
+First, create a new class extending \href{http://api.haxe.org/haxe/unit/TestCase.html}{haxe.unit.TestCase} and add own test methods. Every test method name must start with "\ic{test}".
 
 \haxe{assets/UnitTestCase.hx}
 
 \paragraph{Running unit tests}
-To run the test, an instance of \type{haxe.unit.TestRunner} has to be created. Add the \expr{TestCase} using the \expr{add} method and call \expr{run} to start the test.
+To run the test, an instance of \href{http://api.haxe.org/haxe/unit/TestRunner.html}{haxe.unit.TestRunner} has to be created. Add the \href{http://api.haxe.org/haxe/unit/TestCase.html}{TestCase} using the \expr{add} method and call \expr{run} to start the test.
 
 \haxe{assets/UnitTestRunner.hx}
 
@@ -925,3 +946,5 @@ public function testArray() {
   assertEquals("[1, 2, 3]", Std.string(actual));
 }
 \end{lstlisting} 
+
+See the \href{http://api.haxe.org/haxe/unit/}{haxe.unit} package on the API documentation for more details.
