@@ -75,6 +75,8 @@ class Main {
 >
 > In Haxe 2, mixed type array declarations were allowed. In Haxe 3, arrays can have mixed types only if they are explicitly declared as `Array<Dynamic>`.
 
+See the [Array API](http://api.haxe.org/Array.html) for details about its methods.
+
 ---
 
 Previous section: [Data Structures](std-ds.md)

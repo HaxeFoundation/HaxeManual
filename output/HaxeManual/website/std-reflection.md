@@ -7,7 +7,7 @@ The reflection API consists of two classes:
 * Reflect: A lightweight API which work best on [anonymous structures](types-anonymous-structure.md), with limited support for [classes](types-class-instance.md). 
 * Type: A more robust API for working with classes and [enums](types-enum-instance.md).
 
-The available methods are detailed in the API for [Reflect](http://api.haxe.org//Reflect.html) and [Type](http://api.haxe.org//Type.html).
+The available methods are detailed in the API for [Reflect](http://api.haxe.org/Reflect.html) and [Type](http://api.haxe.org/Type.html).
 
 Reflection can be a powerful tool, but it is important to understand why it can also cause problems. As an example, several functions expect a [String](std-String.md) argument and try to resolve it to a type or field. This is vulnerable to typing errors:
 

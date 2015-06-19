@@ -60,6 +60,8 @@ for (att in xml.attributes()) {
 }
 ```
 
+See [Xml](http://api.haxe.org/Xml.html) API documentation for details about its methods.
+
 ---
 
 Previous section: [Xml](std-Xml.md)

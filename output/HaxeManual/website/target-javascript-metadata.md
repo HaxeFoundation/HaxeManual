@@ -12,6 +12,6 @@ This is the list of JavaScript specific metadata. For more information, see also
 
 ---
 
-Previous section: [Debugging Javascript](target-javascript-debugging.md)
+Previous section: [Debugging JavaScript](target-javascript-debugging.md)
 
 Next section: [Exposing Haxe classes for JavaScript](target-javascript-expose.md)

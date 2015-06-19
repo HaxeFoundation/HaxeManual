@@ -4,7 +4,7 @@ Haxe allows parametrization of a number of types, as well as [class fields](clas
 
 ```haxe
 class Array<T> {
-	function push(x : T) : Int;
+  function push(x : T) : Int;
 }
 ```
 Whenever an instance of `Array` is created, its type parameter `T` becomes a [monomorph](types-monomorph.md). That is, it can be bound to any type, but only one at a time. This binding can happen
@@ -28,7 +28,7 @@ Structure  | instantiation  |
 With function type parameters being bound upon invocation, such a type parameter (if unconstrained) accepts any type. However, only one type per invocation is accepted. This can be utilized if a function has multiple arguments:
 
 ```haxe
-class FunctionTypeParameter {
+class Main {
   static public function main() {
     equals(1, 1);
     // runtime message: bar should be foo

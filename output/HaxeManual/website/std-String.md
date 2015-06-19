@@ -11,6 +11,8 @@ Use the `.code` property on a constant single-char string in order to compile it
 "#".code // will compile as 35
 ```
 
+See the [String API](http://api.haxe.org/String.html) for details about its methods.
+
 ---
 
 Previous section: [Standard Library](std.md)

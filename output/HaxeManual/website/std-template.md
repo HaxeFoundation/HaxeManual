@@ -1,6 +1,6 @@
 ## 10.6 Template
 
-Haxe comes with a standard template system with an easy to use syntax which is interpreted by a lightweight class called `haxe.Template`.
+Haxe comes with a standard template system with an easy to use syntax which is interpreted by a lightweight class called [haxe.Template](http://api.haxe.org/haxe/Template.html).
 
 A template is a string or a file that is used to produce any kind of string output depending on the input. Here is a small template example:
 
@@ -80,7 +80,7 @@ trace(output);
 The console will trace `The users are Mark(30) John(45)`.
 
 ###### Template macros
-To call custom functions while parts of the template are being rendered, provide a `macros` object to the argument of `Template.execute`. The key will act as the template variable name, the value refers to a callback function that should return a `String`. The first argument of this macro function is always a `resolve()` method, followed by the given arguments. The resolve function can be called to retrieve values from the template context. If `macros` has no such field, the result is unspecified.
+To call custom functions while parts of the template are being rendered, provide a `macros` object to the argument of [Template.execute](http://api.haxe.org/haxe/Template.html#execute). The key will act as the template variable name, the value refers to a callback function that should return a `String`. The first argument of this macro function is always a `resolve()` method, followed by the given arguments. The resolve function can be called to retrieve values from the template context. If `macros` has no such field, the result is unspecified.
 
 The following example passes itself as macro function context and executes `display` from the template.
 ```haxe
@@ -107,7 +107,7 @@ typedef User = {name:String, distance:Int}
 The console will trace `The results: Mark ran 3.5 kilometers in 15 minutes`.
 
 ###### Globals
-Use the `Template.globals` object to store values that should be applied across all `haxe.Template` instances. This has lower priority than the context argument of `Template.execute`.
+Use the [Template.globals](http://api.haxe.org/haxe/Template.html#globals) object to store values that should be applied across all `haxe.Template` instances. This has lower priority than the context argument of `Template.execute`.
 
 ###### Using resources
 
@@ -127,6 +127,8 @@ class Main {
 ```
 
 When running the template system on the server side, you can simply use `neko.Lib.print` or `php.Lib.print` instead of trace to display the HTML template to the user.
+
+See the [Template API](http://api.haxe.org/haxe/Template.html) for details about its methods.
 
 ---
 

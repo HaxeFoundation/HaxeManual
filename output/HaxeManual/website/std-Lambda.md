@@ -72,7 +72,9 @@ class Main {
 		trace(numbers.fold(sum, 0)); // 30
     }
 }
-```
+``` 
+
+See the [Lambda API](http://api.haxe.org/Lambda.html) for all available functions.
 
 ---
 

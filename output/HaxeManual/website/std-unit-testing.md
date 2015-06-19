@@ -1,10 +1,10 @@
-## 10.15 Unit testing
+## 10.14 Unit testing
 
-The Haxe Standard Library provides basic unit testing classes from the `haxe.unit` package. 
+The Haxe Standard Library provides basic unit testing classes from the [haxe.unit](http://api.haxe.org/haxe/unit/) package. 
 
 ###### Creating new test cases
 
-First, create a new class extending `haxe.unit.TestCase` and add own test methods. Every test method name must start with "`test`".
+First, create a new class extending [haxe.unit.TestCase](http://api.haxe.org/haxe/unit/TestCase.html) and add own test methods. Every test method name must start with "`test`".
 
 ```haxe
 class MyTestCase extends haxe.unit.TestCase {
@@ -16,7 +16,7 @@ class MyTestCase extends haxe.unit.TestCase {
 ```
 
 ###### Running unit tests
-To run the test, an instance of `haxe.unit.TestRunner` has to be created. Add the `TestCase` using the `add` method and call `run` to start the test.
+To run the test, an instance of [haxe.unit.TestRunner](http://api.haxe.org/haxe/unit/TestRunner.html) has to be created. Add the [TestCase](http://api.haxe.org/haxe/unit/TestCase.html) using the `add` method and call `run` to start the test.
 
 ```haxe
 class Main {
@@ -77,7 +77,9 @@ public function testArray() {
   var actual = [1,2,3];
   assertEquals("[1, 2, 3]", Std.string(actual));
 }
-```
+``` 
+
+See the [haxe.unit](http://api.haxe.org/haxe/unit/) package on the API documentation for more details.
 
 ---
 

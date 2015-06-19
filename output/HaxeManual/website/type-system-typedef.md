@@ -11,15 +11,25 @@ This enables us to use `IA` in places where we would normally use `Array<Int>`. 
 
 ```haxe
 typedef User = {
-    var age : Int;
-    var name : String;
+  var age : Int;
+  var name : String;
 }
 ```
 A typedef is not a textual replacement but actually a real type. It can even have [type parameters](type-system-type-parameters.md) as the `Iterable` type from the Haxe Standard Library demonstrates:
 
 ```haxe
 typedef Iterable<T> = {
-	function iterator() : Iterator<T>;
+  function iterator() : Iterator<T>;
+}
+```
+
+###### Optional fields
+Mark the field of a structure as optional using the `@:optional` metadata.
+```haxe
+typedef User = {
+  var age : Int;
+  var name : String;
+  @:optional var phoneNumber : String;
 }
 ```
 

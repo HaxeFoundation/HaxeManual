@@ -56,8 +56,6 @@ class Main {
 
 ```
 
-See the [Map API](http://api.haxe.org/Map.html) for details of its methods.
-
 Under the hood, a `Map` is an [abstract](types-abstract.md) type. At compile time, it gets converted to one of several specialized types depending on the **key** type:
 
 * `String`: `haxe.ds.StringMap`
@@ -68,6 +66,8 @@ Under the hood, a `Map` is an [abstract](types-abstract.md) type. At compile tim
 The `Map` type does not exist at runtime and has been replaced with one of the above objects. 
 
 Map defines [array access](types-abstract-array-access.md) using its key type.
+
+See the [Map API](http://api.haxe.org/Map.html) for details of its methods.
 
 ---
 

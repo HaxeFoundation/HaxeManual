@@ -44,6 +44,8 @@ The possible flags are the following:
 * `s` the dot `.` will also match newlines **(Neko, C++, PHP, Flash and Java targets only)**
 * `u` use UTF-8 matching **(Neko and C++ targets only)**
 
+See the [EReg API](http://api.haxe.org/EReg.html) for details about its methods.
+
 ---
 
 Previous section: [Option](std-Option.md)

@@ -1,4 +1,4 @@
-## 12.1.4 Debugging Javascript
+## 12.1.4 Debugging JavaScript
 
 Haxe is able to generate [source maps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/), allowing Javascript debuggers to map from generated JavaScript back to the original Haxe source. This makes reading error stack traces, debugging with breakpoints, and profiling much easier.
 

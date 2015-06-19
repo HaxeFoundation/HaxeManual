@@ -6,7 +6,7 @@
 
 12.1.3: [Inject raw JavaScript](target-javascript-injection.md)
 
-12.1.4: [Debugging Javascript](target-javascript-debugging.md)
+12.1.4: [Debugging JavaScript](target-javascript-debugging.md)
 
 12.1.5: [JavaScript target Metadata](target-javascript-metadata.md)
 

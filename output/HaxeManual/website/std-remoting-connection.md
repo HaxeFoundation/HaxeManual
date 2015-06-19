@@ -1,9 +1,9 @@
-## 10.14.1 Remoting Connection
+## 10.13.1 Remoting Connection
 
 In order to use remoting, there must be a connection established. There are two kinds of Haxe Remoting connections: 
 
-* `haxe.remoting.Connection` is used for **synchronous connections**, where the results can be directly obtained when calling a method. 
-* `haxe.remoting.AsyncConnection` is used for **asynchronous connections**, where the results are events that will happen later in the execution process.
+* [haxe.remoting.Connection](http://api.haxe.org/haxe/remoting/Connection.html) is used for **synchronous connections**, where the results can be directly obtained when calling a method. 
+* [haxe.remoting.AsyncConnection](http://api.haxe.org/haxe/remoting/AsyncConnection.html) is used for **asynchronous connections**, where the results are events that will happen later in the execution process.
 
 ###### Start a connection
 There are some target-specific constructors with different purposes that can be used to set up a connection:
@@ -76,6 +76,8 @@ To make this work for the Neko target, setup a Neko Web Server, point the url in
 ###### Data serialization
 
 Haxe Remoting can send a lot of different kinds of data. See [Serialization](std-serialization.md).
+
+See the [remoting package](http://api.haxe.org/haxe/remoting/) on the API documentation for more details on its classes.
 
 ---
 

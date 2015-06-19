@@ -32,4 +32,4 @@ var myVar = myObject.myJavaScriptFunction("Mark", 31);
 
 Previous section: [Using external JavaScript libraries](target-javascript-external-libraries.md)
 
-Next section: [Debugging Javascript](target-javascript-debugging.md)
+Next section: [Debugging JavaScript](target-javascript-debugging.md)

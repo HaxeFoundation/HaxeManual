@@ -1,6 +1,6 @@
 ## 10.2.6 Option
 
-An option is an [enum](types-enum-instance.md) in the Haxe Standard Library which is defined like so:
+An [Option](http://api.haxe.org/haxe/ds/Option.html) is an [enum](types-enum-instance.md) in the Haxe Standard Library which is defined like so:
 
 ```haxe
 enum Option<T> {
