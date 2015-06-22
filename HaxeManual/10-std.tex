@@ -33,14 +33,14 @@ String encoding depends on the platform; see below for more information.
 
 Use the crossplatform \href{http://api.haxe.org/haxe/io/Bytes.html#ofString}{haxe.io.Bytes.ofString} to read the actual bytes of the \type{String}, whatever its encoding.
 
-\paragraph{The \slash0 char}
-This detail the possibility of using the char code \slash0 into strings depending on the platform. In any case, it is better to use \href{http://api.haxe.org/haxe/io/Bytes.html}{haxe.io.Bytes} API when manipulating binary data, this will ensure better cross-platform behavior.
+\paragraph{The \textbackslash0 char}
+This detail the possibility of using the char code \textbackslash0 into strings depending on the platform. In any case, it is better to use \href{http://api.haxe.org/haxe/io/Bytes.html}{haxe.io.Bytes} API when manipulating binary data, this will ensure better cross-platform behavior.
 
 \begin{description}
-	\item[\emph{Flash}] strings can't contain the \slash0 char.
-	\item[\emph{Neko}] strings are binary, they can contain \slash0 chars and can still be appended together. Printing however will stop at the first \slash0 char but other operations (substr, length, etc.) will perform well.
-	\item[\emph{Javascript}] this actually depends on the browser. Internet Explorer does not allow \slash0 char while other browsers do.
-	\item[\emph{PHP}] strings are binary and they can contain \slash0 chars. All operations on such strings should work as expected.
+	\item[\emph{Flash}] strings can't contain the \textbackslash0 char.
+	\item[\emph{Neko}] strings are binary, they can contain \textbackslash0 chars and can still be appended together. Printing however will stop at the first \textbackslash0 char but other operations (substr, length, etc.) will perform well.
+	\item[\emph{Javascript}] this actually depends on the browser. Internet Explorer does not allow \textbackslash0 char while other browsers do.
+	\item[\emph{PHP}] strings are binary and they can contain \textbackslash0 chars. All operations on such strings should work as expected.
 	\item[\emph{C++}] May contain the null character. Using the \expr{String.length} is preferred. However, certain external functions (eg filenames, printing etc) won't be able to see past the null character.
 \end{description}
 
