@@ -184,7 +184,7 @@ The conditions after \expr{\#if} and \expr{\#elseif} allow the following express
 \begin{itemize}
 	\item Any identifier is replaced by the value of the compiler flag by the same name. Note that \expr{-D some-flag} from command line leads to the flags \expr{some-flag} and \expr{some\_flag} to be defined.
 	\item The values of \type{String}, \type{Int} and \type{Float} constants are used directly.
-	\item The boolean operators \expr{\&\&} (and), \expr{||} (or) and \expr{!} (not) work as expected.
+		\item The boolean operators \expr{\&\&} (and), \expr{||} (or) and \expr{!} (not) work as expected, however the full expression must be completely contained by parentheses.
 	\item The operators \expr{==}, \expr{!=}, \expr{>}, \expr{>=}, \expr{<}, \expr{<=} can be used to compare values.
 	\item Parentheses \expr{()} can be used to group expressions as usual.
 \end{itemize}
