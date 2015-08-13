@@ -262,7 +262,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					sec.sub.push(mkSection(s, sec, sec.sub.length + 1));
 				case [TCommand(CParagraph), s = inBraces(text)]:
 					lastLabelTarget = Paragraph(lastSection, s);
-					buffer.add('###### $s');
+					buffer.add('##### $s');
 				// misc
 				case [TCommand(CMulticolumn), TBrOpen, _ = text(), TBrClose, TBrOpen, _ = text(), TBrClose, TBrOpen, s = text(), TBrClose]:
 					buffer.add('\n##### $s\n');
