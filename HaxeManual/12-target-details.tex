@@ -418,6 +418,46 @@ The compiler outputs in the given \emph{bin}-folder, which contains the generate
 \end{itemize}
 
 
+\subsection{PHP untyped functions}
+\label{target-php-untyped}
+
+These functions allow to access specific PHP platform features. It works only when the Haxe compiler is targeting PHP and should always be prefixed with \expr{untyped}. 
+
+\emph{Important note:} Before using these functions, make sure there is no alternative available in the Haxe Standard Library. The resulting syntax can not be validated by the Haxe compiler, which may result in invalid or error-prone code in the output.
+
+\paragraph{\expr{untyped __php__(expr)}}
+Injects raw PHP code expressions. It's possible to pass fields from Haxe source code using \tref{String Interpolation}{lf-string-interpolation}.
+
+\begin{lstlisting}
+var value:String = "test";
+untyped __php__("echo '<pre>'; print_r($value); echo '</pre>';");
+// output: echo '<pre>'; print_r('test'); echo '</pre>';
+\end{lstlisting}
+
+\paragraph{\expr{untyped __call__(function, arg, arg, arg...)}}
+Calls a PHP function with the desired number of arguments and returns what the PHP function returns.
+
+\begin{lstlisting}
+var value = untyped __call__("array", 1,2,3); 
+// output returns a NativeArray with values [1,2,3]
+\end{lstlisting}
+
+\paragraph{\expr{untyped __var__(global, paramName)}}
+Get the values from global vars. Note that the dollar sign in the Haxe code is omitted.
+
+\begin{lstlisting}
+var value : String = untyped __var__('_SERVER', 'REQUEST_METHOD')  
+// output: $value = $_SERVER['REQUEST_METHOD']
+\end{lstlisting}
+
+\paragraph{\expr{untyped __physeq__(val1, val2)}}
+Strict equals test between the two values. Returns a \type{Bool}.
+
+\begin{lstlisting}
+var isFalse = untyped __physeq__(false, value);
+// output: $isFalse = false === $value;
+\end{lstlisting}
+
 
 \section{C++}
 \label{target-cpp}
