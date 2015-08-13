@@ -122,6 +122,71 @@ In Haxe, it is possible to call an exposed function thanks to the \expr{untyped}
 untyped window.trackEvent("page1");  
 \end{lstlisting}
 
+
+\subsection{JavaScript untyped functions}
+\label{target-javascript-untyped}
+
+These functions allow to access specific JavaScript platform features. It works only when the Haxe compiler is targeting JavaScript and should always be prefixed with \expr{untyped}. 
+
+\emph{Important note:} Before using these functions, make sure there is no alternative available in the Haxe Standard Library. The resulting syntax can not be validated by the Haxe compiler, which may result in invalid or error-prone code in the output.
+
+\paragraph{\expr{untyped __js__(expr, params)}}
+\tref{Injects raw JavaScript expressions}{target-javascript-injection}. It's allowed to use \ic{\{0\}}, \ic{\{1\}}, \ic{\{2\}} etc in the expression and use the rest arguments to feed Haxe fields. The Haxe compiler will take care of the surrounding quotes if needed. The function can also return values.
+
+\begin{lstlisting}
+untyped __js__('alert("Haxe is great!")');
+// output: alert("Haxe is great!");
+
+var myMessage = "Haxe is great!";
+untyped __js__('alert({0})', myMessage);
+// output: 
+//	var myMessage = "Haxe is great!";
+//	alert(myMessage);
+
+var myVar:Bool = untyped __js__('confirm({0})', "Are you sure?");
+// output: var myVar = confirm("Are you sure?");
+
+var hexString:String = untyped __js__('({0}).toString({1})', 255, 16);
+// output: var hexString = (255).toString(16);
+\end{lstlisting}
+
+\paragraph{\expr{untyped __instanceof__(o,cl)}} 
+Same as \ic{o instanceof cl} in JavaScript.
+
+\begin{lstlisting}
+var myString = new String("Haxe is great");
+var isString = untyped __instanceof__(myString, String);
+output: var isString = (myString instanceof String);
+\end{lstlisting}
+
+\paragraph{\expr{untyped __typeof__(o)}} 
+Same as \ic{typeof o} in JavaScript.
+
+\begin{lstlisting}
+var isNodeJS = untyped __typeof__(window) == null;
+output: var isNodeJS = typeof(window) == null;
+\end{lstlisting}
+
+\paragraph{\expr{untyped __strict_eq__(a,b)}} 
+Same as \ic{a === b}  in JavaScript, tests on \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness}{strict equality} (or "triple equals" or "identity").
+
+\begin{lstlisting}
+var a = "0";
+var b = 0;
+var isEqual = untyped __strict_eq__(a, b);
+output: var isEqual = ((a) === b);
+\end{lstlisting}
+
+\paragraph{\expr{untyped __strict_neq__(a,b)}} 
+Same as \ic{a !== b}  in JavaScript, tests on negative strict equality.
+
+\begin{lstlisting}
+var a = "0";
+var b = 0;
+var isntEqual = untyped __strict_neq__(a, b);
+output: var isntEqual = ((a) !== b);
+\end{lstlisting}
+
 \paragraph{Expression injection} 
 
 In some cases it may be needed to inject raw JavaScript code into Haxe-generated code. With the \expr{__js__} function we can inject pure JavaScript code fragments into the output. This code is always untyped and can not be validated, so it accepts invalid code in the output, which is error-prone.
