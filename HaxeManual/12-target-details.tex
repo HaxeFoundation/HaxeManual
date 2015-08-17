@@ -69,33 +69,54 @@ To display the output in a browser, create an HTML-document called \ic{index.htm
 \subsection{Using external JavaScript libraries}
 \label{target-javascript-external-libraries}
 
-The Haxe Standard Library comes with many externs for the JavaScript target. They provide access to the native APIs in a type-safe manner.
-The \tref{externs mechanism}{lf-externs} assumes that the defined types exist at run-time but assumes nothing about how and where those types are defined. 
+The \tref{externs mechanism}{lf-externs} provides access to the native APIs in a type-safe manner. It assumes that the defined types exist at run-time but assumes nothing about how and where those types are defined. 
 
-An example of an extern class is the \href{https://github.com/HaxeFoundation/haxe/blob/development/std/js/JQuery.hx#L83}{jQuery class} of the Haxe Standard Library. 
-To illustrate, here is a part of this extern class:
+An example of an extern class is the \href{https://github.com/HaxeFoundation/haxe/blob/development/std/js/jquery/JQuery.hx}{jQuery class} of the Haxe Standard Library. 
+To illustrate, here is a simplified version of this extern class:
 
 \begin{lstlisting}
-@:initPackage
-extern class JQuery implements ArrayAccess<Element> {
-	function addClass( className : String ) : JQuery;
-	function removeClass( ?className : String ) : JQuery;
-	function hasClass( className : String ) : Bool;
-	
-	@:overload(function(html:String):JQuery{})
-	@:overload(function(html:JQuery):JQuery{})
-	function html() : String;
-..
+package js.jquery;
+@:native("$") extern class JQuery {
+	/**
+		Creates DOM elements on the fly from the provided string of raw HTML.
+		OR
+		Accepts a string containing a CSS selector which is then used to match a set of elements.
+		OR
+		Binds a function to be executed when the DOM has finished loading.
+	**/
+	@:selfCall
+	@:overload(function(element:js.html.Element):Void { })
+	@:overload(function(selection:js.jquery.JQuery):Void { })
+	@:overload(function(callback:haxe.Constraints.Function):Void { })
+	@:overload(function(selector:String, ?context:haxe.extern.EitherType<js.html.Element, js.jquery.JQuery>):Void { })
+	public function new():Void;
+
+	/**
+		Adds the specified class(es) to each element in the set of matched elements.
+	**/
+	@:overload(function(_function:Int -> String -> String):js.jquery.JQuery { })
+	public function addClass(className:String):js.jquery.JQuery;
+
+	/**
+		Get the HTML contents of the first element in the set of matched elements.
+		OR
+		Set the HTML contents of each element in the set of matched elements.
+	**/
+	@:overload(function(htmlString:String):js.jquery.JQuery { })
+	@:overload(function(_function:Int -> String -> String):js.jquery.JQuery { })
+	public function html():String;
+}
 \end{lstlisting}
 
-Note that functions can be overloaded to accept different types of arguments and return values, using the \expr{@:overload} metadata. Function overloading works only in extern classes.
+Note that functions can be overloaded to accept different types of arguments and return values, using the \expr{@:overload} metadata. Function overloading works only in externs.
 Using this extern, we can use jQuery like this:
 
 \begin{lstlisting}
+import js.jquery.*;
+..
 new JQuery("#my-div").addClass("brand-success").html("haxe is great!");
+..
 \end{lstlisting}
-
-Beside externs, \tref{Typedefs}{type-system-typedef} can be another great way to name (or alias) complex JavaScript or JSON structures.
 
 The package and class name of the extern class should be the same as defined in the external library. If that is not the case, rewrite the path of a class using \expr{@:native}.
 
@@ -106,12 +127,23 @@ package my.application.media;
 extern class Video {
 ..
 \end{lstlisting}
-The standard compilation options also provide more Haxe sources to be added to the project:
 
-\begin{itemize}
-	\item To add a \tref{Haxelib library}{haxelib}, use \expr{-lib <library-name>}. There are many externs for popular native libraries.
-	\item To force a whole package to be included in the project, use \expr{--macro include('mypackage')} which will include all the classes declared in the given package and subpackages. 
-\end{itemize}
+Beside externs, \tref{Typedefs}{type-system-typedef} can be another great way to name (or alias) a JavaScript type. The major difference between typedefs and externs is that, typedefs are duck-typed but externs are not. Typedefs are suitable for common data structures, e.g. point (\expr{{x:Float, y:Float}}). Use of a point structure typedef for function arguments allows external JavaScript functions to accept point class instances from Haxe or from another JavaScript library. It is also useful for typing JSON objects.
+
+The Haxe Standard Library comes with externs of \href{https://jquery.com/}{jQuery} and \href{http://blog.deconcept.com/swfobject/}{SWFObject}. Their version compatibility is summarized as follows:
+
+\begin{center}
+\begin{tabular}{| l | l | l |}
+	\hline
+	Haxe version & Library               & Externs location \\ \hline
+	3.3          & jQuery 1.11.3 / 2.1.4 & <code>js.jquery.*</code> \\
+	3.2-         & jQuery 1.6.4          & <code>js.JQuery</code> \\
+	3.3          & SWFObject 2.3         & <code>js.swfobject.*</code \\
+	3.2-         & SWFObject 1.5         & <code>js.SWFObject</code> \\ \hline
+\end{tabular}
+\end{center}
+
+There are many externs for other popular native libraries available on \tref{Haxelib library}{haxelib}. To view a list of them, check out the \href{http://lib.haxe.org/t/extern/}{extern tag}.
 
 \subsection{Inject raw JavaScript}
 \label{target-javascript-injection}
