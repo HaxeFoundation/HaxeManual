@@ -109,6 +109,7 @@ package js.jquery;
 \end{lstlisting}
 
 Note that functions can be overloaded to accept different types of arguments and return values, using the \expr{@:overload} metadata. Function overloading works only in externs.
+
 Using this extern, we can use jQuery like this:
 
 \begin{lstlisting}
@@ -126,6 +127,22 @@ package my.application.media;
 @:native('external.library.media.video')
 extern class Video {
 ..
+\end{lstlisting}
+
+Some JavaScript libraries favor instantiating classes without using the \expr{new} keyword. To prevent the Haxe compiler outputting the \expr{new} keyword when using a class, we can attach a \expr{@:selfCall} metadata to its constructor. For example, when we instantiate the jQuery extern class above, \expr{new JQuery()} will be outputted as \expr{\$()} instead of \expr{new \$()}. The \expr{@:selfCall} metadata can also be attached to a method. In this case, the method will be interpreted as a direct call to the object, illustrated as follows:
+
+\begin{lstlisting}
+extern class Functor {
+	public function new():Void;
+	@:selfCall function call():Void;
+}
+
+class Test {
+	static function main() {
+		var f = new Functor();
+		f.call(); // will be outputted as `f();`
+	}
+}
 \end{lstlisting}
 
 Beside externs, \tref{Typedefs}{type-system-typedef} can be another great way to name (or alias) a JavaScript type. The major difference between typedefs and externs is that, typedefs are duck-typed but externs are not. Typedefs are suitable for common data structures, e.g. point (\expr{{x:Float, y:Float}}). Use of a point structure typedef for function arguments allows external JavaScript functions to accept point class instances from Haxe or from another JavaScript library. It is also useful for typing JSON objects.
