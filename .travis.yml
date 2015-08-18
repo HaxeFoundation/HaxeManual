@@ -4,6 +4,31 @@ sudo: false
 
 matrix:
   include:
+    - sudo: required
+      addons: 
+        apt: 
+          packages:
+            - pandoc
+            - texlive-xetex
+            - texlive-latex-extra
+      install:
+        - sudo apt-get install mupdf-tools calibre -qq
+        # install fonts
+        - mkdir -p ~/.fonts
+        - wget https://github.com/adobe-fonts/source-code-pro/archive/2.010R-ro/1.030R-it.zip
+        - unzip 1.030R-it.zip
+        - cp source-code-pro-2.010R-ro-1.030R-it/OTF/*.otf ~/.fonts/
+        - wget https://github.com/adobe-fonts/source-sans-pro/archive/2.010R-ro/1.065R-it.zip
+        - unzip 1.065R-it.zip
+        - cp source-sans-pro-2.010R-ro-1.065R-it/OTF/*.otf ~/.fonts/
+        - fc-cache -f -v
+        # haxelibs
+        - haxelib git hxargs https://github.com/Simn/hxargs.git
+        - haxelib git hxparse https://github.com/Simn/hxparse.git
+      script:
+        - cd convert
+        - haxe convert.hxml -D recompileEnv
+
     - env: TARGET=swf
       haxe: 3.2.0
     - env: TARGET=swf
