@@ -145,7 +145,7 @@ class Test {
 }
 \end{lstlisting}
 
-Beside externs, \tref{Typedefs}{type-system-typedef} can be another great way to name (or alias) a JavaScript type. The major difference between typedefs and externs is that, typedefs are duck-typed but externs are not. Typedefs are suitable for common data structures, e.g. point (\expr{{x:Float, y:Float}}). Use of a point structure typedef for function arguments allows external JavaScript functions to accept point class instances from Haxe or from another JavaScript library. It is also useful for typing JSON objects.
+Beside externs, \tref{Typedefs}{type-system-typedef} can be another great way to name (or alias) a JavaScript type. The major difference between typedefs and externs is that, typedefs are duck-typed but externs are not. Typedefs are suitable for common data structures, e.g. point (\expr{\{x:Float, y:Float\}}). Use of a point structure typedef for function arguments allows external JavaScript functions to accept point class instances from Haxe or from another JavaScript library. It is also useful for typing JSON objects.
 
 The Haxe Standard Library comes with externs of \href{https://jquery.com/}{jQuery} and \href{http://blog.deconcept.com/swfobject/}{SWFObject}. Their version compatibility is summarized as follows:
 
@@ -155,7 +155,7 @@ The Haxe Standard Library comes with externs of \href{https://jquery.com/}{jQuer
 	Haxe version & Library               & Externs location \\ \hline
 	3.3          & jQuery 1.11.3 / 2.1.4 & <code>js.jquery.*</code> \\
 	3.2-         & jQuery 1.6.4          & <code>js.JQuery</code> \\
-	3.3          & SWFObject 2.3         & <code>js.swfobject.*</code \\
+	3.3          & SWFObject 2.3         & <code>js.swfobject.*</code> \\
 	3.2-         & SWFObject 1.5         & <code>js.SWFObject</code> \\ \hline
 \end{tabular}
 \end{center}
