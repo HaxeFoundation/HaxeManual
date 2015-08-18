@@ -9,10 +9,10 @@ matrix:
         apt: 
           packages:
             - pandoc
-            - texlive-xetex
-            - texlive-latex-extra
       install:
-        - sudo apt-get install mupdf-tools calibre -qq
+        - sudo apt-get install calibre -qq
+        - mkdir -p ~/Downloads
+        - cd ~/Downloads
         # install fonts
         - mkdir -p ~/.fonts
         - wget https://github.com/adobe-fonts/source-code-pro/archive/2.010R-ro/1.030R-it.zip
@@ -22,9 +22,19 @@ matrix:
         - unzip 1.065R-it.zip
         - cp source-sans-pro-2.010R-ro-1.065R-it/OTF/*.otf ~/.fonts/
         - fc-cache -f -v
+        # texlive
+        - sudo add-apt-repository ppa:texlive-backports/ppa -y
+        - sudo apt-get update
+        - sudo apt-get install texlive-xetex texlive-latex-extra -y
+        # mupdf
+        - curl -s -L --retry 3 http://mupdf.com/downloads/mupdf-1.7a-source.tar.gz | tar -C . -x -z -f -
+        - cd mupdf-1.7a-source
+        - make HAVE_X11=no
+        - sudo make HAVE_X11=no install
         # haxelibs
         - haxelib git hxargs https://github.com/Simn/hxargs.git
         - haxelib git hxparse https://github.com/Simn/hxparse.git
+        - cd $TRAVIS_BUILD_DIR
       script:
         - cd convert
         - haxe convert.hxml -D recompileEnv
