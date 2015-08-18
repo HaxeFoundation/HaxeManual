@@ -1,26 +1,50 @@
 language: haxe
 
-haxe:
-  - "3.2.0"
-  - development
-
-env:
-  - TARGET=swf
-  - TARGET=as3
-  - TARGET=js
-  - TARGET=neko
-  - TARGET=cpp
-  - TARGET=cs
-  - TARGET=java
-  - TARGET=python
-
 sudo: false
 
-addons:
-  apt:
-    packages:
-      - mono-devel
-      - mono-mcs
+matrix:
+  include:
+    - env: TARGET=swf
+      haxe: 3.2.0
+    - env: TARGET=swf
+      haxe: development
+
+    - env: TARGET=as3
+      haxe: 3.2.0
+    - env: TARGET=as3
+      haxe: development
+
+    - env: TARGET=js
+      haxe: 3.2.0
+    - env: TARGET=js
+      haxe: development
+
+    - env: TARGET=neko
+      haxe: 3.2.0
+    - env: TARGET=neko
+      haxe: development
+
+    - env: TARGET=cpp
+      haxe: 3.2.0
+    - env: TARGET=cpp
+      haxe: development
+
+    - env: TARGET=cs
+      haxe: 3.2.0
+      addons: {apt: {packages: [mono-devel, mono-mcs]}}
+    - env: TARGET=cs
+      haxe: development
+      addons: {apt: {packages: [mono-devel, mono-mcs]}}
+
+    - env: TARGET=java
+      haxe: 3.2.0
+    - env: TARGET=java
+      haxe: development
+
+    - env: TARGET=python
+      haxe: 3.2.0
+    - env: TARGET=python
+      haxe: development
 
 install:
   - haxelib install hxcpp > /dev/null
