@@ -134,7 +134,8 @@ class Main {
 
 		switch (config.outputMode) {
 			case Mobi:
-				Sys.command("ebook-convert", ['$out/${config.output.file}.epub', '$out/${config.output.file}.mobi', "--no-inline-toc"]);
+				if (Sys.command("ebook-convert", ['$out/${config.output.file}.epub', '$out/${config.output.file}.mobi', "--no-inline-toc"]) != 0)
+					throw "ebook-convert failed";
 			case _:
 		}
 	}
@@ -216,7 +217,8 @@ class Main {
 	}
 
 	function generateEPub(filePath:String) {
-		Sys.command("pandoc", ["-t", "epub", "-f", "markdown_github", "-o", '$out/${config.output.file}.epub', "--table-of-contents", "--epub-metadata=epub_metadata.xml", filePath].concat(['$out/dictionary.md']));
+		if (Sys.command("pandoc", ["-t", "epub", "-f", "markdown_github", "-o", '$out/${config.output.file}.epub', "--table-of-contents", "--epub-metadata=epub_metadata.xml", filePath].concat(['$out/dictionary.md'])) != 0)
+			throw "pandoc failed";
 	}
 
 	function isLinkable(sec:Section) {
