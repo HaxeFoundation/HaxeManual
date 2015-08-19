@@ -1,7 +1,7 @@
 HaxeManual
 ==========
 
-[![Build Status](https://travis-ci.org/HaxeFoundation/HaxeManual.png)](https://travis-ci.org/HaxeFoundation/HaxeManual)
+[![Build Status](https://travis-ci.org/HaxeFoundation/HaxeManual.svg)](https://travis-ci.org/HaxeFoundation/HaxeManual)
 
 For contributions please edit the .tex file.  The .md files are generated from it.
 
@@ -47,11 +47,14 @@ At the time of writing, `compileEnv` depends on the following.
 
 - `xelatex` being in path. [TeX Live] 2013 version should be sufficient. Used to compile custom LaTeX environment snippets to PDF.
 - `mudraw` being in path. This is a part of [MuPDF]. Used for rendering PDF to a PNG image.
+- `pandoc` being in path. Used for generating *.epub* file.
+- `ebook-convert` being in path. This is a part of [calibre]. Used for converting *.epub* to *.mobi*.
 - [Source Sans Pro] and [Source Code Pro] fonts being installed.
 
 
 [TeX Live]:http://www.tug.org/texlive/
 [MuPDF]:http://www.mupdf.com/
+[calibre]:http://calibre-ebook.com/
 [Source Sans Pro]:http://sourceforge.net/projects/sourcesans.adobe/
 [Source Code Pro]:http://sourceforge.net/projects/sourcecodepro.adobe/
 
