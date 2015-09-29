@@ -17,7 +17,7 @@ class Main {
 
 ```
 
-The console will trace `My name is Mark, 30 years old`.
+The console will trace `My name is <strong>Mark</strong>, <em>30</em> years old`.
 
 ###### Expressions
 An expression can be put between the `::`, the syntax allows the current possibilities:
