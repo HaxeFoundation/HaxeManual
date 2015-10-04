@@ -125,7 +125,7 @@ A class or function can be made \emph{generic} by attributing it with the \expr{
 
 \haxe{assets/GenericClass.hx}
 
-It seems unusual to see the explicit type \type{MyArray<String>} here as we usually let \tref{type inference}{type-system-type-inference} deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The \target{JavaScript} output shows the result:
+It seems unusual to see the explicit type \type{MyValue<String>} here as we usually let \tref{type inference}{type-system-type-inference} deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The \target{JavaScript} output shows the result:
 
 \begin{lstlisting}
 (function () { "use strict";
@@ -144,7 +144,7 @@ Test.main();
 })();
 \end{lstlisting}
 
-We can identify that \type{MyArray<String>} and \type{MyArray<Int>} have become \type{MyArray_String} and \type{MyArray_Int} respectively. This is similar for generic functions:
+We can identify that \type{MyValue<String>} and \type{MyValue<Int>} have become \type{MyValue_String} and \type{MyValue_Int} respectively. This is similar for generic functions:
 
 \haxe{assets/GenericFunction.hx}
 
