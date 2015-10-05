@@ -122,6 +122,17 @@ This the list of numeric operators in Haxe, grouped by descending priority.
 \end{tabular}
 \end{center}
 
+\paragraph{Equality}
+
+\emph{For enums:}
+\begin{description}
+	\item[Enum without parameters] Are always represent the same value, so \expr{MyEnum.A == MyEnum.A}. 
+	\item[Enum with parameters] Can be compared with \expr{a.equals(b)} (which is a short for \expr{Type.enumEquals()}).
+\end{description}
+
+\emph{Dynamic:}
+Comparison involving at least one Dynamic value is unspecifed and platform-specific.
+
 \subsection{Bool}
 \label{types-bool}
 
