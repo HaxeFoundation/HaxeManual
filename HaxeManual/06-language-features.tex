@@ -349,7 +349,7 @@ Static extensions can be a powerful tool which allows augmenting types without a
 Clearly, \type{Int} does not natively provide a \expr{triple} method, yet this program compiles and outputs \expr{36} as expected. This is because the call to \expr{12.triple()} is transformed into \expr{IntExtender.triple(12)}. There are three requirements for this:
 
 \begin{enumerate}
-	\item Both the literal \expr{12} and the first argument of \expr{triple} are of type \type{Int}.
+	\item Both the literal \expr{12} and the first argument of \expr{triple} are known to be of type \type{Int}.
 	\item The class \type{IntExtender} is brought into context through \expr{using Main.IntExtender}.
 	\item \type{Int} does not have a \expr{triple} field by itself (if it had, that field would take priority over the static extension).
 \end{enumerate}
