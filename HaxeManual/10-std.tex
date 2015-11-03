@@ -606,7 +606,7 @@ Each supported value is translated to a distinct prefix character, followed by t
 	\item[exception:] \expr{x} followed by the exception value
 	\item[class instance:] \expr{c} followed by the serialized class name, followed by the name-value pairs of the fields, followed by \expr{g} (e.g. \expr{cy5:Pointy1:xzy1:yzg} for \expr{new Point(0, 0)} (having two integer fields \expr{x} and \expr{y})
         \item[enum instance (by name):] \expr{w} followed by the serialized enum name, followed by the serialized constructor name, followed by \expr{:}, followed by the number of arguments, followed by the argument values (e.g. \expr{wy3:Fooy1:A:0} for \expr{Foo.A} (with no arguments), \expr{wy3:Fooy1:B:2i4n} for \expr{Foo.B(4,null)})
-	\item[enum instance (by index):] \expr{j} followed by the serialized enum name, followed by \expr{:}, followed by the constructor index (starting from 0), followed by \expr{:}, followed by the number of arguments, followed by the argument values (e.g. \expr{wy3:Foo:0:0} for \expr{Foo.A} (with no arguments), \expr{wy3:Foo:1:2i4n} for \expr{Foo.B(4,null)})
+	\item[enum instance (by index):] \expr{j} followed by the serialized enum name, followed by \expr{:}, followed by the constructor index (starting from 0), followed by \expr{:}, followed by the number of arguments, followed by the argument values (e.g. \expr{jy3:Foo:0:0} for \expr{Foo.A} (with no arguments), \expr{jy3:Foo:1:2i4n} for \expr{Foo.B(4,null)})
 	\item[cache references:] \mbox{}
 		\begin{description}
 			\item[\type{String}:] \expr{R} followed by the corresponding index in the string cache (e.g. \expr{R456})
