@@ -15,14 +15,13 @@ This is a very simple example showing the toolchain.
 Create a new folder and save this class as \ic{Main.hx}.
 
 \begin{lstlisting}
-import js.Lib;
 import js.Browser;
 class Main {
     static function main() {
         var button = Browser.document.createButtonElement();
         button.textContent = "Click me!";
         button.onclick = function(event) {
-            Lib.alert("Haxe is great");
+            Browser.alert("Haxe is great");
         }
         Browser.document.body.appendChild(button);
     }
