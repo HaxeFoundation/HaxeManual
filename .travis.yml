@@ -26,8 +26,8 @@ matrix:
         - wget https://github.com/jgm/pandoc/releases/download/1.15.0.6/pandoc-1.15.0.6-1-amd64.deb
         - sudo dpkg -i pandoc-1.15.0.6-1-amd64.deb
         # mupdf
-        - curl -s -L --retry 3 http://mupdf.com/downloads/mupdf-1.8-source.tar.gz | tar -C . -x -z -f -
-        - cd mupdf-1.8-source
+        - curl -s -L --retry 3 http://mupdf.com/downloads/archive/mupdf-1.7a-source.tar.gz | tar -C . -x -z -f -
+        - cd mupdf-1.7a-source
         - make HAVE_X11=no
         - sudo make HAVE_X11=no install
         # haxelibs
