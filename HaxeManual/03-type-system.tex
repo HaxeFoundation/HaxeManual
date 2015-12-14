@@ -493,6 +493,13 @@ Here we import \expr{String.fromCharCode} as \expr{f} which allows us to use \ex
 
 Haxe also allows the more natural \expr{as} in place of \expr{in}.
 
+\since{3.3.0}
+
+Haxe allows you to add a special file \emph{import.hx} to the root of source for add its content to default imports.
+
+All imports and usings in the file will be added to default imports and available in all modules.
+Only \expr{import} and \expr{using} is allowed in import.hx files. When an file contains type declarations, compilation will stop with an exception.
+
 
 \subsection{Resolution Order}
 \label{type-system-resolution-order}
