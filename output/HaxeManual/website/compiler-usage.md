@@ -29,7 +29,7 @@ The second question usually comes down to providing an argument specifying the d
 * `-cpp directory` Generates [C++](target-cpp.md) source code in specified directory and compiles it using native C++ compiler.
 * `-cs directory` Generates [C#](#) source code in specified directory.
 * `-java directory` Generates [Java](#) source code in specified directory and compiles it using the Java Compiler.
-* `-python file_name` Generates [Python](target-python.md) source code in the specified file.
+* `-python file_name` Generates [Python](#) source code in the specified file.
 
 ---
 

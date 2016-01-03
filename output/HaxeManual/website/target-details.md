@@ -14,7 +14,7 @@
 
 12.7: [C#](#)
 
-12.8: [Python](target-python.md)
+12.8: [Python](#)
 
 ---
 
