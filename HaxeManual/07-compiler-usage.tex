@@ -38,3 +38,95 @@ The second question usually comes down to providing an argument specifying the d
 	\item[\ic{-python file_name}] Generates \tref{Python}{target-python} source code in the specified file.
 \end{description}
 
+
+\section{Global Compiler Flags}
+\label{compiler-usage-flags}
+
+Starting from Haxe 3.0, you can get the list of supported \tref{compiler flags}{lf-condition-compilation} by running \expr{haxe --help-defines}
+
+\begin{center}
+\begin{tabular}{| l | l |}
+	\hline
+	\multicolumn{2}{|c|}{Global Compiler Flags} \\ \hline
+	Flag &  Description \\ \hline
+	\expr{absolute-path} &  Print absolute file path in trace output \\
+	\expr{advanced-telemetry}  &  Allow the SWF to be measured with Monocle tool \\
+	\expr{analyzer}  &  Use static analyzer for optimization (experimental) \\
+	\expr{as3} &  Defined when outputing flash9 as3 source code \\
+	\expr{check-xml-proxy}  &  Check the used fields of the xml proxy \\
+	\expr{core-api}  &  Defined in the core api context \\
+	\expr{core-api-serialize}  &  Mark some generated core api classes with the Serializable attribute on C\# \\
+	\expr{cppia}  &  Generate experimental cpp instruction assembly \\
+	\expr{dce=<mode:std|full|no>}  &  Set the \tref{dead code elimination}{cr-dce} mode (default std) \\
+	\expr{dce-debug}  &  Show \tref{dead code elimination}{cr-dce} log \\
+	\expr{debug}  &  Activated when compiling with \expr{-debug} \\
+	\expr{display}  &  Activated during completion \\
+	\expr{dll-export}  &  GenCPP experimental linking \\
+	\expr{dll-import}  &  GenCPP experimental linking \\
+	\expr{doc-gen}  &  Do not perform any removal/change in order to correctly generate documentation \\
+	\expr{dump}  &  Dump the complete typed AST for internal debugging in a dump subdirectory - use \expr{dump=pretty} for Haxe-like formatting \\
+	\expr{dump-dependencies}  &  Dump the classes dependencies in a dump subdirectory \\
+	\expr{dump-ignore-var-ids}  &  Remove variable IDs from non-pretty dumps (helps with diff) \\
+	\expr{erase-generics}  &  Erase generic classes on C\# \\
+	\expr{fdb}  &  Enable full flash debug infos for FDB interactive debugging \\
+	\expr{file-extension}  &  Output filename extension for cpp source code \\
+	\expr{flash-strict}  &  More strict typing for flash target \\
+	\expr{flash-use-stage}  &  Keep the SWF library initial stage \\
+	\expr{force-lib-check}  &  Force the compiler to check -net-lib and -java-lib added classes (internal) \\
+	\expr{force-native-property}  &  Tag all properties with \expr{:nativeProperty} metadata for 3.1 compatibility \\
+	\expr{format-warning}  &  Print a warning for each formated string, for 2.x compatibility \\
+	\expr{gencommon-debug}  &  GenCommon internal \\
+	\expr{haxe-boot}  &  Given the name 'haxe' to the flash boot class instead of a generated name \\
+	\expr{haxe-ver}  &  The current Haxe version value \\
+	\expr{hxcpp-api-level}  &  Provided to allow compatibility between hxcpp versions \\
+	\expr{include-prefix}  &  prepend path to generated include files \\
+	\expr{interp}  &  The code is compiled to be run with \expr{--interp} \\
+	\expr{java-ver=[version:5-7]}  & Sets the Java version to be targeted \\
+	\expr{js-classic}  &  Don't use a function wrapper and strict mode in JS output \\
+	\expr{js-es5}  &  Generate JS for ES5-compliant runtimes \\
+	\expr{js-unflatten}  & Generate nested objects for packages and types \\
+	\expr{keep-old-output}  & Keep old source files in the output directory (for C\#/Java) \\
+	\expr{loop-unroll-max-cost}  & Maximum cost (number of expressions * iterations) before loop unrolling is canceled (default 250) \\
+	\expr{macro} & Defined when code is compiled in the \tref{macro context}{macro} \\
+	\expr{macro-times} & Display per-macro timing when used with \expr{--times} \\
+	\expr{net-ver=<version:20-45>}  &  Sets the .NET version to be targeted \\
+	\expr{net-target=<name>}  &  Sets the .NET target. Defaults to net. xbox, micro \_(Micro Framework\_, compact \_(Compact Framework)\_ are some valid values  \\
+	\expr{neko-source} & Output neko source instead of bytecode \\
+	\expr{neko-v1} &  Keep Neko 1.x compatibility \\
+	\expr{network-sandbox}  &  Use local network sandbox instead of local file access one \\
+	\expr{no-compilation}  &  Disable CPP final compilation \\
+	\expr{no-copt}  &  Disable completion optimization \_(for debug purposes)\_ \\
+	\expr{no-debug}  &  Remove all debug macros from cpp output \\
+	\expr{no-deprecation-warnings} & Do not warn if fields annotated with \expr{@:deprecated} are used \\
+	\expr{no-flash-override}  &  Change overrides on some basic classes into HX suffixed methods flash only \\
+	\expr{no-opt}  &  Disable optimizations \\
+	\expr{no-pattern-matching}  &  Disable \tref{pattern matching}{lf-pattern-matching} \\
+	\expr{no-inline}  &  Disable \tref{inlining}{class-field-inline} \\
+	\expr{no-root}  &  GenCS internal \\
+	\expr{no-macro-cache}  &  Disable macro context caching \\
+	\expr{no-simplify}  &  Disable simplification filter \\
+	\expr{no-swf-compress}  &  Disable SWF output compression \\
+	\expr{no-traces}  &  Disable all \expr{trace} calls \\
+	\expr{php-prefix}  &  Compiled with \expr{--php-prefix} \\
+	\expr{real-position}  &  Disables haxe source mapping when targetting C\# \\
+	\expr{replace-files}  &  GenCommon internal \\
+	\expr{scriptable}  &  GenCPP internal \\
+	\expr{shallow-expose}  &  Expose types to surrounding scope of Haxe generated closure without writing to window object \\
+	\expr{source-map-content}  &  Include the hx sources as part of the JS source map \\
+	\expr{swc}  &  Output a SWC instead of a SWF \\
+	\expr{swf-compress-level=<level:1-9>}  &  Set the amount of compression for the SWF output \\
+	\expr{swf-debug-password=<yourPassword>}  &  Set a password for debugging. The password field is encrypted by using the MD5 algorithm and prevents unauthorised debugging of your swf. Without this flag -D fdb will use no password. \\
+	\expr{swf-direct-blit}  &  Use hardware acceleration to blit graphics \\
+	\expr{swf-gpu}  &  Use GPU compositing features when drawing graphics \\
+	\expr{swf-metadata=<file.xml>}  &  Include contents of \expr{<file.xml>} as metadata in the swf. \\
+	\expr{swf-preloader-frame}  &  Insert empty first frame in swf. To be used together with \expr{-D flash-use-stage} and \expr{-swf-lib} \\
+	\expr{swf-protected}  &  Compile Haxe private as protected in the SWF instead of public \\
+	\expr{swf-script-timeout}  &  Maximum ActionScript processing time before script stuck dialog box displays (in seconds) \\
+	\expr{swf-use-doabc}  &  Use DoAbc swf-tag instead of DoAbcDefine \\
+	\expr{sys}  &  Defined for all system platforms \\
+	\expr{unsafe}  &  Allow unsafe code when targeting C\# \\
+	\expr{use-nekoc}  &  Use nekoc compiler instead of internal one \\
+	\expr{use-rtti-doc}  &  Allows access to documentation during compilation \\
+	\expr{vcproj}  &  GenCPP internal \\
+\end{tabular}
+\end{center}
