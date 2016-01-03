@@ -20,7 +20,9 @@ This kind of reification only works in places where the internal structure expec
 
 * field name `{ $name: 1} `
 * function name `function $name() { }`
-* catch variable name `try e() catch($name:Dynamic) {}`
+* catch variable name `try e() catch($name:Dynamic) { }`
+
+Furthermore, a `new` expression can be reified by providing [haxe.macro.TypePath](http://api.haxe.org/haxe/macro/TypePath.html) argument: `new $typePath()`
 
 ---
 

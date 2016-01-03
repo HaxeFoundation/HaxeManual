@@ -20,10 +20,57 @@ Expressions in Haxe define what a program **does**. Most expressions are found i
 > 
 > * Type names must start with an upper-case letter `A-Z` or an underscore `_`.
 > * Leading dollars are not allowed for any kind of [name](dictionary.md#define-name) (dollar-names are mostly used for [macro reification](macro-reification.md)).
->
+> 
+
+##### Keywords
+
+The following Haxe keywords may not be used as identifiers:
+
+* abstract
+* break
+* case
+* cast
+* catch
+* class
+* continue
+* default
+* do
+* dynamic
+* else
+* enum
+* extends
+* extern
+* false
+* for
+* function
+* if
+* implements
+* import
+* in
+* inline
+* interface
+* macro
+* new
+* null
+* override
+* package
+* private
+* public
+* return
+* static
+* switch
+* this
+* throw
+* true
+* try
+* typedef
+* untyped
+* using
+* var
+* while
 
 ---
 
-Previous section: [Override](class-field-override.md)
+Previous section: [Static](class-field-static.md)
 
 Next section: [Blocks](expression-block.md)

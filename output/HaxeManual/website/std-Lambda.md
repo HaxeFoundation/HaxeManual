@@ -8,7 +8,7 @@ It is ideally used with `using Lambda` (see [Static Extension](lf-static-extensi
 
 On static platforms, working with the `Iterable` structure might be slower than performing the operations directly on known types, such as `Array` and `List`.
 
-###### Lambda Functions
+##### Lambda Functions
 The Lambda class allows us to operate on an entire `Iterable` at once.
 This is often preferable to looping routines since it is less error prone and easier to read. 
 For convenience, the `Array` and `List` class contains some of the frequently used methods from the Lambda class.

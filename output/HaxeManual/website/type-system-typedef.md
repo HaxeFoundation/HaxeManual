@@ -23,7 +23,7 @@ typedef Iterable<T> = {
 }
 ```
 
-###### Optional fields
+##### Optional fields
 Mark the field of a structure as optional using the `@:optional` metadata.
 ```haxe
 typedef User = {

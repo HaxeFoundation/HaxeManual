@@ -1,6 +1,6 @@
 ## 10.13.2 Implementation details
 
-###### JavaScript security specifics
+##### JavaScript security specifics
 
 The html-page wrapping the js client must be served from the same domain as the one where the server is running. The same-origin policy restricts how a document or script loaded from one origin can interact with a resource from another origin. The same-origin policy is used as a means to prevent some of the cross-site request forgery attacks.
 
@@ -17,7 +17,7 @@ See [same-origin policy](http://en.wikipedia.org/wiki/Same-origin_policy) for mo
 
 Also note that this means that the page can't be served directly from the file system `"file:///C:/example/path/index.html"`.
 
-###### Flash security specifics
+##### Flash security specifics
 
 When Flash accesses a server from a different domain, set up a `crossdomain.xml` file on the server, enabling the `X-Haxe` headers.
 
@@ -28,7 +28,7 @@ When Flash accesses a server from a different domain, set up a `crossdomain.xml`
 </cross-domain-policy>
 ``` 
 
-###### Arguments types are not ensured
+##### Arguments types are not ensured
 
 There is no guarantee of any kind that the arguments types will be respected when a method is called using remoting. 
 That means even if the arguments of function `foo` are typed to `Int`, the client will still be able to use strings while calling the method. 

@@ -53,7 +53,7 @@ Allowed values for metadata arguments are:
 * [Arrays declarations](expression-array-declaration.md) (if all their elements qualify)
 * [Object declarations](expression-object-declaration.md) (if all their field values qualify)
 
-###### Built-in Compiler Metadata
+##### Built-in Compiler Metadata
 An exhaustive list of all defined metadata can be obtained by running `haxe --help-metas` from command line.
 
 See also the [Compiler Metadata list](cr-metadata.md).

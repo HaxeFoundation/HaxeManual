@@ -35,7 +35,7 @@ The Flash, Java and C# targets allow direct inclusion of native libraries from [
 
 Some targets such as Python or JavaScript may require generating additional "import" code that loads an `extern` class from a native module. Haxe provides ways to declare such dependencies also described in respective sections [Target Details](target-details.md).
 
-###### Rest arguments and type choices
+##### Rest arguments and type choices
 ##### since Haxe 3.2.0
 
 The haxe.extern package provides two types that help mapping native semantics to Haxe:
@@ -69,6 +69,6 @@ class Main {
 
 ---
 
-Previous section: [Global Compiler Flags](lf-condition-compilation-flags.md)
+Previous section: [Conditional Compilation](lf-condition-compilation.md)
 
 Next section: [Static Extension](lf-static-extension.md)

@@ -1,4 +1,4 @@
-## 8.3 Completion
+## 8.3 Compiler Services
 
 8.3.1: [Overview](cr-completion-overview.md)
 

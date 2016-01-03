@@ -28,19 +28,19 @@ The conditions after `#if` and `#elseif` allow the following expressions:
 
 * Any identifier is replaced by the value of the compiler flag by the same name. Note that `-D some-flag` from command line leads to the flags `some-flag` and `some_flag` to be defined.
 * The values of `String`, `Int` and `Float` constants are used directly.
-* The boolean operators `&&` (and), `||` (or) and `!` (not) work as expected.
+* The boolean operators `&&` (and), `||` (or) and `!` (not) work as expected, however the full expression must be completely contained by parentheses.
 * The operators `==`, `!=`, `>`, `>=`, `<`, `<=` can be used to compare values.
 * Parentheses `()` can be used to group expressions as usual.
 
 The Haxe parser does not parse `some-flag` as a single token and instead reads it as a subtraction binary operator `some - flag`. In cases like this the underscore version `some_flag` has to be used.
 
-###### Built-in Compiler Flags
+##### Built-in Compiler Flags
 An exhaustive list of all built-in defines can be obtained by invoking the Haxe Compiler with the `--help-defines` argument. The Haxe Compiler allows multiple `-D` flags per compilation.
 
-See also the [Compiler Flags list](lf-condition-compilation-flags.md).
+See also the [Compiler Flags list](compiler-usage-flags.md).
 
 ---
 
 Previous section: [Language Features](lf.md)
 
-Next section: [Global Compiler Flags](lf-condition-compilation-flags.md)
+Next section: [Externs](lf-externs.md)

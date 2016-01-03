@@ -41,7 +41,7 @@ Another possibility is to create and run (double-click) a file called `compile.h
 
 The output will be a main-flash.swf with size 960x640 pixels at 60 FPS with an orange background color and a gray square in the center.
 
-###### Display the Flash
+##### Display the Flash
 
 Run the SWF standalone using the [Standalone Debugger FlashPlayer](https://www.adobe.com/support/flashplayer/downloads.html). 
 
@@ -56,7 +56,7 @@ To display the output in a browser using the Flash-plugin, create an HTML-docume
 </html>
 ```
 
-###### More information
+##### More information
 
 * [Haxe Flash API docs](http://api.haxe.org/flash/)
 * [Adobe Livedocs](http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/)

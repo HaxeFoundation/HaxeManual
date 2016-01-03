@@ -1,6 +1,6 @@
 ## 7 Compiler Usage
 
-###### Basic Usage
+##### Basic Usage
 
 The Haxe Compiler is typically invoked from command line with several arguments which have to answer two questions:
 
@@ -9,14 +9,14 @@ The Haxe Compiler is typically invoked from command line with several arguments 
 
 To answer the first question, it is usually sufficient to provide a class path via the `-cp path` argument, along with the main class to be compiled via the `-main dot_path` argument. The Haxe Compiler then resolves the main class file and begins compilation.
 
-The second question usually comes down to providing an argument specifying the desired target. Each Haxe target has a dedicated command line switch, such as `-js file_name` for JavaScript and `-php directory` for PHP. Depending on the nature of the target, the argument value is either a file name (for `-js`, `-swf`, `-neko` and `-python`) or a directory path.
+The second question usually comes down to providing an argument specifying the desired target. Each Haxe target has a dedicated command line switch, such as `-js file_name` for JavaScript and `-php directory` for PHP. Depending on the nature of the target, the argument value is either a file name (for `-js`, `-swf` and `neko`) or a directory path.
 
-###### Common arguments
+##### Common arguments
 
 **Input:**
 
 * `-cp path` Adds a class path where `.hx` source files or packages (sub-directories) can be found.
-* `-lib library_name` Adds a [Haxelib](haxelib.md) library.
+* `-lib library_name` Adds a [Haxelib](haxelib.md) library. By default the most recent version in the local Haxelib repository is used. To use specific version, `-lib library_name:version` can be used.
 * `-main dot_path` Sets the main class.
 
 **Output:**
@@ -35,4 +35,4 @@ The second question usually comes down to providing an argument specifying the d
 
 Previous section: [Inline constructors](lf-inline-constructor.md)
 
-Next section: [Compiler Features](cr-features.md)
+Next section: [Global Compiler Flags](compiler-usage-flags.md)

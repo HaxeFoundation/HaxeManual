@@ -8,6 +8,8 @@
 
 4.4.4: [Override](class-field-override.md)
 
+4.4.5: [Static](class-field-static.md)
+
 ---
 
 Previous section: [Effects of variance and access modifiers](class-field-override-effects.md)

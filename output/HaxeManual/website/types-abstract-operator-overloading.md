@@ -58,7 +58,7 @@ class Main {
 ```
 Both binary and unary operator overloads can return any type.
 
-###### Exposing underlying type operations
+##### Exposing underlying type operations
 
 It is also possible to omit the method body of a `@:op` function, but only if the underlying type of the abstract allows the operation in question and if the resulting type can be assigned back to the abstract.
 

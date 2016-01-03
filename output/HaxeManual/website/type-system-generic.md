@@ -22,7 +22,7 @@ class Main {
 
 ```
 
-It seems unusual to see the explicit type `MyArray<String>` here as we usually let [type inference](type-system-type-inference.md) deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The JavaScript output shows the result:
+It seems unusual to see the explicit type `MyValue<String>` here as we usually let [type inference](type-system-type-inference.md) deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The JavaScript output shows the result:
 
 ```haxe
 (function () { "use strict";
@@ -41,7 +41,7 @@ Test.main();
 })();
 ```
 
-We can identify that `MyArray<String>` and `MyArray<Int>` have become `MyArray_String` and `MyArray_Int` respectively. This is similar for generic functions:
+We can identify that `MyValue<String>` and `MyValue<Int>` have become `MyValue_String` and `MyValue_Int` respectively. This is similar for generic functions:
 
 ```haxe
 class Main {

@@ -1,4 +1,4 @@
-## 12.1.5 JavaScript target Metadata
+## 12.1.6 JavaScript target Metadata
 
 This is the list of JavaScript specific metadata. For more information, see also the complete list of all [Haxe built-in metadata](cr-metadata.md).
 

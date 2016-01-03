@@ -4,7 +4,7 @@ The Haxe syntax supports the following constants:
 
 * Int: An [integer](dictionary.md#define-int), such as `0`, `1`, `97121`, `-12`, `0xFF0000`.
 * Float: A [floating point number](dictionary.md#define-float), such as `0.0`, `1.`, `.3`, `-93.2`.
-* String: A [string of characters](dictionary.md#define-string), such as `""`, `"foo"`, `"`, `'bar'`.
+* String: A [string of characters](dictionary.md#define-string), such as `""`, `"foo"`, `''`, `'bar'`.
 * true,false: A [boolean](dictionary.md#define-bool) value.
 * null: The null value.
 

@@ -6,6 +6,6 @@
 
 ---
 
-Previous section: [Getting started with Haxe/PHP](target-php-getting-started.md)
+Previous section: [PHP untyped functions](target-php-untyped.md)
 
 Next section: [Using C++ Defines](target-cpp-defines.md)

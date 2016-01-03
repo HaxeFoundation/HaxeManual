@@ -28,7 +28,7 @@ Another possibility is to create and run (double-click) a file called `compile.h
 
 The compiler outputs in the given **bin**-folder, which contains the generated PHP classes that prints the traced message when you run it. The generated PHP-code runs for version 5.1.0 and later.
 
-###### More information
+##### More information
 
 * [Haxe PHP API docs](http://api.haxe.org/php/)
 * [PHP.net Documentation](http://php.net/docs.php)
@@ -38,4 +38,4 @@ The compiler outputs in the given **bin**-folder, which contains the generated P
 
 Previous section: [PHP](target-php.md)
 
-Next section: [C++](target-cpp.md)
+Next section: [PHP untyped functions](target-php-untyped.md)

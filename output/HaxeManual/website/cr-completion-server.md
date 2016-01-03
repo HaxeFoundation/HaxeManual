@@ -16,7 +16,7 @@ haxe --connect 6000 myproject.hxml
 
 Please note that you can use the parameter `--cwd` at the first sent command line to change the Haxe server's current working directory. Usually class paths and other files are relative to your project.
 
-###### How it works
+##### How it works
 The compilation server will cache the following things:
 
 * parsed files the files will only get parsed again if they are modified or if there was a parse error
@@ -25,7 +25,7 @@ The compilation server will cache the following things:
 
 You can get precise reading of the times spent by the compiler and how using the compilation server affects them by adding `--times` to the command line.
 
-###### Protocol
+##### Protocol
 As the following Haxe/Neko example shows, you can simply connect on the server port and send all commands (one per line) ending with a 0 binary char. You can, then, read the results.
 
 Macros and other commands can log events which are not errors. From the command line, we can see the difference between what is printed on `stdout` and what is print on `stderr`. This is not the case in socket mode. In order to differentiate between the two, log messages (not errors) are prefixed with a `
@@ -64,7 +64,7 @@ class Test {
 }
 ```
 
-###### Effect on macros
+##### Effect on macros
 The compilation server can have some side effects on [macro execution](macro.md).
 
 ---
