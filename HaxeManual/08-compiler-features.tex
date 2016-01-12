@@ -713,3 +713,51 @@ The type \type{haxe.rtti.Rtti} has been introduced in order to simplify working 
 	\item[platforms:] A list of strings representing the targets where the constructor is available.
 	\item[meta:] The meta data the constructor was annotated with.
 \end{description}
+
+
+
+\section{Static analyzer}
+\label{cr-static-analyzer}
+\since{3.3.0}
+
+Haxe 3.3.0 introduces a new static analyzer for code optimizations. It is enabled by using the \ic{-D analyzer} \tref{compiler flag}{compiler-usage-flags} and consists of multiple \tref{modules}{cr-static-analyzer-modules} which can be configured globally with a \tref{compiler flag}{compiler-usage-flags} as well as at type-level and field-level with a \tref{compiler metadata}{cr-metadata}:
+
+\paragraph{Global configuration}
+\label{cr-static-analyzer-global-configuration}
+
+To globally enable an analyzer module \ic{-D analyzer-module} is used. To globally disable a module \ic{-D analyzer-no-module} is used. In both cases ``module'' represents the name of the module to be disabled or enabled:
+
+\begin{lstlisting}
+# Global enable from command line
+haxe -D analyzer-module
+# Global disable from command line
+haxe -D analyzer-no-module
+\end{lstlisting}
+
+\paragraph{Local configuration}
+\label{cr-static-analyzer-local-configuration}
+To enable an analyzer module for a given type or field \ic{@:analyzer(module)} is used. To disable a module \ic{@:analyzer(no_module)} is used. In both cases ``module'' represents the name of the module to be disabled or enabled:
+
+\begin{lstlisting}
+@:analyzer(module)
+class C {
+	@:analyzer(module) function f() { } // Field-level enable
+	@:analyzer(no_module) function f() { } // Field-level disable
+}
+@:analyzer(no_module)
+class D { } // Type-level disable
+\end{lstlisting}
+
+\paragraph{Modules}
+\label{cr-static-analyzer-modules}
+
+The static analyzer currently comes with the following modules. Unless noted otherwise they are enabled if \ic{-D analyzer} is used.
+
+\begin{description}
+\item[const_propagation]: Implements sparse conditional constant propagation to promote values that are known at compile-time to usage places. Also detects dead branches.
+\item[copy_propagation]: Detects local variables that alias other local variables and replaces them accordingly.
+\item[local_dce]: Detects and removes unused local variables.
+\item[fusion]: Moves variable expressions to its usage in case of single-occurrence. Disabled on \target{Flash} and \target{Java}.
+\item[purity_inference]: Infers if fields are ``pure'', i.e. do not have any side-effects. This can improve the effect of the fusion module.
+\item[unreachable_code]: Reports unreachable code.
+\end{description}
