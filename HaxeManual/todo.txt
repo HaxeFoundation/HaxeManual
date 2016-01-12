@@ -184,6 +184,7 @@ Unreviewed:
 8.4.4 - Implementation details
 8.5 - Runtime Type Information
 8.5.1 - RTTI structure
+8.6 - Static analyzer
 9 - Macros
 9.1 - Macro Context
 9.2 - Arguments

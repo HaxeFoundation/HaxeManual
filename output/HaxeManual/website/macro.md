@@ -20,6 +20,6 @@ We can identify different kinds of macros, which are run at specific compilation
 
 ---
 
-Previous section: [RTTI structure](cr-rtti-structure.md)
+Previous section: [Static analyzer](cr-static-analyzer.md)
 
 Next section: [Macro Context](macro-context.md)

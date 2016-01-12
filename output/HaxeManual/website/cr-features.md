@@ -10,6 +10,8 @@
 
 8.5: [Runtime Type Information](cr-rtti.md)
 
+8.6: [Static analyzer](cr-static-analyzer.md)
+
 ---
 
 Previous section: [Global Compiler Flags](compiler-usage-flags.md)
