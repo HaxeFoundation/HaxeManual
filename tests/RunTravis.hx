@@ -122,6 +122,8 @@ class RunTravis
 			target = Target.Neko;
 		}
 
+		setup();
+
 		for (additionalModule in additionalModules)
 			excludedExamples.push(additionalModule);
 		// special case, both needed as an additional module and needs to compile on its own
@@ -132,6 +134,14 @@ class RunTravis
 		Sys.exit(getResult([
 			buildExamples(target, Sys.args().slice(1))
 		]));
+	}
+
+	static function setup() {
+		#if (haxe_ver >= "3.3.0")
+		Sys.command("haxelib", ["git", "hxcpp", "https://github.com/HaxeFoundation/hxcpp"]);
+		#else
+		Sys.command("haxelib", ["install", "hxcpp"]);
+		#end
 	}
 
 	static function buildExamples(target:Target, ?included:Array<String>):ExitCode {
