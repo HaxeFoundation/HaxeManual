@@ -40,7 +40,7 @@ When running this example the compiler outputs `TAbstract(Int,[])` and `TInst(St
 
 In Haxe 3.1 the return type of a `@:genericBuild` macro has to be a `haxe.macro.Type`. Haxe 3.2 allows (and prefers) returning a `haxe.macro.ComplexType` instead, which is the syntactic representation of a type. This is easier to work with in many cases because types can simply be referenced by their paths.
 
-###### Const type parameter
+##### Const type parameter
 
 Haxe allows passing [constant expression](expression-constants.md) as a type parameter if the type parameter name is `Const`. This can be utilized in the context of `@:genericBuild` macros to pass information from the syntax directly to the macro:
 

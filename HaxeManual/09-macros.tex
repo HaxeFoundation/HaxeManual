@@ -104,9 +104,10 @@ This kind of reification only works in places where the internal structure expec
 \begin{itemize}
 	\item field name \expr{\{ \$name: 1\} }
 	\item function name \expr{function \$name() \{ \}}
-	\item catch variable name \expr{try e() catch(\$name:Dynamic) \{\}}
+	\item catch variable name \expr{try e() catch(\$name:Dynamic) \{ \}}
 \end{itemize}
 
+Furthermore, a \expr{new} expression can be reified by providing \href{http://api.haxe.org/haxe/macro/TypePath.html}{haxe.macro.TypePath} argument: \expr{new \$typePath()}
 
 \subsection{Type Reification}
 \label{macro-reification-type}

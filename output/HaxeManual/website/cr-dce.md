@@ -30,4 +30,4 @@ The compiler automatically defines the flag `dce` with a value of either `"std"`
 
 Previous section: [Built-in Compiler Metadata](cr-metadata.md)
 
-Next section: [Completion](cr-completion.md)
+Next section: [Compiler Services](cr-completion.md)

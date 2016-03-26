@@ -19,7 +19,7 @@ class Main {
 
 The console will trace `My name is Mark, 30 years old`.
 
-###### Expressions
+##### Expressions
 An expression can be put between the `::`, the syntax allows the current possibilities:
 
 * `::name::` the variable name
@@ -28,7 +28,7 @@ An expression can be put between the `::`, the syntax allows the current possibi
 * `::(e1 op e2)::` the operation op is applied to e1 and e2
 * `::(135)::` the integer 135. Float constants are not allowed
 
-###### Conditions
+##### Conditions
 It is possible to test conditions using `::if flag1::`. Optionally, the condition may be followed by `::elseif flag2::` or `::else::`. Close the condition with `::end::`.
 
 ```haxe 
@@ -48,7 +48,7 @@ To compare to a string, use double quotes `"` in the template.
 ::if (name == "Mark"):: Hi Mark ::end::
 ``` 
 
-###### Iterating
+##### Iterating
 Iterate on a structure by using `::foreach::`. End the loop with `::end::`.
 ```haxe 
 <table>
@@ -65,7 +65,7 @@ Iterate on a structure by using `::foreach::`. End the loop with `::end::`.
 </table>
 ``` 
 
-###### Sub-templates
+##### Sub-templates
 To include templates in other templates, pass the sub-template result string as a parameter.
 ```haxe 
 var users = [{name:"Mark", age:30}, {name:"John", age:45}];
@@ -79,7 +79,7 @@ trace(output);
 ``` 
 The console will trace `The users are Mark(30) John(45)`.
 
-###### Template macros
+##### Template macros
 To call custom functions while parts of the template are being rendered, provide a `macros` object to the argument of [Template.execute](http://api.haxe.org/haxe/Template.html#execute). The key will act as the template variable name, the value refers to a callback function that should return a `String`. The first argument of this macro function is always a `resolve()` method, followed by the given arguments. The resolve function can be called to retrieve values from the template context. If `macros` has no such field, the result is unspecified.
 
 The following example passes itself as macro function context and executes `display` from the template.
@@ -106,10 +106,10 @@ typedef User = {name:String, distance:Int}
 ```
 The console will trace `The results: Mark ran 3.5 kilometers in 15 minutes`.
 
-###### Globals
+##### Globals
 Use the [Template.globals](http://api.haxe.org/haxe/Template.html#globals) object to store values that should be applied across all `haxe.Template` instances. This has lower priority than the context argument of `Template.execute`.
 
-###### Using resources
+##### Using resources
 
 To separate the content from the code, consider using the [resource embedding system](cr-resources.md). 
 Place the template-content in a new file called `sample.mtt`, add `-resource sample.mtt@my_sample` to the compiler arguments and retrieve the content using `haxe.Resource.getString`.

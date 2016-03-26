@@ -1,4 +1,4 @@
-## 12.1.7 Loading extern classes using "require" function
+## 12.1.8 Loading extern classes using "require" function
 
 ##### since Haxe 3.2.0
 

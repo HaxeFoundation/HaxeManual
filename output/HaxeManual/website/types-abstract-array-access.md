@@ -37,7 +37,7 @@ map.set("foo",1);
 console.log(map.get("foo")); // 1
 ```
 
-###### Order of array access resolving
+##### Order of array access resolving
 
 Due to a bug in Haxe versions before 3.2 the order of checked `:arrayAccess` fields was undefined. This was fixed for Haxe 3.2 so that the fields are now consistently checked from top to bottom:
 

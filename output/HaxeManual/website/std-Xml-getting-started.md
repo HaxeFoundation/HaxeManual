@@ -1,6 +1,6 @@
 ## 10.9.1 Getting started with Xml
 
-###### Creating a root element
+##### Creating a root element
 
 A `Xml` root element can be created using the `Xml.createElement` method.
 ```haxe
@@ -14,7 +14,7 @@ var root = Xml.parse('<root />').firstElement();
 trace(root); // <root />
 ```
 
-###### Creating child elements
+##### Creating child elements
 
 Adding child elements to the root can be done using the `addChild` method.
 ```haxe
@@ -29,7 +29,7 @@ child.set('name', 'John');
 trace(root); // <root><child name="John"/></root>
 ```
 
-###### Accessing elements and values
+##### Accessing elements and values
 
 This code parses an XML string into an object structure `Xml` and then accesses properties of the object.
 ```haxe
@@ -43,7 +43,7 @@ trace(xml.firstChild().nodeValue); // Haxe is great!
 
 The difference between `firstChild` and `firstElement` is that the second function will return the first child with the type `Xml.Element`. 
 
-###### Iterate on Xml elements
+##### Iterate on Xml elements
 We can as well use other methods to iterate either over children or elements.
 ```haxe
 for (child in xml) {

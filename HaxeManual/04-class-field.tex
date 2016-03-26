@@ -123,7 +123,7 @@ Main.main = function() {
 
 The presence of properties has several consequences on the type system. Most importantly, it is necessary to understand that properties are a compile-time feature and thus \emph{require the types to be known}. If we were to assign a class with properties to \type{Dynamic}, field access would \emph{not} respect accessor methods. Likewise, access restrictions no longer apply and all access is virtually public.
 
-When using \expr{get} or \expr{set} access identifier, the compiler ensures that the getter and setter actually exists. The following problem does not compile:
+When using \expr{get} or \expr{set} access identifier, the compiler ensures that the getter and setter actually exists. The following code snippet does not compile:
 
 \haxe{assets/Property4.hx}
 
@@ -313,3 +313,12 @@ Dynamic fields cannot be \expr{inline} for obvious reasons: While inlining is do
 The access modifier \expr{override} is required when a field is declared which also exists on a \tref{parent class}{types-class-inheritance}. Its purpose is to ensure that the author of a class is aware of the override as this may not always be obvious in large class hierarchies. Likewise, having \expr{override} on a field which does not actually override anything (e.g. due to a misspelled field name) triggers an error.
 
 The effects of overriding fields are detailed in \Fullref{class-field-overriding}. This modifier is only allowed on \tref{method}{class-field-method} fields.
+
+\subsection{Static}
+\label{class-field-static}
+
+All fields are member fields unless the modifier \expr{static} is used. Static fields are used ``on the class'' whereas non-static fields are used ``on a class instance'':
+
+\haxe{assets/StaticField.hx}
+
+Static \tref{variable}{class-field-variable} and \tref{property}{class-field-property} fields can have arbitrary initialization \tref{expressions}{expression}.

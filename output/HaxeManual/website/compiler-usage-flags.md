@@ -1,4 +1,4 @@
-## 6.1.1 Global Compiler Flags
+## 7.1 Global Compiler Flags
 
 Starting from Haxe 3.0, you can get the list of supported [compiler flags](lf-condition-compilation.md) by running `haxe --help-defines`
 
@@ -88,6 +88,6 @@ Starting from Haxe 3.0, you can get the list of supported [compiler flags](lf-co
 
 ---
 
-Previous section: [Conditional Compilation](lf-condition-compilation.md)
+Previous section: [Compiler Usage](compiler-usage.md)
 
-Next section: [Externs](lf-externs.md)
+Next section: [Compiler Features](cr-features.md)

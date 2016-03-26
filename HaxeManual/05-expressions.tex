@@ -18,6 +18,59 @@ Further limitations follow from the usage context, which are checked upon typing
 	\item Leading dollars are not allowed for any kind of \tref{name}{define-name} (dollar-names are mostly used for \tref{macro reification}{macro-reification}).
 \end{itemize}}
 
+\since{3.3.0}
+
+Haxe reserves the identifier prefix \expr{_hx_} for internal use. This is not enforced by the parser or typer.
+
+\paragraph{Keywords}
+\label{expression-keywords}
+
+The following Haxe keywords may not be used as identifiers:
+
+\begin{itemize}
+	\item abstract
+	\item break
+	\item case
+	\item cast
+	\item catch
+	\item class
+	\item continue
+	\item default
+	\item do
+	\item dynamic
+	\item else
+	\item enum
+	\item extends
+	\item extern
+	\item false
+	\item for
+	\item function
+	\item if
+	\item implements
+	\item import
+	\item in
+	\item inline
+	\item interface
+	\item macro
+	\item new
+	\item null
+	\item override
+	\item package
+	\item private
+	\item public
+	\item return
+	\item static
+	\item switch
+	\item this
+	\item throw
+	\item true
+	\item try
+	\item typedef
+	\item untyped
+	\item using
+	\item var
+	\item while
+\end{itemize}
 
 \section{Blocks}
 \label{expression-block}
@@ -199,7 +252,7 @@ However, there are some differences related to type parameters and the position 
 \section{new}
 \label{expression-new}
 
-The \expr{new} keyword signals that a \tref{class}{types-class-instance} or an \tref{abstract}{types-abstract} is being instantiated. It is followed by the \tref{type path}{define-type-path} of the type which is to be instantiated. It may also list explicit \tref{type parameters}{type-system-type-parameters} enclosed in \expr{<>} and separated by comma \expr{,}. After an opening parenthesis \expr{()} follow the constructor arguments, again separated by comma \expr{,}, with a closing parenthesis \expr{)} at the end.
+The \expr{new} keyword signals that a \tref{class}{types-class-instance} or an \tref{abstract}{types-abstract} is being instantiated. It is followed by the \tref{type path}{define-type-path} of the type which is to be instantiated. It may also list explicit \tref{type parameters}{type-system-type-parameters} enclosed in \expr{<>} and separated by comma \expr{,}. After an opening parenthesis \expr{(} follow the constructor arguments, again separated by comma \expr{,}, with a closing parenthesis \expr{)} at the end.
 
 \haxe{assets/New.hx}
 

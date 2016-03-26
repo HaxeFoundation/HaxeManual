@@ -2,7 +2,7 @@
 
 Type path completion can occur in [import declarations](type-system-import.md), [using declarations](lf-static-extension.md) or any place a type is referenced. We can identify three different cases:
 
-###### package completion
+##### package completion
 
 This lists all sub-packages of the haxe package as well as all modules in that package:
 
@@ -45,7 +45,7 @@ import haxe.|
 </list>
 ```
 
-###### import module completion
+##### import module completion
 
 This lists all [sub-types](type-system-module-sub-types.md) of the module `haxe.Unserializer` as well as all its public static fields (because these can be imported too):
 
@@ -94,7 +94,7 @@ import haxe.Unserializer.|
 using haxe.Unserializer.|
 ```
 
-###### other module completion
+##### other module completion
 
 This lists all [sub-types](type-system-module-sub-types.md) of the module `haxe.Unserializer`:
 

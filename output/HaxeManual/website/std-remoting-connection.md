@@ -5,7 +5,7 @@ In order to use remoting, there must be a connection established. There are two 
 * [haxe.remoting.Connection](http://api.haxe.org/haxe/remoting/Connection.html) is used for **synchronous connections**, where the results can be directly obtained when calling a method. 
 * [haxe.remoting.AsyncConnection](http://api.haxe.org/haxe/remoting/AsyncConnection.html) is used for **asynchronous connections**, where the results are events that will happen later in the execution process.
 
-###### Start a connection
+##### Start a connection
 There are some target-specific constructors with different purposes that can be used to set up a connection:
 
 * All targets:
@@ -25,7 +25,7 @@ There are some target-specific constructors with different purposes that can be 
     * `HttpConnection.urlConnect(url:String)`  Will work like the asynchronous version but in synchronous mode.
     * `SocketConnection.create(...)`  Allows real-time communications with a Flash client which is using an `XMLSocket` to connect to the server.
 
-###### Remoting context
+##### Remoting context
 
 Before communicating between platforms, a remoting context has to be defined. This is a shared API that can be called on the connection at the client code.
 
@@ -50,7 +50,7 @@ class Server {
 }
 ```
 
-###### Using the connection
+##### Using the connection
 
 Using a connection is pretty convenient. Once the connection is obtained, use classic dot-access to evaluate a path and then use `call()` to call the method in the remoting context and get the result.
 The asynchronous connection takes an additional function parameter that will be called when the result is available.
@@ -68,12 +68,12 @@ class Client {
 
 To make this work for the Neko target, setup a Neko Web Server, point the url in the Client to `"http://localhost2000/remoting.n"` and compile the Server using `-main Server -neko remoting.n`.
 
-###### Error handling
+##### Error handling
 
 * When an error occurs in a asynchronous call, the error handler is called as seen in the example above.
 * When an error occurs in a synchronous call, an exception is raised on the caller-side as if we were calling a local method.
 
-###### Data serialization
+##### Data serialization
 
 Haxe Remoting can send a lot of different kinds of data. See [Serialization](std-serialization.md).
 

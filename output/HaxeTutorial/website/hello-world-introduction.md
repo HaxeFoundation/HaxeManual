@@ -2,7 +2,7 @@
 
 This tutorial demonstrates how to write and compile a Hello World Haxe program. It explains the involved file-formats (.hx and .hxml files) and gives a basic explanation of what the Haxe Compiler does with them.
 
-###### Requirements
+##### Requirements
 
 * Haxe has to be installed and available from command line.
 * You have to know how to to save files on your computer.

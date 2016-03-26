@@ -24,7 +24,7 @@ class Main {
 
 Clearly, `Int` does not natively provide a `triple` method, yet this program compiles and outputs `36` as expected. This is because the call to `12.triple()` is transformed into `IntExtender.triple(12)`. There are three requirements for this:
 
-1. Both the literal `12` and the first argument of `triple` are of type `Int`.
+1. Both the literal `12` and the first argument of `triple` are known to be of type `Int`.
 2. The class `IntExtender` is brought into context through `using Main.IntExtender`.
 3. `Int` does not have a `triple` field by itself (if it had, that field would take priority over the static extension).
 

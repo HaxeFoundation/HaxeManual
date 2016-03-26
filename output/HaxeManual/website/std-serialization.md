@@ -28,7 +28,7 @@ class Main {
 
 The result of the serialization (here stored in local variable `s`) is a [String](std-String.md) and can be passed around at will, even remotely. Its format is described in [Serialization format](std-serialization-format.md).
 
-###### Supported values
+##### Supported values
 
 * `null`
 * `Bool`, `Int` and `Float` (including infinities and `NaN`)
@@ -41,14 +41,14 @@ The result of the serialization (here stored in local variable `s`) is a [String
 * Haxe [class instances](types-class-instance.md) (not native ones)
 * [enum instances](types-enum-instance.md)
 
-###### Serialization configuration
+##### Serialization configuration
 
 Serialization can be configured in two ways. For both a static variable can be set to influence all [haxe.Serializer](http://api.haxe.org/haxe/Serializer.html) instances, and a member variable can be set to only influence a specific instance:
 
 * `USE_CACHE`, `useCache`: If true, repeated structures or class/ enum instances are serialized by reference. This can avoid infinite loops for recursive data at the expense of longer serialization time. By default, object caching is disabled; strings however are always cached.
 * `USE_ENUM_INDEX`, `useEnumIndex`: If true, enum constructors are serialized by their index instead of their name. This can make the resulting string shorter, but breaks if enum constructors are inserted into the type before deserialization. This behavior is disabled by default.
 
-###### Deserialization behavior
+##### Deserialization behavior
 
 If the serialization result is stored and later used for deserialization, care has to be taken to maintain compatibility when working with class and enum instances. It is then important to understand exactly how unserialization is implemented.
 
@@ -57,7 +57,7 @@ If the serialization result is stored and later used for deserialization, care h
 * Classes are resolved by name using `resolver.resolveClass(name)`. The instance is then created using `Type.createEmptyInstance`, which means that the class constructor is not called. Finally, the instance fields are set according to the serialized value.
 * Enums are resolved by name using `resolver.resolveEnum(name)`. The enum instance is then created using `Type.createEnum`, using the serialized argument values if available. If the constructor arguments were changed since serialization, the result is unspecified.
 
-###### Custom (de)serialization
+##### Custom (de)serialization
 
 If a class defines the member method `hxSerialize`, that method is called by the serializer and allows custom serialization of the class. Likewise, if a class defines the member method `hxUnserialize` it is called by the deserializer:
 
