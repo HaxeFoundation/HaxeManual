@@ -1,7 +1,5 @@
-import cs.Lib;
-
 class Main {
-  static function main() {
+  static public function main() {
     trace('Haxe is great!');
   }
 }

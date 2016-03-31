@@ -1,7 +1,5 @@
-import php.Lib;
-
 class Main {
-  static function main() {
-    Lib.println('Haxe is great!');
+  static public function main() {
+    trace('Haxe is great!');
   }
 }
