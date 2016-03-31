@@ -81,7 +81,6 @@ matrix:
       haxe: development
 
 install:
-  - haxelib install hxcpp > /dev/null
   - haxelib install hxcs > /dev/null
   - haxelib install hxjava > /dev/null
   - haxelib install random > /dev/null
