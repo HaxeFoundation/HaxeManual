@@ -12,9 +12,12 @@ abstract Target(String) from String to String
 	var Js = "js";
 	var Neko = "neko";
 	var Cpp = "cpp";
+	var Cppia = "cppia";
 	var Cs = "cs";
 	var Java = "java";
 	var Python = "python";
+	var Hl = "hl";
+	var Lua = "lua";
 }
 
 @:enum
