@@ -754,10 +754,10 @@ class D { } // Type-level disable
 The static analyzer currently comes with the following modules. Unless noted otherwise they are enabled if \ic{-D analyzer} is used.
 
 \begin{description}
-\item[const_propagation]: Implements sparse conditional constant propagation to promote values that are known at compile-time to usage places. Also detects dead branches.
-\item[copy_propagation]: Detects local variables that alias other local variables and replaces them accordingly.
-\item[local_dce]: Detects and removes unused local variables.
-\item[fusion]: Moves variable expressions to its usage in case of single-occurrence. Disabled on \target{Flash} and \target{Java}.
-\item[purity_inference]: Infers if fields are ``pure'', i.e. do not have any side-effects. This can improve the effect of the fusion module.
-\item[unreachable_code]: Reports unreachable code.
+\item[\ic{const_propagation}]: Implements sparse conditional constant propagation to promote values that are known at compile-time to usage places. Also detects dead branches.
+\item[\ic{copy_propagation}]: Detects local variables that alias other local variables and replaces them accordingly.
+\item[\ic{local_dce}]: Detects and removes unused local variables.
+\item[\ic{fusion}]: Moves variable expressions to its usage in case of single-occurrence. Disabled on \target{Flash} and \target{Java}.
+\item[\ic{purity_inference}]: Infers if fields are ``pure'', i.e. do not have any side-effects. This can improve the effect of the fusion module.
+\item[\ic{unreachable_code}]: Reports unreachable code.
 \end{description}
