@@ -85,7 +85,7 @@ Expression reification is used to create instances of \type{haxe.macro.Expr} in 
 
 \begin{description}
 	\item[\expr{\$\{\}} and \expr{\$e\{\}}:] \type{Expr -> Expr} This can be used to compose expressions. The expression within the delimiting \expr{\{ \}} is executed, with its value being used in place.
-	\item[\expr{\$a\{\}}:] \type{Expr -> Array<Expr>} If used in a place where an \type{Array<Expr>} is expected (e.g. call arguments, block elements), \expr{\$a\{\}} treats its value as that array. Otherwise it generates an array declaration.
+	\item[\expr{\$a\{\}}:] \type{Array<Expr> -> Array<Expr>} or \type{Array<Expr> -> Expr} If used in a place where an \type{Array<Expr>} is expected (e.g. call arguments, block elements), \expr{\$a\{\}} treats its value as that array. Otherwise it generates an array declaration.
 	\item[\expr{\$b\{\}}:] \type{Array<Expr> -> Expr} Generates a block expression from the given expression array.
 	\item[\expr{\$i\{\}}:] \type{String -> Expr} Generates an identifier from the given string.
 	\item[\expr{\$p\{\}}:] \type{Array<String> -> Expr} Generates a field expression from the given string array.
