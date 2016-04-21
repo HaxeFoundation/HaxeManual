@@ -539,7 +539,10 @@ Maps are initialized like arrays, but use the map literal syntax with the \ic{=>
 \begin{lstlisting}
 var i = 0;
 var m = new Map<Int, String>();
-while(i < 10) m.set(i, Std.string(i));
+while(i < 10) {
+    m.set(i, Std.string(i));
+    i ++;
+}
 \end{lstlisting}
 
 \section{Iterators}
