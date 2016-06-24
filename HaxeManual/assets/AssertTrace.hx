@@ -1,4 +1,4 @@
-class Test {
+class Main {
   static function assert(cond:Bool, ?pos:haxe.PosInfos) {
     if (!cond)
       haxe.Log.trace("Assert in "+pos.className+"::"+pos.methodName,pos);
