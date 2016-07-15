@@ -60,8 +60,10 @@ matrix:
 
     - env: TARGET=cpp
       haxe: 3.2.0
+      addons: {apt: {packages: [gcc-multilib, g++-multilib]}}
     - env: TARGET=cpp
       haxe: development
+      addons: {apt: {packages: [gcc-multilib, g++-multilib]}}
 
     - env: TARGET=cppia
       haxe: development
