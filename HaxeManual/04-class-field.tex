@@ -256,6 +256,7 @@ Omitting the visibility modifier usually defaults the visibility to \expr{privat
 	\item If the class is declared as \expr{extern}.
 	\item If the field is declared on an \tref{interface}{types-interfaces}.
 	\item If the field \tref{overrides}{class-field-overriding} a public field.
+	\item If the class has metadata \ic{@:publicFields}, which forces all class fields of inheriting classes to be public.
 \end{enumerate}
 
 \trivia{Protected}{Haxe has no notion of a \expr{protected} keyword known from Java, C++ and other object-oriented languages. However, its \expr{private} behavior is equal to those language's protected behavior, so Haxe actually lacks their real private behavior.}
