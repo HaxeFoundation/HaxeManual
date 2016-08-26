@@ -90,8 +90,10 @@ matrix:
     - env: TARGET=java
       haxe: development
 
+    # There is a bug in Haxe 3.2.1...
+    # https://travis-ci.org/andyli/HaxeManual/jobs/155260530#L229-L230
     - env: TARGET=python
-      haxe: 3.2.1
+      haxe: 3.2.0
     - env: TARGET=python
       haxe: development
 
