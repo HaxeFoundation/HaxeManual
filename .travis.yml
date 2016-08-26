@@ -8,7 +8,7 @@ matrix:
       install:
         - sudo apt-get install calibre -qq
         - mkdir -p ~/Downloads
-        - cd ~/Downloads
+        - pushd ~/Downloads
         # install fonts
         - mkdir -p ~/.fonts
         - wget https://github.com/adobe-fonts/source-code-pro/archive/2.010R-ro/1.030R-it.zip
@@ -27,13 +27,14 @@ matrix:
         - sudo dpkg -i pandoc-1.15.0.6-1-amd64.deb
         # mupdf
         - curl -s -L --retry 3 http://mupdf.com/downloads/archive/mupdf-1.7a-source.tar.gz | tar -C . -x -z -f -
-        - cd mupdf-1.7a-source
-        - make HAVE_X11=no
-        - sudo make HAVE_X11=no install
+        - pushd mupdf-1.7a-source
+        -   make HAVE_X11=no
+        -   sudo make HAVE_X11=no install
+        - popd
         # haxelibs
         - haxelib git hxargs https://github.com/Simn/hxargs.git
         - haxelib git hxparse https://github.com/Simn/hxparse.git
-        - cd $TRAVIS_BUILD_DIR
+        - popd
       script:
         - cd convert
         - haxe convert.hxml -D recompileEnv
