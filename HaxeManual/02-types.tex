@@ -138,7 +138,7 @@ Comparison involving at least one Dynamic value is unspecifed and platform-speci
 
 \define[Type]{Bool}{define-bool}{Represents a value which can be either \emph{true} or \emph{false}.}
 
-Values of type \type{Bool} are a common occurence in \emph{conditions} such as \tref{\expr{if}}{expression-if} and \tref{\expr{while}}{expression-while}. The following \emph{operators} accept and return \type{Bool} values:
+Values of type \type{Bool} are a common occurrence in \emph{conditions} such as \tref{\expr{if}}{expression-if} and \tref{\expr{while}}{expression-while}. The following \emph{operators} accept and return \type{Bool} values:
 
 \begin{itemize}
 	\item \expr{\&\&} (and)
@@ -612,7 +612,7 @@ Use of \type{Dynamic} should be minimized as there are better options in many si
 
 Although the return type of \expr{Json.parse} is \type{Dynamic}, the type of local variable \expr{json} is not bound to it and remains a monomorph. It is then inferred as an \tref{anonymous structure}{types-anonymous-structure} upon the \expr{json.length} field access, which causes the following \expr{json[0]} array access to fail. In order to avoid this, the variable \expr{json} can be explicitly typed as \type{Dynamic} by using \expr{var json:Dynamic}.
 
-\trivia{Dynamic in the Standard Library}{Dynamic was quite frequent in the Haxe Standard Library before Haxe 3. With the continuous improvements of the Haxe type system the occurences of Dynamic were reduced over the releases leading to Haxe 3.}
+\trivia{Dynamic in the Standard Library}{Dynamic was quite frequent in the Haxe Standard Library before Haxe 3. With the continuous improvements of the Haxe type system the occurrences of Dynamic were reduced over the releases leading to Haxe 3.}
 
 \subsection{Dynamic with Type Parameter}
 \label{types-dynamic-with-type-parameter}

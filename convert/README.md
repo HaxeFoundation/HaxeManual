@@ -24,7 +24,7 @@ Exception... No Match:
 Most common LaTeX commands are correctly parsed, but the list is not exhaustive.  To add a new LaTeX command:
 
 if it is a custom (i.e. not standard) LaTeX command:
-1. Add it as a CustomCommand in LatexParser.hx --There are plenty of examples in the file.
+1. Add it as a `CustomCommand` in LatexParser.hx --There are plenty of examples in the file.
 
 If it is a standard LaTeX command:
 1. Add the command to the enum in *LatexCommand.hx*

@@ -35,9 +35,14 @@ matrix:
         - haxelib git hxargs https://github.com/Simn/hxargs.git
         - haxelib git hxparse https://github.com/Simn/hxparse.git
         - popd
+        # spellcheck
+        - nvm install 6.4
+        - npm install -g markdown-spellcheck
       script:
-        - cd convert
-        - haxe convert.hxml -D recompileEnv
+        - pushd convert
+        -   haxe convert.hxml -D recompileEnv
+        - popd
+        - mdspell *.md "output/*/website/**/*.md" --ignore-numbers --ignore-acronyms --report
 
     - env: TARGET=swf
       haxe: 3.2.0

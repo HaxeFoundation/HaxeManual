@@ -660,7 +660,7 @@ The \expr{@:access(MyClass.foo)} annotation effectively subverts the visibility 
 	\item The metadata syntax is flexible enough to allow extension of this feature.
 	\item The metadata can be accessed/generated/modified by Haxe macros.
 \end{itemize}
-Of course, the main drawback of using metadata syntax is that you get no error report in case you misspell either the metadata key (@:acesss for instance) or the class/package name. However, with this feature you will get an error when you try to access a private field that you are not allowed to, therefore there is no possibility for silent errors.}
+Of course, the main drawback of using metadata syntax is that you get no error report in case you misspell either the metadata key (@:access for instance) or the class/package name. However, with this feature you will get an error when you try to access a private field that you are not allowed to, therefore there is no possibility for silent errors.}
 
 \since{3.1.0}
 
@@ -707,7 +707,7 @@ Haxe provides developers with a powerful trace system. Simply call \expr{trace} 
 trace("Hello world!");
 \end{lstlisting}
 
-In most Haxe targets trace will be printed to stdout. JavaScript uses \ic{console.log}. Each trace is displayed with the filename and linenumber information where the trace occured:
+In most Haxe targets trace will be printed to stdout. JavaScript uses \ic{console.log}. Each trace is displayed with the filename and line number information where the trace occurred:
 
 \begin{lstlisting}
 Test.hx:11: Hello world!

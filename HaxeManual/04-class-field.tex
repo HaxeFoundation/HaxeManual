@@ -209,7 +209,7 @@ The important components here are:
 
 The variable \expr{child} is explicitly typed as \type{Base} to highlight an important difference: At compile-time the type is known to be \type{Base}, but the runtime still finds the correct method \expr{myMethod} on class \type{Child}. This is because field access is resolved dynamically at runtime.
 
-The \type{Child} class can access methods it has overriden by calling \expr{super.methodName()}:
+The \type{Child} class can access methods it has overridden by calling \expr{super.methodName()}:
 
 \haxe{assets/OverrideCallParent.hx}
 

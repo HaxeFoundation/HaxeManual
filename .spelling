@@ -1,0 +1,327 @@
+# markdown-spellcheck spelling configuration file
+# Format - lines beginning # are comments
+# global dictionary is at the start, file overrides afterwards
+# one word per line, to define a file override use ' - filename'
+# where filename is relative to this configuration file
+tex
+haxe
+md
+enum
+bindable
+behavior
+extern
+contravariance
+accessor
+behavioral
+haxelib
+ActionScript
+swf
+neko
+Main.hx
+stderr
+hx
+dce
+std
+try.haxe.org
+analyzer
+ByteArray
+params
+const
+Bool
+contravariant
+EnumValue
+reification
+Int
+subtyping
+monomorph
+anymore
+typer
+lvalue
+rvalue
+typedef
+haxelib.json
+tink
+nme
+semver
+precompiled
+Krajewski
+Korostelev
+Josefiene
+Pertosa
+Miha
+Cannasse
+Ponticelli
+Cauê
+Waneck
+externs
+iterable
+Enums
+iterables
+enums
+ExprOf
+autoBuild
+genericBuild
+reified
+tinkerbell
+Juraj
+GenericStack
+FastList
+remoting
+json
+xml
+foreach
+math
+Std.int
+RegExp
+EReg
+base64
+deserialized
+deserialize
+deserialization
+unserialization
+serializer
+deserializer
+unserializer
+expr
+globals
+sys
+cygwin
+dll
+emscripten
+gph
+hardfp
+ios
+iphone
+iphoneos
+iphonesim
+linux
+macos
+mingw
+rpi
+tizen
+toolchain
+webos
+winrt
+xcompile
+color
+gray
+center
+standalone
+FlashPlayer
+jquery
+favor
+typedefs
+SWFObject
+js
+Node.js
+vars
+fulfill
+monomorphs
+unary
+nullability
+hxml
+plugin
+stdout
+HaxeManual
+ - convert/README.md
+HaxeDoc.tex
+LatexParser.hx
+LatexCommand.hx
+ - output/HaxeManual/website/cr-completion-position.md
+String.hx
+ - output/HaxeManual/website/cr-dce.md
+haxe.macro.Compiler.keep
+ - output/HaxeManual/website/cr-resources.md
+getString
+_message.txt
+getBytes
+ - output/HaxeManual/website/cr-rtti-structure.md
+isPrivate
+isExtern
+isInterface
+tdynamic
+impl
+athis
+isPublic
+isOverride
+args
+ - output/HaxeManual/website/cr-static-analyzer.md
+_propagation
+_dce
+_inference
+_code
+ - output/HaxeManual/website/haxelib-extraParams.md
+extraParams.hxml
+ - output/HaxeManual/website/haxelib-json-dependencies.md
+_macros
+ - output/HaxeManual/website/haxelib-json-versioning.md
+alpha.2
+rc.1
+rc.2
+ - output/HaxeManual/website/haxelib-json.md
+url
+classPath
+releasenote
+ - output/HaxeManual/website/introduction-haxe-history.md
+MTypes
+AVM-bytecode
+ - output/HaxeManual/website/lf-externs.md
+haxe.extern
+ - output/HaxeManual/website/macro-reification-expression.md
+haxe.macro.TypePath
+ - output/HaxeManual/website/macro-tools.md
+Tools.hx
+Kirchheim's
+ - output/HaxeManual/website/std-Json-encoding.md
+haxe.Json.stringify
+ - output/HaxeManual/website/std-Json-implementation-details.md
+haxe.Json
+ - output/HaxeManual/website/std-Json-parsing.md
+haxe.Json.parse
+ - output/HaxeManual/website/std-Lambda.md
+Lambda.count
+ints
+ - output/HaxeManual/website/std-math-special-numbers.md
+Math.sqrt
+_INFINITY
+ - output/HaxeManual/website/std-remoting-connection.md
+haxe.remoting.Connection
+haxe.remoting.AsyncConnection
+ExternalConnection
+LocalConnection
+ - output/HaxeManual/website/std-serialization.md
+haxe.Serializer
+haxe.Unserializer
+ - output/HaxeManual/website/std-template.md
+haxe.Template
+e1
+e2
+Template.execute
+Template.globals
+ - output/HaxeManual/website/std-unit-testing.md
+haxe.unit
+haxe.unit.TestCase
+haxe.unit.TestRunner
+TestCase
+ - output/HaxeManual/website/std-Xml-encoding.md
+xml.toString
+ - output/HaxeManual/website/std-Xml-parsing.md
+Xml.parse
+ - output/HaxeManual/website/std-Xml.md
+haxe.Xml
+ - output/HaxeManual/website/target-cpp-defines.md
+_HOST
+_NDK
+_DIR
+_ROOT
+_32
+_COMPILE
+_CACHE
+_THREADS
+_CONFIG
+_CYGWIN
+_DEPENDS
+_OK
+_EXIT
+_ON
+_ERROR
+_FORCE
+_PDB
+_SERVER
+_M32
+_M64
+_ARMV6
+_ARMV7
+_ARMV7S
+_ARM64
+_X86
+_MINGW
+_MSVC
+_CUSTOM
+_VER
+_NO
+_COLOR
+_COLOUR
+_VERBOSE
+_WINXP
+_COMPAT
+_API
+_LEVEL
+_DEBUG
+_LINK
+_STACK
+_TRACE
+_LINE
+_CHECK
+_POINTER
+_DEBUGGER
+_CPP11
+_STRICT
+_CASTS
+_VISIT
+_ALLOCS
+_OPTIMIZE
+_FOR
+_SIZE
+_MACOSX
+_SDK
+_XCODE
+_LOCATION
+_AUTO
+_TARGET
+_VERSION
+_GCC
+_FILETYPES
+_PRECOMPILED
+_HEADERS
+_import
+_include
+_link
+emcc
+_ver
+_host
+_GC
+_MOVING
+ - output/HaxeManual/website/target-flash-external-libraries.md
+subpackages
+ - output/HaxeManual/website/target-flash-getting-started.md
+960x640
+Livedocs
+ - output/HaxeManual/website/target-flash-resources.md
+AS3-metadata
+ - output/HaxeManual/website/target-javascript-getting-started.md
+main-javascript
+ - output/HaxeManual/website/target-php-getting-started.md
+PHP.net
+ - output/HaxeManual/website/type-system-resolution-order.md
+_Figure
+itruefalsethissupernulliiiiiiii
+thisiiiii
+ - output/HaxeManual/website/types-class-instance.md
+2-dimensional
+ - output/HaxeManual/website/types-overflow.md
+haxe.Int32
+haxe.Int64
+ - output/HaxeTutorial/website/hello-world-code.md
+HelloWorld.hx
+ - output/HaxeTutorial/website/introduction-information-for-authors.md
+HaxeTutorials
+HaxeTutorials.tex.
+ - output/HaxeManual/website/lf-trace-log.md
+haxe.PosInfos
+ - README.md
+latexmk
+xelatex
+cleveref
+fullpage
+graphicx
+hyperref
+palatino
+tikz
+tkz-euclide
+tkz-qtree
+todonotes
+xcolor
+MuPDF
+epub
+mobi
