@@ -1,6 +1,6 @@
 ## 1.4 History
 
-The Haxe project was started on 22 October 2005 by French developer **Nicolas Cannasse** as a successor to the popular open-source ActionScript 2 compiler **MTASC** (Motion-Twin Action Script Compiler) and the in-house **MTypes** language, which experimented with the application of type inference to an object oriented language. Nicolas' long-time passion for programming language design and the rise of new opportunies to mix different technologies as part of his game developer work at **Motion-Twin** led to the creation of a whole new language.
+The Haxe project was started on 22 October 2005 by French developer **Nicolas Cannasse** as a successor to the popular open-source ActionScript 2 compiler **MTASC** (Motion-Twin Action Script Compiler) and the in-house **MTypes** language, which experimented with the application of type inference to an object oriented language. Nicolas' long-time passion for programming language design and the rise of new opportunities to mix different technologies as part of his game developer work at **Motion-Twin** led to the creation of a whole new language.
 
 Being spelled **haXe** back then, its beta version was released in February 2006 with the first supported targets being AVM-bytecode and Nicolas' own **Neko** virtual machine.
 

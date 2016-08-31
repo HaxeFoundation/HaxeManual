@@ -33,7 +33,7 @@ The important components here are:
 
 The variable `child` is explicitly typed as `Base` to highlight an important difference: At compile-time the type is known to be `Base`, but the runtime still finds the correct method `myMethod` on class `Child`. This is because field access is resolved dynamically at runtime.
 
-The `Child` class can access methods it has overriden by calling `super.methodName()`:
+The `Child` class can access methods it has overridden by calling `super.methodName()`:
 
 ```haxe
 class Base {

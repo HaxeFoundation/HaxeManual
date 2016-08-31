@@ -7,7 +7,7 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
  Metadata  |  Description   |  Platform 
  --- | --- | ---
 @:abi  | Function ABI/calling convention   | cpp 
-@:abstract  |  Sets the underlying class implementation as [abstract type](types-abstract.md)   |  cs  java 
+@:abstract  |  Sets the underlying class implementation as 'abstract'   |  cs  java 
 @:access _(Target path)_   |   Forces private access to package  type or field,  see [Access Control](lf-access-control.md)   |  all 
 @:allow _(Target path)_   |   Allows private access from package  type or field,  see [Access Control](lf-access-control.md)   |  all 
 @:analyzer  | Used to configure the static analyzer   |  all 
@@ -45,7 +45,7 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 @:font _(TTF path Range String)_   |  Embeds the given TrueType font into the class (must extend <code>flash.text.Font</code>)   |  flash 
 @:forward _(List of field names)_   |  [Forwards field access](types-abstract-forward.md) to underlying type   |  all 
 @:from    |  Specifies that the field of the abstract is a cast operation from the type identified in the function. See [Implicit Casts](types-abstract-implicit-casts.md)   |  all 
-@:functionCode   |      |  cpp 
+@:functionCode   |      |  cs cpp 
 @:functionTailCode   |     |  cpp 
 @:generic  |  Marks a class or class field as [generic](type-system-generic.md) so each type parameter combination generates its own type/field   |  all 
 @:genericBuild   |  Builds instances of a type using the specified macro    |  all 
@@ -70,6 +70,7 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 @:meta    |  Internally used to mark a class field as being the metadata field   |  all 
 @:multiType _(Relevant type parameters)_   |  Specifies that an abstract chooses its this-type from its <code>@:to</code> functions   |  all 
 @:native _(Output type path)_   |  Rewrites the path of a class or enum during generation   |  all 
+@:native   |  Add the <code>native</code> keyword to the generated field (JNI)   |  java 
 @:nativeChildren   |  Annotates that all children from a type should be treated as if it were an extern definition - platform native   |  cs java 
 @:nativeGen   |  Annotates that a type should be treated as if it were an extern definition - platform native   |  cs  java 
 @:nativeProperty   |  Use native properties which will execute even with dynamic usage   |  cpp 

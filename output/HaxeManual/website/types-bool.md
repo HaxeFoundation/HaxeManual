@@ -4,7 +4,7 @@
 >
 > Represents a value which can be either **true** or **false**.
 
-Values of type `Bool` are a common occurence in **conditions** such as [`if`](expression-if.md) and [`while`](expression-while.md). The following **operators** accept and return `Bool` values:
+Values of type `Bool` are a common occurrence in **conditions** such as [`if`](expression-if.md) and [`while`](expression-while.md). The following **operators** accept and return `Bool` values:
 
 * `&&` (and)
 * `||` (or)

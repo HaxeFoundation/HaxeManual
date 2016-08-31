@@ -1,6 +1,6 @@
 ## 5.12 new
 
-The `new` keyword signals that a [class](types-class-instance.md) or an [abstract](types-abstract.md) is being instantiated. It is followed by the [type path](dictionary.md#define-type-path) of the type which is to be instantiated. It may also list explicit [type parameters](type-system-type-parameters.md) enclosed in `<>` and separated by comma `,`. After an opening parenthesis `()` follow the constructor arguments, again separated by comma `,`, with a closing parenthesis `)` at the end.
+The `new` keyword signals that a [class](types-class-instance.md) or an [abstract](types-abstract.md) is being instantiated. It is followed by the [type path](dictionary.md#define-type-path) of the type which is to be instantiated. It may also list explicit [type parameters](type-system-type-parameters.md) enclosed in `<>` and separated by comma `,`. After an opening parenthesis `(` follow the constructor arguments, again separated by comma `,`, with a closing parenthesis `)` at the end.
 
 ```haxe
 class Main<T> {

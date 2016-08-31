@@ -19,7 +19,7 @@ To compile, either run the following from the command line:
 haxe -php bin -main Main
 ```
 
-Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml-file should be in the same directory as the example class.
+Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml file should be in the same directory as the example class.
 
 ```haxe
 -php bin

@@ -25,7 +25,7 @@ To compile, either run the following from the command line:
 haxe -js main-javascript.js -main Main -D js-flatten -dce full
 ```
 
-Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml-file should be in the same directory as the example class.
+Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml file should be in the same directory as the example class.
 
 ```haxe
 -js main-javascript.js

@@ -1,6 +1,6 @@
 ## 11.1 Using a Haxe library with the Haxe Compiler
 
-Any installed Haxe library can be made available to the compiler through the `-lib <library-name>` argument. This is very similiar to the `-cp <path>` argument, but expects a library name instead of a directory path. These commands are explained thoroughly in [Compiler Usage](compiler-usage.md).
+Any installed Haxe library can be made available to the compiler through the `-lib <library-name>` argument. This is very similar to the `-cp <path>` argument, but expects a library name instead of a directory path. These commands are explained thoroughly in [Compiler Usage](compiler-usage.md).
 
 For our exemplary usage we chose a very simple Haxe library called "random". It provides a set of static convenience methods to achieve various random effects, such as picking a random element from an array.
 
