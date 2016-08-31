@@ -361,8 +361,6 @@ It is also possible to match against the fields of anonymous structures and inst
 
 In the second case we bind the matched \expr{name} field to identifier \expr{n} if \expr{rating} matches \expr{"awesome"}. Of course this structure could also be put into the \type{Tree} from the previous example to combine structure and enum matching.
 
-A limitation with regards to class instances is that you cannot match against fields of their parent class.
-
 \subsection{Array matching}
 \label{lf-pattern-matching-array}
 
@@ -752,7 +750,7 @@ It is sometimes useful to define a custom method that does some traces in some c
 
 \paragraph{Tracing types}
 
-\expr{$type} is a \emph{compile-time} mechanism being called like a function, with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.
+\expr{\$type} is a \emph{compile-time} mechanism being called like a function, with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.
 
 \begin{lstlisting}
 var myValue = "foo";
