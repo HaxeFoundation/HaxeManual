@@ -17,6 +17,12 @@ We can identify different kinds of macros, which are run at specific compilation
 	\item[Expression Macros:] These are normal functions which are executed as soon as they are typed.
 \end{description}
 	
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/haxe/macro}{macro API documentation} for details about its tools, classses an methods. 
+	\item See the \href{http://code.haxe.org/category/macros/}{macro snippets and tutorials} section in the Haxe Code Cookbook.
+\end{itemize}
+
 \section{Macro Context}
 \label{macro-context}
 
@@ -31,6 +37,12 @@ Haxe macros have access to different contextual information depending on the mac
 \end{itemize}
 
 The context API is complemented by the \expr{haxe.macro.Compiler} API detailed in \Fullref{macro-initialization}. While this API is available to all macro kinds, care has to be taken for any modification outside of initialization macros. This stems from the natural limitation of undefined \tref{build order}{macro-limitations-build-order}, which could cause e.g. a flag definition through \expr{Compiler.define()} to take effect before or after a \tref{conditional compilation}{lf-condition-compilation} check against that flag.
+
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/haxe/macro/Context.html}{macro Context API documentation}. 
+	\item See the \href{http://code.haxe.org/category/macros/}{macro snippets and tutorials} section in the Haxe Code Cookbook.
+\end{itemize}
 
 \section{Arguments}
 \label{macro-arguments}
@@ -221,6 +233,12 @@ enum E {
 }
 \end{lstlisting}
 
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/Math.html}{Math API} for all available functions.
+	\item \href{http://code.haxe.org/tag/math.html}{Math related snippets and tutorials} in the Haxe Code Cookbook.
+\end{itemize}
+
 
 \subsection{@:autoBuild}
 \label{macro-auto-build}
@@ -243,7 +261,10 @@ AutoBuildingMacro.hx:11:
 
 It is important to keep in mind that the order of these macro executions is undefined, which is detailed in \Fullref{macro-limitations-build-order}.
 
-
+\paragraph{Related content}
+\begin{itemize}
+	\item \href{http://code.haxe.org/tag/build-macro.html}{Haxe snippets and tutorials about build macros} in the Haxe Code Cookbook.
+\end{itemize}
 
 \subsection{@:genericBuild}
 \label{macro-generic-build}
@@ -271,7 +292,10 @@ Haxe allows passing \tref{constant expression}{expression-constants} as a type p
 
 Here the macro logic could load a file and use its contents to generate a custom type.
 
-
+\paragraph{Related content}
+\begin{itemize}
+	\item \href{http://code.haxe.org/tag/build-macro.html}{Haxe snippets and tutorials about build macros} in the Haxe Code Cookbook.
+\end{itemize}
 
 \section{Limitations}
 \label{macro-limitations}
