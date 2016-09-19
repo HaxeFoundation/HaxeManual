@@ -21,7 +21,10 @@ class Main {
 
 ```
 
-See the [List API](http://api.haxe.org/List.html) for details about the list methods.
+##### Related content
+
+* See the [List API](http://api.haxe.org/List.html) for details about the list methods. 
+* [Data structures tutorials and examples](http://code.haxe.org/category/data-structures/) in the Haxe Code Cookbook.
 
 ---
 

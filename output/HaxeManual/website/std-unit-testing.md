@@ -79,7 +79,9 @@ public function testArray() {
 }
 ``` 
 
-See the [haxe.unit](http://api.haxe.org/haxe/unit/) package on the API documentation for more details.
+##### Related content
+
+* See the [haxe.unit](http://api.haxe.org/haxe/unit/) package on the API documentation for more details.
 
 ---
 

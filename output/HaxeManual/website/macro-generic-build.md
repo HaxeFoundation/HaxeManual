@@ -75,6 +75,10 @@ class Main {
 
 Here the macro logic could load a file and use its contents to generate a custom type.
 
+##### Related content
+
+* [Haxe snippets and tutorials about build macros](http://code.haxe.org/tag/build-macro.html) in the Haxe Code Cookbook.
+
 ---
 
 Previous section: [@:autoBuild](macro-auto-build.md)

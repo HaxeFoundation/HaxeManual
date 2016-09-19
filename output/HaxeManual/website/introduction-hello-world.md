@@ -14,7 +14,11 @@ This can be tested by saving the above code to a file named `Main.hx` and invoki
 * Haxe programs are saved in files with an extension of `.hx`.
 * The Haxe Compiler is a command-line tool which can be invoked with parameters such as `-main Main` and `--interp`.
 * Haxe programs have classes (`Main`, upper-case), which have functions (`main`, lower-case). 
-* The name of the file containing main Haxe class is the same as name of the class itself (in this case `Main.hx`).
+* The name of the file containing main Haxe class is the same as name of the class itself (in this case `Main.hx`). 
+
+##### Related content
+
+* [Beginner tutorials and examples](http://code.haxe.org/category/beginner/) in the Haxe Code Cookbook.
 
 ---
 

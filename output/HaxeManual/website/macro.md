@@ -18,6 +18,11 @@ We can identify different kinds of macros, which are run at specific compilation
 * Build Macros: These are defined for classes, enums and abstracts through the `@:build` or `@:autoBuild` [metadata](lf-metadata.md). They are executed per-type, after the type has been set up (including its relation to other types, such as inheritance for classes) but before its fields are typed (see [Type Building](macro-type-building.md)).
 * Expression Macros: These are normal functions which are executed as soon as they are typed.
 
+##### Related content
+
+* See the [macro API documentation](http://api.haxe.org/haxe/macro) for details about its tools, classes an methods. 
+* See the [macro snippets and tutorials](http://code.haxe.org/category/macros/) section in the Haxe Code Cookbook.
+
 ---
 
 Previous section: [Static analyzer](cr-static-analyzer.md)

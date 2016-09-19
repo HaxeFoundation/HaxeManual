@@ -56,7 +56,9 @@ Allowed values for metadata arguments are:
 ##### Built-in Compiler Metadata
 An exhaustive list of all defined metadata can be obtained by running `haxe --help-metas` from command line.
 
-See also the [Compiler Metadata list](cr-metadata.md).
+##### Related content
+
+* See also the [Compiler Metadata list](cr-metadata.md).
 
 ---
 

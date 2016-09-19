@@ -32,6 +32,10 @@ Static extensions are usually considered syntactic sugar and indeed they are, bu
 
 Following the rules previously described in [Resolution Order](type-system-resolution-order.md), multiple `using` expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see [Modules and Paths](type-system-modules-and-paths.md)) as static extension brings all its types into context.
 
+##### Related content
+
+* [Haxe snippets and tutorials about static extensions](http://code.haxe.org/tag/static-extension.html) in the Haxe Code Cookbook.
+
 ---
 
 Previous section: [Externs](lf-externs.md)

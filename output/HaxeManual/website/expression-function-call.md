@@ -10,6 +10,10 @@ subject(e1, e2); // call with two arguments
 subject(e1, ..., eN);
 ```
 
+##### Related content
+
+* Haxe Code Cookbook article: [How to declare functions](http://code.haxe.org/category/beginner/declare-functions.html)
+
 ---
 
 Previous section: [Array Access](expression-array-access.md)

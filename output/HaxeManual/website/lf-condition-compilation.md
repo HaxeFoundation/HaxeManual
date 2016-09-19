@@ -37,7 +37,9 @@ The Haxe parser does not parse `some-flag` as a single token and instead reads i
 ##### Built-in Compiler Flags
 An exhaustive list of all built-in defines can be obtained by invoking the Haxe Compiler with the `--help-defines` argument. The Haxe Compiler allows multiple `-D` flags per compilation.
 
-See also the [Compiler Flags list](compiler-usage-flags.md).
+##### Related content
+
+* See also the [Compiler Flags list](compiler-usage-flags.md).
 
 ---
 

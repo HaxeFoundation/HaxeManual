@@ -68,7 +68,12 @@ class Main {
 }
 ```
 
-Here we do not setup a full iterator like in the previous example, but instead define that the `MyArrayWrap<T>` has a method `iterator`, effectively forwarding the iterator method of the wrapped `Array<T>` type.
+Here we do not setup a full iterator like in the previous example, but instead define that the `MyArrayWrap<T>` has a method `iterator`, effectively forwarding the iterator method of the wrapped `Array<T>` type. 
+
+##### Related content
+
+* See the [Iterator API documentation](http://api.haxe.org/Iterator.html). 
+* [Haxe snippets and tutorials about iterators](http://code.haxe.org/tag/iterator.html) in the Haxe Code Cookbook.
 
 ---
 

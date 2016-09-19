@@ -73,6 +73,10 @@ The following Haxe keywords may not be used as identifiers:
 * var
 * while
 
+##### Related content
+
+* Haxe Code Cookbook  article: [Everything is an expression](http://code.haxe.org/category/principles/everything-is-an-expression.html).
+
 ---
 
 Previous section: [Static](class-field-static.md)

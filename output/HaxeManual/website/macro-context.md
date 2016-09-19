@@ -12,6 +12,11 @@ Haxe macros have access to different contextual information depending on the mac
 
 The context API is complemented by the `haxe.macro.Compiler` API detailed in [Initialization macros](macro-initialization.md). While this API is available to all macro kinds, care has to be taken for any modification outside of initialization macros. This stems from the natural limitation of undefined [build order](macro-limitations-build-order.md), which could cause e.g. a flag definition through `Compiler.define()` to take effect before or after a [conditional compilation](lf-condition-compilation.md) check against that flag.
 
+##### Related content
+
+* See the [macro Context API documentation](http://api.haxe.org/haxe/macro/Context.html). 
+* See the [macro snippets and tutorials](http://code.haxe.org/category/macros/) section in the Haxe Code Cookbook.
+
 ---
 
 Previous section: [Macros](macro.md)
