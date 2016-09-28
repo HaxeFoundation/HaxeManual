@@ -6,7 +6,7 @@ HaxeManual
 Contributions / Information for authors
 -------------
 
-**For contributions please edit the _.tex_ files in in [HaxeManual/](haxemanual/).  The _.md_ files are generated from it.**
+**For contributions please edit the _.tex_ files in in [HaxeManual/](HaxeManual/).  The _.md_ files are generated from it.**
 
 The manual is structured using these commands:  
 `\chapter{name}`, `\section{name}`, `\subsection{name}`, `\paragraph{name}`
