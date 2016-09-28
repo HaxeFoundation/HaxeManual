@@ -3,7 +3,70 @@ HaxeManual
 
 [![Build Status](https://travis-ci.org/HaxeFoundation/HaxeManual.svg)](https://travis-ci.org/HaxeFoundation/HaxeManual)
 
-For contributions please edit the .tex file.  The .md files are generated from it.
+Contributions / Information for authors
+-------------
+
+**For contributions please edit the _.tex_ files in in [HaxeManual/](haxemanual/).  The _.md_ files are generated from it.**
+
+The manual is structured using these commands:  
+`\chapter{name}`, `\section{name}`, `\subsection{name}`, `\paragraph{name}`
+> Chapter, section and subsection require a `\label{id} so a URL can be determined. It should not contain any spaces.
+
+Formatting:  
+`\emph{Emphasized text}`, `\expr{haxe code}`, `\type{MyClass}`, `\ic{other code}`, `\since{3.1.0}`
+
+Links:  
+* Internal: `\tref{Link name}{chapter-section-id}`
+* External: `\href{https://haxe.org}{Haxe Website}`
+
+Block of [external code](HaxeManual/assets) (preferred since those are tested):  
+```tex
+\haxe{assets/Color.hx}
+```
+Block of code:  
+```tex
+\begin{lstlisting}
+trace("Haxe is great!");
+\begin{lstlisting}
+```
+Unordered list:
+```tex
+\begin{itemize}
+	\item What is your name?
+	\item How old are you?
+\end{itemize}
+```
+Definition list:
+```tex
+\begin{description}
+	\item[Coffee] Black hot drink
+	\item[Milk] White cold drink
+\end{description}
+```
+
+Finally, if you want to contribute to the Haxe Manual but cannot be arsed to use _.tex_, just write it in any other format and we'll port it.
+
+---
+
+Generating Markdown
+-----------------
+
+Run [convert/convert.hxml](convert/convert.hxml) to generate the markdown which will be exported to the [output-folder](output/). For quick testing disable the .mobi generation.
+
+You can use the following defines when using `convert` for additional features.
+
+- `-D compileEnv`
+Generates images from custom LaTeX environments too complex for Markdown (specifically the `flowchart` environment at the time of writing). Skips already existing images.
+- `-D recompileEnv`
+Generates images even if they already exist at their destination (most useful for `convert` development).
+- `-D keepEnvPDF`
+Keeps the LaTeX generated PDF files. They're placed next to generated images with the same name.
+- `-D keepEnvTemp`
+Keeps the generated temporary directory for LaTeX compilation. Useful for debugging / development purposes.
+
+
+PDF generation
+--------------
 
 To rebuild the .pdf from the command line, run `latexmk -xelatex HaxeDoc.tex`.
 A recent version of [TeX Live] should provide latexmk and all needed packages
@@ -23,21 +86,6 @@ and their dependencies:
  - todonotes
  - underscore
  - xcolor
-
-
-Markdown generation
--------------------
-
-You can use the following defines when using `convert` for additional features.
-
-- `-D compileEnv`
-Generates images from custom LaTeX environments too complex for Markdown (specifically the `flowchart` environment at the time of writing). Skips already existing images.
-- `-D recompileEnv`
-Generates images even if they already exist at their destination (most useful for `convert` development).
-- `-D keepEnvPDF`
-Keeps the LaTeX generated PDF files. They're placed next to generated images with the same name.
-- `-D keepEnvTemp`
-Keeps the generated temporary directory for LaTeX compilation. Useful for debugging / development purposes.
 
 
 Requirements for `compileEnv`
