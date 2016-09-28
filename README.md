@@ -13,11 +13,13 @@ The manual is structured using these commands:
 > Chapter, section and subsection require a `\label{id} so a URL can be determined. It should not contain any spaces.
 
 Formatting:  
-`\emph{Emphasized text}`, `\expr{haxe code}`, `\type{MyClass}`, `\ic{other code}`, `\since{3.1.0}`
-
-Links:  
-* Internal: `\tref{Link name}{chapter-section-id}`
-* External: `\href{https://haxe.org}{Haxe Website}`
+* Bold text: `\emph{Emphasized text}`
+* Code: `\expr{haxe code}`, `\type{MyClass}`, `\ic{other code}`
+* Since: `\since{3.1.0}`
+* Definition blockquote: `\define{Definition name}{define-definition}{Definition description}`
+* Trivia blockquote: `\trivia{About Trivia}{This is trivia}`
+* Internal Links: `\tref{Link name}{chapter-section-id}` or `\Fullref{chapter-section-id}`
+* External Links: `\href{https://haxe.org}{Haxe Website}`
 
 Block of [external code](HaxeManual/assets) (preferred since those are tested):  
 ```tex
