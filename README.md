@@ -1,4 +1,4 @@
-# [<img src="https://haxe.org/img/haxe-logo-horizontal.svg" alt="Haxe logo" width="140">](https://haxe.org)- [The Haxe Manual](https://haxe.org/manual)
+# [The Haxe Manual](https://haxe.org/manual)
 
 [![Build Status](https://travis-ci.org/HaxeFoundation/HaxeManual.svg)](https://travis-ci.org/HaxeFoundation/HaxeManual)
 
