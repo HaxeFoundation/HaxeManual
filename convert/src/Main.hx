@@ -232,7 +232,6 @@ class Main {
 				case Markdown: '[${sec.title}](#)';
 			}
 		}
-		var linkPrefix = config.outputMode == Markdown ? "" : "#";
 		return '[${sec.title}](${url(sec)})';
 	}
 

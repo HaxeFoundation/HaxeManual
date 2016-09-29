@@ -2,7 +2,6 @@ import haxe.io.Path;
 import haxe.Resource;
 import sys.FileSystem;
 import sys.io.File;
-import sys.io.Process;
 
 using StringTools;
 
