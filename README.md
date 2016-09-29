@@ -9,7 +9,7 @@ Contributions / Information for authors
 
 The manual is structured using these commands:  
 `\chapter{name}`, `\section{name}`, `\subsection{name}`, `\paragraph{name}`
-> Chapter, section and subsection require a `\label{id} so a URL can be determined. It should not contain any spaces.
+> Chapter, section and subsection require a `\label{id}` so a URL can be determined. It should not contain any spaces.
 
 Formatting:  
 * Bold text: `\emph{Emphasized text}`
