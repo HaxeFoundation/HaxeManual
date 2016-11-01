@@ -138,7 +138,7 @@ The \expr{dynamic} access modifier works exactly like \expr{get} or \expr{set}, 
 \subsection{Rules for getter and setter}
 \label{class-field-property-rules}
 
-Visibility of accessor methods has no effect on the accessibility of its property. That is, if a property is \expr{public} and defined to have a getter, that getter may me defined as \expr{private} regardless.
+Visibility of accessor methods has no effect on the accessibility of its property. That is, if a property is \expr{public} and defined to have a getter, that getter may be defined as \expr{private} regardless.
 
 Both getter and setter may access their physical field for data storage. The compiler ensures that this kind of field access does not go through the accessor method if made from within the accessor method itself, thus avoiding infinite recursion:
 
