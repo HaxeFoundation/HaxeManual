@@ -1,6 +1,6 @@
 # [The Haxe Manual](https://haxe.org/manual)
 
-[![Build Status](https://travis-ci.org/HaxeFoundation/HaxeManual.svg)](https://travis-ci.org/HaxeFoundation/HaxeManual)
+[![Build Status](https://travis-ci.org/HaxeFoundation/HaxeManual.svg?branch=master)](https://travis-ci.org/HaxeFoundation/HaxeManual)
 
 Contributions / Information for authors
 -------------
