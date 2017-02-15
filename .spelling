@@ -325,3 +325,5 @@ xcolor
 MuPDF
 epub
 mobi
+ - output/HaxeManual/website/expression-for.md
+IntIterator
