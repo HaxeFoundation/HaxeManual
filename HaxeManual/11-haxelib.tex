@@ -8,7 +8,7 @@ A basic Haxe library is a collection of \ic{.hx} files. That is, libraries are d
 \section{Using a Haxe library with the Haxe Compiler}
 \label{haxelib-using-haxe}
 
-Any installed Haxe library can be made available to the compiler through the \ic{-lib <library-name>} argument. This is very similiar to the \ic{-cp <path>} argument, but expects a library name instead of a directory path. These commands are explained thoroughly in \Fullref{compiler-usage}.
+Any installed Haxe library can be made available to the compiler through the \ic{-lib <library-name>} argument. This is very similar to the \ic{-cp <path>} argument, but expects a library name instead of a directory path. These commands are explained thoroughly in \Fullref{compiler-usage}.
 
 For our exemplary usage we chose a very simple Haxe library called ``random''. It provides a set of static convenience methods to achieve various random effects, such as picking a random element from an array.
 
@@ -164,7 +164,7 @@ The following commands are available:
 	\item[Development]
 		\begin{description}
 			\item[\ic{haxelib submit [project.zip]}] submits a package to Haxelib. If the user name is unknown, you'll be first asked to register an account. If the user already exists, you will be prompted for your password. If the project does not exist yet, it will be created, but no version will be added. You will have to submit it a second time to add the first released version. If you want to modify the project url or description, simply modify your \ic{haxelib.xml} (keeping version information unchanged) and submit it again.
-			\item[\ic{haxelib register [project-name]}] submits or update a library package.
+			\item[\ic{haxelib register [user-name]}] registers a new user.
 			\item[\ic{haxelib local [project-name]}] tests the library package. Make sure everything (both installation and usage) is working correctly before submitting, since once submitted, a given version cannot be updated.
 			\item[\ic{haxelib dev [project-name] [directory]}] sets a development directory for the given project. To set project directory back to global location, run command and omit directory.
 			\item[\ic{haxelib git [project-name] [git-clone-path] [branch] [subdirectory]}] uses git repository as library. This is useful for using a more up-to-date development version, a fork of the original project, or for having a private library that you do not wish to post to Haxelib. When you use \ic{haxelib upgrade} any libraries that are installed using GIT will automatically pull the latest version.

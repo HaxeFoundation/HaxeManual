@@ -82,7 +82,7 @@ The Haxe Standard Library comes with externs of [jQuery](https://jquery.com/) an
 
 Haxe version  | Library                | Externs location 
  --- | --- | ---
-3.3           | jQuery 1.11.3 / 2.1.4  | <code>js.jquery.*</code> 
+3.3           | jQuery 1.12.1 / 2.2.1  | <code>js.jquery.*</code> 
 3.2-          | jQuery 1.6.4           | <code>js.JQuery</code> 
 3.3           | SWFObject 2.3          | <code>js.swfobject.*</code> 
 3.2-          | SWFObject 1.5          | <code>js.SWFObject</code> 

@@ -138,7 +138,7 @@ The \expr{dynamic} access modifier works exactly like \expr{get} or \expr{set}, 
 \subsection{Rules for getter and setter}
 \label{class-field-property-rules}
 
-Visibility of accessor methods has no effect on the accessibility of its property. That is, if a property is \expr{public} and defined to have a getter, that getter may me defined as \expr{private} regardless.
+Visibility of accessor methods has no effect on the accessibility of its property. That is, if a property is \expr{public} and defined to have a getter, that getter may be defined as \expr{private} regardless.
 
 Both getter and setter may access their physical field for data storage. The compiler ensures that this kind of field access does not go through the accessor method if made from within the accessor method itself, thus avoiding infinite recursion:
 
@@ -209,7 +209,7 @@ The important components here are:
 
 The variable \expr{child} is explicitly typed as \type{Base} to highlight an important difference: At compile-time the type is known to be \type{Base}, but the runtime still finds the correct method \expr{myMethod} on class \type{Child}. This is because field access is resolved dynamically at runtime.
 
-The \type{Child} class can access methods it has overriden by calling \expr{super.methodName()}:
+The \type{Child} class can access methods it has overridden by calling \expr{super.methodName()}:
 
 \haxe{assets/OverrideCallParent.hx}
 

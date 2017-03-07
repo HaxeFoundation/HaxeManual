@@ -16,7 +16,10 @@ Use the \ic{.code} property on a constant single-char string in order to compile
 "#".code // will compile as 35
 \end{lstlisting}
 
-See the \href{http://api.haxe.org/String.html}{String API} for details about its methods. 
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/String.html}{String API} for details about its methods.
+\end{itemize} 
 
 \section{Data Structures}
 \label{std-ds}
@@ -71,7 +74,11 @@ Haxe does not allow arrays of mixed types unless the parameter type is forced to
 
 \trivia{Dynamic Arrays}{In Haxe 2, mixed type array declarations were allowed. In Haxe 3, arrays can have mixed types only if they are explicitly declared as \expr{Array<Dynamic>}.}
 
-See the \href{http://api.haxe.org/Array.html}{Array API} for details about its methods. 
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/Array.html}{Array API} for details about its methods. 
+	\item \href{http://code.haxe.org/category/data-structures/}{Data structures tutorials and examples} in the Haxe Code Cookbook.
+\end{itemize} 
 
 \subsection{Vector}
 \label{std-vector}
@@ -82,7 +89,12 @@ A \type{Vector} is an optimized fixed-length \emph{collection} of elements. Much
 
 \type{haxe.ds.Vector} is implemented as an abstract type (\ref{types-abstract}) over a native array implementation for given target and can be faster for fixed-size collections, because the memory for storing its elements is pre-allocated.
 
-See the \href{http://api.haxe.org/haxe/ds/Vector.html}{Vector API} for details about the vector methods. 
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/haxe/ds/Vector.html}{Vector API} for details about the vector methods. 
+	\item \href{http://code.haxe.org/category/data-structures/}{Data structures tutorials and examples} in the Haxe Code Cookbook.
+\end{itemize}
+
 
 \subsection{List}
 \label{std-List}
@@ -98,7 +110,11 @@ A \type{List} is a \emph{collection} for storing elements.  On the surface, a li
 A simple example for working with lists:
 \haxe{assets/ListExample.hx}
 
-See the \href{http://api.haxe.org/List.html}{List API} for details about the list methods. 
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/List.html}{List API} for details about the list methods. 
+	\item \href{http://code.haxe.org/category/data-structures/}{Data structures tutorials and examples} in the Haxe Code Cookbook.
+\end{itemize}
 
 \subsection{GenericStack}
 \label{std-GenericStack}
@@ -107,9 +123,11 @@ A \type{GenericStack}, like \type{Array} and \type{List} is a container for stor
 \trivia{FastList}{In Haxe 2, the GenericStack class was known as FastList.  Since its behavior more closely resembled a typical stack, the name was changed for Haxe 3.}
 The \emph{Generic} in \type{GenericStack} is literal.  It is attributed with the \expr{:generic} metadata.  Depending on the target, this can lead to improved performance on static targets.  See \Fullref{type-system-generic} for more details.
 
-
-See the \href{http://api.haxe.org/haxe/ds/GenericStack.html}{GenericStack API} for details about its methods. 
-
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/haxe/ds/GenericStack.html}{GenericStack API} for details about its methods. 
+	\item \href{http://code.haxe.org/category/data-structures/}{Data structures tutorials and examples} in the Haxe Code Cookbook.
+\end{itemize}
 
 \subsection{Map}
 \label{std-Map}
@@ -130,7 +148,12 @@ The \type{Map} type does not exist at runtime and has been replaced with one of 
 
 Map defines \tref{array access}{types-abstract-array-access} using its key type.
 
-See the \href{http://api.haxe.org/Map.html}{Map API} for details of its methods.
+
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/Map.html}{Map API} for details of its methods.
+	\item \href{http://code.haxe.org/category/data-structures/}{Data structures tutorials and examples} in the Haxe Code Cookbook.
+\end{itemize}
 
 \subsection{Option}
 \label{std-Option}
@@ -198,7 +221,11 @@ The possible flags are the following:
 	\item \expr{u} use UTF-8 matching \emph{(Neko and C++ targets only)}
 \end{itemize}
 
-See the \href{http://api.haxe.org/EReg.html}{EReg API} for details about its methods. 
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/EReg.html}{EReg API} for details about its methods. 
+	\item \href{http://code.haxe.org/tag/ereg.html}{Haxe snippets and tutorials about regular expressions} in the Haxe Code Cookbook.
+\end{itemize}
 
 \subsection{Matching}
 \label{std-regex-match}
@@ -271,7 +298,11 @@ Here are some example uses of the math library:
 
 \haxe{assets/MathExample.hx}
 
-See the \href{http://api.haxe.org/Math.html}{Math API} for all available functions.
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/Math.html}{Math API documentation} for all available functions.
+	\item \href{http://code.haxe.org/tag/math.html}{Haxe snippets and tutorials about math} in the Haxe Code Cookbook.
+\end{itemize}
 
 \subsection{Special Numbers}
 \label{std-math-special-numbers}
@@ -279,7 +310,7 @@ See the \href{http://api.haxe.org/Math.html}{Math API} for all available functio
 The math library has definitions for several special numbers:
 
 \begin{itemize}
-	\item NaN (Not a Number): returned when a mathmatically incorrect operation is executed, e.g. Math.sqrt(-1)
+	\item NaN (Not a Number): returned when a mathematically incorrect operation is executed, e.g. Math.sqrt(-1)
 	\item POSITIVE_INFINITY: e.g. divide a positive number by zero
 	\item NEGATIVE_INFINITY: e.g. divide a negative number by zero
 	\item PI : 3.1415...
@@ -384,7 +415,11 @@ class Main {
 }
 \end{lstlisting} 
 
-See the \href{http://api.haxe.org/Lambda.html}{Lambda API} for all available functions.
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/Lambda.html}{Lambda API documentation} for all available functions.
+\end{itemize}
+
 
 \section{Template}
 \label{std-template}
@@ -477,7 +512,10 @@ Place the template-content in a new file called \ic{sample.mtt}, add \ic{-resour
 
 When running the template system on the server side, you can simply use \expr{neko.Lib.print} or \expr{php.Lib.print} instead of trace to display the HTML template to the user.
 
-See the \href{http://api.haxe.org/haxe/Template.html}{Template API} for details about its methods.
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/haxe/Template.html}{Template API} for details about its methods.
+\end{itemize}
 
 \section{Reflection}
 \label{std-reflection}
@@ -501,7 +539,7 @@ However, even if there are no typing errors it is easy to come across unexpected
 
 \haxe{assets/ReflectionMissingType.hx}
 
-The problem here is that the compiler never actually ``sees'' the type \type{haxe.Template}, so it does not compile it into the output. Furthermore, even if it were to see the type there could be issues arising from \tref{dead code elimitation}{cr-dce} eliminating types or fields which are only used via reflection.
+The problem here is that the compiler never actually ``sees'' the type \type{haxe.Template}, so it does not compile it into the output. Furthermore, even if it were to see the type there could be issues arising from \tref{dead code elimination}{cr-dce} eliminating types or fields which are only used via reflection.
 
 Another set of problems comes from the fact that, by design, several reflection functions expect arguments of type \tref{Dynamic}{types-dynamic}, meaning the compiler cannot check if the passed in arguments are correct. The following example demonstrates a common mistake when working with \expr{callMethod}:
 
@@ -513,7 +551,7 @@ A good advice when working with reflection is to wrap it in a few functions with
 
 \haxe{assets/ReflectionWrap.hx}
 
-While the method \expr{reflective} could interally work with reflection (and \type{Dynamic} for that matter) a lot, its return value is a typed structure which the callers can use in a type-safe manner.
+While the method \expr{reflective} could internally work with reflection (and \type{Dynamic} for that matter) a lot, its return value is a typed structure which the callers can use in a type-safe manner.
 
 
 \section{Serialization}
@@ -714,7 +752,13 @@ trace(xml.toString()); // <root><child1/><child2/></root>
 \section{Json}
 \label{std-Json}
 
-Haxe provides built-in support for (de-)serializing \emph{JSON}\footnote{http://en.wikipedia.org/wiki/JSON} data via the \href{http://api.haxe.org/haxe/Json.html}{haxe.Json} class.
+Haxe provides built-in support for (de-)serializing \emph{JSON}\footnote{http://en.wikipedia.org/wiki/JSON} data via the \ic{haxe.Json} class.
+
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/haxe/Json.html}{Haxe Json API documentation}.
+	\item \href{http://code.haxe.org/tag/json.html}{Haxe snippets and tutorials about JSON} in the Haxe Code Cookbook.
+\end{itemize}
 
 \subsection{Parsing JSON}
 \label{std-Json-parsing}
@@ -730,6 +774,7 @@ Note that the type of the object returned by \expr{haxe.Json.parse} is \expr{Dyn
 
 Use the \href{http://api.haxe.org/haxe/Json.html#stringify}{haxe.Json.stringify} static method to encode a Haxe value into a \emph{JSON} string:
 \haxe{assets/JsonStringify.hx}
+
 
 \subsection{Implementation details}
 \label{std-Json-implementation-details}
@@ -751,7 +796,10 @@ Older browsers (Internet Explorer 7, for instance) may not have native \emph{JSO
 
 Haxe remoting is a way to communicate between different platforms. With Haxe remoting, applications can transmit data transparently, send data and call methods between server and client side.
 
-See the \href{http://api.haxe.org/haxe/remoting/}{remoting package} on the API documentation for more details on its classes.
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/haxe/remoting/}{remoting package} on the API documentation for more details on its classes.
+\end{itemize}
 
 \subsection{Remoting Connection}
 \label{std-remoting-connection}
@@ -854,7 +902,10 @@ To make this work for the Neko target, setup a Neko Web Server, point the url in
 Haxe Remoting can send a lot of different kinds of data. See \tref{Serialization}{std-serialization}.
 
 
-See the \href{http://api.haxe.org/haxe/remoting/}{remoting package} on the API documentation for more details on its classes.
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/haxe/remoting/}{remoting package} on the API documentation for more details on its classes.
+\end{itemize}
 
 \subsection{Implementation details}
 \label{std-remoting-implementation-details}
@@ -947,4 +998,7 @@ public function testArray() {
 }
 \end{lstlisting} 
 
-See the \href{http://api.haxe.org/haxe/unit/}{haxe.unit} package on the API documentation for more details.
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/haxe/unit/}{haxe.unit} package on the API documentation for more details.
+\end{itemize}

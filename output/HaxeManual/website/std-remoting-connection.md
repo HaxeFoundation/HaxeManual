@@ -77,7 +77,9 @@ To make this work for the Neko target, setup a Neko Web Server, point the url in
 
 Haxe Remoting can send a lot of different kinds of data. See [Serialization](std-serialization.md).
 
-See the [remoting package](http://api.haxe.org/haxe/remoting/) on the API documentation for more details on its classes.
+##### Related content
+
+* See the [remoting package](http://api.haxe.org/haxe/remoting/) on the API documentation for more details on its classes.
 
 ---
 

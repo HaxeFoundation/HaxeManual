@@ -70,7 +70,7 @@ The `@:access(MyClass.foo)` annotation effectively subverts the visibility of th
 > * The metadata syntax is flexible enough to allow extension of this feature.
 > * The metadata can be accessed/generated/modified by Haxe macros.
 > 
-> Of course, the main drawback of using metadata syntax is that you get no error report in case you misspell either the metadata key (@:acesss for instance) or the class/package name. However, with this feature you will get an error when you try to access a private field that you are not allowed to, therefore there is no possibility for silent errors.
+> Of course, the main drawback of using metadata syntax is that you get no error report in case you misspell either the metadata key (@:access for instance) or the class/package name. However, with this feature you will get an error when you try to access a private field that you are not allowed to, therefore there is no possibility for silent errors.
 
 ##### since Haxe 3.1.0
 

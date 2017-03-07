@@ -45,7 +45,7 @@ The `main` method accesses these metadata values using their API. The output rev
 
 * There is a field for each metadata, with the field name being the metadata name.
 * The field values correspond to the metadata arguments. If there are no arguments, the field value is `null`. Otherwise the field value is an array with one element per argument.
-* Metadata starting with `:` is omitted. This kind of metadata is known as **compiler metadata**.
+* Metadata starting with `:` is omitted. This kind of metadata is known as **compile-time metadata**.
 
 Allowed values for metadata arguments are:
 
@@ -56,7 +56,9 @@ Allowed values for metadata arguments are:
 ##### Built-in Compiler Metadata
 An exhaustive list of all defined metadata can be obtained by running `haxe --help-metas` from command line.
 
-See also the [Compiler Metadata list](cr-metadata.md).
+##### Related content
+
+* See also the [Compiler Metadata list](cr-metadata.md).
 
 ---
 

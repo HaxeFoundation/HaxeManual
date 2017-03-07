@@ -1,9 +1,5 @@
--cp src
--main Main
--lib hxparse
--lib hxargs
--neko convert.n
+display.hxml
 -resource envTemplate.tex@tikzTemplate
 -cmd neko convert.n -i ../HaxeManual -o ../output/HaxeManual/website/ HaxeManual.tex
 -cmd neko convert.n -i ../HaxeManual -o ../output/HaxeManual/ebook/HaxeManual.mobi HaxeManual.tex
--cmd neko convert.n -i ../HaxeTutorials -o ../output/HaxeTutorial/website/ --omit-ids HaxeTutorials.tex
+

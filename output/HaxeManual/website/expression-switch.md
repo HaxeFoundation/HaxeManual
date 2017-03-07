@@ -14,7 +14,10 @@ Case body expressions never "fall through", so the [`break`](expression-break.md
 
 Switch expressions can be used as value; in that case the types of all case body expressions and the default expression must [unify](type-system-unification.md).
 
-Further details on syntax of pattern expressions are detailed in [Pattern Matching](lf-pattern-matching.md).
+##### Related content
+
+* Further details on syntax of pattern expressions are detailed in [Pattern Matching](lf-pattern-matching.md).
+* [Snippets and tutorials about pattern matching](http://code.haxe.org/tag/pattern-matching.html) in the Haxe Code Cookbook.
 
 ---
 

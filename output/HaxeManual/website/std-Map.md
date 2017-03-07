@@ -67,7 +67,10 @@ The `Map` type does not exist at runtime and has been replaced with one of the a
 
 Map defines [array access](types-abstract-array-access.md) using its key type.
 
-See the [Map API](http://api.haxe.org/Map.html) for details of its methods.
+##### Related content
+
+* See the [Map API](http://api.haxe.org/Map.html) for details of its methods.
+* [Data structures tutorials and examples](http://code.haxe.org/category/data-structures/) in the Haxe Code Cookbook.
 
 ---
 

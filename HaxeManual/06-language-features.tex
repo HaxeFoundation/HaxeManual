@@ -195,7 +195,12 @@ The Haxe parser does not parse \expr{some-flag} as a single token and instead re
 \paragraph{Built-in Compiler Flags}
 An exhaustive list of all built-in defines can be obtained by invoking the Haxe Compiler with the \expr{--help-defines} argument. The Haxe Compiler allows multiple \expr{-D} flags per compilation.
 
-See also the \tref{Compiler Flags list}{compiler-usage-flags}.
+
+\paragraph{Related content}
+\begin{itemize}
+	\item See also the \tref{Compiler Flags list}{compiler-usage-flags}.
+\end{itemize} 
+
 
 \section{Externs}
 \label{lf-externs}
@@ -266,6 +271,13 @@ Static extensions are usually considered syntactic sugar and indeed they are, bu
 
 Following the rules previously described in \Fullref{type-system-resolution-order}, multiple \expr{using} expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see \Fullref{type-system-modules-and-paths}) as static extension brings all its types into context.
 
+
+\paragraph{Related content}
+\begin{itemize}
+	\item \href{http://code.haxe.org/tag/static-extension.html}{Haxe snippets and tutorials about static extensions} in the Haxe Code Cookbook.
+\end{itemize} 
+
+
 \subsection{In the Haxe Standard Library}
 \label{lf-static-extension-in-std}
 
@@ -315,6 +327,12 @@ Some pattern matcher basics include:
 	\item A \expr{_} pattern matches anything, so \expr{case _}: is equal to \expr{default:}
 \end{itemize}
 
+\paragraph{Related content}
+\begin{itemize}
+	\item More about the \tref{switch expression}{expression-switch}.
+	\item \href{http://code.haxe.org/tag/pattern-matching.html}{Haxe snippets and tutorials about pattern matching} in the Haxe Code Cookbook.
+\end{itemize} 
+
 \subsection{Enum matching}
 \label{lf-pattern-matching-enums}
 
@@ -360,8 +378,6 @@ It is also possible to match against the fields of anonymous structures and inst
 \haxe[firstline=38,lastline=50]{assets/PatternMatching.hx}
 
 In the second case we bind the matched \expr{name} field to identifier \expr{n} if \expr{rating} matches \expr{"awesome"}. Of course this structure could also be put into the \type{Tree} from the previous example to combine structure and enum matching.
-
-A limitation with regards to class instances is that you cannot match against fields of their parent class.
 
 \subsection{Array matching}
 \label{lf-pattern-matching-array}
@@ -555,6 +571,11 @@ The type \type{MyStringIterator} in this example qualifies as iterator: It defin
 
 Here we do not setup a full iterator like in the previous example, but instead define that the \type{MyArrayWrap<T>} has a method \expr{iterator}, effectively forwarding the iterator method of the wrapped \type{Array<T>} type. 
 
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/Iterator.html}{Iterator API documentation}. 
+	\item \href{http://code.haxe.org/tag/iterator.html}{Haxe snippets and tutorials about iterators} in the Haxe Code Cookbook.
+\end{itemize} 
 
 
 \section{Function Bindings}
@@ -617,7 +638,12 @@ Allowed values for metadata arguments are:
 \paragraph{Built-in Compiler Metadata}
 An exhaustive list of all defined metadata can be obtained by running \expr{haxe --help-metas} from command line.
 
-See also the \tref{Compiler Metadata list}{cr-metadata}.
+
+\paragraph{Related content}
+\begin{itemize}
+	\item See also the \tref{Compiler Metadata list}{cr-metadata}.
+\end{itemize} 
+
 
 \section{Access Control}
 \label{lf-access-control}
@@ -660,7 +686,7 @@ The \expr{@:access(MyClass.foo)} annotation effectively subverts the visibility 
 	\item The metadata syntax is flexible enough to allow extension of this feature.
 	\item The metadata can be accessed/generated/modified by Haxe macros.
 \end{itemize}
-Of course, the main drawback of using metadata syntax is that you get no error report in case you misspell either the metadata key (@:acesss for instance) or the class/package name. However, with this feature you will get an error when you try to access a private field that you are not allowed to, therefore there is no possibility for silent errors.}
+Of course, the main drawback of using metadata syntax is that you get no error report in case you misspell either the metadata key (@:access for instance) or the class/package name. However, with this feature you will get an error when you try to access a private field that you are not allowed to, therefore there is no possibility for silent errors.}
 
 \since{3.1.0}
 

@@ -128,7 +128,9 @@ class Main {
 
 When running the template system on the server side, you can simply use `neko.Lib.print` or `php.Lib.print` instead of trace to display the HTML template to the user.
 
-See the [Template API](http://api.haxe.org/haxe/Template.html) for details about its methods.
+##### Related content
+
+* See the [Template API](http://api.haxe.org/haxe/Template.html) for details about its methods.
 
 ---
 

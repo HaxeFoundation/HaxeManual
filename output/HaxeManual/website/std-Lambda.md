@@ -74,7 +74,9 @@ class Main {
 }
 ``` 
 
-See the [Lambda API](http://api.haxe.org/Lambda.html) for all available functions.
+##### Related content
+
+* See the [Lambda API documentation](http://api.haxe.org/Lambda.html) for all available functions.
 
 ---
 

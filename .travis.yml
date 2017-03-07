@@ -8,7 +8,7 @@ matrix:
       install:
         - sudo apt-get install calibre -qq
         - mkdir -p ~/Downloads
-        - cd ~/Downloads
+        - pushd ~/Downloads
         # install fonts
         - mkdir -p ~/.fonts
         - wget https://github.com/adobe-fonts/source-code-pro/archive/2.010R-ro/1.030R-it.zip
@@ -27,41 +27,51 @@ matrix:
         - sudo dpkg -i pandoc-1.15.0.6-1-amd64.deb
         # mupdf
         - curl -s -L --retry 3 http://mupdf.com/downloads/archive/mupdf-1.7a-source.tar.gz | tar -C . -x -z -f -
-        - cd mupdf-1.7a-source
-        - make HAVE_X11=no
-        - sudo make HAVE_X11=no install
+        - pushd mupdf-1.7a-source
+        -   make HAVE_X11=no
+        -   sudo make HAVE_X11=no install
+        - popd
         # haxelibs
         - haxelib git hxargs https://github.com/Simn/hxargs.git
         - haxelib git hxparse https://github.com/Simn/hxparse.git
-        - cd $TRAVIS_BUILD_DIR
+        - popd
+        # spellcheck
+        - nvm install 6.4
+        - npm install -g markdown-spellcheck
       script:
-        - cd convert
-        - haxe convert.hxml -D recompileEnv
+        - pushd convert
+        -   haxe convert.hxml -D recompileEnv
+        - popd
+        - mdspell *.md "output/*/website/**/*.md" --ignore-numbers --ignore-acronyms --report
 
     - env: TARGET=swf
-      haxe: 3.2.0
+      haxe: 3.2.1
     - env: TARGET=swf
       haxe: development
 
     - env: TARGET=as3
-      haxe: 3.2.0
+      haxe: 3.2.1
     - env: TARGET=as3
       haxe: development
 
     - env: TARGET=js
-      haxe: 3.2.0
+      haxe: 3.2.1
     - env: TARGET=js
       haxe: development
 
     - env: TARGET=neko
-      haxe: 3.2.0
+      haxe: 3.2.1
     - env: TARGET=neko
       haxe: development
 
-    - env: TARGET=cpp
-      haxe: 3.2.0
+    - env: 
+       - TARGET=cpp
+       - HXCPP_COMPILE_CACHE=~/hxcache
+      haxe: 3.2.1
       addons: {apt: {packages: [gcc-multilib, g++-multilib]}}
-    - env: TARGET=cpp
+    - env: 
+       - TARGET=cpp
+       - HXCPP_COMPILE_CACHE=~/hxcache
       haxe: development
       addons: {apt: {packages: [gcc-multilib, g++-multilib]}}
 
@@ -69,17 +79,19 @@ matrix:
       haxe: development
 
     - env: TARGET=cs
-      haxe: 3.2.0
+      haxe: 3.2.1
       addons: {apt: {packages: [mono-devel, mono-mcs]}}
     - env: TARGET=cs
       haxe: development
       addons: {apt: {packages: [mono-devel, mono-mcs]}}
 
     - env: TARGET=java
-      haxe: 3.2.0
+      haxe: 3.2.1
     - env: TARGET=java
       haxe: development
 
+    # There is a bug in Haxe 3.2.1...
+    # https://travis-ci.org/andyli/HaxeManual/jobs/155260530#L229-L230
     - env: TARGET=python
       haxe: 3.2.0
     - env: TARGET=python

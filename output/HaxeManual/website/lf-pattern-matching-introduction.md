@@ -15,6 +15,11 @@ Some pattern matcher basics include:
 * The topmost pattern that matches the input value has its expression executed.
 * A `_` pattern matches anything, so `case _`: is equal to `default:`
 
+##### Related content
+
+* More about the [switch expression](expression-switch.md).
+* [Haxe snippets and tutorials about pattern matching](http://code.haxe.org/tag/pattern-matching.html) in the Haxe Code Cookbook.
+
 ---
 
 Previous section: [Pattern Matching](lf-pattern-matching.md)

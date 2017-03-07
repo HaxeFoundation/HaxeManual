@@ -165,6 +165,7 @@ Unreviewed:
 6.9 - Metadata
 6.10 - Access Control
 6.11 - Inline constructors
+6.12 - Logging and Trace
 7 - Compiler Usage
 7.1 - Global Compiler Flags
 8.1 - Built-in Compiler Metadata

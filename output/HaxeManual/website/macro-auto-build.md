@@ -47,6 +47,10 @@ AutoBuildingMacro.hx:11:
 
 It is important to keep in mind that the order of these macro executions is undefined, which is detailed in [Build Order](macro-limitations-build-order.md).
 
+##### Related content
+
+* [Haxe snippets and tutorials about build macros](http://code.haxe.org/tag/build-macro.html) in the Haxe Code Cookbook.
+
 ---
 
 Previous section: [Enum building](macro-enum-building.md)

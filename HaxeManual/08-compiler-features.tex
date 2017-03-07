@@ -507,15 +507,15 @@ The structure of the XML depends on the \ic{k} attribute of each entry. In all c
 \subsection{Completion server}
 \label{cr-completion-server}
 
-To get the best speed for both compilation and completion, you can use the \ic{--wait} commandline parameter to start a Haxe compilation server. You can also use \ic{-v} to have the server print the log. Here's an example:
+To get the best speed for both compilation and completion, you can use the \ic{--wait} command-line parameter to start a Haxe compilation server. You can also use \ic{-v} to have the server print the log. Here's an example:
 
 \begin{lstlisting}
 haxe -v --wait 6000
 \end{lstlisting}
 
-You can then connect to the Haxe server, send commandline parameters followed by a 0 byte and, then, read the response (either completion result or errors).
+You can then connect to the Haxe server, send command-line parameters followed by a 0 byte and, then, read the response (either completion result or errors).
 
-Use the \ic{--connect} commandline parameter to have Haxe send its compilation commands to the server instead of executing them directly :
+Use the \ic{--connect} command-line parameter to have Haxe send its compilation commands to the server instead of executing them directly :
 
 \begin{lstlisting}
 haxe --connect 6000 myproject.hxml

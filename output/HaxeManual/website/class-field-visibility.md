@@ -54,6 +54,7 @@ Omitting the visibility modifier usually defaults the visibility to `private`, b
 1. If the class is declared as `extern`.
 2. If the field is declared on an [interface](types-interfaces.md).
 3. If the field [overrides](class-field-overriding.md) a public field.
+4. If the class has metadata `@:publicFields`, which forces all class fields of inheriting classes to be public.
 
 > ##### Trivia: Protected
 >

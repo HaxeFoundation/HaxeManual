@@ -42,7 +42,7 @@ OK 1 tests, 0 failed, 1 success
 ##### Test functions
 The `haxe.unit.TestCase` class comes with three test functions.
 
-* `assertEquals(a, b)` Succeeds if `a` and `b` are equal, where `a` is value tested and `b` is the expected value.
+* `assertEquals(expected, actual)` Succeeds if `expected` and `actual` are equal
 * `assertTrue(a)` Succeeds if `a` is `true`
 * `assertFalse(a)` Succeeds if `a` is `false`
 
@@ -79,7 +79,9 @@ public function testArray() {
 }
 ``` 
 
-See the [haxe.unit](http://api.haxe.org/haxe/unit/) package on the API documentation for more details.
+##### Related content
+
+* See the [haxe.unit](http://api.haxe.org/haxe/unit/) package on the API documentation for more details.
 
 ---
 

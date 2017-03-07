@@ -31,8 +31,12 @@ The second question usually comes down to providing an argument specifying the d
 * `-java directory` Generates [Java](#) source code in specified directory and compiles it using the Java Compiler.
 * `-python file_name` Generates [Python](#) source code in the specified file.
 
+##### Related content
+
+* [Compilation tutorials](http://code.haxe.org/category/compilation/) in the Haxe Code Cookbook.
+
 ---
 
-Previous section: [Inline constructors](lf-inline-constructor.md)
+Previous section: [Logging and Trace](lf-trace-log.md)
 
 Next section: [Global Compiler Flags](compiler-usage-flags.md)

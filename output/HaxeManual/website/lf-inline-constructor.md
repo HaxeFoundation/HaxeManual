@@ -40,4 +40,4 @@ Main.main = function() {
 
 Previous section: [Access Control](lf-access-control.md)
 
-Next section: [Compiler Usage](compiler-usage.md)
+Next section: [Logging and Trace](lf-trace-log.md)

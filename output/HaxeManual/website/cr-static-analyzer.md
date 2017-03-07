@@ -33,12 +33,11 @@ class D { } // Type-level disable
 
 The static analyzer currently comes with the following modules. Unless noted otherwise they are enabled if `-D analyzer` is used.
 
-* const_propagation: Implements sparse conditional constant propagation to promote values that are known at compile-time to usage places. Also detects dead branches.
-* copy_propagation: Detects local variables that alias other local variables and replaces them accordingly.
-* local_dce: Detects and removes unused local variables.
-* fusion: Moves variable expressions to its usage in case of single-occurrence. Disabled on Flash and Java.
-* purity_inference: Infers if fields are "pure", i.e. do not have any side-effects. This can improve the effect of the fusion module.
-* unreachable_code: Reports unreachable code.
+* `const_propagation`: Implements sparse conditional constant propagation to promote values that are known at compile-time to usage places. Also detects dead branches.
+* `copy_propagation`: Detects local variables that alias other local variables and replaces them accordingly.
+* `local_dce`: Detects and removes unused local variables.
+* `fusion`: Moves variable expressions to its usage in case of single-occurrence. Disabled on Flash and Java.
+* `purity_inference`: Infers if fields are "pure", i.e. do not have any side-effects. This can improve the effect of the fusion module.
 
 ---
 
