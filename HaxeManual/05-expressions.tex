@@ -286,6 +286,18 @@ The typer ensures that the type of \expr{e1} can be iterated over, which is typi
 
 Variable \expr{v} is then available within loop body \expr{e2} and holds the value of the individual elements of collection \expr{e1}.
 
+\begin{lstlisting}
+var list = ["apple", "pear", "banana"];
+for (v in list) {
+  trace(v);
+}
+// apple
+// pear
+// banana
+\end{lstlisting}
+
+\paragraph{Range iteration}
+
 Haxe has a special range operator to iterate over intervals. It is a binary operator taking two \type{Int} operands: \expr{min...max} returns an \href{http://api.haxe.org/IntIterator.html}{IntIterator} instance that iterates from \expr{min} (inclusive) to \expr{max} (exclusive). Note that \expr{max} may not be smaller than \expr{min}.
 
 \begin{lstlisting}
@@ -295,6 +307,18 @@ for (i in 0...10) trace(i); // 0 to 9
 The type of a \expr{for} expression is always \type{Void}, meaning it has no value and cannot be used as right-side expression.
 
 The control flow of loops can be affected by \tref{\expr{break}}{expression-break} and \tref{\expr{continue}}{expression-continue} expressions.
+
+\begin{lstlisting}
+for (i in 0...10) {
+  if (i == 2) continue; // skip 2
+  if (i == 5) break; // stop at 5
+  trace(i);
+}
+// 0
+// 1
+// 3
+// 4
+\end{lstlisting}
 
 \paragraph{Related content}
 \begin{itemize}
