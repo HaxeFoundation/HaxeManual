@@ -9,7 +9,6 @@ class MathStaticExtension {
   }
 }
 
-
 ```
 ```haxe
 using MathStaticExtension;
