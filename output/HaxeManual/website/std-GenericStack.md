@@ -14,7 +14,6 @@ class Main {
   }
 }
 
-
 ```
 > ##### Trivia: FastList
 >

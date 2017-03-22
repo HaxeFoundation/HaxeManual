@@ -18,7 +18,6 @@ class Main {
   }
 }
 
-
 ```
 
 ##### Related content
