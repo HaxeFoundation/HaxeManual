@@ -113,6 +113,8 @@ a; // error, a is not available outside
 At runtime, blocks are evaluated from top to bottom. Control flow (e.g. \tref{exceptions}{expression-try-catch} or \tref{return expressions}{expression-return}) may leave a block before all expressions
 are evaluated.
 
+\paragraph{Variable Shadowing}
+
 Haxe allows local variable shadowing within the same block. This means that
 a \expr{var} or \expr{function} can be declared with the same name that was
 previously available in a block, effectively hiding it from the further code:
