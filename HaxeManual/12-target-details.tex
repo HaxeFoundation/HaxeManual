@@ -161,6 +161,24 @@ The Haxe Standard Library comes with externs of \href{https://jquery.com/}{jQuer
 
 There are many externs for other popular native libraries available on \tref{Haxelib library}{haxelib}. To view a list of them, check out the \href{http://lib.haxe.org/t/extern/}{extern tag}.
 
+\subsection{JavaScript untyped functions}
+\label{target-javascript-untyped}
+
+These JavaScript specific functions works only when the compiler is targeting JavaScript and should always be prefixed with \expr{untyped}. 
+
+\begin{center}
+\begin{tabular}{| l | l |}
+	\hline
+	\multicolumn{2}{|c|}{untyped Haxe JavaScript target functions} \\ \hline
+	Haxe code &  JavaScript output \\ \hline
+	\expr{untyped __js__(e, params)} & \tref{Injects raw JavaScript expression}{target-javascript-injection}. \\
+	\expr{untyped __instanceof__(o,cl)} & \ic{o instanceof cl} \\
+	\expr{untyped __typeof__(o)} & \ic{typeof o} \\
+	\expr{untyped __strict_eq__(a,b)} & \ic{a === b} \\
+	\expr{untyped __strict_neq__(a,b)} & \ic{a !== b} \\
+\end{tabular}
+\end{center}
+
 \subsection{Inject raw JavaScript}
 \label{target-javascript-injection}
 
