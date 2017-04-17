@@ -382,6 +382,69 @@ The explicit types \type{String} and \type{haxe.Template} are used here to deter
 %The constructors \expr{TObject} and \expr{TFunction} of type \expr{ValueType} are recognized even though their containing module \type{Type} is not \tref{imported}{Import}. This is possible because the return type of \expr{Type.typeof("foo")} is known to be \expr{ValueType}.
 
 
+\subsection{Inference status}
+\label{type-system-inference-status}
+
+There are different statuses that are used during type inference. The open and closed status are quite straightforward: Open anons are only relevant when accessing fields on monomorphs. They allow additional fields to be added. Upon unification they are closed, which means they do not accept any more fields. 
+
+\paragraph{Open status}
+
+Until we unify with a known type, each new field access will infer a new field into the structure. During this time the structure is opened, which means we allow to add more fields.
+
+This enable "duck typing" (aka structural subtyping), such as:
+
+\begin{lstlisting}
+function isSpecialGuest(u) {
+	return u.age == 31 && u.name == "mark";
+}
+\end{lstlisting}
+
+\ic{u} is correctly inferred as \expr{u : \{ name : String, age : Int \}} without any explicit typing required on it.
+
+\paragraph{Closed status}
+
+After we unify with a known type, each field is known which makes the structure closed. At this point no more fields can be added to the structure.
+
+\begin{lstlisting}
+function userCheck(u) {
+	// u is a monomorph here
+	// Field access turns it into an open structure
+	u.age = 31;
+	u.name = "mark";
+	
+	// Unify with closed structure
+	var user:User = u;
+	// u is closed now
+	$type(u); // { name : String, age : Int }
+	
+	// Cannot add any more fields
+	user.gender = "male";  // Compiler error: "User has no field gender"
+	
+	// Can be assigned to less specific structure
+	var s:SimpleUser = u;
+}
+
+typedef SimpleUser = { age:Int }
+typedef User = { age:Int, name:String }
+\end{lstlisting}
+
+\paragraph{Const status}
+
+Const status is relevant when working with structure declarations and the distinguishing feature is that they do not unify with less specific anon types.
+
+\begin{lstlisting}
+// const structure declaration
+var user = {age: 31, name: "mark"};
+
+// Can be assigned to a same structure
+var u:User = user; 
+
+// Cannot can be assigned to less specific structure
+var s:SimpleUser = user; 
+// Compiler error: "{ name : String, age : Int } should be SimpleUser"
+\end{lstlisting}
+
+
 \subsection{Limitations}
 \label{type-system-inference-limitations}
 
