@@ -11,7 +11,7 @@ Haxe provides developers with a powerful logging/trace system. Simply call \expr
 trace("Hello world!");
 \end{lstlisting}
 
-In most Haxe targets trace will be printed to stdout. JavaScript uses \ic{console.log}. Each trace is displayed with the filename and linenumber information where the trace occured:
+In most Haxe targets trace will be printed to stdout. JavaScript uses \ic{console.log}. Each trace is displayed with the filename and linenumber information where the trace occurred:
 
 \begin{lstlisting}
 Test.hx:11: Hello world!
@@ -48,7 +48,7 @@ You can simply remove all trace informations by compiling your project with \ic{
 \section{Position Information Parameter}
 \label{debugging-posinfos}
 
-\href{http://api.haxe.org/haxe/PosInfos.html}{haxe.PosInfos} is a magic type which can be used to generate position information into the output for debugging use.
+\href{http://api.haxe.org/haxe/PosInfos.html}{\expr{haxe.PosInfos}} is a magic type which can be used to generate position information into the output for debugging use.
 If a function has a final optional argument of this type, i.e. \expr{(..., ?pos:haxe.PosInfos)}, each call to that function which does not assign a value to that argument has its position added as call argument. 
 
 It is sometimes useful to define a custom method that does some traces in some case. The following usage is possible since in Haxe when the \expr{haxe.PosInfos} optional parameter is not set, its default value will always be replaced by the compiler:
@@ -73,7 +73,7 @@ $type(myValue); // String
 
 \paragraph{Console}
 
-Beside \tref{trace}{debugging-trace-log} Haxe exposes most of the browsers console functions, which can be accessed using \href{http://api.haxe.org/v/dev/js/html/Console.html}{js.Browser.console}:
+Beside \tref{trace}{debugging-trace-log} Haxe exposes most of the browsers console functions, which can be accessed using \href{http://api.haxe.org/v/dev/js/html/Console.html}{\expr{js.Browser.console}}:
 
 \begin{lstlisting}
 js.Browser.console.log("Hello world"); 
@@ -92,7 +92,7 @@ js.Browser.console.error("Something went wrong");
 In most browser developer tools breakpoints can be set to pause the code execution and start debugging. This mostly can be done by clicking near the line numbers. At each breakpoint JavaScript will stop executing and let the current values be inspected. After examining the values, the execution of code can be resumed (typically with a play button).
 
 In JavaScript a developer can use the \ic{debugger} statement functionality to do the same from code.
-In Haxe the same can be done with \href{http://api.haxe.org/v/js/Lib.html#debug}{js.Lib.debug} function; this inserts a \ic{debugger} statement that will make a breakpoint if a debugger is available. If no debugging functionality is available, this statement has no effect. 
+In Haxe the same can be done with \href{http://api.haxe.org/v/js/Lib.html#debug}{\expr{js.Lib.debug}} function; this inserts a \ic{debugger} statement that will make a breakpoint if a debugger is available. If no debugging functionality is available, this statement has no effect. 
 
 \begin{itemize}
 	\item Read more on the \href{https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/debugger}{debugger statement}.
