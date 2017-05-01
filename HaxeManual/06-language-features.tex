@@ -209,8 +209,9 @@ Externs can be used to describe target-specific interaction in a type-safe manne
 
 \begin{itemize}
 	\item the \expr{class} keyword is preceded by the \expr{extern} keyword,
-	\item \tref{methods}{class-field-method} have no expressions and
-	\item all argument and return types are explicit.
+	\item \tref{methods}{class-field-method} have no expressions,
+	\item all argument and return types are explicit, and
+	\item the default \tref{visibility}{class-field-visibility} is \expr{public} (\expr{private} must be specified explicitly).
 \end{itemize}
 
 A common example from the \tref{Haxe Standard Library}{std} is the \type{Math} class, as an excerpt shows:
@@ -248,6 +249,23 @@ The haxe.extern package provides two types that help mapping native semantics to
 We demonstrate the usage in this code sample:
 
 \haxe{assets/RestAndEitherType.hx}
+
+\paragraph{Visibility}
+
+Externs support the \expr{private} visibility modifier. However, because the default visibility in an extern class is \expr{public}, \expr{private} needs to be explicitly specified.
+
+Specifying \expr{private} members is helpful when an API intends to allow overriding functions. Also, Haxe cannot prevent subclasses from reusing field names unless if the fields are included in the extern definition. This is important on targets such as JavaScript where reusing a super class’s field name as a new field in a subclass is not supported.
+
+\begin{lstlisting}
+extern class ExampleSuperClass
+{
+	private function new(); // Require subclassing to use.
+	// Only allow subclasses access to this overridable function.
+	private function overridableFunction():String;
+	// This function is implicitly public:
+	function doSomething():String;
+}
+\end{lstlisting}
 
 
 \section{Static Extension}
