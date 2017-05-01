@@ -191,12 +191,12 @@ The conditions after \expr{\#if} and \expr{\#elseif} allow the following express
 
 The Haxe parser does not parse \expr{some-flag} as a single token and instead reads it as a subtraction binary operator \expr{some - flag}. In cases like this the underscore version \expr{some_flag} has to be used.
 
-\paragraph{Working with directives}
-Compiler directives are available at compile time, the following methods only work in macro context:
+\paragraph{Working with compiler flags}
+Compiler flags are available at compile time, the following methods only work in macro context:
 \begin{itemize}
-	\item To see if a compiler directive is set, use \expr{haxe.macro.Context.defined("any_flag")}. 
-	\item To get the value of a compiler directive, use \expr{haxe.macro.Context.definedValue("any_flag")}. 
-	\item To get a map of all compiler directives with its value use \expr{haxe.macro.Context.getDefines()}. 
+	\item To see if a compiler flag is set, use \expr{haxe.macro.Context.defined("any_flag")}. 
+	\item To get the value of a compiler flag, use \expr{haxe.macro.Context.definedValue("any_flag")}. 
+	\item To get a map of all compiler flags with its value use \expr{haxe.macro.Context.getDefines()}. 
 \end{itemize}
 
 \paragraph{Haxelibs}
