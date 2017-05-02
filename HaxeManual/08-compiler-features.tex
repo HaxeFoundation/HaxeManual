@@ -51,8 +51,8 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 	@:font \_(TTF path Range String)\_  &  Embeds the given TrueType font into the class (must extend \expr{flash.text.Font})  &  flash \\
 	@:forward \_(List of field names)\_  &  \tref{Forwards field access}{types-abstract-forward} to underlying type  &  all \\
 	@:from   &  Specifies that the field of the abstract is a cast operation from the type identified in the function. See \tref{Implicit Casts}{types-abstract-implicit-casts}  &  all \\
-	@:functionCode  &     &  cs cpp \\
-	@:functionTailCode  &    &  cpp \\
+	@:functionCode  &  Injects native code into the beginning of the function   &  cs cpp \\
+	@:functionTailCode  &  Injects native code into the end of the function  &  cpp \\
 	@:generic &  Marks a class or class field as \tref{generic}{type-system-generic} so each type parameter combination generates its own type/field  &  all \\
 	@:genericBuild  &  Builds instances of a type using the specified macro   &  all \\
 	@:getter \_(Class field name)\_  &  Generates a native getter function on the given field   &  flash \\
