@@ -22,26 +22,173 @@ The second question usually comes down to providing an argument specifying the d
 	\item[\ic{-cp path}] Adds a class path where \ic{.hx} source files or packages (sub-directories) can be found.
 	\item[\ic{-lib library_name}] Adds a \Fullref{haxelib} library. By default the most recent version in the local Haxelib repository is used. To use specific version, \ic{-lib library_name:version} can be used.
 	\item[\ic{-main dot_path}] Sets the main class.
+	\item[\ic{-D <var[=value]>}] Define a \tref{conditional compilation flag}{lf-condition-compilation}.
 \end{description}
 
 \emph{Output:}
 
 \begin{description}
-	\item[\ic{-js file_name}] Generates \tref{JavaScript}{target-javascript} source code in specified file.
+	\item[\ic{-js file_name.js}] Generates \tref{JavaScript}{target-javascript} source code in specified file.
 	\item[\ic{-as3 directory}] Generates ActionScript 3 source code in specified directory.
-	\item[\ic{-swf file_name}] Generates the specified file as \tref{Flash}{target-flash} .swf.
-	\item[\ic{-neko file_name}] Generates \tref{Neko}{target-neko} binary as specified file.
+	\item[\ic{-swf file_name.swf}] Generates the specified file as \tref{Flash}{target-flash} .swf.
+	\item[\ic{-neko file_name.n}] Generates \tref{Neko}{target-neko} binary as specified file.
 	\item[\ic{-php directory}] Generates \tref{PHP}{target-php} source code in specified directory.
+	\item[\ic{-php7 directory}] Generates \tref{PHP7}{target-php} source code in specified directory.
 	\item[\ic{-cpp directory}] Generates \tref{C++}{target-cpp} source code in specified directory and compiles it using native C++ compiler.
 	\item[\ic{-cs directory}] Generates \tref{C\#}{target-cs} source code in specified directory.
 	\item[\ic{-java directory}] Generates \tref{Java}{target-java} source code in specified directory and compiles it using the Java Compiler.
-	\item[\ic{-python file_name}] Generates \tref{Python}{target-python} source code in the specified file.
+	\item[\ic{-python file_name.py}] Generates \tref{Python}{target-python} source code in the specified file.
+	\item[\ic{-lua file_name.lua}] Generates \tref{Lua}{lua-python} source code in the specified file.
+	\item[\ic{-hl file_name.hl}] Generates \tref{HashLink}{target-hl} byte code in specified file.
+	\item[\ic{-cppia file_name.cppia}] Generates the specified script as \tref{cppia}{target-cppia} file.
+	\item[\ic{-x <file>}] Shortcut for compiling and executing a neko file.
+	\item[\ic{--no-output}] compiles but does not generate any file.
+	\item[\ic{--interp}] interpret the program using internal macro system.
+\end{description}
+
+\paragraph{Other global arguments}
+
+\begin{description}
+	\item[\ic{-xml <file>}] Generate XML types description. Useful for API documentation generation tools like \href{https://github.com/HaxeFoundation/dox}{Dox}.
+	\item[\ic{-v}] Turn on verbose mode.
+	\item[\ic{-dce <std|full|no>}] Set the \Fullref{cr-dce} mode (default std).
+	\item[\ic{-debug}] Add debug information to the compiled code.
+	\item[\ic{-resource <file>[@name]}] Add a named resource file.
+	\item[\ic{-prompt}] Prompt on error.
+	\item[\ic{-cmd}] Run the specified command after a successful compilation.
+	\item[\ic{--no-traces}] Don't compile trace calls in the program.
+	\item[\ic{--gen-hx-classes}] Generate hx headers for all input classes.
+	\item[\ic{--display}] Display code tips to provide \tref{completion information for IDEs and editors}{cr-completion-overview}. 
+	\item[\ic{--times}] Measure compilation times.
+	\item[\ic{--no-inline}] Disable \Fullref{class-field-inline}.
+	\item[\ic{--no-opt}] Disable code optimizations.
+	\item[\ic{--remap <package:target>}] Remap a package to another one.
+	\item[\ic{--macro}] Call the given \tref{initialization macro}{macro-initialization} before typing anything else.
+	\item[\ic{--wait <host:port>}] Wait on the given port for commands to run).
+	\item[\ic{--connect <host:port>}] Connect on the given port and run commands there).
+	\item[\ic{--cwd <dir>}] Set current working directory.
+\end{description}
+
+\paragraph{Target specific arguments}
+
+\begin{description}
+	\item[\ic{--php-front <filename>}] Select the name for the php front file.
+	\item[\ic{--php-lib <filename>}] Select the name for the php lib folder.
+	\item[\ic{--php-prefix <name>}] Prefix all classes with given name.
+	\item[\ic{-swf-version <version>}] Change the SWF version.
+	\item[\ic{-swf-header <header>}] Define SWF header (width:height:fps:color).
+	\item[\ic{-swf-lib <file>}] Add the SWF library to the compiled SWF.
+	\item[\ic{-swf-lib-extern <file>}] Use the SWF library for type checking.
+	\item[\ic{--flash-strict}] More type strict flash API.
+	\item[\ic{-java-lib <file>}] Add an external JAR or class directory library.
+	\item[\ic{-net-lib <file>[@std]}] Add an external .NET DLL file.
+	\item[\ic{-net-std <file>}] Add a root std .NET DLL search path.
+	\item[\ic{-c-arg <arg>}] Pass option \ic{arg} to the native Java/C\# compiler.
+\end{description}
+
+\trivia{Run commands after compilation}{Use \ic{-cmd} to run the specified command after a successful compilation. It can be used to run (testing) tools or to directly run the build, eg. \ic{-cmd java -jar bin/Main.jar} (for Java), \ic{-cmd node main.js} (for Node.js) or \ic{-cmd neko Main.n} (for Neko) etcetera.}
+
+\paragraph{Global compiler configuration macros:} 
+
+In order to include single modules, their paths can be listed directly on command line or in hxml: \ic{haxe ... ModuleName pack.ModuleName}. For more specific includes or excludes, use these \tref{initialization macros}{macro-initialization}:
+
+\begin{description}
+	\item[\ic{--macro include(pack:String, recursive=true, ?ignore:Array<String>, ?classPaths:Array<String>, strict=false)}] 
+		Includes all modules in package pack in the compilation.  If \ic{recursive} is true, the compiler recursively adds all sub-packages.
+	\item[\ic{--macro exclude(pack:String, recursive=true}] 
+		Exclude a specific class, enum, or all classes and enums in a package from being generated. Excluded types become \expr{extern}. If \ic{recursive} is true, the compiler recursively excludes all sub-packages.
+	\item[\ic{--macro excludeFile(fileName:String)}] 
+		Exclude classes and enums listed from given external file (one per line) from being generated.
+	\item[\ic{--macro keep(?path:String, ?paths:Array<String>, recursive=true)}] 
+		Marks a package, module or sub-type dot path to be kept by DCE. This also extends to the sub-types of resolved modules. If \ic{recursive} is true, the compiler recursively keeps all sub-packages for package paths.
+	\item[\ic{--macro includeFile(file:String, position)}] 
+		Embed a JavaScript file at compile time. \ic{position} can be either "top", "inline" or "closure". 
+\end{description}
+
+The full documentation of these methods can be found in the \href{http://api.haxe.org/haxe/macro/Compiler.html}{\expr{haxe.macro.Compiler}} API documentation.
+
+\paragraph{Help}
+
+\begin{description}
+	\item[\ic{haxe -version}] Print the current Haxe compiler version.
+	\item[\ic{haxe -help}] Display this list of options.
+	\item[\ic{haxe --help-defines}] Print help for all \tref{compiler specific defines}{compiler-usage-flags}.
+	\item[\ic{haxe --help-metas}] Print help for all \tref{compiler metadatas}{lf-condition-compilation}.
 \end{description}
 
 \paragraph{Related content}
 \begin{itemize}
 	\item \href{http://code.haxe.org/category/compilation/}{Compilation tutorials} in the Haxe Code Cookbook.
 \end{itemize}
+
+
+\section{HXML}
+\label{compiler-usage-hxml}
+
+\tref{Compiler arguments}{compiler-usage} can be stored in a .hxml file and can be executed with \ic{haxe <file.hxml>}.
+In hxml it is possible to use newlines and comments which makes it easier to maintain Haxe build configurations.
+It is possible to supply more arguments after the hxml file, e.g. \ic{haxe build.hxml -debug}.
+
+\emph{Example:}
+
+This example has a configuration which compiles the class file \ic{website.HomePage.hx} to JavaScript into a file called \ic{bin/homepage.js}, which is located in the "src" class path. And uses full dead code elimination.
+
+\begin{lstlisting}
+-cp src
+-dce full
+-js bin/homepage.js
+-main website.HomePage
+\end{lstlisting}
+
+\paragraph{Multiple build compilations:}
+
+Hxml configurations allow multiple compilation using these arguments:
+
+\begin{description}
+	\item[\ic{--next}] Separate several Haxe compilations.
+	\item[\ic{--each}] Append preceding parameters to all haxe compilations separated by \ic{--next}. This reduces the repeating params.
+\end{description}
+
+\emph{Example:}
+
+This example has a configuration which compiles three different classes into their own JavaScript files. Each build uses "src" as class path and uses full dead code elimination.
+
+\begin{lstlisting}
+-cp src
+-dce full
+
+--each
+
+-js bin/homepage.js
+-main website.HomePage
+
+--next  
+
+-js bin/gallery.js
+-main website.GalleryPage
+
+--next  
+
+-js bin/contact.js
+-main website.ContactPage
+\end{lstlisting}
+
+\paragraph{Comments inside hxml:}
+
+Inside .hxml files use a hash (i.e. \ic{\#}) to comment out the rest of the line. 
+
+\emph{Calling build configurations inside HXML:}
+
+It is possible to create a configuration that looks like this:
+
+\begin{lstlisting}
+build-server.hxml  
+--next  
+build-website.hxml  
+--next  
+build-game.hxml
+\end{lstlisting}
+
 
 \section{Global Compiler Flags}
 \label{compiler-usage-flags}
