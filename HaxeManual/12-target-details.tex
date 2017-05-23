@@ -743,12 +743,15 @@ haxe -lua out.lua -main Main
     \item \href{http://luajit.org/}{LuaJIT Homepage}
 \end{itemize}
 
-
 \subsection{Using external Lua libraries}
-The extern functionality in Haxe provides a way of declaring type signatures
+\label{target-lua-external-libraries}
+
+The \tref{extern functionality}{lf-externs} in Haxe provides a way of declaring type signatures
 for native Lua libraries.
 
 \subsubsection{Version flags}
+\label{target-lua-flags}
+
 The Lua target enables the following define flags for the Haxe complier:
 
 \begin{itemize}
@@ -760,6 +763,8 @@ The Lua target enables the following define flags for the Haxe complier:
 \end{itemize}
 
 \subsubsection{Multireturns}
+\label{target-lua-multireturns}
+
 Lua allows for multiple values to be returned from a given function.  Haxe
 does not support this by default, but can allow extern definitions to reference
 multireturn values through the \ic{@:multiReturn} metadata.
@@ -784,7 +789,7 @@ extern class NativeString {
 }
 \end{lstlisting}
 
-This example has three parts :
+This example has three parts:
 
 \begin{itemize}
     \item The extern class \ic{NativeString} which is an extern for the base
