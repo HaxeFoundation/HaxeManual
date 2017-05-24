@@ -15,6 +15,14 @@ accessor
 behavioral
 haxelib
 ActionScript
+Lua
+LuaRocks
+LuaJIT
+multireturn
+Multireturns
+bit32
+bitops
+table.pack
 swf
 neko
 Main.hx
@@ -74,6 +82,7 @@ math
 Std.int
 RegExp
 EReg
+regex
 base64
 deserialized
 deserialize
