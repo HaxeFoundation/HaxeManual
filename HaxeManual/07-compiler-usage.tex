@@ -86,7 +86,7 @@ The second question usually comes down to providing an argument specifying the d
 	\item[\ic{-c-arg <arg>}] Pass option \ic{arg} to the native Java/C\# compiler.
 \end{description}
 
-\trivia{Run commands after compilation}{Use \ic{-cmd} to run the specified command after a successful compilation. It can be used to run (testing) tools or to directly run the build, eg. \ic{-cmd java -jar bin/Main.jar} (for Java), \ic{-cmd node main.js} (for Node.js) or \ic{-cmd neko Main.n} (for Neko) etcetera.}
+\trivia{Run commands after compilation}{Use \ic{-cmd} to run the specified command after a successful compilation. It can be used to run (testing) tools or to directly run the build, e.g. \ic{-cmd java -jar bin/Main.jar} (for Java), \ic{-cmd node main.js} (for Node.js) or \ic{-cmd neko Main.n} (for Neko) etcetera.}
 
 \paragraph{Global compiler configuration macros:} 
 
@@ -131,7 +131,7 @@ It is possible to supply more arguments after the hxml file, e.g. \ic{haxe build
 
 \emph{Example:}
 
-This example has a configuration which compiles the class file \ic{website.HomePage.hx} to JavaScript into a file called \ic{bin/homepage.js}, which is located in the "src" class path. And uses full dead code elimination.
+This example has a configuration which compiles the class file \ic{website.HomePage.hx} to JavaScript into a file called \ic{bin/homepage.js}, which is located in the \ic{src} class path. And uses full dead code elimination.
 
 \begin{lstlisting}
 -cp src
@@ -151,7 +151,7 @@ Hxml configurations allow multiple compilation using these arguments:
 
 \emph{Example:}
 
-This example has a configuration which compiles three different classes into their own JavaScript files. Each build uses "src" as class path and uses full dead code elimination.
+This example has a configuration which compiles three different classes into their own JavaScript files. Each build uses \ic{src} as class path and uses full dead code elimination.
 
 \begin{lstlisting}
 -cp src
