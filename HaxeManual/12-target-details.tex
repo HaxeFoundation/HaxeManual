@@ -690,7 +690,7 @@ libraries.  Lua 5.1, 5.2, 5.3, and LuaJIT 2.0 and 2.1 (beta) are supported.
 
 Lua is a very lightweight language that ships with a much smaller  feature set
 than Haxe.  In some cases (e.g. regex), it's necessary to install supplementary
-libraries that are used to support basic haxe functionality.
+libraries that are used to support basic Haxe functionality.
 
 In order to cover all dependencies, it is recommended to install and use
 \href{https://github.com/luarocks/luarocks/wiki/Download}{LuaRocks}.  However,
@@ -794,8 +794,8 @@ This example has three parts:
 	\item The Main class that invokes the string method as a simple example.
 \end{itemize}
 
-The multireturn behavior in haxe is optimized based on usage.  If fields are
-only accessed directly, the haxe compiler will allocate the multireturn to
+The multireturn behavior in Haxe is optimized based on usage.  If fields are
+only accessed directly, the Haxe compiler will allocate the multireturn to
 individual variables.  But, if you pass or assign the entire multireturn value,
 the compiler will wrap all values into a table object.  This operation ensures
 that multireturn variable handling only carries as much overhead as needed.
