@@ -98,18 +98,25 @@ In Haxe the same can be done with \href{http://api.haxe.org/v/js/Lib.html#debug}
 	\item Read more on the \href{https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/debugger}{debugger statement}.
 \end{itemize}
 
-\paragraph{Source Maps}
 
-Haxe is able to generate source maps, allowing JS debuggers to map from generated JS back to the original Haxe source. This makes reading error stack traces, debugging with breakpoints, and profiling much easier.
+\section{Source Maps}
+\label{debugging-sourcemap}
 
-When JavaScript gets an error, the developer is helped out by showing them where the error occurred in the original Haxe source file. This saves the developer time every single time they hit an error. The web console log messages also include links to the line that generated the log message, so these messages could link back to the original source lines as well. 
+Haxe is able to generate source maps, allowing debuggers to map from generated source back to the original Haxe source. This makes reading error stack traces, debugging with breakpoints, and profiling much easier.
 
-Compiling with the `-debug` flag will create a source map (.map) alongside the .js file. 
-This file is pure for debugging purposes. In the generated JavaScript the last line will have a reference to the source-map that looks like this:
+When an error occurs, the developer is helped out by showing them where the error occurred in the original Haxe source file. This saves the developer time every single time they hit an error. The web console log messages also include links to the line that generated the log message, so these messages could link back to the original source lines as well. 
+
+Compiling with the `-debug` flag will create a source map (.map) alongside the .js file. Source maps can also be generated for release builds with \ic{-D source-map}. This file is pure for debugging purposes. 
+
+\paragraph{Source maps in JavaScript}
+
+In the generated JavaScript the last line will have a reference to the source-map that looks like this:
 
 \begin{lstlisting}
 //# sourceMappingURL=Main.js.map
 \end{lstlisting}
+
+To include the hx sources as part of the JS source map, compile with \ic{-D source-map-content}.
 
 Make sure to enable 'JS source maps' in the browser developer tool settings. 
 
