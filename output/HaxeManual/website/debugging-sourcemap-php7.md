@@ -1,4 +1,4 @@
-## 13.7 Source Maps in Php7
+## 13.5.2 Source Maps in Php7
 
 Haxe source code positions in call stack and exception stack.
 

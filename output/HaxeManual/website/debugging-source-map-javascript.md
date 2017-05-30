@@ -1,4 +1,4 @@
-## 13.6 Source Maps in JavaScript
+## 13.5.1 Source Maps in JavaScript
 
 In the generated JavaScript the last line will have a reference to the source map that looks like this:
 

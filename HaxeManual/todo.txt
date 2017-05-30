@@ -270,7 +270,7 @@ Unreviewed:
 13.3 - Tracing types
 13.4 - Debugging in JavaScript
 13.5 - Source Maps
-13.6 - Source Maps in JavaScript
-13.7 - Source Maps in Php7
+13.5.1 - Source Maps in JavaScript
+13.5.2 - Source Maps in Php7
 
 Modified:

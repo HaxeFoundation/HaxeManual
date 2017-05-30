@@ -10,10 +10,6 @@
 
 13.5: [Source Maps](debugging-source-map.md)
 
-13.6: [Source Maps in JavaScript](debugging-source-map-javascript.md)
-
-13.7: [Source Maps in Php7](debugging-sourcemap-php7.md)
-
 ---
 
 Previous section: [Multireturns](target-lua-multireturns.md)
