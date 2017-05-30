@@ -1,4 +1,4 @@
-## 12.1.6 JavaScript target Metadata
+## 12.1.5 JavaScript target Metadata
 
 This is the list of JavaScript specific metadata. For more information, see also the complete list of all [Haxe built-in metadata](cr-metadata.md).
 
@@ -12,6 +12,6 @@ This is the list of JavaScript specific metadata. For more information, see also
 
 ---
 
-Previous section: [Debugging JavaScript](target-javascript-debugging.md)
+Previous section: [JavaScript untyped functions](target-javascript-untyped.md)
 
 Next section: [Exposing Haxe classes for JavaScript](target-javascript-expose.md)

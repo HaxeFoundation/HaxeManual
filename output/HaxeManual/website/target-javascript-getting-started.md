@@ -51,6 +51,7 @@ To display the output in a browser, create an HTML-document called `index.html` 
 
 ##### More information
 
+* [Debugging in JavaScript](debugging-javascript.md)
 * [Haxe JavaScript API docs](http://api.haxe.org/js/)
 * [MDN JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
 

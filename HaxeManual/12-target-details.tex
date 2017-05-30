@@ -61,6 +61,7 @@ To display the output in a browser, create an HTML-document called \ic{index.htm
 \paragraph{More information}
 
 \begin{itemize}
+	\item \Fullref{debugging-javascript}
 	\item \href{http://api.haxe.org/js/}{Haxe JavaScript API docs}
 	\item \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference}{MDN JavaScript Reference}
 \end{itemize}
@@ -257,12 +258,6 @@ This will generate the following JavaScript code:
 var myVar = myObject.myJavaScriptFunction("Mark", 31);
 \end{lstlisting}
 
-\subsection{Debugging JavaScript}
-\label{target-javascript-debugging}
-
-Haxe is able to generate \href{http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/}{source maps}, allowing JavaScript debuggers to map from generated JavaScript back to the original Haxe source. This makes reading error stack traces, debugging with breakpoints, and profiling much easier.
-
-Compiling with the \ic{-debug} flag will create a .map alongside the .js file. Enable it in Chrome by clicking on the cog settings button in the bottom right of the Developer Tools window, and checking "Enable source maps". The pause button on the bottom left can be toggled to pause on uncaught exceptions.
 
 \subsection{JavaScript target Metadata}
 \label{target-javascript-metadata}

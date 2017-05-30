@@ -87,4 +87,4 @@ var myVar = myObject.myJavaScriptFunction("Mark", 31);
 
 Previous section: [Inject raw JavaScript](target-javascript-injection.md)
 
-Next section: [Debugging JavaScript](target-javascript-debugging.md)
+Next section: [JavaScript target Metadata](target-javascript-metadata.md)
