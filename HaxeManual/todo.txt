@@ -67,6 +67,7 @@ Unreviewed:
 2.5.1 - JSON for Structure Values
 2.5.2 - Class Notation for Structure Types
 2.5.4 - Impact on Performance
+2.5.5 - Extensions
 2.6 - Function Type
 2.6.1 - Optional Arguments
 2.6.2 - Default values
@@ -84,7 +85,6 @@ Unreviewed:
 2.9 - Monomorph
 3 - Type System
 3.1 - Typedef
-3.1.1 - Extensions
 3.2 - Type Parameters
 3.2.1 - Constraints
 3.3 - Generic
@@ -165,9 +165,9 @@ Unreviewed:
 6.9 - Metadata
 6.10 - Access Control
 6.11 - Inline constructors
-6.12 - Logging and Trace
 7 - Compiler Usage
-7.1 - Global Compiler Flags
+7.1 - HXML
+7.2 - Global Compiler Flags
 8.1 - Built-in Compiler Metadata
 8.2 - Dead Code Elimination
 8.3.1 - Overview
@@ -262,5 +262,13 @@ Unreviewed:
 12.4.1 - Getting started with Haxe/PHP
 12.4.2 - PHP untyped functions
 12.5.1 - Using C++ Defines
+12.9.1 - Getting started with Haxe/Lua
+12.9.2 - Using external Lua libraries
+12.9.3 - Version flags
+12.9.4 - Multireturns
+13.1 - Logging and Trace
+13.2 - Position Information Parameter
+13.3 - Tracing types
+13.4 - Debugging in JavaScript
 
 Modified:

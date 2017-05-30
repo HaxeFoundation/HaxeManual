@@ -37,4 +37,4 @@ typedef User = {
 
 Previous section: [Type System](type-system.md)
 
-Next section: [Extensions](type-system-extensions.md)
+Next section: [Type Parameters](type-system-type-parameters.md)

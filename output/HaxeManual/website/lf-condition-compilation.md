@@ -34,6 +34,16 @@ The conditions after `#if` and `#elseif` allow the following expressions:
 
 The Haxe parser does not parse `some-flag` as a single token and instead reads it as a subtraction binary operator `some - flag`. In cases like this the underscore version `some_flag` has to be used.
 
+##### Working with compiler flags
+Compiler flags are available at compile time, the following methods only work in macro context:
+
+* To see if a compiler flag is set, use `haxe.macro.Context.defined("any_flag")`. 
+* To get the value of a compiler flag, use `haxe.macro.Context.definedValue("any_flag")`. 
+* To get a map of all compiler flags with its value use `haxe.macro.Context.getDefines()`. 
+
+##### Haxelibs
+By default, each used haxelib version is automatically added as flag, e.g. when you add `-lib actuate`, the compiler adds `-D actuate=1.8.7`. To test if a library exists in current context, use `#if actuate`. To check a specific haxelib version, use the operators, for example `#if (actuate <= "1.8.7")`
+
 ##### Built-in Compiler Flags
 An exhaustive list of all built-in defines can be obtained by invoking the Haxe Compiler with the `--help-defines` argument. The Haxe Compiler allows multiple `-D` flags per compilation.
 

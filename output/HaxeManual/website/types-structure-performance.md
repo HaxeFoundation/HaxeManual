@@ -6,4 +6,4 @@ Using structures and, by extension, [structural subtyping](type-system-structura
 
 Previous section: [Class Notation for Structure Types](types-structure-class-notation.md)
 
-Next section: [Function Type](types-function.md)
+Next section: [Extensions](types-structure-extensions.md)

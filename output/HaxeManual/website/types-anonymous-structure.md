@@ -69,6 +69,12 @@ class Path {
 }
 ```
 
+You may also use [Extensions](types-structure-extensions.md) to "inherit" fields from other structures.
+
+```haxe
+typedef Point3 = { > Point, z : Int }
+```
+
 ---
 
 Previous section: [Using enums](types-enum-using.md)

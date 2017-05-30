@@ -53,6 +53,6 @@ Both arguments `expected` and `actual` of the `equals` function have type `T`. T
 
 ---
 
-Previous section: [Extensions](type-system-extensions.md)
+Previous section: [Typedef](type-system-typedef.md)
 
 Next section: [Constraints](type-system-type-parameter-constraints.md)

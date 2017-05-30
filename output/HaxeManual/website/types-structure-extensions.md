@@ -1,4 +1,4 @@
-## 3.1.1 Extensions
+## 2.5.5 Extensions
 
 Extensions are used to express that a structure has all the fields of a given type as well as some additional fields of its own:
 
@@ -45,6 +45,6 @@ class Main {
 
 ---
 
-Previous section: [Typedef](type-system-typedef.md)
+Previous section: [Impact on Performance](types-structure-performance.md)
 
-Next section: [Type Parameters](type-system-type-parameters.md)
+Next section: [Function Type](types-function.md)

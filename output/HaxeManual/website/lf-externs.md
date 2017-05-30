@@ -3,8 +3,9 @@
 Externs can be used to describe target-specific interaction in a type-safe manner. They are defined like normal classes, except that
 
 * the `class` keyword is preceded by the `extern` keyword,
-* [methods](class-field-method.md) have no expressions and
-* all argument and return types are explicit.
+* [methods](class-field-method.md) have no expressions,
+* all argument and return types are explicit, and
+* the default [visibility](class-field-visibility.md) is `public` (`private` must be specified explicitly).
 
 A common example from the [Haxe Standard Library](std.md) is the `Math` class, as an excerpt shows:
 
@@ -64,6 +65,23 @@ class Main {
     MyExtern.f2(12);
     //MyExtern.f2(true); // Bool should be EitherType<Int, String>
   }
+}
+```
+
+##### Visibility
+
+Externs support the `private` visibility modifier. However, because the default visibility in an extern class is `public`, `private` needs to be explicitly specified.
+
+Specifying `private` members is helpful when an API intends to allow overriding functions. Also, Haxe cannot prevent subclasses from reusing field names unless if the fields are included in the extern definition. This is important on targets such as JavaScript where reusing a super class’s field name as a new field in a subclass is not supported.
+
+```haxe
+extern class ExampleSuperClass
+{
+	private function new(); // Require subclassing to use.
+	// Only allow subclasses access to this overridable function.
+	private function overridableFunction():String;
+	// This function is implicitly public:
+	function doSomething():String;
 }
 ```
 

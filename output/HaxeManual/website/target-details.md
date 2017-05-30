@@ -16,6 +16,8 @@
 
 12.8: [Python](#)
 
+12.9: [Lua](target-lua.md)
+
 ---
 
 Previous section: [Using Haxelib](haxelib-using.md)
