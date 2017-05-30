@@ -676,3 +676,127 @@ var isFalse = untyped __physeq__(false, value);
 
 \section{Python}
 \label{target-python}
+
+\section{Lua}
+\label{target-lua}
+\state{NoContent}
+
+\subsection{Getting started with Haxe/Lua}
+\label{target-lua-getting-started}
+
+To get started with Haxe for Lua, it's necessary to pick a Lua version and install
+dependencies.  All versions of Lua are supported, but may require different
+libraries.  Lua 5.1, 5.2, 5.3, and LuaJIT 2.0 and 2.1 (beta) are supported.
+
+Lua is a very lightweight language that ships with a much smaller  feature set
+than Haxe.  In some cases (e.g. regex), it's necessary to install supplementary
+libraries that are used to support basic Haxe functionality.
+
+In order to cover all dependencies, it is recommended to install and use
+\href{https://github.com/luarocks/luarocks/wiki/Download}{LuaRocks}.  However,
+if you do not utilize relevant behavior (e.g. regex) on a given platform,
+or if you are using an embedded Lua client, then it is not necessary to
+install any packages for basic language functionality.
+
+With LuaRocks, install the following packages:
+
+\begin{lstlisting}
+luarocks install lrexlib-pcre
+luarocks install environ
+luarocks install luasocket
+luarocks install luv
+\end{lstlisting}
+
+On Lua 5.1, install the bitops library:
+\begin{lstlisting}
+luarocks install luabitop
+\end{lstlisting}
+
+On Lua 5.3, install the bit32 library instead:
+\begin{lstlisting}
+luarocks install bit32
+\end{lstlisting}
+
+When developing for multiple Lua versions, it is recommended to use
+the Python package \href{https://github.com/mpeterv/hererocks}{hererocks}.
+
+With Lua installed, it is possible to write a simple command line application.
+
+Create a new folder, and save this class as \ic{Main.hx}.
+
+\begin{lstlisting}
+class Main {
+    static function main() {
+        trace("hello world");
+    }
+}
+\end{lstlisting}
+
+To compile, run the following:
+\begin{lstlisting}
+haxe -lua out.lua -main Main
+\end{lstlisting}
+
+\paragraph{More information}
+\begin{itemize}
+	\item \href{https://www.lua.org/}{Lua Homepage}
+	\item \href{http://luajit.org/}{LuaJIT Homepage}
+\end{itemize}
+
+\subsection{Using external Lua libraries}
+\label{target-lua-external-libraries}
+
+The \tref{extern functionality}{lf-externs} in Haxe provides a way of declaring type signatures
+for native Lua libraries.
+
+\subsection{Version flags}
+\label{target-lua-flags}
+
+The Lua target enables the following define flags for the Haxe complier:
+
+\begin{itemize}
+	\item[\expr{-D lua_ver}] Enable special features for a specific Lua version. Currently, this flag will enable extern methods that are specific to certain versions (e.g. table.pack in Lua > 5.2).
+	\item[\expr{-D luajit}] Enable special features for LuaJIT.  Currently this flag will enable the \ic{jit} and \ic{ffi} module namespaces.
+\end{itemize}
+
+\subsection{Multireturns}
+\label{target-lua-multireturns}
+
+Lua allows for multiple values to be returned from a given function.  Haxe
+does not support this by default, but can allow extern definitions to reference
+multireturn values through the \ic{@:multiReturn} metadata.
+
+\begin{lstlisting}
+class Main {
+    static function main() {
+        var strfind = NativeString.find("foobar", "bar");
+        trace(strfind.begin);
+        trace(strfind.end);
+    }
+}
+
+@:native("string")
+extern class NativeString {
+	public static function find(str : String, target : String): StringFind;
+}
+
+@:multiReturn extern class StringFind {
+	var begin : Int;
+	var end : Int;
+}
+\end{lstlisting}
+
+This example has three parts:
+
+\begin{itemize}
+	\item The extern class \ic{NativeString} which is an extern for the base \ic{string} library in Lua.
+	\item The \ic{StringFind} class which is marked as \ic{@:multiReturn} that describes the return values.
+	\item The Main class that invokes the string method as a simple example.
+\end{itemize}
+
+The multireturn behavior in Haxe is optimized based on usage.  If fields are
+only accessed directly, the Haxe compiler will allocate the multireturn to
+individual variables.  But, if you pass or assign the entire multireturn value,
+the compiler will wrap all values into a table object.  This operation ensures
+that multireturn variable handling only carries as much overhead as needed.
+
