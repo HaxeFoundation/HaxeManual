@@ -23,6 +23,7 @@ multireturn
 Multireturns
 bit32
 bitops
+JStack
 table.pack
 hererocks
 swf

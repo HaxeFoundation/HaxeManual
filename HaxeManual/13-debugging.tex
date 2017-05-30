@@ -100,17 +100,19 @@ In Haxe the same can be done with \href{http://api.haxe.org/v/js/Lib.html#debug}
 
 
 \section{Source Maps}
-\label{debugging-sourcemap}
+\label{debugging-source-map}
 
 Haxe is able to generate source maps, allowing debuggers to map from generated source back to the original Haxe source. This makes reading error stack traces, debugging with breakpoints, and profiling much easier.
 
 When an error occurs, the developer is helped out by showing them where the error occurred in the original Haxe source file. This saves the developer time every single time they hit an error. The web console log messages also include links to the line that generated the log message, so these messages could link back to the original source lines as well. 
 
-Compiling with the `-debug` flag will create a source map (.map) alongside the .js file. Source maps can also be generated for release builds with \ic{-D source-map}. This file is pure for debugging purposes. 
+Compiling with the `-debug` flag will create a source map (.map) alongside the .js file. Source maps can also be generated for release builds with \ic{-D source-map}.
 
-\paragraph{Source maps in JavaScript}
 
-In the generated JavaScript the last line will have a reference to the source-map that looks like this:
+\section{Source Maps in JavaScript}
+\label{debugging-source-map-javascript}
+
+In the generated JavaScript the last line will have a reference to the source map that looks like this:
 
 \begin{lstlisting}
 //# sourceMappingURL=Main.js.map
@@ -125,3 +127,66 @@ Make sure to enable 'JS source maps' in the browser developer tool settings.
 	\item \href{https://developer.mozilla.org/en-US/docs/Tools/Debugger/How_to/Use_a_source_map}{Firefox source-maps}
 	\item \href{https://developer.apple.com/library/safari/documentation/AppleApplications/Conceptual/Safari_Developer_Guide/ResourcesandtheDOM/ResourcesandtheDOM.html#//apple_ref/doc/uid/TP40007874-CH3-SW2}{Safari source-maps}
 \end{itemize}
+
+\section{Source Maps in Php7}
+\label{debugging-sourcemap-php7}
+
+Haxe source code positions in call stack and exception stack.
+
+Since 3.4.1 Haxe can generate source maps for PHP target when compiling with \ic{-D php7} and \ic{-D source_map} flags.
+Those source maps can be utilized by \href{https://lib.haxe.org/p/jstack/}{JStack} library to automatically transform \expr{haxe.CallStack.callStack()}, \expr{haxe.CallStack.exceptionStack()} and uncaught exceptions to make them point at Haxe sources instead of generated PHP files.
+
+
+\begin{lstlisting}
+class Main {
+	static function main() {
+		terribleError();
+	}
+
+	static function terribleError() {
+		throw "Terrible error";
+	}
+}
+\end{lstlisting}
+
+Building it with flags:
+
+\begin{lstlisting}
+-main Main
+-D php7
+-php build
+-debug
+\end{lstlisting}
+
+Running this build will trace the uncaught exception:
+
+\begin{lstlisting}
+$ php build/index.php
+PHP Fatal error:  Uncaught php/_Boot/HxException: Terrible error in build/lib/Main.php:25
+Stack trace:
+#0 build/lib/Main.php(16): Main::terribleError()
+#1 build/index.php(13): Main::main()
+#2 {main}
+  thrown in build/lib/Main.php on line 25
+\end{lstlisting}
+
+Install JStack using \ic{haxelib install jstack}. JStack automatically adds \ic{-D source_map} there is no need to add it manually.
+Now if JStack is installed, add it to the compilation:
+
+\begin{lstlisting}
+-main Main
+-D php7
+-php build
+-debug
+-lib jstack
+\end{lstlisting}
+
+The output will have more informative stack trace for exceptions:
+
+\begin{lstlisting}
+$ php build/index.php
+Terrible error
+Called from Main.terribleError (src/Main.hx line 7)
+Called from Main.main (src/Main.hx line 3)
+Called from build/index.php line 13
+\end{lstlisting}
