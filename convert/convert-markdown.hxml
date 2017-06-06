@@ -1,0 +1,3 @@
+display.hxml
+-cmd neko convert.n -i ../HaxeManual -o ../output/HaxeManual/website/ HaxeManual.tex
+
