@@ -882,8 +882,8 @@ This client code example connects to the server remoting context and calls a fun
 class Client {
   static function main() {
     var cnx = haxe.remoting.HttpAsyncConnection.urlConnect("http://localhost/");
-    cnx.setErrorHandler( function(err) trace('Error: $err'); } );
-    cnx.Server.foo.call([1,2], function(data) trace('Result: $data'););
+    cnx.setErrorHandler( function(err) { trace('Error: $err'); } );
+    cnx.Server.foo.call([1,2], function(data) { trace('Result: $data'); });
   }
 }
 \end{lstlisting}
