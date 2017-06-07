@@ -52,7 +52,12 @@ Finally, if you want to contribute to the Haxe Manual but cannot be arsed to use
 Generating Markdown
 -----------------
 
-Run [convert/convert.hxml](convert/convert.hxml) to generate the markdown which will be exported to the [output-folder](output/). For quick testing disable the .mobi generation.
+Run <convert/convert-markdown.hxml> to generate the markdown which will be exported to the [website output-folder](output/HaxeManual/website). 
+
+Generating the E-Book
+-----------------
+
+Run <convert/convert-ebook.hxml> to generate the ebook PDF which will be exported to the [ebook output-folder](output/HaxeManual/ebook). 
 
 You can use the following defines when using `convert` for additional features.
 
