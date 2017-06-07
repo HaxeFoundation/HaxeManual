@@ -5,10 +5,10 @@ sudo: false
 matrix:
   include:
     - sudo: required
-      install:
-        - haxelib install convert-markdown.hxml
+      install:		
+        - haxelib git hxargs https://github.com/Simn/hxargs.git		
+        - haxelib git hxparse https://github.com/Simn/hxparse.git
         # spellcheck
-
         - nvm install 6.4
         - npm install -g markdown-spellcheck
       script:
