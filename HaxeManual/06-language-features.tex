@@ -110,7 +110,7 @@ Strings declared with a single quotes are able to access variables in the curren
 trace('My name is $name and I work in ${job.industry}');
 \end{lstlisting}
 
-\emph{\tref{Partial function application}{lf-function-bindings}:} 
+\emph{\tref{Partial function application}{lf-function-bindings}:}
 
 Any function can be applied partially, providing the values of some arguments and leaving the rest to be filled in later.
 
@@ -121,7 +121,7 @@ setToTwelve(1);
 setToTwelve(2);
 \end{lstlisting}
 
-\emph{\tref{Pattern Matching}{lf-pattern-matching}:} 
+\emph{\tref{Pattern Matching}{lf-pattern-matching}:}
 
 Complex structures can be matched against patterns, extracting information from an enum or a structure and defining specific operations for specific value combination.
 
@@ -199,7 +199,7 @@ An exhaustive list of all built-in defines can be obtained by invoking the Haxe 
 \paragraph{Related content}
 \begin{itemize}
 	\item See also the \tref{Compiler Flags list}{compiler-usage-flags}.
-\end{itemize} 
+\end{itemize}
 
 
 \section{Externs}
@@ -275,7 +275,7 @@ Following the rules previously described in \Fullref{type-system-resolution-orde
 \paragraph{Related content}
 \begin{itemize}
 	\item \href{http://code.haxe.org/tag/static-extension.html}{Haxe snippets and tutorials about static extensions} in the Haxe Code Cookbook.
-\end{itemize} 
+\end{itemize}
 
 
 \subsection{In the Haxe Standard Library}
@@ -331,7 +331,7 @@ Some pattern matcher basics include:
 \begin{itemize}
 	\item More about the \tref{switch expression}{expression-switch}.
 	\item \href{http://code.haxe.org/tag/pattern-matching.html}{Haxe snippets and tutorials about pattern matching} in the Haxe Code Cookbook.
-\end{itemize} 
+\end{itemize}
 
 \subsection{Enum matching}
 \label{lf-pattern-matching-enums}
@@ -466,7 +466,7 @@ switch(true) {
 } // Unmatched patterns: true
 \end{lstlisting}
 
-The matched type \type{Bool} admits two values \expr{true} and \expr{false}, but only \expr{false} is checked. 
+The matched type \type{Bool} admits two values \expr{true} and \expr{false}, but only \expr{false} is checked.
 
 \todo{Figure out wtf our rules are now for when this is checked.}
 
@@ -569,13 +569,13 @@ The type \type{MyStringIterator} in this example qualifies as iterator: It defin
 
 \haxe{assets/Iterable.hx}
 
-Here we do not setup a full iterator like in the previous example, but instead define that the \type{MyArrayWrap<T>} has a method \expr{iterator}, effectively forwarding the iterator method of the wrapped \type{Array<T>} type. 
+Here we do not setup a full iterator like in the previous example, but instead define that the \type{MyArrayWrap<T>} has a method \expr{iterator}, effectively forwarding the iterator method of the wrapped \type{Array<T>} type.
 
 \paragraph{Related content}
 \begin{itemize}
-	\item See the \href{http://api.haxe.org/Iterator.html}{Iterator API documentation}. 
+	\item See the \href{http://api.haxe.org/Iterator.html}{Iterator API documentation}.
 	\item \href{http://code.haxe.org/tag/iterator.html}{Haxe snippets and tutorials about iterators} in the Haxe Code Cookbook.
-\end{itemize} 
+\end{itemize}
 
 
 \section{Function Bindings}
@@ -589,6 +589,11 @@ Line 4 binds the function \expr{map.set} to a variable named \expr{f}, and appli
 A call to \expr{f(1)} then actually invokes \expr{map.set(1, "12")}, the calls to \expr{f(2)} and \expr{f(3)} are analogous. The last line proves that all three indices indeed are mapped to the value \expr{"12"}.
 
 The underscore \expr{_} can be skipped for trailing arguments, so the first argument could be bound through \expr{map.set.bind(1)}, yielding a \expr{String->Void} function that sets a new value for index \expr{1} on invocation.
+
+\paragraph{Optional arguments}
+
+If underscore is skipped for trailing optional arguments, then optional arguments will be bound to their default values. To avoid binding optional arguments underscore should be provided for each one.
+\haxe{assets/BindOptional.hx}
 
 \trivia{Callback}{Prior to Haxe 3, Haxe used to know a \expr{callback}-keyword which could be called with a function argument followed by any number of binding arguments. The name originated from a common usage were a callback-function is created with the this-object being bound.\\
 Callback would allow binding of arguments only from left to right as there was no support for the underscore \expr{_}. The choice to use an underscore was controversial and several other suggestions were made, none of which were considered superior. After all, the underscore \expr{_} at least looks like it's saying ``fill value in here'', which nicely describes its semantics.}
@@ -642,7 +647,7 @@ An exhaustive list of all defined metadata can be obtained by running \expr{haxe
 \paragraph{Related content}
 \begin{itemize}
 	\item See also the \tref{Compiler Metadata list}{cr-metadata}.
-\end{itemize} 
+\end{itemize}
 
 
 \section{Access Control}
@@ -677,7 +682,7 @@ If a type cannot be modified to allow this kind of access, the accessing method 
 
 \haxe{assets/ACL3.hx}
 
-The \expr{@:access(MyClass.foo)} annotation effectively subverts the visibility of the \expr{foo} field within the \expr{main}-method. 
+The \expr{@:access(MyClass.foo)} annotation effectively subverts the visibility of the \expr{foo} field within the \expr{main}-method.
 
 \trivia{On the choice of metadata}{The access control language feature uses the Haxe metadata syntax instead of additional language-specific syntax. There are several reasons for that:\\
 \begin{itemize}
@@ -743,22 +748,22 @@ To trace without the default position information \ic{haxe.Log.trace (msg, null)
 
 \paragraph{Custom trace}
 
-The trace can have a custom output by changing the \expr{Log.trace} method where all trace calls are redirected. 
+The trace can have a custom output by changing the \expr{Log.trace} method where all trace calls are redirected.
 
 \haxe{assets/CustomTrace.hx}
 
 The \ic{v} argument is the first parameter of the trace call. It can be a \expr{String} or any other value. The optional \ic{infos} argument contains extra position parameter, see below.
 
-The \expr{infos.customParams} array contains all extra arguments that were given to the original trace. If no extra parameters are passed, it will be \expr{null}. 
+The \expr{infos.customParams} array contains all extra arguments that were given to the original trace. If no extra parameters are passed, it will be \expr{null}.
 
 As illustration, the previous example will be compiled as if it was calling the following:
 
 \begin{lstlisting}
 haxe.Log.trace("hello", {
-	fileName : "Test.hx", 
-	lineNumber : 6, 
-	className : "Test", 
-	methodName : "main", 
+	fileName : "Test.hx",
+	lineNumber : 6,
+	className : "Test",
+	methodName : "main",
 	customParams : ["warning",123]
 });
 \end{lstlisting}
@@ -770,7 +775,7 @@ You can simply remove all trace informations by compiling your project with \ic{
 \paragraph{Extra Position Parameter}
 
 \href{http://api.haxe.org/haxe/PosInfos.html}{haxe.PosInfos} is a magic type which can be used to generate position information into the output for debugging use.
-If a function has a final optional argument of this type, i.e. \expr{(..., ?pos:haxe.PosInfos)}, each call to that function which does not assign a value to that argument has its position added as call argument. 
+If a function has a final optional argument of this type, i.e. \expr{(..., ?pos:haxe.PosInfos)}, each call to that function which does not assign a value to that argument has its position added as call argument.
 
 It is sometimes useful to define a custom method that does some traces in some case. The following usage is possible since in Haxe when the \expr{haxe.PosInfos} optional parameter is not set, its default value will always be replaced by the compiler:
 
