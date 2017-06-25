@@ -619,7 +619,7 @@ The underscore \expr{_} can be skipped for trailing arguments, so the first argu
 
 \paragraph{Optional arguments}
 
-If underscore is skipped for trailing optional arguments, then optional arguments will be bound to their default values. To avoid binding optional arguments underscore should be provided for each one.
+By default, trailing optional arguments are bound to their default values and do not become arguments of the result function. This can be changed by using an explicit underscore \expr{_} instead, in which case the optional argument of the original function becomes a non-optional argument of the result function.
 \haxe{assets/BindOptional.hx}
 
 \trivia{Callback}{Prior to Haxe 3, Haxe used to know a \expr{callback}-keyword which could be called with a function argument followed by any number of binding arguments. The name originated from a common usage were a callback-function is created with the this-object being bound.\\
