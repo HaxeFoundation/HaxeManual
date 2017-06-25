@@ -17,4 +17,4 @@ output/HaxeManual/ebook/dictionary.md
 output/HaxeManual/ebook/sections.txt
 HaxeManual/assets/bin/
 tests/RunTravis.n
-convert/.vscode/
+.vscode

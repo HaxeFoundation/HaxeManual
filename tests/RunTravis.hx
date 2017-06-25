@@ -68,7 +68,8 @@ class RunTravis
 		"Test.hx",
 		"Variance.hx",
 		"Visibility.hx",
-		"Visibility2.hx"
+		"Visibility2.hx",
+		"BindOptional.hx"
 	];
 
 	/** Examples that are not included in the tests. */

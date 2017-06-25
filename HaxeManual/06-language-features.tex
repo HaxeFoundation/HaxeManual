@@ -617,6 +617,11 @@ A call to \expr{f(1)} then actually invokes \expr{map.set(1, "12")}, the calls t
 
 The underscore \expr{_} can be skipped for trailing arguments, so the first argument could be bound through \expr{map.set.bind(1)}, yielding a \expr{String->Void} function that sets a new value for index \expr{1} on invocation.
 
+\paragraph{Optional arguments}
+
+By default, trailing optional arguments are bound to their default values and do not become arguments of the result function. This can be changed by using an explicit underscore \expr{_} instead, in which case the optional argument of the original function becomes a non-optional argument of the result function.
+\haxe{assets/BindOptional.hx}
+
 \trivia{Callback}{Prior to Haxe 3, Haxe used to know a \expr{callback}-keyword which could be called with a function argument followed by any number of binding arguments. The name originated from a common usage were a callback-function is created with the this-object being bound.\\
 Callback would allow binding of arguments only from left to right as there was no support for the underscore \expr{_}. The choice to use an underscore was controversial and several other suggestions were made, none of which were considered superior. After all, the underscore \expr{_} at least looks like it's saying ``fill value in here'', which nicely describes its semantics.}
 
