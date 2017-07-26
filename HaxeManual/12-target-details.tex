@@ -571,6 +571,135 @@ var isFalse = untyped __physeq__(false, value);
 \label{target-cpp}
 \state{NoContent}
 
+\subsection{Getting started with Haxe/C++}
+\label{target-cpp-getting-started}
+The c++ target uses various c++ compilers, which are assumed to be already installed on the system, to create native executables or libraries.  The compilation happens in two phases.  Firstly, the haxe compiler generates source, header and build files in an output directory.  Secondly, the "hxcpp" \tref{Haxelib library}{haxelib} is invoked to run the system compilers and linkers required to generate the ultimate result.
+
+\paragraph{Prerequisites}
+Before you can use the cpp target, you need in install
+\begin{itemize}
+	\item hxcpp, eg \ic{haxelib install hxcpp}.
+	\item A system or cross-compiler
+\end{itemize}
+
+\paragraph{System Compilers}
+System compilers are supported on the three primary operating systems - Mac, Linux, and Windows.  On Mac, it is recommended that you install the latest Xcode from the Mac App Store.  On Linux, it is recommended that you use the system package manager to install the compilers and on Windows, Microsoft Visual Studio is recommended.  On Windows, you can also use gcc-based compilers.  A minimal distribution is included in a \tref{Haxelib library}{haxelib}, and can be installed with \ic{haxelib install minimingw}.
+
+\paragraph{Cross Compilers}
+Hxcpp can be used to compile for non-host architectures if you have a suitable cross-compiler installed.  The compilers are usually supplied in the form of a Software Development Kits (SDK), or in the case of iOS devices, come with the system compiler (Xcode).  Selecting which compiler to use is achieved by defining particular variables in the hxcpp build environment.  Note that the hxcpp build tool is only responsible for producing a native executable or a native library (static or dynamic), not the complete bundling and packaging of assets and meta-data that is typically required for mobile devices.  Additional haxe libraries can be used for this task.
+
+\subsection{The Hxcpp Build Environment}
+\label{target-cpp-build-environment}
+The hxcpp build environment can be controlled by setting, or defining, variables in key-value pairs. Defining a key without a particular value is usually enough to trigger the desired behaviour, and these keys are often referred to as "defines".
+
+\paragraph{Defining From the Command Line}
+The easiest way to change the hxcpp build environment is to pass the defines though the haxe command line using \ic{-D}.  Key-value pairs can also be passed this way, eg:
+
+\ic{ haxe -main Main -cpp cpp -D android -D static_link  -D PLATFORM=android-9 }
+
+Here, \ic{android} is defined - this causes hxcpp to cross-compile to android, \ic{static_link} is defined, which causes a static (rather than dynamic) library to be created and the android target platform is set to a particular value.  This platform information is passed on to the SDK so it can generate the appropriate code.
+
+Advanced users can add additional defines to the system at compile time using macros.  These definitions will also be passed on to the hxcpp build tool.
+
+\paragraph{Defining From the System Environment Variables}
+The hxcpp build tool will import all the system environment variables, so you can configure the processes using the system like:
+
+\ic{ setenv HXCPP_VERBOSE }
+
+If you are running haxe though an IDE, some care must be taken with environment variables since the variables may be read once from the environment in which the IDE was started, rather than changing when the variables are changed on the system.
+
+\paragraph{Defining From .hxcpp_config.xml}
+The hxcpp build tool parses several "build files".  These files are in a basic xml file format, and can be used to set, or conditionally set, configuration variables.  As part of the build process, the \ic{.hxcpp_config.xml} file, known as the config file, will be read (twice).  This file is located in the user's home directory (or user's profile directory on windows) and is the best place to configure variables that are specific to the system that rarely change, such as the location of the cross-compiler SDKs.  A placeholder file will be generated the first time hxcpp is run by a user on the machine.  You can see the exact location of this file in the build log if you compile with the \ic{HXCPP_VERBOSE} define.
+
+The config file is read twice.  The first time the "vars" section is read early in the configuration process, and is used to set up and configure the location of the compilers.  The second time, the "exes" section is read near the end of the processes and allows modification of the compiler or build process based on all the available information.  See \Fullref{target-cpp-file-format} for details on the file format.
+
+\paragraph{Defining Via @:buildXml Metadata}
+Configuration data can be injected into the "build.xml" file that is created by haxe.  This is done attaching metadata to a haxe class that is directly or indirectly included in the build.  For example:
+\begin{lstlisting}
+@:buildXml("
+<target id='haxe'>
+  <lib name='${haxelib:nme}/lib/${BINDIR}/libnme${LIBEXTRA}${LIBEXT}'/>
+</target>
+<include name='${haxelib:nme}/lib/NmeLink.xml'/>
+")
+@:keep class StaticNme
+{
+  ...
+\end{lstlisting}
+
+This metadata is best for adding libraries or include paths to the build.
+Some notes:
+\begin{itemize}
+	\item The @:keep metadata is added to prevent dead-code-elimination from removing this class
+	\item Quoting can be a bit tricky - here the double-quotes are used for haxe, and the single quotes are added to the build.xml.
+	\item Injecting a single "include" command is a good way to manage the quoting issue.
+	\item Knowledge of the build system is required to get this right. See \Fullref{target-cpp-file-format} for details on the file format.
+	\item The build.xml file is read after the choice of compiler has been made, so it is generally not suitable for configuring the compiler.
+\end{itemize}
+
+
+\subsection{Build.xml File Format}
+\label{target-cpp-file-format}
+The build.xml file format is designed to address the very specific goal of generating compiled output as fast as possible on a wide variety of compilers.  Therefore, at its core, it is simply a list of files to compile, and their dependencies, and a list of compiler exes and flags required to get the job done.  Conditional variable setting is added to support the great variety of compilers and use cases encountered by hxcpp.  However, much of the logic required to orchestrate the compiler sequences, such as precompiling headers, is defined in haxe and implemented in the build tool itself, rather than being scriptable.
+
+A hxcpp build file consists of a series of commands and data structures in xml format.  The commands are executed immediately as they are encountered, while the data structures are accumulated and used after all the build files have been parsed.
+
+\paragraph{Running a Build.xml File With Hxcpp}
+When you compile a haxe program with hxcpp, the haxe compiler will normally run the hxcpp build tool on the generated build.xml file automatically.  You can, however, prevent this by adding \ic{-D no-compilation} to the haxe command line.
+
+You can run the hxcpp build tool on your own build files using
+
+\ic{haxelib run hxcpp myfile.xml [-Ddefine] [-Dkey=value]}
+
+Note the lack of space between the "-D" and the variable name.
+
+A minimal build.xml file consists of an xml container and a dummy default target, like:
+\begin{lstlisting}
+<xml>
+   <echo value="Hello!" />
+   <target id="default" />
+</xml>
+\end{lstlisting}
+
+\paragraph{Conditions, Substitutions and Sections}
+Most elements in the hxcpp xml file allow a common syntax for dynamic configuration.
+
+Xml elements can contain conditional "if" and/or "unless" values.  These conditions are evaluated at parse time and the entire element will be skipped if the condition fails.  For example adding this lines:
+\begin{lstlisting}
+<xml>
+  <echo value="Hello A" if="A" />
+  <echo value="Hello A && B" if="A B" />
+  <echo value="Hello A || B" if="A || B" />
+  <echo value="Hello !A" unless="A" />
+  <echo value="Hello !(A && B)" unless="A B" />
+  <echo value="Hello !(A || B)" unless="A || B" />
+  <echo value="Never Never" if="A" unless="A" />
+  <target id="default" />
+</xml>
+\end{lstlisting}
+
+and running:
+
+\ic{haxelib run hxcpp myfile.xml -DA}
+
+shows how the logic depends on whether or not A or B has been defined.
+
+Sections can be used to group commands together based on a common condition.  They can also be used to include only part of another xml file, but this technique is currently only used when parsing the .hxcpp_config.xml file.  For example:
+
+\begin{lstlisting}
+  <section if="C" >
+    <echo value="I See" />
+    <echo value="You" />
+  </section>
+\end{lstlisting}
+
+The xml attribute values can be substituted with variable values using dollars-brace syntax.  Using a colon allows a function-call to be substituted, eg:
+
+\begin{lstlisting}
+  <echo value="some var = ${SOME_VAR}" />
+  <echo value="${haxelib:hxcpp}/include" />
+\end{lstlisting}
+
 \subsection{Using C++ Defines}
 \label{target-cpp-defines}
 \begin{itemize}

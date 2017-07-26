@@ -28,7 +28,7 @@ Block of code:
 ```tex
 \begin{lstlisting}
 trace("Haxe is great!");
-\begin{lstlisting}
+\end{lstlisting}
 ```
 Unordered list:
 ```tex
