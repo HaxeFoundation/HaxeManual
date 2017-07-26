@@ -45,29 +45,29 @@ matrix:
         - mdspell *.md "output/*/website/**/*.md" --ignore-numbers --ignore-acronyms --report
 
     - env: TARGET=swf
-      haxe: 3.2.1
+      haxe: 3.4.2
     - env: TARGET=swf
       haxe: development
 
     - env: TARGET=as3
-      haxe: 3.2.1
+      haxe: 3.4.2
     - env: TARGET=as3
       haxe: development
 
     - env: TARGET=js
-      haxe: 3.2.1
+      haxe: 3.4.2
     - env: TARGET=js
       haxe: development
 
     - env: TARGET=neko
-      haxe: 3.2.1
+      haxe: 3.4.2
     - env: TARGET=neko
       haxe: development
 
     - env: 
        - TARGET=cpp
        - HXCPP_COMPILE_CACHE=~/hxcache
-      haxe: 3.2.1
+      haxe: 3.4.2
       addons: {apt: {packages: [gcc-multilib, g++-multilib]}}
     - env: 
        - TARGET=cpp
@@ -79,21 +79,19 @@ matrix:
       haxe: development
 
     - env: TARGET=cs
-      haxe: 3.2.1
+      haxe: 3.4.2
       addons: {apt: {packages: [mono-devel, mono-mcs]}}
     - env: TARGET=cs
       haxe: development
       addons: {apt: {packages: [mono-devel, mono-mcs]}}
 
     - env: TARGET=java
-      haxe: 3.2.1
+      haxe: 3.4.2
     - env: TARGET=java
       haxe: development
 
-    # There is a bug in Haxe 3.2.1...
-    # https://travis-ci.org/andyli/HaxeManual/jobs/155260530#L229-L230
     - env: TARGET=python
-      haxe: 3.2.0
+      haxe: 3.4.2
     - env: TARGET=python
       haxe: development
 
