@@ -76,6 +76,7 @@ class RunTravis
 	static var excludedExamples = {
 		var a = [
 			"ClassExpose.hx", // no main()
+			"CompletionServer.hx" // sys/socket stuff
 			"HelloPHP.hx", // PHP only
 			"JSRequireModule.hx",
 			"JSRequireObject.hx",
@@ -102,7 +103,7 @@ class RunTravis
 		"MathExtensionUsage.hx" => "MathStaticExtension.hx",
 		"TypeBuilding.hx" => "TypeBuildingMacro.hx"
 	];
-	
+
 	/** Snippets that don't compile on their own */
 	static var incompleteSnippets = [
 		"Color.hx" => Module,
@@ -116,7 +117,7 @@ class RunTravis
 	static var haxelibs = [
 		"HaxelibRandom.hx" => ["random"]
 	];
-	
+
 	static var helperFile:String;
 
 	public static function main():Void {
@@ -130,9 +131,9 @@ class RunTravis
 			excludedExamples.push(additionalModule);
 		// special case, both needed as an additional module and needs to compile on its own
 		excludedExamples.remove("Point.hx");
-	
+
 		helperFile = File.getContent("Helper.hx");
-	
+
 		Sys.exit(getResult([
 			setupHxcpp(target),
 			buildExamples(target, Sys.args().slice(1))
@@ -188,12 +189,12 @@ class RunTravis
 	static function compile(file:String, target:Target):ExitCode {
 		var dir = "bin/" + getFileName(file);
 		FileSystem.createDirectory(dir);
-		
+
 		var insertIn = incompleteSnippets.get(file);
 		if (insertIn != null) {
 			var fileOutput = File.write('$dir/Main.hx');
 			var fileContent = File.getContent(file);
-			
+
 			fileOutput.writeString(helperFile
 				.replace("<module>", (insertIn == Module) ? fileContent : "")
 				.replace("<function>", (insertIn == Function) ? fileContent : ""));
