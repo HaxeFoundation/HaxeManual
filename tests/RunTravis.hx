@@ -73,25 +73,18 @@ class RunTravis
 	];
 
 	/** Examples that are not included in the tests. */
-	static var excludedExamples = {
-		var a = [
-			"ClassExpose.hx", // no main()
-			"CompletionServer.hx", // sys/socket stuff
-			"HelloPHP.hx", // PHP only
-			"JSRequireModule.hx",
-			"JSRequireObject.hx",
-			"RestAndEitherType.hx", // requires an extern
-			"SwitchStatement.hx", // pseudo-code
-			"UnitTestCase.hx",
-			"UnitTestRunner.hx",
-			"UnitTestSetup.hx"
-		];
-		if (Sys.getEnv("TRAVIS") == "true" && Sys.getEnv("TRAVIS_HAXE_VERSION") == "3.2.0") {
-			a.push("SafeCast.hx"); // https://github.com/HaxeFoundation/haxe/issues/4310
-			a.push("Import.hx"); // problem with StringMap on Haxe/C++
-		}
-		a;
-	}
+	static var excludedExamples = [
+		"ClassExpose.hx", // no main()
+		"CompletionServer.hx", // sys/socket stuff
+		"HelloPHP.hx", // PHP only
+		"JSRequireModule.hx",
+		"JSRequireObject.hx",
+		"RestAndEitherType.hx", // requires an extern
+		"SwitchStatement.hx", // pseudo-code
+		"UnitTestCase.hx",
+		"UnitTestRunner.hx",
+		"UnitTestSetup.hx"
+	];
 
 	/** Additional .hx modules needed to compile specific examples. */
 	static var additionalModules = [
