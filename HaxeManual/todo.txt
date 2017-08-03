@@ -36,7 +36,7 @@ Missing Content:
 10.11 - Input/Output
 10.12 - Sys/sys
 12.3 - Neko
-12.5.2 - Using C++ Pointers
+12.5.5 - Using C++ Pointers
 12.6 - Java
 12.7 - C#
 12.8 - Python
@@ -260,7 +260,10 @@ Unreviewed:
 12.2.4 - Flash target Metadata
 12.4.1 - Getting started with Haxe/PHP
 12.4.2 - PHP untyped functions
-12.5.1 - Using C++ Defines
+12.5.1 - Getting started with Haxe/C++
+12.5.2 - The Hxcpp Build Environment
+12.5.3 - build.xml File Format
+12.5.4 - Using C++ Defines
 12.9.1 - Getting started with Haxe/Lua
 12.9.2 - Using external Lua libraries
 12.9.3 - Version flags

@@ -1,4 +1,4 @@
-## 12.5.1 Using C++ Defines
+## 12.5.4 Using C++ Defines
 
 * ANDROID_HOST
 * ANDROID_NDK_DIR
@@ -87,6 +87,6 @@
 
 ---
 
-Previous section: [C++](target-cpp.md)
+Previous section: [build.xml File Format](target-cpp-file-format.md)
 
 Next section: [Lua](target-lua.md)

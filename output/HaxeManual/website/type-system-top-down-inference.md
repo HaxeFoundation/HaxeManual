@@ -21,9 +21,7 @@ Here, the compiler knows while typing `[1, "foo"]` that the expected type is `Ar
 We have seen another interesting use of top-down inference when [construction of generic type parameters](type-system-generic-type-parameter-construction.md) was introduced:
 
 ```haxe
-typedef Constructible = {
-  public function new(s:String):Void;
-}
+import haxe.Constraints;
 
 class Main {
   static public function main() {
@@ -32,10 +30,11 @@ class Main {
   }
 
   @:generic
-  static function make<T:Constructible>():T {
+  static function make<T:Constructible<String->Void>>():T {
     return new T("foo");
   }
 }
+
 ```
 
 The explicit types `String` and `haxe.Template` are used here to determine the return type of `make`. This works because the method is invoked as `make()`, so we know the return type will be assigned to the variables. Utilizing this information, it is possible to bind the unknown type `T` to `String` and `haxe.Template` respectively.

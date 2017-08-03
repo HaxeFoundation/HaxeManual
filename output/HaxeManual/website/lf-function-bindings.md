@@ -23,6 +23,25 @@ A call to `f(1)` then actually invokes `map.set(1, "12")`, the calls to `f(2)` a
 
 The underscore `_` can be skipped for trailing arguments, so the first argument could be bound through `map.set.bind(1)`, yielding a `String->Void` function that sets a new value for index `1` on invocation.
 
+##### Optional arguments
+
+By default, trailing optional arguments are bound to their default values and do not become arguments of the result function. This can be changed by using an explicit underscore `_` instead, in which case the optional argument of the original function becomes a non-optional argument of the result function.
+```haxe
+class Main {
+  static function test(a:Int, ?b:String):Void {}
+
+  static public function main() {
+    var fn = test.bind(1);
+    $type(fn); // Void->Void
+    fn('foo'); //Compiler error: Too many arguments
+
+    var fn = test.bind(1, _);
+    $type(fn); // ?String->Void
+    fn('foo'); //works
+  }
+}
+```
+
 > ##### Trivia: Callback
 >
 > Prior to Haxe 3, Haxe used to know a `callback`-keyword which could be called with a function argument followed by any number of binding arguments. The name originated from a common usage were a callback-function is created with the this-object being bound.
