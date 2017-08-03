@@ -646,9 +646,9 @@ These metadata information can be obtained at runtime through the \type{haxe.rtt
 We can easily identify metadata by the leading \expr{@} character, followed by the metadata name and, optionally, by a number of comma-separated constant arguments enclosed in parentheses.
 
 \begin{itemize}
-	\item Class \type{MyClass} has an \expr{author} metadata with a single String argument \expr{"Nicolas"}, as well as a \expr{debug} metadata without arguments.
+	\item Class \type{MyClass} has an \expr{author} metadata with a single String argument \expr{"Nicolas"}, as well as a \expr{:keep} metadata without arguments.
 	\item The member variable \expr{value} has a \expr{range} metadata with two Int arguments \expr{1} and \expr{8}.
-	\item The static method \expr{method} has a \expr{broken} metadata without arguments, as well as a \expr{:noCompletion} metadata without arguments.
+	\item The static method \expr{method} has a \expr{broken} metadata without arguments.
 \end{itemize}
 
 The \expr{main} method accesses these metadata values using their API. The output reveals the structure of the obtained data:
