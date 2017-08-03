@@ -718,7 +718,7 @@ The type \type{haxe.rtti.Rtti} has been introduced in order to simplify working 
 \label{cr-static-analyzer}
 \since{3.3.0}
 
-Haxe 3.3.0 introduces a new static analyzer for code optimizations. It is enabled by using the \ic{-D analyzer} \tref{compiler flag}{compiler-usage-flags} and consists of multiple \tref{modules}{cr-static-analyzer-modules} which can be configured globally with a \tref{compiler flag}{compiler-usage-flags} as well as at type-level and field-level with a \tref{compiler metadata}{cr-metadata}:
+Haxe 3.3.0 introduces a new static analyzer for code optimizations. It is enabled by using the \ic{-D analyzer-optimize} \tref{compiler flag}{compiler-usage-flags} and consists of multiple \tref{modules}{cr-static-analyzer-modules} which can be configured globally with a \tref{compiler flag}{compiler-usage-flags} as well as at type-level and field-level with a \tref{compiler metadata}{cr-metadata}:
 
 \paragraph{Global configuration}
 \label{cr-static-analyzer-global-configuration}
@@ -755,6 +755,6 @@ The static analyzer currently comes with the following modules. Unless noted oth
 \item[\ic{const_propagation}]: Implements sparse conditional constant propagation to promote values that are known at compile-time to usage places. Also detects dead branches.
 \item[\ic{copy_propagation}]: Detects local variables that alias other local variables and replaces them accordingly.
 \item[\ic{local_dce}]: Detects and removes unused local variables.
-\item[\ic{fusion}]: Moves variable expressions to its usage in case of single-occurrence. Disabled on \target{Flash} and \target{Java}.
+\item[\ic{fusion}]: Moves variable expressions to its usage in case of single-occurrence. By default, only compiler-generated variables are handled. This can be changed by using the compiler flag `\ic{-D analyzer-user-var-fusion} or the metadata \ic{@:analyzer(user_var_fusion)}.
 \item[\ic{purity_inference}]: Infers if fields are ``pure'', i.e. do not have any side-effects. This can improve the effect of the fusion module.
 \end{description}
