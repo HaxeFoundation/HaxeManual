@@ -87,6 +87,10 @@ Type parameter \type{T} of method \expr{test} is constrained to the types \type{
 \end{itemize}
 We can see that invoking \expr{test} with an empty array in line 7 and an \type{Array$<$String$>$} in line 8 works fine. This is because \type{Array} has both a \expr{length}-property and an \expr{iterator}-method. However, passing a \type{String} as argument in line 9 fails the constraint check because \type{String} is not compatible with \type{Iterable$<$T$>$}. 
 
+When constraining to a single type, the parentheses can be omitted:
+
+\haxe{assets/Constraints2.hx}
+
 
 \section{Generic}
 \label{type-system-generic}
