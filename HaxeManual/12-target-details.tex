@@ -576,9 +576,9 @@ var isFalse = untyped __physeq__(false, value);
 The c++ target uses various c++ compilers, which are assumed to be already installed on the system, to create native executables or libraries.  The compilation happens in two phases.  Firstly, the haxe compiler generates source, header and build files in an output directory.  Secondly, the "hxcpp" \tref{Haxelib library}{haxelib} is invoked to run the system compilers and linkers required to generate the ultimate result.
 
 \paragraph{Prerequisites}
-Before you can use the cpp target, you need in install
+Before you can use the C++ target, you need in install
 \begin{itemize}
-	\item hxcpp, eg \ic{haxelib install hxcpp}.
+	\item hxcpp, e.g. \ic{haxelib install hxcpp}.
 	\item A system or cross-compiler
 \end{itemize}
 
@@ -593,7 +593,7 @@ Hxcpp can be used to compile for non-host architectures if you have a suitable c
 The hxcpp build environment can be controlled by setting, or defining, variables in key-value pairs. Defining a key without a particular value is usually enough to trigger the desired behaviour, and these keys are often referred to as "defines".
 
 \paragraph{Defining From the Command Line}
-The easiest way to change the hxcpp build environment is to pass the defines though the haxe command line using \ic{-D}.  Key-value pairs can also be passed this way, eg:
+The easiest way to change the hxcpp build environment is to pass the defines though the haxe command line using \ic{-D}.  Key-value pairs can also be passed this way, e.g.:
 
 \ic{ haxe -main Main -cpp cpp -D android -D static_link  -D PLATFORM=android-9 }
 
@@ -609,9 +609,9 @@ The hxcpp build tool will import all the system environment variables, so you ca
 If you are running haxe though an IDE, some care must be taken with environment variables since the variables may be read once from the environment in which the IDE was started, rather than changing when the variables are changed on the system.
 
 \paragraph{Defining From .hxcpp_config.xml}
-The hxcpp build tool parses several "build files".  These files are in a basic xml file format, and can be used to set, or conditionally set, configuration variables.  As part of the build process, the \ic{.hxcpp_config.xml} file, known as the config file, will be read (twice).  This file is located in the user's home directory (or user's profile directory on windows) and is the best place to configure variables that are specific to the system that rarely change, such as the location of the cross-compiler SDKs.  A placeholder file will be generated the first time hxcpp is run by a user on the machine.  You can see the exact location of this file in the build log if you compile with the \ic{HXCPP_VERBOSE} define.
+The hxcpp build tool parses several "build files".  These files are in a basic xml file format, and can be used to set, or conditionally set, configuration variables.  As part of the build process, the \ic{.hxcpp_config.xml} file, known as the configuration file, will be read (twice).  This file is located in the user's home directory (or user's profile directory on windows) and is the best place to configure variables that are specific to the system that rarely change, such as the location of the cross-compiler SDKs.  A placeholder file will be generated the first time hxcpp is run by a user on the machine.  You can see the exact location of this file in the build log if you compile with the \ic{HXCPP_VERBOSE} define.
 
-The config file is read twice.  The first time the "vars" section is read early in the configuration process, and is used to set up and configure the location of the compilers.  The second time, the "exes" section is read near the end of the processes and allows modification of the compiler or build process based on all the available information.  See \Fullref{target-cpp-file-format} for details on the file format.
+The configuration file is read twice.  The first time the \ic{"vars"} section is read early in the configuration process, and is used to set up and configure the location of the compilers.  The second time, the \ic{"exes"} section is read near the end of the processes and allows modification of the compiler or build process based on all the available information.  See \Fullref{target-cpp-file-format} for details on the file format.
 
 \paragraph{Defining Via @:buildXml Metadata}
 Configuration data can be injected into the "build.xml" file that is created by haxe.  This is done attaching metadata to a haxe class that is directly or indirectly included in the build.  For example:
@@ -638,13 +638,13 @@ Some notes:
 \end{itemize}
 
 
-\subsection{Build.xml File Format}
+\subsection{build.xml File Format}
 \label{target-cpp-file-format}
 The build.xml file format is designed to address the very specific goal of generating compiled output as fast as possible on a wide variety of compilers.  Therefore, at its core, it is simply a list of files to compile, and their dependencies, and a list of compiler exes and flags required to get the job done.  Conditional variable setting is added to support the great variety of compilers and use cases encountered by hxcpp.  However, much of the logic required to orchestrate the compiler sequences, such as precompiling headers, is defined in haxe and implemented in the build tool itself, rather than being scriptable.
 
 A hxcpp build file consists of a series of commands and data structures in xml format.  The commands are executed immediately as they are encountered, while the data structures are accumulated and used after all the build files have been parsed.
 
-\paragraph{Running a Build.xml File With Hxcpp}
+\paragraph{Running a build.xml File With Hxcpp}
 When you compile a haxe program with hxcpp, the haxe compiler will normally run the hxcpp build tool on the generated build.xml file automatically.  You can, however, prevent this by adding \ic{-D no-compilation} to the haxe command line.
 
 You can run the hxcpp build tool on your own build files using
@@ -693,7 +693,7 @@ Sections can be used to group commands together based on a common condition.  Th
   </section>
 \end{lstlisting}
 
-The xml attribute values can be substituted with variable values using dollars-brace syntax.  Using a colon allows a function-call to be substituted, eg:
+The xml attribute values can be substituted with variable values using dollars-brace syntax.  Using a colon allows a function-call to be substituted, e.g.:
 
 \begin{lstlisting}
   <echo value="some var = ${SOME_VAR}" />

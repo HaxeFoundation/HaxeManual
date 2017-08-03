@@ -344,3 +344,11 @@ epub
 mobi
  - output/HaxeManual/website/expression-for.md
 IntIterator
+hxcpp
+Hxcpp
+e.g.
+.hxcpp_config.xml
+SDKs
+build.xml
+precompiling
+gcc-based
