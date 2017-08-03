@@ -36,13 +36,13 @@ matrix:
         - haxelib git hxparse https://github.com/Simn/hxparse.git
         - popd
         # spellcheck
-        - nvm install 6.4
-        - npm install -g markdown-spellcheck
+        # - nvm install 6.4
+        # - npm install -g markdown-spellcheck
       script:
         - pushd convert
         -   haxe convert.hxml -D recompileEnv
         - popd
-        - mdspell *.md "output/*/website/**/*.md" --ignore-numbers --ignore-acronyms --report
+        # - mdspell *.md "output/*/website/**/*.md" --ignore-numbers --ignore-acronyms --report
 
     - env: TARGET=swf
       haxe: 3.4.2
@@ -64,12 +64,12 @@ matrix:
     - env: TARGET=neko
       haxe: development
 
-    - env: 
+    - env:
        - TARGET=cpp
        - HXCPP_COMPILE_CACHE=~/hxcache
       haxe: 3.4.2
       addons: {apt: {packages: [gcc-multilib, g++-multilib]}}
-    - env: 
+    - env:
        - TARGET=cpp
        - HXCPP_COMPILE_CACHE=~/hxcache
       haxe: development
