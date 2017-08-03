@@ -76,7 +76,7 @@ class RunTravis
 	static var excludedExamples = {
 		var a = [
 			"ClassExpose.hx", // no main()
-			"CompletionServer.hx" // sys/socket stuff
+			"CompletionServer.hx", // sys/socket stuff
 			"HelloPHP.hx", // PHP only
 			"JSRequireModule.hx",
 			"JSRequireObject.hx",
