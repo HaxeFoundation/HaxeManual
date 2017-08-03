@@ -1,4 +1,4 @@
-## 12.9.4 Multireturns
+## 12.10.4 Multireturns
 
 Lua allows for multiple values to be returned from a given function.  Haxe
 does not support this by default, but can allow extern definitions to reference

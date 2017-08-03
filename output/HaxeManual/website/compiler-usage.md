@@ -32,8 +32,8 @@ The second question usually comes down to providing an argument specifying the d
 * `-java directory` Generates [Java](#) source code in specified directory and compiles it using the Java Compiler.
 * `-python file_name.py` Generates [Python](#) source code in the specified file.
 * `-lua file_name.lua` Generates [Lua](#) source code in the specified file.
-* `-hl file_name.hl` Generates [HashLink](target-hl) byte code in specified file.
-* `-cppia file_name.cppia` Generates the specified script as [cppia](target-cppia) file.
+* `-hl file_name.hl` Generates [HashLink](#) byte code in specified file.
+* `-cppia file_name.cppia` Generates the specified script as [cppia](#) file.
 * `-x <file>` Shortcut for compiling and executing a neko file.
 * `--no-output` compiles but does not generate any file.
 * `--interp` interpret the program using internal macro system.

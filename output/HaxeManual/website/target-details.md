@@ -10,16 +10,20 @@
 
 12.5: [C++](target-cpp.md)
 
-12.6: [Java](#)
+12.6: [Cppia](#)
 
-12.7: [C#](#)
+12.7: [Java](#)
 
-12.8: [Python](#)
+12.8: [C#](#)
 
-12.9: [Lua](target-lua.md)
+12.9: [Python](#)
+
+12.10: [Lua](target-lua.md)
+
+12.11: [HashLink](#)
 
 ---
 
-Previous section: [Using Haxelib](haxelib-using.md)
+Previous section: [Haxelib](haxelib.md)
 
 Next section: [JavaScript](target-javascript.md)

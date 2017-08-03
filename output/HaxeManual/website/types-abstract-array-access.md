@@ -68,4 +68,4 @@ Fields which are defined earlier take priority even if they require an [implicit
 
 Previous section: [Operator Overloading](types-abstract-operator-overloading.md)
 
-Next section: [Selective Functions](types-abstract-selective-functions.md)
+Next section: [Enum abstracts](types-abstract-enum.md)

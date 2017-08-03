@@ -13,7 +13,6 @@ Todo:
 2.4 - Enum Instance: Same as in 2.2, what is `Enum<T>` syntax?
 2.4.1 - Enum Constructor: list arguments
 2.5 - Anonymous Structure: please reformat
-2.5.3 - Optional Fields: I don't really know how these work yet.
 2.6 - Function Type: It seems a bit convoluted explanations. Should we maybe start by "decoding" the meaning of  Void -> Void, then Int -> Bool -> Float, then maybe have samples using $type
 2.8.1 - Implicit Casts: please review your use of "this" and try to vary somewhat to avoid too much word repetition
 2.8.2 - Operator Overloading: please review for correctness
@@ -28,7 +27,6 @@ Todo:
 10.4.3 - Integer Math: I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?
 
 Missing Content:
-2.5.3 - Optional Fields
 5.3 - Binary Operators
 5.4 - Unary Operators
 9.6.1 - Macro-in-Macro
@@ -37,9 +35,11 @@ Missing Content:
 10.12 - Sys/sys
 12.3 - Neko
 12.5.5 - Using C++ Pointers
-12.6 - Java
-12.7 - C#
-12.8 - Python
+12.6 - Cppia
+12.7 - Java
+12.8 - C#
+12.9 - Python
+12.11 - HashLink
 
 Unreviewed:
 1.1 - What is Haxe?
@@ -66,6 +66,7 @@ Unreviewed:
 2.5 - Anonymous Structure
 2.5.1 - JSON for Structure Values
 2.5.2 - Class Notation for Structure Types
+2.5.3 - Optional Fields
 2.5.4 - Impact on Performance
 2.5.5 - Extensions
 2.6 - Function Type
@@ -78,10 +79,9 @@ Unreviewed:
 2.8.1 - Implicit Casts
 2.8.2 - Operator Overloading
 2.8.3 - Array Access
-2.8.4 - Selective Functions
-2.8.5 - Enum abstracts
-2.8.6 - Forwarding abstract fields
-2.8.7 - Core-type abstracts
+2.8.4 - Enum abstracts
+2.8.5 - Forwarding abstract fields
+2.8.6 - Core-type abstracts
 2.9 - Monomorph
 3 - Type System
 3.1 - Typedef
@@ -241,12 +241,6 @@ Unreviewed:
 10.13.2 - Implementation details
 10.14 - Unit testing
 11 - Haxelib
-11.1 - Using a Haxe library with the Haxe Compiler
-11.2 - haxelib.json
-11.2.1 - Versioning
-11.2.2 - Dependencies
-11.3 - extraParams.hxml
-11.4 - Using Haxelib
 12.1.1 - Getting started with Haxe/JavaScript
 12.1.2 - Using external JavaScript libraries
 12.1.3 - Inject raw JavaScript
@@ -264,10 +258,10 @@ Unreviewed:
 12.5.2 - The Hxcpp Build Environment
 12.5.3 - build.xml File Format
 12.5.4 - Using C++ Defines
-12.9.1 - Getting started with Haxe/Lua
-12.9.2 - Using external Lua libraries
-12.9.3 - Version flags
-12.9.4 - Multireturns
+12.10.1 - Getting started with Haxe/Lua
+12.10.2 - Using external Lua libraries
+12.10.3 - Version flags
+12.10.4 - Multireturns
 13.1 - Logging and Trace
 13.2 - Position Information Parameter
 13.3 - Tracing types

@@ -41,7 +41,7 @@ console.log(a);
 ```
 The abstract type `Abstract` completely disappeared from the output and all that is left is a value of its underlying type, `Int`. This is because the constructor of `Abstract` is inlined - something we shall learn about later in the section [Inline](class-field-inline.md) - and its inlined expression assigns a value to `this`. This might be surprising when thinking in terms of classes. However, it is precisely what we want to express in the context of abstracts. Any **inlined member method** of an abstract can assign to `this`, and thus modify the "internal value".
 
-A good question at this point is "What happens if a member function is not declared inline" because the code obviously has to go somewhere. Haxe creates a private class, known to be the **implementation class**, which has all the abstract member functions as static functions accepting an additional first argument `this` of the underlying type. While technically this is an implementation detail, it can be used for [selective functions](types-abstract-selective-functions.md).
+A good question at this point is "What happens if a member function is not declared inline" because the code obviously has to go somewhere. Haxe creates a private class, known to be the **implementation class**, which has all the abstract member functions as static functions accepting an additional first argument `this` of the underlying type.
 
 > ##### Trivia: Basic Types and abstracts
 >

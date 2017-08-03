@@ -13,19 +13,18 @@ These metadata information can be obtained at runtime through the `haxe.rtti.Met
 import haxe.rtti.Meta;
 
 @author("Nicolas")
-@debug
+@:keep
 class MyClass {
   @range(1, 8)
   var value:Int;
 
   @broken
-  @:noCompletion
   static function method() { }
 }
 
 class Main {
   static public function main() {
-    // { author : ["Nicolas"], debug : null }
+    // { author : ["Nicolas"] }
     trace(Meta.getType(MyClass));
     // [1,8]
     trace(Meta.getFields(MyClass).value.range);
@@ -37,9 +36,9 @@ class Main {
 
 We can easily identify metadata by the leading `@` character, followed by the metadata name and, optionally, by a number of comma-separated constant arguments enclosed in parentheses.
 
-* Class `MyClass` has an `author` metadata with a single String argument `"Nicolas"`, as well as a `debug` metadata without arguments.
+* Class `MyClass` has an `author` metadata with a single String argument `"Nicolas"`, as well as a `:keep` metadata without arguments.
 * The member variable `value` has a `range` metadata with two Int arguments `1` and `8`.
-* The static method `method` has a `broken` metadata without arguments, as well as a `:noCompletion` metadata without arguments.
+* The static method `method` has a `broken` metadata without arguments.
 
 The `main` method accesses these metadata values using their API. The output reveals the structure of the obtained data:
 

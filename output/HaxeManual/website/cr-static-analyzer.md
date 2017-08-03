@@ -2,7 +2,7 @@
 
 ##### since Haxe 3.3.0
 
-Haxe 3.3.0 introduces a new static analyzer for code optimizations. It is enabled by using the `-D analyzer` [compiler flag](compiler-usage-flags.md) and consists of multiple [modules](cr-static-analyzer.md#modules) which can be configured globally with a [compiler flag](compiler-usage-flags.md) as well as at type-level and field-level with a [compiler metadata](cr-metadata.md):
+Haxe 3.3.0 introduces a new static analyzer for code optimizations. It is enabled by using the `-D analyzer-optimize` [compiler flag](compiler-usage-flags.md) and consists of multiple [modules](cr-static-analyzer.md#modules) which can be configured globally with a [compiler flag](compiler-usage-flags.md) as well as at type-level and field-level with a [compiler metadata](cr-metadata.md):
 
 ##### Global configuration
 
@@ -36,7 +36,7 @@ The static analyzer currently comes with the following modules. Unless noted oth
 * `const_propagation`: Implements sparse conditional constant propagation to promote values that are known at compile-time to usage places. Also detects dead branches.
 * `copy_propagation`: Detects local variables that alias other local variables and replaces them accordingly.
 * `local_dce`: Detects and removes unused local variables.
-* `fusion`: Moves variable expressions to its usage in case of single-occurrence. Disabled on Flash and Java.
+* `fusion`: Moves variable expressions to its usage in case of single-occurrence. By default, only compiler-generated variables are handled. This can be changed by using the compiler flag ``-D analyzer-user-var-fusion` or the metadata `@:analyzer(user_var_fusion)`.
 * `purity_inference`: Infers if fields are "pure", i.e. do not have any side-effects. This can improve the effect of the fusion module.
 
 ---

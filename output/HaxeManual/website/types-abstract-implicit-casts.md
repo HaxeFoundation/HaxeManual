@@ -52,7 +52,7 @@ class Main {
 ```
 By adding `@:from` to a static function, that function qualifies as implicit cast function from its argument type to the abstract. These functions must return a value of the abstract type. They must also be declared `static`.
 
-Similarly, adding `@:to` to a function qualifies it as implicit cast function from the abstract to its return type. These functions are typically member-functions but they can be made `static` and then serve as [selective function](types-abstract-selective-functions.md).
+Similarly, adding `@:to` to a function qualifies it as implicit cast function from the abstract to its return type.
 
 In the example the method `fromString` allows the assignment of value `"3"` to variable `a` of type `MyAbstract` while the method `toArray` allows assigning that abstract to variable `b` of type `Array<Int>`.
 

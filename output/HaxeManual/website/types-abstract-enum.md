@@ -1,4 +1,4 @@
-## 2.8.5 Enum abstracts
+## 2.8.4 Enum abstracts
 
 ##### since Haxe 3.1.0
 
@@ -53,6 +53,6 @@ This is similar to accessing [variables declared as inline](class-field-inline.m
 
 ---
 
-Previous section: [Selective Functions](types-abstract-selective-functions.md)
+Previous section: [Array Access](types-abstract-array-access.md)
 
 Next section: [Forwarding abstract fields](types-abstract-forward.md)

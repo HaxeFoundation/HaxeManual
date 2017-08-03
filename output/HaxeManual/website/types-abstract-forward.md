@@ -1,4 +1,4 @@
-## 2.8.6 Forwarding abstract fields
+## 2.8.5 Forwarding abstract fields
 
 ##### since Haxe 3.1.0
 

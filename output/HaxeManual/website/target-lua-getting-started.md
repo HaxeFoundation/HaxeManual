@@ -1,4 +1,4 @@
-## 12.9.1 Getting started with Haxe/Lua
+## 12.10.1 Getting started with Haxe/Lua
 
 To get started with Haxe for Lua, it's necessary to pick a Lua version and install
 dependencies.  All versions of Lua are supported, but may require different

@@ -23,16 +23,6 @@ typedef Iterable<T> = {
 }
 ```
 
-##### Optional fields
-Mark the field of a structure as optional using the `@:optional` metadata.
-```haxe
-typedef User = {
-  var age : Int;
-  var name : String;
-  @:optional var phoneNumber : String;
-}
-```
-
 ---
 
 Previous section: [Type System](type-system.md)

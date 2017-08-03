@@ -1,4 +1,4 @@
-## 2.8.7 Core-type abstracts
+## 2.8.6 Core-type abstracts
 
 The Haxe Standard Library defines a set of basic types as core-type abstracts. They are identified by the `:coreType` metadata and the lack of an underlying type declaration. These abstracts can still be understood to represent a different type. Still, that type is native to the Haxe target. 
 
