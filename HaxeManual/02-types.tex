@@ -514,7 +514,28 @@ typedef Point = {
 \subsection{Optional Fields}
 \label{types-structure-optional-fields}
 
-\todo{I don't really know how these work yet.}
+Fields of a structure type can be made optional. In the standard notation, this is achieved by prefixing the field name with a \ic{?}:
+
+\begin{lstlisting}
+typedef User = {
+  age : Int,
+  name : String,
+  ?phoneNumber : String
+}
+\end{lstlisting}
+
+In class notation, the \expr{@:optional} metadata can be used instead:
+
+\begin{lstlisting}
+typedef User = {
+  var age : Int;
+  var name : String;
+  @:optional var phoneNumber : String;
+}
+\end{lstlisting}
+
+
+
 
 \subsection{Impact on Performance}
 \label{types-structure-performance}
