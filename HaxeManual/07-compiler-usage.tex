@@ -101,7 +101,7 @@ In order to include single modules, their paths can be listed directly on comman
 	\item[\ic{--macro keep(?path:String, ?paths:Array<String>, recursive=true)}] 
 		Marks a package, module or sub-type dot path to be kept by DCE. This also extends to the sub-types of resolved modules. If \ic{recursive} is true, the compiler recursively keeps all sub-packages for package paths.
 	\item[\ic{--macro includeFile(file:String, position)}] 
-		Embed a JavaScript file at compile time. \ic{position} can be either "top", "inline" or "closure". 
+		Embed a JavaScript file at compile time. \ic{position} can be either "top", "inline" or "closure".  
 \end{description}
 
 The full documentation of these methods can be found in the \href{http://api.haxe.org/haxe/macro/Compiler.html}{\expr{haxe.macro.Compiler}} API documentation.
@@ -227,7 +227,7 @@ Starting from Haxe 3.0, you can get the list of supported \tref{compiler flags}{
 	\expr{format-warning}  &  Print a warning for each formated string, for 2.x compatibility \\
 	\expr{gencommon-debug}  &  GenCommon internal \\
 	\expr{haxe-boot}  &  Given the name 'haxe' to the flash boot class instead of a generated name \\
-	\expr{haxe-ver}  &  The current Haxe version value \\
+	\expr{haxe-ver}  &  The current Haxe version value. Version 3.1.3 is \ic{3.103}, version 3.2.0 is \ic{3.200}, 3.1.10 is \ic{3.110}. version 3.4.0 is \ic{3.400} etc. This allows doing \ic{#if (haxe_ver >= 3.103)}  \\
 	\expr{hxcpp-api-level}  &  Provided to allow compatibility between hxcpp versions \\
 	\expr{include-prefix}  &  prepend path to generated include files \\
 	\expr{interp}  &  The code is compiled to be run with \expr{--interp} \\
