@@ -38,29 +38,28 @@ x02` message-line.
 Here's some code that will treat connection to the server and handle the protocol details:
 
 ```haxe
-class Test {
-    static function main() {
-		var newline = "\ n";
-        var s = new neko.net.Socket();
-        s.connect(new neko.net.Host("127.0.0.1"),6000);
-        s.write("--cwd /my/project" + newline);
-        s.write("myproject.hxml" + newline);
-        s.write("\ 000");
+class Main {
+	static function main() {
+		var newline = "\n";
+		var s = new sys.net.Socket();
+		s.connect(new sys.net.Host("127.0.0.1"),6000);
+		s.write("--cwd /my/project" + newline);
+		s.write("myproject.hxml" + newline);
+		s.write("\000");
 
-        var hasError = false;
-        for (line in s.read().split(newline))
-		{
-            switch (line.charCodeAt(0)) {
-				case 0x01: 
-					neko.Lib.print(line.substr(1).split("\ x01").join(newline));
-				case 0x02: 
+		var hasError = false;
+		for (line in s.read().split(newline)) {
+			switch (line.charCodeAt(0)) {
+				case 0x01:
+					Sys.print(line.substr(1).split("\x01").join(newline));
+				case 0x02:
 					hasError = true;
-				default: 
-					neko.io.File.stderr().writeString(line + newline);
-            }
+				default:
+					Sys.stderr().writeString(line + newline);
+			}
 		}
-        if (hasError) neko.Sys.exit(1);
-    }
+		if (hasError) Sys.exit(1);
+	}
 }
 ```
 

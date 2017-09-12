@@ -1,11 +1,11 @@
 ## 12.5.3 build.xml File Format
 
-The build.xml file format is designed to address the very specific goal of generating compiled output as fast as possible on a wide variety of compilers.  Therefore, at its core, it is simply a list of files to compile, and their dependencies, and a list of compiler exes and flags required to get the job done.  Conditional variable setting is added to support the great variety of compilers and use cases encountered by hxcpp.  However, much of the logic required to orchestrate the compiler sequences, such as precompiling headers, is defined in haxe and implemented in the build tool itself, rather than being scriptable.
+The build.xml file format is designed to address the very specific goal of generating compiled output as fast as possible on a wide variety of compilers.  Therefore, at its core, it is simply a list of files to compile, and their dependencies, and a list of compiler exes and flags required to get the job done.  Conditional variable setting is added to support the great variety of compilers and use cases encountered by hxcpp.  However, much of the logic required to orchestrate the compiler sequences, such as precompiling headers, is defined in Haxe and implemented in the build tool itself, rather than being scriptable.
 
 A hxcpp build file consists of a series of commands and data structures in xml format.  The commands are executed immediately as they are encountered, while the data structures are accumulated and used after all the build files have been parsed.
 
 ##### Running a build.xml File With Hxcpp
-When you compile a haxe program with hxcpp, the haxe compiler will normally run the hxcpp build tool on the generated build.xml file automatically.  You can, however, prevent this by adding `-D no-compilation` to the haxe command line.
+When you compile a Haxe program with hxcpp, the Haxe compiler will normally run the hxcpp build tool on the generated build.xml file automatically.  You can, however, prevent this by adding `-D no-compilation` to the Haxe command line.
 
 You can run the hxcpp build tool on your own build files using
 

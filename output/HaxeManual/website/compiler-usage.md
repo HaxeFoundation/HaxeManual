@@ -86,7 +86,7 @@ In order to include single modules, their paths can be listed directly on comman
 * `--macro exclude(pack:String, recursive=true` Exclude a specific class, enum, or all classes and enums in a package from being generated. Excluded types become `extern`. If `recursive` is true, the compiler recursively excludes all sub-packages.
 * `--macro excludeFile(fileName:String)` Exclude classes and enums listed from given external file (one per line) from being generated.
 * `--macro keep(?path:String, ?paths:Array<String>, recursive=true)` Marks a package, module or sub-type dot path to be kept by DCE. This also extends to the sub-types of resolved modules. If `recursive` is true, the compiler recursively keeps all sub-packages for package paths.
-* `--macro includeFile(file:String, position)` Embed a JavaScript file at compile time. `position` can be either "top", "inline" or "closure". 
+* `--macro includeFile(file:String, position)` Embed a JavaScript file at compile time. `position` can be either "top", "inline" or "closure".  
 
 The full documentation of these methods can be found in the [`haxe.macro.Compiler`](http://api.haxe.org/haxe/macro/Compiler.html) API documentation.
 

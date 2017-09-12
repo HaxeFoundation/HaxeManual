@@ -34,7 +34,7 @@ Starting from Haxe 3.0, you can get the list of supported [compiler flags](lf-co
 <code>format-warning</code>   |  Print a warning for each formated string, for 2.x compatibility 
 <code>gencommon-debug</code>   |  GenCommon internal 
 <code>haxe-boot</code>   |  Given the name 'haxe' to the flash boot class instead of a generated name 
-<code>haxe-ver</code>   |  The current Haxe version value 
+<code>haxe-ver</code>   |  The current Haxe version value. Version 3.1.3 is <code>3.103</code>, version 3.2.0 is <code>3.200</code>, 3.1.10 is <code>3.110</code>. version 3.4.0 is <code>3.400</code> etc. This allows doing <code>#if (haxe_ver &gt;= 3.103)</code>  
 <code>hxcpp-api-level</code>   |  Provided to allow compatibility between hxcpp versions 
 <code>include-prefix</code>   |  prepend path to generated include files 
 <code>interp</code>   |  The code is compiled to be run with <code>--interp</code> 
