@@ -20,7 +20,7 @@ The second question usually comes down to providing an argument specifying the d
 
 \begin{description}
 	\item[\ic{-cp path}] Adds a class path where \ic{.hx} source files or packages (sub-directories) can be found.
-	\item[\ic{-lib library_name}] Adds a \Fullref{haxelib} library. By default the most recent version in the local Haxelib repository is used. To use specific version, \ic{-lib library_name:version} can be used.
+	\item[\ic{-lib library_name}] Adds a \Fullref{haxelib} library. By default the most recent version in the local Haxelib repository is used. To require a specific library version use \ic{-lib library_name:version}. To require a version from git use \ic{-lib library_name:git:https://github.com/user/project.git#commit} where the optional \#commit can be a branch, tag or commit hash.
 	\item[\ic{-main dot_path}] Sets the main class.
 	\item[\ic{-D <var[=value]>}] Define a \tref{conditional compilation flag}{lf-condition-compilation}.
 \end{description}
