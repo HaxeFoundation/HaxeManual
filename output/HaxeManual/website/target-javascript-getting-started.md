@@ -22,7 +22,7 @@ class Main {
 To compile, either run the following from the command line:
 
 ```haxe
-haxe -js main-javascript.js -main Main -D js-flatten -dce full
+haxe -js main-javascript.js -main Main
 ```
 
 Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml file should be in the same directory as the example class.
@@ -30,8 +30,6 @@ Another possibility is to create and run (double-click) a file called `compile.h
 ```haxe
 -js main-javascript.js
 -main Main
--D js-flatten
--dce full
 ```
 
 The output will be a main-javascript.js, which creates and adds a clickable button to the document body.
@@ -52,6 +50,7 @@ To display the output in a browser, create an HTML-document called `index.html` 
 ##### More information
 
 * [Debugging in JavaScript](debugging-javascript.md)
+* [Haxe/JavaScript tutorials](https://code.haxe.org/category/javascript/)
 * [Haxe JavaScript API docs](http://api.haxe.org/js/)
 * [MDN JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
 

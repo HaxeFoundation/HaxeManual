@@ -16,7 +16,7 @@ The second question usually comes down to providing an argument specifying the d
 **Input:**
 
 * `-cp path` Adds a class path where `.hx` source files or packages (sub-directories) can be found.
-* `-lib library_name` Adds a [Haxelib](haxelib.md) library. By default the most recent version in the local Haxelib repository is used. To use specific version, `-lib library_name:version` can be used.
+* `-lib library_name` Adds a [Haxelib](haxelib.md) library. By default the most recent version in the local Haxelib repository is used. To require a specific library version use `-lib library_name:version`. To require a version from git use `-lib library_name:git:https://github.com/user/project.git#commit` where the optional #commit can be a branch, tag or commit hash.
 * `-main dot_path` Sets the main class.
 * `-D <var[=value]>` Define a [conditional compilation flag](lf-condition-compilation.md).
 

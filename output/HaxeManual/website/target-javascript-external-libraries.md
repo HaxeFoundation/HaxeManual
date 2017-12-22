@@ -94,4 +94,4 @@ There are many externs for other popular native libraries available on [Haxelib 
 
 Previous section: [Getting started with Haxe/JavaScript](target-javascript-getting-started.md)
 
-Next section: [Inject raw JavaScript](target-javascript-injection.md)
+Next section: [Using Untyped JavaScript](target-javascript-injection.md)
