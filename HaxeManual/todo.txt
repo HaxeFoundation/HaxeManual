@@ -75,6 +75,8 @@ Unreviewed:
 2.7 - Dynamic
 2.7.1 - Dynamic with Type Parameter
 2.7.2 - Implementing Dynamic
+2.7.3 - Dynamic access
+2.7.4 - Any type
 2.8 - Abstract
 2.8.1 - Implicit Casts
 2.8.2 - Operator Overloading
@@ -241,9 +243,10 @@ Unreviewed:
 10.13.2 - Implementation details
 10.14 - Unit testing
 11 - Haxelib
+12.1 - JavaScript
 12.1.1 - Getting started with Haxe/JavaScript
 12.1.2 - Using external JavaScript libraries
-12.1.3 - Inject raw JavaScript
+12.1.3 - Using Untyped JavaScript
 12.1.4 - JavaScript untyped functions
 12.1.5 - JavaScript target Metadata
 12.1.6 - Exposing Haxe classes for JavaScript

@@ -672,7 +672,6 @@ att.age = "26";
 att.income = 0;
 \end{lstlisting}
 
-
 \subsection{Implementing Dynamic}
 \label{types-dynamic-implemented}
 
@@ -685,6 +684,35 @@ Implementing \type{Dynamic} does not satisfy the requirements of other implement
 Classes that implement \type{Dynamic} (with or without type parameter) can also utilize a special method named \expr{resolve}. If a \tref{read access}{define-read-access} is made and the field in question does not exist, the \expr{resolve} method is called with the field name as argument:
 
 \haxe{assets/DynamicResolve.hx}
+
+
+\subsection{Dynamic access}
+\label{types-dynamic-access}
+
+\type{DynamicAccess} is an \tref{abstract type}{types-abstract} for working with \tref{anonymous structures}{types-anonymous-structure} that are intended to hold collections of objects by the string key. Basically \type{DynamicAccess} wraps \type{Reflect}{std-reflection} calls in a Map-like interface.
+
+\haxe{assets/DynamicAccess.hx}
+
+\begin{lstlisting}
+\end{lstlisting}
+
+\subsection{Any type}
+\label{types-dynamic-any}
+
+\type{Any} is a type that is compatible with any other in both ways. 
+It serves one purpose - to hold values of any type, but to actually use that values, an explicit casting is required. That way the code doesn't suddently become dynamically typed and we keep all the static typing goodness, like advanced type system features and optimizations.
+
+The implementation is quite simple:
+
+\begin{lstlisting}
+abstract Any(Dynamic) from Dynamic to Dynamic {}
+\end{lstlisting}
+
+This type don't make any assumptions about what the value actually is and whether it supports fields or any operations - this is up to the user.
+
+\haxe{assets/Any.hx}
+
+It's a more type-safe alternative to \type{Dynamic}, because it doesn't support field access or operators and it's bound to monomorphs. So, to work with the actual value, it needs to be explicitly promoted to another type.
 
 
 
