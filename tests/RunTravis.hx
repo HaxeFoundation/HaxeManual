@@ -182,6 +182,7 @@ class RunTravis
 	static function compile(file:String, target:Target):ExitCode {
 		var dir = "bin/" + getFileName(file);
 		FileSystem.createDirectory(dir);
+		Sys.println('Testing $file on $target');
 
 		var insertIn = incompleteSnippets.get(file);
 		if (insertIn != null) {
