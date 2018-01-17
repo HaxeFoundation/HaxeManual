@@ -1,6 +1,6 @@
 class Main {
   static public function main() {
-    var user:DynamicAccess<Dynamic> = {};
+    var user:haxe.DynamicAccess<Any> = {};
 
     // Sets values for specified keys.
     user.set("name", "Mark");
