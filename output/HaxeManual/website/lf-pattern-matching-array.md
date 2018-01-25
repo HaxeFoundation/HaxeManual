@@ -14,7 +14,7 @@ Arrays can be matched on fixed length:
     trace(match); // 1
 ```
 
-This will trace `1` because `array[1]` matches `6`, and `array[0]` is allowed to be anything.
+This will trace `1` because `myArray[1]` matches `6`, and `myArray[0]` is allowed to be anything.
 
 ---
 

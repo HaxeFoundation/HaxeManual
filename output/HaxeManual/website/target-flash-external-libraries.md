@@ -1,6 +1,6 @@
 ## 12.2.3 Using external Flash libraries
 
-To embed external `.swf` or `.swc` libraries, use the following [compilation options](http://haxe.org/documentation/introduction/compiler-usage.html):
+To embed external `.swf` or `.swc` libraries, use the following [compilation options](https://haxe.org/documentation/introduction/compiler-usage.html):
 
 * `-swf-lib <file>` Embeds the SWF library in the compiled SWF.
 * `-swf-lib-extern <file>` Adds the SWF library for type checking but doesn't include it in the compiled SWF.

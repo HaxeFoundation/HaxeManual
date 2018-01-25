@@ -30,7 +30,7 @@ The compiler outputs in the given **bin**-folder, which contains the generated P
 
 ##### More information
 
-* [Haxe PHP API docs](http://api.haxe.org/php/)
+* [Haxe/PHP API docs](https://api.haxe.org/php/)
 * [PHP.net Documentation](http://php.net/docs.php)
 * [PHP to Haxe tool](http://phptohaxe.haqteam.com/code.php)
 

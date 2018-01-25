@@ -10,6 +10,6 @@
 
 ---
 
-Previous section: [Using C++ Defines](target-cpp-defines.md)
+Previous section: [Injecting raw C# code](target-cs-code-injection.md)
 
 Next section: [Getting started with Haxe/Lua](target-lua-getting-started.md)

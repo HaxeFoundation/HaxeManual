@@ -5,7 +5,7 @@
 ```haxe
 class Main {
   static public function main() {
-    var user:DynamicAccess<Dynamic> = {};
+    var user:haxe.DynamicAccess<Dynamic> = {};
 
     // Sets values for specified keys.
     user.set("name", "Mark");
@@ -19,6 +19,7 @@ class Main {
     trace(user.exists("name")); // true
   }
 }
+
 ```
 
 ```haxe

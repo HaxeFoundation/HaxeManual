@@ -28,12 +28,12 @@ The second question usually comes down to providing an argument specifying the d
 * `-neko file_name.n` Generates [Neko](#) binary as specified file.
 * `-php directory` Generates [PHP](target-php.md) source code in specified directory. Use `-D php7` for PHP7 source code.
 * `-cpp directory` Generates [C++](target-cpp.md) source code in specified directory and compiles it using native C++ compiler.
-* `-cs directory` Generates [C#](#) source code in specified directory.
-* `-java directory` Generates [Java](#) source code in specified directory and compiles it using the Java Compiler.
+* `-cs directory` Generates [C#](target-cs.md) source code in specified directory.
+* `-java directory` Generates [Java](target-java.md) source code in specified directory and compiles it using the Java Compiler.
 * `-python file_name.py` Generates [Python](#) source code in the specified file.
 * `-lua file_name.lua` Generates [Lua](#) source code in the specified file.
 * `-hl file_name.hl` Generates [HashLink](#) byte code in specified file.
-* `-cppia file_name.cppia` Generates the specified script as [cppia](#) file.
+* `-cppia file_name.cppia` Generates the specified script as [cppia](target-cppia.md) file.
 * `-x <file>` Shortcut for compiling and executing a neko file.
 * `--no-output` compiles but does not generate any file.
 * `--interp` interpret the program using internal macro system.

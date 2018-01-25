@@ -35,7 +35,6 @@ Missing Content:
 10.12 - Sys/sys
 12.3 - Neko
 12.5.5 - Using C++ Pointers
-12.6 - Cppia
 12.9 - Python
 12.11 - HashLink
 

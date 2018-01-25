@@ -10,11 +10,11 @@
 
 12.5: [C++](target-cpp.md)
 
-12.6: [Cppia](#)
+12.6: [Cppia](target-cppia.md)
 
-12.7: [Java](#)
+12.7: [Java](target-java.md)
 
-12.8: [C#](#)
+12.8: [C#](target-cs.md)
 
 12.9: [Python](#)
 

@@ -14,6 +14,8 @@ System compilers are supported on the three primary operating systems - Mac, Lin
 ##### Cross Compilers
 Hxcpp can be used to compile for non-host architectures if you have a suitable cross-compiler installed.  The compilers are usually supplied in the form of a Software Development Kits (SDK), or in the case of iOS devices, come with the system compiler (Xcode).  Selecting which compiler to use is achieved by defining particular variables in the hxcpp build environment.  Note that the hxcpp build tool is only responsible for producing a native executable or a native library (static or dynamic), not the complete bundling and packaging of assets and meta-data that is typically required for mobile devices.  Additional Haxe libraries can be used for this task.
 
+* [Haxe/C++ API docs](https://api.haxe.org/cpp/)
+
 ---
 
 Previous section: [C++](target-cpp.md)

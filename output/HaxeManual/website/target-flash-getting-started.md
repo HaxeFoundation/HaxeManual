@@ -58,7 +58,7 @@ To display the output in a browser using the Flash plugin, create an HTML-docume
 
 ##### More information
 
-* [Haxe Flash API docs](http://api.haxe.org/flash/)
+* [Haxe/Flash API docs](https://api.haxe.org/flash/)
 * [Adobe Livedocs](http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/)
 
 ---
