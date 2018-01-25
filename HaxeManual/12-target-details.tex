@@ -83,7 +83,7 @@ To display the output in a browser, create an HTML-document called \ic{index.htm
 \begin{itemize}
 	\item \Fullref{debugging-javascript}
 	\item \href{https://code.haxe.org/category/javascript/}{Haxe/JavaScript tutorials}
-	\item \href{http://api.haxe.org/js/}{Haxe JavaScript API docs}
+	\item \href{https://api.haxe.org/js/}{Haxe JavaScript API docs}
 	\item \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference}{MDN JavaScript Reference}
 \end{itemize}
 
@@ -444,7 +444,7 @@ To display the output in a browser using the Flash plugin, create an HTML-docume
 \paragraph{More information}
 
 \begin{itemize}
-	\item \href{http://api.haxe.org/flash/}{Haxe Flash API docs}
+	\item \href{https://api.haxe.org/flash/}{Haxe/Flash API docs}
 	\item \href{http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/}{Adobe Livedocs}
 \end{itemize}
 
@@ -472,7 +472,7 @@ class MyBitmapData extends BitmapData { }
 \subsection{Using external Flash libraries}
 \label{target-flash-external-libraries}
 
-To embed external \ic{.swf} or \ic{.swc} libraries, use the following \href{http://haxe.org/documentation/introduction/compiler-usage.html}{compilation options}:
+To embed external \ic{.swf} or \ic{.swc} libraries, use the following \href{https://haxe.org/documentation/introduction/compiler-usage.html}{compilation options}:
 
 \begin{description}
 	\item[\expr{-swf-lib <file>}] Embeds the SWF library in the compiled SWF.
@@ -542,7 +542,7 @@ The compiler outputs in the given \emph{bin}-folder, which contains the generate
 \paragraph{More information}
 
 \begin{itemize}
-	\item \href{http://api.haxe.org/php/}{Haxe PHP API docs}
+	\item \href{https://api.haxe.org/php/}{Haxe/PHP API docs}
 	\item \href{http://php.net/docs.php}{PHP.net Documentation}
 	\item \href{http://phptohaxe.haqteam.com/code.php}{PHP to Haxe tool}
 \end{itemize}
@@ -609,6 +609,10 @@ System compilers are supported on the three primary operating systems - Mac, Lin
 
 \paragraph{Cross Compilers}
 Hxcpp can be used to compile for non-host architectures if you have a suitable cross-compiler installed.  The compilers are usually supplied in the form of a Software Development Kits (SDK), or in the case of iOS devices, come with the system compiler (Xcode).  Selecting which compiler to use is achieved by defining particular variables in the hxcpp build environment.  Note that the hxcpp build tool is only responsible for producing a native executable or a native library (static or dynamic), not the complete bundling and packaging of assets and meta-data that is typically required for mobile devices.  Additional Haxe libraries can be used for this task.
+
+\begin{itemize}
+	\item \href{https://api.haxe.org/cpp/}{Haxe/C++ API docs}
+\end{itemize}
 
 \subsection{The Hxcpp Build Environment}
 \label{target-cpp-build-environment}
@@ -818,11 +822,217 @@ The xml attribute values can be substituted with variable values using dollars-b
 \section{Cppia}
 \label{target-cppia}
 
+
+\subsection{Getting started with Haxe/Cppia}
+\label{target-java-getting-started}
+
+Cppia is a scriptable cpp subtarget for Haxe. A cppia script is an instructions assembly script that can be run inside a cppia host and gives you runtime speed at near-zero compilation time. It also lets add performance critical code to the host, wich gives you full cpp runtime speed for those parts.
+
+\paragraph{More information}
+\begin{itemize}
+	\item \href{https://api.haxe.org/cpp/cppia/index.html}{Cppia API documentation}
+	\item \href{https://code.haxe.org/category/other/working-with-cppia/index.html}{Cppia tutorial}
+\end{itemize}
+
 \section{Java}
 \label{target-java}
+\state{NoContent}
+
+\subsection{Getting started with Haxe/Java}
+\label{target-java-getting-started}
+
+To get started with Haxe/Java, create a new folder and save this class as \ic{Main.hx}.
+
+\haxe{assets/HelloWorld.hx}
+
+To compile Haxe to Java we need two obvious prerequisites installed:
+
+\begin{itemize}
+	\item \href{http://lib.haxe.org/p/hxjava}{hxjava haxelib}. This is the support library for the Java backend of the Haxe compiler.
+	\item \href{https://java.com/download/}{JRE - Java Runtime Environment}.
+\end{itemize}
+
+Run the following from the command line:
+
+\begin{lstlisting}
+haxe -java bin -main Main
+\end{lstlisting}
+
+Another possibility is to create and run (double-click) a file called \ic{compile.hxml}. In this example the hxml-file should be in the same directory as the example class.
+
+\begin{lstlisting}
+-java bin
+-main Main
+\end{lstlisting}
+
+The compiler outputs in the given \emph{bin}-folder, which contains the generated sources / .jar files which prints the traced message when you execute it. 
+
+To execute, run the following command:
+
+\begin{lstlisting}
+java -jar bin/Main.jar
+\end{lstlisting}
+
+\paragraph{More information}
+
+\begin{itemize}
+	\item \href{https://api.haxe.org/java/}{Haxe/Java API docs}
+	\item \href{https://docs.oracle.com/javase/}{Java Platform Documentation}
+\end{itemize}
+
 
 \section{C\#}
 \label{target-cs}
+\state{NoContent}
+
+\subsection{Getting started with Haxe/C#}
+\label{target-cs-getting-started}
+
+Haxe can be used as a language for .NET platform through its C# target. Let's make a simple program using .NET Console class:
+
+\haxe{assets/HelloWorld.hx}
+
+To compile Haxe to C# we need two obvious prerequisites installed:
+
+\begin{itemize}
+	\item \href{http://lib.haxe.org/p/hxcs}{hxcs haxelib}. This is the support library for the C# backend of the Haxe compiler.
+	\item \href{https://www.microsoft.com/net}{.NET development framework (either Microsoft.NET or Mono)}
+\end{itemize}
+
+After that we can compile to C# using the \ic{-cs} option from either the command line or an hxml-file:
+
+\begin{lstlisting}
+haxe -cs out -main Main
+\end{lstlisting}
+
+The compiler will output C# sources into  \emph{out/src} folder, then call C# compiler to build  \emph{Main.exe} file into  \emph{out/bin} folder.
+
+\paragraph{More information}
+
+\begin{itemize}
+	\item \href{https://api.haxe.org/cs/}{Haxe/C# API docs}
+	\item \href{https://msdn.microsoft.com/en-us/library/kx37x362.aspx}{C# Documentation}
+\end{itemize}
+
+
+\subsection{.NET version and external libraries}
+\label{target-cs-external-libraries}
+
+By default, Haxe uses basic .NET 2.0 API provided by hxcs library (it ships mscorlib.dll and System.dll from the Mono project). We can specify different .NET version by providing \ic{-D net-ver=xx} define, where xx is major and minor digits of .NET version number, i.e. \ic{-D net-ver=40} for setting .NET version to 4.0. Note that currently, hxcs library only ships DLL files for .NET 2.0 and 4.0.
+
+\paragraph{Using custom .NET distribution}
+
+We can make Haxe use a custom set of DLL files as standard .NET framework. To do that, we need to first learn about how Haxe finds standard .NET libraries. Haxe/C# looks for .DLL files in a directory path, constructed from three components:
+
+\begin{itemize}
+	\item .NET version (set by \ic{-D net-ver=xx}, defaults to \ic{20} as described above)
+	\item .NET target (by default set to \ic{net}, but could be changed using \ic{-D net-target=xxx}, where \ic{xxx} could be \ic{micro}, \ic{compact} or some other).
+	\item .NET std path (set by -net-std option, by default points to netlib directory inside hxcs library)
+\end{itemize}
+
+The resulting search path will be \emph{<net_std_path>/<net_target>-<net_ver>/}, taking in the consideration default values described above, without any specific configuration haxe will load all .NET DLL files found in \emph{<hxcs_install_path>/netlib/net-20/}.
+
+Now if we provide the following options:
+
+\begin{lstlisting}
+-D net-target=micro -D net-ver=35 -net-std=/dotnet
+\end{lstlisting}
+
+Haxe will load all .NET DLL files found in \emph{/dotnet/micro-35/}.
+
+
+\paragraph{Using external libraries}
+
+Haxe can directly load .NET assembly files (.DLL) and convert its type definitions for use as Haxe types. To load a .NET assembly, use \ic{-net-lib library.dll} compiler option. Haxe will then automatically parse types defined in that assembly file and make them available for import as Haxe types.
+
+Some changes are performed to type naming of C# classes to make them fit into Haxe type system, namely:
+
+\begin{itemize}
+	\item Namespaces are lowercased to follow Haxe package naming rules, so i.e. \ic{UnityEngine} becomes \ic{unityengine} (note that \ic{System} namespace is also prefixed with \ic{cs}, so  \ic{System.Core} becomes  \ic{cs.system.core})
+	\item Inner classes are generated as \ic{OuterClassName_InnerClassName} and placed into the \ic{OuterClassName} module. So for example for an inner class \ic{B} inside a class \ic{A} inside a namespace \ic{Something}, the full Haxe type path will be \ic{something.A.A_B}. Note however, that if you do \ic{import something.A}, both \ic{A} and \ic{A_B} class will be available within your module as per standard Haxe import mechanism.
+	\item Classes with type parameters have numbers of type params appended to their name, for example \ic{Dictionary<K,V>} becomes \ic{Dictionary_2<K,V>}
+\end{itemize}
+
+
+\subsection{Haxe/C# Defines}
+\label{target-cs-defines}
+
+Besides \ic{-D net-ver} and \ic{-D net-target}:
+
+\begin{itemize}
+	\item \ic{-D dll} compile to a .NET assembly instead of an executable file. Added automatically when no \ic{-main} is specified.
+	\item \ic{-D real-position} don't generate #line directives that map C# expression positions to original .hx files. Useful for tracking down issues related to code generation.
+	\item \ic{-D no-root} generate package-less haxe types in the haxe.root namespace to avoid conflicts with other types in the root namespace
+	\item \ic{-D erase-generics} fully erase type parameters from generated C# files and generate non-generic classes. This is useful in some cases, like working with .NET Micro Framework or preventing generics-related issues with Unity3D AOT compiler.
+	\item \ic{-D no-compilation} only generate C# sources and don't invoke C# compiler on them.
+	\item \ic{-D keep-old-output} by default haxe cleans up stale generated source files from the output directory. This define disables that behaviour.
+	\item \ic{-D dll-import}
+\end{itemize}
+	
+Haxe automatically adds \ic{NET_xx} defines where xx is major and minor version numbers .NET versions up to selected one. For example, when using .NET 4.0 (by providing \ic{-D net-ver=40}), we have the following defines set automatically: \ic{NET_20}, \ic{NET_21}, \ic{NET_30}, \ic{ NET_35} and \ic{NET_40}. If we had \ic{-D net-ver=30}, we would only have \ic{NET_20}, \ic{NET_21} and \ic{NET_30}.
+
+\subsection{Haxe/C# Metadata}
+\label{target-cs-metadata}
+
+This is the list of C# specific metadata. For more information, see also the complete list of all \tref{Haxe built-in metadata}{cr-metadata}.
+
+\begin{center}
+\begin{tabular}{| l | l | l |}
+	\hline
+	\multicolumn{3}{|c|}{JavaScript metadata} \\ \hline
+	Metadata & Usage & Description \\ \hline
+	@:nativeGen  &  on classes & don't generate reflection, generate proper type parameters. This is useful for some sort of interop, but slows down reflection and structural typing \\
+	@:nativeGen  &  on "flat" enums & generate C# enum, but note that C# enums are not-nullable unlike haxe enums, so using null will be generated as a default enum value (0-indexed constructor). \\
+	@:property  &  on non-physical fields (those with get/set/never accessors) & generate native C# properties. useful for implementing extern interfaces or providing API for use from C# \\
+	@:event  &  on variables & generate an event delegate (this also requires pairing add_EventName, remove_EventName methods with relevant signatures \\
+	@:protected  &  on a field & mark field as protected instead of public (could affect reflection, but useful for hiding fields when providing API for use from outside Haxe) \\
+	@:struct  &  on classes  &  generate struct instead of class \\
+\end{tabular}
+\end{center}
+
+\subsection{Injecting raw C# code}
+\label{target-cs-code-injection}
+
+\paragraph{Expression injection}
+
+In some cases it may be needed to inject raw C# code into Haxe-generated code. This is possible by using  \expr{untyped __cs__} call, for example:
+
+\begin{lstlisting}
+public function isBool(v:Dynamic):Bool {
+    return untyped __cs__("v is bool");
+}
+\end{lstlisting}
+The  \expr{untyped __cs__} syntax also supports code interpolation which means that you can insert Haxe expressions into injected C# code. For example, the example above could have been made inline, but because it always generates  \expr{v is bool}, it won't work when the given argument is not named  \expr{v} in the calling scope. To deal with that, we could rewrite our function using code interpolation, as follows:
+
+\begin{lstlisting}
+public inline function isBool(v:Dynamic):Bool {
+    return untyped __cs__("{0} is bool", v);
+}
+\end{lstlisting}
+
+\paragraph{Class code injection}
+
+TODO: @:classCode
+
+\paragraph{Function code injection}
+
+We can use \expr{@:functionCode} metadata for a method to generate raw C# code inside a method body. It completely replaces any haxe expressions in method body. For example:
+
+\begin{lstlisting}
+@:functionCode("return (v is int);")
+function isInt(v:Dynamic):Bool {
+    return false;
+}
+\end{lstlisting}
+
+Which will generate:
+
+\begin{lstlisting}
+public virtual bool isInt(object v) {
+    return (v is int);
+}
+\end{lstlisting}
+
 
 \section{Python}
 \label{target-python}

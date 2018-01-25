@@ -36,8 +36,6 @@ Missing Content:
 12.3 - Neko
 12.5.5 - Using C++ Pointers
 12.6 - Cppia
-12.7 - Java
-12.8 - C#
 12.9 - Python
 12.11 - HashLink
 
@@ -261,6 +259,13 @@ Unreviewed:
 12.5.2 - The Hxcpp Build Environment
 12.5.3 - build.xml File Format
 12.5.4 - Using C++ Defines
+12.6.1 - Getting started with Haxe/Cppia
+12.7.1 - Getting started with Haxe/Java
+12.8.1 - Getting started with Haxe/C#
+12.8.2 - .NET version and external libraries
+12.8.3 - Haxe/C# Defines
+12.8.4 - Haxe/C# Metadata
+12.8.5 - Injecting raw C# code
 12.10.1 - Getting started with Haxe/Lua
 12.10.2 - Using external Lua libraries
 12.10.3 - Version flags
