@@ -13,31 +13,31 @@ This type don't make any assumptions about what the value actually is and whethe
 
 ```haxe
 class Main {
-  function setAnyValue(value:Any) {
+  static function setAnyValue(value:Any) {
+    trace(value);
   }
 
-  function getAnyValue():Any {
+  static function getAnyValue():Any {
     return 42;
   }
 
   static function main() {
-	// value of any type works
+    // value of any type works
     setAnyValue("someValue");
     setAnyValue(42);
-	
-	var value = getAnyValue();
+  
+    var value = getAnyValue();
     $type(value); // Any, not Unknown<0>
 
     // won't compile: no dynamic field access
     // value.charCodeAt(0);
 
-    if ((value is String)) {
-       // explicit promotion, type-safe
-       trace((value : String).charCodeAt(0));
+    if (Std.is(value, String)) {
+      // explicit promotion, type-safe
+      trace((value : String).charCodeAt(0));
     }
   }
 }
-
 ```
 
 It's a more type-safe alternative to `Dynamic`, because it doesn't support field access or operators and it's bound to monomorphs. So, to work with the actual value, it needs to be explicitly promoted to another type.
