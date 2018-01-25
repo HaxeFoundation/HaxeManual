@@ -931,7 +931,7 @@ We can make Haxe use a custom set of DLL files as standard .NET framework. To do
 	\item .NET std path (set by -net-std option, by default points to netlib directory inside hxcs library)
 \end{itemize}
 
-The resulting search path will be \emph{<net_std_path>/<net_target>-<net_ver>/}, taking in the consideration default values described above, without any specific configuration haxe will load all .NET DLL files found in \emph{<hxcs_install_path>/netlib/net-20/}.
+The resulting search path will be \ic{<net_std_path>/<net_target>-<net_ver>/}, taking in the consideration default values described above, without any specific configuration haxe will load all .NET DLL files found in \ic{<hxcs_install_path>/netlib/net-20/}.
 
 Now if we provide the following options:
 
@@ -939,7 +939,7 @@ Now if we provide the following options:
 -D net-target=micro -D net-ver=35 -net-std=/dotnet
 \end{lstlisting}
 
-Haxe will load all .NET DLL files found in \emph{/dotnet/micro-35/}.
+Haxe will load all .NET DLL files found in \ic{/dotnet/micro-35/}.
 
 
 \paragraph{Using external libraries}

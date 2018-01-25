@@ -10,7 +10,7 @@ We can make Haxe use a custom set of DLL files as standard .NET framework. To do
 * .NET target (by default set to `net`, but could be changed using `-D net-target=xxx`, where `xxx` could be `micro`, `compact` or some other).
 * .NET std path (set by -net-std option, by default points to netlib directory inside hxcs library)
 
-The resulting search path will be **<net_std_path>/<net_target>-<net_ver>/**, taking in the consideration default values described above, without any specific configuration haxe will load all .NET DLL files found in **<hxcs_install_path>/netlib/net-20/**.
+The resulting search path will be `<net_std_path>/<net_target>-<net_ver>/`, taking in the consideration default values described above, without any specific configuration haxe will load all .NET DLL files found in `<hxcs_install_path>/netlib/net-20/`.
 
 Now if we provide the following options:
 
@@ -18,7 +18,7 @@ Now if we provide the following options:
 -D net-target=micro -D net-ver=35 -net-std=/dotnet
 ```
 
-Haxe will load all .NET DLL files found in **/dotnet/micro-35/**.
+Haxe will load all .NET DLL files found in `/dotnet/micro-35/`.
 
 ##### Using external libraries
 
