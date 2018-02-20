@@ -44,6 +44,7 @@ The following Haxe keywords may not be used as identifiers:
 	\item extern
 	\item false
 	\item for
+	\item final
 	\item function
 	\item if
 	\item implements
@@ -270,6 +271,38 @@ var d,e = 2;
 \end{lstlisting}
 
 The scoping behavior of local variables is described in \Fullref{expression-block}.
+
+
+\section{final}
+\label{expression-final}
+
+\since{4.0}
+
+The \expr{final} keyword allows being used in two places:
+
+\begin{itemize}
+	\item As modifier to a method, like in Java.
+	\item As replacement for \expr{var} when declaring fields.
+\end{itemize}
+
+The semantics of the latter are as follows:
+
+\begin{itemize}
+	\item \expr{static final} vars have to be initialized immediately.
+	\item If a class has non-static `final` vars which are not initialized immediately, it requires a constructor which has to assign to all such fields.
+	\item \expr{static inline final} works, but has the same semantics as \expr{static inline var}.
+	\item Visibility is orthogonal and not affected.
+	\item Property syntax is not supported.
+\end{itemize}
+
+\begin{lstlisting}
+final a = 42; // declare local a
+
+ // declare local b
+final function b() {
+}
+\end{lstlisting}
+
 
 
 \section{Local functions}
