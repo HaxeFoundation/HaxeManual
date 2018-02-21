@@ -32,7 +32,7 @@ Working with server-side technology. Haxe can be used to create server-side Java
 \label{target-javascript-getting-started}
 
 Haxe can be a powerful tool for developing JavaScript applications. Let's look at our first sample.
-This is a very simple example showing the toolchain. 
+This is a very simple example showing the toolchain.
 
 Create a new folder and save this class as \ic{Main.hx}.
 
@@ -91,9 +91,9 @@ To display the output in a browser, create an HTML-document called \ic{index.htm
 \subsection{Using external JavaScript libraries}
 \label{target-javascript-external-libraries}
 
-The \tref{externs mechanism}{lf-externs} provides access to the native APIs in a type-safe manner. It assumes that the defined types exist at run-time but assumes nothing about how and where those types are defined. 
+The \tref{externs mechanism}{lf-externs} provides access to the native APIs in a type-safe manner. It assumes that the defined types exist at run-time but assumes nothing about how and where those types are defined.
 
-An example of an extern class is the \href{https://github.com/HaxeFoundation/haxe/blob/development/std/js/jquery/JQuery.hx}{jQuery class} of the Haxe Standard Library. 
+An example of an extern class is the \href{https://github.com/HaxeFoundation/haxe/blob/development/std/js/jquery/JQuery.hx}{jQuery class} of the Haxe Standard Library.
 To illustrate, here is a simplified version of this extern class:
 
 \begin{lstlisting}
@@ -190,7 +190,7 @@ There are many externs for other popular native libraries available on \tref{Hax
 In Haxe, it is possible to call an exposed function thanks to the \expr{untyped} keyword. This can be useful in some cases if we don't want to write externs. Anything untyped that is valid syntax will be generated as it is.
 
 \begin{lstlisting}
-untyped window.trackEvent("page1");  
+untyped window.trackEvent("page1");
 \end{lstlisting}
 
 See also \Fullref{target-javascript-untyped} to inject raw JavaScript.
@@ -198,7 +198,7 @@ See also \Fullref{target-javascript-untyped} to inject raw JavaScript.
 \subsection{JavaScript untyped functions}
 \label{target-javascript-untyped}
 
-These functions allow to access specific JavaScript platform features. It works only when the Haxe compiler is targeting JavaScript and should always be prefixed with \expr{untyped}. 
+These functions allow to access specific JavaScript platform features. It works only when the Haxe compiler is targeting JavaScript and should always be prefixed with \expr{untyped}.
 
 \emph{Important note:} Before using these functions, make sure there is no alternative available in the Haxe Standard Library. The resulting syntax can not be validated by the Haxe compiler, which may result in invalid or error-prone code in the output.
 
@@ -211,7 +211,7 @@ untyped __js__('alert("Haxe is great!")');
 
 var myMessage = "Haxe is great!";
 untyped __js__('alert({0})', myMessage);
-// output: 
+// output:
 //	var myMessage = "Haxe is great!";
 //	alert(myMessage);
 
@@ -222,7 +222,7 @@ var hexString:String = untyped __js__('({0}).toString({1})', 255, 16);
 // output: var hexString = (255).toString(16);
 \end{lstlisting}
 
-\paragraph{\expr{untyped __instanceof__(o,cl)}} 
+\paragraph{\expr{untyped __instanceof__(o,cl)}}
 Same as \ic{o instanceof cl} in JavaScript.
 
 \begin{lstlisting}
@@ -231,7 +231,7 @@ var isString = untyped __instanceof__(myString, String);
 output: var isString = (myString instanceof String);
 \end{lstlisting}
 
-\paragraph{\expr{untyped __typeof__(o)}} 
+\paragraph{\expr{untyped __typeof__(o)}}
 Same as \ic{typeof o} in JavaScript.
 
 \begin{lstlisting}
@@ -239,7 +239,7 @@ var isNodeJS = untyped __typeof__(window) == null;
 output: var isNodeJS = typeof(window) == null;
 \end{lstlisting}
 
-\paragraph{\expr{untyped __strict_eq__(a,b)}} 
+\paragraph{\expr{untyped __strict_eq__(a,b)}}
 Same as \ic{a === b}  in JavaScript, tests on \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness}{strict equality} (or "triple equals" or "identity").
 
 \begin{lstlisting}
@@ -249,7 +249,7 @@ var isEqual = untyped __strict_eq__(a, b);
 output: var isEqual = ((a) === b);
 \end{lstlisting}
 
-\paragraph{\expr{untyped __strict_neq__(a,b)}} 
+\paragraph{\expr{untyped __strict_neq__(a,b)}}
 Same as \ic{a !== b}  in JavaScript, tests on negative strict equality.
 
 \begin{lstlisting}
@@ -259,7 +259,7 @@ var isntEqual = untyped __strict_neq__(a, b);
 output: var isntEqual = ((a) !== b);
 \end{lstlisting}
 
-\paragraph{Expression injection} 
+\paragraph{Expression injection}
 
 In some cases it may be needed to inject raw JavaScript code into Haxe-generated code. With the \expr{__js__} function we can inject pure JavaScript code fragments into the output. This code is always untyped and can not be validated, so it accepts invalid code in the output, which is error-prone.
 This could, for example, write a JavaScript comment in the output.
@@ -301,7 +301,7 @@ This is the list of JavaScript specific metadata. For more information, see also
 \subsection{Exposing Haxe classes for JavaScript}
 \label{target-javascript-expose}
 
-It is possible to make Haxe classes or static fields available for usage in plain JavaScript. 
+It is possible to make Haxe classes or static fields available for usage in plain JavaScript.
 To expose, add the \expr{@:expose} metadata to the desired class or static fields.
 
 This example exposes the Haxe class \ic{MyClass}.
@@ -357,7 +357,7 @@ MyClass.prototype = {
 var MyClass = $hx_exports.MyClass;
 \end{lstlisting}
 
-In this pattern, a var statement is used to expose the module; it doesn't write to the \ic{window} or \ic{exports} object. 
+In this pattern, a var statement is used to expose the module; it doesn't write to the \ic{window} or \ic{exports} object.
 
 \subsection{Loading extern classes using "require" function}
 \label{target-javascript-require}
@@ -379,6 +379,18 @@ The second argument is a dotted-path, so we can load sub-objects in any hierarch
 
 If we need to load custom JavaScript objects in runtime, a \expr{js.Lib.require} function can be used. It takes \expr{String} as its only argument and returns \expr{Dynamic}, so it is advised to be assigned to a strictly typed variable.
 
+\subsection{Community driven JavaScript documentation}
+\label{target-javascript-other-documentation}
+
+The Haxe manual is focussed on learning the specifics of Haxe. So for all the help you need for that, you are in the right place now.
+
+But if you want to update your knownledge on a specific target, this documentation is not that helpfull (although Haxe JavaScript target has the most target specific subjects)
+
+To help you with more indepth info about JavaScript and Haxe you should visit \href{https://matthijskamstra.github.io/haxejs/}{Haxe JavaScript documentation}.
+
+Remember: it's not maintained by the Haxe Foundation (that's why this chapter is called "Community driven JavaScript documentation") but by friendly Haxe developers!
+
+
 \section{Flash}
 \label{target-flash}
 \state{NoContent}
@@ -387,7 +399,7 @@ If we need to load custom JavaScript objects in runtime, a \expr{js.Lib.require}
 \label{target-flash-getting-started}
 
 Developing Flash applications is really easy with Haxe. Let's look at our first code sample.
-This is a basic example showing most of the toolchain. 
+This is a basic example showing most of the toolchain.
 
 Create a new folder and save this class as \ic{Main.hx}.
 
@@ -397,16 +409,16 @@ import flash.display.Shape;
 class Main {
     static function main() {
         var stage = Lib.current.stage;
-        
+
         // create a center aligned rounded gray square
         var shape = new Shape();
         shape.graphics.beginFill(0x333333);
 		shape.graphics.drawRoundRect(0, 0, 100, 100, 10);
 		shape.x = (stage.stageWidth - 100) / 2;
 		shape.y = (stage.stageHeight - 100) / 2;
-		
+
 		stage.addChild(shape);
-    }    
+    }
 }
 \end{lstlisting}
 
@@ -429,7 +441,7 @@ The output will be a main-flash.swf with size 960x640 pixels at 60 FPS with an o
 
 \paragraph{Display the Flash}
 
-Run the SWF standalone using the \href{https://www.adobe.com/support/flashplayer/downloads.html}{Standalone Debugger FlashPlayer}. 
+Run the SWF standalone using the \href{https://www.adobe.com/support/flashplayer/downloads.html}{Standalone Debugger FlashPlayer}.
 
 To display the output in a browser using the Flash plugin, create an HTML-document called \ic{index.html} and open it.
 
@@ -466,7 +478,7 @@ class Main {
   }
 }
 
-@:bitmap("relative/path/to/myfile.png") 
+@:bitmap("relative/path/to/myfile.png")
 class MyBitmapData extends BitmapData { }
 \end{lstlisting}
 
@@ -485,7 +497,7 @@ The standard compilation options also provide more Haxe sources to be added to t
 \begin{itemize}
 	\item To add another class path use \expr{-cp <directory>}.
 	\item To add a \tref{Haxelib library}{haxelib} use \expr{-lib <library-name>}.
-	\item To force a whole package to be included in the project, use \expr{--macro include('mypackage')} which will include all the classes declared in the given package and subpackages. 
+	\item To force a whole package to be included in the project, use \expr{--macro include('mypackage')} which will include all the classes declared in the given package and subpackages.
 \end{itemize}
 
 \subsection{Flash target Metadata}
@@ -552,7 +564,7 @@ The compiler outputs in the given \emph{bin}-folder, which contains the generate
 \subsection{PHP untyped functions}
 \label{target-php-untyped}
 
-These functions allow to access specific PHP platform features. It works only when the Haxe compiler is targeting PHP and should always be prefixed with \expr{untyped}. 
+These functions allow to access specific PHP platform features. It works only when the Haxe compiler is targeting PHP and should always be prefixed with \expr{untyped}.
 
 \emph{Important note:} Before using these functions, make sure there is no alternative available in the Haxe Standard Library. The resulting syntax can not be validated by the Haxe compiler, which may result in invalid or error-prone code in the output.
 
@@ -569,7 +581,7 @@ untyped __php__("echo '<pre>'; print_r($value); echo '</pre>';");
 Calls a PHP function with the desired number of arguments and returns what the PHP function returns.
 
 \begin{lstlisting}
-var value = untyped __call__("array", 1,2,3); 
+var value = untyped __call__("array", 1,2,3);
 // output returns a NativeArray with values [1,2,3]
 \end{lstlisting}
 
@@ -577,7 +589,7 @@ var value = untyped __call__("array", 1,2,3);
 Get the values from global vars. Note that the dollar sign in the Haxe code is omitted.
 
 \begin{lstlisting}
-var value : String = untyped __var__('_SERVER', 'REQUEST_METHOD')  
+var value : String = untyped __var__('_SERVER', 'REQUEST_METHOD')
 // output: $value = $_SERVER['REQUEST_METHOD']
 \end{lstlisting}
 
