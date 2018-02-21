@@ -576,14 +576,14 @@ Map comprehension in Haxe uses existing syntax to allow concise initialization f
 
 \haxe{assets/MapComprehension.hx}
 
-Variable \expr{a} is initialized to an array holding the numbers 0 to 4. The compiler generates code which adds the value of each loop iteration to the array, so the following code would be equivalent:
+Variable \expr{a} is initialized to an \type{Map} holding keys from 0 to 4 and string values. The compiler generates code which adds the value of each loop iteration to the map, so the following code would be equivalent:
 
 \begin{lstlisting}
 var a = new Map();
 for (i in 0...5) a.set(i, 'number ${i++}');
 \end{lstlisting}
 
-Variable \expr{b} is initialized to an array with the same values, but through a different comprehension style using \expr{while} instead of \expr{for}. Again, the following code would be equivalent:
+Variable \expr{b} is initialized to an \type{Map} with the same keys and values, but through a different comprehension style using \expr{while} instead of \expr{for}. Again, the following code would be equivalent:
 
 \begin{lstlisting}
 var i = 0;
