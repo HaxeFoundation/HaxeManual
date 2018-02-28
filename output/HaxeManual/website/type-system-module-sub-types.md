@@ -11,16 +11,18 @@ Here the sub-type `ExprDef` within module `haxe.macro.Expr` is accessed.
 An example sub-type declaration would look like the following :
 
 ```haxe
-//A.hx
+// a/A.hx
 package a;
+
 class A { public function new() {} }
 // sub-type
 class B { public function new() {} }
 ```
 
 ```haxe
-//Main.hx
-package main;
+// Main.hx
+import a.A;
+
 class Main {
     static function main() {
         var subtype1 = new a.A.B();
