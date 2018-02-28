@@ -399,6 +399,32 @@ var e:haxe.macro.Expr.ExprDef;
 
 Here the sub-type \type{ExprDef} within module \expr{haxe.macro.Expr} is accessed. 
 
+An example sub-type declaration would look like the following :
+
+\begin{lstlisting}
+// a/A.hx
+package a;
+
+class A { public function new() {} }
+// sub-type
+class B { public function new() {} }
+\end{lstlisting}
+
+\begin{lstlisting}
+// Main.hx
+import a.A;
+
+class Main {
+    static function main() {
+        var subtype1 = new a.A.B();
+
+        // these are also valid, but require import a.A or import a.A.B :
+        var subtype2 = new B();
+        var subtype3 = new a.B();
+    }
+}
+\end{lstlisting}
+
 The sub-type relation is not reflected at run-time. That is, public sub-types become a member of their containing package, which could lead to conflicts if two modules within the same package tried to define the same sub-type. Naturally, the Haxe compiler detects these cases and reports them accordingly. In the example above \type{ExprDef} is generated as \type{haxe.macro.ExprDef}.
 
 Sub-types can also be made private:

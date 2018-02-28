@@ -27,7 +27,7 @@ class Main {
     static function main() {
         var subtype1 = new a.A.B();
 
-        // these are also valid, but require import a.A :
+        // these are also valid, but require import a.A or import a.A.B :
         var subtype2 = new B();
         var subtype3 = new a.B();
     }
