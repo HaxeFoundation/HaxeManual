@@ -69,7 +69,7 @@ Keeps the generated temporary directory for LaTeX compilation. Useful for debugg
 PDF generation
 --------------
 
-To rebuild the .pdf from the command line, run `latexmk -xelatex HaxeDoc.tex`.
+To rebuild the .pdf from the command line, go to the HaxeManual folder, run `latexmk -xelatex HaxeManual.tex`.
 A recent version of [TeX Live] should provide latexmk and all needed packages
 and their dependencies:
 

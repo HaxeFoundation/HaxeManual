@@ -887,33 +887,33 @@ java -jar bin/Main.jar
 \label{target-cs}
 \state{NoContent}
 
-\subsection{Getting started with Haxe/C#}
+\subsection{Getting started with Haxe/C\#}
 \label{target-cs-getting-started}
 
-Haxe can be used as a language for .NET platform through its C# target. Let's make a simple program using .NET Console class:
+Haxe can be used as a language for .NET platform through its C\# target. Let's make a simple program using .NET Console class:
 
 \haxe{assets/HelloWorld.hx}
 
-To compile Haxe to C# we need two obvious prerequisites installed:
+To compile Haxe to C\# we need two obvious prerequisites installed:
 
 \begin{itemize}
-	\item \href{http://lib.haxe.org/p/hxcs}{hxcs haxelib}. This is the support library for the C# backend of the Haxe compiler.
+	\item \href{http://lib.haxe.org/p/hxcs}{hxcs haxelib}. This is the support library for the C\# backend of the Haxe compiler.
 	\item \href{https://www.microsoft.com/net}{.NET development framework (either Microsoft.NET or Mono)}
 \end{itemize}
 
-After that we can compile to C# using the \ic{-cs} option from either the command line or an hxml-file:
+After that we can compile to C\# using the \ic{-cs} option from either the command line or an hxml-file:
 
 \begin{lstlisting}
 haxe -cs out -main Main
 \end{lstlisting}
 
-The compiler will output C# sources into  \emph{out/src} folder, then call C# compiler to build  \emph{Main.exe} file into  \emph{out/bin} folder.
+The compiler will output C\# sources into  \emph{out/src} folder, then call C\# compiler to build  \emph{Main.exe} file into  \emph{out/bin} folder.
 
 \paragraph{More information}
 
 \begin{itemize}
-	\item \href{https://api.haxe.org/cs/}{Haxe/C# API docs}
-	\item \href{https://msdn.microsoft.com/en-us/library/kx37x362.aspx}{C# Documentation}
+	\item \href{https://api.haxe.org/cs/}{Haxe/C\# API docs}
+	\item \href{https://msdn.microsoft.com/en-us/library/kx37x362.aspx}{C\# Documentation}
 \end{itemize}
 
 
@@ -924,7 +924,7 @@ By default, Haxe uses basic .NET 2.0 API provided by hxcs library (it ships msco
 
 \paragraph{Using custom .NET distribution}
 
-We can make Haxe use a custom set of DLL files as standard .NET framework. To do that, we need to first learn about how Haxe finds standard .NET libraries. Haxe/C# looks for .DLL files in a directory path, constructed from three components:
+We can make Haxe use a custom set of DLL files as standard .NET framework. To do that, we need to first learn about how Haxe finds standard .NET libraries. Haxe/C\# looks for .DLL files in a directory path, constructed from three components:
 
 \begin{itemize}
 	\item .NET version (set by \ic{-D net-ver=xx}, defaults to \ic{20} as described above)
@@ -947,7 +947,7 @@ Haxe will load all .NET DLL files found in \ic{/dotnet/micro-35/}.
 
 Haxe can directly load .NET assembly files (.DLL) and convert its type definitions for use as Haxe types. To load a .NET assembly, use \ic{-net-lib library.dll} compiler option. Haxe will then automatically parse types defined in that assembly file and make them available for import as Haxe types.
 
-Some changes are performed to type naming of C# classes to make them fit into Haxe type system, namely:
+Some changes are performed to type naming of C\# classes to make them fit into Haxe type system, namely:
 
 \begin{itemize}
 	\item Namespaces are lowercased to follow Haxe package naming rules, so i.e. \ic{UnityEngine} becomes \ic{unityengine} (note that \ic{System} namespace is also prefixed with \ic{cs}, so  \ic{System.Core} becomes  \ic{cs.system.core})
@@ -956,27 +956,27 @@ Some changes are performed to type naming of C# classes to make them fit into Ha
 \end{itemize}
 
 
-\subsection{Haxe/C# Defines}
+\subsection{Haxe/C\# Defines}
 \label{target-cs-defines}
 
 Besides \ic{-D net-ver} and \ic{-D net-target}:
 
 \begin{itemize}
 	\item \ic{-D dll} compile to a .NET assembly instead of an executable file. Added automatically when no \ic{-main} is specified.
-	\item \ic{-D real-position} don't generate #line directives that map C# expression positions to original .hx files. Useful for tracking down issues related to code generation.
+	\item \ic{-D real-position} don't generate \#line directives that map C\# expression positions to original .hx files. Useful for tracking down issues related to code generation.
 	\item \ic{-D no-root} generate package-less haxe types in the haxe.root namespace to avoid conflicts with other types in the root namespace
-	\item \ic{-D erase-generics} fully erase type parameters from generated C# files and generate non-generic classes. This is useful in some cases, like working with .NET Micro Framework or preventing generics-related issues with Unity3D AOT compiler.
-	\item \ic{-D no-compilation} only generate C# sources and don't invoke C# compiler on them.
+	\item \ic{-D erase-generics} fully erase type parameters from generated C\# files and generate non-generic classes. This is useful in some cases, like working with .NET Micro Framework or preventing generics-related issues with Unity3D AOT compiler.
+	\item \ic{-D no-compilation} only generate C\# sources and don't invoke C\# compiler on them.
 	\item \ic{-D keep-old-output} by default haxe cleans up stale generated source files from the output directory. This define disables that behaviour.
 	\item \ic{-D dll-import}
 \end{itemize}
 	
 Haxe automatically adds \ic{NET_xx} defines where xx is major and minor version numbers .NET versions up to selected one. For example, when using .NET 4.0 (by providing \ic{-D net-ver=40}), we have the following defines set automatically: \ic{NET_20}, \ic{NET_21}, \ic{NET_30}, \ic{ NET_35} and \ic{NET_40}. If we had \ic{-D net-ver=30}, we would only have \ic{NET_20}, \ic{NET_21} and \ic{NET_30}.
 
-\subsection{Haxe/C# Metadata}
+\subsection{Haxe/C\# Metadata}
 \label{target-cs-metadata}
 
-This is the list of C# specific metadata. For more information, see also the complete list of all \tref{Haxe built-in metadata}{cr-metadata}.
+This is the list of C\# specific metadata. For more information, see also the complete list of all \tref{Haxe built-in metadata}{cr-metadata}.
 
 \begin{center}
 \begin{tabular}{| l | l | l |}
@@ -984,27 +984,27 @@ This is the list of C# specific metadata. For more information, see also the com
 	\multicolumn{3}{|c|}{JavaScript metadata} \\ \hline
 	Metadata & Usage & Description \\ \hline
 	@:nativeGen  &  on classes & don't generate reflection, generate proper type parameters. This is useful for some sort of interop, but slows down reflection and structural typing \\
-	@:nativeGen  &  on "flat" enums & generate C# enum, but note that C# enums are not-nullable unlike haxe enums, so using null will be generated as a default enum value (0-indexed constructor). \\
-	@:property  &  on non-physical fields (those with get/set/never accessors) & generate native C# properties. useful for implementing extern interfaces or providing API for use from C# \\
+	@:nativeGen  &  on "flat" enums & generate C\# enum, but note that C\# enums are not-nullable unlike haxe enums, so using null will be generated as a default enum value (0-indexed constructor). \\
+	@:property  &  on non-physical fields (those with get/set/never accessors) & generate native C\# properties. useful for implementing extern interfaces or providing API for use from C\# \\
 	@:event  &  on variables & generate an event delegate (this also requires pairing add_EventName, remove_EventName methods with relevant signatures \\
 	@:protected  &  on a field & mark field as protected instead of public (could affect reflection, but useful for hiding fields when providing API for use from outside Haxe) \\
 	@:struct  &  on classes  &  generate struct instead of class \\
 \end{tabular}
 \end{center}
 
-\subsection{Injecting raw C# code}
+\subsection{Injecting raw C\# code}
 \label{target-cs-code-injection}
 
 \paragraph{Expression injection}
 
-In some cases it may be needed to inject raw C# code into Haxe-generated code. This is possible by using  \expr{untyped __cs__} call, for example:
+In some cases it may be needed to inject raw C\# code into Haxe-generated code. This is possible by using  \expr{untyped __cs__} call, for example:
 
 \begin{lstlisting}
 public function isBool(v:Dynamic):Bool {
     return untyped __cs__("v is bool");
 }
 \end{lstlisting}
-The  \expr{untyped __cs__} syntax also supports code interpolation which means that you can insert Haxe expressions into injected C# code. For example, the example above could have been made inline, but because it always generates  \expr{v is bool}, it won't work when the given argument is not named  \expr{v} in the calling scope. To deal with that, we could rewrite our function using code interpolation, as follows:
+The  \expr{untyped __cs__} syntax also supports code interpolation which means that you can insert Haxe expressions into injected C\# code. For example, the example above could have been made inline, but because it always generates  \expr{v is bool}, it won't work when the given argument is not named  \expr{v} in the calling scope. To deal with that, we could rewrite our function using code interpolation, as follows:
 
 \begin{lstlisting}
 public inline function isBool(v:Dynamic):Bool {
@@ -1018,7 +1018,7 @@ TODO: @:classCode
 
 \paragraph{Function code injection}
 
-We can use \expr{@:functionCode} metadata for a method to generate raw C# code inside a method body. It completely replaces any haxe expressions in method body. For example:
+We can use \expr{@:functionCode} metadata for a method to generate raw C\# code inside a method body. It completely replaces any haxe expressions in method body. For example:
 
 \begin{lstlisting}
 @:functionCode("return (v is int);")
