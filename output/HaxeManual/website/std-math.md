@@ -26,7 +26,6 @@ class Main {
   }
 }
 
-
 ```
 
 ##### Related content

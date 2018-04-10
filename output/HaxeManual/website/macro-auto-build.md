@@ -36,7 +36,7 @@ class Main extends Base implements I2 {
 
 This outputs during compilation:
 
-```haxe
+```
 AutoBuildingMacro.hx:6:
   fromInterface: TInst(I2,[])
 AutoBuildingMacro.hx:6:

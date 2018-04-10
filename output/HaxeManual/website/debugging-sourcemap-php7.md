@@ -19,7 +19,7 @@ class Main {
 
 Building it with flags:
 
-```haxe
+```hxml
 -main Main
 -D php7
 -php build
@@ -28,7 +28,7 @@ Building it with flags:
 
 Running this build will trace the uncaught exception:
 
-```haxe
+```
 $ php build/index.php
 PHP Fatal error:  Uncaught php/_Boot/HxException: Terrible error in build/lib/Main.php:25
 Stack trace:
@@ -41,7 +41,7 @@ Stack trace:
 Install JStack using `haxelib install jstack`. JStack automatically adds `-D source_map` there is no need to add it manually.
 Now if JStack is installed, add it to the compilation:
 
-```haxe
+```hxml
 -main Main
 -D php7
 -php build
@@ -51,7 +51,7 @@ Now if JStack is installed, add it to the compilation:
 
 The output will have more informative stack trace for exceptions:
 
-```haxe
+```
 $ php build/index.php
 Terrible error
 Called from Main.terribleError (src/Main.hx line 7)

@@ -44,13 +44,16 @@ The `main` method accesses these metadata values using their API. The output rev
 
 * There is a field for each metadata, with the field name being the metadata name.
 * The field values correspond to the metadata arguments. If there are no arguments, the field value is `null`. Otherwise the field value is an array with one element per argument.
-* Metadata starting with `:` is omitted. This kind of metadata is known as **compile-time metadata**.
 
 Allowed values for metadata arguments are:
 
 * [Constants](expression-constants.md)
 * [Arrays declarations](expression-array-declaration.md) (if all their elements qualify)
 * [Object declarations](expression-object-declaration.md) (if all their field values qualify)
+
+##### Compile-time Metadata
+
+Metadata starting with `:`, such as `@:keep`, is available at compile time only; it is omitted at runtime. It may be used by macros or by the Haxe compiler itself. Unlike runtime metadata, arguments to compile-time metadata can be any valid expression.
 
 ##### Built-in Compiler Metadata
 An exhaustive list of all defined metadata can be obtained by running `haxe --help-metas` from command line.

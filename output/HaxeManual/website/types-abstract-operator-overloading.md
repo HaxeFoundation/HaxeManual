@@ -26,7 +26,7 @@ class Main {
 ```
 By defining `@:op(A * B)`, the function `repeat` serves as operator method for the multiplication `*` operator when the type of the left value is `MyAbstract` and the type of the right value is `Int`. The usage is shown in line 17, which turns into this when compiled to JavaScript:
 
-```haxe
+```js
 console.log(_AbstractOperatorOverload.
   MyAbstract_Impl_.repeat(a,3));
 ```

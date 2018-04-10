@@ -32,7 +32,7 @@ class Main {
 
 At this point it should not be surprising to see that calls to the array access fields are inserted in the output:
 
-```haxe
+```js
 map.set("foo",1);
 console.log(map.get("foo")); // 1
 ```

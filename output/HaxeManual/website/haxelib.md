@@ -1,6 +1,6 @@
 ## 11 Haxelib
 
-Haxelib's documentation is available at [https://lib.haxe.org/documentation/using-haxelib/](https://lib.haxe.org/documentation/using-haxelib/).
+Haxelib's documentation is available at [lib.haxe.org/documentation/using-haxelib/](https://lib.haxe.org/documentation/using-haxelib/).
 
 ---
 

@@ -24,7 +24,7 @@ class Main {
 
 It seems unusual to see the explicit type `MyValue<String>` here as we usually let [type inference](type-system-type-inference.md) deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The JavaScript output shows the result:
 
-```haxe
+```js
 (function () { "use strict";
 var Test = function() { };
 Test.main = function() {
@@ -56,7 +56,7 @@ class Main {
 
 Again, the JavaScript output makes it obvious:
 
-```haxe
+```js
 (function () { "use strict";
 var Main = function() { }
 Main.method_Int = function(t) {

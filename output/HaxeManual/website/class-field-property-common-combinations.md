@@ -41,7 +41,7 @@ class Main {
 
 The JavaScript output helps understand what the field access in the `main`-method is compiled to:
 
-```haxe
+```js
 var Main = function() {
 	var v = this.get_x();
 	this.set_x(2);
@@ -68,7 +68,7 @@ class Main {
 
 What happens here is that the expression part of the field access to `x` in the `main` method is **complex**: It has potential side-effects, such as the construction of `Main` in this case. Thus, the compiler cannot generate the `+=` operation as `new Main().x = new Main().x + 1` and has to cache the complex expression in a local variable:
 
-```haxe
+```js
 Main.main = function() {
 	var _g = new Main();
 	_g.set_x(_g.get_x() + 1);

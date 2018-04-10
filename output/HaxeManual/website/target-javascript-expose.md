@@ -20,7 +20,7 @@ class MyClass {
 
 It generates the following JavaScript output:
 
-```haxe
+```js
 (function ($hx_exports) { "use strict";
 var MyClass = $hx_exports.MyClass = function(name) {
 	this.name = name;
@@ -37,7 +37,7 @@ By passing globals (like `window` or `exports`) as parameters to our anonymous f
 
 In plain JavaScript it is now possible to create an instance of the class and call its public functions.
 
-```haxe
+```js
 // JavaScript code
 var instance = new MyClass('Mark');
 console.log(instance.foo()); // logs a message in the console
@@ -52,7 +52,7 @@ Compiling the project using `-D shallow-expose` allows the types or static field
 
 When the code is compiled using `-D shallow-expose`, the generated output will look like this:
 
-```haxe
+```js
 var $hx_exports = $hx_exports || {};
 (function () { "use strict";
 var MyClass = $hx_exports.MyClass = function(name) {

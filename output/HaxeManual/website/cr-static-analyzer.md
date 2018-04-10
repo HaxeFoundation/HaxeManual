@@ -8,7 +8,7 @@ Haxe 3.3.0 introduces a new static analyzer for code optimizations. It is enable
 
 To globally enable an analyzer module `-D analyzer-module` is used. To globally disable a module `-D analyzer-no-module` is used. In both cases "module" represents the name of the module to be disabled or enabled:
 
-```haxe
+```hxml
 # Global enable from command line
 haxe -D analyzer-module
 # Global disable from command line

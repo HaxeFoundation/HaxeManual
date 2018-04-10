@@ -19,7 +19,7 @@ enum MyEnum {
 
 If this file is saved to Main.hx, the completion can be invoked using the command `haxe --display Main.hx@63@toplevel`. The output looks similar to this (we omit several entries for brevity):
 
-```haxe
+```xml
 <il>
 <i k="local" t="Int">a</i>
 <i k="static" t="Void -&gt; Unknown&lt;0&gt;">main</i>

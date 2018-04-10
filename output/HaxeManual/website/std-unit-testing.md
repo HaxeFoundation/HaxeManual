@@ -33,7 +33,7 @@ class Main {
 ```
 
 The result of the test looks like this:
-```haxe 
+```
 Class: MyTestCase
 .
 OK 1 tests, 0 failed, 1 success

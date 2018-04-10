@@ -21,13 +21,13 @@ class Main {
 
 To compile, either run the following from the command line:
 
-```haxe
+```hxml
 haxe -js main-javascript.js -main Main
 ```
 
 Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml file should be in the same directory as the example class.
 
-```haxe
+```hxml
 -js main-javascript.js
 -main Main
 ```
@@ -38,7 +38,7 @@ The output will be a main-javascript.js, which creates and adds a clickable butt
 
 To display the output in a browser, create an HTML-document called `index.html` and open it.
 
-```haxe
+```xml
 <!DOCTYPE html>
 <html>
 	<body>
@@ -52,7 +52,8 @@ To display the output in a browser, create an HTML-document called `index.html` 
 * [Debugging in JavaScript](debugging-javascript.md)
 * [Haxe/JavaScript tutorials](https://code.haxe.org/category/javascript/)
 * [Haxe JavaScript API docs](https://api.haxe.org/js/)
-* [MDN JavaScript Reference](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference)
+* [MDN JavaScript Reference](https://developer.mozilla.org/bm/docs/Web/JavaScript)
+* [Haxe/Javascript documentation by Matthijs Kamstra](https://matthijskamstra.github.io/haxejs/)
 
 ---
 

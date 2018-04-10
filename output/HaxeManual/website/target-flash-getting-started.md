@@ -26,13 +26,13 @@ class Main {
 
 To compile this, either run the following from the command line:
 
-```haxe
+```hxml
 haxe -swf main-flash.swf -main Main -swf-version 15 -swf-header 960:640:60:f68712
 ```
 
 Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml file should be in the same directory as the example class.
 
-```haxe
+```hxml
 -swf main-flash.swf
 -main Main
 -swf-version 15
@@ -47,7 +47,7 @@ Run the SWF standalone using the [Standalone Debugger FlashPlayer](https://www.a
 
 To display the output in a browser using the Flash plugin, create an HTML-document called `index.html` and open it.
 
-```haxe
+```xml
 <!DOCTYPE html>
 <html>
 	<body>

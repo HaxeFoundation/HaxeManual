@@ -30,7 +30,7 @@ class Main {
 
 The Haxe Compiler replaces all field access to the `HttpStatus` abstract with their values, as evident in the JavaScript output:
 
-```haxe
+```js
 Main.main = function() {
 	var status = 404;
 	var msg = Main.printStatus(status);

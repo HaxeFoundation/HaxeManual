@@ -13,7 +13,7 @@ class Main {
 
 If this file is saved to Main.hx, the completion can be invoked using the command `haxe --display Main.hx@0@position`. The output looks like this:
 
-```haxe
+```xml
 <list>
 <pos>std/string.hx:124: characters 1-54</pos>
 </list>

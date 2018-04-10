@@ -14,7 +14,7 @@ class Main {
 
 While `String` does not have a `replace` functionality by itself, the `using StringTools` static extension provides one. As usual, the JavaScript output nicely shows the transformation:
 
-```haxe
+```js
 Main.main = function() {
 	StringTools.replace("adc","d","b");
 }
