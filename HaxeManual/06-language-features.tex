@@ -570,6 +570,22 @@ The loop expression can be anything, including conditions and nested loops, so t
 
 \haxe{assets/AdvArrayComprehension.hx}
 
+It is also possible to construct a \tref{Map}{std-Map} using the comprehension syntax. 
+
+\begin{lstlisting}
+var m = [for (i in 0...10) i => Std.string(i)]; 
+\end{lstlisting}
+
+Maps are initialized like arrays, but use the map literal syntax with the \ic{=>} operator. The following code would be equivalent:
+
+\begin{lstlisting}
+var i = 0;
+var m = new Map<Int, String>();
+while(i < 10) {
+    m.set(i, Std.string(i));
+    i ++;
+}
+\end{lstlisting}
 
 \section{Iterators}
 \label{lf-iterators}
