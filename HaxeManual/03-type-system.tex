@@ -103,7 +103,7 @@ A class or function can be made \emph{generic} by attributing it with the \expr{
 
 It seems unusual to see the explicit type \type{MyValue<String>} here as we usually let \tref{type inference}{type-system-type-inference} deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The \target{JavaScript} output shows the result:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 (function () { "use strict";
 var Test = function() { };
 Test.main = function() {
@@ -126,7 +126,7 @@ We can identify that \type{MyValue<String>} and \type{MyValue<Int>} have become 
 
 Again, the \target{JavaScript} output makes it obvious:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 (function () { "use strict";
 var Main = function() { }
 Main.method_Int = function(t) {
@@ -160,7 +160,7 @@ It should be noted that \tref{top-down inference}{type-system-top-down-inference
 
 Here, 1. is given by \expr{make} having the \expr{@:generic} metadata, and 2. by \type{T} being constrained to \type{Constructible}. The constraint holds for both \type{String} and \type{haxe.Template} as both have a constructor accepting a singular \type{String} argument. Sure enough, the relevant \target{JavaScript} output looks as expected:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 var Main = function() { }
 Main.__name__ = true;
 Main.make_haxe_Template = function() {

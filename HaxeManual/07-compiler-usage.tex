@@ -132,7 +132,7 @@ It is possible to supply more arguments after the hxml file, e.g. \ic{haxe build
 
 This example has a configuration which compiles the class file \ic{website.HomePage.hx} to JavaScript into a file called \ic{bin/homepage.js}, which is located in the \ic{src} class path. And uses full dead code elimination.
 
-\begin{lstlisting}
+\lang{hxml}\begin{lstlisting}
 -cp src
 -dce full
 -js bin/homepage.js
@@ -152,7 +152,7 @@ Hxml configurations allow multiple compilation using these arguments:
 
 This example has a configuration which compiles three different classes into their own JavaScript files. Each build uses \ic{src} as class path and uses full dead code elimination.
 
-\begin{lstlisting}
+\lang{hxml}\begin{lstlisting}
 -cp src
 -dce full
 
@@ -180,7 +180,7 @@ Inside .hxml files use a hash (i.e. \ic{\#}) to comment out the rest of the line
 
 It is possible to create a configuration that looks like this:
 
-\begin{lstlisting}
+\lang{hxml}\begin{lstlisting}
 build-server.hxml  
 --next  
 build-website.hxml  

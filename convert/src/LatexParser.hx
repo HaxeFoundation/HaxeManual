@@ -152,9 +152,12 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					tableMode = false;
 
 				// code
+				case [TCustomCommand("lang"), s = inBraces(text), TBegin("lstlisting")]:
+					codeMode = true;
+					buffer.add('```${s != "none" ? s : ""}');
 				case [TBegin("lstlisting")]:
 					codeMode = true;
-					buffer.add("```haxe");
+					buffer.add("```haxe"); // Assume haxe if not specified
 				case [TEnd("lstlisting")]:
 					codeMode = false;
 					buffer.add("```");

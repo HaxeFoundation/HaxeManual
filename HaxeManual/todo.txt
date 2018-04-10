@@ -22,7 +22,6 @@ Todo:
 3.7.3 - Resolution Order: proper label and caption + code/identifier styling for diagram
 6.4.10 - Exhaustiveness checks: Figure out wtf our rules are now for when this is checked.
 6.6 - Array Comprehension: Comprehensions are only listing Arrays, not Maps
-8.4.1 - Embedding resources: what to use for listing of non-haxe code like hxml?
 9.5.1 - Enum building: Check if we can build GADTs this way.
 10.4.3 - Integer Math: I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?
 
