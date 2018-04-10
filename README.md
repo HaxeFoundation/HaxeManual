@@ -37,8 +37,8 @@ Block of code, if not haxe code:
 	<until x="4" />
 </do>
 \end{lstlisting}
-Do not put a new line between `\lang{}` and `\begin{lstlisting}`, use `\lang{none}` if the block shouldn't be highlighted.
 ```
+Do not put a new line between `\lang{}` and `\begin{lstlisting}`, use `\lang{none}` if the block shouldn't be highlighted.
 Unordered list:
 ```tex
 \begin{itemize}
