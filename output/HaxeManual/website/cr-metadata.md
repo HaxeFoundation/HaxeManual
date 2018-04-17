@@ -103,7 +103,7 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 @:sourceFile   |  Source code filename for external class   |  cpp 
 @:strict   |  Used to declare a native C# attribute or a native Java metadata. Is type checked   |  cs java 
 @:struct   |  Marks a class definition as a struct    |  cs 
-@:structAccess   |  Marks an extern class as using struct access('.') not pointer('->')   |  cpp
+@:structAccess   |  Marks an extern class as using struct access('.') not pointer('->')   |  cpp 
 @:structInit   |    Allows one to initialize the class with a structure that matches constructor parameters   |   all
 @:suppressWarnings   |  Adds a SuppressWarnings annotation for the generated Java class   |  java 
 @:throws _(Type as String)_   |  Adds a <code>throws</code> declaration to the generated function    |  java 
