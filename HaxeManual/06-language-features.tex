@@ -545,8 +545,6 @@ Of course the use of single-quote enclosed strings without any interpolation rem
 \section{Array Comprehension}
 \label{lf-array-comprehension}
 
-\todo{Comprehensions are only listing Arrays, not Maps}
-
 Array comprehension in Haxe uses existing syntax to allow concise initialization of arrays. It is identified by \expr{for} or \expr{while} constructs:
 
 \haxe{assets/ArrayComprehension.hx}
@@ -562,13 +560,39 @@ Variable \expr{b} is initialized to an array with the same values, but through a
 
 \begin{lstlisting}
 var i = 0;
-var a = [];
-while(i < 10) a.push(i++);
+var b = [];
+while(i < 10) b.push(i++);
 \end{lstlisting}
 
 The loop expression can be anything, including conditions and nested loops, so the following works as expected:
 
 \haxe{assets/AdvArrayComprehension.hx}
+
+\section{Map Comprehension}
+\label{lf-map-comprehension}
+
+Map comprehension in Haxe uses existing syntax to allow concise initialization for \type{Map}. Maps are initialized like arrays, but use the map literal syntax with the \ic{=>} operator. It is identified by \expr{for} or \expr{while} constructs:
+
+\haxe{assets/MapComprehension.hx}
+
+Variable \expr{a} is initialized to an \type{Map} holding keys from 0 to 4 and string values. The compiler generates code which adds the value of each loop iteration to the map, so the following code would be equivalent:
+
+\begin{lstlisting}
+var a = new Map();
+for (i in 0...5) a.set(i, 'number ${i++}');
+\end{lstlisting}
+
+Variable \expr{b} is initialized to an \type{Map} with the same keys and values, but through a different comprehension style using \expr{while} instead of \expr{for}. Again, the following code would be equivalent:
+
+\begin{lstlisting}
+var i = 0;
+var b = new Map();
+while(i < 5) b.set(i, 'number ${i++}');
+\end{lstlisting}
+
+The loop expression can be anything, including conditions and nested loops, so the following works as expected:
+
+\haxe{assets/AdvMapComprehension.hx}
 
 
 \section{Iterators}
