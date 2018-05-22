@@ -4,6 +4,6 @@ Haxelib's documentation is available at [lib.haxe.org/documentation/using-haxeli
 
 ---
 
-Previous section: [Unit testing](std-unit-testing.md)
+Previous section: [Unit Testing](std-unit-testing.md)
 
 Next section: [Target Details](target-details.md)

@@ -24,6 +24,6 @@ In Haxe the same can be done with [`js.Lib.debug`](http://api.haxe.org/v/js/Lib.
 
 ---
 
-Previous section: [Tracing types](debugging-type-function.md)
+Previous section: [Tracing Types](debugging-type-function.md)
 
 Next section: [Source Maps](debugging-source-map.md)

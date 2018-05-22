@@ -103,6 +103,6 @@ The full documentation of these methods can be found in the [`haxe.macro.Compile
 
 ---
 
-Previous section: [Inline constructors](lf-inline-constructor.md)
+Previous section: [Inline Constructors](lf-inline-constructor.md)
 
 Next section: [HXML](compiler-usage-hxml.md)

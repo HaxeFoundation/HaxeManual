@@ -21,7 +21,6 @@ Todo:
 3.5.1 - Between Class/Interface: "parent class" should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.
 3.7.3 - Resolution Order: proper label and caption + code/identifier styling for diagram
 6.4.10 - Exhaustiveness checks: Figure out wtf our rules are now for when this is checked.
-6.6 - Array Comprehension: Comprehensions are only listing Arrays, not Maps
 9.5.1 - Enum building: Check if we can build GADTs this way.
 10.4.3 - Integer Math: I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?
 
@@ -124,7 +123,7 @@ Unreviewed:
 5.8 - Array Access
 5.9 - Function Call
 5.10 - var
-5.11 - Local functions
+5.11 - Local Functions
 5.12 - new
 5.13 - for
 5.14 - while
@@ -158,11 +157,12 @@ Unreviewed:
 6.4.11 - Useless pattern checks
 6.5 - String Interpolation
 6.6 - Array Comprehension
-6.7 - Iterators
-6.8 - Function Bindings
-6.9 - Metadata
-6.10 - Access Control
-6.11 - Inline constructors
+6.7 - Map Comprehension
+6.8 - Iterators
+6.9 - Function Bindings
+6.10 - Metadata
+6.11 - Access Control
+6.12 - Inline Constructors
 7 - Compiler Usage
 7.1 - HXML
 7.2 - Global Compiler Flags
@@ -183,7 +183,7 @@ Unreviewed:
 8.4.4 - Implementation details
 8.5 - Runtime Type Information
 8.5.1 - RTTI structure
-8.6 - Static analyzer
+8.6 - Static Analyzer
 9 - Macros
 9.1 - Macro Context
 9.2 - Arguments
@@ -201,7 +201,7 @@ Unreviewed:
 9.5.3 - @:genericBuild
 9.6.2 - Static extension
 9.6.3 - Build Order
-9.7 - Initialization macros
+9.7 - Initialization Macros
 10.1 - String
 10.2.1 - Array
 10.2.2 - Vector
@@ -237,7 +237,7 @@ Unreviewed:
 10.13 - Remoting
 10.13.1 - Remoting Connection
 10.13.2 - Implementation details
-10.14 - Unit testing
+10.14 - Unit Testing
 11 - Haxelib
 12.1 - JavaScript
 12.1.1 - Getting started with Haxe/JavaScript
@@ -270,7 +270,7 @@ Unreviewed:
 12.10.4 - Multireturns
 13.1 - Logging and Trace
 13.2 - Position Information Parameter
-13.3 - Tracing types
+13.3 - Tracing Types
 13.4 - Debugging in JavaScript
 13.5 - Source Maps
 13.5.1 - Source Maps in JavaScript

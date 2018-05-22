@@ -16,6 +16,6 @@ Within the `main` method we instantiate an instance of `Main` itself, with an ex
 
 ---
 
-Previous section: [Local functions](expression-function.md)
+Previous section: [Local Functions](expression-function.md)
 
 Next section: [for](expression-for.md)

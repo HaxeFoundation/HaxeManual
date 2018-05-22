@@ -1,4 +1,4 @@
-## 9.7 Initialization macros
+## 9.7 Initialization Macros
 
 Initialization macros are invoked from command line by using the `--macro callExpr(args)` command. This registers a callback which the compiler invokes after creating its context, but before typing what was argument to `-main`. This then allows configuring the compiler in some ways.
 

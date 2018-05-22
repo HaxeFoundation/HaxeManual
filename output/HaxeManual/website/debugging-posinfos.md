@@ -24,4 +24,4 @@ class Main {
 
 Previous section: [Logging and Trace](debugging-trace-log.md)
 
-Next section: [Tracing types](debugging-type-function.md)
+Next section: [Tracing Types](debugging-type-function.md)

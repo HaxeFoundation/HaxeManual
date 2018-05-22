@@ -1,4 +1,4 @@
-## 6.8 Function Bindings
+## 6.9 Function Bindings
 
 Haxe 3 allows binding functions with partially applied arguments. Each function type can be considered to have a `bind` field, which can be called with the desired number of arguments in order to create a new function. This is demonstrated here:
 

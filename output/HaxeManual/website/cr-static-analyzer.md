@@ -1,4 +1,4 @@
-## 8.6 Static analyzer
+## 8.6 Static Analyzer
 
 ##### since Haxe 3.3.0
 

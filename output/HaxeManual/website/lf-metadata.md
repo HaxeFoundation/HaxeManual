@@ -1,4 +1,4 @@
-## 6.9 Metadata
+## 6.10 Metadata
 
 Several constructs can be attributed with custom metadata:
 

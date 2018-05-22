@@ -26,10 +26,10 @@
 
 10.13: [Remoting](std-remoting.md)
 
-10.14: [Unit testing](std-unit-testing.md)
+10.14: [Unit Testing](std-unit-testing.md)
 
 ---
 
-Previous section: [Initialization macros](macro-initialization.md)
+Previous section: [Initialization Macros](macro-initialization.md)
 
 Next section: [String](std-String.md)

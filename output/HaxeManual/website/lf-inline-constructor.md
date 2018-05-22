@@ -1,4 +1,4 @@
-## 6.11 Inline constructors
+## 6.12 Inline Constructors
 
 ##### since Haxe 3.1.0
 
