@@ -579,7 +579,7 @@ Variable \expr{a} is initialized to an \type{Map} holding keys from 0 to 4 and s
 
 \begin{lstlisting}
 var a = new Map();
-for (i in 0...5) a.set(i, 'number ${i++}');
+for (i in 0...5) a.set(i, 'number ${i}');
 \end{lstlisting}
 
 Variable \expr{b} is initialized to an \type{Map} with the same keys and values, but through a different comprehension style using \expr{while} instead of \expr{for}. Again, the following code would be equivalent:
