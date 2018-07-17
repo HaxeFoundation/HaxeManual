@@ -15,7 +15,11 @@ class Main {
     //test("foo");
   }
 
+  #if (haxe_ver >= 4)
+  static function test<T:Iterable<String> & Measurable>(a:T) {
+  #else
   static function test<T:(Iterable<String>, Measurable)>(a:T) {
+  #end
     if (a.length == 0) return "empty";
     return a.iterator().next();
   }

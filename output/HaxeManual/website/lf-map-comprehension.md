@@ -5,21 +5,22 @@ Map comprehension in Haxe uses existing syntax to allow concise initialization f
 ```haxe
 class Main {
   static public function main() {
-    var a = [for (i in 0...10) i];
-    trace(a); // [0,1,2,3,4,5,6,7,8,9]
-
+    var a = [for (i in 0...5) i => 'number ${i}'];
+    trace(a); // {0 => number 0, 1 => number 1, 2 => number 2, 3 => number 3, 4 => number 4}
+    
     var i = 0;
-    var b = [while(i < 10) i++];
-    trace(b); // [0,1,2,3,4,5,6,7,8,9]
+    var b = [while(i < 5) i => 'number ${i++}'];
+    trace(b); // {0 => number 0, 1 => number 1, 2 => number 2, 3 => number 3, 4 => number 4}
   }
 }
+
 ```
 
 Variable `a` is initialized to an `Map` holding keys from 0 to 4 and string values. The compiler generates code which adds the value of each loop iteration to the map, so the following code would be equivalent:
 
 ```haxe
 var a = new Map();
-for (i in 0...5) a.set(i, 'number ${i++}');
+for (i in 0...5) a.set(i, 'number ${i}');
 ```
 
 Variable `b` is initialized to an `Map` with the same keys and values, but through a different comprehension style using `while` instead of `for`. Again, the following code would be equivalent:
