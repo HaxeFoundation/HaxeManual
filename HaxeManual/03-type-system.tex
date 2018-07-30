@@ -495,6 +495,20 @@ Here we import \expr{String.fromCharCode} as \expr{f} which allows us to use \ex
 
 Haxe also allows the more natural \expr{as} in place of \expr{in}.
 
+\subsection{Import defaults / import.hx}
+\label{type-system-import-defaults}
+\since{3.3.0}
+
+This feature allows us to define default imports and usings that will be applied for all modules inside a directory, which is particularly handy for large code bases with a lot of helpers and static extensions because it reduces the amount of imports.
+
+The special named \ic{import.hx} file (note the lowercase name) can be placed in the directory where your code lies. The file can contain import and using statements only. The statements will be applied to all Haxe modules in this directory and its subdirectories.
+
+Default imports of \ic{import.hx} acts as if its contents is placed at the top of each module. 
+
+\paragraph{Related content}
+\begin{itemize}
+	\item \href{https://haxe.org/blog/importhx-intro/}{Introduction of \ic{import.hx}}
+\end{itemize}
 
 \subsection{Resolution Order}
 \label{type-system-resolution-order}
