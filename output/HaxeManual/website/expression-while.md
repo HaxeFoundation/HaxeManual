@@ -1,6 +1,6 @@
 ## 5.14 while
 
-A normal while loop starts with the `while` keyword, followed by an opening parenthesis `(`, the condition expression and a closing paranthesis `)`. After that follows the loop body expression:
+A normal while loop starts with the `while` keyword, followed by an opening parenthesis `(`, the condition expression and a closing parenthesis `)`. After that follows the loop body expression:
 
 ```haxe
 while(condition) expression;

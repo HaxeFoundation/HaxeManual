@@ -4,7 +4,7 @@ abstract AbstractInt(Int) {
   }
 }
 
-class MyAbstract {
+class Main {
   static public function main() {
     var a = new AbstractInt(12);
     trace(a); //12

@@ -40,9 +40,9 @@ class Main {
 }
 ```
 
-Haxe generates this optimized Javascript output:
+Haxe generates this optimized JavaScript output:
 
-```haxe
+```js
 Main.main = function() {
 	var scores = [110,170,35];
 	var sum = 0;
@@ -74,6 +74,11 @@ class Main {
 > ##### Trivia: Dynamic Arrays
 >
 > In Haxe 2, mixed type array declarations were allowed. In Haxe 3, arrays can have mixed types only if they are explicitly declared as `Array<Dynamic>`.
+
+##### Related content
+
+* See the [Array API](http://api.haxe.org/Array.html) for details about its methods. 
+* [Data structures tutorials and examples](http://code.haxe.org/category/data-structures/) in the Haxe Code Cookbook.
 
 ---
 

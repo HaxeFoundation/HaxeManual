@@ -94,7 +94,7 @@ The next example shows common access identifier combinations for properties:
 
 The \target{JavaScript} output helps understand what the field access in the \expr{main}-method is compiled to:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 var Main = function() {
 	var v = this.get_x();
 	this.set_x(2);
@@ -109,7 +109,7 @@ As specified, the read access generates a call to \expr{get_x()}, while the writ
 
 What happens here is that the expression part of the field access to \expr{x} in the \expr{main} method is \emph{complex}: It has potential side-effects, such as the construction of \type{Main} in this case. Thus, the compiler cannot generate the \expr{+=} operation as \expr{new Main().x = new Main().x + 1} and has to cache the complex expression in a local variable:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 Main.main = function() {
 	var _g = new Main();
 	_g.set_x(_g.get_x() + 1);
@@ -123,7 +123,7 @@ Main.main = function() {
 
 The presence of properties has several consequences on the type system. Most importantly, it is necessary to understand that properties are a compile-time feature and thus \emph{require the types to be known}. If we were to assign a class with properties to \type{Dynamic}, field access would \emph{not} respect accessor methods. Likewise, access restrictions no longer apply and all access is virtually public.
 
-When using \expr{get} or \expr{set} access identifier, the compiler ensures that the getter and setter actually exists. The following problem does not compile:
+When using \expr{get} or \expr{set} access identifier, the compiler ensures that the getter and setter actually exists. The following code snippet does not compile:
 
 \haxe{assets/Property4.hx}
 
@@ -138,7 +138,7 @@ The \expr{dynamic} access modifier works exactly like \expr{get} or \expr{set}, 
 \subsection{Rules for getter and setter}
 \label{class-field-property-rules}
 
-Visibility of accessor methods has no effect on the accessibility of its property. That is, if a property is \expr{public} and defined to have a getter, that getter may me defined as \expr{private} regardless.
+Visibility of accessor methods has no effect on the accessibility of its property. That is, if a property is \expr{public} and defined to have a getter, that getter may be defined as \expr{private} regardless.
 
 Both getter and setter may access their physical field for data storage. The compiler ensures that this kind of field access does not go through the accessor method if made from within the accessor method itself, thus avoiding infinite recursion:
 
@@ -199,7 +199,7 @@ Overriding fields is instrumental for creating class hierarchies. Many design pa
 
 \haxe{assets/Override.hx}
 
-The important components here are
+The important components here are:
 
 \begin{itemize}
 	\item the class \type{Base} which has a method \expr{myMethod} and a constructor,
@@ -207,7 +207,14 @@ The important components here are
 	\item the \type{Main} class whose \expr{main} method creates an instance of \expr{Child}, assigns it to a variable \expr{child} of explicit type \type{Base} and calls \expr{myMethod()} on it.
 \end{itemize}
 
-The variable \expr{child} is explicitly typed as \type{Base} to highlight an important difference: At compile-time the type is known to be \type{Base}, but the runtime still finds the correct method \expr{myMethod} on class \type{Child}. It is then obvious that the field access is resolved dynamically at runtime.
+The variable \expr{child} is explicitly typed as \type{Base} to highlight an important difference: At compile-time the type is known to be \type{Base}, but the runtime still finds the correct method \expr{myMethod} on class \type{Child}. This is because field access is resolved dynamically at runtime.
+
+The \type{Child} class can access methods it has overridden by calling \expr{super.methodName()}:
+
+\haxe{assets/OverrideCallParent.hx}
+
+The section on \Fullref{types-class-inheritance} explains the use of \expr{super()} from within a \expr{new} constructor.
+
 
 \subsection{Effects of variance and access modifiers}
 \label{class-field-override-effects}
@@ -249,6 +256,7 @@ Omitting the visibility modifier usually defaults the visibility to \expr{privat
 	\item If the class is declared as \expr{extern}.
 	\item If the field is declared on an \tref{interface}{types-interfaces}.
 	\item If the field \tref{overrides}{class-field-overriding} a public field.
+	\item If the class has metadata \ic{@:publicFields}, which forces all class fields of inheriting classes to be public.
 \end{enumerate}
 
 \trivia{Protected}{Haxe has no notion of a \expr{protected} keyword known from Java, C++ and other object-oriented languages. However, its \expr{private} behavior is equal to those language's protected behavior, so Haxe actually lacks their real private behavior.}
@@ -262,7 +270,7 @@ The \expr{inline} keyword allows function bodies to be directly inserted in plac
 
 The generated \target{JavaScript} output reveals the effect of inline:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 (function () { "use strict";
 var Main = function() { }
 Main.main = function() {
@@ -306,3 +314,12 @@ Dynamic fields cannot be \expr{inline} for obvious reasons: While inlining is do
 The access modifier \expr{override} is required when a field is declared which also exists on a \tref{parent class}{types-class-inheritance}. Its purpose is to ensure that the author of a class is aware of the override as this may not always be obvious in large class hierarchies. Likewise, having \expr{override} on a field which does not actually override anything (e.g. due to a misspelled field name) triggers an error.
 
 The effects of overriding fields are detailed in \Fullref{class-field-overriding}. This modifier is only allowed on \tref{method}{class-field-method} fields.
+
+\subsection{Static}
+\label{class-field-static}
+
+All fields are member fields unless the modifier \expr{static} is used. Static fields are used ``on the class'' whereas non-static fields are used ``on a class instance'':
+
+\haxe{assets/StaticField.hx}
+
+Static \tref{variable}{class-field-variable} and \tref{property}{class-field-property} fields can have arbitrary initialization \tref{expressions}{expression}.

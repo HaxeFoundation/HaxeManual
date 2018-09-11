@@ -1,13 +1,13 @@
-## 10.9.1 Parsing JSON
+## 10.10.1 Parsing JSON
 
-Use the `haxe.Json.parse` static method to parse **JSON** data and obtain a Haxe value from it:
+Use the [haxe.Json.parse](http://api.haxe.org/haxe/Json.html#parse) static method to parse **JSON** data and obtain a Haxe value from it:
 ```haxe
 class Main {
-	static function main() {
+  static function main() {
     var s = '{"rating": 5}';
     var o = haxe.Json.parse(s);
     trace(o); // { rating: 5 }
-	}
+  }
 }
 
 ```

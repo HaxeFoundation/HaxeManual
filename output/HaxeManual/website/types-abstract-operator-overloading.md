@@ -17,16 +17,16 @@ abstract MyAbstract(String) {
   }
 }
 
-class AbstractOperatorOverload {
+class Main {
   static public function main() {
     var a = new MyAbstract("foo");
     trace(a * 3); // foofoofoo
   }
 }
 ```
-By defining `@:op(A * B)`, the function `repeat` serves as operator method for the multiplication `*` operator when the type of the left value is `MyAbstract` and the type of the right value is `Int`. The usage is shown in line 17, which turns into this when compiled to Javascript:
+By defining `@:op(A * B)`, the function `repeat` serves as operator method for the multiplication `*` operator when the type of the left value is `MyAbstract` and the type of the right value is `Int`. The usage is shown in line 17, which turns into this when compiled to JavaScript:
 
-```haxe
+```js
 console.log(_AbstractOperatorOverload.
   MyAbstract_Impl_.repeat(a,3));
 ```
@@ -48,7 +48,7 @@ abstract MyAbstract(String) {
     return this + "post";
 }
 
-class AbstractUnopOverload {
+class Main {
   static public function main() {
     var a = new MyAbstract("foo");
     trace(++a); // prefoo
@@ -58,7 +58,7 @@ class AbstractUnopOverload {
 ```
 Both binary and unary operator overloads can return any type.
 
-###### Exposing underlying type operations
+##### Exposing underlying type operations
 
 It is also possible to omit the method body of a `@:op` function, but only if the underlying type of the abstract allows the operation in question and if the resulting type can be assigned back to the abstract.
 

@@ -26,14 +26,14 @@ Variable `b` is initialized to an array with the same values, but through a diff
 
 ```haxe
 var i = 0;
-var a = [];
-while(i < 10) a.push(i++);
+var b = [];
+while(i < 10) b.push(i++);
 ```
 
 The loop expression can be anything, including conditions and nested loops, so the following works as expected:
 
 ```haxe
-class AdvArrayComprehension {
+class Main {
   static public function main() {
     var a = [
       for (a in 1...11)
@@ -52,4 +52,4 @@ class AdvArrayComprehension {
 
 Previous section: [String Interpolation](lf-string-interpolation.md)
 
-Next section: [Iterators](lf-iterators.md)
+Next section: [Map Comprehension](lf-map-comprehension.md)

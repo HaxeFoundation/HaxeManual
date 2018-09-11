@@ -9,7 +9,7 @@ Haxe allows conditional compilation by using `#if`, `#elseif` and `#else` and ch
 This example demonstrates usage of conditional compilation:
 
 ```haxe
-class ConditionalCompilation {
+class Main {
   public static function main(){
     #if !debug
       trace("ok");
@@ -28,19 +28,31 @@ The conditions after `#if` and `#elseif` allow the following expressions:
 
 * Any identifier is replaced by the value of the compiler flag by the same name. Note that `-D some-flag` from command line leads to the flags `some-flag` and `some_flag` to be defined.
 * The values of `String`, `Int` and `Float` constants are used directly.
-* The boolean operators `&&` (and), `||` (or) and `!` (not) work as expected.
+* The boolean operators `&&` (and), `||` (or) and `!` (not) work as expected, however the full expression must be completely contained by parentheses.
 * The operators `==`, `!=`, `>`, `>=`, `<`, `<=` can be used to compare values.
 * Parentheses `()` can be used to group expressions as usual.
 
 The Haxe parser does not parse `some-flag` as a single token and instead reads it as a subtraction binary operator `some - flag`. In cases like this the underscore version `some_flag` has to be used.
 
-###### Built-in Compiler Flags
+##### Working with compiler flags
+Compiler flags are available at compile time, the following methods only work in macro context:
+
+* To see if a compiler flag is set, use `haxe.macro.Context.defined("any_flag")`. 
+* To get the value of a compiler flag, use `haxe.macro.Context.definedValue("any_flag")`. 
+* To get a map of all compiler flags with its value use `haxe.macro.Context.getDefines()`. 
+
+##### Haxelibs
+By default, each used haxelib version is automatically added as flag, e.g. when you add `-lib actuate`, the compiler adds `-D actuate=1.8.7`. To test if a library exists in current context, use `#if actuate`. To check a specific haxelib version, use the operators, for example `#if (actuate <= "1.8.7")`
+
+##### Built-in Compiler Flags
 An exhaustive list of all built-in defines can be obtained by invoking the Haxe Compiler with the `--help-defines` argument. The Haxe Compiler allows multiple `-D` flags per compilation.
 
-See also the [Compiler Flags list](lf-condition-compilation-flags.md).
+##### Related content
+
+* See also the [Compiler Flags list](compiler-usage-flags.md).
 
 ---
 
 Previous section: [Language Features](lf.md)
 
-Next section: [Global Compiler Flags](lf-condition-compilation-flags.md)
+Next section: [Externs](lf-externs.md)

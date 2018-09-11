@@ -3,7 +3,7 @@
 Optional arguments are declared by prefixing an argument identifier with a question mark `?`:
 
 ```haxe
-class OptionalArguments {
+class Main {
   static public function main() {
     // ?i : Int -> ?s : String -> String
     $type(test);

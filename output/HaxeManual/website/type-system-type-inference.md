@@ -3,7 +3,7 @@
 The effects of type inference have been seen throughout this document and will continue to be important. A simple example shows type inference at work:
 
 ```haxe
-class TypeInference {
+class Main {
   public static function main() {
     var x = null;
     $type(x); // Unknown<0>
@@ -25,7 +25,7 @@ Whenever a type other than [Dynamic](types-dynamic.md) is unified with a monomor
 Following the rules of unification, type inference can occur in compound types:
 
 ```haxe
-class TypeInference2 {
+class Main {
   public static function main() {
     var x = [];
     $type(x); // Array<Unknown<0>>

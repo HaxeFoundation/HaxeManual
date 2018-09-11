@@ -8,7 +8,7 @@
 We have already "seen" Void in the initial "Hello World" example:
 
 ```haxe
-class HelloWorld {
+class Main {
   static public function main():Void {
     trace("Hello World");
   }

@@ -4,7 +4,7 @@ A `Vector` is an optimized fixed-length **collection** of elements. Much like [A
 
 ```haxe
 class Main {
-	static function main() {
+  static function main() {
     var vec = new haxe.ds.Vector(10);
 
     for (i in 0...vec.length) {
@@ -14,12 +14,17 @@ class Main {
     trace(vec[0]); // 0
     trace(vec[5]); // 5
     trace(vec[9]); // 9
-	}
+  }
 }
 
 ```
 
 `haxe.ds.Vector` is implemented as an abstract type ([Abstract](types-abstract.md)) over a native array implementation for given target and can be faster for fixed-size collections, because the memory for storing its elements is pre-allocated.
+
+##### Related content
+
+* See the [Vector API](http://api.haxe.org/haxe/ds/Vector.html) for details about the vector methods. 
+* [Data structures tutorials and examples](http://code.haxe.org/category/data-structures/) in the Haxe Code Cookbook.
 
 ---
 

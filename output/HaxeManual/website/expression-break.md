@@ -10,7 +10,7 @@ while(true) {
 }
 ```
 
-Here, `expression1` is evaluated for each iteration, but as soon as `condition` holds, `expression2` is not evaluated anymore.
+Here, `expression1` is evaluated for each iteration, but as soon as `condition` holds, the current iteration is terminated without evaluating `expression2`, and no more iteration is done.
 
 The typer ensures that it appears only within a loop. The `break` keyword in [`switch` cases](expression-switch.md) is not supported in Haxe.
 

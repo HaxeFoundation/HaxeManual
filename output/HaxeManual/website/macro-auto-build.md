@@ -36,7 +36,7 @@ class Main extends Base implements I2 {
 
 This outputs during compilation:
 
-```haxe
+```
 AutoBuildingMacro.hx:6:
   fromInterface: TInst(I2,[])
 AutoBuildingMacro.hx:6:
@@ -46,6 +46,10 @@ AutoBuildingMacro.hx:11:
 ```
 
 It is important to keep in mind that the order of these macro executions is undefined, which is detailed in [Build Order](macro-limitations-build-order.md).
+
+##### Related content
+
+* [Haxe snippets and tutorials about build macros](http://code.haxe.org/tag/build-macro.html) in the Haxe Code Cookbook.
 
 ---
 

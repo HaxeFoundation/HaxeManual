@@ -1,5 +1,7 @@
 ## 8.3.7 Top-level completion
 
+##### since Haxe 3.2.0
+
 Top-level completion displays all identifiers which the Haxe Compiler knows about at a given compilation position. This is the only completion method for which we need a real position argument in order to demonstrate its effect:
 
 ```haxe
@@ -17,7 +19,7 @@ enum MyEnum {
 
 If this file is saved to Main.hx, the completion can be invoked using the command `haxe --display Main.hx@63@toplevel`. The output looks similar to this (we omit several entries for brevity):
 
-```haxe
+```xml
 <il>
 <i k="local" t="Int">a</i>
 <i k="static" t="Void -&gt; Unknown&lt;0&gt;">main</i>

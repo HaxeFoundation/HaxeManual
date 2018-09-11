@@ -43,7 +43,7 @@ Although the return type of `Json.parse` is `Dynamic`, the type of local variabl
 
 > ##### Trivia: Dynamic in the Standard Library
 >
-> Dynamic was quite frequent in the Haxe Standard Library before Haxe 3. With the continuous improvements of the Haxe type system the occurences of Dynamic were reduced over the releases leading to Haxe 3.
+> Dynamic was quite frequent in the Haxe Standard Library before Haxe 3. With the continuous improvements of the Haxe type system the occurrences of Dynamic were reduced over the releases leading to Haxe 3.
 
 ---
 

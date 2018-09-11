@@ -1,4 +1,4 @@
-class TypeInference {
+class Main {
   public static function main() {
     var x = null;
     $type(x); // Unknown<0>

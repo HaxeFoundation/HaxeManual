@@ -1,6 +1,6 @@
 ## 5.19 return
 
-A `return` expression can come with or without an value expression:
+A `return` expression can come with or without a value expression:
 
 ```haxe
 return;

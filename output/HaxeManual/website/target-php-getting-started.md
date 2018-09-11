@@ -6,31 +6,31 @@ To get started with Haxe/PHP, create a new folder and save this class as `Main.h
 import php.Lib;
 
 class Main {
-	static function main() {
-		Lib.println('Haxe is great!');
-	}
+  static function main() {
+    Lib.println('Haxe is great!');
+  }
 }
 
 ```
 
 To compile, either run the following from the command line:
 
-```haxe
+```hxml
 haxe -php bin -main Main
 ```
 
-Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml-file should be in the same directory as the example class.
+Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml file should be in the same directory as the example class.
 
-```haxe
+```hxml
 -php bin
 -main Main
 ```
 
 The compiler outputs in the given **bin**-folder, which contains the generated PHP classes that prints the traced message when you run it. The generated PHP-code runs for version 5.1.0 and later.
 
-###### More information
+##### More information
 
-* [Haxe PHP API docs](http://api.haxe.org/php/)
+* [Haxe/PHP API docs](https://api.haxe.org/php/)
 * [PHP.net Documentation](http://php.net/docs.php)
 * [PHP to Haxe tool](http://phptohaxe.haqteam.com/code.php)
 
@@ -38,4 +38,4 @@ The compiler outputs in the given **bin**-folder, which contains the generated P
 
 Previous section: [PHP](target-php.md)
 
-Next section: [C++](target-cpp.md)
+Next section: [PHP untyped functions](target-php-untyped.md)

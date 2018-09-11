@@ -49,4 +49,4 @@ class Main {
 
 Previous section: [Dynamic with Type Parameter](types-dynamic-with-type-parameter.md)
 
-Next section: [Abstract](types-abstract.md)
+Next section: [Dynamic access](types-dynamic-access.md)

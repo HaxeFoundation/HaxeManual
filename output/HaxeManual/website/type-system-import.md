@@ -49,7 +49,7 @@ class Main {
 
 Special care has to be taken with field names or local variable names that conflict with a package name: Since they take priority over packages, a local variable named `haxe` blocks off usage the entire `haxe` package.
 
-###### Wildcard import
+##### Wildcard import
 
 Haxe allows using `.*` to allow import of all modules in a package, all types in a module or all static fields in a type. It is important to understand that this kind of import only crosses a single level as we can see in the following example:
 
@@ -68,7 +68,7 @@ Using the wildcard import on `haxe.macro` allows accessing `Expr` which is a mod
 
 When using wildcard imports on a package the compiler does not eagerly process all modules in that package. This means that these modules are never actually seen by the compiler unless used explicitly and are then not part of the generated output.
 
-###### Import with alias
+##### Import with alias
 
 If a type or static field is used a lot in an importing module it might help to alias it to a shorter name. This can also be used to disambiguate conflicting names by giving them a unique identifier.
 

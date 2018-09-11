@@ -1,4 +1,4 @@
-## 12.1.5 Loading extern classes using "require" function
+## 12.1.7 Loading extern classes using "require" function
 
 ##### since Haxe 3.2.0
 
@@ -32,6 +32,6 @@ If we need to load custom JavaScript objects in runtime, a `js.Lib.require` func
 
 ---
 
-Previous section: [Exposing Haxe classes for Javascript](target-javascript-expose.md)
+Previous section: [Exposing Haxe classes for JavaScript](target-javascript-expose.md)
 
 Next section: [Flash](target-flash.md)

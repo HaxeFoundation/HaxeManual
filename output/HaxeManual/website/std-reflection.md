@@ -7,7 +7,7 @@ The reflection API consists of two classes:
 * Reflect: A lightweight API which work best on [anonymous structures](types-anonymous-structure.md), with limited support for [classes](types-class-instance.md). 
 * Type: A more robust API for working with classes and [enums](types-enum-instance.md).
 
-The available methods are detailed in the API for [Reflect](http://api.haxe.org//Reflect.html) and [Type](http://api.haxe.org//Type.html).
+The available methods are detailed in the API for [Reflect](http://api.haxe.org/Reflect.html) and [Type](http://api.haxe.org/Type.html).
 
 Reflection can be a powerful tool, but it is important to understand why it can also cause problems. As an example, several functions expect a [String](std-String.md) argument and try to resolve it to a type or field. This is vulnerable to typing errors:
 
@@ -30,7 +30,7 @@ class Main {
 }
 ```
 
-The problem here is that the compiler never actually "sees" the type `haxe.Template`, so it does not compile it into the output. Furthermore, even if it were to see the type there could be issues arising from [dead code elimitation](cr-dce.md) eliminating types or fields which are only used via reflection.
+The problem here is that the compiler never actually "sees" the type `haxe.Template`, so it does not compile it into the output. Furthermore, even if it were to see the type there could be issues arising from [dead code elimination](cr-dce.md) eliminating types or fields which are only used via reflection.
 
 Another set of problems comes from the fact that, by design, several reflection functions expect arguments of type [Dynamic](types-dynamic.md), meaning the compiler cannot check if the passed in arguments are correct. The following example demonstrates a common mistake when working with `callMethod`:
 
@@ -77,7 +77,7 @@ class Main {
 
 ```
 
-While the method `reflective` could interally work with reflection (and `Dynamic` for that matter) a lot, its return value is a typed structure which the callers can use in a type-safe manner.
+While the method `reflective` could internally work with reflection (and `Dynamic` for that matter) a lot, its return value is a typed structure which the callers can use in a type-safe manner.
 
 ---
 

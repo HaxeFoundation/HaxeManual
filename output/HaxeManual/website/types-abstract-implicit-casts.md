@@ -14,7 +14,7 @@ abstract MyAbstract(Int) from Int to Int {
   }
 }
 
-class ImplicitCastDirect {
+class Main {
   static public function main() {
     var a:MyAbstract = 12;
     var b:Int = a;
@@ -42,7 +42,7 @@ abstract MyAbstract(Int) {
   }
 }
 
-class ImplicitCastField {
+class Main {
   static public function main() {
     var a:MyAbstract = "3";
     var b:Array<Int> = a;
@@ -52,13 +52,13 @@ class ImplicitCastField {
 ```
 By adding `@:from` to a static function, that function qualifies as implicit cast function from its argument type to the abstract. These functions must return a value of the abstract type. They must also be declared `static`.
 
-Similarly, adding `@:to` to a function qualifies it as implicit cast function from the abstract to its return type. These functions are typically member-functions but they can be made `static` and then serve as [selective function](types-abstract-selective-functions.md).
+Similarly, adding `@:to` to a function qualifies it as implicit cast function from the abstract to its return type.
 
 In the example the method `fromString` allows the assignment of value `"3"` to variable `a` of type `MyAbstract` while the method `toArray` allows assigning that abstract to variable `b` of type `Array<Int>`.
 
-When using this kind of cast, calls to the cast-functions are inserted where required. This becomes obvious when looking at the Javascript output:
+When using this kind of cast, calls to the cast-functions are inserted where required. This becomes obvious when looking at the JavaScript output:
 
-```haxe
+```js
 var a = _ImplicitCastField.MyAbstract_Impl_.fromString("3");
 var b = _ImplicitCastField.MyAbstract_Impl_.toArray(a);
 ```

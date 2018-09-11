@@ -17,6 +17,12 @@ We can identify different kinds of macros, which are run at specific compilation
 	\item[Expression Macros:] These are normal functions which are executed as soon as they are typed.
 \end{description}
 	
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/haxe/macro}{macro API documentation} for details about its tools, classes an methods. 
+	\item See the \href{http://code.haxe.org/category/macros/}{macro snippets and tutorials} section in the Haxe Code Cookbook.
+\end{itemize}
+
 \section{Macro Context}
 \label{macro-context}
 
@@ -31,6 +37,12 @@ Haxe macros have access to different contextual information depending on the mac
 \end{itemize}
 
 The context API is complemented by the \expr{haxe.macro.Compiler} API detailed in \Fullref{macro-initialization}. While this API is available to all macro kinds, care has to be taken for any modification outside of initialization macros. This stems from the natural limitation of undefined \tref{build order}{macro-limitations-build-order}, which could cause e.g. a flag definition through \expr{Compiler.define()} to take effect before or after a \tref{conditional compilation}{lf-condition-compilation} check against that flag.
+
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/haxe/macro/Context.html}{macro Context API documentation}. 
+	\item See the \href{http://code.haxe.org/category/macros/}{macro snippets and tutorials} section in the Haxe Code Cookbook.
+\end{itemize}
 
 \section{Arguments}
 \label{macro-arguments}
@@ -85,7 +97,7 @@ Expression reification is used to create instances of \type{haxe.macro.Expr} in 
 
 \begin{description}
 	\item[\expr{\$\{\}} and \expr{\$e\{\}}:] \type{Expr -> Expr} This can be used to compose expressions. The expression within the delimiting \expr{\{ \}} is executed, with its value being used in place.
-	\item[\expr{\$a\{\}}:] \type{Expr -> Array<Expr>} If used in a place where an \type{Array<Expr>} is expected (e.g. call arguments, block elements), \expr{\$a\{\}} treats its value as that array. Otherwise it generates an array declaration.
+	\item[\expr{\$a\{\}}:] \type{Array<Expr> -> Array<Expr>} or \type{Array<Expr> -> Expr} If used in a place where an \type{Array<Expr>} is expected (e.g. call arguments, block elements), \expr{\$a\{\}} treats its value as that array. Otherwise it generates an array declaration.
 	\item[\expr{\$b\{\}}:] \type{Array<Expr> -> Expr} Generates a block expression from the given expression array.
 	\item[\expr{\$i\{\}}:] \type{String -> Expr} Generates an identifier from the given string.
 	\item[\expr{\$p\{\}}:] \type{Array<String> -> Expr} Generates a field expression from the given string array.
@@ -104,9 +116,10 @@ This kind of reification only works in places where the internal structure expec
 \begin{itemize}
 	\item field name \expr{\{ \$name: 1\} }
 	\item function name \expr{function \$name() \{ \}}
-	\item catch variable name \expr{try e() catch(\$name:Dynamic) \{\}}
+	\item catch variable name \expr{try e() catch(\$name:Dynamic) \{ \}}
 \end{itemize}
 
+Furthermore, a \expr{new} expression can be reified by providing \href{http://api.haxe.org/haxe/macro/TypePath.html}{haxe.macro.TypePath} argument: \expr{new \$typePath()}
 
 \subsection{Type Reification}
 \label{macro-reification-type}
@@ -231,7 +244,7 @@ If a class has the \expr{:autoBuild} metadata, the compiler generates \expr{:bui
 
 This outputs during compilation:
 
-\begin{lstlisting}
+\lang{none}\begin{lstlisting}
 AutoBuildingMacro.hx:6:
   fromInterface: TInst(I2,[])
 AutoBuildingMacro.hx:6:
@@ -242,7 +255,10 @@ AutoBuildingMacro.hx:11:
 
 It is important to keep in mind that the order of these macro executions is undefined, which is detailed in \Fullref{macro-limitations-build-order}.
 
-
+\paragraph{Related content}
+\begin{itemize}
+	\item \href{http://code.haxe.org/tag/build-macro.html}{Haxe snippets and tutorials about build macros} in the Haxe Code Cookbook.
+\end{itemize}
 
 \subsection{@:genericBuild}
 \label{macro-generic-build}
@@ -251,6 +267,8 @@ It is important to keep in mind that the order of these macro executions is unde
 Normal \tref{build-macros}{macro-type-building} are run per-type and are already very powerful. In some cases it is useful to run a build macro per type \emph{usage} instead, i.e. whenever it actually appears in the code. Among other things this allows accessing the concrete type parameters in the macro.
 
 \expr{@:genericBuild} is used just like \expr{@:build} by adding it to a type with the argument being a macro call:
+
+\haxe{assets/GenericBuildMacro1.hx}
 
 \haxe{assets/GenericBuild1.hx}
 
@@ -262,11 +280,16 @@ In Haxe 3.1 the return type of a \expr{@:genericBuild} macro has to be a \type{h
 
 Haxe allows passing \tref{constant expression}{expression-constants} as a type parameter if the type parameter name is \expr{Const}. This can be utilized in the context of \expr{@:genericBuild} macros to pass information from the syntax directly to the macro:
 
+\haxe{assets/GenericBuildMacro2.hx}
+
 \haxe{assets/GenericBuild2.hx}
 
 Here the macro logic could load a file and use its contents to generate a custom type.
 
-
+\paragraph{Related content}
+\begin{itemize}
+	\item \href{http://code.haxe.org/tag/build-macro.html}{Haxe snippets and tutorials about build macros} in the Haxe Code Cookbook.
+\end{itemize}
 
 \section{Limitations}
 \label{macro-limitations}
@@ -278,7 +301,7 @@ Here the macro logic could load a file and use its contents to generate a custom
 \subsection{Static extension}
 \label{macro-limitations-static-extension}
 
-The concepts or \tref{static extensions}{lf-static-extension} and macros are somewhat conflicting: While the former requires a known type in order to determine used functions, macros execute before typing on plain syntax. It is thus not surprising that combining these two features can lead to issues. Haxe 3.0 would try to convert the typed expression back to a syntax expression, which is not always possible and may lose important information. We recommend that it is used with caution.
+The concepts of \tref{static extensions}{lf-static-extension} and macros are somewhat conflicting: While the former requires a known type in order to determine used functions, macros execute before typing on plain syntax. It is thus not surprising that combining these two features can lead to issues. Haxe 3.0 would try to convert the typed expression back to a syntax expression, which is not always possible and may lose important information. We recommend that it is used with caution.
 
 \since{3.1.0}
 
@@ -302,7 +325,7 @@ With both interfaces \type{I1} and \type{I2} having \expr{:autoBuild} metadata, 
 \label{macro-limitations-type-parameters}
 
 
-\section{Initialization macros}
+\section{Initialization Macros}
 \label{macro-initialization}
 
 Initialization macros are invoked from command line by using the \expr{--macro callExpr(args)} command. This registers a callback which the compiler invokes after creating its context, but before typing what was argument to \expr{-main}. This then allows configuring the compiler in some ways.

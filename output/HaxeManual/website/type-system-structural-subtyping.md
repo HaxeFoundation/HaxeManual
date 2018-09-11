@@ -13,7 +13,7 @@ The following example is part of the `Lambda` class of the [Haxe Standard Librar
 
 ```haxe
 public static function empty<T>(it : Iterable<T>):Bool {
-	return !it.iterator().hasNext();
+  return !it.iterator().hasNext();
 }
 ```
 The `empty`-method checks if an `Iterable` has an element. For this purpose, it is not necessary to know anything about the argument type other than the fact that it is considered an iterable. This allows calling the `empty`-method with any type that unifies with `Iterable<T>` which applies to a lot of types in the Haxe Standard Library.

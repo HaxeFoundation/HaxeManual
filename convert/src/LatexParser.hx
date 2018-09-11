@@ -1,9 +1,6 @@
-import haxe.ds.GenericStack;
-
 import hxparse.LexerTokenSource;
 import hxparse.Parser;
 import LatexToken;
-import LatexCommand;
 
 using StringTools;
 
@@ -155,9 +152,12 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					tableMode = false;
 
 				// code
+				case [TCustomCommand("lang"), s = inBraces(text), TBegin("lstlisting")]:
+					codeMode = true;
+					buffer.add('```${s != "none" ? s : ""}');
 				case [TBegin("lstlisting")]:
 					codeMode = true;
-					buffer.add("```haxe");
+					buffer.add("```haxe"); // Assume haxe if not specified
 				case [TEnd("lstlisting")]:
 					codeMode = false;
 					buffer.add("```");
@@ -176,7 +176,6 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					input = oldInput;
 				case [TCustomCommand("haxe"), options = popt(bracketArg), s = inBraces(text)]:
 					var f = sys.io.File.getContent(s);
-					var validate = false;
 					var f = if (options == null) {
 						f;
 					} else {
@@ -188,7 +187,6 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 							switch(kv[0]) {
 								case "firstline": firstline = Std.parseInt(kv[1]);
 								case "lastline": lastline = Std.parseInt(kv[1]);
-								case "nocompile": validate = false;
 							}
 						}
 						if (firstline > 0 && lastline > 0) {
@@ -204,7 +202,6 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 							f;
 						}
 					}
-					if (validate) testCompile(s);
 					buffer.add("```haxe\n");
 					buffer.add(f);
 					buffer.add("\n```");
@@ -262,7 +259,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					sec.sub.push(mkSection(s, sec, sec.sub.length + 1));
 				case [TCommand(CParagraph), s = inBraces(text)]:
 					lastLabelTarget = Paragraph(lastSection, s);
-					buffer.add('###### $s');
+					buffer.add('##### $s');
 				// misc
 				case [TCommand(CMulticolumn), TBrOpen, _ = text(), TBrClose, TBrOpen, _ = text(), TBrClose, TBrOpen, s = text(), TBrClose]:
 					buffer.add('\n##### $s\n');
@@ -490,14 +487,6 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 		return {
 			name: name,
 			kind: kind
-		}
-	}
-
-	function testCompile(path:String) {
-		var bytes = sys.io.File.getBytes(path);
-		var result = HaxeCompiler.parse(bytes);
-		if (!result.success) {
-			trace(path + ": " +result.stderr);
 		}
 	}
 }

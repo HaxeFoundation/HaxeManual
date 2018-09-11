@@ -1,6 +1,4 @@
-typedef Constructible = {
-  public function new(s:String):Void;
-}
+import haxe.Constraints;
 
 class Main {
   static public function main() {
@@ -9,7 +7,7 @@ class Main {
   }
 
   @:generic
-  static function make<T:Constructible>():T {
+  static function make<T:Constructible<String->Void>>():T {
     return new T("foo");
   }
 }

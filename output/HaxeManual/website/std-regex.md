@@ -41,8 +41,13 @@ The possible flags are the following:
 * `i` case insensitive matching
 * `g` global replace or split, see below
 * `m` multiline matching, `^` and `$` represent the beginning and end of a line
-* `s` the dot `.` will also match newlines **(Neko, C++, PHP and Java targets only)**
+* `s` the dot `.` will also match newlines **(Neko, C++, PHP, Flash and Java targets only)**
 * `u` use UTF-8 matching **(Neko and C++ targets only)**
+
+##### Related content
+
+* See the [EReg API](http://api.haxe.org/EReg.html) for details about its methods. 
+* [Haxe snippets and tutorials about regular expressions](http://code.haxe.org/tag/ereg.html) in the Haxe Code Cookbook.
 
 ---
 

@@ -17,8 +17,7 @@ trace('The sum of $x and 3 is ${x + 3}');
 String interpolation is a compile-time feature and has no impact on the runtime. The above example is equivalent to manual concatenation, which is exactly what the compiler generates:
 
 ```haxe
-trace("The sum of " + x +
-  " and 3 is " + (x + 3));
+trace("The sum of " + x + " and 3 is " + (x + 3));
 ```
 Of course the use of single-quote enclosed strings without any interpolation remains valid, but care has to be taken regarding the $ character as it triggers interpolation. If an actual dollar-sign should be used in the string, `$$` can be used.
 

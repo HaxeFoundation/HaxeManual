@@ -7,7 +7,7 @@ typedef Measurable = {
   public var length(default, null):Int;
 }
 
-class Constraints {
+class Main {
   static public function main() {
     trace(test([]));
     trace(test(["bar", "foo"]));
@@ -15,7 +15,11 @@ class Constraints {
     //test("foo");
   }
 
+  #if (haxe_ver >= 4)
+  static function test<T:Iterable<String> & Measurable>(a:T) {
+  #else
   static function test<T:(Iterable<String>, Measurable)>(a:T) {
+  #end
     if (a.length == 0) return "empty";
     return a.iterator().next();
   }
@@ -26,7 +30,22 @@ Type parameter `T` of method `test` is constrained to the types `Iterable<String
 * it is compatible with `Iterable<String>` and
 * has a `length`-property of type `Int`.
 
-We can see that invoking `test` with an empty array in line 7 and an `Array<String>` in line 8 works fine. This is because `Array` has both a `length`-property and an `iterator`-method. However, passing a `String` as argument in line 9 fails the constraint check because `String` is not compatible with `Iterable<T>`.
+We can see that invoking `test` with an empty array in line 7 and an `Array<String>` in line 8 works fine. This is because `Array` has both a `length`-property and an `iterator`-method. However, passing a `String` as argument in line 9 fails the constraint check because `String` is not compatible with `Iterable<T>`. 
+
+When constraining to a single type, the parentheses can be omitted:
+
+```haxe
+class Main {
+  static public function main() {
+    trace(test([]));
+    trace(test(["bar", "foo"]));
+  }
+
+  static function test<T:Iterable<String>>(a:T) {
+    return a.iterator().next();
+  }
+}
+```
 
 ---
 

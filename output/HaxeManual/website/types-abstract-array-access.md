@@ -32,12 +32,12 @@ class Main {
 
 At this point it should not be surprising to see that calls to the array access fields are inserted in the output:
 
-```haxe
+```js
 map.set("foo",1);
 console.log(map.get("foo")); // 1
 ```
 
-###### Order of array access resolving
+##### Order of array access resolving
 
 Due to a bug in Haxe versions before 3.2 the order of checked `:arrayAccess` fields was undefined. This was fixed for Haxe 3.2 so that the fields are now consistently checked from top to bottom:
 
@@ -68,4 +68,4 @@ Fields which are defined earlier take priority even if they require an [implicit
 
 Previous section: [Operator Overloading](types-abstract-operator-overloading.md)
 
-Next section: [Selective Functions](types-abstract-selective-functions.md)
+Next section: [Enum abstracts](types-abstract-enum.md)

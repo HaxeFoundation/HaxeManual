@@ -7,8 +7,8 @@ var a; // declare local a
 var b:Int; // declare variable b of type Int
 // declare variable c, initialized to value 1
 var c = 1;
-// declare variable d and variable e
-// initialized to value 2
+// declare an uninitialized variable d
+// and variable e initialized to value 2
 var d,e = 2;
 ```
 
@@ -18,4 +18,4 @@ The scoping behavior of local variables is described in [Blocks](expression-bloc
 
 Previous section: [Function Call](expression-function-call.md)
 
-Next section: [Local functions](expression-function.md)
+Next section: [Local Functions](expression-function.md)

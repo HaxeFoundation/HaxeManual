@@ -7,6 +7,9 @@
 *.log
 *.dvi
 *.tdo
+*.fdb_latexmk
+*.fls
+*.xdv
 convert/convert.n
 
 latextemp/
@@ -15,3 +18,6 @@ toc.sv
 output/HaxeManual/ebook/content.md
 output/HaxeManual/ebook/dictionary.md
 output/HaxeManual/ebook/sections.txt
+HaxeManual/assets/bin/
+tests/RunTravis.n
+.vscode

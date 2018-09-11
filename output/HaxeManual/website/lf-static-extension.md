@@ -24,13 +24,17 @@ class Main {
 
 Clearly, `Int` does not natively provide a `triple` method, yet this program compiles and outputs `36` as expected. This is because the call to `12.triple()` is transformed into `IntExtender.triple(12)`. There are three requirements for this:
 
-1. Both the literal `12` and the first argument of `triple` are of type `Int`.
+1. Both the literal `12` and the first argument of `triple` are known to be of type `Int`.
 2. The class `IntExtender` is brought into context through `using Main.IntExtender`.
 3. `Int` does not have a `triple` field by itself (if it had, that field would take priority over the static extension).
 
 Static extensions are usually considered syntactic sugar and indeed they are, but it is worth noting that they can have a dramatic effect on code readability: Instead of nested calls in the form of `f1(f2(f3(f4(x))))`, chained calls in the form of `x.f4().f3().f2().f1()` can be used.
 
 Following the rules previously described in [Resolution Order](type-system-resolution-order.md), multiple `using` expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see [Modules and Paths](type-system-modules-and-paths.md)) as static extension brings all its types into context.
+
+##### Related content
+
+* [Haxe snippets and tutorials about static extensions](http://code.haxe.org/tag/static-extension.html) in the Haxe Code Cookbook.
 
 ---
 

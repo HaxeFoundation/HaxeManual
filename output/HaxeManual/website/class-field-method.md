@@ -3,7 +3,7 @@
 While [variables](class-field-variable.md) hold data, methods are defining behavior of a program by hosting [expressions](expression.md). We have seen method fields in every code example of this document with even the initial [Hello World](introduction-hello-world.md) example containing a `main` method:
 
 ```haxe
-class HelloWorld {
+class Main {
   static public function main():Void {
     trace("Hello World");
   }

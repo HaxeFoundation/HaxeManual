@@ -21,37 +21,17 @@ This enables us to use \expr{IA} in places where we would normally use \expr{Arr
 
 \begin{lstlisting}
 typedef User = {
-    var age : Int;
-    var name : String;
+  var age : Int;
+  var name : String;
 }
 \end{lstlisting}
 A typedef is not a textual replacement but actually a real type. It can even have \tref{type parameters}{type-system-type-parameters} as the \type{Iterable} type from the Haxe Standard Library demonstrates:
 
 \begin{lstlisting}
 typedef Iterable<T> = {
-	function iterator() : Iterator<T>;
+  function iterator() : Iterator<T>;
 }
 \end{lstlisting}
-
-
-
-\subsection{Extensions}
-\label{type-system-extensions}
-
-% TODO: move to structures? %
-Extensions are used to express that a structure has all the fields of a given type as well as some additional fields of its own:
-
-\haxe{assets/Extension.hx}
-The greater-than operator \expr{>} denotes that an extension of \type{Iterable$<$T$>$} is being created, with the additional class fields following. In this case, a read-only \tref{property}{class-field-property} \expr{length} of type \type{Int} is required.
-
-In order to be compatible with \type{IterableWithLength$<$T$>$}, a type then must be compatible with \type{Iterable$<$T$>$} and also provide a read-only \expr{length} property of type \type{Int}. The example assigns an \type{Array}, which happens to fulfill these requirements.
-
-\since{3.1.0}
-
-It is also possible to extend multiple structures:
-
-\haxe{assets/Extension2.hx}
-
 
 
 \section{Type Parameters}
@@ -61,7 +41,7 @@ Haxe allows parametrization of a number of types, as well as \tref{class fields}
 
 \begin{lstlisting}
 class Array<T> {
-	function push(x : T) : Int;
+  function push(x : T) : Int;
 }
 \end{lstlisting}
 Whenever an instance of \type{Array} is created, its type parameter \type{T} becomes a \tref{monomorph}{types-monomorph}. That is, it can be bound to any type, but only one at a time. This binding can happen
@@ -107,6 +87,10 @@ Type parameter \type{T} of method \expr{test} is constrained to the types \type{
 \end{itemize}
 We can see that invoking \expr{test} with an empty array in line 7 and an \type{Array$<$String$>$} in line 8 works fine. This is because \type{Array} has both a \expr{length}-property and an \expr{iterator}-method. However, passing a \type{String} as argument in line 9 fails the constraint check because \type{String} is not compatible with \type{Iterable$<$T$>$}. 
 
+When constraining to a single type, the parentheses can be omitted:
+
+\haxe{assets/Constraints2.hx}
+
 
 \section{Generic}
 \label{type-system-generic}
@@ -117,9 +101,9 @@ A class or function can be made \emph{generic} by attributing it with the \expr{
 
 \haxe{assets/GenericClass.hx}
 
-It seems unusual to see the explicit type \type{MyArray<String>} here as we usually let \tref{type inference}{type-system-type-inference} deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The \target{JavaScript} output shows the result:
+It seems unusual to see the explicit type \type{MyValue<String>} here as we usually let \tref{type inference}{type-system-type-inference} deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The \target{JavaScript} output shows the result:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 (function () { "use strict";
 var Test = function() { };
 Test.main = function() {
@@ -136,13 +120,13 @@ Test.main();
 })();
 \end{lstlisting}
 
-We can identify that \type{MyArray<String>} and \type{MyArray<Int>} have become \type{MyArray_String} and \type{MyArray_Int} respectively. This is similar for generic functions:
+We can identify that \type{MyValue<String>} and \type{MyValue<Int>} have become \type{MyValue_String} and \type{MyValue_Int} respectively. This is similar for generic functions:
 
 \haxe{assets/GenericFunction.hx}
 
 Again, the \target{JavaScript} output makes it obvious:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 (function () { "use strict";
 var Main = function() { }
 Main.method_Int = function(t) {
@@ -176,7 +160,7 @@ It should be noted that \tref{top-down inference}{type-system-top-down-inference
 
 Here, 1. is given by \expr{make} having the \expr{@:generic} metadata, and 2. by \type{T} being constrained to \type{Constructible}. The constraint holds for both \type{String} and \type{haxe.Template} as both have a constructor accepting a singular \type{String} argument. Sure enough, the relevant \target{JavaScript} output looks as expected:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 var Main = function() { }
 Main.__name__ = true;
 Main.make_haxe_Template = function() {
@@ -230,10 +214,10 @@ Unification errors are very easy to trigger:
 
 \begin{lstlisting}
 class Main {
-	static public function main() {
+  static public function main() {
     // Int should be String
-		var s:String = 1;
-	}
+    var s:String = 1;
+  }
 }
 \end{lstlisting}
 We try to assign a value of type \type{Int} to a variable of type \type{String}, which causes the compiler to try and \emph{unify Int with String}. This is, of course, not allowed and makes the compiler emit the error \expr{Int should be String}.
@@ -281,7 +265,7 @@ The following example is part of the \type{Lambda} class of the \tref{Haxe Stand
 
 \begin{lstlisting}
 public static function empty<T>(it : Iterable<T>):Bool {
-	return !it.iterator().hasNext();
+  return !it.iterator().hasNext();
 }
 \end{lstlisting}
 The \expr{empty}-method checks if an \type{Iterable} has an element. For this purpose, it is not necessary to know anything about the argument type other than the fact that it is considered an iterable. This allows calling the \expr{empty}-method with any type that unifies with \type{Iterable$<$T$>$} which applies to a lot of types in the Haxe Standard Library.
@@ -415,6 +399,32 @@ var e:haxe.macro.Expr.ExprDef;
 
 Here the sub-type \type{ExprDef} within module \expr{haxe.macro.Expr} is accessed. 
 
+An example sub-type declaration would look like the following :
+
+\begin{lstlisting}
+// a/A.hx
+package a;
+
+class A { public function new() {} }
+// sub-type
+class B { public function new() {} }
+\end{lstlisting}
+
+\begin{lstlisting}
+// Main.hx
+import a.A;
+
+class Main {
+    static function main() {
+        var subtype1 = new a.A.B();
+
+        // these are also valid, but require import a.A or import a.A.B :
+        var subtype2 = new B();
+        var subtype3 = new a.B();
+    }
+}
+\end{lstlisting}
+
 The sub-type relation is not reflected at run-time. That is, public sub-types become a member of their containing package, which could lead to conflicts if two modules within the same package tried to define the same sub-type. Naturally, the Haxe compiler detects these cases and reports them accordingly. In the example above \type{ExprDef} is generated as \type{haxe.macro.ExprDef}.
 
 Sub-types can also be made private:
@@ -485,6 +495,20 @@ Here we import \expr{String.fromCharCode} as \expr{f} which allows us to use \ex
 
 Haxe also allows the more natural \expr{as} in place of \expr{in}.
 
+\subsection{Import defaults / import.hx}
+\label{type-system-import-defaults}
+\since{3.3.0}
+
+This feature allows us to define default imports and usings that will be applied for all modules inside a directory, which is particularly handy for large code bases with a lot of helpers and static extensions because it reduces the amount of imports.
+
+The special named \ic{import.hx} file (note the lowercase name) can be placed in the directory where your code lies. The file can contain import and using statements only. The statements will be applied to all Haxe modules in this directory and its subdirectories.
+
+Default imports of \ic{import.hx} acts as if its contents is placed at the top of each module. 
+
+\paragraph{Related content}
+\begin{itemize}
+	\item \href{https://haxe.org/blog/importhx-intro/}{Introduction of \ic{import.hx}}
+\end{itemize}
 
 \subsection{Resolution Order}
 \label{type-system-resolution-order}

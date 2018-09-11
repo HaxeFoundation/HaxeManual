@@ -1,4 +1,4 @@
-## 5.11 Local functions
+## 5.11 Local Functions
 
 Haxe supports first-class functions and allows declaring local functions in expressions. The syntax follows [class field methods](class-field-method.md):
 

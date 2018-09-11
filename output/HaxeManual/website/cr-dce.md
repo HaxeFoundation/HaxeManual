@@ -24,10 +24,10 @@ The compiler automatically defines the flag `dce` with a value of either `"std"`
 
 > ##### Trivia: DCE and try.haxe.org
 >
-> DCE for the `Javascript` target saw vast improvements when the website <http://try.haxe.org> was published. Initial reception of the generated Javascript code was mixed, leading to a more fine-grained selection of which code to eliminate.
+> DCE for the `JavaScript` target saw vast improvements when the website <http://try.haxe.org> was published. Initial reception of the generated JavaScript code was mixed, leading to a more fine-grained selection of which code to eliminate.
 
 ---
 
 Previous section: [Built-in Compiler Metadata](cr-metadata.md)
 
-Next section: [Completion](cr-completion.md)
+Next section: [Compiler Services](cr-completion.md)

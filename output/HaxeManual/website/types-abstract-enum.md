@@ -1,4 +1,4 @@
-## 2.8.5 Enum abstracts
+## 2.8.4 Enum abstracts
 
 ##### since Haxe 3.1.0
 
@@ -28,9 +28,9 @@ class Main {
 }
 ```
 
-The Haxe Compiler replaces all field access to the `HttpStatus` abstract with their values, as evident in the Javascript output:
+The Haxe Compiler replaces all field access to the `HttpStatus` abstract with their values, as evident in the JavaScript output:
 
-```haxe
+```js
 Main.main = function() {
 	var status = 404;
 	var msg = Main.printStatus(status);
@@ -53,6 +53,6 @@ This is similar to accessing [variables declared as inline](class-field-inline.m
 
 ---
 
-Previous section: [Selective Functions](types-abstract-selective-functions.md)
+Previous section: [Array Access](types-abstract-array-access.md)
 
 Next section: [Forwarding abstract fields](types-abstract-forward.md)

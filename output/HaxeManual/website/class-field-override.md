@@ -8,4 +8,4 @@ The effects of overriding fields are detailed in [Overriding Methods](class-fiel
 
 Previous section: [Dynamic](class-field-dynamic.md)
 
-Next section: [Expressions](expression.md)
+Next section: [Static](class-field-static.md)

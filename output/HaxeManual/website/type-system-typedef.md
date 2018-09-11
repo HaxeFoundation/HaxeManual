@@ -11,15 +11,15 @@ This enables us to use `IA` in places where we would normally use `Array<Int>`. 
 
 ```haxe
 typedef User = {
-    var age : Int;
-    var name : String;
+  var age : Int;
+  var name : String;
 }
 ```
 A typedef is not a textual replacement but actually a real type. It can even have [type parameters](type-system-type-parameters.md) as the `Iterable` type from the Haxe Standard Library demonstrates:
 
 ```haxe
 typedef Iterable<T> = {
-	function iterator() : Iterator<T>;
+  function iterator() : Iterator<T>;
 }
 ```
 
@@ -27,4 +27,4 @@ typedef Iterable<T> = {
 
 Previous section: [Type System](type-system.md)
 
-Next section: [Extensions](type-system-extensions.md)
+Next section: [Type Parameters](type-system-type-parameters.md)

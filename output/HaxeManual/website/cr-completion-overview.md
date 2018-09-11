@@ -19,15 +19,15 @@ We will look into the following completion modes in detail:
 
 Due to Haxe being a very fast compiler, it is often sufficient to rely on the normal compiler invocation for completion. For bigger projects Haxe provides a [server mode](cr-completion-server.md) which ensures that only those files are re-compiled that actually changed or had any of their dependencies changes.
 
-###### General notes on the interface
+##### General notes on the interface
 
-* The position-argument can be set to 0 if the file in question contains a pipeline `|` character at the position of interest. This is very useful for demonstration and testing as it allows us to ignore the byte-counting process a real IDE would have to do. The examples in this section are making use of this feature.
+* The position-argument can be set to 0 if the file in question contains a pipeline `|` character at the position of interest. This is very useful for demonstration and testing as it allows us to ignore the byte-counting process a real IDE would have to do. The examples in this section are making use of this feature. Note that this only works in places where `|` is not valid syntax otherwise, e.g. after dots (`.|`) and opening parentheses (`(|`).
 * The output is HTML-escaped so that `&`, `<` and `>` become `&amp;`, `&lt;` and `&gt;` respectively.
 * Otherwise any documentation output is preserved which means longer documentation might include new-line and tab-characters as it does in the source files.
 * When run in completion mode, the compiler does not display errors but instead tries to ignore them or recover from them.  If a critical error occurs while getting completion, the Haxe Compiler prints the error message instead of the completion output. Any non-XML output can be treated as a critical error message.
 
 ---
 
-Previous section: [Completion](cr-completion.md)
+Previous section: [Compiler Services](cr-completion.md)
 
 Next section: [Field access completion](cr-completion-field-access.md)

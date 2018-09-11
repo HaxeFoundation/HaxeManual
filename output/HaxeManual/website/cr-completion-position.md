@@ -1,5 +1,7 @@
 ## 8.3.6 Position completion
 
+##### since Haxe 3.2.0
+
 Position completion is enabled by using the `"position"` mode argument (see [Overview](cr-completion-overview.md)). We demonstrate it using a field. Note that it would work with local variables and types the same way:
 
 ```haxe
@@ -11,7 +13,7 @@ class Main {
 
 If this file is saved to Main.hx, the completion can be invoked using the command `haxe --display Main.hx@0@position`. The output looks like this:
 
-```haxe
+```xml
 <list>
 <pos>std/string.hx:124: characters 1-54</pos>
 </list>

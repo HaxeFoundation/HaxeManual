@@ -1,11 +1,11 @@
-## 6.8 Function Bindings
+## 6.9 Function Bindings
 
 Haxe 3 allows binding functions with partially applied arguments. Each function type can be considered to have a `bind` field, which can be called with the desired number of arguments in order to create a new function. This is demonstrated here:
 
 ```haxe
-class Bind {
+class Main {
   static public function main() {
-    var map = new Map<Int,String>();
+    var map = new haxe.ds.IntMap<String>();
     var f = map.set.bind(_, "12");
     $type(map.set); // Int -> String -> Void
     $type(f); // Int -> Void
@@ -22,6 +22,25 @@ Line 4 binds the function `map.set` to a variable named `f`, and applies `12` as
 A call to `f(1)` then actually invokes `map.set(1, "12")`, the calls to `f(2)` and `f(3)` are analogous. The last line proves that all three indices indeed are mapped to the value `"12"`.
 
 The underscore `_` can be skipped for trailing arguments, so the first argument could be bound through `map.set.bind(1)`, yielding a `String->Void` function that sets a new value for index `1` on invocation.
+
+##### Optional arguments
+
+By default, trailing optional arguments are bound to their default values and do not become arguments of the result function. This can be changed by using an explicit underscore `_` instead, in which case the optional argument of the original function becomes a non-optional argument of the result function.
+```haxe
+class Main {
+  static function test(a:Int, ?b:String):Void {}
+
+  static public function main() {
+    var fn = test.bind(1);
+    $type(fn); // Void->Void
+    fn('foo'); //Compiler error: Too many arguments
+
+    var fn = test.bind(1, _);
+    $type(fn); // ?String->Void
+    fn('foo'); //works
+  }
+}
+```
 
 > ##### Trivia: Callback
 >

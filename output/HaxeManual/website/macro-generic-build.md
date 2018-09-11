@@ -7,12 +7,11 @@ Normal [build-macros](macro-type-building.md) are run per-type and are already v
 `@:genericBuild` is used just like `@:build` by adding it to a type with the argument being a macro call:
 
 ```haxe
-// MyMacro.hx
 import haxe.macro.Expr;
 import haxe.macro.Context;
 import haxe.macro.Type;
 
-class MyMacro {
+class GenericBuildMacro1 {
   static public function build() {
     switch (Context.getLocalType()) {
       case TInst(_, [t1]):
@@ -23,9 +22,10 @@ class MyMacro {
     return null;
   }
 }
+```
 
-// Main.hx
-@:genericBuild(MyMacro.build())
+```haxe
+@:genericBuild(GenericBuildMacro1.build())
 class MyType<T> { }
 
 class Main {
@@ -40,7 +40,7 @@ When running this example the compiler outputs `TAbstract(Int,[])` and `TInst(St
 
 In Haxe 3.1 the return type of a `@:genericBuild` macro has to be a `haxe.macro.Type`. Haxe 3.2 allows (and prefers) returning a `haxe.macro.ComplexType` instead, which is the syntactic representation of a type. This is easier to work with in many cases because types can simply be referenced by their paths.
 
-###### Const type parameter
+##### Const type parameter
 
 Haxe allows passing [constant expression](expression-constants.md) as a type parameter if the type parameter name is `Const`. This can be utilized in the context of `@:genericBuild` macros to pass information from the syntax directly to the macro:
 
@@ -49,7 +49,7 @@ import haxe.macro.Expr;
 import haxe.macro.Context;
 import haxe.macro.Type;
 
-class MyMacro {
+class GenericBuildMacro2 {
   static public function build() {
     switch (Context.getLocalType()) {
       case TInst(_,[TInst(_.get() => { kind: KExpr(macro $v{(s:String)}) },_)]):
@@ -60,9 +60,10 @@ class MyMacro {
     return null;
   }
 }
+```
 
-// Main.hx
-@:genericBuild(MyMacro.build())
+```haxe
+@:genericBuild(GenericBuildMacro2.build())
 class MyType<Const> { }
 
 class Main {
@@ -73,6 +74,10 @@ class Main {
 ```
 
 Here the macro logic could load a file and use its contents to generate a custom type.
+
+##### Related content
+
+* [Haxe snippets and tutorials about build macros](http://code.haxe.org/tag/build-macro.html) in the Haxe Code Cookbook.
 
 ---
 

@@ -16,9 +16,9 @@ class Main {
 }
 ```
 
-The generated Javascript output reveals the effect of inline:
+The generated JavaScript output reveals the effect of inline:
 
-```haxe
+```js
 (function () { "use strict";
 var Main = function() { }
 Main.main = function() {
@@ -50,7 +50,7 @@ class Main {
     }
   }
 
-  static inline function error(s:String) {
+  @:extern static inline function error(s:String) {
     throw s;
   }
 }

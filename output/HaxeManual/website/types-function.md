@@ -3,7 +3,7 @@
 The function type, along with the [monomorph](types-monomorph.md), is a type which is usually well-hidden from Haxe users, yet present everywhere. We can make it surface by using `$type`, a special Haxe identifier which outputs the type its expression has during compilation :
 
 ```haxe
-class FunctionType {
+class Main {
   static public function main() {
     // i : Int -> s : String -> Bool
     $type(test);
@@ -27,6 +27,6 @@ If a function type has other function types as argument or return type, parenthe
 
 ---
 
-Previous section: [Impact on Performance](types-structure-performance.md)
+Previous section: [Extensions](types-structure-extensions.md)
 
 Next section: [Optional Arguments](types-function-optional-arguments.md)

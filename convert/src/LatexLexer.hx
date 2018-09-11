@@ -36,7 +36,7 @@ class LatexLexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 				lastCustomEnvironment = name;
 				buf = new StringBuf();
 				var pmin = lexer.curPos();
-				var pmax = try lexer.token(customEnvironment) catch (e:Eof) throw new LexerError(UnterminatedEnvironment, pmin);
+				try lexer.token(customEnvironment) catch (e:Eof) throw new LexerError(UnterminatedEnvironment, pmin);
 				TCustomEnvironment(name, buf.toString(), customEnvironments.get(name));
 			} else {
 				TBegin(name);

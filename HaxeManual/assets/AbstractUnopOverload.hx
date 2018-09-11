@@ -9,7 +9,7 @@ abstract MyAbstract(String) {
     return this + "post";
 }
 
-class AbstractUnopOverload {
+class Main {
   static public function main() {
     var a = new MyAbstract("foo");
     trace(++a); // prefoo

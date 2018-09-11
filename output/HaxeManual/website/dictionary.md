@@ -13,7 +13,7 @@ This type is useful when an API requires a value to be **a** class, but not a sp
 <a id="define-enum-t" class="anch"></a>
 
 ##### `Enum<T>`
-This type is compatible with all enum types. At compile-time, `Enum<T>` can bee seen as the common base type of all enum types. However, this relation is not reflected in generated code.
+This type is compatible with all enum types. At compile-time, `Enum<T>` can be seen as the common base type of all enum types. However, this relation is not reflected in generated code.
 
 <a id="define-null-t" class="anch"></a>
 

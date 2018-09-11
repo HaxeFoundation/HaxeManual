@@ -8,12 +8,12 @@ Currently, there are nine supported target languages which allow for different u
 
 Name  | Output type  | Main usages 
  --- | --- | ---
-Javascript  | Sourcecode  | Browser, Desktop, Mobile, Server 
+JavaScript  | Sourcecode  | Browser, Desktop, Mobile, Server 
 Neko  | Bytecode  | Desktop, Server 
 PHP  | Sourcecode  | Server 
 Python  | Sourcecode  | Desktop, Server 
 C++  | Sourcecode  | Desktop, Mobile, Server 
-Actionscript 3  | Sourcecode  | Browser, Desktop, Mobile 
+ActionScript 3  | Sourcecode  | Browser, Desktop, Mobile 
 Flash  | Bytecode  | Browser, Desktop, Mobile 
  Java  | Sourcecode  | Desktop, Server 
 C#  | Sourcecode  | Desktop, Mobile, Server 

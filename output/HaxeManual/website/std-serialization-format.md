@@ -24,7 +24,7 @@ Each supported value is translated to a distinct prefix character, followed by t
 * exception: `x` followed by the exception value
 * class instance: `c` followed by the serialized class name, followed by the name-value pairs of the fields, followed by `g` (e.g. `cy5:Pointy1:xzy1:yzg` for `new Point(0, 0)` (having two integer fields `x` and `y`)        
 * enum instance (by name): `w` followed by the serialized enum name, followed by the serialized constructor name, followed by `:`, followed by the number of arguments, followed by the argument values (e.g. `wy3:Fooy1:A:0` for `Foo.A` (with no arguments), `wy3:Fooy1:B:2i4n` for `Foo.B(4,null)`)
-* enum instance (by index): `j` followed by the serialized enum name, followed by `:`, followed by the constructor index (starting from 0), followed by `:`, followed by the number of arguments, followed by the argument values (e.g. `wy3:Foo:0:0` for `Foo.A` (with no arguments), `wy3:Foo:1:2i4n` for `Foo.B(4,null)`)
+* enum instance (by index): `j` followed by the serialized enum name, followed by `:`, followed by the constructor index (starting from 0), followed by `:`, followed by the number of arguments, followed by the argument values (e.g. `jy3:Foo:0:0` for `Foo.A` (with no arguments), `jy3:Foo:1:2i4n` for `Foo.B(4,null)`)
 * cache references: 
 
     * `String`: `R` followed by the corresponding index in the string cache (e.g. `R456`)
@@ -37,4 +37,4 @@ Each supported value is translated to a distinct prefix character, followed by t
 
 Previous section: [Serialization](std-serialization.md)
 
-Next section: [Json](std-Json.md)
+Next section: [Xml](std-Xml.md)

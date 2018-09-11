@@ -4,8 +4,8 @@ Pattern matching is the process of branching depending on a value matching given
 
 ```haxe
 enum Tree<T> {
-    Leaf(v:T);
-    Node(l:Tree<T>, r:Tree<T>);
+  Leaf(v:T);
+  Node(l:Tree<T>, r:Tree<T>);
 }
 ```
 
@@ -14,6 +14,11 @@ Some pattern matcher basics include:
 * Patterns will always be matched from top to bottom.
 * The topmost pattern that matches the input value has its expression executed.
 * A `_` pattern matches anything, so `case _`: is equal to `default:`
+
+##### Related content
+
+* More about the [switch expression](expression-switch.md).
+* [Haxe snippets and tutorials about pattern matching](http://code.haxe.org/tag/pattern-matching.html) in the Haxe Code Cookbook.
 
 ---
 

@@ -1,4 +1,4 @@
-## 6.7 Iterators
+## 6.8 Iterators
 
 With Haxe it is very easy to define custom iterators and iterable data types. These concepts are represented by the types `Iterator<T>` and `Iterable<T>` respectively:
 
@@ -68,10 +68,15 @@ class Main {
 }
 ```
 
-Here we do not setup a full iterator like in the previous example, but instead define that the `MyArrayWrap<T>` has a method `iterator`, effectively forwarding the iterator method of the wrapped `Array<T>` type.
+Here we do not setup a full iterator like in the previous example, but instead define that the `MyArrayWrap<T>` has a method `iterator`, effectively forwarding the iterator method of the wrapped `Array<T>` type. 
+
+##### Related content
+
+* See the [Iterator API documentation](http://api.haxe.org/Iterator.html). 
+* [Haxe snippets and tutorials about iterators](http://code.haxe.org/tag/iterator.html) in the Haxe Code Cookbook.
 
 ---
 
-Previous section: [Array Comprehension](lf-array-comprehension.md)
+Previous section: [Map Comprehension](lf-map-comprehension.md)
 
 Next section: [Function Bindings](lf-function-bindings.md)

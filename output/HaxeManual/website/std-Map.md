@@ -6,7 +6,8 @@ A `Map` is a container composed of **key**, **value** pairs.  A `Map` is also co
 class Main {
   static public function main() {
     // Maps are initialized like arrays, but
-    // use '=>' operator. Maps can have their
+    // use the map literal syntax with the
+    // '=>' operator. Maps can have their
     // key value types defined explicity
     var map1:Map<Int, String> =
       [1 => "one", 2=>"two"];
@@ -55,8 +56,6 @@ class Main {
 
 ```
 
-See the [Map API](http://api.haxe.org/Map.html) for details of its methods.
-
 Under the hood, a `Map` is an [abstract](types-abstract.md) type. At compile time, it gets converted to one of several specialized types depending on the **key** type:
 
 * `String`: `haxe.ds.StringMap`
@@ -67,6 +66,11 @@ Under the hood, a `Map` is an [abstract](types-abstract.md) type. At compile tim
 The `Map` type does not exist at runtime and has been replaced with one of the above objects. 
 
 Map defines [array access](types-abstract-array-access.md) using its key type.
+
+##### Related content
+
+* See the [Map API](http://api.haxe.org/Map.html) for details of its methods.
+* [Data structures tutorials and examples](http://code.haxe.org/category/data-structures/) in the Haxe Code Cookbook.
 
 ---
 

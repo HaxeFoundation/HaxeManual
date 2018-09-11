@@ -1,6 +1,6 @@
-## 10.9.3 Implementation details
+## 10.10.3 Implementation details
 
-The `haxe.Json` API automatically uses native implementation on targets where it is available, i.e. **JavaScript**, **Flash** and **PHP** and provides its own implementation for other targets.
+The [haxe.Json](http://api.haxe.org/haxe/Json.html) API automatically uses native implementation on targets where it is available, i.e. **JavaScript**, **Flash** and **PHP** and provides its own implementation for other targets.
 
 Usage of Haxe own implementation can be forced with `-D haxeJSON` compiler argument. This will also provide serialization of [enums](types-enum-instance.md) by their index, [maps](std-Map.md) with string keys and class instances.
 

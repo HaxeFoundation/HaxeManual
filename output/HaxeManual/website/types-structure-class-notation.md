@@ -13,4 +13,4 @@ typedef Point = {
 
 Previous section: [JSON for Structure Values](types-structure-json.md)
 
-Next section: [Impact on Performance](types-structure-performance.md)
+Next section: [Optional Fields](types-structure-optional-fields.md)

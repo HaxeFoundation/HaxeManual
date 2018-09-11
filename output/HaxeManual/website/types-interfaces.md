@@ -42,6 +42,11 @@ class Main implements Placeable {
 }
 ```
 
+Interfaces can extend multiple other interfaces using the `extends` keyword:
+```haxe
+interface Debuggable extends Printable extends Serializable
+```
+
 > ##### Trivia: Implements Syntax
 >
 > Haxe versions prior to 3.0 required multiple `implements` keywords to be separated by a comma. We decided to adhere to the de-facto standard of Java and got rid of the comma. This was one of the breaking changes between Haxe 2 and 3.

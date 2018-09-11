@@ -7,9 +7,9 @@ A `List` is a **collection** for storing elements.  On the surface, a list is si
 3. There are no list comprehensions.
 4. A list can freely modify/add/remove elements while iterating over them.
 
-See the [List API](http://api.haxe.org/List.html) for details about the list methods.  A simple example for working with lists:
+A simple example for working with lists:
 ```haxe
-class ListExample {
+class Main {
   static public function main() {
     var myList = new List<Int>();
     for (ii in 0...5)
@@ -20,6 +20,11 @@ class ListExample {
 
 
 ```
+
+##### Related content
+
+* See the [List API](http://api.haxe.org/List.html) for details about the list methods. 
+* [Data structures tutorials and examples](http://code.haxe.org/category/data-structures/) in the Haxe Code Cookbook.
 
 ---
 

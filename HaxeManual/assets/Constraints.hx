@@ -2,7 +2,7 @@ typedef Measurable = {
   public var length(default, null):Int;
 }
 
-class Constraints {
+class Main {
   static public function main() {
     trace(test([]));
     trace(test(["bar", "foo"]));
@@ -10,7 +10,11 @@ class Constraints {
     //test("foo");
   }
 
+  #if (haxe_ver >= 4)
+  static function test<T:Iterable<String> & Measurable>(a:T) {
+  #else
   static function test<T:(Iterable<String>, Measurable)>(a:T) {
+  #end
     if (a.length == 0) return "empty";
     return a.iterator().next();
   }

@@ -1,5 +1,5 @@
 var x = 12;
-// Concatenating Approach
+// Concatenating approach
 trace('The value of x is ' + x);
 
 // With String Interpolation;

@@ -1,4 +1,4 @@
-## 2.8.6 Forwarding abstract fields
+## 2.8.5 Forwarding abstract fields
 
 ##### since Haxe 3.1.0
 
@@ -25,9 +25,9 @@ class Main {
 
 The `MyArray` abstract in this example wraps `Array`. Its `:forward` metadata has two arguments which correspond to the field names to be forwarded to the underlying type. In this example, the `main` method instantiates `MyArray` and accesses its `push` and `pop` methods. The commented line demonstrates that the `length` field is not available.
 
-As usual we can look at the Javascript output to see how the code is being generated:
+As usual we can look at the JavaScript output to see how the code is being generated:
 
-```haxe
+```js
 Main.main = function() {
 	var myArray = [];
 	myArray.push(12);

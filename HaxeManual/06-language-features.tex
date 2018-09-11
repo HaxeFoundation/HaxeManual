@@ -36,7 +36,7 @@ Conditional Compilation allows compiling specific code depending on compilation 
 
 \begin{lstlisting}
 \#if js
-    js.Lib.alert("Hello");
+    js.Browser.alert("Hello");
 \#elseif sys
     Sys.println("Hello");
 \#end
@@ -56,7 +56,7 @@ enum Result {
 
 \emph{\tref{Inlined calls}{class-field-inline}:}
 
-Functions can be designed as being inline, allowing their code to be inserted at call-site. This can yield significant performance benefits without resorting to code duplication via manual inlining.
+Functions can be designated as being inline, allowing their code to be inserted at call-site. This can yield significant performance benefits without resorting to code duplication via manual inlining.
 
 \emph{\tref{Iterators}{lf-iterators}:}
 
@@ -110,7 +110,7 @@ Strings declared with a single quotes are able to access variables in the curren
 trace('My name is $name and I work in ${job.industry}');
 \end{lstlisting}
 
-\emph{\tref{Partial function application}{lf-function-bindings}:} 
+\emph{\tref{Partial function application}{lf-function-bindings}:}
 
 Any function can be applied partially, providing the values of some arguments and leaving the rest to be filled in later.
 
@@ -121,7 +121,7 @@ setToTwelve(1);
 setToTwelve(2);
 \end{lstlisting}
 
-\emph{\tref{Pattern Matching}{lf-pattern-matching}:} 
+\emph{\tref{Pattern Matching}{lf-pattern-matching}:}
 
 Complex structures can be matched against patterns, extracting information from an enum or a structure and defining specific operations for specific value combination.
 
@@ -184,110 +184,32 @@ The conditions after \expr{\#if} and \expr{\#elseif} allow the following express
 \begin{itemize}
 	\item Any identifier is replaced by the value of the compiler flag by the same name. Note that \expr{-D some-flag} from command line leads to the flags \expr{some-flag} and \expr{some\_flag} to be defined.
 	\item The values of \type{String}, \type{Int} and \type{Float} constants are used directly.
-	\item The boolean operators \expr{\&\&} (and), \expr{||} (or) and \expr{!} (not) work as expected.
+		\item The boolean operators \expr{\&\&} (and), \expr{||} (or) and \expr{!} (not) work as expected, however the full expression must be completely contained by parentheses.
 	\item The operators \expr{==}, \expr{!=}, \expr{>}, \expr{>=}, \expr{<}, \expr{<=} can be used to compare values.
 	\item Parentheses \expr{()} can be used to group expressions as usual.
 \end{itemize}
 
 The Haxe parser does not parse \expr{some-flag} as a single token and instead reads it as a subtraction binary operator \expr{some - flag}. In cases like this the underscore version \expr{some_flag} has to be used.
 
+\paragraph{Working with compiler flags}
+Compiler flags are available at compile time, the following methods only work in macro context:
+\begin{itemize}
+	\item To see if a compiler flag is set, use \expr{haxe.macro.Context.defined("any_flag")}.
+	\item To get the value of a compiler flag, use \expr{haxe.macro.Context.definedValue("any_flag")}.
+	\item To get a map of all compiler flags with its value use \expr{haxe.macro.Context.getDefines()}.
+\end{itemize}
+
+\paragraph{Haxelibs}
+By default, each used haxelib version is automatically added as flag, e.g. when you add \expr{-lib actuate}, the compiler adds \expr{-D actuate=1.8.7}. To test if a library exists in current context, use \expr{\#if actuate}. To check a specific haxelib version, use the operators, for example \expr{\#if (actuate <= "1.8.7")}
 
 \paragraph{Built-in Compiler Flags}
 An exhaustive list of all built-in defines can be obtained by invoking the Haxe Compiler with the \expr{--help-defines} argument. The Haxe Compiler allows multiple \expr{-D} flags per compilation.
 
-See also the \tref{Compiler Flags list}{lf-condition-compilation-flags}.
+\paragraph{Related content}
+\begin{itemize}
+	\item See also the \tref{Compiler Flags list}{compiler-usage-flags}.
+\end{itemize}
 
-\subsection{Global Compiler Flags}
-\label{lf-condition-compilation-flags}
-
-Starting from Haxe 3.0, you can get the list of supported \tref{compiler flags}{lf-condition-compilation} by running \expr{haxe --help-defines}
-
-\begin{center}
-\begin{tabular}{| l | l |}
-	\hline
-	\multicolumn{2}{|c|}{Global Compiler Flags} \\ \hline
-	Flag &  Description \\ \hline
-	\expr{absolute-path} &  Print absolute file path in trace output \\
-	\expr{advanced-telemetry}  &  Allow the SWF to be measured with Monocle tool \\
-	\expr{analyzer}  &  Use static analyzer for optimization (experimental) \\
-	\expr{as3} &  Defined when outputing flash9 as3 source code \\
-	\expr{check-xml-proxy}  &  Check the used fields of the xml proxy \\
-	\expr{core-api}  &  Defined in the core api context \\
-	\expr{core-api-serialize}  &  Mark some generated core api classes with the Serializable attribute on C# \\
-	\expr{cppia}  &  Generate experimental cpp instruction assembly \\
-	\expr{dce=<mode:std|full|no>}  &  Set the \tref{dead code elimination}{cr-dce} mode (default std) \\
-	\expr{dce-debug}  &  Show \tref{dead code elimination}{cr-dce} log \\
-	\expr{debug}  &  Activated when compiling with \expr{-debug} \\
-	\expr{display}  &  Activated during completion \\
-	\expr{dll-export}  &  GenCPP experimental linking \\
-	\expr{dll-import}  &  GenCPP experimental linking \\
-	\expr{doc-gen}  &  Do not perform any removal/change in order to correctly generate documentation \\
-	\expr{dump}  &  Dump the complete typed AST for internal debugging in a dump subdirectory - use \expr{dump=pretty} for Haxe-like formatting \\
-	\expr{dump-dependencies}  &  Dump the classes dependencies in a dump subdirectory \\
-	\expr{dump-ignore-var-ids}  &  Remove variable IDs from non-pretty dumps (helps with diff) \\
-	\expr{erase-generics}  &  Erase generic classes on C# \\
-	\expr{fdb}  &  Enable full flash debug infos for FDB interactive debugging \\
-	\expr{file-extension}  &  Output filename extension for cpp source code \\
-	\expr{flash-strict}  &  More strict typing for flash target \\
-	\expr{flash-use-stage}  &  Keep the SWF library initial stage \\
-	\expr{force-lib-check}  &  Force the compiler to check -net-lib and -java-lib added classes (internal) \\
-	\expr{force-native-property}  &  Tag all properties with \expr{:nativeProperty} metadata for 3.1 compatibility \\
-	\expr{format-warning}  &  Print a warning for each formated string, for 2.x compatibility \\
-	\expr{gencommon-debug}  &  GenCommon internal \\
-	\expr{haxe-boot}  &  Given the name 'haxe' to the flash boot class instead of a generated name \\
-	\expr{haxe-ver}  &  The current Haxe version value \\
-	\expr{hxcpp-api-level}  &  Provided to allow compatibility between hxcpp versions \\
-	\expr{include-prefix}  &  prepend path to generated include files \\
-	\expr{interp}  &  The code is compiled to be run with \expr{--interp} \\
-	\expr{java-ver=[version:5-7]}  & Sets the Java version to be targeted \\
-	\expr{js-classic}  &  Don't use a function wrapper and strict mode in JS output \\
-	\expr{js-es5}  &  Generate JS for ES5-compliant runtimes \\
-	\expr{js-unflatten}  & Generate nested objects for packages and types \\
-	\expr{keep-old-output}  & Keep old source files in the output directory (for C#/Java) \\
-	\expr{loop-unroll-max-cost}  & Maximum cost (number of expressions * iterations) before loop unrolling is canceled (default 250) \\
-	\expr{macro} & Defined when code is compiled in the \tref{macro context}{macro} \\
-	\expr{macro-times} & Display per-macro timing when used with \expr{--times} \\
-	\expr{net-ver=<version:20-45>}  &  Sets the .NET version to be targeted \\
-	\expr{net-target=<name>}  &  Sets the .NET target. Defaults to net. xbox, micro \_(Micro Framework\_, compact \_(Compact Framework)\_ are some valid values  \\
-	\expr{neko-source} & Output neko source instead of bytecode \\
-	\expr{neko-v1} &  Keep Neko 1.x compatibility \\
-	\expr{network-sandbox}  &  Use local network sandbox instead of local file access one \\
-	\expr{no-compilation}  &  Disable CPP final compilation \\
-	\expr{no-copt}  &  Disable completion optimization \_(for debug purposes)\_ \\
-	\expr{no-debug}  &  Remove all debug macros from cpp output \\
-	\expr{no-deprecation-warnings} & Do not warn if fields annotated with \expr{@:deprecated} are used \\
-	\expr{no-flash-override}  &  Change overrides on some basic classes into HX suffixed methods flash only \\
-	\expr{no-opt}  &  Disable optimizations \\
-	\expr{no-pattern-matching}  &  Disable \tref{pattern matching}{lf-pattern-matching} \\
-	\expr{no-inline}  &  Disable \tref{inlining}{class-field-inline} \\
-	\expr{no-root}  &  GenCS internal \\
-	\expr{no-macro-cache}  &  Disable macro context caching \\
-	\expr{no-simplify}  &  Disable simplification filter \\
-	\expr{no-swf-compress}  &  Disable SWF output compression \\
-	\expr{no-traces}  &  Disable all \expr{trace} calls \\
-	\expr{php-prefix}  &  Compiled with \expr{--php-prefix} \\
-	\expr{real-position}  &  Disables haxe source mapping when targetting C\# \\
-	\expr{replace-files}  &  GenCommon internal \\
-	\expr{scriptable}  &  GenCPP internal \\
-	\expr{shallow-expose}  &  Expose types to surrounding scope of Haxe generated closure without writing to window object \\
-	\expr{source-map-content}  &  Include the hx sources as part of the JS source map \\
-	\expr{swc}  &  Output a SWC instead of a SWF \\
-	\expr{swf-compress-level=<level:1-9>}  &  Set the amount of compression for the SWF output \\
-	\expr{swf-debug-password=<yourPassword>}  &  Set a password for debugging. The password field is encrypted by using the MD5 algorithm and prevents unauthorised debugging of your swf. Without this flag -D fdb will use no password. \\
-	\expr{swf-direct-blit}  &  Use hardware acceleration to blit graphics \\
-	\expr{swf-gpu}  &  Use GPU compositing features when drawing graphics \\
-	\expr{swf-metadata=<file.xml>}  &  Include contents of \expr{<file.xml>} as metadata in the swf. \\
-	\expr{swf-preloader-frame}  &  Insert empty first frame in swf. To be used together with \expr{-D flash-use-stage} and \expr{-swf-lib} \\
-	\expr{swf-protected}  &  Compile Haxe private as protected in the SWF instead of public \\
-	\expr{swf-script-timeout}  &  Maximum ActionScript processing time before script stuck dialog box displays (in seconds) \\
-	\expr{swf-use-doabc}  &  Use DoAbc swf-tag instead of DoAbcDefine \\
-	\expr{sys}  &  Defined for all system platforms \\
-	\expr{unsafe}  &  Allow unsafe code when targeting C\# \\
-	\expr{use-nekoc}  &  Use nekoc compiler instead of internal one \\
-	\expr{use-rtti-doc}  &  Allows access to documentation during compilation \\
-	\expr{vcproj}  &  GenCPP internal \\
-\end{tabular}
-\end{center}
 
 \section{Externs}
 \label{lf-externs}
@@ -296,8 +218,9 @@ Externs can be used to describe target-specific interaction in a type-safe manne
 
 \begin{itemize}
 	\item the \expr{class} keyword is preceded by the \expr{extern} keyword,
-	\item \tref{methods}{class-field-method} have no expressions and
-	\item all argument and return types are explicit.
+	\item \tref{methods}{class-field-method} have no expressions,
+	\item all argument and return types are explicit, and
+	\item the default \tref{visibility}{class-field-visibility} is \expr{public} (\expr{private} must be specified explicitly).
 \end{itemize}
 
 A common example from the \tref{Haxe Standard Library}{std} is the \type{Math} class, as an excerpt shows:
@@ -336,6 +259,23 @@ We demonstrate the usage in this code sample:
 
 \haxe{assets/RestAndEitherType.hx}
 
+\paragraph{Visibility}
+
+Externs support the \expr{private} visibility modifier. However, because the default visibility in an extern class is \expr{public}, \expr{private} needs to be explicitly specified.
+
+Specifying \expr{private} members is helpful when an API intends to allow overriding functions. Also, Haxe cannot prevent subclasses from reusing field names unless if the fields are included in the extern definition. This is important on targets such as JavaScript where reusing a super class’s field name as a new field in a subclass is not supported.
+
+\begin{lstlisting}
+extern class ExampleSuperClass
+{
+	private function new(); // Require subclassing to use.
+	// Only allow subclasses access to this overridable function.
+	private function overridableFunction():String;
+	// This function is implicitly public:
+	function doSomething():String;
+}
+\end{lstlisting}
+
 
 \section{Static Extension}
 \label{lf-static-extension}
@@ -349,7 +289,7 @@ Static extensions can be a powerful tool which allows augmenting types without a
 Clearly, \type{Int} does not natively provide a \expr{triple} method, yet this program compiles and outputs \expr{36} as expected. This is because the call to \expr{12.triple()} is transformed into \expr{IntExtender.triple(12)}. There are three requirements for this:
 
 \begin{enumerate}
-	\item Both the literal \expr{12} and the first argument of \expr{triple} are of type \type{Int}.
+	\item Both the literal \expr{12} and the first argument of \expr{triple} are known to be of type \type{Int}.
 	\item The class \type{IntExtender} is brought into context through \expr{using Main.IntExtender}.
 	\item \type{Int} does not have a \expr{triple} field by itself (if it had, that field would take priority over the static extension).
 \end{enumerate}
@@ -357,6 +297,13 @@ Clearly, \type{Int} does not natively provide a \expr{triple} method, yet this p
 Static extensions are usually considered syntactic sugar and indeed they are, but it is worth noting that they can have a dramatic effect on code readability: Instead of nested calls in the form of \expr{f1(f2(f3(f4(x))))}, chained calls in the form of \expr{x.f4().f3().f2().f1()} can be used.
 
 Following the rules previously described in \Fullref{type-system-resolution-order}, multiple \expr{using} expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see \Fullref{type-system-modules-and-paths}) as static extension brings all its types into context.
+
+
+\paragraph{Related content}
+\begin{itemize}
+	\item \href{http://code.haxe.org/tag/static-extension.html}{Haxe snippets and tutorials about static extensions} in the Haxe Code Cookbook.
+\end{itemize}
+
 
 \subsection{In the Haxe Standard Library}
 \label{lf-static-extension-in-std}
@@ -367,7 +314,7 @@ Several classes in the Haxe Standard Library are suitable for static extension u
 
 While \type{String} does not have a \expr{replace} functionality by itself, the \expr{using StringTools} static extension provides one. As usual, the \target{JavaScript} output nicely shows the transformation:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 Main.main = function() {
 	StringTools.replace("adc","d","b");
 }
@@ -405,6 +352,12 @@ Some pattern matcher basics include:
 	\item Patterns will always be matched from top to bottom.
 	\item The topmost pattern that matches the input value has its expression executed.
 	\item A \expr{_} pattern matches anything, so \expr{case _}: is equal to \expr{default:}
+\end{itemize}
+
+\paragraph{Related content}
+\begin{itemize}
+	\item More about the \tref{switch expression}{expression-switch}.
+	\item \href{http://code.haxe.org/tag/pattern-matching.html}{Haxe snippets and tutorials about pattern matching} in the Haxe Code Cookbook.
 \end{itemize}
 
 \subsection{Enum matching}
@@ -453,8 +406,6 @@ It is also possible to match against the fields of anonymous structures and inst
 
 In the second case we bind the matched \expr{name} field to identifier \expr{n} if \expr{rating} matches \expr{"awesome"}. Of course this structure could also be put into the \type{Tree} from the previous example to combine structure and enum matching.
 
-A limitation with regards to class instances is that you cannot match against fields of their parent class.
-
 \subsection{Array matching}
 \label{lf-pattern-matching-array}
 
@@ -462,7 +413,7 @@ Arrays can be matched on fixed length:
 
 \haxe[firstline=52,lastline=60]{assets/PatternMatching.hx}
 
-This will trace \expr{1} because \expr{array[1]} matches \expr{6}, and \expr{array[0]} is allowed to be anything.
+This will trace \expr{1} because \expr{myArray[1]} matches \expr{6}, and \expr{myArray[0]} is allowed to be anything.
 
 \subsection{Or patterns}
 \label{lf-pattern-matching-or}
@@ -542,7 +493,7 @@ switch(true) {
 } // Unmatched patterns: true
 \end{lstlisting}
 
-The matched type \type{Bool} admits two values \expr{true} and \expr{false}, but only \expr{false} is checked. 
+The matched type \type{Bool} admits two values \expr{true} and \expr{false}, but only \expr{false} is checked.
 
 \todo{Figure out wtf our rules are now for when this is checked.}
 
@@ -561,6 +512,23 @@ switch(Leaf("foo")) {
     case _: // This pattern is unused
 }
 \end{lstlisting}
+
+
+
+\subsection{Single pattern check}
+\label{lf-pattern-matching-single}
+
+The compiler provides the function \expr{match} to check if an enum value matches a given pattern:
+
+\haxe[firstline=90,lastline=95]{assets/PatternMatching.hx}
+
+As this function only tests if the pattern is matched, guards and variable capture are unavailable.
+
+The \expr{match} function is equivalent to a \expr{switch} with a single \expr{case} for the given pattern, returning \expr{true}, and a \expr{default} returning \expr{false}.
+
+\haxe[firstline=97,lastline=104]{assets/PatternMatching.hx}
+
+See the \href{https://api.haxe.org/haxe/EnumValueTools.html#match}{EnumValue API documentation (since Haxe 3.2.1)} for more information.
 
 
 
@@ -584,8 +552,7 @@ trace('The sum of $x and 3 is ${x + 3}');
 String interpolation is a compile-time feature and has no impact on the runtime. The above example is equivalent to manual concatenation, which is exactly what the compiler generates:
 
 \begin{lstlisting}
-trace("The sum of " + x +
-  " and 3 is " + (x + 3));
+trace("The sum of " + x + " and 3 is " + (x + 3));
 \end{lstlisting}
 Of course the use of single-quote enclosed strings without any interpolation remains valid, but care has to be taken regarding the \$ character as it triggers interpolation. If an actual dollar-sign should be used in the string, \expr{\$\$} can be used.
 
@@ -594,8 +561,6 @@ Of course the use of single-quote enclosed strings without any interpolation rem
 
 \section{Array Comprehension}
 \label{lf-array-comprehension}
-
-\todo{Comprehensions are only listing Arrays, not Maps}
 
 Array comprehension in Haxe uses existing syntax to allow concise initialization of arrays. It is identified by \expr{for} or \expr{while} constructs:
 
@@ -612,13 +577,39 @@ Variable \expr{b} is initialized to an array with the same values, but through a
 
 \begin{lstlisting}
 var i = 0;
-var a = [];
-while(i < 10) a.push(i++);
+var b = [];
+while(i < 10) b.push(i++);
 \end{lstlisting}
 
 The loop expression can be anything, including conditions and nested loops, so the following works as expected:
 
 \haxe{assets/AdvArrayComprehension.hx}
+
+\section{Map Comprehension}
+\label{lf-map-comprehension}
+
+Map comprehension in Haxe uses existing syntax to allow concise initialization for \type{Map}. Maps are initialized like arrays, but use the map literal syntax with the \ic{=>} operator. It is identified by \expr{for} or \expr{while} constructs:
+
+\haxe{assets/MapComprehension.hx}
+
+Variable \expr{a} is initialized to an \type{Map} holding keys from 0 to 4 and string values. The compiler generates code which adds the value of each loop iteration to the map, so the following code would be equivalent:
+
+\begin{lstlisting}
+var a = new Map();
+for (i in 0...5) a.set(i, 'number ${i}');
+\end{lstlisting}
+
+Variable \expr{b} is initialized to an \type{Map} with the same keys and values, but through a different comprehension style using \expr{while} instead of \expr{for}. Again, the following code would be equivalent:
+
+\begin{lstlisting}
+var i = 0;
+var b = new Map();
+while(i < 5) b.set(i, 'number ${i++}');
+\end{lstlisting}
+
+The loop expression can be anything, including conditions and nested loops, so the following works as expected:
+
+\haxe{assets/AdvMapComprehension.hx}
 
 
 \section{Iterators}
@@ -645,8 +636,13 @@ The type \type{MyStringIterator} in this example qualifies as iterator: It defin
 
 \haxe{assets/Iterable.hx}
 
-Here we do not setup a full iterator like in the previous example, but instead define that the \type{MyArrayWrap<T>} has a method \expr{iterator}, effectively forwarding the iterator method of the wrapped \type{Array<T>} type. 
+Here we do not setup a full iterator like in the previous example, but instead define that the \type{MyArrayWrap<T>} has a method \expr{iterator}, effectively forwarding the iterator method of the wrapped \type{Array<T>} type.
 
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{http://api.haxe.org/Iterator.html}{Iterator API documentation}.
+	\item \href{http://code.haxe.org/tag/iterator.html}{Haxe snippets and tutorials about iterators} in the Haxe Code Cookbook.
+\end{itemize}
 
 
 \section{Function Bindings}
@@ -660,6 +656,11 @@ Line 4 binds the function \expr{map.set} to a variable named \expr{f}, and appli
 A call to \expr{f(1)} then actually invokes \expr{map.set(1, "12")}, the calls to \expr{f(2)} and \expr{f(3)} are analogous. The last line proves that all three indices indeed are mapped to the value \expr{"12"}.
 
 The underscore \expr{_} can be skipped for trailing arguments, so the first argument could be bound through \expr{map.set.bind(1)}, yielding a \expr{String->Void} function that sets a new value for index \expr{1} on invocation.
+
+\paragraph{Optional arguments}
+
+By default, trailing optional arguments are bound to their default values and do not become arguments of the result function. This can be changed by using an explicit underscore \expr{_} instead, in which case the optional argument of the original function becomes a non-optional argument of the result function.
+\haxe{assets/BindOptional.hx}
 
 \trivia{Callback}{Prior to Haxe 3, Haxe used to know a \expr{callback}-keyword which could be called with a function argument followed by any number of binding arguments. The name originated from a common usage were a callback-function is created with the this-object being bound.\\
 Callback would allow binding of arguments only from left to right as there was no support for the underscore \expr{_}. The choice to use an underscore was controversial and several other suggestions were made, none of which were considered superior. After all, the underscore \expr{_} at least looks like it's saying ``fill value in here'', which nicely describes its semantics.}
@@ -685,9 +686,9 @@ These metadata information can be obtained at runtime through the \type{haxe.rtt
 We can easily identify metadata by the leading \expr{@} character, followed by the metadata name and, optionally, by a number of comma-separated constant arguments enclosed in parentheses.
 
 \begin{itemize}
-	\item Class \type{MyClass} has an \expr{author} metadata with a single String argument \expr{"Nicolas"}, as well as a \expr{debug} metadata without arguments.
+	\item Class \type{MyClass} has an \expr{author} metadata with a single String argument \expr{"Nicolas"}, as well as a \expr{:keep} metadata without arguments.
 	\item The member variable \expr{value} has a \expr{range} metadata with two Int arguments \expr{1} and \expr{8}.
-	\item The static method \expr{method} has a \expr{broken} metadata without arguments, as well as a \expr{:noCompletion} metadata without arguments.
+	\item The static method \expr{method} has a \expr{broken} metadata without arguments.
 \end{itemize}
 
 The \expr{main} method accesses these metadata values using their API. The output reveals the structure of the obtained data:
@@ -695,7 +696,6 @@ The \expr{main} method accesses these metadata values using their API. The outpu
 \begin{itemize}
 	\item There is a field for each metadata, with the field name being the metadata name.
 	\item The field values correspond to the metadata arguments. If there are no arguments, the field value is \expr{null}. Otherwise the field value is an array with one element per argument.
-	\item Metadata starting with \expr{:} is omitted. This kind of metadata is known as \emph{compiler metadata}.
 \end{itemize}
 
 Allowed values for metadata arguments are:
@@ -706,10 +706,19 @@ Allowed values for metadata arguments are:
 	\item \tref{Object declarations}{expression-object-declaration} (if all their field values qualify)
 \end{itemize}
 
+\paragraph{Compile-time Metadata}
+
+Metadata starting with \expr{:}, such as \expr{@:keep}, is available at compile time only; it is omitted at runtime. It may be used by macros or by the Haxe compiler itself. Unlike runtime metadata, arguments to compile-time metadata can be any valid expression.
+
 \paragraph{Built-in Compiler Metadata}
 An exhaustive list of all defined metadata can be obtained by running \expr{haxe --help-metas} from command line.
 
-See also the \tref{Compiler Metadata list}{cr-metadata}.
+
+\paragraph{Related content}
+\begin{itemize}
+	\item See also the \tref{Compiler Metadata list}{cr-metadata}.
+\end{itemize}
+
 
 \section{Access Control}
 \label{lf-access-control}
@@ -743,7 +752,7 @@ If a type cannot be modified to allow this kind of access, the accessing method 
 
 \haxe{assets/ACL3.hx}
 
-The \expr{@:access(MyClass.foo)} annotation effectively subverts the visibility of the \expr{foo} field within the \expr{main}-method. 
+The \expr{@:access(MyClass.foo)} annotation effectively subverts the visibility of the \expr{foo} field within the \expr{main}-method.
 
 \trivia{On the choice of metadata}{The access control language feature uses the Haxe metadata syntax instead of additional language-specific syntax. There are several reasons for that:\\
 \begin{itemize}
@@ -752,7 +761,7 @@ The \expr{@:access(MyClass.foo)} annotation effectively subverts the visibility 
 	\item The metadata syntax is flexible enough to allow extension of this feature.
 	\item The metadata can be accessed/generated/modified by Haxe macros.
 \end{itemize}
-Of course, the main drawback of using metadata syntax is that you get no error report in case you misspell either the metadata key (@:acesss for instance) or the class/package name. However, with this feature you will get an error when you try to access a private field that you are not allowed to, therefore there is no possibility for silent errors.}
+Of course, the main drawback of using metadata syntax is that you get no error report in case you misspell either the metadata key (@:access for instance) or the class/package name. However, with this feature you will get an error when you try to access a private field that you are not allowed to, therefore there is no possibility for silent errors.}
 
 \since{3.1.0}
 
@@ -765,7 +774,7 @@ This is also true for access granted to parent classes, in which case it extends
 \trivia{Broken feature}{Access extension to child classes and implementing classes was supposed to work in Haxe 3.0 and even documented accordingly. While writing this manual it was found that this part of the access control implementation was simply missing.}
 
 
-\section{Inline constructors}
+\section{Inline Constructors}
 \label{lf-inline-constructor}
 \since{3.1.0}
 
@@ -782,10 +791,9 @@ The following example demonstrates constructor inlining:
 
 A look at the \target{JavaScript} output reveals the effect:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 Main.main = function() {
 	var pt_x = 1.2;
 	var pt_y = 9.3;
 };
 \end{lstlisting}
-
