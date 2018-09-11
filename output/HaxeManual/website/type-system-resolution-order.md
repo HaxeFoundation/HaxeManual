@@ -1,4 +1,4 @@
-## 3.7.3 Resolution Order
+## 3.7.4 Resolution Order
 
 Resolution order comes into play as soon as unqualified identifiers are involved. These are [expressions](expression.md) in the form of `foo()`, `foo = 1` and `foo.field`. The last one in particular includes module paths such as `haxe.ds.StringMap`, where `haxe` is an unqualified identifier.  
 
@@ -50,6 +50,6 @@ For step 1 of this algorithm as well as steps 5 and 7 of the previous one, the o
 
 ---
 
-Previous section: [Import](type-system-import.md)
+Previous section: [Import defaults / import.hx](type-system-import-defaults.md)
 
 Next section: [Class Fields](class-field.md)

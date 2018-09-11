@@ -19,7 +19,7 @@ Todo:
 2.8.3 - Array Access: You have marked "Map" for some reason
 3.5 - Unification: Mention toString()/String conversion somewhere in this chapter.
 3.5.1 - Between Class/Interface: "parent class" should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.
-3.7.3 - Resolution Order: proper label and caption + code/identifier styling for diagram
+3.7.4 - Resolution Order: proper label and caption + code/identifier styling for diagram
 6.4.10 - Exhaustiveness checks: Figure out wtf our rules are now for when this is checked.
 9.5.1 - Enum building: Check if we can build GADTs this way.
 10.4.3 - Integer Math: I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?
@@ -99,7 +99,8 @@ Unreviewed:
 3.7 - Modules and Paths
 3.7.1 - Module Sub-Types
 3.7.2 - Import
-3.7.3 - Resolution Order
+3.7.3 - Import defaults / import.hx
+3.7.4 - Resolution Order
 4 - Class Fields
 4.1 - Variable
 4.2 - Property

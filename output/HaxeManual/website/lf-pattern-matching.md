@@ -22,6 +22,8 @@
 
 6.4.11: [Useless pattern checks](lf-pattern-matching-unused.md)
 
+6.4.12: [Single pattern check](lf-pattern-matching-single.md)
+
 ---
 
 Previous section: [In the Haxe Standard Library](lf-static-extension-in-std.md)
