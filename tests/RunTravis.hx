@@ -69,7 +69,9 @@ class RunTravis
 		"Variance.hx",
 		"Visibility.hx",
 		"Visibility2.hx",
-		"BindOptional.hx"
+		"BindOptional.hx",
+		"ImplementsDynamic.hx", // this fails on Haxe4
+		"DynamicResolve.hx", // this fails on Haxe4
 	];
 
 	/** Examples that are not included in the tests. */
@@ -84,8 +86,6 @@ class RunTravis
 		"UnitTestCase.hx",
 		"UnitTestRunner.hx",
 		"UnitTestSetup.hx",
-		"ImplementsDynamic.hx", // this fails on Haxe4
-		"DynamicResolve.hx", // this fails on Haxe4
 	];
 
 	/** Additional .hx modules needed to compile specific examples. */
