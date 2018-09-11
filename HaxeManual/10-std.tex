@@ -752,9 +752,11 @@ trace(xml.toString()); // <root><child1/><child2/></root>
 \subsection{Simplified Xml access}
 \label{std-Xml-simplified-access}
 
-The \href{https://api.haxe.org/haxe/xml/Fast.html}{haxe.xml.Fast} API exists to provide a fast dot-syntax access to the most common \type{Xml} methods.
+The \href{https://api.haxe.org/haxe/xml/Access.html}{haxe.xml.Access} API exists to provide a dot-syntax access to the most common \type{Xml} methods.
 
-Here's an example of fast XML usage:
+Since Haxe 4 this class is named \type{haxe.xml.Access}. In Haxe 3 it was known as \type{haxe.xml.Fast}.
+
+Here's an example of XML Access usage:
 \begin{lstlisting}
 // parse some XML data
 var xml = Xml.parse("
@@ -765,15 +767,15 @@ var xml = Xml.parse("
     </phone>
   </user>
 ");
-// wrap the Xml for fast access
-var fast = new haxe.xml.Fast(xml.firstElement());
+// wrap the Xml for Access
+var access = new haxe.xml.Access(xml.firstElement());
 
 // access attributes
-trace(fast.att.name); // attribute "name"
-if (fast.has.age) trace( fast.att.age ); // optional attribute
+trace(access.att.name); // attribute "name"
+if (access.has.age) trace( access.att.age ); // optional attribute
 
-// access the "phone" child, which is wrapped with haxe.xml.Fast too
-var phone = fast.node.phone;
+// access the "phone" child, which is wrapped with haxe.xml.Access too
+var phone = access.node.phone;
 
 // iterate over numbers
 for (p in phone.nodes.number) {
@@ -783,7 +785,7 @@ for (p in phone.nodes.number) {
 This code works the same on all platforms.
 
 \paragraph{Accessors}
-There are different accessors that can be used with the Fast API:
+There are different accessors that can be used with the Access API:
 \begin{description}
 	\item[\expr{.name}] returns the name of the current element (same as \expr{Xml.nodeName}).
 	\item[\expr{.x}] returns the current corresponding \type{Xml} node.
@@ -807,19 +809,19 @@ var xml = Xml.parse("
   <myNode2/>
 ");
 
-var fast = new haxe.xml.Fast(xml.firstElement());
+var access = new haxe.xml.Access(xml.firstElement());
 
-var myNode1Value = fast.node.myNode1.innerData; 
+var myNode1Value = access.node.myNode1.innerData; 
 // no problem
 
-var myNode2Value = fast.node.myNode2.innerData; 
+var myNode2Value = access.node.myNode2.innerData; 
 // ERROR, an exception is thrown!
 \end{lstlisting}
 
 In case the application might get self-closed nodes, check \expr{hasNode.innerData} before and default to an alternative value.
 
 \begin{lstlisting}
-var myNode2Value = (fast.node.myNode2.hasNode.innerData) ? fast.node.myNode2.innerData : null; 
+var myNode2Value = (access.node.myNode2.hasNode.innerData) ? access.node.myNode2.innerData : null; 
 \end{lstlisting}
 
 \section{Json}
