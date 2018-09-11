@@ -33,6 +33,7 @@
 \newcommand{\state}[1]{} % state of the section
 \newcommand{\ic}[1]{\texttt{#1}} % shortcut because \texttt is awkward to type
 \newcommand{\flag}[2]{} % pass custom flags to converter
+\newcommand{\todo}[1]{} % disabled todos
 
 % Listings
 
