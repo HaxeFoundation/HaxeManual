@@ -518,11 +518,11 @@ switch(Leaf("foo")) {
 \subsection{Single pattern check}
 \label{lf-pattern-matching-single}
 
-The compiler provides the function \expr{match} to check if an enum value match a given pattern:
+The compiler provides the function \expr{match} to check if an enum value matches a given pattern:
 
 \haxe[firstline=90,lastline=95]{assets/PatternMatching.hx}
 
-As this function only test if the pattern is matched, guards and variable capture are unavailable.
+As this function only tests if the pattern is matched, guards and variable capture are unavailable.
 
 The \expr{match} function is equivalent to a \expr{switch} with a single \expr{case} for the given pattern, returning \expr{true}, and a \expr{default} returning \expr{false}.
 
