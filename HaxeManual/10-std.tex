@@ -21,6 +21,32 @@ Use the \ic{.code} property on a constant single-char string in order to compile
 	\item See the \href{http://api.haxe.org/String.html}{String API} for details about its methods.
 \end{itemize} 
 
+\subsection{String encoding details}
+\label{std-string-encoding-details}
+
+String encoding depends on the platform; see below for more information.
+
+\begin{description}
+	\item[\emph{Flash} (all versions)] always UTF8 encoding. Constant strings in .hx files are encoded in UTF8 if they are not UTF8-valid. This works well for ISO strings for instance.
+	\item[\emph{Javascript}] the String encoding depends on the HTML page or might be forced by the browser itself. Constant strings in .hx files are left as-it. It seems that the browser makes appropriate conversion when using ISO but it's preferred to encode the .hx files with the same encoding that's used for the webapplication.
+	\item[\emph{Neko}] strings are binary strings, they can contain any 8-bit chars. It means that if you have an UTF8 string, all \type{String} class operations will perform on the bytes and not on the UTF8 chars. You can use the \type{neko.Utf8} API to manipulate UTF8 strings instead. Constant strings in .hx files are left as-is.
+	\item[\emph{PHP}] same as for neko except that you must use \type{php.Utf8} instead of \type{neko.Utf8} to manipulate UTF8 strings.
+	\item[\emph{C++}] The same as Neko. String are arrays of bytes and the programmer must remember if they are UTF8 encoded or not, and can use \type{cpp.Utf8} to convert. String constants entered in UTF8 in source code will initially be UTF8 encoded (ie, may have a byte size (\expr{String.length})) larger than the number of characters in the string. The \type{String} member functions sizes etc. refer to byte positions, not character positions.
+\end{description}
+
+Use the crossplatform \href{http://api.haxe.org/haxe/io/Bytes.html#ofString}{haxe.io.Bytes.ofString} to read the actual bytes of the \type{String}, whatever its encoding.
+
+\paragraph{The \textbackslash0 char}
+This detail the possibility of using the char code \textbackslash0 into strings depending on the platform. In any case, it is better to use \href{http://api.haxe.org/haxe/io/Bytes.html}{haxe.io.Bytes} API when manipulating binary data, this will ensure better cross-platform behavior.
+
+\begin{description}
+	\item[\emph{Flash}] strings can't contain the \textbackslash0 char.
+	\item[\emph{Neko}] strings are binary, they can contain \textbackslash0 chars and can still be appended together. Printing however will stop at the first \textbackslash0 char but other operations (substr, length, etc.) will perform well.
+	\item[\emph{Javascript}] this actually depends on the browser. Internet Explorer does not allow \textbackslash0 char while other browsers do.
+	\item[\emph{PHP}] strings are binary and they can contain \textbackslash0 chars. All operations on such strings should work as expected.
+	\item[\emph{C++}] May contain the null character. Using the \expr{String.length} is preferred. However, certain external functions (eg filenames, printing etc) won't be able to see past the null character.
+\end{description}
+
 \section{Data Structures}
 \label{std-ds}
 \state{NoContent}
