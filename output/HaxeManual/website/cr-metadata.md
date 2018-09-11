@@ -43,6 +43,7 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 @:final   |  Prevents a class from being extended   |  all 
 @:font _(TTF path Range String)_   |  Embeds the given TrueType font into the class (must extend <code>flash.text.Font</code>)   |  flash 
 @:forward _(List of field names)_   |  [Forwards field access](types-abstract-forward.md) to underlying type   |  all 
+@:forwardStatics _(List of field names)_   |  [Forwards static field access](types-abstract-forward.md) to underlying type   |  all 
 @:from    |  Specifies that the field of the abstract is a cast operation from the type identified in the function. See [Implicit Casts](types-abstract-implicit-casts.md)   |  all 
 @:functionCode   |  Injects native code into the beginning of the function    |  cs cpp 
 @:functionTailCode   |  Injects native code into the end of the function   |  cpp 
@@ -104,7 +105,7 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 @:strict   |  Used to declare a native C# attribute or a native Java metadata. Is type checked   |  cs java 
 @:struct   |  Marks a class definition as a struct    |  cs 
 @:structAccess   |  Marks an extern class as using struct access('.') not pointer('->')   |  cpp 
-@:structInit   |    Allows one to initialize the class with a structure that matches constructor parameters   |   all
+@:structInit   |  Allows one to initialize the class with a structure that matches constructor parameters   |  all 
 @:suppressWarnings   |  Adds a SuppressWarnings annotation for the generated Java class   |  java 
 @:throws _(Type as String)_   |  Adds a <code>throws</code> declaration to the generated function    |  java 
 @:to   |  Specifies that the field of the abstract is a cast operation to the type identified in the function. See [Implicit Casts](types-abstract-implicit-casts.md)  | all 
