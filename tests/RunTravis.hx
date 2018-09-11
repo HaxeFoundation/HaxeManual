@@ -83,7 +83,9 @@ class RunTravis
 		"SwitchStatement.hx", // pseudo-code
 		"UnitTestCase.hx",
 		"UnitTestRunner.hx",
-		"UnitTestSetup.hx"
+		"UnitTestSetup.hx",
+		"ImplementsDynamic.hx", // this fails on Haxe4
+		"DynamicResolve.hx", // this fails on Haxe4
 	];
 
 	/** Additional .hx modules needed to compile specific examples. */
