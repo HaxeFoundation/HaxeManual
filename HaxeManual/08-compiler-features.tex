@@ -8,10 +8,15 @@
 Starting from Haxe 3.0, you can get the list of defined compiler metadata by running \expr{haxe --help-metas}
 
 \begin{center}
-\begin{tabular}{| l | l | l |}
-	\hline
-	\multicolumn{3}{|c|}{Global metadata} \\ \hline
-	Metadata &  Description  &  Platform \\ \hline
+  \tablehead{\hline
+    \multicolumn{3}{|c|}{Global Metadata} \\ \hline
+    Flag &  Description & Targets \\ \hline}%
+  \tabletail{%
+    \hline
+    \multicolumn{3}{|r|}{\small\sl continued on next page}\\
+    \hline}
+\tablelasttail{\hline}
+\begin{supertabular}{|>{\raggedright\arraybackslash}p{.25\linewidth}|>{\raggedright\arraybackslash}p{\dimexpr.65\linewidth-3\arrayrulewidth-4\tabcolsep}|>{\raggedright\arraybackslash}p{.10\linewidth}|}%
 	@:abi & Function ABI/calling convention  & cpp \\
 	@:abstract &  Sets the underlying class implementation as 'abstract'  &  cs  java \\
 	@:access \_(Target path)\_  &   Forces private access to package  type or field,  see \tref{Access Control}{lf-access-control}  &  all \\
@@ -123,7 +128,7 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 	@:value  &  Used to store default values for fields and function arguments  &  all \\
 	@:void  &  Use Cpp native 'void' return type  &  cpp \\
 	@:volatile  &    &  cs  java \\
-\end{tabular}
+\end{supertabular}
 \end{center}
 
 \section{Dead Code Elimination}

@@ -195,10 +195,15 @@ build-game.hxml
 Starting from Haxe 3.0, you can get the list of supported \tref{compiler flags}{lf-condition-compilation} by running \expr{haxe --help-defines}
 
 \begin{center}
-\begin{tabular}{| l | l |}
-	\hline
-	\multicolumn{2}{|c|}{Global Compiler Flags} \\ \hline
-	Flag &  Description \\ \hline
+\tablehead{\hline
+    \multicolumn{2}{|c|}{Global Compiler Flags} \\ \hline
+    Flag &  Description \\ \hline}%
+  \tabletail{%
+    \hline
+    \multicolumn{2}{|r|}{\small\sl continued on next page}\\
+    \hline}
+\tablelasttail{\hline}
+\begin{supertabular}{|>{\raggedright\arraybackslash}p{.35\linewidth}|>{\raggedright\arraybackslash}p{\dimexpr.65\linewidth-3\arrayrulewidth-4\tabcolsep}|}%
 	\expr{absolute-path} &  Print absolute file path in trace output \\
 	\expr{advanced-telemetry}  &  Allow the SWF to be measured with Monocle tool \\
 	\expr{analyzer}  &  Use static analyzer for optimization (experimental) \\
@@ -264,8 +269,8 @@ Starting from Haxe 3.0, you can get the list of supported \tref{compiler flags}{
 	\expr{shallow-expose}  &  Expose types to surrounding scope of Haxe generated closure without writing to window object \\
 	\expr{source-map-content}  &  Include the hx sources as part of the JS source map \\
 	\expr{swc}  &  Output a SWC instead of a SWF \\
-	\expr{swf-compress-level=<level:1-9>}  &  Set the amount of compression for the SWF output \\
-	\expr{swf-debug-password=<yourPassword>}  &  Set a password for debugging. The password field is encrypted by using the MD5 algorithm and prevents unauthorised debugging of your swf. Without this flag -D fdb will use no password. \\
+	\expr{swf-compress-level=<1-9>}  &  Set the amount of compression for the SWF output \\
+	\expr{swf-debug-password=<pwd>}  &  Set a password for debugging. The password field is encrypted by using the MD5 algorithm and prevents unauthorised debugging of your swf. Without this flag -D fdb will use no password. \\
 	\expr{swf-direct-blit}  &  Use hardware acceleration to blit graphics \\
 	\expr{swf-gpu}  &  Use GPU compositing features when drawing graphics \\
 	\expr{swf-metadata=<file.xml>}  &  Include contents of \expr{<file.xml>} as metadata in the swf. \\
@@ -278,5 +283,5 @@ Starting from Haxe 3.0, you can get the list of supported \tref{compiler flags}{
 	\expr{use-nekoc}  &  Use nekoc compiler instead of internal one \\
 	\expr{use-rtti-doc}  &  Allows access to documentation during compilation \\
 	\expr{vcproj}  &  GenCPP internal \\
-\end{tabular}
+\end{supertabular}
 \end{center}
