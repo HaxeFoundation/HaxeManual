@@ -155,6 +155,7 @@ Unreviewed:
 6.4.9 - Extractors
 6.4.10 - Exhaustiveness checks
 6.4.11 - Useless pattern checks
+6.4.12 - Single pattern check
 6.5 - String Interpolation
 6.6 - Array Comprehension
 6.7 - Map Comprehension

@@ -110,7 +110,7 @@ Strings declared with a single quotes are able to access variables in the curren
 trace('My name is $name and I work in ${job.industry}');
 \end{lstlisting}
 
-\emph{\tref{Partial function application}{lf-function-bindings}:} 
+\emph{\tref{Partial function application}{lf-function-bindings}:}
 
 Any function can be applied partially, providing the values of some arguments and leaving the rest to be filled in later.
 
@@ -121,7 +121,7 @@ setToTwelve(1);
 setToTwelve(2);
 \end{lstlisting}
 
-\emph{\tref{Pattern Matching}{lf-pattern-matching}:} 
+\emph{\tref{Pattern Matching}{lf-pattern-matching}:}
 
 Complex structures can be matched against patterns, extracting information from an enum or a structure and defining specific operations for specific value combination.
 
@@ -194,9 +194,9 @@ The Haxe parser does not parse \expr{some-flag} as a single token and instead re
 \paragraph{Working with compiler flags}
 Compiler flags are available at compile time, the following methods only work in macro context:
 \begin{itemize}
-	\item To see if a compiler flag is set, use \expr{haxe.macro.Context.defined("any_flag")}. 
-	\item To get the value of a compiler flag, use \expr{haxe.macro.Context.definedValue("any_flag")}. 
-	\item To get a map of all compiler flags with its value use \expr{haxe.macro.Context.getDefines()}. 
+	\item To see if a compiler flag is set, use \expr{haxe.macro.Context.defined("any_flag")}.
+	\item To get the value of a compiler flag, use \expr{haxe.macro.Context.definedValue("any_flag")}.
+	\item To get a map of all compiler flags with its value use \expr{haxe.macro.Context.getDefines()}.
 \end{itemize}
 
 \paragraph{Haxelibs}
@@ -208,7 +208,7 @@ An exhaustive list of all built-in defines can be obtained by invoking the Haxe 
 \paragraph{Related content}
 \begin{itemize}
 	\item See also the \tref{Compiler Flags list}{compiler-usage-flags}.
-\end{itemize} 
+\end{itemize}
 
 
 \section{Externs}
@@ -302,7 +302,7 @@ Following the rules previously described in \Fullref{type-system-resolution-orde
 \paragraph{Related content}
 \begin{itemize}
 	\item \href{http://code.haxe.org/tag/static-extension.html}{Haxe snippets and tutorials about static extensions} in the Haxe Code Cookbook.
-\end{itemize} 
+\end{itemize}
 
 
 \subsection{In the Haxe Standard Library}
@@ -358,7 +358,7 @@ Some pattern matcher basics include:
 \begin{itemize}
 	\item More about the \tref{switch expression}{expression-switch}.
 	\item \href{http://code.haxe.org/tag/pattern-matching.html}{Haxe snippets and tutorials about pattern matching} in the Haxe Code Cookbook.
-\end{itemize} 
+\end{itemize}
 
 \subsection{Enum matching}
 \label{lf-pattern-matching-enums}
@@ -493,7 +493,7 @@ switch(true) {
 } // Unmatched patterns: true
 \end{lstlisting}
 
-The matched type \type{Bool} admits two values \expr{true} and \expr{false}, but only \expr{false} is checked. 
+The matched type \type{Bool} admits two values \expr{true} and \expr{false}, but only \expr{false} is checked.
 
 \todo{Figure out wtf our rules are now for when this is checked.}
 
@@ -512,6 +512,23 @@ switch(Leaf("foo")) {
     case _: // This pattern is unused
 }
 \end{lstlisting}
+
+
+
+\subsection{Single pattern check}
+\label{lf-pattern-matching-single}
+
+The compiler provides the function \expr{match} to check if an enum value matches a given pattern:
+
+\haxe[firstline=90,lastline=95]{assets/PatternMatching.hx}
+
+As this function only tests if the pattern is matched, guards and variable capture are unavailable.
+
+The \expr{match} function is equivalent to a \expr{switch} with a single \expr{case} for the given pattern, returning \expr{true}, and a \expr{default} returning \expr{false}.
+
+\haxe[firstline=97,lastline=104]{assets/PatternMatching.hx}
+
+See the \href{https://api.haxe.org/haxe/EnumValueTools.html#match}{EnumValue API documentation (since Haxe 3.2.1)} for more information.
 
 
 
@@ -619,13 +636,13 @@ The type \type{MyStringIterator} in this example qualifies as iterator: It defin
 
 \haxe{assets/Iterable.hx}
 
-Here we do not setup a full iterator like in the previous example, but instead define that the \type{MyArrayWrap<T>} has a method \expr{iterator}, effectively forwarding the iterator method of the wrapped \type{Array<T>} type. 
+Here we do not setup a full iterator like in the previous example, but instead define that the \type{MyArrayWrap<T>} has a method \expr{iterator}, effectively forwarding the iterator method of the wrapped \type{Array<T>} type.
 
 \paragraph{Related content}
 \begin{itemize}
-	\item See the \href{http://api.haxe.org/Iterator.html}{Iterator API documentation}. 
+	\item See the \href{http://api.haxe.org/Iterator.html}{Iterator API documentation}.
 	\item \href{http://code.haxe.org/tag/iterator.html}{Haxe snippets and tutorials about iterators} in the Haxe Code Cookbook.
-\end{itemize} 
+\end{itemize}
 
 
 \section{Function Bindings}
@@ -700,7 +717,7 @@ An exhaustive list of all defined metadata can be obtained by running \expr{haxe
 \paragraph{Related content}
 \begin{itemize}
 	\item See also the \tref{Compiler Metadata list}{cr-metadata}.
-\end{itemize} 
+\end{itemize}
 
 
 \section{Access Control}
@@ -735,7 +752,7 @@ If a type cannot be modified to allow this kind of access, the accessing method 
 
 \haxe{assets/ACL3.hx}
 
-The \expr{@:access(MyClass.foo)} annotation effectively subverts the visibility of the \expr{foo} field within the \expr{main}-method. 
+The \expr{@:access(MyClass.foo)} annotation effectively subverts the visibility of the \expr{foo} field within the \expr{main}-method.
 
 \trivia{On the choice of metadata}{The access control language feature uses the Haxe metadata syntax instead of additional language-specific syntax. There are several reasons for that:\\
 \begin{itemize}
