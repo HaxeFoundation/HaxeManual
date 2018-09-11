@@ -1,4 +1,4 @@
-## 6.11 Inline constructors
+## 6.12 Inline Constructors
 
 ##### since Haxe 3.1.0
 
@@ -29,7 +29,7 @@ class Main {
 
 A look at the JavaScript output reveals the effect:
 
-```haxe
+```js
 Main.main = function() {
 	var pt_x = 1.2;
 	var pt_y = 9.3;

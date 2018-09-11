@@ -233,12 +233,6 @@ enum E {
 }
 \end{lstlisting}
 
-\paragraph{Related content}
-\begin{itemize}
-	\item See the \href{http://api.haxe.org/Math.html}{Math API} for all available functions.
-	\item \href{http://code.haxe.org/tag/math.html}{Math related snippets and tutorials} in the Haxe Code Cookbook.
-\end{itemize}
-
 
 \subsection{@:autoBuild}
 \label{macro-auto-build}
@@ -250,7 +244,7 @@ If a class has the \expr{:autoBuild} metadata, the compiler generates \expr{:bui
 
 This outputs during compilation:
 
-\begin{lstlisting}
+\lang{none}\begin{lstlisting}
 AutoBuildingMacro.hx:6:
   fromInterface: TInst(I2,[])
 AutoBuildingMacro.hx:6:
@@ -331,7 +325,7 @@ With both interfaces \type{I1} and \type{I2} having \expr{:autoBuild} metadata, 
 \label{macro-limitations-type-parameters}
 
 
-\section{Initialization macros}
+\section{Initialization Macros}
 \label{macro-initialization}
 
 Initialization macros are invoked from command line by using the \expr{--macro callExpr(args)} command. This registers a callback which the compiler invokes after creating its context, but before typing what was argument to \expr{-main}. This then allows configuring the compiler in some ways.

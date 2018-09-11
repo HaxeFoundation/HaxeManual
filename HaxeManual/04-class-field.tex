@@ -94,7 +94,7 @@ The next example shows common access identifier combinations for properties:
 
 The \target{JavaScript} output helps understand what the field access in the \expr{main}-method is compiled to:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 var Main = function() {
 	var v = this.get_x();
 	this.set_x(2);
@@ -109,7 +109,7 @@ As specified, the read access generates a call to \expr{get_x()}, while the writ
 
 What happens here is that the expression part of the field access to \expr{x} in the \expr{main} method is \emph{complex}: It has potential side-effects, such as the construction of \type{Main} in this case. Thus, the compiler cannot generate the \expr{+=} operation as \expr{new Main().x = new Main().x + 1} and has to cache the complex expression in a local variable:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 Main.main = function() {
 	var _g = new Main();
 	_g.set_x(_g.get_x() + 1);
@@ -270,7 +270,7 @@ The \expr{inline} keyword allows function bodies to be directly inserted in plac
 
 The generated \target{JavaScript} output reveals the effect of inline:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 (function () { "use strict";
 var Main = function() { }
 Main.main = function() {

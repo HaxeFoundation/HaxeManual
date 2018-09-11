@@ -31,7 +31,7 @@ An expression can be put between the `::`, the syntax allows the current possibi
 ##### Conditions
 It is possible to test conditions using `::if flag1::`. Optionally, the condition may be followed by `::elseif flag2::` or `::else::`. Close the condition with `::end::`.
 
-```haxe 
+```
 ::if isValid:: valid ::else:: invalid ::end::
 ``` 
 
@@ -39,18 +39,18 @@ Operators can be used but they don't deal with operator precedence. Therefore it
 
 For example `::((1 + 3) == (2 + 2))::` will display true. 
 
-```haxe 
+``` 
 ::if (points == 10):: Great! ::end::
 ``` 
 
 To compare to a string, use double quotes `"` in the template.
-```haxe 
+```
 ::if (name == "Mark"):: Hi Mark ::end::
 ``` 
 
 ##### Iterating
 Iterate on a structure by using `::foreach::`. End the loop with `::end::`.
-```haxe 
+```xml
 <table>
 	<tr>
 		<th>Name</th>

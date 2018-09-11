@@ -4,8 +4,10 @@ The Haxe Compiler employs a rich type system which helps detecting type-related 
 
 In some languages this additional safety comes at a price because programmers are forced to explicitly assign types to syntactic constructs:
 
-```haxe
+```as3
 var myButton:MySpecialButton = new MySpecialButton(); // As3
+```
+```cpp
 MySpecialButton* myButton = new MySpecialButton(); // C++ 
 ```
 The explicit type annotations are not required in Haxe, because the compiler can **infer** the type:

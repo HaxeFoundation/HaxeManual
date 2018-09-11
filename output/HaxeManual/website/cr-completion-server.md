@@ -2,7 +2,7 @@
 
 To get the best speed for both compilation and completion, you can use the `--wait` command-line parameter to start a Haxe compilation server. You can also use `-v` to have the server print the log. Here's an example:
 
-```haxe
+```hxml
 haxe -v --wait 6000
 ```
 
@@ -10,7 +10,7 @@ You can then connect to the Haxe server, send command-line parameters followed b
 
 Use the `--connect` command-line parameter to have Haxe send its compilation commands to the server instead of executing them directly :
 
-```haxe
+```hxml
 haxe --connect 6000 myproject.hxml
 ```
 

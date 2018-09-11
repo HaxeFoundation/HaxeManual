@@ -42,7 +42,7 @@ class Main {
 
 Haxe generates this optimized JavaScript output:
 
-```haxe
+```js
 Main.main = function() {
 	var scores = [110,170,35];
 	var sum = 0;

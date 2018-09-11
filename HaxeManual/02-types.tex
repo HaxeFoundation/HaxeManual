@@ -5,8 +5,10 @@ The Haxe Compiler employs a rich type system which helps detecting type-related 
 
 In some languages this additional safety comes at a price because programmers are forced to explicitly assign types to syntactic constructs:
 
-\begin{lstlisting}
+\lang{as3}\begin{lstlisting}
 var myButton:MySpecialButton = new MySpecialButton(); // As3
+\end{lstlisting}
+\lang{cpp}\begin{lstlisting}
 MySpecialButton* myButton = new MySpecialButton(); // C++ 
 \end{lstlisting}
 The explicit type annotations are not required in Haxe, because the compiler can \emph{infer} the type:
@@ -693,9 +695,6 @@ Classes that implement \type{Dynamic} (with or without type parameter) can also 
 
 \haxe{assets/DynamicAccess.hx}
 
-\begin{lstlisting}
-\end{lstlisting}
-
 \subsection{Any type}
 \label{types-dynamic-any}
 
@@ -741,7 +740,7 @@ Furthermore, abstracts can be instantiated and used just like classes:
 \haxe[firstline=7,lastline=12]{assets/MyAbstract.hx}
 As mentioned before, abstracts are a compile-time feature, so it is interesting to see what the above actually generates. A suitable target for this is \target{JavaScript}, which tends to generate concise and clean code. Compiling the above (using \texttt{haxe -main MyAbstract -js myabstract.js}) shows this \target{JavaScript} code:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 var a = 12;
 console.log(a);
 \end{lstlisting}
@@ -782,7 +781,7 @@ In the example the method \expr{fromString} allows the assignment of value \expr
 
 When using this kind of cast, calls to the cast-functions are inserted where required. This becomes obvious when looking at the \target{JavaScript} output:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 var a = _ImplicitCastField.MyAbstract_Impl_.fromString("3");
 var b = _ImplicitCastField.MyAbstract_Impl_.toArray(a);
 \end{lstlisting}
@@ -822,7 +821,7 @@ Abstracts allow overloading of unary and binary operators by adding the \expr{@:
 \haxe{assets/AbstractOperatorOverload.hx}
 By defining \expr{@:op(A * B)}, the function \expr{repeat} serves as operator method for the multiplication \expr{*} operator when the type of the left value is \type{MyAbstract} and the type of the right value is \type{Int}. The usage is shown in line 17, which turns into this when compiled to \target{JavaScript}:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 console.log(_AbstractOperatorOverload.
   MyAbstract_Impl_.repeat(a,3));
 \end{lstlisting}
@@ -873,7 +872,7 @@ The methods \expr{get} and \expr{arrayWrite} seen above then allow the following
 
 At this point it should not be surprising to see that calls to the array access fields are inserted in the output:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 map.set("foo",1);
 console.log(map.get("foo")); // 1
 \end{lstlisting}
@@ -901,7 +900,7 @@ By adding the \expr{:enum} metadata to an abstract definition, that abstract can
 
 The Haxe Compiler replaces all field access to the \type{HttpStatus} abstract with their values, as evident in the \target{JavaScript} output:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 Main.main = function() {
 	var status = 404;
 	var msg = Main.printStatus(status);
@@ -937,7 +936,7 @@ The \type{MyArray} abstract in this example wraps \type{Array}. Its \expr{:forwa
 
 As usual we can look at the \target{JavaScript} output to see how the code is being generated:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 Main.main = function() {
 	var myArray = [];
 	myArray.push(12);

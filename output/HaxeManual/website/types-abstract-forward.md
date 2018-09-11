@@ -27,7 +27,7 @@ The `MyArray` abstract in this example wraps `Array`. Its `:forward` metadata ha
 
 As usual we can look at the JavaScript output to see how the code is being generated:
 
-```haxe
+```js
 Main.main = function() {
 	var myArray = [];
 	myArray.push(12);

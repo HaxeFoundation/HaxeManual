@@ -60,4 +60,4 @@
 
 Previous section: [Runtime Type Information](cr-rtti.md)
 
-Next section: [Static analyzer](cr-static-analyzer.md)
+Next section: [Static Analyzer](cr-static-analyzer.md)

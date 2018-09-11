@@ -8,7 +8,7 @@ trace("Hello world!");
 
 In most Haxe targets trace will be printed to stdout. JavaScript uses `console.log`. Each trace is displayed with the filename and line number information where the trace occurred:
 
-```haxe
+```
 Test.hx:11: Hello world!
 ```
 
@@ -36,7 +36,7 @@ The `infos.customParams` array contains all extra arguments that were given to t
 
 As illustration, the previous example will be compiled as if it was calling the following:
 
-```haxe
+```js
 haxe.Log.trace("hello", {
 	fileName : "Test.hx", 
 	lineNumber : 6, 

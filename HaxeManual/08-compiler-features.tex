@@ -49,6 +49,7 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 	@:final  &  Prevents a class from being extended  &  all \\
 	@:font \_(TTF path Range String)\_  &  Embeds the given TrueType font into the class (must extend \expr{flash.text.Font})  &  flash \\
 	@:forward \_(List of field names)\_  &  \tref{Forwards field access}{types-abstract-forward} to underlying type  &  all \\
+	@:forwardStatics \_(List of field names)\_  &  \tref{Forwards static field access}{types-abstract-forward} to underlying type  &  all \\
 	@:from   &  Specifies that the field of the abstract is a cast operation from the type identified in the function. See \tref{Implicit Casts}{types-abstract-implicit-casts}  &  all \\
 	@:functionCode  &  Injects native code into the beginning of the function   &  cs cpp \\
 	@:functionTailCode  &  Injects native code into the end of the function  &  cpp \\
@@ -110,6 +111,7 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 	@:strict  &  Used to declare a native C\# attribute or a native Java metadata. Is type checked  &  cs java \\
 	@:struct  &  Marks a class definition as a struct   &  cs \\
 	@:structAccess  &  Marks an extern class as using struct access('.') not pointer('->')  &  cpp \\
+	@:structInit  &  Allows one to initialize the class with a structure that matches constructor parameters  &  all \\
 	@:suppressWarnings  &  Adds a SuppressWarnings annotation for the generated Java class  &  java \\
 	@:throws \_(Type as String)\_  &  Adds a \expr{throws} declaration to the generated function   &  java \\
 	@:to  &  Specifies that the field of the abstract is a cast operation to the type identified in the function. See \tref{Implicit Casts}{types-abstract-implicit-casts} & all \\
@@ -190,7 +192,7 @@ Due to Haxe being a very fast compiler, it is often sufficient to rely on the no
 
 \begin{itemize}
 	\item The position-argument can be set to 0 if the file in question contains a pipeline \ic{|} character at the position of interest. This is very useful for demonstration and testing as it allows us to ignore the byte-counting process a real IDE would have to do. The examples in this section are making use of this feature. Note that this only works in places where \ic{|} is not valid syntax otherwise, e.g. after dots (\ic{.|}) and opening parentheses (\ic{(|}).
-	\item The output is HTML-escaped so that \ic{\&}, \ic{<} and \ic{>} become \ic{\&amp;}, \ic{\&lt;} and \ic{\&gt;} respectively.
+	\item The output is HTML-escaped so that \ic{\&}, \ic{<} and \ic{>} become \ic{\&amp;amp;}, \ic{\&amp;lt;} and \ic{\&amp;gt;} respectively.
 	\item Otherwise any documentation output is preserved which means longer documentation might include new-line and tab-characters as it does in the source files.
 	\item When run in completion mode, the compiler does not display errors but instead tries to ignore them or recover from them.  If a critical error occurs while getting completion, the Haxe Compiler prints the error message instead of the completion output. Any non-XML output can be treated as a critical error message.
 \end{itemize}
@@ -210,7 +212,7 @@ class Main {
 
 If this file is saved to Main.hx, the completion can be invoked using the command \ic{haxe --display Main.hx@0}. The output looks similar to this (we omit several fields for brevity and improve the formatting for readability):
 
-\begin{lstlisting}
+\lang{xml}\begin{lstlisting}
 <list>
 <i n="length">
   <t>Int</t>
@@ -269,7 +271,7 @@ class Main {
 
 If this file is saved to Main.hx, the completion can be invoked using the command \ic{haxe --display Main.hx@0}. The output looks like this:
 
-\begin{lstlisting}
+\lang{xml}\begin{lstlisting}
 <type>
 delimiter : String -&gt; Array&lt;String&gt;
 </type>
@@ -292,7 +294,7 @@ This lists all sub-packages of the haxe package as well as all modules in that p
 import haxe.|
 \end{lstlisting}
 
-\begin{lstlisting}
+\lang{xml}\begin{lstlisting}
 <list>
 <i n="CallStack"><t></t><d></d></i>
 <i n="Constraints"><t></t><d></d></i>
@@ -336,7 +338,7 @@ This lists all \tref{sub-types}{type-system-module-sub-types} of the module \typ
 import haxe.Unserializer.|
 \end{lstlisting}
 
-\begin{lstlisting}
+\lang{xml}\begin{lstlisting}
 <list>
 <i n="DEFAULT_RESOLVER">
   <t>haxe.TypeResolver</t>
@@ -395,7 +397,7 @@ class Main {
 }
 \end{lstlisting}
 
-\begin{lstlisting}
+\lang{xml}\begin{lstlisting}
 <list>
 <i n="TypeResolver"><t></t><d></d></i>
 <i n="Unserializer"><t></t><d></d></i>
@@ -422,7 +424,7 @@ class Main {
 
 If this file is saved to Main.hx, the completion can be invoked using the command \ic{haxe --display Main.hx@0@usage}. The output looks like this:
 
-\begin{lstlisting}
+\lang{xml}\begin{lstlisting}
 <list>
 <pos>main.hx:4: characters 9-10</pos>
 <pos>main.hx:5: characters 7-8</pos>
@@ -447,7 +449,7 @@ class Main {
 
 If this file is saved to Main.hx, the completion can be invoked using the command \ic{haxe --display Main.hx@0@position}. The output looks like this:
 
-\begin{lstlisting}
+\lang{xml}\begin{lstlisting}
 <list>
 <pos>std/string.hx:124: characters 1-54</pos>
 </list>
@@ -477,7 +479,7 @@ enum MyEnum {
 
 If this file is saved to Main.hx, the completion can be invoked using the command \ic{haxe --display Main.hx@63@toplevel}. The output looks similar to this (we omit several entries for brevity):
 
-\begin{lstlisting}
+\lang{xml}\begin{lstlisting}
 <il>
 <i k="local" t="Int">a</i>
 <i k="static" t="Void -&gt; Unknown&lt;0&gt;">main</i>
@@ -506,7 +508,7 @@ The structure of the XML depends on the \ic{k} attribute of each entry. In all c
 
 To get the best speed for both compilation and completion, you can use the \ic{--wait} command-line parameter to start a Haxe compilation server. You can also use \ic{-v} to have the server print the log. Here's an example:
 
-\begin{lstlisting}
+\lang{hxml}\begin{lstlisting}
 haxe -v --wait 6000
 \end{lstlisting}
 
@@ -514,7 +516,7 @@ You can then connect to the Haxe server, send command-line parameters followed b
 
 Use the \ic{--connect} command-line parameter to have Haxe send its compilation commands to the server instead of executing them directly :
 
-\begin{lstlisting}
+\lang{hxml}\begin{lstlisting}
 haxe --connect 6000 myproject.hxml
 \end{lstlisting}
 
@@ -560,8 +562,7 @@ While it may be not optimal to embed large assets such as images or music in the
 
 External files are embedded using the \emph{-resource} compiler argument:
 
-\todo{what to use for listing of non-haxe code like hxml?}
-\begin{lstlisting}
+\lang{hxml}\begin{lstlisting}
 -resource hello_message.txt@welcome
 \end{lstlisting}
 
@@ -689,7 +690,7 @@ The type \type{haxe.rtti.Rtti} has been introduced in order to simplify working 
 
 
 
-\section{Static analyzer}
+\section{Static Analyzer}
 \label{cr-static-analyzer}
 \since{3.3.0}
 
@@ -700,7 +701,7 @@ Haxe 3.3.0 introduces a new static analyzer for code optimizations. It is enable
 
 To globally enable an analyzer module \ic{-D analyzer-module} is used. To globally disable a module \ic{-D analyzer-no-module} is used. In both cases ``module'' represents the name of the module to be disabled or enabled:
 
-\begin{lstlisting}
+\lang{hxml}\begin{lstlisting}
 # Global enable from command line
 haxe -D analyzer-module
 # Global disable from command line

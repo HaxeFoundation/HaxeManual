@@ -17,7 +17,7 @@ To compile Haxe to C# we need two obvious prerequisites installed:
 
 After that we can compile to C# using the `-cs` option from either the command line or an hxml-file:
 
-```haxe
+```hxml
 haxe -cs out -main Main
 ```
 

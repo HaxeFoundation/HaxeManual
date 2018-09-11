@@ -10,7 +10,7 @@ This lists all sub-packages of the haxe package as well as all modules in that p
 import haxe.|
 ```
 
-```haxe
+```xml
 <list>
 <i n="CallStack"><t></t><d></d></i>
 <i n="Constraints"><t></t><d></d></i>
@@ -53,7 +53,7 @@ This lists all [sub-types](type-system-module-sub-types.md) of the module `haxe.
 import haxe.Unserializer.|
 ```
 
-```haxe
+```xml
 <list>
 <i n="DEFAULT_RESOLVER">
   <t>haxe.TypeResolver</t>
@@ -110,7 +110,7 @@ class Main {
 }
 ```
 
-```haxe
+```xml
 <list>
 <i n="TypeResolver"><t></t><d></d></i>
 <i n="Unserializer"><t></t><d></d></i>

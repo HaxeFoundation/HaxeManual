@@ -39,4 +39,4 @@ With both interfaces `I1` and `I2` having `:autoBuild` metadata, the build macro
 
 Previous section: [Static extension](macro-limitations-static-extension.md)
 
-Next section: [Initialization macros](macro-initialization.md)
+Next section: [Initialization Macros](macro-initialization.md)

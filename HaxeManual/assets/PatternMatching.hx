@@ -85,5 +85,23 @@ class Main {
       case [_, false, _]: "2";
     }
     trace(s); // 2
+
+
+    var myTree = Node(Leaf("foo"), Node(Leaf("bar"), Leaf("foobar")));
+    var value = "foo";
+    trace(myTree.match(Leaf(_))); // false
+    trace(myTree.match(Node(_)|Leaf(_))); // true
+    trace(myTree.match(Node(Leaf("foo"),_))); // true
+    trace(myTree.match(Node(Leaf(value),_))); // true
+
+    myTree.match(Node(_));
+    // is equivalent to
+    switch(myTree) {
+      case Node(_):
+        true;
+      case _:
+        false;
+    }
+
   }
 }

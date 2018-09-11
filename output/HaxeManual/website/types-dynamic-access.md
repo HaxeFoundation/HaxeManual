@@ -22,9 +22,6 @@ class Main {
 
 ```
 
-```haxe
-```
-
 ---
 
 Previous section: [Implementing Dynamic](types-dynamic-implemented.md)

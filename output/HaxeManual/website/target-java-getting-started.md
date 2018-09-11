@@ -17,13 +17,13 @@ To compile Haxe to Java we need two obvious prerequisites installed:
 
 Run the following from the command line:
 
-```haxe
+```hxml
 haxe -java bin -main Main
 ```
 
 Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml-file should be in the same directory as the example class.
 
-```haxe
+```hxml
 -java bin
 -main Main
 ```
@@ -32,7 +32,7 @@ The compiler outputs in the given **bin**-folder, which contains the generated s
 
 To execute, run the following command:
 
-```haxe
+```sh
 java -jar bin/Main.jar
 ```
 

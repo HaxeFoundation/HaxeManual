@@ -110,7 +110,7 @@ Strings declared with a single quotes are able to access variables in the curren
 trace('My name is $name and I work in ${job.industry}');
 \end{lstlisting}
 
-\emph{\tref{Partial function application}{lf-function-bindings}:} 
+\emph{\tref{Partial function application}{lf-function-bindings}:}
 
 Any function can be applied partially, providing the values of some arguments and leaving the rest to be filled in later.
 
@@ -121,7 +121,7 @@ setToTwelve(1);
 setToTwelve(2);
 \end{lstlisting}
 
-\emph{\tref{Pattern Matching}{lf-pattern-matching}:} 
+\emph{\tref{Pattern Matching}{lf-pattern-matching}:}
 
 Complex structures can be matched against patterns, extracting information from an enum or a structure and defining specific operations for specific value combination.
 
@@ -194,9 +194,9 @@ The Haxe parser does not parse \expr{some-flag} as a single token and instead re
 \paragraph{Working with compiler flags}
 Compiler flags are available at compile time, the following methods only work in macro context:
 \begin{itemize}
-	\item To see if a compiler flag is set, use \expr{haxe.macro.Context.defined("any_flag")}. 
-	\item To get the value of a compiler flag, use \expr{haxe.macro.Context.definedValue("any_flag")}. 
-	\item To get a map of all compiler flags with its value use \expr{haxe.macro.Context.getDefines()}. 
+	\item To see if a compiler flag is set, use \expr{haxe.macro.Context.defined("any_flag")}.
+	\item To get the value of a compiler flag, use \expr{haxe.macro.Context.definedValue("any_flag")}.
+	\item To get a map of all compiler flags with its value use \expr{haxe.macro.Context.getDefines()}.
 \end{itemize}
 
 \paragraph{Haxelibs}
@@ -208,7 +208,7 @@ An exhaustive list of all built-in defines can be obtained by invoking the Haxe 
 \paragraph{Related content}
 \begin{itemize}
 	\item See also the \tref{Compiler Flags list}{compiler-usage-flags}.
-\end{itemize} 
+\end{itemize}
 
 
 \section{Externs}
@@ -302,7 +302,7 @@ Following the rules previously described in \Fullref{type-system-resolution-orde
 \paragraph{Related content}
 \begin{itemize}
 	\item \href{http://code.haxe.org/tag/static-extension.html}{Haxe snippets and tutorials about static extensions} in the Haxe Code Cookbook.
-\end{itemize} 
+\end{itemize}
 
 
 \subsection{In the Haxe Standard Library}
@@ -314,7 +314,7 @@ Several classes in the Haxe Standard Library are suitable for static extension u
 
 While \type{String} does not have a \expr{replace} functionality by itself, the \expr{using StringTools} static extension provides one. As usual, the \target{JavaScript} output nicely shows the transformation:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 Main.main = function() {
 	StringTools.replace("adc","d","b");
 }
@@ -358,7 +358,7 @@ Some pattern matcher basics include:
 \begin{itemize}
 	\item More about the \tref{switch expression}{expression-switch}.
 	\item \href{http://code.haxe.org/tag/pattern-matching.html}{Haxe snippets and tutorials about pattern matching} in the Haxe Code Cookbook.
-\end{itemize} 
+\end{itemize}
 
 \subsection{Enum matching}
 \label{lf-pattern-matching-enums}
@@ -493,7 +493,7 @@ switch(true) {
 } // Unmatched patterns: true
 \end{lstlisting}
 
-The matched type \type{Bool} admits two values \expr{true} and \expr{false}, but only \expr{false} is checked. 
+The matched type \type{Bool} admits two values \expr{true} and \expr{false}, but only \expr{false} is checked.
 
 \todo{Figure out wtf our rules are now for when this is checked.}
 
@@ -512,6 +512,23 @@ switch(Leaf("foo")) {
     case _: // This pattern is unused
 }
 \end{lstlisting}
+
+
+
+\subsection{Single pattern check}
+\label{lf-pattern-matching-single}
+
+The compiler provides the function \expr{match} to check if an enum value matches a given pattern:
+
+\haxe[firstline=90,lastline=95]{assets/PatternMatching.hx}
+
+As this function only tests if the pattern is matched, guards and variable capture are unavailable.
+
+The \expr{match} function is equivalent to a \expr{switch} with a single \expr{case} for the given pattern, returning \expr{true}, and a \expr{default} returning \expr{false}.
+
+\haxe[firstline=97,lastline=104]{assets/PatternMatching.hx}
+
+See the \href{https://api.haxe.org/haxe/EnumValueTools.html#match}{EnumValue API documentation (since Haxe 3.2.1)} for more information.
 
 
 
@@ -535,8 +552,7 @@ trace('The sum of $x and 3 is ${x + 3}');
 String interpolation is a compile-time feature and has no impact on the runtime. The above example is equivalent to manual concatenation, which is exactly what the compiler generates:
 
 \begin{lstlisting}
-trace("The sum of " + x +
-  " and 3 is " + (x + 3));
+trace("The sum of " + x + " and 3 is " + (x + 3));
 \end{lstlisting}
 Of course the use of single-quote enclosed strings without any interpolation remains valid, but care has to be taken regarding the \$ character as it triggers interpolation. If an actual dollar-sign should be used in the string, \expr{\$\$} can be used.
 
@@ -545,8 +561,6 @@ Of course the use of single-quote enclosed strings without any interpolation rem
 
 \section{Array Comprehension}
 \label{lf-array-comprehension}
-
-\todo{Comprehensions are only listing Arrays, not Maps}
 
 Array comprehension in Haxe uses existing syntax to allow concise initialization of arrays. It is identified by \expr{for} or \expr{while} constructs:
 
@@ -563,13 +577,39 @@ Variable \expr{b} is initialized to an array with the same values, but through a
 
 \begin{lstlisting}
 var i = 0;
-var a = [];
-while(i < 10) a.push(i++);
+var b = [];
+while(i < 10) b.push(i++);
 \end{lstlisting}
 
 The loop expression can be anything, including conditions and nested loops, so the following works as expected:
 
 \haxe{assets/AdvArrayComprehension.hx}
+
+\section{Map Comprehension}
+\label{lf-map-comprehension}
+
+Map comprehension in Haxe uses existing syntax to allow concise initialization for \type{Map}. Maps are initialized like arrays, but use the map literal syntax with the \ic{=>} operator. It is identified by \expr{for} or \expr{while} constructs:
+
+\haxe{assets/MapComprehension.hx}
+
+Variable \expr{a} is initialized to an \type{Map} holding keys from 0 to 4 and string values. The compiler generates code which adds the value of each loop iteration to the map, so the following code would be equivalent:
+
+\begin{lstlisting}
+var a = new Map();
+for (i in 0...5) a.set(i, 'number ${i}');
+\end{lstlisting}
+
+Variable \expr{b} is initialized to an \type{Map} with the same keys and values, but through a different comprehension style using \expr{while} instead of \expr{for}. Again, the following code would be equivalent:
+
+\begin{lstlisting}
+var i = 0;
+var b = new Map();
+while(i < 5) b.set(i, 'number ${i++}');
+\end{lstlisting}
+
+The loop expression can be anything, including conditions and nested loops, so the following works as expected:
+
+\haxe{assets/AdvMapComprehension.hx}
 
 
 \section{Iterators}
@@ -596,13 +636,13 @@ The type \type{MyStringIterator} in this example qualifies as iterator: It defin
 
 \haxe{assets/Iterable.hx}
 
-Here we do not setup a full iterator like in the previous example, but instead define that the \type{MyArrayWrap<T>} has a method \expr{iterator}, effectively forwarding the iterator method of the wrapped \type{Array<T>} type. 
+Here we do not setup a full iterator like in the previous example, but instead define that the \type{MyArrayWrap<T>} has a method \expr{iterator}, effectively forwarding the iterator method of the wrapped \type{Array<T>} type.
 
 \paragraph{Related content}
 \begin{itemize}
-	\item See the \href{http://api.haxe.org/Iterator.html}{Iterator API documentation}. 
+	\item See the \href{http://api.haxe.org/Iterator.html}{Iterator API documentation}.
 	\item \href{http://code.haxe.org/tag/iterator.html}{Haxe snippets and tutorials about iterators} in the Haxe Code Cookbook.
-\end{itemize} 
+\end{itemize}
 
 
 \section{Function Bindings}
@@ -656,7 +696,6 @@ The \expr{main} method accesses these metadata values using their API. The outpu
 \begin{itemize}
 	\item There is a field for each metadata, with the field name being the metadata name.
 	\item The field values correspond to the metadata arguments. If there are no arguments, the field value is \expr{null}. Otherwise the field value is an array with one element per argument.
-	\item Metadata starting with \expr{:} is omitted. This kind of metadata is known as \emph{compile-time metadata}.
 \end{itemize}
 
 Allowed values for metadata arguments are:
@@ -667,6 +706,10 @@ Allowed values for metadata arguments are:
 	\item \tref{Object declarations}{expression-object-declaration} (if all their field values qualify)
 \end{itemize}
 
+\paragraph{Compile-time Metadata}
+
+Metadata starting with \expr{:}, such as \expr{@:keep}, is available at compile time only; it is omitted at runtime. It may be used by macros or by the Haxe compiler itself. Unlike runtime metadata, arguments to compile-time metadata can be any valid expression.
+
 \paragraph{Built-in Compiler Metadata}
 An exhaustive list of all defined metadata can be obtained by running \expr{haxe --help-metas} from command line.
 
@@ -674,7 +717,7 @@ An exhaustive list of all defined metadata can be obtained by running \expr{haxe
 \paragraph{Related content}
 \begin{itemize}
 	\item See also the \tref{Compiler Metadata list}{cr-metadata}.
-\end{itemize} 
+\end{itemize}
 
 
 \section{Access Control}
@@ -709,7 +752,7 @@ If a type cannot be modified to allow this kind of access, the accessing method 
 
 \haxe{assets/ACL3.hx}
 
-The \expr{@:access(MyClass.foo)} annotation effectively subverts the visibility of the \expr{foo} field within the \expr{main}-method. 
+The \expr{@:access(MyClass.foo)} annotation effectively subverts the visibility of the \expr{foo} field within the \expr{main}-method.
 
 \trivia{On the choice of metadata}{The access control language feature uses the Haxe metadata syntax instead of additional language-specific syntax. There are several reasons for that:\\
 \begin{itemize}
@@ -731,7 +774,7 @@ This is also true for access granted to parent classes, in which case it extends
 \trivia{Broken feature}{Access extension to child classes and implementing classes was supposed to work in Haxe 3.0 and even documented accordingly. While writing this manual it was found that this part of the access control implementation was simply missing.}
 
 
-\section{Inline constructors}
+\section{Inline Constructors}
 \label{lf-inline-constructor}
 \since{3.1.0}
 
@@ -748,7 +791,7 @@ The following example demonstrates constructor inlining:
 
 A look at the \target{JavaScript} output reveals the effect:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 Main.main = function() {
 	var pt_x = 1.2;
 	var pt_y = 9.3;

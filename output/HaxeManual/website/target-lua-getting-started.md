@@ -16,7 +16,7 @@ install any packages for basic language functionality.
 
 With LuaRocks, install the following packages:
 
-```haxe
+```sh
 luarocks install lrexlib-pcre
 luarocks install environ
 luarocks install luasocket
@@ -24,12 +24,12 @@ luarocks install luv
 ```
 
 On Lua 5.1, install the bitops library:
-```haxe
+```sh
 luarocks install luabitop
 ```
 
 On Lua 5.3, install the bit32 library instead:
-```haxe
+```sh
 luarocks install bit32
 ```
 
@@ -49,7 +49,7 @@ class Main {
 ```
 
 To compile, run the following:
-```haxe
+```hxml
 haxe -lua out.lua -main Main
 ```
 

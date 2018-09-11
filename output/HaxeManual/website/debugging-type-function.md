@@ -1,4 +1,4 @@
-## 13.3 Tracing types
+## 13.3 Tracing Types
 
 `$type` is a **compile-time** mechanism being called like a function, with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.
 

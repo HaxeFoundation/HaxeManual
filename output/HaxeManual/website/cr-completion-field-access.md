@@ -12,7 +12,7 @@ class Main {
 
 If this file is saved to Main.hx, the completion can be invoked using the command `haxe --display Main.hx@0`. The output looks similar to this (we omit several fields for brevity and improve the formatting for readability):
 
-```haxe
+```xml
 <list>
 <i n="length">
   <t>Int</t>

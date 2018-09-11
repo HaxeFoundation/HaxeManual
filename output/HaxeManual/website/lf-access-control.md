@@ -1,4 +1,4 @@
-## 6.10 Access Control
+## 6.11 Access Control
 
 Access control can be used if the basic [visibility](class-field-visibility.md) options are not sufficient. It is applicable at **class-level** and at **field-level** and knows two directions:
 
@@ -101,4 +101,4 @@ This is also true for access granted to parent classes, in which case it extends
 
 Previous section: [Metadata](lf-metadata.md)
 
-Next section: [Inline constructors](lf-inline-constructor.md)
+Next section: [Inline Constructors](lf-inline-constructor.md)

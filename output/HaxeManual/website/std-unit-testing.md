@@ -1,4 +1,4 @@
-## 10.14 Unit testing
+## 10.14 Unit Testing
 
 The Haxe Standard Library provides basic unit testing classes from the [haxe.unit](http://api.haxe.org/haxe/unit/) package. 
 
@@ -33,7 +33,7 @@ class Main {
 ```
 
 The result of the test looks like this:
-```haxe 
+```
 Class: MyTestCase
 .
 OK 1 tests, 0 failed, 1 success

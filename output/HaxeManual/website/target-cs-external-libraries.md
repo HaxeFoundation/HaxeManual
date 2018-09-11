@@ -14,7 +14,7 @@ The resulting search path will be `<net_std_path>/<net_target>-<net_ver>/`, taki
 
 Now if we provide the following options:
 
-```haxe
+```hxml
 -D net-target=micro -D net-ver=35 -net-std=/dotnet
 ```
 

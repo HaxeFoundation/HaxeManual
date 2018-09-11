@@ -6,7 +6,7 @@ The html-page wrapping the js client must be served from the same domain as the 
 
 To use the remoting across domain boundaries, CORS (cross-origin resource sharing) needs to be enabled by defining the header `X-Haxe-Remoting` in the `.htaccess`:
 
-```haxe 
+```
 # Enable CORS
 Header set Access-Control-Allow-Origin "*"
 Header set Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
@@ -21,7 +21,7 @@ Also note that this means that the page can't be served directly from the file s
 
 When Flash accesses a server from a different domain, set up a `crossdomain.xml` file on the server, enabling the `X-Haxe` headers.
 
-```haxe 
+```xml
 <cross-domain-policy>
 	<allow-access-from domain="*"/> <!-- or the appropriate domains -->
 	<allow-http-request-headers-from domain="*" headers="X-Haxe*"/>
@@ -38,4 +38,4 @@ This can lead to security issues in some cases. When in doubt, check the argumen
 
 Previous section: [Remoting Connection](std-remoting-connection.md)
 
-Next section: [Unit testing](std-unit-testing.md)
+Next section: [Unit Testing](std-unit-testing.md)

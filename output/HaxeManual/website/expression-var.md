@@ -18,4 +18,4 @@ The scoping behavior of local variables is described in [Blocks](expression-bloc
 
 Previous section: [Function Call](expression-function-call.md)
 
-Next section: [Local functions](expression-function.md)
+Next section: [Local Functions](expression-function.md)

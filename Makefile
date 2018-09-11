@@ -1,20 +1,20 @@
-root = HaxeDoc
+root = HaxeManual
+dir:=HaxeManual/
 
-pdf: $(root).pdf PHONY
+pdf: $(dir)$(root).pdf PHONY
 
 md: PHONY
 	cd convert && haxe convert.hxml
 
-$(root).pdf: PHONY
-	latexmk -xelatex $(root).tex
+$(dir)$(root).pdf: $(wildcard $(dir)*.tex)
+	cd $(dir); latexmk -xelatex $(root).tex
 
 clean: PHONY
-	latexmk -c -xelatex $(root).tex
+	cd $(dir); latexmk -c -xelatex $(root).tex
 	rm -f convert/convert.n
 
 dist-clean: clean
-	git clean -f -- md/manual
-	git checkout -- $(root).pdf md/manual todo.txt
+	git clean -f -- output/$(root)
+	git checkout -- $(dir)$(root).pdf output/$(root) $(dir)todo.txt
 
 .PHONY: PHONY
-

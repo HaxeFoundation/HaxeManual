@@ -69,6 +69,9 @@
     \lstinputlisting[#1]{#2}%
 }
 
+% Do nothing, used for markdown generation, language info for ```lang
+\newcommand{\lang}[1]{}
+
 % Boxes
 
 \newenvironment{myshaded}

@@ -30,7 +30,7 @@ It should be noted that [top-down inference](type-system-top-down-inference.md) 
 
 Here, 1. is given by `make` having the `@:generic` metadata, and 2. by `T` being constrained to `Constructible`. The constraint holds for both `String` and `haxe.Template` as both have a constructor accepting a singular `String` argument. Sure enough, the relevant JavaScript output looks as expected:
 
-```haxe
+```js
 var Main = function() { }
 Main.__name__ = true;
 Main.make_haxe_Template = function() {

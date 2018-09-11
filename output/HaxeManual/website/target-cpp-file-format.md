@@ -14,7 +14,7 @@ You can run the hxcpp build tool on your own build files using
 Note the lack of space between the "-D" and the variable name.
 
 A minimal build.xml file consists of an xml container and a dummy default target, like:
-```haxe
+```xml
 <xml>
    <echo value="Hello!" />
    <target id="default" />
@@ -25,7 +25,7 @@ A minimal build.xml file consists of an xml container and a dummy default target
 Most elements in the hxcpp xml file allow a common syntax for dynamic configuration.
 
 Xml elements can contain conditional "if" and/or "unless" values.  These conditions are evaluated at parse time and the entire element will be skipped if the condition fails.  For example adding this lines:
-```haxe
+```xml
 <xml>
   <echo value="Hello A" if="A" />
   <echo value="Hello A && B" if="A B" />
@@ -46,7 +46,7 @@ shows how the logic depends on whether or not A or B has been defined.
 
 Sections can be used to group commands together based on a common condition.  They can also be used to include only part of another xml file, but this technique is currently only used when parsing the .hxcpp_config.xml file.  For example:
 
-```haxe
+```xml
   <section if="C" >
     <echo value="I See" />
     <echo value="You" />
@@ -55,7 +55,7 @@ Sections can be used to group commands together based on a common condition.  Th
 
 The xml attribute values can be substituted with variable values using dollars-brace syntax.  Using a colon allows a function-call to be substituted, e.g.:
 
-```haxe
+```xml
   <echo value="some var = ${SOME_VAR}" />
   <echo value="${haxelib:hxcpp}/include" />
 ```

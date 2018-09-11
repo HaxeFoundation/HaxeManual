@@ -10,7 +10,7 @@
 
 8.5: [Runtime Type Information](cr-rtti.md)
 
-8.6: [Static analyzer](cr-static-analyzer.md)
+8.6: [Static Analyzer](cr-static-analyzer.md)
 
 ---
 

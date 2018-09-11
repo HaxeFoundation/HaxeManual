@@ -54,7 +54,7 @@ Arrays define an \tref{iterator}{lf-iterators} over their elements. This iterati
 
 Haxe generates this optimized \target{JavaScript} output:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 Main.main = function() {
 	var scores = [110,170,35];
 	var sum = 0;
@@ -446,7 +446,7 @@ An expression can be put between the \ic{::}, the syntax allows the current poss
 \paragraph{Conditions}
 It is possible to test conditions using \ic{::if flag1::}. Optionally, the condition may be followed by \ic{::elseif flag2::} or \ic{::else::}. Close the condition with \ic{::end::}.
 
-\begin{lstlisting} 
+\lang{none}\begin{lstlisting}
 ::if isValid:: valid ::else:: invalid ::end::
 \end{lstlisting} 
 
@@ -454,18 +454,18 @@ Operators can be used but they don't deal with operator precedence. Therefore it
 
 For example \ic{::((1 + 3) == (2 + 2))::} will display true. 
 
-\begin{lstlisting} 
+\lang{none}\begin{lstlisting} 
 ::if (points == 10):: Great! ::end::
 \end{lstlisting} 
 
 To compare to a string, use double quotes \ic{"} in the template.
-\begin{lstlisting} 
+\lang{none}\begin{lstlisting}
 ::if (name == "Mark"):: Hi Mark ::end::
 \end{lstlisting} 
 
 \paragraph{Iterating}
 Iterate on a structure by using \ic{::foreach::}. End the loop with \ic{::end::}.
-\begin{lstlisting} 
+\lang{xml}\begin{lstlisting}
 <table>
 	<tr>
 		<th>Name</th>
@@ -916,7 +916,7 @@ The html-page wrapping the js client must be served from the same domain as the 
 
 To use the remoting across domain boundaries, CORS (cross-origin resource sharing) needs to be enabled by defining the header \ic{X-Haxe-Remoting} in the \ic{.htaccess}:
 
-\begin{lstlisting} 
+\lang{none}\begin{lstlisting}
 # Enable CORS
 Header set Access-Control-Allow-Origin "*"
 Header set Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
@@ -931,7 +931,7 @@ Also note that this means that the page can't be served directly from the file s
 
 When Flash accesses a server from a different domain, set up a \ic{crossdomain.xml} file on the server, enabling the \ic{X-Haxe} headers.
 
-\begin{lstlisting} 
+\lang{xml}\begin{lstlisting}
 <cross-domain-policy>
 	<allow-access-from domain="*"/> <!-- or the appropriate domains -->
 	<allow-http-request-headers-from domain="*" headers="X-Haxe*"/>
@@ -944,7 +944,7 @@ There is no guarantee of any kind that the arguments types will be respected whe
 That means even if the arguments of function \expr{foo} are typed to \type{Int}, the client will still be able to use strings while calling the method. 
 This can lead to security issues in some cases. When in doubt, check the argument type when the function is called by using the \expr{Std.is} method.
 
-\section{Unit testing}
+\section{Unit Testing}
 \label{std-unit-testing}
 
 The Haxe Standard Library provides basic unit testing classes from the \href{http://api.haxe.org/haxe/unit/}{haxe.unit} package. 
@@ -961,7 +961,7 @@ To run the test, an instance of \href{http://api.haxe.org/haxe/unit/TestRunner.h
 \haxe{assets/UnitTestRunner.hx}
 
 The result of the test looks like this:
-\begin{lstlisting} 
+\lang{none}\begin{lstlisting}
 Class: MyTestCase
 .
 OK 1 tests, 0 failed, 1 success
@@ -996,6 +996,24 @@ public function testArray() {
   var actual = [1,2,3];
   assertEquals("[1, 2, 3]", Std.string(actual));
 }
+\end{lstlisting} 
+
+\paragraph{Run unit test}
+
+This is an example showing how to run your unit tests (on Neko and Node.js) after compilation using a \tref{HXML}{compiler-usage-hxml}.
+
+\lang{hxml}\begin{lstlisting} 
+-cp source/main/haxe
+-cp source/test/haxe
+-main your.package.TestRunnerMain
+--each
+
+-neko output/neko/test.n
+-cmd neko ./output/neko/test.n
+--next
+
+-js output/javascript/test.js
+-cmd node ./output/javascript/test.js
 \end{lstlisting} 
 
 \paragraph{Related content}

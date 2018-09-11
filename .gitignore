@@ -7,6 +7,9 @@
 *.log
 *.dvi
 *.tdo
+*.fdb_latexmk
+*.fls
+*.xdv
 convert/convert.n
 
 latextemp/

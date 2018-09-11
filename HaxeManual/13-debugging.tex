@@ -13,7 +13,7 @@ trace("Hello world!");
 
 In most Haxe targets trace will be printed to stdout. JavaScript uses \ic{console.log}. Each trace is displayed with the filename and line number information where the trace occurred:
 
-\begin{lstlisting}
+\lang{none}\begin{lstlisting}
 Test.hx:11: Hello world!
 \end{lstlisting}
 
@@ -31,7 +31,7 @@ The \expr{infos.customParams} array contains all extra arguments that were given
 
 As illustration, the previous example will be compiled as if it was calling the following:
 
-\begin{lstlisting}
+\lang{js}\begin{lstlisting}
 haxe.Log.trace("hello", {
 	fileName : "Test.hx", 
 	lineNumber : 6, 
@@ -55,7 +55,7 @@ It is sometimes useful to define a custom method that does some traces in some c
 
 \haxe{assets/AssertTrace.hx}
 
-\section{Tracing types}
+\section{Tracing Types}
 \label{debugging-type-function}
 
 \expr{\$type} is a \emph{compile-time} mechanism being called like a function, with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.
@@ -106,7 +106,7 @@ Haxe is able to generate source maps, allowing debuggers to map from generated s
 
 When an error occurs, the developer is helped out by showing them where the error occurred in the original Haxe source file. This saves the developer time every single time they hit an error. The web console log messages also include links to the line that generated the log message, so these messages could link back to the original source lines as well. 
 
-Compiling with the `-debug` flag will create a source map (.map) alongside the .js file. Source maps can also be generated for release builds with \ic{-D source-map}.
+Compiling with the `-debug` flag will create a source map (.map) alongside the .js file. Source maps can also be generated for release builds with \ic{-D js-source-map}.
 
 
 \subsection{Source Maps in JavaScript}
@@ -151,7 +151,7 @@ class Main {
 
 Building it with flags:
 
-\begin{lstlisting}
+\lang{hxml}\begin{lstlisting}
 -main Main
 -D php7
 -php build
@@ -160,7 +160,7 @@ Building it with flags:
 
 Running this build will trace the uncaught exception:
 
-\begin{lstlisting}
+\lang{none}\begin{lstlisting}
 $ php build/index.php
 PHP Fatal error:  Uncaught php/_Boot/HxException: Terrible error in build/lib/Main.php:25
 Stack trace:
@@ -173,7 +173,7 @@ Stack trace:
 Install JStack using \ic{haxelib install jstack}. JStack automatically adds \ic{-D source_map} there is no need to add it manually.
 Now if JStack is installed, add it to the compilation:
 
-\begin{lstlisting}
+\lang{hxml}\begin{lstlisting}
 -main Main
 -D php7
 -php build
@@ -183,7 +183,7 @@ Now if JStack is installed, add it to the compilation:
 
 The output will have more informative stack trace for exceptions:
 
-\begin{lstlisting}
+\lang{none}\begin{lstlisting}
 $ php build/index.php
 Terrible error
 Called from Main.terribleError (src/Main.hx line 7)

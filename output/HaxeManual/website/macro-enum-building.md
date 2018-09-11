@@ -58,11 +58,6 @@ enum E {
 }
 ```
 
-##### Related content
-
-* See the [Math API](http://api.haxe.org/Math.html) for all available functions.
-* [Math related snippets and tutorials](http://code.haxe.org/tag/math.html) in the Haxe Code Cookbook.
-
 ---
 
 Previous section: [Type Building](macro-type-building.md)

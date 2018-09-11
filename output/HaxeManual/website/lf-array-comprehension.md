@@ -26,8 +26,8 @@ Variable `b` is initialized to an array with the same values, but through a diff
 
 ```haxe
 var i = 0;
-var a = [];
-while(i < 10) a.push(i++);
+var b = [];
+while(i < 10) b.push(i++);
 ```
 
 The loop expression can be anything, including conditions and nested loops, so the following works as expected:
@@ -52,4 +52,4 @@ class Main {
 
 Previous section: [String Interpolation](lf-string-interpolation.md)
 
-Next section: [Iterators](lf-iterators.md)
+Next section: [Map Comprehension](lf-map-comprehension.md)
