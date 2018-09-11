@@ -70,8 +70,10 @@ class RunTravis
 		"Visibility.hx",
 		"Visibility2.hx",
 		"BindOptional.hx",
+		#if (haxe_ver >= 4)
 		"ImplementsDynamic.hx", // this fails on Haxe4
 		"DynamicResolve.hx", // this fails on Haxe4
+		#end
 	];
 
 	/** Examples that are not included in the tests. */
