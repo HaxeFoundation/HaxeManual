@@ -1003,17 +1003,17 @@ public function testArray() {
 This is an example showing how to run your unit tests (on Neko and Node.js) after compilation using a \tref{HXML}{compiler-usage-hxml}.
 
 \begin{lstlisting} 
--cp source\main\haxe
--cp source\test\haxe
+-cp source/main/haxe
+-cp source/test/haxe
 -main your.package.TestRunnerMain
 --each
 
--neko output\neko\test.n
--cmd neko .\output\neko\test.n
+-neko output/neko/test.n
+-cmd neko ./output/neko/test.n
 --next
 
--js output\javascript\test.js
--cmd node .\output\javascript\test.js
+-js output/javascript/test.js
+-cmd node ./output/javascript/test.js
 \end{lstlisting} 
 
 \paragraph{Related content}
