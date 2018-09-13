@@ -44,6 +44,7 @@ For step 10, it is also necessary to define the resolution order of types:
 For step 1 of this algorithm as well as steps 5 and 7 of the previous one, the order of import resolution is important:
 
 * Imported modules and static extensions are checked from bottom to top with the first match being picked.
+* Imports that come from [import.hx](type-system-import-defaults.md) files are considered to be at the top of affected modules, which means they have lowest priority. If multiple `import.hx` files affect a module, the ones in child directories have priority over the ones in parent directories.
 * Within a given module, types are checked from top to bottom.
 * For imports, a match is made if the name equals.
 * For [static extensions](lf-static-extension.md), a match is made if the name equals and the first argument [unifies](type-system-unification.md). Within a given type being used as static extension, the fields are checked from top to bottom.

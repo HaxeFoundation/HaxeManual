@@ -22,7 +22,8 @@ point.x += 10;
 Create and populate arrays quickly using for loops and logic.
 
 ```haxe
-var evenNumbers = [ for (i in 0...100) if (i```
+var evenNumbers = [ for (i in 0...100) if (i & 1 == 0) i ];
+```
 
 **[Classes, interfaces and inheritance](types-class-instance.md):**
 
