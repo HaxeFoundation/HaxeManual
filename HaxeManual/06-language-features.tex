@@ -23,7 +23,7 @@ point.x += 10;
 Create and populate arrays quickly using for loops and logic.
 
 \begin{lstlisting}
-var evenNumbers = [ for (i in 0...100) if (i\%2==0) i ];
+var evenNumbers = [ for (i in 0...100) if (i & 1 == 0) i ];
 \end{lstlisting}
 
 \emph{\tref{Classes, interfaces and inheritance}{types-class-instance}:}
@@ -35,11 +35,11 @@ Haxe allows structuring code in classes, making it an object-oriented language. 
 Conditional Compilation allows compiling specific code depending on compilation parameters. This is instrumental for abstracting target-specific differences, but can also be used for other purposes, such as more detailed debugging.
 
 \begin{lstlisting}
-\#if js
+#if js
     js.Browser.alert("Hello");
-\#elseif sys
+#elseif sys
     Sys.println("Hello");
-\#end
+#end
 \end{lstlisting}
 
 \emph{\tref{(Generalized) Algebraic Data Types}{types-enum-instance}:}

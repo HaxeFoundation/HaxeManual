@@ -510,6 +510,9 @@ Default imports of \ic{import.hx} acts as if its contents is placed at the top o
 	\item \href{https://haxe.org/blog/importhx-intro/}{Introduction of \ic{import.hx}}
 \end{itemize}
 
+
+
+
 \subsection{Resolution Order}
 \label{type-system-resolution-order}
 
@@ -564,6 +567,7 @@ For step \ref{resolution:import} of this algorithm as well as steps \ref{resolut
 
 \begin{itemize}
 	\item Imported modules and static extensions are checked from bottom to top with the first match being picked.
+	\item Imports that come from \tref{import.hx}{type-system-import-defaults} files are considered to be at the top of affected modules, which means they have lowest priority. If multiple \ic{import.hx} files affect a module, the ones in child directories have priority over the ones in parent directories.
 	\item Within a given module, types are checked from top to bottom.
 	\item For imports, a match is made if the name equals.
 	\item For \tref{static extensions}{lf-static-extension}, a match is made if the name equals and the first argument \tref{unifies}{type-system-unification}. Within a given type being used as static extension, the fields are checked from top to bottom.

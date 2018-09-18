@@ -79,6 +79,24 @@ public function testArray() {
 }
 ``` 
 
+##### Run unit test
+
+This is an example showing how to run your unit tests (on Neko and Node.js) after compilation using a [HXML](compiler-usage-hxml.md).
+
+```hxml 
+-cp source/main/haxe
+-cp source/test/haxe
+-main your.package.TestRunnerMain
+--each
+
+-neko output/neko/test.n
+-cmd neko ./output/neko/test.n
+--next
+
+-js output/javascript/test.js
+-cmd node ./output/javascript/test.js
+``` 
+
 ##### Related content
 
 * See the [haxe.unit](http://api.haxe.org/haxe/unit/) package on the API documentation for more details.

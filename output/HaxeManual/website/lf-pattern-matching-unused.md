@@ -15,4 +15,4 @@ switch(Leaf("foo")) {
 
 Previous section: [Exhaustiveness checks](lf-pattern-matching-exhaustiveness.md)
 
-Next section: [String Interpolation](lf-string-interpolation.md)
+Next section: [Single pattern check](lf-pattern-matching-single.md)

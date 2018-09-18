@@ -102,9 +102,9 @@ matrix:
       haxe: development
 
 install:
-  - haxelib install hxcs > /dev/null
-  - haxelib install hxjava > /dev/null
-  - haxelib install random > /dev/null
+  - haxelib install hxcs > log.txt || cat log.txt
+  - haxelib install hxjava > log.txt || cat log.txt
+  - haxelib install random > log.txt || cat log.txt
   - haxelib list
 
 script:

@@ -58,7 +58,7 @@ class Main {
 }
 ```
 
-The `@:access(MyClass.foo)` annotation effectively subverts the visibility of the `foo` field within the `main`-method. 
+The `@:access(MyClass.foo)` annotation effectively subverts the visibility of the `foo` field within the `main`-method.
 
 > ##### Trivia: On the choice of metadata
 >

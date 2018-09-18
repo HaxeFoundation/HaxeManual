@@ -94,4 +94,4 @@ Haxe also allows the more natural `as` in place of `in`.
 
 Previous section: [Module Sub-Types](type-system-module-sub-types.md)
 
-Next section: [Resolution Order](type-system-resolution-order.md)
+Next section: [Import defaults / import.hx](type-system-import-defaults.md)

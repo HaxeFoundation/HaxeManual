@@ -22,7 +22,7 @@ point.x += 10;
 Create and populate arrays quickly using for loops and logic.
 
 ```haxe
-var evenNumbers = [ for (i in 0...100) if (i%2==0) i ];
+var evenNumbers = [ for (i in 0...100) if (i & 1 == 0) i ];
 ```
 
 **[Classes, interfaces and inheritance](types-class-instance.md):**
@@ -109,7 +109,7 @@ Strings declared with a single quotes are able to access variables in the curren
 trace('My name is $name and I work in ${job.industry}');
 ```
 
-**[Partial function application](lf-function-bindings.md):** 
+**[Partial function application](lf-function-bindings.md):**
 
 Any function can be applied partially, providing the values of some arguments and leaving the rest to be filled in later.
 
@@ -120,7 +120,7 @@ setToTwelve(1);
 setToTwelve(2);
 ```
 
-**[Pattern Matching](lf-pattern-matching.md):** 
+**[Pattern Matching](lf-pattern-matching.md):**
 
 Complex structures can be matched against patterns, extracting information from an enum or a structure and defining specific operations for specific value combination.
 

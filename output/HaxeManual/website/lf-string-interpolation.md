@@ -27,6 +27,6 @@ Of course the use of single-quote enclosed strings without any interpolation rem
 
 ---
 
-Previous section: [Useless pattern checks](lf-pattern-matching-unused.md)
+Previous section: [Single pattern check](lf-pattern-matching-single.md)
 
 Next section: [Array Comprehension](lf-array-comprehension.md)
