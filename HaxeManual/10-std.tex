@@ -818,10 +818,10 @@ var myNode2Value = access.node.myNode2.innerData;
 // ERROR, an exception is thrown!
 \end{lstlisting}
 
-In case the application might get self-closed nodes, check \expr{hasNode.innerData} before and default to an alternative value.
+If the XML might contain self-closed nodes, check \expr{hasNode.innerData} before and default to an alternative value.
 
 \begin{lstlisting}
-var myNode2Value = (access.node.myNode2.hasNode.innerData) ? access.node.myNode2.innerData : null; 
+var myNode2Value = access.node.myNode2.hasNode.innerData ? access.node.myNode2.innerData : null; 
 \end{lstlisting}
 
 \section{Json}
