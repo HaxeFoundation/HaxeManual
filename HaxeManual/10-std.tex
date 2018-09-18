@@ -804,10 +804,10 @@ Please note that we cannot access self-closed nodes as "regular" ones.
 For example, provided this XML:
 
 \begin{lstlisting}
-var xml = Xml.parse("
+var xml = Xml.parse("<xml>
   <myNode1></myNode1>
   <myNode2/>
-");
+</xml>");
 
 var access = new haxe.xml.Access(xml.firstElement());
 
