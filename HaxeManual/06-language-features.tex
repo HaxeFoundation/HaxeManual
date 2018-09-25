@@ -495,6 +495,8 @@ switch(true) {
 
 The matched type \type{Bool} admits two values \expr{true} and \expr{false}, but only \expr{false} is checked.
 
+Exhaustiveness is not checked when matching on \type{Int}, \type{Float} or \type{String} if no value from the switch is required, which means that it appears at block-level.
+
 \todo{Figure out wtf our rules are now for when this is checked.}
 
 
