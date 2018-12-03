@@ -1,7 +1,7 @@
 \chapter{Types}
 \label{types}
 
-The Haxe Compiler employs a rich type system which helps detecting type-related errors in a program at compile-time. A type error is an invalid operation on a given type such as dividing by a String, trying to access a field of an Integer or calling a function with not enough (or too many) arguments.
+The Haxe Compiler employs a rich type system which helps to detect type-related errors in a program at compile-time. A type error occurs when an invalid operation is performed on a given type. For example, attempting to divide by a String, trying to access a field on an Integer or calling a function with the wrong number of arguments are all type errors.
 
 In some languages this additional safety comes at a price because programmers are forced to explicitly assign types to syntactic constructs:
 
@@ -11,26 +11,26 @@ var myButton:MySpecialButton = new MySpecialButton(); // As3
 \lang{cpp}\begin{lstlisting}
 MySpecialButton* myButton = new MySpecialButton(); // C++ 
 \end{lstlisting}
-The explicit type annotations are not required in Haxe, because the compiler can \emph{infer} the type:
+These explicit type annotations are not required in Haxe, because the compiler can \emph{infer} the type:
 
 \begin{lstlisting}
 var myButton = new MySpecialButton(); // Haxe
 \end{lstlisting}
-We will explore type inference in detail later in \Fullref{type-system-type-inference}. For now, it is sufficient to say that the variable \expr{myButton} in the above code is known to be an \emph{instance of class} \type{MySpecialButton}. 
+We will explore type inference in detail in the \Fullref{type-system-type-inference} section. For now, it is sufficient to say that the variable \expr{myButton} in the above code is known to be an \emph{instance of class} \type{MySpecialButton}. 
 
 The Haxe type system knows seven type groups:
 
 \begin{description}
  \item[\emph{Class instance}:] an object of a given class or interface
- \item[\emph{Enum instance}:] a value of a Haxe enumeration
+ \item[\emph{Enum instance}:] a Haxe enumeration
  \item[\emph{Structure}:] an anonymous structure, i.e. a collection of named fields
- \item[\emph{Function}:] a compound type of several arguments and one return
- \item[\emph{Dynamic}:] a wildcard type which is compatible with any type
+ \item[\emph{Function}:] a compound type of several arguments and one return value
+ \item[\emph{Dynamic}:] a wildcard type which is compatible with any other type
  \item[\emph{Abstract}:] a compile-time type which is represented by a different type at runtime
  \item[\emph{Monomorph}:] an unknown type which may later become a different type
 \end{description}
 
-We will describe each of these type groups and how they relate to each other in the next chapters.
+We will describe each of these type groups and how they relate to each other in the following chapters.
 
 \define{Compound Type}{define-compound-type}{A compound type is a type which has sub-types. This includes any type with \tref{type parameters}{type-system-type-parameters} and the \tref{function}{types-function} type.}
 
@@ -46,7 +46,7 @@ We will describe each of these type groups and how they relate to each other in 
 	\item \expr{1.0}, \expr{0.0}, \expr{-1.0}, \expr{1e10} for \type{Float}.
 \end{itemize}
 
-Basic types are not \tref{classes}{types-class-instance} in Haxe. They are implemented as \tref{abstract types}{types-abstract} and are tied to the compiler's internal operator-handling as described in the following sections.
+Basic types are not \tref{classes}{types-class-instance} in Haxe, instead they are implemented as \tref{abstract types}{types-abstract} and are tied to the compiler's internal operator-handling as described in the following sections.
 
 \subsection{Numeric types}
 \label{types-numeric-types}
@@ -54,19 +54,19 @@ Basic types are not \tref{classes}{types-class-instance} in Haxe. They are imple
 \define[Type]{Float}{define-float}{Represents a double-precision IEEE 64-bit floating point number.}
 
 \define[Type]{Int}{define-int}{Represents an integral number.}
-While every \type{Int} can be used where a \type{Float} is expected (that is, \type{Int} \emph{is assignable to} or \emph{unifies with} \type{Float}), the reverse is not true: Assigning a \type{Float} to an \type{Int} might lose precision and is not allowed implicitly.
+While every \type{Int} can be used where a \type{Float} is expected (that is, \type{Int} \emph{is assignable to} or \emph{unifies with} \type{Float}), the reverse is not true: assigning a \type{Float} to an \type{Int} might cause loss of precision and is therefore not implicitly allowed.
 
 \subsection{Overflow}
 \label{types-overflow}
 
-For performance reasons, the Haxe Compiler does not enforce any overflow behavior. The burden of checking for overflows falls to the target platform. Here are some platform specific notes on overflow behavior:
+For performance reasons, the Haxe Compiler does not enforce any overflow behavior. The burden of checking for numeric overflow falls to the target platform. Here are some platform specific notes on overflow behavior:
 
 \begin{description}
  \item[C++, Java, C\#, Neko, Flash:] 32-bit signed integers with usual overflow practices 
- \item[PHP, JS, Flash 8:] No native \emph{Int} type, loss of precision will occur if they reach their float limit (2\textsuperscript{52})
+ \item[PHP, JS, Flash 8:] No native \emph{Int} type, loss of precision will occur if a number reaches the float limit (2\textsuperscript{52})
 \end{description}
 
-Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used to ensure correct overflow behavior regardless of the platform at the cost of additional computations depending on the platform.
+If correct overflow behaviour is required, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used although this comes at the cost of additional computations depending upon the platform.
 
 \subsection{Numeric Operators}
 \label{types-numeric-operators}
@@ -99,7 +99,7 @@ This the list of numeric operators in Haxe, grouped by descending priority.
 	Operator & Operation & Operand 1 & Operand 2 & Return \\ \hline
 	\expr{+} & addition & \type{Float/Int} & \type{Float/Int} & \type{Float/Int} \\
 	\expr{-} & subtraction & \type{Float/Int} & \type{Float/Int} & \type{Float/Int} \\ \hline
-	About \type{Float/Int} return type: If one of the operands is of type \type{Float}, the resulting expression will also be of type \type{Float}, otherwise the type will be \type{Int}.
+	\emph{Note:} With regard to the \type{Float/Int} return type, if one of the operands is of type \type{Float}, the resulting expression will also be a \type{Float}, otherwise it will be an \type{Int}.
 
 	\multicolumn{5}{|c|}{Bitwise} \\ \hline
 	Operator & Operation & Operand 1 & Operand 2 & Return \\ \hline
@@ -128,8 +128,8 @@ This the list of numeric operators in Haxe, grouped by descending priority.
 
 \emph{For enums:}
 \begin{description}
-	\item[Enum without parameters] Are always represent the same value, so \expr{MyEnum.A == MyEnum.A}. 
-	\item[Enum with parameters] Can be compared with \expr{a.equals(b)} (which is a short for \expr{Type.enumEquals()}).
+	\item[Enums without parameters] always represent the same value, so \expr{MyEnum.A == MyEnum.A}. 
+	\item[Enums with parameters] can be compared with \expr{a.equals(b)} (which is short for \expr{Type.enumEquals()}).
 \end{description}
 
 \emph{Dynamic:}
@@ -137,10 +137,10 @@ Comparison involving at least one Dynamic value is unspecifed and platform-speci
 
 \paragraph{Differences with other languages}
 
-Haxe precedence differ from other languages for the following cases:
+Haxe precedence differs from other languages in the following cases:
 \begin{itemize}
-	\item \expr{\%} have lower precedence than \expr{*} and \expr{/} whereas in C these three have the same
-	\item \expr{|}, \expr{\&} and \expr{\^} have the same precedence in Haxe, so they will be always grouped from left-to-right, whereas in C \expr{\&} have lower precedence than \expr{\^} which itself have lower precedence than \expr{|}
+	\item \expr{\%} has lower precedence than \expr{*} and \expr{/} whereas in C these operators have the same precedence
+	\item \expr{|}, \expr{\&} and \expr{\^} have the same precedence in Haxe, so they will be always grouped from left-to-right, whereas in C \expr{\&} has lower precedence than \expr{\^} which itself has lower precedence than \expr{|}
 	\item \expr{|}, \expr{\&} and \expr{\^} also have lower precedence than \expr{==} and \expr{!=} in Haxe
 \end{itemize}
 
@@ -149,7 +149,7 @@ Haxe precedence differ from other languages for the following cases:
 
 \define[Type]{Bool}{define-bool}{Represents a value which can be either \emph{true} or \emph{false}.}
 
-Values of type \type{Bool} are a common occurrence in \emph{conditions} such as \tref{\expr{if}}{expression-if} and \tref{\expr{while}}{expression-while}. The following \emph{operators} accept and return \type{Bool} values:
+Values of type \type{Bool} are a common result of test \emph{conditions} in \tref{\expr{if}}{expression-if} and \tref{\expr{while}}{expression-while} expressions. The following \emph{operators} accept and return \type{Bool} values:
 
 \begin{itemize}
 	\item \expr{\&\&} (and)
@@ -157,7 +157,7 @@ Values of type \type{Bool} are a common occurrence in \emph{conditions} such as 
 	\item \expr{!} (not)
 \end{itemize}
 
-Haxe guarantees that compound boolean expressions are evaluated from left to right and only as far as necessary at run-time. For instance, an expression like \expr{A \&\& B} will evaluate \expr{A} first and evaluate \expr{B} only if the evaluation of \expr{A} yielded \expr{true}. Likewise, the expressions \expr{A || B} will not evaluate \expr{B} if the evaluation of \expr{A} yielded \expr{true}, because the value of \expr{B} is irrelevant in that case. This is important in cases such as this:
+Haxe guarantees that compound boolean expressions are evaluated from left to right but only as far as necessary at run-time. For instance, an expression like \expr{A \&\& B} will evaluate \expr{A} first and evaluate \expr{B} only if the evaluation of \expr{A} yielded \expr{true}. Likewise, the expression \expr{A || B} will not evaluate \expr{B} if the evaluation of \expr{A} yielded \expr{true}, because the value of \expr{B} is irrelevant in that case. This is important in cases such as this:
 
 \begin{lstlisting}
 if (object != null && object.field == 1) { }
@@ -171,22 +171,25 @@ Accessing \expr{object.field} if \expr{object} is \expr{null} would lead to a ru
 \subsection{Void}
 \label{types-void}
 
-\define[Type]{Void}{define-void}{Denotes the absence of a type. It is used to express that something (usually a function) has no value.}
+\define[Type]{Void}{define-void}{Denotes the absence of a type. It is used to indicate that something (usually a function) has no value.}
 
-\type{Void} is a special case in the type system because it is not actually a type. It is used to express the absence of a type, which applies mostly to function arguments and return types.
+\type{Void} is a special case in the type system because it is not actually a type. It is used to express the absence of a type, which applies mostly to function return types.
 We have already ``seen'' \type{Void} in the initial ``Hello World'' example:
 \todo{please review, doubled content}
 
 \haxe{assets/HelloWorld.hx}
 
-The function type will be explored in detail in the section \Fullref{types-function} but a quick preview helps here: The type of the function \expr{main} in the example above is \type{Void->Void}, which reads as ``it has no arguments and returns nothing''.
-Haxe does not allow fields and variables of type \type{Void} and will complain if an attempt at declaring such is made:
-\todo{review please, sounds weird}
-
+Variables of type \type{Void} are not allowed:
 \begin{lstlisting}
-// Arguments and variables of type Void are not allowed
+// Variables of type Void are not allowed so this will not compile
 var x:Void;
 \end{lstlisting}
+
+
+The function type will be explored in detail in the section \Fullref{types-function} but a quick preview is relevant here. The return type of the function \expr{main} in the example above is \type{Void}. Since Haxe does not allow variables of type \type{Void} and \expr{main} has no arguments, the parentheses after \expr{main} are empty. We can see then, that this function takes no arguments and returns nothing.
+
+
+
 
 
 
