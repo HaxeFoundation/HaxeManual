@@ -59,4 +59,4 @@ To display the output in a browser, create an HTML-document called `index.html` 
 
 Previous section: [JavaScript](target-javascript.md)
 
-Next section: [Using external JavaScript libraries](target-javascript-external-libraries.md)
+Next section: [ECMAScript 6 class generation](target-javascript-es6.md)

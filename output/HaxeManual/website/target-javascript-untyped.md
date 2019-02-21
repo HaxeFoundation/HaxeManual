@@ -1,4 +1,4 @@
-## 12.1.4 JavaScript untyped functions
+## 12.1.5 JavaScript untyped functions
 
 These functions allow to access specific JavaScript platform features. It works only when the Haxe compiler is targeting JavaScript and should always be prefixed with `untyped`. 
 

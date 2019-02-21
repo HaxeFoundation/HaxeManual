@@ -1,10 +1,10 @@
 ## 10.14 Unit Testing
 
-The Haxe Standard Library provides basic unit testing classes from the [haxe.unit](http://api.haxe.org/haxe/unit/) package. 
+The Haxe Standard Library provides basic unit testing classes from the [haxe.unit](https://api.haxe.org/haxe/unit/) package. 
 
 ##### Creating new test cases
 
-First, create a new class extending [haxe.unit.TestCase](http://api.haxe.org/haxe/unit/TestCase.html) and add own test methods. Every test method name must start with "`test`".
+First, create a new class extending [haxe.unit.TestCase](https://api.haxe.org/haxe/unit/TestCase.html) and add own test methods. Every test method name must start with "`test`".
 
 ```haxe
 class MyTestCase extends haxe.unit.TestCase {
@@ -16,7 +16,7 @@ class MyTestCase extends haxe.unit.TestCase {
 ```
 
 ##### Running unit tests
-To run the test, an instance of [haxe.unit.TestRunner](http://api.haxe.org/haxe/unit/TestRunner.html) has to be created. Add the [TestCase](http://api.haxe.org/haxe/unit/TestCase.html) using the `add` method and call `run` to start the test.
+To run the test, an instance of [haxe.unit.TestRunner](https://api.haxe.org/haxe/unit/TestRunner.html) has to be created. Add the [TestCase](https://api.haxe.org/haxe/unit/TestCase.html) using the `add` method and call `run` to start the test.
 
 ```haxe
 class Main {
@@ -99,7 +99,7 @@ This is an example showing how to run your unit tests (on Neko and Node.js) afte
 
 ##### Related content
 
-* See the [haxe.unit](http://api.haxe.org/haxe/unit/) package on the API documentation for more details.
+* See the [haxe.unit](https://api.haxe.org/haxe/unit/) package on the API documentation for more details.
 
 ---
 

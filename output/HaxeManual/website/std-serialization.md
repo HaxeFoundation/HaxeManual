@@ -1,6 +1,6 @@
 ## 10.8 Serialization
 
-Many runtime values can be serialized and deserialized using the [haxe.Serializer](http://api.haxe.org/haxe/Serializer.html) and [haxe.Unserializer](http://api.haxe.org/haxe/Unserializer.html) classes. Both support two usages:
+Many runtime values can be serialized and deserialized using the [haxe.Serializer](https://api.haxe.org/haxe/Serializer.html) and [haxe.Unserializer](https://api.haxe.org/haxe/Unserializer.html) classes. Both support two usages:
 
 1. Create an instance and continuously call the `serialize`/`unserialize` method to handle multiple values.
 2. Call their static `run` method to serialize/deserialize a single value.
@@ -43,7 +43,7 @@ The result of the serialization (here stored in local variable `s`) is a [String
 
 ##### Serialization configuration
 
-Serialization can be configured in two ways. For both a static variable can be set to influence all [haxe.Serializer](http://api.haxe.org/haxe/Serializer.html) instances, and a member variable can be set to only influence a specific instance:
+Serialization can be configured in two ways. For both a static variable can be set to influence all [haxe.Serializer](https://api.haxe.org/haxe/Serializer.html) instances, and a member variable can be set to only influence a specific instance:
 
 * `USE_CACHE`, `useCache`: If true, repeated structures or class/ enum instances are serialized by reference. This can avoid infinite loops for recursive data at the expense of longer serialization time. By default, object caching is disabled; strings however are always cached.
 * `USE_ENUM_INDEX`, `useEnumIndex`: If true, enum constructors are serialized by their index instead of their name. This can make the resulting string shorter, but breaks if enum constructors are inserted into the type before deserialization. This behavior is disabled by default.
@@ -97,7 +97,7 @@ class Main {
 
 In this example we decide that we want to ignore the value of member variable `y` and do not serialize it. Instead we default it to `-1` in `hxUnserialize`. Both methods are annotated with the `@:keep` metadata to prevent [dead code elimination](cr-dce.md) from removing them as they are never properly referenced in the code.
 
-See [Serializer](http://api.haxe.org/haxe/Serializer.html) and [Unserializer](http://api.haxe.org/haxe/Unserializer.html) API documentation for details.
+See [Serializer](https://api.haxe.org/haxe/Serializer.html) and [Unserializer](https://api.haxe.org/haxe/Unserializer.html) API documentation for details.
 
 ---
 

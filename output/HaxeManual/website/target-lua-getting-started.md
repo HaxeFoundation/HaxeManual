@@ -14,10 +14,23 @@ if you do not utilize relevant behavior (e.g. regex) on a given platform,
 or if you are using an embedded Lua client, then it is not necessary to
 install any packages for basic language functionality.
 
-With LuaRocks, install the haxe dependency package:
+With LuaRocks, install the following packages:
 
 ```sh
-luarocks install haxe-deps
+luarocks install lrexlib-pcre
+luarocks install environ
+luarocks install luasocket
+luarocks install luv
+```
+
+On Lua 5.1, install the bitops library:
+```sh
+luarocks install luabitop
+```
+
+On Lua 5.3, install the bit32 library instead:
+```sh
+luarocks install bit32
 ```
 
 When developing for multiple Lua versions, it is recommended to use

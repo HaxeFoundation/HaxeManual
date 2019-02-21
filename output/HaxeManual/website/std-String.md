@@ -13,7 +13,7 @@ Use the `.code` property on a constant single-char string in order to compile it
 
 ##### Related content
 
-* See the [String API](http://api.haxe.org/String.html) for details about its methods.
+* See the [String API](https://api.haxe.org/String.html) for details about its methods.
 
 ---
 

@@ -46,7 +46,7 @@ The possible flags are the following:
 
 ##### Related content
 
-* See the [EReg API](http://api.haxe.org/EReg.html) for details about its methods. 
+* See the [EReg API](https://api.haxe.org/EReg.html) for details about its methods. 
 * [Haxe snippets and tutorials about regular expressions](http://code.haxe.org/tag/ereg.html) in the Haxe Code Cookbook.
 
 ---

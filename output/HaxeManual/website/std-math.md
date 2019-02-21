@@ -26,12 +26,11 @@ class Main {
   }
 }
 
-
 ```
 
 ##### Related content
 
-* See the [Math API documentation](http://api.haxe.org/Math.html) for all available functions.
+* See the [Math API documentation](https://api.haxe.org/Math.html) for all available functions.
 * [Haxe snippets and tutorials about math](http://code.haxe.org/tag/math.html) in the Haxe Code Cookbook.
 
 ---

@@ -232,6 +232,7 @@ Unreviewed:
 10.9.1 - Getting started with Xml
 10.9.2 - Parsing Xml
 10.9.3 - Encoding Xml
+10.9.4 - Simplified Xml access
 10.10 - Json
 10.10.1 - Parsing JSON
 10.10.2 - Encoding JSON
@@ -243,12 +244,13 @@ Unreviewed:
 11 - Haxelib
 12.1 - JavaScript
 12.1.1 - Getting started with Haxe/JavaScript
-12.1.2 - Using external JavaScript libraries
-12.1.3 - Using Untyped JavaScript
-12.1.4 - JavaScript untyped functions
-12.1.5 - JavaScript target Metadata
-12.1.6 - Exposing Haxe classes for JavaScript
-12.1.7 - Loading extern classes using "require" function
+12.1.2 - ECMAScript 6 class generation
+12.1.3 - Using external JavaScript libraries
+12.1.4 - Using Untyped JavaScript
+12.1.5 - JavaScript untyped functions
+12.1.6 - JavaScript target Metadata
+12.1.7 - Exposing Haxe classes for JavaScript
+12.1.8 - Loading extern classes using "require" function
 12.2.1 - Getting started with Haxe/Flash
 12.2.2 - Embedding resources
 12.2.3 - Using external Flash libraries

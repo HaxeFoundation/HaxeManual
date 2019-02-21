@@ -4,7 +4,7 @@ Haxe remoting is a way to communicate between different platforms. With Haxe rem
 
 ##### Related content
 
-* See the [remoting package](http://api.haxe.org/haxe/remoting/) on the API documentation for more details on its classes.
+* See the [remoting package](https://api.haxe.org/haxe/remoting/) on the API documentation for more details on its classes.
 
 ---
 

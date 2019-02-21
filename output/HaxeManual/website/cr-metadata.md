@@ -33,7 +33,7 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 @:decl    |      |  cpp 
 @:delegate   |  Automatically added by <code>-net-lib</code> on delegates    |  cs 
 @:depend   |      |  cpp 
-@:deprecated    |  Automatically added by <code>-java-lib</code> on class fields annotated with <code>@Deprecated</code> annotation. Has no effect on types compiled by Haxe   |  java 
+@:deprecated    |  Mark a type or field as deprecated   |  all 
 @:event   |  Automatically added by <code>-net-lib</code> on events. Has no effect on types compiled by Haxe    |  cs 
 @:enum   |  Defines finite value sets to abstract definitions. See [enum abstracts](types-abstract-enum.md)   |  all 
 @:expose _(?Name=Class path)_   |  Makes the class available on the <code>window</code> object or <code>exports</code> for node.js. See [exposing Haxe classes for JavaScript](target-javascript-expose.md)  |  js 

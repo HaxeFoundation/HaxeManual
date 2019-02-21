@@ -47,7 +47,7 @@ class Main {
 }
 ```
 
-Special care has to be taken with field names or local variable names that conflict with a package name: Since they take priority over packages, a local variable named `haxe` blocks off usage the entire `haxe` package.
+Special care has to be taken with field names or local variable names that conflict with a package name: Since they take priority over packages, a local variable named `haxe` blocks off usage of the entire `haxe` package.
 
 ##### Wildcard import
 

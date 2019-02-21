@@ -210,7 +210,7 @@ Unification between two types A and B is a directional process which answers the
 <a id="define-void" class="anch"></a>
 
 ##### Void
-Void denotes the absence of a type. It is used to express that something (usually a function) has no value.
+Denotes the absence of a type. It is used to express that something (usually a function) has no value.
 
 <a id="define-write-access" class="anch"></a>
 

@@ -43,11 +43,11 @@ class Main {
     static function main() {
         var words = ['car', 'boat', 'cat', 'frog'];
 
-		var isThreeLetters = function(word) return word.length == 3;
-		var capitalize = function(word) return word.toUpperCase();
+        var isThreeLetters = function(word) return word.length == 3;
+        var capitalize = function(word) return word.toUpperCase();
 
-		// Three letter words and capitalized. 
-		trace(words.filter(isThreeLetters).map(capitalize)); // [CAR,CAT]
+        // Three letter words and capitalized. 
+        trace(words.filter(isThreeLetters).map(capitalize)); // [CAR,CAT]
     }
 }
 ``` 
@@ -60,23 +60,28 @@ class Main {
     static function main() {
         var numbers = [1, 3, 5, 6, 7, 8];
 
-		trace(numbers.count()); // 6
-		trace(numbers.has(4)); // false
+        trace(numbers.count()); // 6
+        trace(numbers.has(4)); // false
 
         // test if all numbers are greater/smaller than 20
-		trace(numbers.foreach(function(v) return v < 20)); // true
+        trace(numbers.foreach(function(v) return v < 20)); // true
         trace(numbers.foreach(function(v) return v > 20)); // false
 
         // sum all the numbers
-		var sum = function(num, total) return total += num;
-		trace(numbers.fold(sum, 0)); // 30
+        var sum = function(num, total) return total += num;
+        trace(numbers.fold(sum, 0)); // 30
+
+        // get highest number
+        trace(numbers.fold(Math.max, numbers[0])); // 8
+        // get lowest number
+        trace(numbers.fold(Math.min, numbers[0])); // 1
     }
 }
 ``` 
 
 ##### Related content
 
-* See the [Lambda API documentation](http://api.haxe.org/Lambda.html) for all available functions.
+* See the [Lambda API documentation](https://api.haxe.org/Lambda.html) for all available functions.
 
 ---
 

@@ -4,11 +4,11 @@ Haxe provides built-in support for (de-)serializing **JSON** data via the `haxe.
 
 ##### Related content
 
-* See the [Haxe Json API documentation](http://api.haxe.org/haxe/Json.html).
+* See the [Haxe Json API documentation](https://api.haxe.org/haxe/Json.html).
 * [Haxe snippets and tutorials about JSON](http://code.haxe.org/tag/json.html) in the Haxe Code Cookbook.
 
 ---
 
-Previous section: [Encoding Xml](std-Xml-encoding.md)
+Previous section: [Simplified Xml access](std-Xml-simplified-access.md)
 
 Next section: [Parsing JSON](std-Json-parsing.md)

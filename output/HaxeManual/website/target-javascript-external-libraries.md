@@ -1,4 +1,4 @@
-## 12.1.2 Using external JavaScript libraries
+## 12.1.3 Using external JavaScript libraries
 
 The [externs mechanism](lf-externs.md) provides access to the native APIs in a type-safe manner. It assumes that the defined types exist at run-time but assumes nothing about how and where those types are defined. 
 
@@ -92,6 +92,6 @@ There are many externs for other popular native libraries available on [Haxelib 
 
 ---
 
-Previous section: [Getting started with Haxe/JavaScript](target-javascript-getting-started.md)
+Previous section: [ECMAScript 6 class generation](target-javascript-es6.md)
 
 Next section: [Using Untyped JavaScript](target-javascript-injection.md)

@@ -9,7 +9,7 @@ class Main {
   }
 }
 ```
-This can be tested by saving the above code to a file named `Main.hx` and invoking the Haxe Compiler like so: `haxe -main Main --interp`. It then generates the following output: `Main.hx:3: Hello world`. There are several things to learn from this:
+This can be tested by saving the above code to a file named `Main.hx` and invoking the Haxe Compiler like so: `haxe -main Main --interp`. It generates the following output: `Main.hx:3: Hello world`. There are several things to learn from this:
 
 * Haxe programs are saved in files with an extension of `.hx`.
 * The Haxe Compiler is a command-line tool which can be invoked with parameters such as `-main Main` and `--interp`.

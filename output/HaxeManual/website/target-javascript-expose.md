@@ -1,4 +1,4 @@
-## 12.1.6 Exposing Haxe classes for JavaScript
+## 12.1.7 Exposing Haxe classes for JavaScript
 
 It is possible to make Haxe classes or static fields available for usage in plain JavaScript. 
 To expose, add the `@:expose` metadata to the desired class or static fields.

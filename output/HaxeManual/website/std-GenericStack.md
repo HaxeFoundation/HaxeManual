@@ -14,7 +14,6 @@ class Main {
   }
 }
 
-
 ```
 > ##### Trivia: FastList
 >
@@ -23,7 +22,7 @@ The **Generic** in `GenericStack` is literal.  It is attributed with the `:gener
 
 ##### Related content
 
-* See the [GenericStack API](http://api.haxe.org/haxe/ds/GenericStack.html) for details about its methods. 
+* See the [GenericStack API](https://api.haxe.org/haxe/ds/GenericStack.html) for details about its methods. 
 * [Data structures tutorials and examples](http://code.haxe.org/category/data-structures/) in the Haxe Code Cookbook.
 
 ---

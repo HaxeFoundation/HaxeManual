@@ -23,7 +23,7 @@ class Main {
 
 ##### Related content
 
-* See the [Vector API](http://api.haxe.org/haxe/ds/Vector.html) for details about the vector methods. 
+* See the [Vector API](https://api.haxe.org/haxe/ds/Vector.html) for details about the vector methods. 
 * [Data structures tutorials and examples](http://code.haxe.org/category/data-structures/) in the Haxe Code Cookbook.
 
 ---

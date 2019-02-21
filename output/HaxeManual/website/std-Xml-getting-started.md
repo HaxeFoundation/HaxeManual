@@ -60,7 +60,7 @@ for (att in xml.attributes()) {
 }
 ```
 
-See [Xml](http://api.haxe.org/Xml.html) API documentation for details about its methods.
+See [Xml](https://api.haxe.org/Xml.html) API documentation for details about its methods.
 
 ---
 

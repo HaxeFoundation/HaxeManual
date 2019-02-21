@@ -69,7 +69,7 @@ Map defines [array access](types-abstract-array-access.md) using its key type.
 
 ##### Related content
 
-* See the [Map API](http://api.haxe.org/Map.html) for details of its methods.
+* See the [Map API](https://api.haxe.org/Map.html) for details of its methods.
 * [Data structures tutorials and examples](http://code.haxe.org/category/data-structures/) in the Haxe Code Cookbook.
 
 ---
