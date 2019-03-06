@@ -725,12 +725,12 @@ class D { } // Type-level disable
 \paragraph{Modules}
 \label{cr-static-analyzer-modules}
 
-The static analyzer currently comes with the following modules. Unless noted otherwise they are enabled if \ic{-D analyzer} is used.
+The static analyzer currently comes with the following modules. Unless noted otherwise they are enabled if \ic{-D analyzer-optimize} is used.
 
 \begin{description}
 \item[\ic{const_propagation}]: Implements sparse conditional constant propagation to promote values that are known at compile-time to usage places. Also detects dead branches.
 \item[\ic{copy_propagation}]: Detects local variables that alias other local variables and replaces them accordingly.
 \item[\ic{local_dce}]: Detects and removes unused local variables.
-\item[\ic{fusion}]: Moves variable expressions to its usage in case of single-occurrence. By default, only compiler-generated variables are handled. This can be changed by using the compiler flag `\ic{-D analyzer-user-var-fusion} or the metadata \ic{@:analyzer(user_var_fusion)}.
+\item[\ic{fusion}]: Moves variable expressions to its usage in case of single-occurrence. By default, only compiler-generated variables are handled. This can be changed by using the compiler flag \ic{-D analyzer-user-var-fusion} or the metadata \ic{@:analyzer(user_var_fusion)}.
 \item[\ic{purity_inference}]: Infers if fields are ``pure'', i.e. do not have any side-effects. This can improve the effect of the fusion module.
 \end{description}
