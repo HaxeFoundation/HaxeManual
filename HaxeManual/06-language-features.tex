@@ -298,6 +298,7 @@ Static extensions are usually considered syntactic sugar and indeed they are, bu
 
 Following the rules previously described in \Fullref{type-system-resolution-order}, multiple \expr{using} expressions are checked from bottom to top, with the types within each module as well as the fields within each type being checked from top to bottom. Using a module (as opposed to a specific type of a module, see \Fullref{type-system-modules-and-paths}) as static extension brings all its types into context.
 
+The static extension keyword \expr{using} implies the effect of \tref{import}{type-system-import}.
 
 \paragraph{Related content}
 \begin{itemize}
