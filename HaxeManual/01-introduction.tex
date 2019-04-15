@@ -50,7 +50,7 @@ Haxe abstracts away many target differences, but sometimes it is important to in
 \section{About this Document}
 \label{introduction-about-this-document}
 
-This document is the official manual for Haxe 3. As such, it is not a beginner's tutorial and does not teach programming. However, the topics are roughly designed to be read in order and there are references to topics ``previously seen'' and topics ``yet to come''. In some cases, an earlier section makes use of the information of a later section if it simplifies the explanation. These references are linked accordingly and it should generally not be a problem to read ahead on other topics.
+This document is the official manual for Haxe 4. As such, it is not a beginner's tutorial and does not teach programming. However, the topics are roughly designed to be read in order and there are references to topics ``previously seen'' and topics ``yet to come''. In some cases, an earlier section makes use of the information of a later section if it simplifies the explanation. These references are linked accordingly and it should generally not be a problem to read ahead on other topics.
 
 We use a lot of Haxe source code to illustrate theoretical matters in a practical way. These code examples are often complete programs that come with a main function and can be compiled as-is. However, sometimes only the most relevant parts are shown.
 Source code looks like this:
@@ -94,14 +94,14 @@ Based on a work at \href{https://github.com/HaxeFoundation/HaxeManual}{github.co
 The following program prints ``Hello World'' after being compiled and run:
 
 \haxe{assets/HelloWorld.hx}
-This can be tested by saving the above code to a file named \ic{Main.hx} and invoking the Haxe Compiler like so: \ic{haxe -main Main --interp}. It generates the following output: \ic{Main.hx:3: Hello world}. There are several things to learn from this:
+This can be tested by saving the above code to a file named \ic{Main.hx} and invoking the Haxe Compiler like so: \ic{haxe --main Main --interp}. It generates the following output: \ic{Main.hx:3: Hello world}. There are several things to learn from this:
 \todo{This generates the following output: too many 'this'. You may like a passive sentence: the following output will be generated...though this is to be avoided, generally}
 
 \begin{itemize}
 	\item Haxe programs are saved in files with an extension of \ic{.hx}.
-	\item The Haxe Compiler is a command-line tool which can be invoked with parameters such as \ic{-main Main} and \ic{--interp}.
+	\item The Haxe Compiler is a command-line tool which can be invoked with parameters such as \ic{--main Main} and \ic{--interp}.
 	\item Haxe programs have classes (\type{Main}, upper-case), which have functions (\expr{main}, lower-case). 
-	\item The name of the file containing main Haxe class is the same as name of the class itself (in this case \type{Main.hx}). 
+	\item The name of the file containing a Haxe class is the same as the name of the class itself (in this case \type{Main.hx}). 
 \end{itemize}
 
 \paragraph{Related content}
