@@ -1,6 +1,6 @@
 class Main {
   static public function main() {
-    // i : Int -> s : String -> Bool
+    // (i : Int, s : String) -> Bool
     $type(test);
     $type(test(1, "foo")); // Bool
   }
