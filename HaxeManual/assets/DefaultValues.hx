@@ -1,6 +1,6 @@
 class Main {
   static public function main() {
-    // ?i : Int -> ?s : String -> String
+    // (?i : Int, ?s : String) -> String
     $type(test);
     trace(test()); // i: 12, s: bar
     trace(test(1)); // i: 1, s: bar
