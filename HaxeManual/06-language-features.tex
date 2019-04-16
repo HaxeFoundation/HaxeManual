@@ -350,7 +350,7 @@ The following classes from the Haxe Standard Library are designed to be used as 
 \subsection{Introduction}
 \label{lf-pattern-matching-introduction}
 
-Pattern matching is the process of branching depending on a value matching given, possibly deep patterns. In Haxe, all pattern matching is done within a \tref{\expr{switch} expression}{expression-switch} where the individual \expr{case} expressions represent the patterns. Here we will explore the syntax for different patterns using this data structure as running example:
+Pattern matching is the process of branching depending on a value matching given, possibly deep patterns. In Haxe, pattern matching is primarily done within \tref{\expr{switch} expressions}{expression-switch} where the individual \expr{case} expressions represent the patterns. Here we will explore the syntax for different patterns using this data structure as running example:
 
 \haxe[firstline=1,lastline=4]{assets/PatternMatching.hx}
 
@@ -399,11 +399,19 @@ This would return one of the following:
 	\item Otherwise \expr{"none"} is returned.
 \end{itemize}
 
-It is also possible to use = to capture values which are further matched:
+It is also possible to use \expr{=} to capture values which are further matched:
 
 \haxe[firstline=32,lastline=36]{assets/PatternMatching.hx}
 
 Here, \expr{leafNode} is bound to \expr{Leaf("foo")} if the input matches that. In all other cases, \expr{myTree} itself is returned: \expr{case x} works similar to \expr{case _} in that it matches anything, but with an identifier name like \expr{x} it also binds the matched value to that variable.
+
+\since{4.0.0}
+
+If the compiler detects that the name of a ``catch-all'' variable is very similar to an enum constructor, it will warn about a potential typo. This can be avoided by prefixing the variable identifier with \expr{var}:
+
+\haxe[firstline=107,lastline=113]{assets/PatternMatching.hx}
+
+Any capture variable can be prefixed with \expr{var}, but in most cases it is unnecessary. Since it also circumvents the warning about potential typos, it is recommended to not use \expr{var} unless necessary.
 
 \subsection{Structure matching}
 \label{lf-pattern-matching-structure}
