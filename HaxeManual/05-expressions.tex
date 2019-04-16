@@ -336,7 +336,7 @@ Haxe does not support traditional for-loops known from C. Its \expr{for} keyword
 for (v in e1) e2;
 \end{lstlisting}
 
-The typer ensures that the type of \expr{e1} can be iterated over, which is typically the case if it has an  \tref{iterator}{lf-iterators} method returning an \type{Iterator<T>}, or if it is an \type{Iterator<T>} itself.
+The typer ensures that the type of \expr{e1} can be iterated over, which is typically the case if it has an  \tref{\expr{iterator}}{lf-iterators} method returning an \type{Iterator<T>}, or if it is an \type{Iterator<T>} itself.
 
 Variable \expr{v} is then available within loop body \expr{e2} and holds the value of the individual elements of collection \expr{e1}.
 
@@ -358,7 +358,7 @@ Haxe has a special range operator to iterate over intervals. It is a binary oper
 for (i in 0...10) trace(i); // 0 to 9
 \end{lstlisting}
 
-The type of a \expr{for} expression is always \type{Void}, meaning it has no value and cannot be used as right-side expression.
+The type of a \expr{for} expression is always \type{Void}, meaning it has no value and cannot be used as right-side expression. However, we'll later introduce \tref{array comprehension}{lf-array-comprehension}, which lets you construct arrays using \expr{for} expressions.
 
 The control flow of loops can be affected by \tref{\expr{break}}{expression-break} and \tref{\expr{continue}}{expression-continue} expressions.
 
@@ -372,6 +372,28 @@ for (i in 0...10) {
 // 1
 // 3
 // 4
+\end{lstlisting}
+
+\since{4.0.0}
+
+\paragraph{Key-value iteration}
+
+In Haxe 4 it is possible to iterate over collections of key-value pairs. The syntax is the same as regular \expr{for} loops, but the single variable identifier is replaced with the key variable identifier, followed by \expr{=>}, followed by the value variable identifier:
+
+\begin{lstlisting}
+for (k => v in e1) e2;
+\end{lstlisting}
+
+Type safety is ensured for key-value iteration as well. The typer checks that \expr{e1} either has a \expr{keyValueIterator} method returning returning a \type{KeyValueIterator<K, V>}, or if it is a \type{KeyValueIterator<K, V>} itself. Here \type{K} and \type{V} refer to the type of the keys and the values, respectively.
+
+\begin{lstlisting}
+var map = [1 => 101, 2 => 102, 3 => 103];
+for (key => value in map) {
+  trace(key, value);
+}
+// 1, 101
+// 2, 102
+// 3, 103
 \end{lstlisting}
 
 \paragraph{Related content}
