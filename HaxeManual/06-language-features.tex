@@ -26,6 +26,14 @@ Create and populate arrays quickly using for loops and logic.
 var evenNumbers = [ for (i in 0...100) if (i & 1 == 0) i ];
 \end{lstlisting}
 
+\emph{\tref{Map Comprehension}{lf-map-comprehension}:}
+
+Create and populate maps quickly using for loops and logic.
+
+\begin{lstlisting}
+var primality = [ for (i in 0...100) i => isPrime(i) ];
+\end{lstlisting}
+
 \emph{\tref{Classes, interfaces and inheritance}{types-class-instance}:}
 
 Haxe allows structuring code in classes, making it an object-oriented language. Common related features known from languages such as Java are supported, including inheritance and interfaces.
@@ -564,7 +572,7 @@ Of course the use of single-quote enclosed strings without any interpolation rem
 \section{Array Comprehension}
 \label{lf-array-comprehension}
 
-Array comprehension in Haxe uses existing syntax to allow concise initialization of arrays. It is identified by \expr{for} or \expr{while} constructs:
+Array comprehension in Haxe combines \tref{array declaration}{expression-array-declaration} and loops to allow concise initialization of arrays. It is identified by \tref{\expr{for}}{expression-for} or \tref{\expr{while}}{expression-while} constructs:
 
 \haxe{assets/ArrayComprehension.hx}
 
@@ -590,7 +598,7 @@ The loop expression can be anything, including conditions and nested loops, so t
 \section{Map Comprehension}
 \label{lf-map-comprehension}
 
-Map comprehension in Haxe uses existing syntax to allow concise initialization for \type{Map}. Maps are initialized like arrays, but use the map literal syntax with the \ic{=>} operator. It is identified by \expr{for} or \expr{while} constructs:
+Map comprehension in Haxe is similar to array comprehension, but just like \tref{map declaration}{expression-map-declaration}, it additionally uses the \ic{=>} operator:
 
 \haxe{assets/MapComprehension.hx}
 
