@@ -851,6 +851,20 @@ Overloading unary operators is analogous:
 \haxe{assets/AbstractUnopOverload.hx}
 Both binary and unary operator overloads can return any type.
 
+\since{4.0.0}
+
+In addition to binary and unary operators, the \exrp{@:op} syntax can be used to overload field access and array access on abstracts.
+
+\begin{itemize}
+	\item \expr{@:op([])} on a function with one argument overloads array read accces.
+	\item \expr{@:op([])} on a function with two arguments overloads array write accces, with the first argument being the index and the second one being the written value.
+	\item \expr{@:op(a.b)} on a function with one argument overloads field read access.
+	\item \expr{@:op(a.b)} on a function with two arguments overloads field write access.
+\end{itemize}
+
+\haxe{assets/AbstractAccessOverload.hx}
+
+
 \paragraph{Exposing underlying type operations}
 
 It is also possible to omit the method body of a \expr{@:op} function, but only if the underlying type of the abstract allows the operation in question and if the resulting type can be assigned back to the abstract.
