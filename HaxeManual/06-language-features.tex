@@ -648,6 +648,21 @@ The type \type{MyStringIterator} in this example qualifies as iterator: It defin
 
 Here we do not setup a full iterator like in the previous example, but instead define that the \type{MyArrayWrap<T>} has a method \expr{iterator}, effectively forwarding the iterator method of the wrapped \type{Array<T>} type.
 
+\since{4.0.0}
+
+The standard library also includes key-value iterators to support \tref{key-value iteration}{expression-for-keyvalue}:
+
+\begin{lstlisting}
+typedef KeyValueIterator<K, V> = {
+	function hasNext() : Bool;
+	function next() : {key: K, value: V};
+}
+
+typedef KeyValueIterable<K, V> = {
+	function iterator() : KeyValueIterator<K, V>;
+}
+\end{lstlisting}
+
 \paragraph{Related content}
 \begin{itemize}
 	\item See the \href{http://api.haxe.org/Iterator.html}{Iterator API documentation}.
