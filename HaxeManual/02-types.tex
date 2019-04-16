@@ -755,7 +755,7 @@ The syntax is reminiscent of classes and the semantics are indeed similar. In fa
 Furthermore, abstracts can be instantiated and used just like classes:
 
 \haxe[firstline=7,lastline=12]{assets/MyAbstract.hx}
-As mentioned before, abstracts are a compile-time feature, so it is interesting to see what the above actually generates. A suitable target for this is \target{JavaScript}, which tends to generate concise and clean code. Compiling the above (using \texttt{haxe -main MyAbstract -js myabstract.js}) shows this \target{JavaScript} code:
+As mentioned before, abstracts are a compile-time feature, so it is interesting to see what the above actually generates. A suitable target for this is \target{JavaScript}, which tends to generate concise and clean code. Compiling the above (using \texttt{haxe --main MyAbstract --js myabstract.js}) shows this \target{JavaScript} code:
 
 \lang{js}\begin{lstlisting}
 var a = 12;
@@ -939,6 +939,12 @@ This is similar to accessing \tref{variables declared as inline}{class-field-inl
 	\item The pattern matcher checks for \tref{exhaustiveness}{lf-pattern-matching-exhaustiveness} when \tref{matching}{lf-pattern-matching} an enum abstract.
 	\item Defining fields requires less syntax.
 \end{itemize}
+
+\since{4.0.0}
+
+Since Haxe 4, it is possible to declare enum abstracts without using the \expr{:enum} metadata, instead using the more natural syntax \expr{enum abstract}. Additionally, if the underlying type is \expr{String} or \expr{Int}, the values for the enum cases can be omitted and are deduced by the compiler. For \expr{Int} abstracts, the deduced values increment the last user-defined value, or start at zero if no value was declared yet:
+
+\haxe{assets/AbstractEnum2.hx}
 
 
 \subsection{Forwarding abstract fields}
