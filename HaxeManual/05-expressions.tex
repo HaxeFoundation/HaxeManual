@@ -189,6 +189,15 @@ This should be considered when deciding if a function should be \tref{inlined}{c
 
 Advanced initialization techniques are described in \Fullref{lf-array-comprehension}.
 
+\section{Map Declaration}
+\label{expression-map-declaration}
+
+Maps are initialized similarly to arrays, but include both keys and their corresponding values. \expr{["example" => 1, "data" => 2]} initializes a map (\type{Map<String, Int>} specifically) where the key \expr{"example"} stores the value \expr{1} and \expr{"data"} stores the value 2.
+
+\since{4.0.0}
+
+Where a map type is expected, \expr{[]} refers to an empty map.
+
 
 \section{Object Declaration}
 \label{expression-object-declaration}
