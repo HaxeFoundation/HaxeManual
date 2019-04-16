@@ -942,7 +942,12 @@ This is similar to accessing \tref{variables declared as inline}{class-field-inl
 
 \since{4.0.0}
 
-Since Haxe 4, it is possible to declare enum abstracts without using the \expr{:enum} metadata, instead using the more natural syntax \expr{enum abstract}. Additionally, if the underlying type is \expr{String} or \expr{Int}, the values for the enum cases can be omitted and are deduced by the compiler. For \expr{Int} abstracts, the deduced values increment the last user-defined value, or start at zero if no value was declared yet:
+Since Haxe 4, it is possible to declare enum abstracts without using the \expr{:enum} metadata, instead using the more natural syntax \expr{enum abstract}. Additionally, if the underlying type is \expr{String} or \expr{Int}, the values for the enum cases can be omitted and are deduced by the compiler:
+
+\begin{itemize}
+	\item For \type{Int} abstracts, the deduced values increment the last user-defined value, or start at zero if no value was declared yet.
+	\item For \type{String} abstracts, the deduced value is the identifier of the enum case.
+\end{itemize}
 
 \haxe{assets/AbstractEnum2.hx}
 
