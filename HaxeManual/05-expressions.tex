@@ -298,6 +298,23 @@ However, there are some differences related to type parameters and the position 
 	\item Rvalue functions may have a name, but cannot have type parameters.
 \end{itemize}
 
+\since{4.0.0}
+
+\label{expression-arrow-function}
+\paragraph{Arrow functions}
+
+Haxe 4 introduced a shorter syntax for defining local functions without a name, very similar to the function type syntax. The argument list is defined between two parentheses, followed by an arrow \expr{->}, followed directly by the expression:
+
+\haxe{assets/ArrowFunction.hx}
+
+Arrow functions are very similar to normal local functions, with a couple of differences:
+
+\begin{itemize}
+	\item The expression after the arrow is implicitly treated as the return value of the function. For simple functions like \expr{myConcat} above, this can be a convenient way to shorten the code. Normal \expr{return} expressions can still be used, as shown in \expr{myContains} above.
+	\item There is no way to declare the return type, although you can use a \tref{type check}{expression-type-check} to unify the function expression with the desired return type.
+	\item \tref{Metadata}{lf-metadata} cannot be applied to the arguments of an arrow function.
+\end{itemize}
+
 
 \section{new}
 \label{expression-new}
