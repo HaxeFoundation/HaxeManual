@@ -1,15 +1,12 @@
-typedef PointX = {
+typedef Point2D = {
   var x:Int;
-}
-
-typedef PointY = {
   var y:Int;
 }
 
-typedef PointXY = PointX & PointY;
+typedef Point3D = PointXY & {z:Int};
 
 class Main {
   static public function main() {
-    var point:PointXY = {x: 5, y: 3};
+    var point:Point3D = {x: 5, y: 3, z: 1};
   }
 }
