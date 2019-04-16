@@ -319,6 +319,14 @@ It is not necessary for child classes to define their own constructors, but if t
 
 A class may override \tref{methods}{class-field-method} of its parent class, which requires the explicit \expr{override} keyword. The effects and restrictions of this are detailed in \Fullref{class-field-overriding}.
 
+\since{4.0.0}
+
+Classes can be declared with the keyword \expr{final} to prevent them from being extended.
+
+In some situations the user may still want to extend a class marked as final. This is possible by using the \expr{:hack} metadata on the \emph{extending} class. This should be avoided in general, hence the discouraging metadata name \expr{:hack}.
+
+\trivia{\expr{:final} metadata}{Prior to Haxe 4, marking classes as final was possible using the \expr{:final} metadata.}
+
 
 \subsection{Interfaces}
 \label{types-interfaces}
@@ -359,6 +367,10 @@ Interfaces can extend multiple other interfaces using the \expr{extends} keyword
 \begin{lstlisting}
 interface Debuggable extends Printable extends Serializable
 \end{lstlisting}
+
+\since{4.0.0}
+
+Analogously to classes, interfaces can also be marked with the keyword \expr{final}, preventing them from being extended.
 
 
 \trivia{Implements Syntax}{Haxe versions prior to 3.0 required multiple \expr{implements} keywords to be separated by a comma. We decided to adhere to the de-facto standard of Java and got rid of the comma. This was one of the breaking changes between Haxe 2 and 3.}
@@ -521,6 +533,11 @@ typedef Point = {
     var y : Int;
 }
 \end{lstlisting}
+
+\since{4.0.0}
+
+The fields of a structure may also be declared with \expr{final}, which only allows them to be assigned once. Such a structure will only \tref{unify}{type-system-unification} with other types if the corresponding fields are also \expr{final}.
+
 
 \subsection{Optional Fields}
 \label{types-structure-optional-fields}

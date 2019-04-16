@@ -267,7 +267,7 @@ subject(e1, ..., eN);
 \end{itemize}
 
 
-\section{var}
+\section{var and final}
 \label{expression-var}
 
 The \expr{var} keyword allows declaring multiple variables, separated by comma \expr{,}. Each variable has a valid \tref{identifier}{define-identifier} and optionally a value assignment following the assignment operator \expr{=}. Variables can also have an explicit type-hint.
@@ -284,42 +284,15 @@ var d,e = 2;
 
 The scoping behavior of local variables is described in \Fullref{expression-block}.
 
+\since{4.0.0}
 
-\section{final}
-\label{expression-final}
+In Haxe 4, the alternative keyword \expr{final} was introduced at the expression level. Variables declared with \expr{final} instead of \expr{var} can only be assigned a value once.
 
-\since{4.0}
+\haxe{assets/Final.hx}
 
-The \expr{final} keyword can be used in the following situations:
+It is important to note that \expr{final} may not have the intended effect with types that are not imutable, such as arrays or objects. Even though the variable cannot have a different object assigned to it, the object itself can still be modified using its methods:
 
-\begin{itemize}
-	\item As modifier to a method, like in Java.
-	\item As replacement for \expr{var} when declaring fields.	
-	\item \expr{final} class to make it non-extensible
-	\item \expr{final} function to make a function non-overridable.
-	\item \expr{static final x} that require immediate initialization and cannot be written to.
-	\item \expr{final x} that require initialization immediately or in the constructor, and cannot be written to otherwise (note however that it \emph{can} be assigned to multiple times in the constructor).
-	\item \expr{final} at expression-level, which is like \expr{var} but cannot be assigned to after the initial initialization.
-	\item \expr{final field} on structures. This guarantees read-only. The structure only unifies with classes or other structures where \expr{field} is also \expr{final}.
-\end{itemize}
-
-The semantics of the latter are as follows:
-
-\begin{itemize}
-	\item \expr{static final} vars have to be initialized immediately.
-	\item If a class has non-static `final` vars which are not initialized immediately, it requires a constructor which has to assign to all such fields.
-	\item \expr{static inline final} works, but has the same semantics as \expr{static inline var}.
-	\item Visibility is orthogonal and not affected.
-	\item Property syntax is not supported.
-\end{itemize}
-
-\begin{lstlisting}
-final a = 42; // declare local a
-
- // declare local b
-final function b() {
-}
-\end{lstlisting}
+\haxe{assets/FinalMutable.hx}
 
 
 \section{Local Functions}

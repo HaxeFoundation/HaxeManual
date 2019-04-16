@@ -334,3 +334,19 @@ The \expr{extern} keyword causes the compiler to not generate the field in the o
 
 \trivia{\expr{:extern} metadata}{Prior to Haxe 4, this access modifier could only be applied to a field using the \expr{:extern} \tref{metadata}{lf-metadata}.}
 
+
+\subsection{Final}
+\label{class-field-final}
+
+\since{4.0.0}
+
+The \expr{final} keyword can be used on class fields with the following effects:
+
+\begin{itemize}
+	\item \expr{final function ...} to make a function non-overridable in subclasses.
+	\item \expr{final x = ...} to declare a constant that requires immediate initialization and cannot be written to.
+	\item \expr{inline final x = ...} is the same but \tref{inlines}{class-field-inline} the value wherever it is used. Only constant values can be assigned.
+\end{itemize}
+
+\expr{static final} fields should be initialized immediately by providing an expression. If a class has non-static \expr{final} variables which are not initialized immediately, it requires a constructor which has to assign values to all such fields. \expr{final} does not affect \tref{visibility}{class-field-visibility} and it is not supported on \tref{properties}{class-field-property}.
+
