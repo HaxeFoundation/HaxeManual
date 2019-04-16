@@ -562,6 +562,17 @@ typedef User = {
 }
 \end{lstlisting}
 
+\since{4.0.0}
+
+In Haxe 4 it is also possible to declare a structure field as optional in the \emph{class notation} by prefixing its name with \ic{?}:
+
+\begin{lstlisting}
+typedef User = {
+  var age : Int;
+  var name : String;
+  var ?phoneNumber : String;
+}
+\end{lstlisting}
 
 
 
