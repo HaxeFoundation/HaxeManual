@@ -97,7 +97,7 @@ Starting with Haxe 4.0, Haxe can generate \href{https://developer.mozilla.org/en
 
 To enable ES6 generation mode, simply add \ic{-D js-es=6} to the compiler arguments.
 
-\paragraph{Accessing \expr{this} before calling \expr{super} constructors}
+\paragraph{Accessing this before calling super constructors}
 
 One of significant differences between Haxe classes and ES6 classes reveals itself when inheritance is used. ES6 does not allow accessing \ic{this} in any way before calling \expr{super()} within a child class constructor, while Haxe allows calling \ic{super()} at any place in the constructor.
 
