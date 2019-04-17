@@ -196,7 +196,7 @@ Maps are initialized similarly to arrays, but include both keys and their corres
 
 \since{4.0.0}
 
-Where a map type is expected, \expr{[]} refers to an empty map.
+Where a map type is expected (based on \tref{top-down inference}{type-system-top-down-inference}), \expr{[]} refers to an empty map.
 
 
 \section{Object Declaration}
@@ -290,7 +290,7 @@ In Haxe 4, the alternative keyword \expr{final} was introduced at the expression
 
 \haxe{assets/Final.hx}
 
-It is important to note that \expr{final} may not have the intended effect with types that are not imutable, such as arrays or objects. Even though the variable cannot have a different object assigned to it, the object itself can still be modified using its methods:
+It is important to note that \expr{final} may not have the intended effect with types that are not immutable, such as arrays or objects. Even though the variable cannot have a different object assigned to it, the object itself can still be modified using its methods:
 
 \haxe{assets/FinalMutable.hx}
 
@@ -322,7 +322,7 @@ However, there are some differences related to type parameters and the position 
 \label{expression-arrow-function}
 \paragraph{Arrow functions}
 
-Haxe 4 introduced a shorter syntax for defining local functions without a name, very similar to the function type syntax. The argument list is defined between two parentheses, followed by an arrow \expr{->}, followed directly by the expression:
+Haxe 4 introduced a shorter syntax for defining local functions without a name, very similar to the function type syntax. The argument list is defined between two parentheses, followed by an arrow \expr{->}, followed directly by the expression. An arrow function with a single argument does not require parentheses around the argument, and an arrow function with zero arguments should be declared with \expr{() -> ...}:
 
 \haxe{assets/ArrowFunction.hx}
 

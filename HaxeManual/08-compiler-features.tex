@@ -740,7 +740,7 @@ The static analyzer currently comes with the following modules. Unless noted oth
 \label{cr-loop-unrolling}
 \since{4.0.0}
 
-The compiler tries to unroll short iterations of \expr{for} loops over constant ranges. This can produce faster code that uses fewer variables.
+The compiler tries to unroll short iterations of \expr{for} loops over constant ranges. This can produce faster code without the use of a loop:
 
 \begin{lstlisting}
 for (i in 0...4) {
@@ -757,5 +757,5 @@ test(2);
 test(3);
 \end{lstlisting}
 
-Whether a loop is unrolled or not depends on the number of iterations of the loop and the number of expressions inside the loop body. This threshold can be configured using the \expr{-D loop_unroll_max_cost=...} compile-time define.
+Whether a loop is unrolled or not depends on the loop unrolling cost, which is defined as the number of iterations of the loop and the number of expressions inside the loop body. This threshold is 250 by default, but can be configured using the \expr{-D loop_unroll_max_cost=...} compile-time define.
 
