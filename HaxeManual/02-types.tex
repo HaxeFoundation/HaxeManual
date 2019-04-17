@@ -319,6 +319,12 @@ It is not necessary for child classes to define their own constructors, but if t
 
 A class may override \tref{methods}{class-field-method} of its parent class, which requires the explicit \expr{override} keyword. The effects and restrictions of this are detailed in \Fullref{class-field-overriding}.
 
+\since{4.0.0}
+
+Classes can be declared with the keyword \expr{final} to prevent them from being extended.
+
+\trivia{\expr{:final} metadata}{Prior to Haxe 4, marking classes as final was possible using the \expr{:final} metadata.}
+
 
 \subsection{Interfaces}
 \label{types-interfaces}
@@ -359,6 +365,10 @@ Interfaces can extend multiple other interfaces using the \expr{extends} keyword
 \begin{lstlisting}
 interface Debuggable extends Printable extends Serializable
 \end{lstlisting}
+
+\since{4.0.0}
+
+Analogously to classes, interfaces can also be marked with the keyword \expr{final}, preventing them from being extended.
 
 
 \trivia{Implements Syntax}{Haxe versions prior to 3.0 required multiple \expr{implements} keywords to be separated by a comma. We decided to adhere to the de-facto standard of Java and got rid of the comma. This was one of the breaking changes between Haxe 2 and 3.}
@@ -522,6 +532,11 @@ typedef Point = {
 }
 \end{lstlisting}
 
+\since{4.0.0}
+
+The fields of a structure may also be declared with \expr{final}, which only allows them to be assigned once. Such a structure will only \tref{unify}{type-system-unification} with other types if the corresponding fields are also \expr{final}.
+
+
 \subsection{Optional Fields}
 \label{types-structure-optional-fields}
 
@@ -545,6 +560,17 @@ typedef User = {
 }
 \end{lstlisting}
 
+\since{4.0.0}
+
+In Haxe 4 it is also possible to declare a structure field as optional in the \emph{class notation} by prefixing its name with \ic{?}:
+
+\begin{lstlisting}
+typedef User = {
+  var age : Int;
+  var name : String;
+  var ?phoneNumber : String;
+}
+\end{lstlisting}
 
 
 
@@ -569,6 +595,12 @@ It is also possible to extend multiple structures:
 
 \haxe{assets/Extension2.hx}
 
+\since{4.0.0}
+
+Haxe 4 introduces an alternative notation for extension, separating each extended structure with a \expr{\&} symbol.
+
+\haxe{assets/Extension3.hx}
+
 
 
 \section{Function Type}
@@ -576,20 +608,27 @@ It is also possible to extend multiple structures:
 
 \todo{It seems a bit convoluted explanations. Should we maybe start by "decoding" the meaning of  Void -> Void, then Int -> Bool -> Float, then maybe have samples using \$type}
 
-The function type, along with the \tref{monomorph}{types-monomorph}, is a type which is usually well-hidden from Haxe users, yet present everywhere. We can make it surface by using \expr{\$type}, a special Haxe identifier which outputs the type its expression has during compilation :
+The function type, along with the \tref{monomorph}{types-monomorph}, is a type which is usually well-hidden from Haxe users, yet present everywhere. We can make it surface by using \expr{\$type}, a special Haxe identifier which outputs the type its expression has during compilation:
 
 \haxe{assets/FunctionType.hx}
 
-There is a strong resemblance between the declaration of function \expr{test} and the output of the first \expr{\$type} expression, yet also a subtle difference:
+There is a strong resemblance between the declaration of function \expr{test} and the output of the first \expr{\$type} expression, with one subtle difference: the \emph{function return type} appears at the end after a \expr{->} symbol.
 
-\begin{itemize}
-	\item \emph{Function arguments} are separated by the special arrow token \expr{->} instead of commas, and
-	\item the \emph{function return type} appears at the end after another \expr{->}.
-\end{itemize}
+In either notation it is obvious that the function \expr{test} accepts one argument of type \type{Int} and one argument of type \type{String} and returns a value of type \type{Bool}. If a call to this function, such as \expr{test(1, "foo")}, is made within the second \expr{\$type} expression, the Haxe typer checks if \expr{1} can be assigned to \type{Int} and if \expr{"foo"} can be assigned to \type{String}. The type of the call is then equal to the type of the value \expr{test} returns, which is \type{Bool}.
 
-In either notation it is obvious that the function \expr{test} accepts a first argument of type \type{Int}, a second argument of type \type{String} and returns a value of type \type{Bool}. If a call to this function, such as \expr{test(1, "foo")}, is made within the second \expr{\$type} expression, the Haxe typer checks if \expr{1} can be assigned to \type{Int} and if \expr{"foo"} can be assigned to \type{String}. The type of the call is then equal to the type of the value \expr{test} returns, which is \type{Bool}.
+Note that argument names are optional in the function type. If a function type has other function types as argument or return type, parentheses can be used to group them correctly. For example, \type{(Int, ((Int) -> Void)) -> Void} represents a function which has one argument of type \type{Int} and one argument of function type \type{Int -> Void} and a return type \type{Void}.
 
-If a function type has other function types as argument or return type, parentheses can be used to group them correctly. For example, \type{Int -> (Int -> Void) -> Void} represents a function which has a first argument of type \type{Int}, a second argument of function type \type{Int -> Void} and a return of \type{Void}.
+\haxe{assets/FunctionType2.hx}
+
+As shown in the above example, the type of a function which takes no arguments uses \expr{()} to represent the argument list.
+
+\paragraph{Old function type notation}
+
+Before Haxe 4, the function type notation was more similar to other functional programming languages, using \expr{->} in place of all the commas separating the argument types. The \expr{test} function above would be typed as \expr{Int -> String -> Bool} in this notation. \expr{test2} would be typed as \expr{Void -> Bool}.
+
+The older notation is still supported, although newer code should use the new notation described above, since it more clearly differentiates argument types from the return type.
+
+\trivia{New function type notation}{The new function type notation was based on the syntax of \tref{arrow functions}{expression-arrow-function}, which were also introduced in Haxe 4.}
 
 
 
@@ -599,7 +638,7 @@ If a function type has other function types as argument or return type, parenthe
 Optional arguments are declared by prefixing an argument identifier with a question mark \expr{?}:
 
 \haxe[label=assets/OptionalArguments.hx]{assets/OptionalArguments.hx}
-Function \expr{test} has two optional arguments: \expr{i} of type \type{Int} and \expr{s} of \type{String}. This is directly reflected in the function type output by line 3. 
+Function \expr{test} has two optional arguments: \expr{i} of type \type{Int} and \expr{s} of \type{String}. This is directly reflected in the function type output by line 4. 
 This example program calls \expr{test} four times and prints its return value.
 
 \begin{enumerate}
@@ -623,7 +662,7 @@ This example is very similar to the one from \Fullref{types-function-optional-ar
 
 %TODO: Default values do not imply nullability, even if the value is \expr{null}. 
 
-Default values in Haxe are not part of the type and are not replaced at call-site (unless the function is \tref{inlined}{class-field-inline}, which can be considered as a more typical approach. On some targets the compiler may still pass \expr{null} for omitted argument values and generate code similar to this into the function:
+Default values in Haxe are not part of the type and are not replaced at the call-site (unless the function is \tref{inlined}{class-field-inline}). On some targets the compiler may still pass \expr{null} for omitted argument values and generate code similar to this into the function:
 \begin{lstlisting}
 	static function test(i = 12, s = "bar") {
 		if (i == null) i = 12;
@@ -747,7 +786,7 @@ The syntax is reminiscent of classes and the semantics are indeed similar. In fa
 Furthermore, abstracts can be instantiated and used just like classes:
 
 \haxe[firstline=7,lastline=12]{assets/MyAbstract.hx}
-As mentioned before, abstracts are a compile-time feature, so it is interesting to see what the above actually generates. A suitable target for this is \target{JavaScript}, which tends to generate concise and clean code. Compiling the above (using \texttt{haxe -main MyAbstract -js myabstract.js}) shows this \target{JavaScript} code:
+As mentioned before, abstracts are a compile-time feature, so it is interesting to see what the above actually generates. A suitable target for this is \target{JavaScript}, which tends to generate concise and clean code. Compiling the above (using \texttt{haxe --main MyAbstract --js myabstract.js}) shows this \target{JavaScript} code:
 
 \lang{js}\begin{lstlisting}
 var a = 12;
@@ -843,6 +882,20 @@ Overloading unary operators is analogous:
 \haxe{assets/AbstractUnopOverload.hx}
 Both binary and unary operator overloads can return any type.
 
+\since{4.0.0}
+
+In addition to binary and unary operators, the \exrp{@:op} syntax can be used to overload field access and array access on abstracts.
+
+\begin{itemize}
+	\item \expr{@:op([])} on a function with one argument overloads array read accces.
+	\item \expr{@:op([])} on a function with two arguments overloads array write accces, with the first argument being the index and the second one being the written value.
+	\item \expr{@:op(a.b)} on a function with one argument overloads field read access.
+	\item \expr{@:op(a.b)} on a function with two arguments overloads field write access.
+\end{itemize}
+
+\haxe{assets/AbstractAccessOverload.hx}
+
+
 \paragraph{Exposing underlying type operations}
 
 It is also possible to omit the method body of a \expr{@:op} function, but only if the underlying type of the abstract allows the operation in question and if the resulting type can be assigned back to the abstract.
@@ -931,6 +984,17 @@ This is similar to accessing \tref{variables declared as inline}{class-field-inl
 	\item The pattern matcher checks for \tref{exhaustiveness}{lf-pattern-matching-exhaustiveness} when \tref{matching}{lf-pattern-matching} an enum abstract.
 	\item Defining fields requires less syntax.
 \end{itemize}
+
+\since{4.0.0}
+
+Since Haxe 4, it is possible to declare enum abstracts without using the \expr{:enum} metadata, instead using the more natural syntax \expr{enum abstract}. Additionally, if the underlying type is \expr{String} or \expr{Int}, the values for the enum cases can be omitted and are deduced by the compiler:
+
+\begin{itemize}
+	\item For \type{Int} abstracts, the deduced values increment the last user-defined value, or start at zero if no value was declared yet.
+	\item For \type{String} abstracts, the deduced value is the identifier of the enum case.
+\end{itemize}
+
+\haxe{assets/AbstractEnum2.hx}
 
 
 \subsection{Forwarding abstract fields}

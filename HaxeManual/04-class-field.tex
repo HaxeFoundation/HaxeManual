@@ -286,7 +286,7 @@ As evident, the function body \expr{(s1 + s2) / 2} of field \expr{mid} was gener
 
 It is not always easy to judge if a function qualifies for being inline. Short functions that have no writing expressions (such as a \expr{=} assignment) are usually a good choice, but even more complex functions can be candidates. However, in some cases inlining can actually be detrimental to performance, e.g. because the compiler has to create temporary variables for complex expressions.
 
-Inline is not guaranteed to be done. The compiler might cancel inlining for various reasons or a user could supply the \ic{--no-inline} command line argument to disable inlining. The only exception is if the class is \tref{extern}{lf-externs} or if the class field has the \expr{:extern} \tref{metadata}{lf-metadata}, in which case inline is forced. If it cannot be done, the compiler emits an error.
+Inline is not guaranteed to be done. The compiler might cancel inlining for various reasons or a user could supply the \ic{--no-inline} command line argument to disable inlining. The only exception is if the class is \tref{extern}{lf-externs} or if the class field has the \tref{\expr{extern}}{class-field-extern} access modifier, in which case inline is forced. If it cannot be done, the compiler emits an error.
 
 It is important to remember this when relying on inline:
 
@@ -323,3 +323,30 @@ All fields are member fields unless the modifier \expr{static} is used. Static f
 \haxe{assets/StaticField.hx}
 
 Static \tref{variable}{class-field-variable} and \tref{property}{class-field-property} fields can have arbitrary initialization \tref{expressions}{expression}.
+
+
+\subsection{Extern}
+\label{class-field-extern}
+
+\since{4.0.0}
+
+The \expr{extern} keyword causes the compiler to not generate the field in the output. This can be used in combination with the \tref{\expr{inline}}{class-field-inline} keyword to force a field to be inlined (or cause an error if this is not possible). Forcing inline may be desirable in abstracts or extern classes.
+
+\trivia{\expr{:extern} metadata}{Prior to Haxe 4, this access modifier could only be applied to a field using the \expr{:extern} \tref{metadata}{lf-metadata}.}
+
+
+\subsection{Final}
+\label{class-field-final}
+
+\since{4.0.0}
+
+The \expr{final} keyword can be used on class fields with the following effects:
+
+\begin{itemize}
+	\item \expr{final function ...} to make a function non-overridable in subclasses.
+	\item \expr{final x = ...} to declare a constant that must be initialized immediately or in the constructor and cannot be written to.
+	\item \expr{inline final x = ...} is the same but \tref{inlines}{class-field-inline} the value wherever it is used. Only constant values can be assigned.
+\end{itemize}
+
+\expr{static final} fields must be initialized immediately by providing an expression. If a class has non-static \expr{final} variables which are not initialized immediately, it requires a constructor which has to assign values to all such fields. \expr{final} does not affect \tref{visibility}{class-field-visibility} and it is not supported on \tref{properties}{class-field-property}.
+

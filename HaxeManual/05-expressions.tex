@@ -28,48 +28,51 @@ Haxe reserves the identifier prefix \expr{_hx_} for internal use. This is not en
 The following Haxe keywords may not be used as identifiers:
 
 \begin{itemize}
-	\item abstract
-	\item break
-	\item case
-	\item cast
-	\item catch
-	\item class
-	\item continue
-	\item default
-	\item do
-	\item dynamic
-	\item else
-	\item enum
-	\item extends
-	\item extern
-	\item false
-	\item for
-	\item function
-	\item if
-	\item implements
-	\item import
-	\item in
-	\item inline
-	\item interface
-	\item macro
-	\item new
-	\item null
-	\item override
-	\item package
-	\item private
-	\item public
-	\item return
-	\item static
-	\item switch
-	\item this
-	\item throw
-	\item true
-	\item try
-	\item typedef
-	\item untyped
-	\item using
-	\item var
-	\item while
+	\item \expr{abstract}
+	\item \expr{break}
+	\item \expr{case}
+	\item \expr{cast}
+	\item \expr{catch}
+	\item \expr{class}
+	\item \expr{continue}
+	\item \expr{default}
+	\item \expr{do}
+	\item \expr{dynamic}
+	\item \expr{else}
+	\item \expr{enum}
+	\item \expr{extends}
+	\item \expr{extern}
+	\item \expr{false}
+	\item \expr{final}
+	\item \expr{for}
+	\item \expr{function}
+	\item \expr{if}
+	\item \expr{implements}
+	\item \expr{import}
+	\item \expr{in}
+	\item \expr{inline}
+	\item \expr{interface}
+	\item \expr{macro}
+	\item \expr{new}
+	\item \expr{null}
+	\item \expr{operator}
+	\item \expr{overload}
+	\item \expr{override}
+	\item \expr{package}
+	\item \expr{private}
+	\item \expr{public}
+	\item \expr{return}
+	\item \expr{static}
+	\item \expr{switch}
+	\item \expr{this}
+	\item \expr{throw}
+	\item \expr{true}
+	\item \expr{try}
+	\item \expr{typedef}
+	\item \expr{untyped}
+	\item \expr{using}
+	\item \expr{var}
+	\item \expr{while}
 \end{itemize}
 
 
@@ -186,6 +189,15 @@ This should be considered when deciding if a function should be \tref{inlined}{c
 
 Advanced initialization techniques are described in \Fullref{lf-array-comprehension}.
 
+\section{Map Declaration}
+\label{expression-map-declaration}
+
+Maps are initialized similarly to arrays, but include both keys and their corresponding values. \expr{["example" => 1, "data" => 2]} initializes a map (\type{Map<String, Int>} specifically) where the key \expr{"example"} stores the value \expr{1} and \expr{"data"} stores the value 2.
+
+\since{4.0.0}
+
+Where a map type is expected (based on \tref{top-down inference}{type-system-top-down-inference}), \expr{[]} refers to an empty map.
+
 
 \section{Object Declaration}
 \label{expression-object-declaration}
@@ -255,7 +267,7 @@ subject(e1, ..., eN);
 \end{itemize}
 
 
-\section{var}
+\section{var and final}
 \label{expression-var}
 
 The \expr{var} keyword allows declaring multiple variables, separated by comma \expr{,}. Each variable has a valid \tref{identifier}{define-identifier} and optionally a value assignment following the assignment operator \expr{=}. Variables can also have an explicit type-hint.
@@ -271,6 +283,16 @@ var d,e = 2;
 \end{lstlisting}
 
 The scoping behavior of local variables is described in \Fullref{expression-block}.
+
+\since{4.0.0}
+
+In Haxe 4, the alternative keyword \expr{final} was introduced at the expression level. Variables declared with \expr{final} instead of \expr{var} can only be assigned a value once.
+
+\haxe{assets/Final.hx}
+
+It is important to note that \expr{final} may not have the intended effect with types that are not immutable, such as arrays or objects. Even though the variable cannot have a different object assigned to it, the object itself can still be modified using its methods:
+
+\haxe{assets/FinalMutable.hx}
 
 
 \section{Local Functions}
@@ -295,6 +317,23 @@ However, there are some differences related to type parameters and the position 
 	\item Rvalue functions may have a name, but cannot have type parameters.
 \end{itemize}
 
+\since{4.0.0}
+
+\label{expression-arrow-function}
+\paragraph{Arrow functions}
+
+Haxe 4 introduced a shorter syntax for defining local functions without a name, very similar to the function type syntax. The argument list is defined between two parentheses, followed by an arrow \expr{->}, followed directly by the expression. An arrow function with a single argument does not require parentheses around the argument, and an arrow function with zero arguments should be declared with \expr{() -> ...}:
+
+\haxe{assets/ArrowFunction.hx}
+
+Arrow functions are very similar to normal local functions, with a couple of differences:
+
+\begin{itemize}
+	\item The expression after the arrow is implicitly treated as the return value of the function. For simple functions like \expr{myConcat} above, this can be a convenient way to shorten the code. Normal \expr{return} expressions can still be used, as shown in \expr{myContains} above.
+	\item There is no way to declare the return type, although you can use a \tref{type check}{expression-type-check} to unify the function expression with the desired return type.
+	\item \tref{Metadata}{lf-metadata} cannot be applied to the arguments of an arrow function.
+\end{itemize}
+
 
 \section{new}
 \label{expression-new}
@@ -316,7 +355,7 @@ Haxe does not support traditional for-loops known from C. Its \expr{for} keyword
 for (v in e1) e2;
 \end{lstlisting}
 
-The typer ensures that the type of \expr{e1} can be iterated over, which is typically the case if it has an  \tref{iterator}{lf-iterators} method returning an \type{Iterator<T>}, or if it is an \type{Iterator<T>} itself.
+The typer ensures that the type of \expr{e1} can be iterated over, which is typically the case if it has an  \tref{\expr{iterator}}{lf-iterators} method returning an \type{Iterator<T>}, or if it is an \type{Iterator<T>} itself.
 
 Variable \expr{v} is then available within loop body \expr{e2} and holds the value of the individual elements of collection \expr{e1}.
 
@@ -338,7 +377,7 @@ Haxe has a special range operator to iterate over intervals. It is a binary oper
 for (i in 0...10) trace(i); // 0 to 9
 \end{lstlisting}
 
-The type of a \expr{for} expression is always \type{Void}, meaning it has no value and cannot be used as right-side expression.
+The type of a \expr{for} expression is always \type{Void}, meaning it has no value and cannot be used as right-side expression. However, we'll later introduce \tref{array comprehension}{lf-array-comprehension}, which lets you construct arrays using \expr{for} expressions.
 
 The control flow of loops can be affected by \tref{\expr{break}}{expression-break} and \tref{\expr{continue}}{expression-continue} expressions.
 
@@ -352,6 +391,29 @@ for (i in 0...10) {
 // 1
 // 3
 // 4
+\end{lstlisting}
+
+\since{4.0.0}
+
+\paragraph{Key-value iteration}
+\label{expression-for-keyvalue}
+
+In Haxe 4 it is possible to iterate over collections of key-value pairs. The syntax is the same as regular \expr{for} loops, but the single variable identifier is replaced with the key variable identifier, followed by \expr{=>}, followed by the value variable identifier:
+
+\begin{lstlisting}
+for (k => v in e1) e2;
+\end{lstlisting}
+
+Type safety is ensured for key-value iteration as well. The typer checks that \expr{e1} either has a \expr{keyValueIterator} method returning returning a \type{KeyValueIterator<K, V>}, or if it is a \type{KeyValueIterator<K, V>} itself. Here \type{K} and \type{V} refer to the type of the keys and the values, respectively.
+
+\begin{lstlisting}
+var map = [1 => 101, 2 => 102, 3 => 103];
+for (key => value in map) {
+  trace(key, value);
+}
+// 1, 101
+// 2, 102
+// 3, 103
 \end{lstlisting}
 
 \paragraph{Related content}
@@ -604,3 +666,35 @@ The parentheses are mandatory. Unlike \tref{safe casts}{expression-cast-safe} th
 \end{enumerate}
 
 This has the usual effect of both operations such as the given type being used as expected type when performing \tref{unqualified identifier resolution}{type-system-resolution-order} and the unification checking for \tref{abstract casts}{types-abstract-implicit-casts}.
+
+
+\section{inline}
+\label{expression-inline}
+\since{4.0.0}
+
+The \expr{inline} keyword can be used before a \tref{function call}{expression-function-call} or a \tref{constructor call}{expression-new}. This allows a finer-grained control of inlining, unlike the \tref{inline access modifier}{class-field-inline}.
+
+\haxe{assets/InlineCallsite.hx}
+
+The generated JavaScript output is:
+
+\begin{lstlisting}
+(function ($global) { "use strict";
+var Test = function() { };
+Test.mid = function(s1,s2) {
+	return (s1 + s2) / 2;
+};
+Test.main = function() {
+	var a = 1;
+	var b = 2;
+	var c = Test.mid(a,b);
+	var d = (a + b) / 2;
+};
+Test.main();
+})({});
+\end{lstlisting}
+
+Note that \expr{c} produces a call to the function, whereas \expr{d} does not. The usual warnings about what makes a good candidate for inlining still hold (see \Fullref{class-field-inline}).
+
+An \expr{inline new} call can be used to avoid creating a local class instance. See \Fullref{lf-inline-constructor} for more details.
+

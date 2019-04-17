@@ -26,6 +26,14 @@ Create and populate arrays quickly using for loops and logic.
 var evenNumbers = [ for (i in 0...100) if (i & 1 == 0) i ];
 \end{lstlisting}
 
+\emph{\tref{Map Comprehension}{lf-map-comprehension}:}
+
+Create and populate maps quickly using for loops and logic.
+
+\begin{lstlisting}
+var primality = [ for (i in 0...100) i => isPrime(i) ];
+\end{lstlisting}
+
 \emph{\tref{Classes, interfaces and inheritance}{types-class-instance}:}
 
 Haxe allows structuring code in classes, making it an object-oriented language. Common related features known from languages such as Java are supported, including inheritance and interfaces.
@@ -342,7 +350,7 @@ The following classes from the Haxe Standard Library are designed to be used as 
 \subsection{Introduction}
 \label{lf-pattern-matching-introduction}
 
-Pattern matching is the process of branching depending on a value matching given, possibly deep patterns. In Haxe, all pattern matching is done within a \tref{\expr{switch} expression}{expression-switch} where the individual \expr{case} expressions represent the patterns. Here we will explore the syntax for different patterns using this data structure as running example:
+Pattern matching is the process of branching depending on a value matching given, possibly deep patterns. In Haxe, pattern matching is primarily done within \tref{\expr{switch} expressions}{expression-switch} where the individual \expr{case} expressions represent the patterns. Here we will explore the syntax for different patterns using this data structure as running example:
 
 \haxe[firstline=1,lastline=4]{assets/PatternMatching.hx}
 
@@ -391,11 +399,19 @@ This would return one of the following:
 	\item Otherwise \expr{"none"} is returned.
 \end{itemize}
 
-It is also possible to use = to capture values which are further matched:
+It is also possible to use \expr{=} to capture values which are further matched:
 
 \haxe[firstline=32,lastline=36]{assets/PatternMatching.hx}
 
 Here, \expr{leafNode} is bound to \expr{Leaf("foo")} if the input matches that. In all other cases, \expr{myTree} itself is returned: \expr{case x} works similar to \expr{case _} in that it matches anything, but with an identifier name like \expr{x} it also binds the matched value to that variable.
+
+\since{4.0.0}
+
+If the compiler detects that the name of a ``catch-all'' variable is very similar to an enum constructor, it will warn about a potential typo. This can be avoided by prefixing the variable identifier with \expr{var}:
+
+\haxe[firstline=107,lastline=113]{assets/PatternMatching.hx}
+
+Any capture variable can be prefixed with \expr{var}, even within sub-patterns.
 
 \subsection{Structure matching}
 \label{lf-pattern-matching-structure}
@@ -564,7 +580,7 @@ Of course the use of single-quote enclosed strings without any interpolation rem
 \section{Array Comprehension}
 \label{lf-array-comprehension}
 
-Array comprehension in Haxe uses existing syntax to allow concise initialization of arrays. It is identified by \expr{for} or \expr{while} constructs:
+Array comprehension in Haxe combines \tref{array declaration}{expression-array-declaration} and loops to allow concise initialization of arrays. It is identified by \tref{\expr{for}}{expression-for} or \tref{\expr{while}}{expression-while} constructs:
 
 \haxe{assets/ArrayComprehension.hx}
 
@@ -590,7 +606,7 @@ The loop expression can be anything, including conditions and nested loops, so t
 \section{Map Comprehension}
 \label{lf-map-comprehension}
 
-Map comprehension in Haxe uses existing syntax to allow concise initialization for \type{Map}. Maps are initialized like arrays, but use the map literal syntax with the \ic{=>} operator. It is identified by \expr{for} or \expr{while} constructs:
+Map comprehension in Haxe is similar to array comprehension, but just like \tref{map declaration}{expression-map-declaration}, it additionally uses the \ic{=>} operator:
 
 \haxe{assets/MapComprehension.hx}
 
@@ -639,6 +655,21 @@ The type \type{MyStringIterator} in this example qualifies as iterator: It defin
 \haxe{assets/Iterable.hx}
 
 Here we do not setup a full iterator like in the previous example, but instead define that the \type{MyArrayWrap<T>} has a method \expr{iterator}, effectively forwarding the iterator method of the wrapped \type{Array<T>} type.
+
+\since{4.0.0}
+
+The standard library also includes key-value iterators to support \tref{key-value iteration}{expression-for-keyvalue}:
+
+\begin{lstlisting}
+typedef KeyValueIterator<K, V> = {
+	function hasNext() : Bool;
+	function next() : {key: K, value: V};
+}
+
+typedef KeyValueIterable<K, V> = {
+	function iterator() : KeyValueIterator<K, V>;
+}
+\end{lstlisting}
 
 \paragraph{Related content}
 \begin{itemize}
@@ -714,6 +745,10 @@ Metadata starting with \expr{:}, such as \expr{@:keep}, is available at compile 
 
 \paragraph{Built-in Compiler Metadata}
 An exhaustive list of all defined metadata can be obtained by running \expr{haxe --help-metas} from command line.
+
+\since{4.0.0}
+
+Prior to Haxe 4, metadata names had to be valid identifiers. Starting in Haxe 4, metadata names can consist of multiple identifiers separated by \expr{.} symbols. This change was primarily intended to make it easier to organize compile-time metadata. Runtime metadata with such a name can only be accessed via \tref{dynamic access}{types-dynamic-access}.
 
 
 \paragraph{Related content}
