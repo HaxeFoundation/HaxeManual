@@ -875,8 +875,28 @@ Older browsers (Internet Explorer 7, for instance) may not have native \emph{JSO
 \section{Input/Output}
 \label{std-input-output}
 
-\section{Sys/sys}
+\section{Sys}
 \label{std-sys}
+
+The majority of Haxe targets are so-called ``sys'' targets. This means the targets have access to system APIs such as the filesystem, networking, threads, and more. The only non-sys targets supported by Haxe are Flash, JavaScript, and ActionScript 3, although JavaScript can support sys APIs when running under Node.js runtime.
+
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{https://api.haxe.org/sys/}{sys package} on the API documentation for more details on its classes.
+\end{itemize}
+
+\subsection{Threading}
+
+\since{4.0.0}
+
+A \href{https://api.haxe.org/sys/thread/Thread.html}{unified threading API} is available on some sys targets. The compile-time define \expr{target.threaded} is set when the API is available. The API allows very simple creation of threads from functions:
+
+\haxe{assets/Threads.hx}
+
+All spawned threads are currently treated as daemon threads, meaning that the main thread will not wait for their completion.
+
+Due to the nature of threads accessing a shared memory space with all the Haxe variables and objects, it is possible to run into issues due to deadlocks and race conditions. The standard library provides some core synchronization constructs in the \href{https://api.haxe.org/sys/thread/}{\expr{sys.thread}} package.
+
 
 \section{Remoting}
 \label{std-remoting}
