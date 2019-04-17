@@ -666,3 +666,51 @@ The parentheses are mandatory. Unlike \tref{safe casts}{expression-cast-safe} th
 \end{enumerate}
 
 This has the usual effect of both operations such as the given type being used as expected type when performing \tref{unqualified identifier resolution}{type-system-resolution-order} and the unification checking for \tref{abstract casts}{types-abstract-implicit-casts}.
+
+
+\section{inline}
+\label{expression-inline}
+\since{4.0.0}
+
+The \expr{inline} keyword can be used before a \tref{function call}{expression-function-call} or a \tref{constructor call}{expression-new}. This allows a finer-grained control of inlining, unlike the \tref{inline access modifier}{class-field-inline}.
+
+\haxe{assets/InlineCallsite.hx}
+
+The generated JavaScript output is:
+
+\begin{lstlisting}
+(function ($global) { "use strict";
+var Test = function() { };
+Test.mid = function(s1,s2) {
+	return (s1 + s2) / 2;
+};
+Test.main = function() {
+	var a = 1;
+	var b = 2;
+	var c = Test.mid(a,b);
+	var d = (a + b) / 2;
+};
+Test.main();
+})({});
+\end{lstlisting}
+
+Note that \expr{c} produces a call to the function, whereas \expr{d} does not. The usual warnings about what makes a good candidate for inlining still hold (see \fullref{class-field-inline}).
+
+An \expr{inline new} call can be used to avoid creating a local class instance, extracting its variables into separate variables instead:
+
+\haxe{assets/InlineConstructor.hx}
+
+The generated JavaScript output is:
+
+\begin{lstlisting}
+(function ($global) { "use strict";
+var Test = function() { };
+Test.main = function() {
+	var pt_x = 3;
+	var pt_y = 5;
+	pt_x = pt_y + 10;
+};
+Test.main();
+})({});
+\end{lstlisting}
+
