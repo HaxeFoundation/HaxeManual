@@ -1238,8 +1238,9 @@ for native Lua libraries.
 The Lua target enables the following define flags for the Haxe complier:
 
 \begin{description}
-	\item[\expr{-D lua_ver}] Enable special features for a specific Lua version. Currently, this flag will enable extern methods that are specific to certain versions (e.g. table.pack in Lua > 5.2).
+	\item[\expr{-D lua-ver}] Enable special features for a specific Lua version. Currently, this flag will enable extern methods that are specific to certain versions (e.g. table.pack in Lua > 5.2).
 	\item[\expr{-D luajit}] Enable special features for LuaJIT.  Currently this flag will enable the \ic{jit} and \ic{ffi} module namespaces.
+	\item[\expr{-D lua-vanilla}] Generate code lacking some functionality (e.g. UTF-8) but with no additional library dependencies.
 \end{description}
 
 \subsection{Multireturns}
