@@ -576,3 +576,11 @@ For step \ref{resolution:import} of this algorithm as well as steps \ref{resolut
 	\item For imports, a match is made if the name equals.
 	\item For \tref{static extensions}{lf-static-extension}, a match is made if the name equals and the first argument \tref{unifies}{type-system-unification}. Within a given type being used as static extension, the fields are checked from top to bottom.
 \end{itemize}
+
+
+\section{untyped}
+\label{type-system-untyped}
+
+\emph{Important note:} This syntax should be avoided whenever possible. The produced code cannot be properly checked by the Haxe compiler and so it may have type errors or other bugs that would be caught at compile time in regular code. Use only when absolutely necessary and when you know what you are doing.
+
+It is possible to completely circumvent the type checker by prefixing an expression with the keyword \expr{untyped}. Any expression that can be parsed is then accepted and emitted into the generated output. This is primarily used with the target-specific \tref{code injection expressions}{target-syntax}.

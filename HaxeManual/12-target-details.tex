@@ -2,6 +2,53 @@
 \label{target-details}
 \state{NoContent}
 
+\section{Accessing Target-specific Syntax}
+\label{target-syntax}
+
+When writing code for a particular target, it might be necessary to access certain features that are only available on that target and inaccessible in Haxe code. It is still possible to access these features using the target-specific \type{Syntax} APIs:
+
+\begin{itemize}
+	\item \href{https://api.haxe.org/v/development/js/Syntax.html}{\type{js.Syntax}} - JavaScript syntax
+	\item \href{https://api.haxe.org/v/development/php/Syntax.html}{\type{php.Syntax}} - PHP syntax
+	\item \href{https://api.haxe.org/v/development/python/Syntax.html}{\type{python.Syntax}} - Python syntax
+\end{itemize}
+
+\emph{Important note:} Before using these functions, make sure there is no alternative available in the Haxe Standard Library. The resulting syntax can not be validated by the Haxe compiler, which may result in invalid or error-prone code in the output.
+
+\paragraph{\expr{Syntax.code(expr, args...)}}
+\since{4.0.0}
+
+Injects raw code expressions. The expression is a string which may include \expr{\{0\}}, \expr{\{1\}}, \expr{\{2\}}, etc. - these are replaced with the corresponding arguments provided to the function. This is important if the code needs to reference Haxe fields, since the names of variables in the generated output may not correspond to their names in Haxe code. The Haxe compiler will take care of adding quotes if strings are provided. The function can also return values, although the return type is always \type{Dynamic}.
+
+An example of \expr{js.Syntax.code}:
+
+\begin{lstlisting}
+var myMessage = "Is Haxe great?";
+var output:Bool = Syntax.code("confirm({0})", myMessage);
+\end{lstlisting}
+
+The generated JavaScript output is:
+
+\begin{lstlisting}
+var myMessage = "Is Haxe great?";
+var output = confirm(myMessage);
+\end{lstlisting}
+
+Other functions are documented in the corresponding API sections. These generally include native operators that are not available in Haxe.
+
+\paragraph{Other platforms}
+
+It is planned to implement \type{Syntax} APIs for other targets in future releases. For the time being, it is still possible to access target-specific syntax on some of the other platforms, albeit in a less type-safe manner, using an \tref{\expr{untyped}}{type-system-untyped} expression:
+
+\begin{itemize}
+	\item[C++] \expr{untyped __cpp__(expr, args...)}
+	\item[C\#] \expr{untyped __cs__(expr, args...)}
+	\item[Java] \expr{untyped __java__(expr, args...)}
+	\item[Lua] \expr{untyped __lua__(expr, args...)}
+\end{itemize}
+
+The arguments for these follow exactly the same semantics as \expr{Syntax.code}.
+
 \section{JavaScript}
 \label{target-javascript}
 
@@ -16,7 +63,7 @@ You may want to compile Haxe to JavaScript in the following scenarios:
 \emph{Client-side JavaScript}
 Interacting with DOM elements. Haxe provides up to date typed interfaces to interact with the Document Object Model, allowing creation and update of DOM elements. 
 
-Haxe can be used together with existing third-party libraries and frameworks, such as jQuery, React or Vue. To access third-party frameworks with a strongly-typed API, there are extern libraries available on \href{http://lib.haxe.org/t/js/}{Haxelib}. Alternatively, it is possible to create own externs (see \Fullref{target-javascript-external-libraries}) or use the dynamic type to access any framework, see \Fullref{target-javascript-injection}.
+Haxe can be used together with existing third-party libraries and frameworks, such as jQuery, React or Vue. To access third-party frameworks with a strongly-typed API, there are extern libraries available on \href{http://lib.haxe.org/t/js/}{Haxelib}. Alternatively, it is possible to create own externs (see \Fullref{target-javascript-external-libraries}) or use the dynamic type to access any framework, see \Fullref{target-syntax}.
 
 \emph{Creating graphics using Canvas and WebGL}
 Use Haxe to create graphical elements on a web page using WebGL. 
@@ -159,7 +206,7 @@ class Child extends Base {
 Base._hx_skip_constructor = false;
 \end{lstlisting}
 
-Note, that Haxe does it best to be smart and only generate this workaround code when it's required.
+Note that the compiler does its best to be smart and only generates this workaround code when it's required.
 
 \paragraph{When extending extern classes with constructors}
 
@@ -299,104 +346,6 @@ The Haxe Standard Library comes with externs of \href{https://jquery.com/}{jQuer
 
 There are many externs for other popular native libraries available on \tref{Haxelib library}{haxelib}. To view a list of them, check out the \href{http://lib.haxe.org/t/extern/}{extern tag}.
 
-\subsection{Using Untyped JavaScript}
-\label{target-javascript-injection}
-
-In Haxe, it is possible to call an exposed function thanks to the \expr{untyped} keyword. This can be useful in some cases if we don't want to write externs. Anything untyped that is valid syntax will be generated as it is.
-
-\begin{lstlisting}
-untyped window.trackEvent("page1");  
-\end{lstlisting}
-
-See also \Fullref{target-javascript-untyped} to inject raw JavaScript.
-
-\subsection{JavaScript untyped functions}
-\label{target-javascript-untyped}
-
-These functions allow to access specific JavaScript platform features. It works only when the Haxe compiler is targeting JavaScript and should always be prefixed with \expr{untyped}. 
-
-\emph{Important note:} Before using these functions, make sure there is no alternative available in the Haxe Standard Library. The resulting syntax can not be validated by the Haxe compiler, which may result in invalid or error-prone code in the output.
-
-\paragraph{\expr{untyped __js__(expr, params)}}
-\tref{Injects raw JavaScript expressions}{target-javascript-injection}. It's allowed to use \ic{\{0\}}, \ic{\{1\}}, \ic{\{2\}} etc in the expression and use the rest arguments to feed Haxe fields. The Haxe compiler will take care of the surrounding quotes if needed. The function can also return values.
-
-\begin{lstlisting}
-untyped __js__('alert("Haxe is great!")');
-// output: alert("Haxe is great!");
-
-var myMessage = "Haxe is great!";
-untyped __js__('alert({0})', myMessage);
-// output: 
-//	var myMessage = "Haxe is great!";
-//	alert(myMessage);
-
-var myVar:Bool = untyped __js__('confirm({0})', "Are you sure?");
-// output: var myVar = confirm("Are you sure?");
-
-var hexString:String = untyped __js__('({0}).toString({1})', 255, 16);
-// output: var hexString = (255).toString(16);
-\end{lstlisting}
-
-\paragraph{\expr{untyped __instanceof__(o,cl)}} 
-Same as \ic{o instanceof cl} in JavaScript.
-
-\begin{lstlisting}
-var myString = new String("Haxe is great");
-var isString = untyped __instanceof__(myString, String);
-output: var isString = (myString instanceof String);
-\end{lstlisting}
-
-\paragraph{\expr{untyped __typeof__(o)}} 
-Same as \ic{typeof o} in JavaScript.
-
-\begin{lstlisting}
-var isNodeJS = untyped __typeof__(window) == null;
-output: var isNodeJS = typeof(window) == null;
-\end{lstlisting}
-
-\paragraph{\expr{untyped __strict_eq__(a,b)}} 
-Same as \ic{a === b}  in JavaScript, tests on \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness}{strict equality} (or "triple equals" or "identity").
-
-\begin{lstlisting}
-var a = "0";
-var b = 0;
-var isEqual = untyped __strict_eq__(a, b);
-output: var isEqual = ((a) === b);
-\end{lstlisting}
-
-\paragraph{\expr{untyped __strict_neq__(a,b)}} 
-Same as \ic{a !== b}  in JavaScript, tests on negative strict equality.
-
-\begin{lstlisting}
-var a = "0";
-var b = 0;
-var isntEqual = untyped __strict_neq__(a, b);
-output: var isntEqual = ((a) !== b);
-\end{lstlisting}
-
-\paragraph{Expression injection} 
-
-In some cases it may be needed to inject raw JavaScript code into Haxe-generated code. With the \expr{__js__} function we can inject pure JavaScript code fragments into the output. This code is always untyped and can not be validated, so it accepts invalid code in the output, which is error-prone.
-This could, for example, write a JavaScript comment in the output.
-
-\begin{lstlisting}
-untyped __js__('// haxe is great!');
-\end{lstlisting}
-
-A more useful demonstration would be to call a function and pass  arguments using the \expr{__js__} function. This example illustrates how to call this function and how to pass parameters. Note that the \emph{code interpolation} will wrap the quotes around strings in the generated output.
-
-\begin{lstlisting}
-// Haxe code:
-var myVar = untyped __js__('myObject.myJavaScriptFunction({0}, {1})', "Mark", 31);
-\end{lstlisting}
-
-This will generate the following JavaScript code:
-\begin{lstlisting}
-// JavaScript Code
-var myVar = myObject.myJavaScriptFunction("Mark", 31);
-\end{lstlisting}
-
-
 \subsection{JavaScript target Metadata}
 \label{target-javascript-metadata}
 
@@ -474,13 +423,13 @@ var MyClass = $hx_exports.MyClass;
 
 In this pattern, a var statement is used to expose the module; it doesn't write to the \ic{window} or \ic{exports} object. 
 
-\subsection{Loading extern classes using "require" function}
+\subsection{Loading extern classes using ``require'' function}
 \label{target-javascript-require}
 \since{3.2.0}
 
 Modern \target{JavaScript} platforms, such as Node.js provide a way of loading objects
-from external modules using the "require" function. Haxe supports automatic generation
-of "require" statements for \expr{extern} classes.
+from external modules using the ``require'' function. Haxe supports automatic generation
+of ``require'' statements for \expr{extern} classes.
 
 This feature can be enabled by specifying \expr{@:jsRequire} metadata for the extern class. If our \expr{extern} class represents a whole module, we pass a single argument to the \expr{@:jsRequire} metadata specifying the name of the module to load:
 
@@ -666,47 +615,6 @@ The generated PHP code is compatible with PHP 7.0.0 or later. Prior to Haxe 4, t
 	\item \href{http://php.net/docs.php}{PHP.net Documentation}
 	\item \href{http://phptohaxe.haqteam.com/code.php}{PHP to Haxe tool}
 \end{itemize}
-
-
-\subsection{PHP untyped functions}
-\label{target-php-untyped}
-
-These functions allow to access specific PHP platform features. It works only when the Haxe compiler is targeting PHP and should always be prefixed with \expr{untyped}. 
-
-\emph{Important note:} Before using these functions, make sure there is no alternative available in the Haxe Standard Library. The resulting syntax can not be validated by the Haxe compiler, which may result in invalid or error-prone code in the output.
-
-\paragraph{\expr{untyped __php__(expr)}}
-Injects raw PHP code expressions. It's possible to pass fields from Haxe source code using \tref{String Interpolation}{lf-string-interpolation}.
-
-\begin{lstlisting}
-var value:String = "test";
-untyped __php__("echo '<pre>'; print_r($value); echo '</pre>';");
-// output: echo '<pre>'; print_r('test'); echo '</pre>';
-\end{lstlisting}
-
-\paragraph{\expr{untyped __call__(function, arg, arg, arg...)}}
-Calls a PHP function with the desired number of arguments and returns what the PHP function returns.
-
-\begin{lstlisting}
-var value = untyped __call__("array", 1,2,3); 
-// output returns a NativeArray with values [1,2,3]
-\end{lstlisting}
-
-\paragraph{\expr{untyped __var__(global, paramName)}}
-Get the values from global vars. Note that the dollar sign in the Haxe code is omitted.
-
-\begin{lstlisting}
-var value : String = untyped __var__('_SERVER', 'REQUEST_METHOD')  
-// output: $value = $_SERVER['REQUEST_METHOD']
-\end{lstlisting}
-
-\paragraph{\expr{untyped __physeq__(val1, val2)}}
-Strict equals test between the two values. Returns a \type{Bool}.
-
-\begin{lstlisting}
-var isFalse = untyped __physeq__(false, value);
-// output: $isFalse = false === $value;
-\end{lstlisting}
 
 
 \section{C++}
@@ -1113,23 +1021,6 @@ This is the list of C\# specific metadata. For more information, see also the co
 
 \subsection{Injecting raw C\# code}
 \label{target-cs-code-injection}
-
-\paragraph{Expression injection}
-
-In some cases it may be needed to inject raw C\# code into Haxe-generated code. This is possible by using  \expr{untyped __cs__} call, for example:
-
-\begin{lstlisting}
-public function isBool(v:Dynamic):Bool {
-    return untyped __cs__("v is bool");
-}
-\end{lstlisting}
-The  \expr{untyped __cs__} syntax also supports code interpolation which means that you can insert Haxe expressions into injected C\# code. For example, the example above could have been made inline, but because it always generates  \expr{v is bool}, it won't work when the given argument is not named  \expr{v} in the calling scope. To deal with that, we could rewrite our function using code interpolation, as follows:
-
-\begin{lstlisting}
-public inline function isBool(v:Dynamic):Bool {
-    return untyped __cs__("{0} is bool", v);
-}
-\end{lstlisting}
 
 \paragraph{Class code injection}
 
