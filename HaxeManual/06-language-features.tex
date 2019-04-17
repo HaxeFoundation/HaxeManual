@@ -746,6 +746,10 @@ Metadata starting with \expr{:}, such as \expr{@:keep}, is available at compile 
 \paragraph{Built-in Compiler Metadata}
 An exhaustive list of all defined metadata can be obtained by running \expr{haxe --help-metas} from command line.
 
+\since{4.0.0}
+
+Prior to Haxe 4, metadata names had to be valid identifiers. Starting in Haxe 4, metadata names can consist of multiple identifiers separated by \expr{.} symbols. This change was primarily intended to make it easier to organize compile-time metadata. Runtime metadata with such a name can only be accessed via \tref{dynamic access}{types-dynamic-access}.
+
 
 \paragraph{Related content}
 \begin{itemize}
