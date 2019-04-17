@@ -696,21 +696,5 @@ Test.main();
 
 Note that \expr{c} produces a call to the function, whereas \expr{d} does not. The usual warnings about what makes a good candidate for inlining still hold (see \fullref{class-field-inline}).
 
-An \expr{inline new} call can be used to avoid creating a local class instance, extracting its variables into separate variables instead:
-
-\haxe{assets/InlineConstructor.hx}
-
-The generated JavaScript output is:
-
-\begin{lstlisting}
-(function ($global) { "use strict";
-var Test = function() { };
-Test.main = function() {
-	var pt_x = 3;
-	var pt_y = 5;
-	pt_x = pt_y + 10;
-};
-Test.main();
-})({});
-\end{lstlisting}
+An \expr{inline new} call can be used to avoid creating a local class instance. See \fullref{lf-inline-constructor} for more details.
 
