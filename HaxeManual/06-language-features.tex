@@ -44,9 +44,9 @@ Conditional Compilation allows compiling specific code depending on compilation 
 
 \begin{lstlisting}
 #if js
-    js.Browser.alert("Hello");
+  js.Browser.alert("Hello");
 #elseif sys
-    Sys.println("Hello");
+  Sys.println("Hello");
 #end
 \end{lstlisting}
 
@@ -56,9 +56,9 @@ Structure can be expressed through algebraic data types (ADT), which are known a
 
 \begin{lstlisting}
 enum Result {
-    Success(data:Array<Int>);
-    UserError(msg:String);
-    SystemError(msg:String, position:PosInfos);
+  Success(data:Array<Int>);
+  UserError(msg:String);
+  SystemError(msg:String, position:PosInfos);
 }
 \end{lstlisting}
 
@@ -72,7 +72,7 @@ Iterating over a set of values, e.g. the elements of an array, is very easy in H
 
 \begin{lstlisting}
 for (i in [1, 2, 3]) {
-    trace(i);
+  trace(i);
 }
 \end{lstlisting}
 
@@ -83,7 +83,7 @@ Functions in Haxe are not limited to class fields and can be declared in express
 \begin{lstlisting}
 var buffer = "";
 function append(s:String) {
-    buffer += s;
+  buffer += s;
 }
 append("foo");
 append("bar");
@@ -96,7 +96,7 @@ Add metadata to fields, classes or expressions. This can communicate information
 
 \begin{lstlisting}
 class MyClass {
-    @range(1, 8) var value:Int;
+  @range(1, 8) var value:Int;
 }
 trace(haxe.rtti.Meta.getFields(MyClass).value.range); // [1,8]
 \end{lstlisting}
@@ -136,8 +136,8 @@ Complex structures can be matched against patterns, extracting information from 
 \begin{lstlisting}
 var a = { foo: 12 };
 switch (a) {
-    case { foo: i }: trace(i);
-    default:
+  case { foo: i }: trace(i);
+  default:
 }
 \end{lstlisting}
 
@@ -147,11 +147,11 @@ Variable class fields can be designed as properties with custom read and write a
 \begin{lstlisting}
 public var color(get,set);
 function get_color() {
-    return element.style.backgroundColor;
+  return element.style.backgroundColor;
 }
 function set_color(c:String) {
-    trace('Setting background of element to $c');
-    return element.style.backgroundColor = c;
+  trace('Setting background of element to $c');
+  return element.style.backgroundColor = c;
 }
 \end{lstlisting}
 
@@ -165,12 +165,12 @@ Types can be parametrized with type parameters, allowing typed containers and ot
 
 \begin{lstlisting}
 class Main<A> {
-    static function main() {
-        new Main<String>("foo");
-        new Main(12); // use type inference
-    }
+  static function main() {
+    new Main<String>("foo");
+    new Main(12); // use type inference
+  }
 
-    function new(a:A) { }
+  function new(a:A) { }
 }
 \end{lstlisting}
 
