@@ -298,6 +298,15 @@ Here the macro logic could load a file and use its contents to generate a custom
 \subsection{Macro-in-Macro}
 \label{macro-limitations-macro-in-macro}
 
+Build macros cannot be invoked from a macro context. This means it is impossible to use a macro to create a class which will provide build macros for other classes.
+
+\since{4.0.0}
+
+Expression macros are also disallowed in a macro context.
+
+\trivia{Expression macro-in-macro}{Prior to Haxe 4, using expression macros inside a macro context was possible. Support was dropped because such code would cause issues with the compiler cache.}
+
+
 \subsection{Static extension}
 \label{macro-limitations-static-extension}
 
