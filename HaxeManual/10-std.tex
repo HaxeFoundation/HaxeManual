@@ -7,14 +7,21 @@
 
 \define[Type]{String}{define-string}{A String is a sequence of characters.}
 
-%TODO: utf8 crap %
-
 \paragraph{Character code}
-Use the \ic{.code} property on a constant single-char string in order to compile its ASCII character code:
+Use the \ic{.code} property on a constant single-char string in order to compile its Unicode character point:
 
 \begin{lstlisting}
 "#".code // will compile as 35
 \end{lstlisting}
+
+\since{4.0.0}
+
+\paragraph{Unicode support}
+All Haxe targets except Neko support Unicode in strings by default. The compiler define \expr{target.unicode} is defined when the current target supports Unicode.
+
+A string in Haxe code represents a valid sequence of Unicode codepoints. Due to differing internal representations of strings across targets, only the basic multilingual plane (BMP) is supported consistently: every BMP Unicode codepoint corresponds to exactly one string character.
+
+On some targets, the internal representation is UTF-16, which means that non-BMP Unicode codepoints are represented using surrogate pairs. It is still possible to work with strings on these targets without having to manually decode surrogate pairs by using the \href{https://api.haxe.org/v/development/haxe/iterators/StringIteratorUnicode.html}{Unicode iterators API} provided in the standard library.
 
 \paragraph{Related content}
 \begin{itemize}
