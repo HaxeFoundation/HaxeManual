@@ -327,7 +327,7 @@ Extern classes can \tref{implement}{types-interfaces} \type{Dynamic} and \type{D
 
 Implementing \type{Dynamic} does not satisfy the requirements of other implemented interfaces. The expected fields still have to be implemented explicitly.
 
-\trivia{Implementing \type{Dynamic} on non-externs}{Starting with Haxe 4, implementing \type{Dynamic} is only allowed on extern classes. In previous versions any class could implement \type{Dynamic}, allowing arbitrary fields to be read or written. Additionally a special \epxr{resolve} method could be used to resolve read access to a non-existend field.}
+\trivia{Implementing \type{Dynamic} on non-externs}{Starting with Haxe 4, implementing \type{Dynamic} is only allowed on extern classes. In previous versions any class could implement \type{Dynamic}, allowing arbitrary fields to be read or written. Additionally a special \epxr{resolve} method could be used to resolve read access to a non-existend field. A similar feature is now available as field access \tref{operator overload}{types-abstract-operator-overloading} on abstracts.}
 
 
 \section{Static Extension}
