@@ -902,6 +902,10 @@ Due to the nature of threads accessing a shared memory space with all the Haxe v
 \section{Remoting}
 \label{std-remoting}
 
+\since{4.0.0}
+
+\emph{Deprecated:} The remoting API has been removed from the standard library in Haxe 4. For compatibility purposes it is still available in the \href{https://github.com/HaxeFoundation/hx3compat/}{hx3compat} library. See \Fullref{std-hx3compat}.
+
 Haxe remoting is a way to communicate between different platforms. With Haxe remoting, applications can transmit data transparently, send data and call methods between server and client side.
 
 \paragraph{Related content}
@@ -1055,6 +1059,10 @@ This can lead to security issues in some cases. When in doubt, check the argumen
 \section{Unit Testing}
 \label{std-unit-testing}
 
+\since{4.0.0}
+
+\emph{Deprecated:} The unit testing API has been removed from the standard library in Haxe 4. For compatibility purposes it is still available in the \href{https://github.com/HaxeFoundation/hx3compat/}{hx3compat} library. See \Fullref{std-hx3compat}.
+
 The Haxe Standard Library provides basic unit testing classes from the \href{https://api.haxe.org/haxe/unit/}{haxe.unit} package. 
 
 \paragraph{Creating new test cases}
@@ -1128,3 +1136,28 @@ This is an example showing how to run your unit tests (on Neko and Node.js) afte
 \begin{itemize}
 	\item See the \href{https://api.haxe.org/haxe/unit/}{haxe.unit} package on the API documentation for more details.
 \end{itemize}
+
+
+\section{Haxe 3 Compatibility}
+\label{std-hx3compat}
+\since{4.0.0}
+
+Some APIs that were originally a part of the standard library have been removed in Haxe 4. To allow projects to transition from Haxe 3 more smoothly, the \href{https://github.com/HaxeFoundation/hx3compat/}{hx3compat} library still provides these APIs. To use it, simply install it and compile the project with \ic{-L hx3compat}.
+
+The full list of APIs in hx3compat is:
+
+\begin{itemize}
+	\item \type{haxe.remoting.*} Haxe remoting
+	\item \type{haxe.unit.*} Unit testing
+	\item \type{haxe.web.*} Web request classes for Haxe web servers
+	\item \type{neko.net.*} Neko web server
+	\item (JavaScript target only) jQuery and SWFObject externs
+\end{itemize}
+
+Note that some of these APIs were removed form the standard library in favour of solutions in external libraries:
+
+\begin{itemize}
+	\item \href{https://github.com/haxe-utest/utest}{haxe-utest} is a Haxe unit testing library.
+	\item \href{https://github.com/HaxeFoundation/hxnodejs}{hxnodejs} can be used to produce Node.js web servers in Haxe.
+\end{itemize}
+
