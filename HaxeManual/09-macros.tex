@@ -334,6 +334,41 @@ With both interfaces \type{I1} and \type{I2} having \expr{:autoBuild} metadata, 
 \label{macro-limitations-type-parameters}
 
 
+\section{Persistent Variables}
+\label{macro-persistent-variables}
+
+When using macros in combination with the \tref{completion server}{cr-completion-server}, certain values obtained in a build or initialization macro can be retained for the next time the macro is executed. This is useful if obtaining the values is resource-intensive, or if the macro needs to keep track of previous builds. To mark a static field as persistent across macro builds, it should be annotated with the \expr{:persistent} metadata.
+
+As an example, here is \ic{Welcome.hx}:
+
+\begin{lstlisting}
+import haxe.macro.Expr;
+
+class Welcome {
+  @:persistent static var firstBuild:Bool = true;
+
+  public static build():Array<Field> {
+    if (firstBuild) {
+      trace("congratulations on your first build!");
+      firstBuild = false;
+    }
+    return null;
+  }
+}
+\end{lstlisting}
+
+And \ic{Main.hx}:
+
+\begin{lstlisting}
+@:build(Welcome.build())
+class Main {
+  public static function main() {}
+}
+\end{lstlisting}
+
+After starting the completion server with \ic{haxe --wait 6000}, we perform a build with \ic{haxe --connect 6000 --main Main --no-output}. The first time the congratulatory message is printed during compilation. If we execute the same command again, however, it is not - the \expr{firstBuild} variable retains the value \expr{false} from the previous build.
+
+
 \section{Initialization Macros}
 \label{macro-initialization}
 
