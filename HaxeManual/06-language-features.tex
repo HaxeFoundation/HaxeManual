@@ -231,6 +231,74 @@ An exhaustive list of all built-in defines can be obtained by invoking the Haxe 
 	\item See also the \tref{Compiler Flags list}{compiler-usage-flags}.
 \end{itemize}
 
+\subsection{Target defines}
+\label{lf-target-defines}
+
+Depending on the current target, one of the following flags will be defined. Note that they are the same as the \tref{argument provided to the compiler to specify the output}{compiler-usage}.
+
+\begin{itemize}
+	\item[\ic{as3}] Defined when generating ActionScript 3 code.
+	\item[\ic{cpp}] Defined when generating C++ code.
+	\item[\ic{cppia}] Defined when generating a cppia script.
+	\item[\ic{cs}] Defined when generating C\# code.
+	\item[\ic{eval}] Defined when running the code with \ic{--interp}.
+	\item[\ic{hl}] Defined when generating HashLink code.
+	\item[\ic{java}] Defined when generating Java code.
+	\item[\ic{js}] Defined when generating JavaScript code.
+	\item[\ic{lua}] Defined when generating Lua code.
+	\item[\ic{neko}] Defined when generating a Neko binary.
+	\item[\ic{php}] Defined when generating PHP code.
+	\item[\ic{python}] Defined when generating Python code.
+	\item[\ic{swf}] Defined when generating a SWF file.
+\end{itemize}
+
+Additionally, parts of code may be used in a macro context or during display completion. These flags can be used to check if this is the case:
+
+\begin{itemize}
+	\item[\ic{display}] Defined when providing code completion.
+	\item[\ic{macro}] Defined in a macro context.
+\end{itemize}
+
+\paragraph{Supported features}
+
+\begin{itemize}
+	\item[\ic{sys}] Defined if the target supports the \tref{sys API}{std-sys}.
+\end{itemize}
+
+\since{4.0.0}
+
+To provide more fine-grained knowledge about the features supported on the current target without having to manually check which target supports what, Haxe 4 provides the \ic{target.*} defines:
+
+\begin{itemize}
+	\item[\ic{target.static}] (or \ic{static}) Defined if the target is \tref{static}{types-nullability}.
+	\item[\ic{target.sys}] (or \ic{sys} as noted above) Defined if the target supports the \tref{sys API}{std-sys}.
+	\item[\ic{target.utf16}] (or \ic{utf16}) Defined if the target uses UTF-16 for its \tref{internal string representation}{std-String}.
+	\item[\ic{target.threaded}] Defined if the target supports the unified \tref{threading API}{std-threading}.
+	\item[\ic{target.name}] Defined to be the name of the target, e.g. \ic{js}.
+\end{itemize}
+
+\subsection{Target-Specific Files}
+\label{lf-target-specific-files}
+\since{4.0.0}
+
+In addition to surrounding individual pieces of code with compile-time checks, it is possible to provide completely separate target-specific module alternatives to the compiler. This feature works as follows:
+
+\begin{itemize}
+	\item When the compiler finds the file \expr{<Module>.hx}, it then checks the containing directory for a file called \expr{<Module>.<target>.hx}, where \expr{<target>} is the \tref{name of the current target}{lf-target-defines}.
+	\item The main file for the module (without a taget-specific extension) must exist.
+	\item If a target-specific file is found for the module, the main file is not loaded at all. Keep in mind that this means errors are not checked in the main file.
+\end{itemize}
+
+As an example, we can have the following directory structure:
+
+\begin{lstlisting}
+/somepackage/Example.hx
+/somepackage/Example.js.hx
+/Main.hx
+\end{lstlisting}
+
+In \ic{Main.hx} we can can use \ic{somepackage.Example} module. This module is defined in the file \ic{somepackage/Example.hx}. However, if we compile for JavaScript, the module is instead defined in the file \ic{somepackage/Example.js.hx}.
+
 
 \section{Externs}
 \label{lf-externs}
