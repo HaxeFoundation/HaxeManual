@@ -608,6 +608,19 @@ The compiler outputs in the given \emph{bin}-folder, which contains the generate
 
 The generated PHP code is compatible with PHP 7.0.0 or later. Prior to Haxe 4, the minimum required version was PHP 5.1.0.
 
+\subsection{Defines}
+\label{target-php-defines}
+
+\begin{center}
+\begin{tabular}{| l | l |}
+	\hline
+	Define & Description \\ \hline
+	\ic{php-prefix=<namespace>} & Root namespace for generated PHP classes. E.g. if compiled with \ic{-D php-prefix=some.sub}, then all classes will be generated in the \expr{\textbackslash some\textbackslash sub} namespace. \\
+	\ic{php-lib=<name>} & Select the name for the PHP lib directory. \\
+	\ic{php-front=<name>} & Select the name for the PHP front file (default: \ic{index.php}).
+\end{tabular}
+\end{center}
+
 \paragraph{More information}
 
 \begin{itemize}
