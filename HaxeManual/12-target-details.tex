@@ -8,12 +8,12 @@
 When writing code for a particular target, it might be necessary to access certain features that are only available on that target and inaccessible in Haxe code. It is still possible to access these features using the target-specific \type{Syntax} APIs:
 
 \begin{itemize}
-	\item \href{https://api.haxe.org/v/development/js/Syntax.html}{\type{js.Syntax}} - JavaScript syntax
-	\item \href{https://api.haxe.org/v/development/php/Syntax.html}{\type{php.Syntax}} - PHP syntax
-	\item \href{https://api.haxe.org/v/development/python/Syntax.html}{\type{python.Syntax}} - Python syntax
+	\item \href{https://api.haxe.org/js/Syntax.html}{\type{js.Syntax}} - JavaScript syntax
+	\item \href{https://api.haxe.org/php/Syntax.html}{\type{php.Syntax}} - PHP syntax
+	\item \href{https://api.haxe.org/python/Syntax.html}{\type{python.Syntax}} - Python syntax
 \end{itemize}
 
-\emph{Important note:} Before using these functions, make sure there is no alternative available in the Haxe Standard Library. The resulting syntax can not be validated by the Haxe compiler, which may result in invalid or error-prone code in the output.
+\emph{Important note:} Before using these functions, make sure there is no alternative available in the Haxe Standard Library. The resulting syntax can not be validated by the Haxe compiler, which may result in invalid or error-prone code in the output. When checking if a particular feature is available in the standard library, consult the \href{https://api.haxe.org/}{API documentation}. Target-specific APIs are placed into a package named after the target, e.g. JavaScript-specific APIs are in the top-level \type{js} package. Most targets have a \type{Lib} class in their package which provides some common methods for that target.
 
 \paragraph{\expr{Syntax.code(expr, args...)}}
 \since{4.0.0}
