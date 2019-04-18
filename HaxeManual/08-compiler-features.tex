@@ -759,3 +759,148 @@ test(3);
 
 Whether a loop is unrolled or not depends on the loop unrolling cost, which is defined as the number of iterations of the loop and the number of expressions inside the loop body. This threshold is 250 by default, but can be configured using the \expr{-D loop_unroll_max_cost=...} compile-time define.
 
+
+\section{Null Safety}
+\label{cr-null-safety}
+\since{4.0.0}
+
+The Haxe compiler offers opt-in compile-time checking for nullable values. It attempts to catch various possible issues with nullable values.
+
+\paragraph{Enabling Null Safety}
+
+To enable the checker for a particular class, field, or expression, annotate it with the \expr{:nullSafety} metadata. Null safety can be enabled for a whole package using the \ic{--macro nullSafety("some.package")} \tref{initialization macro}{macro-initialization}.
+
+\paragraph{Strictness}
+
+There are three levels of null safety strictness:
+
+\begin{itemize}
+	\item[Off] Turn off null safety checks. Useful to selectively disable null safety for particular fields or expression.
+	\item[Loose] (Default.) Within an \expr{if (<expr> != null)} condition, \expr{<expr>} is considered safe even if it could be modified after the check.
+	\item[Strict] Full-scale null safety checking.
+\end{itemize}
+
+Enabling null safety by default uses the loose strictness level. This can be configured by providing an argument in the metadata:
+
+\begin{lstlisting}
+@:nullSafety(Off)
+@:nullSafety(Loose)
+@:nullSafety(Strict)
+\end{lstlisting}
+
+For the package-level case, null safety strictness can be configured using the optional second argument:
+
+\begin{lstlisting}
+--macro nullSafety("some.package", Off)
+--macro nullSafety("some.package", Loose)
+--macro nullSafety("some.package", Strict)
+\end{lstlisting}
+
+\paragraph{Detailed Usage}
+
+\begin{itemize}
+	\item Null safety makes sure you will not pass nullable values to the places which are not explicitly declared with \type{Null<T>} (assignments, return statements, array access, etc.).
+	\haxe{assets/NullSafety1.hx}
+	\item Using nullables with unary and binary operators (except \expr{==} and \expr{!=}) is not allowed.
+	\item If a field is declared without \type{Null<>} then it should have an initial value or it should be initialized in the constructor (for instance fields).
+	\item Passing an instance of a parametrized type with nullable type parameters where the same type with non-nullable type parameters is expected is not allowed:
+	\begin{lstlisting}
+var nullables:Array<Null<String>> = ['hello', null, 'world'];
+// Array<Null<String>> cannot be assigned to Array<String>:
+//var a:Array<String> = nullables;
+\end{lstlisting}
+	\item Local variables checked against \expr{null} are considered safe inside of a scope covered with that null-check:
+	\begin{lstlisting}
+var nullable:Null<String> = getSomeStr();
+//var s:String = nullable; // Compilation error
+if (nullable != null) {
+  s = nullable; //OK
+}
+//s = nullable; // Compilation error
+s = (nullable == null ? 'hello' : nullable); // OK
+switch (nullable) {
+  case null:
+  case _: s = nullable; // OK
+}
+\end{lstlisting}
+	\item Control flow is also taken into account:
+	\begin{lstlisting}
+function doStuff(a:Null<String>) {
+  if(a == null) {
+    return;
+  }
+  // From here `a` is safe, because function execution will continue only if `a` is not null:
+  var s:String = a; // OK
+}
+\end{lstlisting}
+\end{itemize}
+
+\paragraph{Limitations}
+
+\begin{itemize}
+	\item Out-of-bounds array reads return \expr{null}, but Haxe types them without \type{Null<>}.
+	\begin{lstlisting}
+var a:Array<String> = ["hello"];
+$type(a[100]); // String
+trace(a[100]); // null
+var s:String = a[100]; // Safety does not complain here, because `a[100]` is not `Null<String>`, but just `String`
+\end{lstlisting}
+	\item Out-of-bounds array writes fill all positions between the last defined index and the newly-written one with \expr{null} values. Null safety cannot protect against this.
+	\begin{lstlisting}
+var a:Array<String> = ["hello"];
+a[2] = "world";
+trace(a); // ["hello", null, "world"]
+var s:String = a[1]; // Cannot check this
+trace(s); //null
+\end{lstlisting}
+	\item Haxe was not designed with null safety in mind, so it's always possible \expr{null} values will come into your code from third-party code or even from the standard library.
+	\item Nullable fields and properties are not considered null-safe even after checking against \expr{null}. You can use helper methods instead (e.g. from \href{https://github.com/RealyUniqueName/Safety/}{this library}):
+	\begin{lstlisting}
+using Safety;
+
+class Main {
+  var nullable:Null<String>;
+  function new() {
+    var str:String;
+    if (nullable != null) {
+      str = nullable; // Compilation error
+    }
+    str = nullable.sure();
+    str = nullable.or('hello');
+  }
+}
+\end{lstlisting}
+	\item If a local variable is captured in a closure, it cannot be safe inside that closure:
+	\begin{lstlisting}
+var a:Null<String> = getSomeStr();
+var fn = function () {
+  if (a != null) {
+    var s:String = a; // Compilation error
+  }
+}
+\end{lstlisting}
+	Unless the closure is executed immediately:
+	\begin{lstlisting}
+var a:Null<String> = getSomeStr();
+[1, 2, 3].map(function (i) {
+  if (a != null) {
+    return i * a.length; // OK
+  } else {
+    return i;
+  }
+});
+\end{lstlisting}
+	\item If a local variable is captured and modified in a closure with a nullable value, that variable cannot be safe anymore:
+	\begin{lstlisting}
+var nullable:Null<String> = getSomeNullableStr();
+var str:String;
+if (nullable != null) {
+  str = nullable; // OK
+  doStuff(function () nullable = getSomeNullableStr());
+  if (nullable != null) {
+    str = nullable; // Compilation error
+  }
+}
+\end{lstlisting}
+\end{itemize}
+
