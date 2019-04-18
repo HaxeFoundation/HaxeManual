@@ -253,6 +253,10 @@ class Child extends Base {
 \subsection{Using external JavaScript libraries}
 \label{target-javascript-external-libraries}
 
+\since{4.0.0}
+
+\emph{Deprecated:} The jQuery and SWFObject externs have been removed from the standard library in Haxe 4. For compatibility purposes they are available in the \href{https://github.com/HaxeFoundation/hx3compat/}{hx3compat} library.
+
 The \tref{externs mechanism}{lf-externs} provides access to the native APIs in a type-safe manner. It assumes that the defined types exist at run-time but assumes nothing about how and where those types are defined. 
 
 An example of an extern class is the \href{https://github.com/HaxeFoundation/haxe/blob/development/std/js/jquery/JQuery.hx}{jQuery class} of the Haxe Standard Library. 
@@ -337,10 +341,12 @@ The Haxe Standard Library comes with externs of \href{https://jquery.com/}{jQuer
 \begin{tabular}{| l | l | l |}
 	\hline
 	Haxe version & Library               & Externs location \\ \hline
-	3.3          & jQuery 1.12.1 / 2.2.1 & <code>js.jquery.*</code> \\
-	3.2-         & jQuery 1.6.4          & <code>js.JQuery</code> \\
-	3.3          & SWFObject 2.3         & <code>js.swfobject.*</code> \\
-	3.2-         & SWFObject 1.5         & <code>js.SWFObject</code> \\ \hline
+	4.0          & jQuery 1.12.1 / 2.2.1 & with \href{https://github.com/HaxeFoundation/hx3compat/}{hx3compat}: \type{js.jquery.*} \\
+	4.0          & SFWObject 2.3         & with \href{https://github.com/HaxeFoundation/hx3compat/}{hx3compat}: \type{js.swfobject.*} \\\hline
+	3.3          & jQuery 1.12.1 / 2.2.1 & \type{js.jquery.*} \\
+	3.3          & SWFObject 2.3         & \type{js.swfobject.*} \\\hline
+	3.2-         & jQuery 1.6.4          & \type{js.JQuery} \\
+	3.2-         & SWFObject 1.5         & \type{js.SWFObject} \\ \hline
 \end{tabular}
 \end{center}
 
