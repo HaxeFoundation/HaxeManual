@@ -519,7 +519,7 @@ Use the \href{https://api.haxe.org/haxe/Template.html#globals}{Template.globals}
 \paragraph{Using resources}
 
 To separate the content from the code, consider using the \tref{resource embedding system}{cr-resources}. 
-Place the template-content in a new file called \ic{sample.mtt}, add \ic{-resource sample.mtt@my_sample} to the compiler arguments and retrieve the content using \expr{haxe.Resource.getString}.
+Place the template-content in a new file called \ic{sample.mtt}, add \ic{--resource sample.mtt@my_sample} to the compiler arguments and retrieve the content using \expr{haxe.Resource.getString}.
 \haxe{assets/TemplateResource.hx}
 
 When running the template system on the server side, you can simply use \expr{neko.Lib.print} or \expr{php.Lib.print} instead of trace to display the HTML template to the user.
@@ -995,7 +995,7 @@ class Client {
 }
 \end{lstlisting}
 
-To make this work for the Neko target, setup a Neko Web Server, point the url in the Client to \ic{"http://localhost2000/remoting.n"} and compile the Server using \ic{-main Server -neko remoting.n}.
+To make this work for the Neko target, setup a Neko Web Server, point the url in the Client to \ic{"http://localhost2000/remoting.n"} and compile the Server using \ic{--main Server --neko remoting.n}.
 
 \paragraph{Error handling}
 

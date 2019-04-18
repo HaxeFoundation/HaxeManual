@@ -337,7 +337,7 @@ With both interfaces \type{I1} and \type{I2} having \expr{:autoBuild} metadata, 
 \section{Initialization Macros}
 \label{macro-initialization}
 
-Initialization macros are invoked from command line by using the \expr{--macro callExpr(args)} command. This registers a callback which the compiler invokes after creating its context, but before typing what was argument to \expr{-main}. This then allows configuring the compiler in some ways.
+Initialization macros are invoked from command line by using the \expr{--macro callExpr(args)} command. This registers a callback which the compiler invokes after creating its context, but before typing what was argument to \expr{--main}. This then allows configuring the compiler in some ways.
 
 If the argument to \expr{--macro} is a call to a plain identifier, that identifier is looked up in the class \type{haxe.macro.Compiler} which is part of the Haxe Standard Library. It comes with several useful initialization macros which are detailed in its \href{http://api.haxe.org//haxe/macro/Compiler.html}{API}.
 

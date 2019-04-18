@@ -13,11 +13,11 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 	\multicolumn{3}{|c|}{Global metadata} \\ \hline
 	Metadata &  Description  &  Platform \\ \hline
 	@:abi & Function ABI/calling convention  & cpp \\
-	@:abstract &  Sets the underlying class implementation as 'abstract'  &  cs  java \\
+	@:abstract &  Sets the underlying class implementation as `abstract'  &  cs  java \\
 	@:access \_(Target path)\_  &   Forces private access to package  type or field,  see \tref{Access Control}{lf-access-control}  &  all \\
 	@:allow \_(Target path)\_  &   Allows private access from package  type or field,  see \tref{Access Control}{lf-access-control}  &  all \\
 	@:analyzer & Used to configure the static analyzer  &  all \\
-	@:annotation  &  Annotation (\expr{@interface}) definitions on \expr{-java-lib} imports will be annotated with this metadata. Has no effect on types compiled by Haxe   &  java \\
+	@:annotation  &  Annotation (\expr{@interface}) definitions on \expr{--java-lib} imports will be annotated with this metadata. Has no effect on types compiled by Haxe   &  java \\
 	@:arrayAccess  &  Allows \tref{Array access}{types-abstract-array-access} on an abstract  &  all \\
 	@:autoBuild \_(Build macro call)\_  &   Extends \expr{@:build} metadata to all extending and implementing classes. See \tref{Macro autobuild}{macro-auto-build}  &  all \\
 	@:bind  &  Override Swf class declaration  &  flash \\
@@ -34,13 +34,13 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 	@:cppFileCode  &  Code to be injected into generated cpp file  &  cpp \\
 	@:cppInclude  &  File to be included in generated cpp file  &  cpp \\
 	@:cppNamespaceCode  &    &  cpp \\
-	@:dce  &  Forces \tref{Dead Code Elimination}{cr-dce} even when not \expr{-dce full} is specified  &  all \\
-	@:debug  &  Forces debug information to be generated into the Swf even without \expr{-debug}   &  flash \\
+	@:dce  &  Forces \tref{Dead Code Elimination}{cr-dce} even when not \expr{--dce full} is specified  &  all \\
+	@:debug  &  Forces debug information to be generated into the Swf even without \expr{--debug}   &  flash \\
 	@:decl   &     &  cpp \\
-	@:delegate  &  Automatically added by \expr{-net-lib} on delegates   &  cs \\
+	@:delegate  &  Automatically added by \expr{--net-lib} on delegates   &  cs \\
 	@:depend  &     &  cpp \\
 	@:deprecated   &  Mark a type or field as deprecated  &  all \\
-	@:event  &  Automatically added by \expr{-net-lib} on events. Has no effect on types compiled by Haxe   &  cs \\
+	@:event  &  Automatically added by \expr{--net-lib} on events. Has no effect on types compiled by Haxe   &  cs \\
 	@:enum  &  Defines finite value sets to abstract definitions. See \tref{enum abstracts}{types-abstract-enum}  &  all \\
 	@:expose \_(?Name=Class path)\_  &  Makes the class available on the \expr{window} object or \expr{exports} for node.js. See \tref{exposing Haxe classes for JavaScript}{target-javascript-expose} &  js \\
 	@:extern  &  Marks the field as extern so it is not generated  &  all \\
@@ -80,7 +80,7 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 	@:nativeGen  &  Annotates that a type should be treated as if it were an extern definition - platform native  &  cs  java \\
 	@:nativeProperty  &  Use native properties which will execute even with dynamic usage  &  cpp \\
 	@:noCompletion  &  Prevents the compiler from suggesting \tref{completion}{cr-completion} on this field  &  all \\
-	@:noDebug &  Does not generate debug information into the Swf even if \expr{-debug} is set   &  flash \\
+	@:noDebug &  Does not generate debug information into the Swf even if \expr{--debug} is set   &  flash \\
 	@:noDoc  &  Prevents a type from being included in documentation generation  &  all \\
 	@:noImportGlobal  &  Prevents a static field from being imported with \expr{import Class.*}  &  all \\
 	@:noPrivateAccess  &  Disallow private access to anything for the annotated expression  &  all \\
@@ -455,7 +455,7 @@ If this file is saved to Main.hx, the completion can be invoked using the comman
 </list>
 \end{lstlisting}
 
-\trivia{Effects of omitting a target specifier}{In this example the compiler reports the standard String.hx definition which does not actually have an implementation. This happens because we did not specify any target, which is allowed in completion-mode. If the command line arguments included, say, \ic{-neko neko.n}, the reported position would instead be \ic{std/neko/_std/string.hx:84: lines 84-98}.}
+\trivia{Effects of omitting a target specifier}{In this example the compiler reports the standard String.hx definition which does not actually have an implementation. This happens because we did not specify any target, which is allowed in completion-mode. If the command line arguments included, say, \ic{--neko neko.n}, the reported position would instead be \ic{std/neko/_std/string.hx:84: lines 84-98}.}
 
 
 \subsection{Top-level completion}
@@ -560,10 +560,10 @@ While it may be not optimal to embed large assets such as images or music in the
 \subsection{Embedding resources}
 \label{cr-resources-embed}
 
-External files are embedded using the \emph{-resource} compiler argument:
+External files are embedded using the \emph{--resource} compiler argument:
 
 \lang{hxml}\begin{lstlisting}
--resource hello_message.txt@welcome
+--resource hello_message.txt@welcome
 \end{lstlisting}
 
 The string after the \emph{@} symbol is the \emph{resource identifier} which is used in the code for retrieving the resource. If it is omitted (together with the \emph{@} symbol) then the file name will become the resource identifier.
