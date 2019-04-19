@@ -234,14 +234,14 @@ An exhaustive list of all built-in defines can be obtained by invoking the Haxe 
 \subsection{Target defines}
 \label{lf-target-defines}
 
-Depending on the current target, one of the following flags will be defined. Note that they are the same as the \tref{argument provided to the compiler to specify the output}{compiler-usage}.
+Depending on the current target, at least one of the following flags will be defined. Note that they are the same as the \tref{argument provided to the compiler to specify the output}{compiler-usage}.
 
 \begin{itemize}
 	\item[\ic{as3}] Defined when generating ActionScript 3 code.
-	\item[\ic{cpp}] Defined when generating C++ code.
+	\item[\ic{cpp}] Defined when generating C++ code or a cppia script.
 	\item[\ic{cppia}] Defined when generating a cppia script.
 	\item[\ic{cs}] Defined when generating C\# code.
-	\item[\ic{eval}] Defined when running the code with \ic{--interp}.
+	\item[\ic{eval}] Defined when running the code with \ic{--interp}, or when running in a macro context.
 	\item[\ic{hl}] Defined when generating HashLink code.
 	\item[\ic{java}] Defined when generating Java code.
 	\item[\ic{js}] Defined when generating JavaScript code.

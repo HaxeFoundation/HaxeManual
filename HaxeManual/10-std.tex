@@ -17,7 +17,7 @@ Use the \ic{.code} property on a constant single-char string in order to compile
 \since{4.0.0}
 
 \paragraph{Unicode support}
-All Haxe targets except Neko support Unicode in strings by default. The compiler define \expr{target.unicode} is defined when the current target supports Unicode.
+All Haxe targets except Neko support Unicode in strings by default.
 
 A string in Haxe code represents a valid sequence of Unicode codepoints. Due to differing internal representations of strings across targets, only the basic multilingual plane (BMP) is supported consistently: every BMP Unicode codepoint corresponds to exactly one string character.
 
@@ -894,9 +894,9 @@ A \href{https://api.haxe.org/sys/thread/Thread.html}{unified threading API} is a
 
 \haxe{assets/Threads.hx}
 
-All spawned threads are currently treated as daemon threads, meaning that the main thread will not wait for their completion.
+All spawned threads are treated as daemon threads, meaning that the main thread will not wait for their completion.
 
-Due to the nature of threads accessing a shared memory space with all the Haxe variables and objects, it is possible to run into issues due to deadlocks and race conditions. The standard library provides some core synchronization constructs in the \href{https://api.haxe.org/sys/thread/}{\expr{sys.thread}} package.
+Due to threads having access to a shared memory space with all the Haxe variables and objects, it is possible to run into issues due to deadlocks and race conditions. The standard library provides some core synchronization constructs in the \href{https://api.haxe.org/sys/thread/}{\expr{sys.thread}} package.
 
 
 \section{Remoting}

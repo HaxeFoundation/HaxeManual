@@ -302,7 +302,7 @@ Build macros cannot be invoked from a macro context. This means it is impossible
 
 \since{4.0.0}
 
-Expression macros are also disallowed in a macro context.
+It is also disallowed to invoke expression macros in a macro context.
 
 \trivia{Expression macro-in-macro}{Prior to Haxe 4, using expression macros inside a macro context was possible. Support was primarily dropped because such code would cause issues with the compiler cache.}
 
