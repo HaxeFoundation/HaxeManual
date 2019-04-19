@@ -854,13 +854,29 @@ var s:String = a[1]; // Cannot check this
 trace(s); //null
 \end{lstlisting}
 	\item Haxe was not designed with null safety in mind, so it's always possible \expr{null} values will come into your code from third-party code or even from the standard library.
-	\item Nullable fields and properties are not considered null-safe even after checking against \expr{null}. You can use helper methods instead (e.g. from \href{https://github.com/RealyUniqueName/Safety/}{this library}):
+	\item Nullable fields and properties are not considered null-safe even after checking against \expr{null}. You can use helper methods instead:
 	\begin{lstlisting}
-using Safety;
+using Main.NullTools;
+
+class NullTools {
+  public static function sure<T>(value:Null<T>):T {
+    if (value == null) {
+      throw "null pointer in .sure() call";
+    }
+    return @:nullSafety(Off) (value:T);
+  }
+
+  public static function or<T>(value:Null<T>, defaultValue:T):T {
+    if (value == null) {
+      return defaultValue;
+    }
+    return @:nullSafety(Off) (value:T);
+  }
+}
 
 class Main {
-  var nullable:Null<String>;
-  function new() {
+  static var nullable:Null<String>;
+  public static function main() {
     var str:String;
     if (nullable != null) {
       str = nullable; // Compilation error
