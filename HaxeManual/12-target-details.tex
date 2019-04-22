@@ -2,6 +2,53 @@
 \label{target-details}
 \state{NoContent}
 
+\section{Accessing Target-specific Syntax}
+\label{target-syntax}
+
+When writing code for a particular target, it might be necessary to access certain features that are only available on that target and inaccessible in Haxe code. It is still possible to access these features using the target-specific \type{Syntax} APIs:
+
+\begin{itemize}
+	\item \href{https://api.haxe.org/js/Syntax.html}{\type{js.Syntax}} - JavaScript syntax
+	\item \href{https://api.haxe.org/php/Syntax.html}{\type{php.Syntax}} - PHP syntax
+	\item \href{https://api.haxe.org/python/Syntax.html}{\type{python.Syntax}} - Python syntax
+\end{itemize}
+
+\emph{Important note:} Before using these functions, make sure there is no alternative available in the Haxe Standard Library. The resulting syntax can not be validated by the Haxe compiler, which may result in invalid or error-prone code in the output. When checking if a particular feature is available in the standard library, consult the \href{https://api.haxe.org/}{API documentation}. Target-specific APIs are placed into a package named after the target, e.g. JavaScript-specific APIs are in the top-level \type{js} package. Most targets have a \type{Lib} class in their package which provides some common methods for that target.
+
+\paragraph{\expr{Syntax.code(expr, args...)}}
+\since{4.0.0}
+
+Injects raw code expressions. The expression is a string which may include \expr{\{0\}}, \expr{\{1\}}, \expr{\{2\}}, etc. - these are replaced with the corresponding arguments provided to the function. This is important if the code needs to reference Haxe fields, since the names of variables in the generated output may not correspond to their names in Haxe code. The Haxe compiler will take care of adding quotes if strings are provided. The function can also return values, although the return type is always \type{Dynamic}.
+
+An example of \expr{js.Syntax.code}:
+
+\begin{lstlisting}
+var myMessage = "Is Haxe great?";
+var output:Bool = Syntax.code("confirm({0})", myMessage);
+\end{lstlisting}
+
+The generated JavaScript output is:
+
+\begin{lstlisting}
+var myMessage = "Is Haxe great?";
+var output = confirm(myMessage);
+\end{lstlisting}
+
+Other functions are documented in the corresponding API sections. These generally include native operators that are not available in Haxe.
+
+\paragraph{Other platforms}
+
+It is planned to implement \type{Syntax} APIs for other targets in future releases. For the time being, it is still possible to access target-specific syntax on some of the other platforms, albeit in a less type-safe manner, using an \tref{\expr{untyped}}{type-system-untyped} expression:
+
+\begin{itemize}
+	\item[C++] \expr{untyped __cpp__(expr, args...)}
+	\item[C\#] \expr{untyped __cs__(expr, args...)}
+	\item[Java] \expr{untyped __java__(expr, args...)}
+	\item[Lua] \expr{untyped __lua__(expr, args...)}
+\end{itemize}
+
+The arguments for these follow exactly the same semantics as \expr{Syntax.code}.
+
 \section{JavaScript}
 \label{target-javascript}
 
@@ -16,7 +63,7 @@ You may want to compile Haxe to JavaScript in the following scenarios:
 \emph{Client-side JavaScript}
 Interacting with DOM elements. Haxe provides up to date typed interfaces to interact with the Document Object Model, allowing creation and update of DOM elements. 
 
-Haxe can be used together with existing third-party libraries and frameworks, such as jQuery, React or Vue. To access third-party frameworks with a strongly-typed API, there are extern libraries available on \href{http://lib.haxe.org/t/js/}{Haxelib}. Alternatively, it is possible to create own externs (see \Fullref{target-javascript-external-libraries}) or use the dynamic type to access any framework, see \Fullref{target-javascript-injection}.
+Haxe can be used together with existing third-party libraries and frameworks, such as jQuery, React or Vue. To access third-party frameworks with a strongly-typed API, there are extern libraries available on \href{http://lib.haxe.org/t/js/}{Haxelib}. Alternatively, it is possible to create own externs (see \Fullref{target-javascript-external-libraries}) or use the dynamic type to access any framework, see \Fullref{target-syntax}.
 
 \emph{Creating graphics using Canvas and WebGL}
 Use Haxe to create graphical elements on a web page using WebGL. 
@@ -53,14 +100,14 @@ class Main {
 To compile, either run the following from the command line:
 
 \lang{hxml}\begin{lstlisting}
-haxe -js main-javascript.js -main Main
+haxe --js main-javascript.js --main Main
 \end{lstlisting}
 
 Another possibility is to create and run (double-click) a file called \ic{compile.hxml}. In this example the hxml file should be in the same directory as the example class.
 
 \lang{hxml}\begin{lstlisting}
--js main-javascript.js
--main Main
+--js main-javascript.js
+--main Main
 \end{lstlisting}
 
 The output will be a main-javascript.js, which creates and adds a clickable button to the document body.
@@ -159,7 +206,7 @@ class Child extends Base {
 Base._hx_skip_constructor = false;
 \end{lstlisting}
 
-Note, that Haxe does it best to be smart and only generate this workaround code when it's required.
+Note that the compiler does its best to be smart and only generates this workaround code when it's required.
 
 \paragraph{When extending extern classes with constructors}
 
@@ -205,6 +252,10 @@ class Child extends Base {
 
 \subsection{Using external JavaScript libraries}
 \label{target-javascript-external-libraries}
+
+\since{4.0.0}
+
+\emph{Deprecated:} The jQuery and SWFObject externs have been removed from the standard library in Haxe 4. For compatibility purposes they are available in the \href{https://github.com/HaxeFoundation/hx3compat/}{hx3compat} library. See \Fullref{std-hx3compat}.
 
 The \tref{externs mechanism}{lf-externs} provides access to the native APIs in a type-safe manner. It assumes that the defined types exist at run-time but assumes nothing about how and where those types are defined. 
 
@@ -290,112 +341,16 @@ The Haxe Standard Library comes with externs of \href{https://jquery.com/}{jQuer
 \begin{tabular}{| l | l | l |}
 	\hline
 	Haxe version & Library               & Externs location \\ \hline
-	3.3          & jQuery 1.12.1 / 2.2.1 & <code>js.jquery.*</code> \\
-	3.2-         & jQuery 1.6.4          & <code>js.JQuery</code> \\
-	3.3          & SWFObject 2.3         & <code>js.swfobject.*</code> \\
-	3.2-         & SWFObject 1.5         & <code>js.SWFObject</code> \\ \hline
+	4.0          & jQuery 1.12.1 / 2.2.1 & with \href{https://github.com/HaxeFoundation/hx3compat/}{hx3compat}: \type{js.jquery.*} \\
+	4.0          & SFWObject 2.3         & with \href{https://github.com/HaxeFoundation/hx3compat/}{hx3compat}: \type{js.swfobject.*} \\\hline
+	3.3          & jQuery 1.12.1 / 2.2.1 & \type{js.jquery.*} \\
+	3.3          & SWFObject 2.3         & \type{js.swfobject.*} \\\hline
+	3.2-         & jQuery 1.6.4          & \type{js.JQuery} \\
+	3.2-         & SWFObject 1.5         & \type{js.SWFObject} \\ \hline
 \end{tabular}
 \end{center}
 
 There are many externs for other popular native libraries available on \tref{Haxelib library}{haxelib}. To view a list of them, check out the \href{http://lib.haxe.org/t/extern/}{extern tag}.
-
-\subsection{Using Untyped JavaScript}
-\label{target-javascript-injection}
-
-In Haxe, it is possible to call an exposed function thanks to the \expr{untyped} keyword. This can be useful in some cases if we don't want to write externs. Anything untyped that is valid syntax will be generated as it is.
-
-\begin{lstlisting}
-untyped window.trackEvent("page1");  
-\end{lstlisting}
-
-See also \Fullref{target-javascript-untyped} to inject raw JavaScript.
-
-\subsection{JavaScript untyped functions}
-\label{target-javascript-untyped}
-
-These functions allow to access specific JavaScript platform features. It works only when the Haxe compiler is targeting JavaScript and should always be prefixed with \expr{untyped}. 
-
-\emph{Important note:} Before using these functions, make sure there is no alternative available in the Haxe Standard Library. The resulting syntax can not be validated by the Haxe compiler, which may result in invalid or error-prone code in the output.
-
-\paragraph{\expr{untyped __js__(expr, params)}}
-\tref{Injects raw JavaScript expressions}{target-javascript-injection}. It's allowed to use \ic{\{0\}}, \ic{\{1\}}, \ic{\{2\}} etc in the expression and use the rest arguments to feed Haxe fields. The Haxe compiler will take care of the surrounding quotes if needed. The function can also return values.
-
-\begin{lstlisting}
-untyped __js__('alert("Haxe is great!")');
-// output: alert("Haxe is great!");
-
-var myMessage = "Haxe is great!";
-untyped __js__('alert({0})', myMessage);
-// output: 
-//	var myMessage = "Haxe is great!";
-//	alert(myMessage);
-
-var myVar:Bool = untyped __js__('confirm({0})', "Are you sure?");
-// output: var myVar = confirm("Are you sure?");
-
-var hexString:String = untyped __js__('({0}).toString({1})', 255, 16);
-// output: var hexString = (255).toString(16);
-\end{lstlisting}
-
-\paragraph{\expr{untyped __instanceof__(o,cl)}} 
-Same as \ic{o instanceof cl} in JavaScript.
-
-\begin{lstlisting}
-var myString = new String("Haxe is great");
-var isString = untyped __instanceof__(myString, String);
-output: var isString = (myString instanceof String);
-\end{lstlisting}
-
-\paragraph{\expr{untyped __typeof__(o)}} 
-Same as \ic{typeof o} in JavaScript.
-
-\begin{lstlisting}
-var isNodeJS = untyped __typeof__(window) == null;
-output: var isNodeJS = typeof(window) == null;
-\end{lstlisting}
-
-\paragraph{\expr{untyped __strict_eq__(a,b)}} 
-Same as \ic{a === b}  in JavaScript, tests on \href{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Equality_comparisons_and_sameness}{strict equality} (or "triple equals" or "identity").
-
-\begin{lstlisting}
-var a = "0";
-var b = 0;
-var isEqual = untyped __strict_eq__(a, b);
-output: var isEqual = ((a) === b);
-\end{lstlisting}
-
-\paragraph{\expr{untyped __strict_neq__(a,b)}} 
-Same as \ic{a !== b}  in JavaScript, tests on negative strict equality.
-
-\begin{lstlisting}
-var a = "0";
-var b = 0;
-var isntEqual = untyped __strict_neq__(a, b);
-output: var isntEqual = ((a) !== b);
-\end{lstlisting}
-
-\paragraph{Expression injection} 
-
-In some cases it may be needed to inject raw JavaScript code into Haxe-generated code. With the \expr{__js__} function we can inject pure JavaScript code fragments into the output. This code is always untyped and can not be validated, so it accepts invalid code in the output, which is error-prone.
-This could, for example, write a JavaScript comment in the output.
-
-\begin{lstlisting}
-untyped __js__('// haxe is great!');
-\end{lstlisting}
-
-A more useful demonstration would be to call a function and pass  arguments using the \expr{__js__} function. This example illustrates how to call this function and how to pass parameters. Note that the \emph{code interpolation} will wrap the quotes around strings in the generated output.
-
-\begin{lstlisting}
-// Haxe code:
-var myVar = untyped __js__('myObject.myJavaScriptFunction({0}, {1})', "Mark", 31);
-\end{lstlisting}
-
-This will generate the following JavaScript code:
-\begin{lstlisting}
-// JavaScript Code
-var myVar = myObject.myJavaScriptFunction("Mark", 31);
-\end{lstlisting}
-
 
 \subsection{JavaScript target Metadata}
 \label{target-javascript-metadata}
@@ -474,13 +429,13 @@ var MyClass = $hx_exports.MyClass;
 
 In this pattern, a var statement is used to expose the module; it doesn't write to the \ic{window} or \ic{exports} object. 
 
-\subsection{Loading extern classes using "require" function}
+\subsection{Loading extern classes using ``require'' function}
 \label{target-javascript-require}
 \since{3.2.0}
 
 Modern \target{JavaScript} platforms, such as Node.js provide a way of loading objects
-from external modules using the "require" function. Haxe supports automatic generation
-of "require" statements for \expr{extern} classes.
+from external modules using the ``require'' function. Haxe supports automatic generation
+of ``require'' statements for \expr{extern} classes.
 
 This feature can be enabled by specifying \expr{@:jsRequire} metadata for the extern class. If our \expr{extern} class represents a whole module, we pass a single argument to the \expr{@:jsRequire} metadata specifying the name of the module to load:
 
@@ -528,16 +483,16 @@ class Main {
 To compile this, either run the following from the command line:
 
 \lang{hxml}\begin{lstlisting}
-haxe -swf main-flash.swf -main Main -swf-version 15 -swf-header 960:640:60:f68712
+haxe --swf main-flash.swf --main Main --swf-version 15 --swf-header 960:640:60:f68712
 \end{lstlisting}
 
 Another possibility is to create and run (double-click) a file called \ic{compile.hxml}. In this example the hxml file should be in the same directory as the example class.
 
 \lang{hxml}\begin{lstlisting}
--swf main-flash.swf
--main Main
--swf-version 15
--swf-header 960:640:60:f68712
+--swf main-flash.swf
+--main Main
+--swf-version 15
+--swf-header 960:640:60:f68712
 \end{lstlisting}
 
 The output will be a main-flash.swf with size 960x640 pixels at 60 FPS with an orange background color and a gray square in the center.
@@ -591,15 +546,15 @@ class MyBitmapData extends BitmapData { }
 To embed external \ic{.swf} or \ic{.swc} libraries, use the following \href{https://haxe.org/documentation/introduction/compiler-usage.html}{compilation options}:
 
 \begin{description}
-	\item[\expr{-swf-lib <file>}] Embeds the SWF library in the compiled SWF.
-	\item[\expr{-swf-lib-extern <file>}] Adds the SWF library for type checking but doesn't include it in the compiled SWF.
+	\item[\expr{--swf-lib <file>}] Embeds the SWF library in the compiled SWF.
+	\item[\expr{--swf-lib-extern <file>}] Adds the SWF library for type checking but doesn't include it in the compiled SWF.
 \end{description}
 
 The standard compilation options also provide more Haxe sources to be added to the project:
 
 \begin{itemize}
-	\item To add another class path use \expr{-cp <directory>}.
-	\item To add a \tref{Haxelib library}{haxelib} use \expr{-lib <library-name>}.
+	\item To add another class path use \expr{-p <directory>}.
+	\item To add a \tref{Haxelib library}{haxelib} use \expr{-L <library-name>}.
 	\item To force a whole package to be included in the project, use \expr{--macro include('mypackage')} which will include all the classes declared in the given package and subpackages. 
 \end{itemize}
 
@@ -615,11 +570,11 @@ This is the list of Flash specific metadata. For a complete list see \tref{Haxe 
 	Metadata &  Description  \\ \hline
 	@:bind  &  Override Swf class declaration \\
 	@:bitmap \_(Bitmap file path)\_  &  \_Embeds given bitmap data into the class (must extend \expr{flash.display.BitmapData}) \\
-	@:debug  &  Forces debug information to be generated into the Swf even without \expr{-debug} \\
+	@:debug  &  Forces debug information to be generated into the Swf even without \expr{--debug} \\
 	@:file(File path)  &  Includes a given binary file into the target Swf and associates it with the class (must extend \expr{flash.utils.ByteArray}) \\
 	@:font \_(TTF path Range String)\_  &  Embeds the given TrueType font into the class (must extend \expr{flash.text.Font}) \\
 	@:getter \_(Class field name)\_  &  Generates a native getter function on the given field  \\
-	@:noDebug &  Does not generate debug information into the Swf even if \expr{-debug} is set \\
+	@:noDebug &  Does not generate debug information into the Swf even if \expr{--debug} is set \\
 	@:ns  &  Internally used by the Swf generator to handle namespaces \\
 	@:setter \_(Class field name)\_  &  Generates a native setter function on the given field \\
 	@:sound \_(File path)\_  &  Includes a given \_.wav\_ or \_.mp3\_ file into the target Swf and associates it with the class (must extend \expr{flash.media.Sound}) \\
@@ -643,17 +598,34 @@ To get started with Haxe/PHP, create a new folder and save this class as \ic{Mai
 To compile, either run the following from the command line:
 
 \lang{hxml}\begin{lstlisting}
-haxe -php bin -main Main
+haxe --php bin --main Main
 \end{lstlisting}
 
 Another possibility is to create and run (double-click) a file called \ic{compile.hxml}. In this example the hxml file should be in the same directory as the example class.
 
 \lang{hxml}\begin{lstlisting}
--php bin
--main Main
+--php bin
+--main Main
 \end{lstlisting}
 
-The compiler outputs in the given \emph{bin}-folder, which contains the generated PHP classes that prints the traced message when you run it. The generated PHP-code runs for version 5.1.0 and later.
+The compiler outputs in the given \emph{bin}-folder, which contains the generated PHP classes that prints the traced message when you run it.
+
+\since{4.0.0}
+
+The generated PHP code is compatible with PHP 7.0.0 or later. Prior to Haxe 4, the minimum required version was PHP 5.1.0.
+
+\subsection{Defines}
+\label{target-php-defines}
+
+\begin{center}
+\begin{tabular}{| l | l |}
+	\hline
+	Define & Description \\ \hline
+	\ic{php-prefix=<namespace>} & Root namespace for generated PHP classes. E.g. if compiled with \ic{-D php-prefix=some.sub}, then all classes will be generated in the \expr{\textbackslash some\textbackslash sub} namespace. \\
+	\ic{php-lib=<name>} & Select the name for the PHP lib directory. \\
+	\ic{php-front=<name>} & Select the name for the PHP front file (default: \ic{index.php}).
+\end{tabular}
+\end{center}
 
 \paragraph{More information}
 
@@ -662,47 +634,6 @@ The compiler outputs in the given \emph{bin}-folder, which contains the generate
 	\item \href{http://php.net/docs.php}{PHP.net Documentation}
 	\item \href{http://phptohaxe.haqteam.com/code.php}{PHP to Haxe tool}
 \end{itemize}
-
-
-\subsection{PHP untyped functions}
-\label{target-php-untyped}
-
-These functions allow to access specific PHP platform features. It works only when the Haxe compiler is targeting PHP and should always be prefixed with \expr{untyped}. 
-
-\emph{Important note:} Before using these functions, make sure there is no alternative available in the Haxe Standard Library. The resulting syntax can not be validated by the Haxe compiler, which may result in invalid or error-prone code in the output.
-
-\paragraph{\expr{untyped __php__(expr)}}
-Injects raw PHP code expressions. It's possible to pass fields from Haxe source code using \tref{String Interpolation}{lf-string-interpolation}.
-
-\begin{lstlisting}
-var value:String = "test";
-untyped __php__("echo '<pre>'; print_r($value); echo '</pre>';");
-// output: echo '<pre>'; print_r('test'); echo '</pre>';
-\end{lstlisting}
-
-\paragraph{\expr{untyped __call__(function, arg, arg, arg...)}}
-Calls a PHP function with the desired number of arguments and returns what the PHP function returns.
-
-\begin{lstlisting}
-var value = untyped __call__("array", 1,2,3); 
-// output returns a NativeArray with values [1,2,3]
-\end{lstlisting}
-
-\paragraph{\expr{untyped __var__(global, paramName)}}
-Get the values from global vars. Note that the dollar sign in the Haxe code is omitted.
-
-\begin{lstlisting}
-var value : String = untyped __var__('_SERVER', 'REQUEST_METHOD')  
-// output: $value = $_SERVER['REQUEST_METHOD']
-\end{lstlisting}
-
-\paragraph{\expr{untyped __physeq__(val1, val2)}}
-Strict equals test between the two values. Returns a \type{Bool}.
-
-\begin{lstlisting}
-var isFalse = untyped __physeq__(false, value);
-// output: $isFalse = false === $value;
-\end{lstlisting}
 
 
 \section{C++}
@@ -737,7 +668,7 @@ The hxcpp build environment can be controlled by setting, or defining, variables
 \paragraph{Defining From the Command Line}
 The easiest way to change the hxcpp build environment is to pass the defines though the Haxe command line using \ic{-D}.  Key-value pairs can also be passed this way, e.g.:
 
-\ic{ haxe -main Main -cpp cpp -D android -D static_link  -D PLATFORM=android-9 }
+\ic{ haxe --main Main --cpp cpp -D android -D static_link -D PLATFORM=android-9 }
 
 Here, \ic{android} is defined - this causes hxcpp to cross-compile to android, \ic{static_link} is defined, which causes a static (rather than dynamic) library to be created and the android target platform is set to a particular value.  This platform information is passed on to the SDK so it can generate the appropriate code.
 
@@ -972,14 +903,14 @@ To compile Haxe to Java we need two obvious prerequisites installed:
 Run the following from the command line:
 
 \lang{hxml}\begin{lstlisting}
-haxe -java bin -main Main
+haxe --java bin --main Main
 \end{lstlisting}
 
 Another possibility is to create and run (double-click) a file called \ic{compile.hxml}. In this example the hxml-file should be in the same directory as the example class.
 
 \lang{hxml}\begin{lstlisting}
--java bin
--main Main
+--java bin
+--main Main
 \end{lstlisting}
 
 The compiler outputs in the given \emph{bin}-folder, which contains the generated sources / .jar files which prints the traced message when you execute it. 
@@ -1016,10 +947,10 @@ To compile Haxe to C\# we need two obvious prerequisites installed:
 	\item \href{https://www.microsoft.com/net}{.NET development framework (either Microsoft.NET or Mono)}
 \end{itemize}
 
-After that we can compile to C\# using the \ic{-cs} option from either the command line or an hxml-file:
+After that we can compile to C\# using the \ic{--cs} option from either the command line or an hxml-file:
 
 \lang{hxml}\begin{lstlisting}
-haxe -cs out -main Main
+haxe --cs out --main Main
 \end{lstlisting}
 
 The compiler will output C\# sources into  \emph{out/src} folder, then call C\# compiler to build  \emph{Main.exe} file into  \emph{out/bin} folder.
@@ -1044,7 +975,7 @@ We can make Haxe use a custom set of DLL files as standard .NET framework. To do
 \begin{itemize}
 	\item .NET version (set by \ic{-D net-ver=xx}, defaults to \ic{20} as described above)
 	\item .NET target (by default set to \ic{net}, but could be changed using \ic{-D net-target=xxx}, where \ic{xxx} could be \ic{micro}, \ic{compact} or some other).
-	\item .NET std path (set by -net-std option, by default points to netlib directory inside hxcs library)
+	\item .NET std path (set by \ic{--net-std} option, by default points to netlib directory inside hxcs library)
 \end{itemize}
 
 The resulting search path will be \ic{<net_std_path>/<net_target>-<net_ver>/}, taking in the consideration default values described above, without any specific configuration haxe will load all .NET DLL files found in \ic{<hxcs_install_path>/netlib/net-20/}.
@@ -1052,7 +983,7 @@ The resulting search path will be \ic{<net_std_path>/<net_target>-<net_ver>/}, t
 Now if we provide the following options:
 
 \lang{hxml}\begin{lstlisting}
--D net-target=micro -D net-ver=35 -net-std=/dotnet
+-D net-target=micro -D net-ver=35 --net-std=/dotnet
 \end{lstlisting}
 
 Haxe will load all .NET DLL files found in \ic{/dotnet/micro-35/}.
@@ -1060,7 +991,7 @@ Haxe will load all .NET DLL files found in \ic{/dotnet/micro-35/}.
 
 \paragraph{Using external libraries}
 
-Haxe can directly load .NET assembly files (.DLL) and convert its type definitions for use as Haxe types. To load a .NET assembly, use \ic{-net-lib library.dll} compiler option. Haxe will then automatically parse types defined in that assembly file and make them available for import as Haxe types.
+Haxe can directly load .NET assembly files (.DLL) and convert its type definitions for use as Haxe types. To load a .NET assembly, use \ic{--net-lib library.dll} compiler option. Haxe will then automatically parse types defined in that assembly file and make them available for import as Haxe types.
 
 Some changes are performed to type naming of C\# classes to make them fit into Haxe type system, namely:
 
@@ -1077,7 +1008,7 @@ Some changes are performed to type naming of C\# classes to make them fit into H
 Besides \ic{-D net-ver} and \ic{-D net-target}:
 
 \begin{itemize}
-	\item \ic{-D dll} compile to a .NET assembly instead of an executable file. Added automatically when no \ic{-main} is specified.
+	\item \ic{-D dll} compile to a .NET assembly instead of an executable file. Added automatically when no \ic{--main} is specified.
 	\item \ic{-D real-position} don't generate \#line directives that map C\# expression positions to original .hx files. Useful for tracking down issues related to code generation.
 	\item \ic{-D no-root} generate package-less haxe types in the haxe.root namespace to avoid conflicts with other types in the root namespace
 	\item \ic{-D erase-generics} fully erase type parameters from generated C\# files and generate non-generic classes. This is useful in some cases, like working with .NET Micro Framework or preventing generics-related issues with Unity3D AOT compiler.
@@ -1109,23 +1040,6 @@ This is the list of C\# specific metadata. For more information, see also the co
 
 \subsection{Injecting raw C\# code}
 \label{target-cs-code-injection}
-
-\paragraph{Expression injection}
-
-In some cases it may be needed to inject raw C\# code into Haxe-generated code. This is possible by using  \expr{untyped __cs__} call, for example:
-
-\begin{lstlisting}
-public function isBool(v:Dynamic):Bool {
-    return untyped __cs__("v is bool");
-}
-\end{lstlisting}
-The  \expr{untyped __cs__} syntax also supports code interpolation which means that you can insert Haxe expressions into injected C\# code. For example, the example above could have been made inline, but because it always generates  \expr{v is bool}, it won't work when the given argument is not named  \expr{v} in the calling scope. To deal with that, we could rewrite our function using code interpolation, as follows:
-
-\begin{lstlisting}
-public inline function isBool(v:Dynamic):Bool {
-    return untyped __cs__("{0} is bool", v);
-}
-\end{lstlisting}
 
 \paragraph{Class code injection}
 
@@ -1213,7 +1127,7 @@ class Main {
 
 To compile, run the following:
 \lang{hxml}\begin{lstlisting}
-haxe -lua out.lua -main Main
+haxe --lua out.lua --main Main
 \end{lstlisting}
 
 \paragraph{More information}
@@ -1234,8 +1148,9 @@ for native Lua libraries.
 The Lua target enables the following define flags for the Haxe complier:
 
 \begin{description}
-	\item[\expr{-D lua_ver}] Enable special features for a specific Lua version. Currently, this flag will enable extern methods that are specific to certain versions (e.g. table.pack in Lua > 5.2).
+	\item[\expr{-D lua-ver}] Enable special features for a specific Lua version. Currently, this flag will enable extern methods that are specific to certain versions (e.g. table.pack in Lua > 5.2).
 	\item[\expr{-D luajit}] Enable special features for LuaJIT.  Currently this flag will enable the \ic{jit} and \ic{ffi} module namespaces.
+	\item[\expr{-D lua-vanilla}] Generate code lacking some functionality (e.g. UTF-8) but with no additional library dependencies.
 \end{description}
 
 \subsection{Multireturns}

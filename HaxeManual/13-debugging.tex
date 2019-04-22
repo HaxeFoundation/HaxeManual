@@ -64,8 +64,14 @@ This is useful to evaluate if an expression has a certain type, mostly when deal
 
 \begin{lstlisting}
 var myValue = "foo";
-$type(myValue); // String
+\$type(myValue); // String
 \end{lstlisting}
+
+
+\section{IDE Integration}
+\label{debugging-ide-integration}
+
+Haxe is supported in a \href{https://haxe.org/documentation/introduction/editors-and-ides.html}{number of editors and IDEs}. Some IDEs, such as Visual Studio Code (with the vshaxe extension), support debugging of Haxe code with breakpoints, stack tracing, etc. More information is available on the \href{https://github.com/vshaxe/vshaxe/wiki/Debugging}{vshaxe wiki}.
 
 
 \section{Debugging in JavaScript}
@@ -115,7 +121,7 @@ Compiling with the `-debug` flag will create a source map (.map) alongside the .
 In the generated JavaScript the last line will have a reference to the source map that looks like this:
 
 \begin{lstlisting}
-//# sourceMappingURL=Main.js.map
+//\# sourceMappingURL=Main.js.map
 \end{lstlisting}
 
 To include the hx sources as part of the JS source map, compile with \ic{-D source-map-content}.
@@ -152,21 +158,21 @@ class Main {
 Building it with flags:
 
 \lang{hxml}\begin{lstlisting}
--main Main
+--main Main
 -D php7
--php build
--debug
+--php build
+--debug
 \end{lstlisting}
 
 Running this build will trace the uncaught exception:
 
 \lang{none}\begin{lstlisting}
-$ php build/index.php
+\$ php build/index.php
 PHP Fatal error:  Uncaught php/_Boot/HxException: Terrible error in build/lib/Main.php:25
 Stack trace:
-#0 build/lib/Main.php(16): Main::terribleError()
-#1 build/index.php(13): Main::main()
-#2 {main}
+\#0 build/lib/Main.php(16): Main::terribleError()
+\#1 build/index.php(13): Main::main()
+\#2 {main}
   thrown in build/lib/Main.php on line 25
 \end{lstlisting}
 
@@ -174,17 +180,17 @@ Install JStack using \ic{haxelib install jstack}. JStack automatically adds \ic{
 Now if JStack is installed, add it to the compilation:
 
 \lang{hxml}\begin{lstlisting}
--main Main
+--main Main
 -D php7
--php build
--debug
--lib jstack
+--php build
+--debug
+-L jstack
 \end{lstlisting}
 
 The output will have more informative stack trace for exceptions:
 
 \lang{none}\begin{lstlisting}
-$ php build/index.php
+\$ php build/index.php
 Terrible error
 Called from Main.terribleError (src/Main.hx line 7)
 Called from Main.main (src/Main.hx line 3)

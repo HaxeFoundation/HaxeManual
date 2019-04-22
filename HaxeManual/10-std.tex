@@ -7,14 +7,21 @@
 
 \define[Type]{String}{define-string}{A String is a sequence of characters.}
 
-%TODO: utf8 crap %
-
 \paragraph{Character code}
-Use the \ic{.code} property on a constant single-char string in order to compile its ASCII character code:
+Use the \ic{.code} property on a constant single-char string in order to compile its Unicode character point:
 
 \begin{lstlisting}
 "#".code // will compile as 35
 \end{lstlisting}
+
+\since{4.0.0}
+
+\paragraph{Unicode support}
+All Haxe targets except Neko support Unicode in strings by default.
+
+A string in Haxe code represents a valid sequence of Unicode codepoints. Due to differing internal representations of strings across targets, only the basic multilingual plane (BMP) is supported consistently: every BMP Unicode codepoint corresponds to exactly one string character.
+
+On some targets, the internal representation is UTF-16, which means that non-BMP Unicode codepoints are represented using surrogate pairs. It is still possible to work with strings on these targets without having to manually decode surrogate pairs by using the \href{https://api.haxe.org/v/development/haxe/iterators/StringIteratorUnicode.html}{Unicode iterators API} provided in the standard library.
 
 \paragraph{Related content}
 \begin{itemize}
@@ -512,7 +519,7 @@ Use the \href{https://api.haxe.org/haxe/Template.html#globals}{Template.globals}
 \paragraph{Using resources}
 
 To separate the content from the code, consider using the \tref{resource embedding system}{cr-resources}. 
-Place the template-content in a new file called \ic{sample.mtt}, add \ic{-resource sample.mtt@my_sample} to the compiler arguments and retrieve the content using \expr{haxe.Resource.getString}.
+Place the template-content in a new file called \ic{sample.mtt}, add \ic{--resource sample.mtt@my_sample} to the compiler arguments and retrieve the content using \expr{haxe.Resource.getString}.
 \haxe{assets/TemplateResource.hx}
 
 When running the template system on the server side, you can simply use \expr{neko.Lib.print} or \expr{php.Lib.print} instead of trace to display the HTML template to the user.
@@ -868,11 +875,36 @@ Older browsers (Internet Explorer 7, for instance) may not have native \emph{JSO
 \section{Input/Output}
 \label{std-input-output}
 
-\section{Sys/sys}
+\section{Sys}
 \label{std-sys}
+
+The majority of Haxe targets are so-called ``sys'' targets. This means the targets have access to system APIs such as the filesystem, networking, threads, and more. The only non-sys targets supported by Haxe are Flash, JavaScript, and ActionScript 3, although JavaScript can support sys APIs when running under Node.js runtime.
+
+\paragraph{Related content}
+\begin{itemize}
+	\item See the \href{https://api.haxe.org/sys/}{sys package} on the API documentation for more details on its classes.
+\end{itemize}
+
+\subsection{Threading}
+\label{std-threading}
+
+\since{4.0.0}
+
+A \href{https://api.haxe.org/sys/thread/Thread.html}{unified threading API} is available on some sys targets. The compile-time define \expr{target.threaded} is set when the API is available. The API allows very simple creation of threads from functions:
+
+\haxe{assets/Threads.hx}
+
+All spawned threads are treated as daemon threads, meaning that the main thread will not wait for their completion.
+
+Due to threads having access to a shared memory space with all the Haxe variables and objects, it is possible to run into issues due to deadlocks and race conditions. The standard library provides some core synchronization constructs in the \href{https://api.haxe.org/sys/thread/}{\expr{sys.thread}} package.
+
 
 \section{Remoting}
 \label{std-remoting}
+
+\since{4.0.0}
+
+\emph{Deprecated:} The remoting API has been removed from the standard library in Haxe 4. For compatibility purposes it is still available in the \href{https://github.com/HaxeFoundation/hx3compat/}{hx3compat} library. See \Fullref{std-hx3compat}.
 
 Haxe remoting is a way to communicate between different platforms. With Haxe remoting, applications can transmit data transparently, send data and call methods between server and client side.
 
@@ -968,7 +1000,7 @@ class Client {
 }
 \end{lstlisting}
 
-To make this work for the Neko target, setup a Neko Web Server, point the url in the Client to \ic{"http://localhost2000/remoting.n"} and compile the Server using \ic{-main Server -neko remoting.n}.
+To make this work for the Neko target, setup a Neko Web Server, point the url in the Client to \ic{"http://localhost2000/remoting.n"} and compile the Server using \ic{--main Server --neko remoting.n}.
 
 \paragraph{Error handling}
 
@@ -1027,6 +1059,10 @@ This can lead to security issues in some cases. When in doubt, check the argumen
 \section{Unit Testing}
 \label{std-unit-testing}
 
+\since{4.0.0}
+
+\emph{Deprecated:} The unit testing API has been removed from the standard library in Haxe 4. For compatibility purposes it is still available in the \href{https://github.com/HaxeFoundation/hx3compat/}{hx3compat} library. See \Fullref{std-hx3compat}.
+
 The Haxe Standard Library provides basic unit testing classes from the \href{https://api.haxe.org/haxe/unit/}{haxe.unit} package. 
 
 \paragraph{Creating new test cases}
@@ -1083,20 +1119,45 @@ public function testArray() {
 This is an example showing how to run your unit tests (on Neko and Node.js) after compilation using a \tref{HXML}{compiler-usage-hxml}.
 
 \lang{hxml}\begin{lstlisting} 
--cp source/main/haxe
--cp source/test/haxe
--main your.package.TestRunnerMain
+-p source/main/haxe
+-p source/test/haxe
+--main your.package.TestRunnerMain
 --each
 
--neko output/neko/test.n
--cmd neko ./output/neko/test.n
+--neko output/neko/test.n
+--cmd neko ./output/neko/test.n
 --next
 
--js output/javascript/test.js
--cmd node ./output/javascript/test.js
+--js output/javascript/test.js
+--cmd node ./output/javascript/test.js
 \end{lstlisting} 
 
 \paragraph{Related content}
 \begin{itemize}
 	\item See the \href{https://api.haxe.org/haxe/unit/}{haxe.unit} package on the API documentation for more details.
 \end{itemize}
+
+
+\section{Haxe 3 Compatibility}
+\label{std-hx3compat}
+\since{4.0.0}
+
+Some APIs that were originally a part of the standard library have been removed in Haxe 4. To allow projects to transition from Haxe 3 more smoothly, the \href{https://github.com/HaxeFoundation/hx3compat/}{hx3compat} library still provides these APIs. To use it, simply install it and compile the project with \ic{-L hx3compat}.
+
+The full list of APIs in hx3compat is:
+
+\begin{itemize}
+	\item \type{haxe.remoting.*} Haxe remoting
+	\item \type{haxe.unit.*} Unit testing
+	\item \type{haxe.web.*} Web request classes for Haxe web servers
+	\item \type{neko.net.*} Neko web server
+	\item (JavaScript target only) jQuery and SWFObject externs
+\end{itemize}
+
+Note that some of these APIs were removed form the standard library in favour of solutions in external libraries:
+
+\begin{itemize}
+	\item \href{https://github.com/haxe-utest/utest}{utest} is a Haxe unit testing library.
+	\item \href{https://github.com/HaxeFoundation/hxnodejs}{hxnodejs} can be used to produce Node.js web servers in Haxe.
+\end{itemize}
+

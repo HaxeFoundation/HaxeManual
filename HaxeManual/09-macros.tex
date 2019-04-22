@@ -298,6 +298,15 @@ Here the macro logic could load a file and use its contents to generate a custom
 \subsection{Macro-in-Macro}
 \label{macro-limitations-macro-in-macro}
 
+Build macros cannot be invoked from a macro context. This means it is impossible to use a macro to create a class which will provide build macros for other classes.
+
+\since{4.0.0}
+
+It is also disallowed to invoke expression macros in a macro context.
+
+\trivia{Expression macro-in-macro}{Prior to Haxe 4, using expression macros inside a macro context was possible. Support was primarily dropped because such code would cause issues with the compiler cache.}
+
+
 \subsection{Static extension}
 \label{macro-limitations-static-extension}
 
@@ -325,10 +334,45 @@ With both interfaces \type{I1} and \type{I2} having \expr{:autoBuild} metadata, 
 \label{macro-limitations-type-parameters}
 
 
+\section{Persistent Variables}
+\label{macro-persistent-variables}
+
+When using macros in combination with the \tref{completion server}{cr-completion-server}, certain values obtained in a build or initialization macro can be retained for the next time the macro is executed. This is useful if obtaining the values is resource-intensive, or if the macro needs to keep track of previous builds. To mark a static field as persistent across macro builds, it should be annotated with the \expr{:persistent} metadata.
+
+As an example, here is \ic{Welcome.hx}:
+
+\begin{lstlisting}
+import haxe.macro.Expr;
+
+class Welcome {
+  @:persistent static var firstBuild:Bool = true;
+
+  public static build():Array<Field> {
+    if (firstBuild) {
+      trace("congratulations on your first build!");
+      firstBuild = false;
+    }
+    return null;
+  }
+}
+\end{lstlisting}
+
+And \ic{Main.hx}:
+
+\begin{lstlisting}
+@:build(Welcome.build())
+class Main {
+  public static function main() {}
+}
+\end{lstlisting}
+
+After starting the completion server with \ic{haxe --wait 6000}, we perform a build with \ic{haxe --connect 6000 --main Main --no-output}. The first time the congratulatory message is printed during compilation. If we execute the same command again, however, it is not - the \expr{firstBuild} variable retains the value \expr{false} from the previous build.
+
+
 \section{Initialization Macros}
 \label{macro-initialization}
 
-Initialization macros are invoked from command line by using the \expr{--macro callExpr(args)} command. This registers a callback which the compiler invokes after creating its context, but before typing what was argument to \expr{-main}. This then allows configuring the compiler in some ways.
+Initialization macros are invoked from command line by using the \expr{--macro callExpr(args)} command. This registers a callback which the compiler invokes after creating its context, but before typing what was argument to \expr{--main}. This then allows configuring the compiler in some ways.
 
 If the argument to \expr{--macro} is a call to a plain identifier, that identifier is looked up in the class \type{haxe.macro.Compiler} which is part of the Haxe Standard Library. It comes with several useful initialization macros which are detailed in its \href{http://api.haxe.org//haxe/macro/Compiler.html}{API}.
 

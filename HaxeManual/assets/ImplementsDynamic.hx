@@ -1,7 +1,6 @@
-class ImplementsDynamic
-  implements Dynamic<String> {
+extern class ImplementsDynamic implements Dynamic<String> {
   public var present:Int;
-  public function new() {}
+  public function new();
 }
 
 class Main {
