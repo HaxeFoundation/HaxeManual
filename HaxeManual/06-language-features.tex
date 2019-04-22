@@ -174,18 +174,18 @@ class Main<A> {
 }
 \end{lstlisting}
 
-\emph{\tref{Markup Literals}{lf-markup}:}
-
-Markup literals can be included directly in Haxe code, as long as they are processed by a macro:
-
-\begin{lstlisting}
-@:build(Component.build())
-class MyComponent {
-  public function render() {
-    return <div>some <b>markup</b> with<br />some ${"haxe code"}</div>;
-  }
-}
-\end{lstlisting}
+%\emph{\tref{Markup Literals}{lf-markup}:}
+%
+%Markup literals can be included directly in Haxe code, as long as they are processed by a macro:
+%
+%\begin{lstlisting}
+%@:build(Component.build())
+%class MyComponent {
+%  public function render() {
+%    return <div>some <b>markup</b> with<br />some ${"haxe code"}</div>;
+%  }
+%}
+%\end{lstlisting}
 
 \section{Conditional Compilation}
 \label{lf-condition-compilation}
@@ -965,25 +965,25 @@ Main.main = function() {
 \end{lstlisting}
 
 
-\section{Markup Literals}
-\label{lf-markup}
-\since{4.0.0}
-
-Haxe supports markup literals embedded directly in the code. This can be used to implement domain-specific languages (DSL), component libraries, heredoc strings, as well as other declarative syntax. All markup literals must be processed by a macro function. This avoids the issue of having a ``default'' meaning to a markup block and instead allowing macro writers to interpret these fragments any way they see fit.
-
-\haxe{assets/Markup.hx}
-
-It is important to note that this syntax is not XML. The contents of the enclosing markup tags can be completely arbitrary, as long as they do not interfere with the closing tag. The processing macro simply receives an expression (\type{haxe.macro.Expr}) containing a string constant that is annotated with a \expr{:markup} metadata.
-
-Tags can be nested inside the markup, as long as they are correctly terminated. This introduces some limitations on self-closing tags:
-
-\begin{lstlisting}
-// this markup literal parses correctly:
-<div> <div> <div></div> </div> <div /> </div>
-// as does this one (even though it is no longer valid XML):
-<div> <div <div></div> ></div> <div /> </div>
-// but this one causes a parsing error:
-<div> <div <div></div> /> <div /> </div>
-\end{lstlisting}
-
-\trivia{Haxe Evolution proposal}{This feature has been originally proposed by Juraj Kirchheim in a \href{https://github.com/HaxeFoundation/haxe-evolution/blob/master/proposals/0006-inline-markup.md\#inline-markup}{Haxe Evolution proposal}.}
+%\section{Markup Literals}
+%\label{lf-markup}
+%\since{4.0.0}
+%
+%Haxe supports markup literals embedded directly in the code. This can be used to implement domain-specific languages (DSL), component libraries, heredoc strings, as well as other declarative syntax. All markup literals must be processed by a macro function. This avoids the issue of having a ``default'' meaning to a markup block and instead allowing macro writers to interpret these fragments any way they see fit.
+%
+%\haxe{assets/Markup.hx}
+%
+%It is important to note that this syntax is not XML. The contents of the enclosing markup tags can be completely arbitrary, as long as they do not interfere with the closing tag. The processing macro simply receives an expression (\type{haxe.macro.Expr}) containing a string constant that is annotated with a \expr{:markup} metadata.
+%
+%Tags can be nested inside the markup, as long as they are correctly terminated. This introduces some limitations on self-closing tags:
+%
+%\begin{lstlisting}
+%// this markup literal parses correctly:
+%<div> <div> <div></div> </div> <div /> </div>
+%// as does this one (even though it is no longer valid XML):
+%<div> <div <div></div> ></div> <div /> </div>
+%// but this one causes a parsing error:
+%<div> <div <div></div> /> <div /> </div>
+%\end{lstlisting}
+%
+%\trivia{Haxe Evolution proposal}{This feature has been originally proposed by Juraj Kirchheim in a \href{https://github.com/HaxeFoundation/haxe-evolution/blob/master/proposals/0006-inline-markup.md\#inline-markup}{Haxe Evolution proposal}.}
