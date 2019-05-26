@@ -143,7 +143,7 @@ The DCE-algorithm works well with typed code, but may fail when \tref{dynamic}{t
 \begin{description}
 	\item[\expr{@:keep}:] If used on a class, the class along with all fields is unaffected by DCE. If used on a field, that field is unaffected by DCE.
 	\item[\expr{@:keepSub}:] If used on a class, it works like \expr{@:keep} on the annotated class as well as all subclasses.
-	\item[\expr{@:keepInit}:] Usually, a class which had all fields removed by DCE (or is empty, to begin with) is removed from the output. By using this metadata, empty classes are kept.
+	\item[\expr{@:keepInit}:] Usually, a class which had all fields removed by DCE (or is empty to begin with) is removed from the output. By using this metadata, empty classes are kept.
 \end{description}
 
 If a class needs to be marked with \expr{@:keep} from the command line instead of editing its source code, there is a compiler macro available for doing so: \expr{--macro keep('type dot path')} See the \href{http://api.haxe.org/haxe/macro/Compiler.html#keep}{haxe.macro.Compiler.keep API} for details of this macro. It will mark package, module or sub-type to be kept by DCE and includes them for compilation.
@@ -191,7 +191,7 @@ Due to Haxe being a very fast compiler, it is often sufficient to rely on the no
 \label{cr-completion-interface-notes}
 
 \begin{itemize}
-	\item The position-argument can be set to 0 if the file in question contains a pipeline \ic{|} character at the position of interest. This is very useful for demonstration and testing as it allows us to ignore the byte-counting process a real IDE would have to do. The examples in this section are making use of this feature. Note that this only works in places where \ic{|} are not valid syntax otherwise, e.g. after dots (\ic{.|}) and opening parentheses (\ic{(|}).
+	\item The position-argument can be set to 0 if the file in question contains a pipeline \ic{|} character at the position of interest. This is very useful for demonstration and testing as it allows us to ignore the byte-counting process a real IDE would have to do. The examples in this section are making use of this feature. Note that this only works in places where \ic{|} is not valid syntax otherwise, e.g. after dots (\ic{.|}) and opening parentheses (\ic{(|}).
 	\item The output is HTML-escaped so that \ic{\&}, \ic{<} and \ic{>} become \ic{\&amp;amp;}, \ic{\&amp;lt;} and \ic{\&amp;gt;} respectively.
 	\item Otherwise any documentation output is preserved which means longer documentation might include new-line and tab-characters as it does in the source files.
 	\item When running in completion mode, the compiler does not display errors but instead tries to ignore them or recover from them.  If a critical error occurs while getting completion, the Haxe Compiler prints the error message instead of the completion output. Any non-XML output can be treated as a critical error message.
@@ -528,7 +528,7 @@ The compilation server will cache the following things:
 \begin{description}
 	\item[parsed files] the files will only get parsed again if they are modified or if there was a parse error
 	\item[haxelib calls] the previous results of haxelib calls will be reused (only for completion : they are ignored when doing a compilation)
-	\item[typed modules] compilation modules will be cached after a successful compilation and can be reused in later compilation/completions if none of their dependencies has been modified
+	\item[typed modules] compilation modules will be cached after a successful compilation and can be reused in later compilation/completions if none of their dependencies have been modified
 \end{description}
 
 You can get a precise reading of the times spent by the compiler and how using the compilation server affects them by adding \ic{--times} to the command line.
