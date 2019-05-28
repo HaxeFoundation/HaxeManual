@@ -103,6 +103,14 @@ class RunTravis
 		#end
 	];
 
+	/** Examples that will not compile on specific targets. */
+	static var targetExclusions = [
+		Cs => ["ExternNative.hx", "ImplementsDynamic.hx"],
+		Cpp => ["ExternNative.hx", "ImplementsDynamic.hx"],
+		Hl => ["ExternNative.hx", "ImplementsDynamic.hx"],
+		Java => ["ExternNative.hx", "ImplementsDynamic.hx"],
+	];
+
 	/** Additional .hx modules needed to compile specific examples. */
 	static var additionalModules = [
 		"AutoBuilding.hx" => "AutoBuildingMacro.hx",
@@ -180,6 +188,9 @@ class RunTravis
 			excludedExamples.push(additionalModule);
 		// special case, both needed as an additional module and needs to compile on its own
 		excludedExamples.remove("Point.hx");
+
+		if (targetExclusions.exists(target))
+			excludedExamples = excludedExamples.concat(targetExclusions[target]);
 
 		helperFile = File.getContent("Helper.hx");
 
