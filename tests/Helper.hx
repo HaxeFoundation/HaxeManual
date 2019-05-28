@@ -1,5 +1,7 @@
 package;
 
+<imports>
+
 <module>
 
 class Main {

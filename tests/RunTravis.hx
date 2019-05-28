@@ -70,8 +70,7 @@ class RunTravis
 		"Visibility.hx",
 		"Visibility2.hx",
 		"BindOptional.hx",
-		#if (haxe_ver >= 4)
-		"ImplementsDynamic.hx", // this fails on Haxe4
+		#if (haxe_ver >= version("4.0.0"))
 		"DynamicResolve.hx", // this fails on Haxe4
 		#end
 	];
@@ -96,14 +95,53 @@ class RunTravis
 		"EnumBuilding.hx" => "EnumBuildingMacro.hx",
 		"GenericBuild1.hx" => "GenericBuildMacro1.hx",
 		"GenericBuild2.hx" => "GenericBuildMacro2.hx",
+		"PatternMatching1.hx" => "Tree.hx",
+		"PatternMatching2.hx" => "Tree.hx",
+		"PatternMatching3.hx" => "Tree.hx",
+		"PatternMatching4.hx" => "Tree.hx",
+		"PatternMatching5.hx" => "Tree.hx",
+		"PatternMatching6.hx" => "Tree.hx",
+		"PatternMatching7.hx" => "Tree.hx",
+		"PatternMatching8.hx" => "Tree.hx",
+		"PatternMatching9.hx" => "Tree.hx",
+		"PatternMatching10.hx" => "Tree.hx",
+		"PatternMatching11.hx" => "Tree.hx",
 		"Point3.hx" => "Point.hx",
 		"MathExtensionUsage.hx" => "MathStaticExtension.hx",
 		"TypeBuilding.hx" => "TypeBuildingMacro.hx"
 	];
 
+	/** Additional imports (for enums) needed to compile specific examples. */
+	static var additionalImports = [
+		"PatternMatching1.hx" => "Tree",
+		"PatternMatching2.hx" => "Tree",
+		"PatternMatching3.hx" => "Tree",
+		"PatternMatching4.hx" => "Tree",
+		"PatternMatching5.hx" => "Tree",
+		"PatternMatching6.hx" => "Tree",
+		"PatternMatching7.hx" => "Tree",
+		"PatternMatching8.hx" => "Tree",
+		"PatternMatching9.hx" => "Tree",
+		"PatternMatching10.hx" => "Tree",
+		"PatternMatching11.hx" => "Tree",
+	];
+
 	/** Snippets that don't compile on their own */
 	static var incompleteSnippets = [
+		"AbstractEnum2.hx" => Module,
 		"Color.hx" => Module,
+		"Tree.hx" => Module,
+		"PatternMatching1.hx" => Function,
+		"PatternMatching2.hx" => Function,
+		"PatternMatching3.hx" => Function,
+		"PatternMatching4.hx" => Function,
+		"PatternMatching5.hx" => Function,
+		"PatternMatching6.hx" => Function,
+		"PatternMatching7.hx" => Function,
+		"PatternMatching8.hx" => Function,
+		"PatternMatching9.hx" => Function,
+		"PatternMatching10.hx" => Function,
+		"PatternMatching11.hx" => Function,
 		"Point.hx" => Module,
 		"Point3.hx" => Module,
 		"StringInterpolation.hx" => Function,
@@ -141,7 +179,7 @@ class RunTravis
 		if (target != Target.Cpp)
 			return ExitCode.Success;
 
-		#if (haxe_ver >= "3.3")
+		#if (haxe_ver >= version("3.3.0"))
 		var hxcppDir = Sys.getEnv("HOME") + "/haxe/lib/hxcpp/git/";
 		return getResult([
 			Sys.command("haxelib", ["git", "hxcpp", "https://github.com/HaxeFoundation/hxcpp"]),
@@ -189,14 +227,13 @@ class RunTravis
 		Sys.println('Testing $file on $target');
 
 		var insertIn = incompleteSnippets.get(file);
+		var additionalImport = additionalImports.get(file);
 		if (insertIn != null) {
-			var fileOutput = File.write('$dir/Main.hx');
 			var fileContent = File.getContent(file);
-
-			fileOutput.writeString(helperFile
+			File.saveContent('$dir/Main.hx', helperFile
+				.replace("<imports>", (additionalImport != null) ? 'import $additionalImport;' : "")
 				.replace("<module>", (insertIn == Module) ? fileContent : "")
 				.replace("<function>", (insertIn == Function) ? fileContent : ""));
-			fileOutput.close();
 		} else {
 			// workaround for "Module [name] does not define type [name]"
 			File.copy(file, '$dir/Main.hx');
@@ -215,8 +252,8 @@ class RunTravis
 		var expectedResult:ExitCode = requiredFailures.indexOf(file) == -1;
 		var compileResult = Sys.command("haxe", getCompileArgs(file, target));
 
-		var result:ExitCode = compileResult == expectedResult;
-		if (result == ExitCode.Failure)
+		var result = compileResult == expectedResult;
+		if (!result)
 			printWithColor('Unexpected result for $file:' +
 				'$compileResult, expected $expectedResult', Color.Red);
 		return result;
@@ -248,7 +285,7 @@ class RunTravis
 	}
 
 	static function setColor(color:Color):Void {
-		if (Sys.systemName() == "Linux") {
+		if (Sys.systemName() == "Linux" || Sys.systemName() == "Mac") {
 			var id = (color == Color.None) ? "" : ';$color';
 			Sys.stderr().writeString("\033[0" + id + "m");
 		}
