@@ -3,7 +3,7 @@ typedef Point2D = {
   var y:Int;
 }
 
-typedef Point3D = PointXY & {z:Int};
+typedef Point3D = Point2D & {z:Int};
 
 class Main {
   static public function main() {
