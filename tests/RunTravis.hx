@@ -70,7 +70,7 @@ class RunTravis
 		"Visibility.hx",
 		"Visibility2.hx",
 		"BindOptional.hx",
-		#if (haxe_ver >= version("4.0.0"))
+		#if (haxe_ver >= 4)
 		"DynamicResolve.hx", // this fails on Haxe4
 		#end
 	];
@@ -179,7 +179,7 @@ class RunTravis
 		if (target != Target.Cpp)
 			return ExitCode.Success;
 
-		#if (haxe_ver >= version("3.3.0"))
+		#if (haxe_ver >= "3.3")
 		var hxcppDir = Sys.getEnv("HOME") + "/haxe/lib/hxcpp/git/";
 		return getResult([
 			Sys.command("haxelib", ["git", "hxcpp", "https://github.com/HaxeFoundation/hxcpp"]),
