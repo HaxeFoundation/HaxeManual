@@ -129,7 +129,7 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 \section{Dead Code Elimination}
 \label{cr-dce}
 
-Dead Code Elimination or \emph{DCE} is a compiler feature which removes unused code from the output. After typing, the compiler evaluates the DCE entry-points (usually the main-method) and recursively determines which fields and types are used. Used fields are marked accordingly and unmarked fields are then removed from their classes.
+Dead Code Elimination or \emph{DCE} is a compiler feature which removes unused code from the output. After typing, the compiler evaluates the DCE entry-points (usually the main method) and recursively determines which fields and types are used. Used fields are marked accordingly and unmarked fields are then removed from their classes.
 
 DCE has three modes which are set when invoking the command line:
 
@@ -169,7 +169,7 @@ The rich \tref{type system}{type-system} of the Haxe Compiler makes it difficult
 All completion is triggered using the \ic{--display file@position[@mode]} compiler argument. The required arguments are:
 
 \begin{description}
-	\item[file:] The file to check for completion. This must be an absolute or relative path to a .hx file. It does not respect any class paths or libraries.
+	\item[file:] The file to check for completion. This must be an absolute or relative path to a .hx file. It does not respect any classpaths or libraries.
 	\item[position:] The byte position (not character position) of where to check for completion in the given file.
 	\item[mode:] The completion mode to use (see below).
 \end{description}
@@ -185,7 +185,7 @@ We will look into the following completion modes in detail:
 	\item[\tref{Top-level}{cr-completion-top-level}:] Lists all identifiers which are available at a given position. (mode: \ic{"toplevel"})
 \end{description}
 
-Due to Haxe being a very fast compiler, it is often sufficient to rely on the normal compiler invocation for completion. For bigger projects Haxe provides a \tref{server mode}{cr-completion-server} which ensures that only those files are re-compiled that actually changed or had any of their dependencies changes.
+Due to Haxe being a very fast compiler, it is often sufficient to rely on the normal compiler invocation for completion. For bigger projects, Haxe provides a \tref{server mode}{cr-completion-server} which ensures that only those files are re-compiled that actually changed or had any of their dependencies changes.
 
 \paragraph{General notes on the interface}
 \label{cr-completion-interface-notes}
@@ -194,7 +194,7 @@ Due to Haxe being a very fast compiler, it is often sufficient to rely on the no
 	\item The position-argument can be set to 0 if the file in question contains a pipeline \ic{|} character at the position of interest. This is very useful for demonstration and testing as it allows us to ignore the byte-counting process a real IDE would have to do. The examples in this section are making use of this feature. Note that this only works in places where \ic{|} is not valid syntax otherwise, e.g. after dots (\ic{.|}) and opening parentheses (\ic{(|}).
 	\item The output is HTML-escaped so that \ic{\&}, \ic{<} and \ic{>} become \ic{\&amp;amp;}, \ic{\&amp;lt;} and \ic{\&amp;gt;} respectively.
 	\item Otherwise any documentation output is preserved which means longer documentation might include new-line and tab-characters as it does in the source files.
-	\item When run in completion mode, the compiler does not display errors but instead tries to ignore them or recover from them.  If a critical error occurs while getting completion, the Haxe Compiler prints the error message instead of the completion output. Any non-XML output can be treated as a critical error message.
+	\item When running in completion mode, the compiler does not display errors but instead tries to ignore them or recover from them.  If a critical error occurs while getting completion, the Haxe Compiler prints the error message instead of the completion output. Any non-XML output can be treated as a critical error message.
 \end{itemize}
 
 \subsection{Field access completion}
@@ -346,7 +346,7 @@ import haxe.Unserializer.|
     This value can be set to use custom type resolvers.
 
     A type resolver finds a Class or Enum instance from a given String.
-    By default, the haxe Type Api is used.
+    By default, the haxe Type API is used.
 
     A type resolver must provide two methods:
 
@@ -494,7 +494,7 @@ If this file is saved to Main.hx, the completion can be invoked using the comman
 </il>
 \end{lstlisting}
 
-The structure of the XML depends on the \ic{k} attribute of each entry. In all cases the node value of the \ic{i} nodes contains the relevant name.
+The structure of the XML depends on the \ic{k} attribute of each entry. In all cases, the node value of the \ic{i} nodes contains the relevant name.
 
 \begin{description}
 	\item[\ic{local}, \ic{member}, \ic{static}, \ic{enum}, \ic{global}:] The \ic{t} attribute holds the type of the variable or field.
@@ -520,7 +520,7 @@ Use the \ic{--connect} command-line parameter to have Haxe send its compilation 
 haxe --connect 6000 myproject.hxml
 \end{lstlisting}
 
-Please note that you can use the parameter \ic{--cwd} at the first sent command line to change the Haxe server's current working directory. Usually class paths and other files are relative to your project.
+Please note that you can use the parameter \ic{--cwd} at the first sent command line to change the Haxe server's current working directory. Usually, classpaths and other files are relative to your project.
 
 \paragraph{How it works}
 The compilation server will cache the following things:
@@ -531,7 +531,7 @@ The compilation server will cache the following things:
 	\item[typed modules] compilation modules will be cached after a successful compilation and can be reused in later compilation/completions if none of their dependencies have been modified
 \end{description}
 
-You can get precise reading of the times spent by the compiler and how using the compilation server affects them by adding \ic{--times} to the command line.
+You can get a precise reading of the times spent by the compiler and how using the compilation server affects them by adding \ic{--times} to the command line.
 
 \paragraph{Protocol}
 As the following Haxe/Neko example shows, you can simply connect on the server port and send all commands (one per line) ending with a 0 binary char. You can, then, read the results.
@@ -540,7 +540,7 @@ Macros and other commands can log events which are not errors. From the command 
 
 Warnings and other messages can also be considered errors, but are not fatal ones. If a fatal error occurred, it will send a single \ic{\\x02} message-line.
 
-Here's some code that will treat connection to the server and handle the protocol details:
+Here's some code that will treat the connection to the server and handle the protocol details:
 
 \haxe{assets/CompletionServer.hx}
 
@@ -589,7 +589,7 @@ The return type of \emph{getBytes} method is \type{haxe.io.Bytes}, which is an o
 \subsection{Implementation details}
 \label{cr-resources-impl}
 
-Haxe uses the target platform's native resource embedding if there is one, otherwise it provides its own implementation.
+Haxe uses the target platform's native resource embedding if there is one, otherwise, it provides its own implementation.
 
 \begin{itemize}
 \item \emph{Flash} resources are embedded as ByteArray definitions
@@ -685,7 +685,7 @@ The type \type{haxe.rtti.Rtti} has been introduced in order to simplify working 
 	\item[args:] The list of arguments the constructor has or \expr{null} if no arguments are available.
 	\item[doc:] The documentation of the constructor. This information is only available if the \tref{compiler flag}{define-compiler-flag} \expr{-D use_rtti_doc} was in place. Otherwise, or if the constructor has no documentation, the value is \expr{null}.
 	\item[platforms:] A list of strings representing the targets where the constructor is available.
-	\item[meta:] The meta data the constructor was annotated with.
+	\item[meta:] The metadata the constructor was annotated with.
 \end{description}
 
 
@@ -757,7 +757,7 @@ test(2);
 test(3);
 \end{lstlisting}
 
-Whether a loop is unrolled or not depends on the loop unrolling cost, which is defined as the number of iterations of the loop and the number of expressions inside the loop body. This threshold is 250 by default, but can be configured using the \expr{-D loop_unroll_max_cost=...} compile-time define.
+Whether a loop is unrolled or not depends on the loop unrolling cost, which is defined as the number of iterations of the loop and the number of expressions inside the loop body. This threshold is 250 by default but can be configured using the \expr{-D loop_unroll_max_cost=...} compile-time define.
 
 
 \section{Null Safety}
@@ -919,4 +919,3 @@ if (nullable != null) {
 }
 \end{lstlisting}
 \end{itemize}
-
