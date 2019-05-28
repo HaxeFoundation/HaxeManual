@@ -97,7 +97,7 @@ class RunTravis
 		"InlineCallsite.hx",
 		"ListExample.hx",
 		"Markup.hx",
-		"PatternMatchin4.hx",
+		"PatternMatching4.hx",
 		"StaticExtension4.hx",
 		"Threads.hx",
 		#end
