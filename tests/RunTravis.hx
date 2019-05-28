@@ -87,6 +87,20 @@ class RunTravis
 		"UnitTestCase.hx",
 		"UnitTestRunner.hx",
 		"UnitTestSetup.hx",
+		#if (haxe_ver < 4)
+		"AbstractAccessOverload.hx",
+		"AbstractEnum2.hx",
+		"ArrowFunction.hx",
+		"Extension3.hx",
+		"Final.hx",
+		"FinalMutable.hx",
+		"InlineCallsite.hx",
+		"ListExample.hx",
+		"Markup.hx",
+		"PatternMatchin4.hx",
+		"StaticExtension4.hx",
+		"Threads.hx",
+		#end
 	];
 
 	/** Additional .hx modules needed to compile specific examples. */
