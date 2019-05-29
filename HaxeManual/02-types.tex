@@ -71,7 +71,7 @@ Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used t
 \subsection{Numeric Operators}
 \label{types-numeric-operators}
 
-\todo{make sure the types are right for inc, dec, negate and bitwise negate}
+\todo{make sure the types are right for inc, dec, negate, and bitwise negate}
 \todo{While introducing the different operations, we should include that information as well, including how they differ with the "C" standard, see http://haxe.org/manual/operators}
 This the list of numeric operators in Haxe, grouped by descending priority.
 
@@ -437,7 +437,7 @@ Advanced information on using the \expr{switch} expression will be explored late
 \section{Anonymous Structure}
 \label{types-anonymous-structure}
 
-Anonymous structures can be used to group data without explicitly creating a type. The following example creates a structure with two fields \expr{x} and \expr{name} and initializes their values to \expr{12} and \expr{"foo"} respectively:
+Anonymous structures can be used to group data without explicitly creating a type. The following example creates a structure with two fields \expr{x} and \expr{name}, and initializes their values to \expr{12} and \expr{"foo"} respectively:
 
 \haxe{assets/Structure.hx}
 The general syntactic rules follow:
@@ -597,7 +597,7 @@ It is also possible to extend multiple structures:
 
 \since{4.0.0}
 
-Haxe 4 introduces an alternative notation for an extension, separating each extended structure with a \expr{\&} symbol.
+Haxe 4 introduces an alternative notation for extension, separating each extended structure with a \expr{\&} symbol.
 
 \haxe{assets/Extension3.hx}
 
@@ -678,12 +678,12 @@ This should be considered in performance-critical code where a solution without 
 \section{Dynamic}
 \label{types-dynamic}
 
-While Haxe has a static type system, this type of system can, in effect, be turned off by using the \type{Dynamic} type. A \emph{dynamic value} can be assigned to anything and anything can be assigned to it. This has several drawbacks:
+While Haxe has a static type system, this type system can, in effect, be turned off by using the \type{Dynamic} type. A \emph{dynamic value} can be assigned to anything and anything can be assigned to it. This has several drawbacks:
 
 \begin{itemize}
 	\item The compiler can no longer type-check assignments, function calls and other constructs where specific types are expected.
 	\item Certain optimizations, in particular when compiling to static targets, can no longer be employed.
-	\item Some common errors, e.g. a typo infield access, cannot be caught at compile-time and likely cause an error at runtime.
+	\item Some common errors, e.g. a typo in field access, cannot be caught at compile-time and likely cause an error at runtime.
 	\item \Fullref{cr-dce} cannot detect used fields if they are used through \type{Dynamic}.
 \end{itemize}
 It is very easy to come up with examples where the usage of \type{Dynamic} can cause problems at runtime. Consider compiling the following two lines to a static target:
@@ -734,7 +734,7 @@ att.income = 0;
 \label{types-dynamic-any}
 
 \type{Any} is a type that is compatible with any other in both ways. 
-It serves one purpose - to hold values of any type but to actually use that values, explicit casting is required. That way the code doesn't suddenly become dynamically typed and we keep all the static typing goodness, like advanced type system features and optimizations.
+It serves one purpose - to hold values of any type, but to actually use those values, explicit casting is required. That way the code doesn't suddenly become dynamically typed and we keep all the static typing goodness, like advanced type system features and optimizations.
 
 The implementation is quite simple:
 
@@ -786,7 +786,7 @@ A good question at this point is ``What happens if a member function is not decl
 
 
 
-\trivia{Basic Types and abstracts}{Before the advent of abstract types, all basic types were implemented as extern classes or enums. While this nicely taken care of some aspects such as \type{Int} being a ``child class'' of \type{Float}, it caused issues elsewhere. For instance, with \type{Float} being an extern class, it would unify with the empty structure \expr{\{\}}, making it impossible to constrain a type to accept only real objects.}
+\trivia{Basic Types and abstracts}{Before the advent of abstract types, all basic types were implemented as extern classes or enums. While this nicely took care of some aspects such as \type{Int} being a ``child class'' of \type{Float}, it caused issues elsewhere. For instance, with \type{Float} being an extern class, it would unify with the empty structure \expr{\{\}}, making it impossible to constrain a type to accept only real objects.}
 
 
 
@@ -808,7 +808,7 @@ We declare \type{MyAbstract} as being \expr{from Int} and \expr{to Int}, meaning
 Class field casts have the same semantics, but are defined completely differently:
 
 \haxe{assets/ImplicitCastField.hx}
-By adding \expr{@:from} to a static function, that function qualifies as implicit cast function from its argument type to the abstract. These functions must return the value of the abstract type. They must also be declared \expr{static}.
+By adding \expr{@:from} to a static function, that function qualifies as implicit cast function from its argument type to the abstract. These functions must return the value of a abstract type. They must also be declared \expr{static}.
 
 Similarly, adding \expr{@:to} to a function qualifies it as implicit cast function from the abstract to its return type.
 
@@ -935,7 +935,7 @@ Due to a bug in Haxe versions before 3.2 the order of checked \expr{:arrayAccess
 
 The array access \expr{a[0]} is resolved to the \expr{getInt1} field, leading to lower case \expr{f} being returned. The result might be different in Haxe versions before 3.2.
 
-Fields which are defined earlier take priority even if they require a \tref{implicit cast}{types-abstract-implicit-casts}.
+Fields which are defined earlier take priority even if they require an \tref{implicit cast}{types-abstract-implicit-casts}.
 
 
 
@@ -974,7 +974,7 @@ This is similar to accessing \tref{variables declared as inline}{class-field-inl
 
 \since{4.0.0}
 
-Since Haxe 4, it is possible to declare enum abstracts without using the \expr{:enum} metadata, instead of using the more natural syntax \expr{enum abstract}. Additionally, if the underlying type is \expr{String} or \expr{Int}, the values for the enum cases can be omitted and are deduced by the compiler:
+Since Haxe 4, it is possible to declare enum abstracts without using the \expr{:enum} metadata, instead using the more natural syntax \expr{enum abstract}. Additionally, if the underlying type is \expr{String} or \expr{Int}, the values for the enum cases can be omitted and are deduced by the compiler:
 
 \begin{itemize}
 	\item For \type{Int} abstracts, the deduced values increment the last user-defined value or start at zero if no value was declared yet.
@@ -1014,7 +1014,7 @@ It is also possible to use \expr{:forward} without any arguments in order to for
 
 The Haxe Standard Library defines a set of basic types as core-type abstracts. They are identified by the \expr{:coreType} metadata and the lack of an underlying type declaration. These abstracts can still be understood to represent a different type. Still, that type is native to the Haxe target. 
 
-Introducing custom core-type abstracts is rarely necessary for user code as it requires the Haxe target to be able to make sense of it. However, there could be interesting use-cases for authors of macros and new Haxe targets.
+Introducing custom core-type abstracts is rarely necessary in user code as it requires the Haxe target to be able to make sense of it. However, there could be interesting use-cases for authors of macros and new Haxe targets.
 
 In contrast to opaque abstracts, core-type abstracts have the following properties:
 
