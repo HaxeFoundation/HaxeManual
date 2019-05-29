@@ -808,7 +808,7 @@ We declare \type{MyAbstract} as being \expr{from Int} and \expr{to Int}, meaning
 Class field casts have the same semantics, but are defined completely differently:
 
 \haxe{assets/ImplicitCastField.hx}
-By adding \expr{@:from} to a static function, that function qualifies as implicit cast function from its argument type to the abstract. These functions must return the value of abstract type. They must also be declared \expr{static}.
+By adding \expr{@:from} to a static function, that function qualifies as implicit cast function from its argument type to the abstract. These functions must return a value of the abstract type. They must also be declared \expr{static}.
 
 Similarly, adding \expr{@:to} to a function qualifies it as implicit cast function from the abstract to its return type.
 
