@@ -11,6 +11,7 @@
 *.fls
 *.xdv
 convert/convert.n
+generate/generate.n
 
 latextemp/
 HaxeDoc.synctex.gz
