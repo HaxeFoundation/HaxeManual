@@ -2,7 +2,7 @@ root = HaxeManual
 dir:=HaxeManual/
 
 generate: PHONY
-	cd generate && haxe Generate.hxml && neko Generate.n
+	cd generate && haxe generate.hxml
 
 pdf: $(dir)$(root).pdf PHONY
 
