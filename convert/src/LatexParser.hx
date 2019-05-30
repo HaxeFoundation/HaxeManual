@@ -264,6 +264,12 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 				case [TCommand(CMulticolumn), TBrOpen, _ = text(), TBrClose, TBrOpen, _ = text(), TBrClose, TBrOpen, s = text(), TBrClose]:
 					buffer.add('\n##### $s\n');
 					hlineCount = 0;
+				case [TCommand(CTextless)]:
+					buffer.add("&lt;"); // escaped so MD doesn't parse it as HTML
+				case [TCommand(CTextgreater)]:
+					buffer.add("&gt;");
+				case [TCommand(CTextbar)]:
+					buffer.add("&#x7C;"); // escaped so it doesn't interfere with tables
 
 				case [TEnd("document")]: break;
 				case [TEof]: break;
