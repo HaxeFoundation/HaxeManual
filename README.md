@@ -58,6 +58,12 @@ Finally, if you want to contribute to the Haxe Manual but cannot be arsed to use
 
 ---
 
+Metadata and defines lists
+--------------------------
+
+The [metadata](https://haxe.org/manual/cr-metadata.html) and [define](https://haxe.org/manual/compiler-usage-flags.html) tables are generated automatically from [JSON definitions](https://github.com/HaxeFoundation/haxe/tree/development/src-json). To update the generated files from the current `development` branch, simply run `make generate` (requires `curl` to be installed and in `PATH`).
+
+
 Generating Markdown
 -----------------
 
