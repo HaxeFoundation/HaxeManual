@@ -98,7 +98,7 @@ js.Browser.console.error("Something went wrong");
 In most browser developer tools breakpoints can be set to pause the code execution and start debugging. This mostly can be done by clicking near the line numbers. At each breakpoint JavaScript will stop executing and let the current values be inspected. After examining the values, the execution of code can be resumed (typically with a play button).
 
 In JavaScript a developer can use the \ic{debugger} statement functionality to do the same from code.
-In Haxe the same can be done with \href{http://api.haxe.org/v/js/Lib.html#debug}{\expr{js.Lib.debug}} function; this inserts a \ic{debugger} statement that will make a breakpoint if a debugger is available. If no debugging functionality is available, this statement has no effect. 
+In Haxe the same can be done with \href{http://api.haxe.org/v/js/Lib.html#debug}{\expr{js.Lib.debug()}} function; this inserts a \ic{debugger} statement that will make a breakpoint if a debugger is available. If no debugging functionality is available, this statement has no effect. 
 
 \begin{itemize}
 	\item Read more on the \href{https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/debugger}{debugger statement}.
