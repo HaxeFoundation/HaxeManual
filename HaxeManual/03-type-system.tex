@@ -71,7 +71,7 @@ With function type parameters being bound upon invocation, such a type parameter
 
 Both arguments \expr{expected} and \expr{actual} of the \expr{equals} function have type \type{T}. This implies that for each invocation of \expr{equals} the two arguments must be of the same type. The compiler admits the first call (both arguments being of \type{Int}) and the second call (both arguments being of \type{String}) but the third attempt causes a compiler error.
 
-\trivia{Type parameters in expression syntax}{We often get the question why a method with type parameters cannot be called as \expr{method<String>(x)}. The error messages the compiler gives are not very helpful. However, there is a simple reason for that: The above code is parsed as if both \expr{<} and \expr{>} were binary operators, yielding \expr{(method < String) > (x)}.}
+\trivia{Type parameters in expression syntax}{We often get the question of why a method with type parameters cannot be called as \expr{method<String>(x)}. The error messages the compiler gives are not very helpful. However, there is a simple reason for that: The above code is parsed as if both \expr{<} and \expr{>} were binary operators, yielding \expr{(method < String) > (x)}.}
 
 \subsection{Constraints}
 \label{type-system-type-parameter-constraints}
@@ -93,13 +93,13 @@ When constraining to a single type, the parentheses can be omitted:
 
 \since{4.0.0}
 
-One of the breaking changes between versions 3 and 4 is the multiple type constraint syntax. As the first example above shows, in Haxe 4 the constraints are separated by a \expr{\&} symbol instead of a comma. This is similar to the new \tref{structure extension}{types-structure-extensions} syntax.
+One of the breaking changes between versions 3 and 4 is the multiple types of constraint syntax. Like the first example above shows, in Haxe 4 the constraints are separated by a \expr{\&} symbol instead of a comma. This is similar to the new \tref{structure extension}{types-structure-extensions} syntax.
 
 
 \section{Generic}
 \label{type-system-generic}
 
-Usually, the Haxe Compiler generates only a single class or function even if it has type parameters. This results in a natural abstraction where the code generator for the target language has to assume that a type parameter could be of any type. The generated code then might have to perform some type checks which can be detrimental to performance.
+Usually, the Haxe Compiler generates only a single class or function even if it has type parameters. This results in a natural abstraction where the code generator for the target language has to assume that a type parameter could be of any type. The generated code that might have to perform some type of checks which can be detrimental to performance.
 
 A class or function can be made \emph{generic} by attributing it with the \expr{:generic} \tref{metadata}{lf-metadata}. This causes the compiler to emit a distinct class/function per type parameter combination with mangled names. A specification like this can yield a boost in performance-critical code portions on \tref{static targets}{define-static-target} at the cost of a larger output size:
 
@@ -182,7 +182,7 @@ Main.main = function() {
 \section{Variance}
 \label{type-system-variance}
 
-While variance is also relevant in other places, it occurs particularly often with type parameters and comes as a surprise in this context. Additionally, it is very easy to trigger variance errors:
+While the variance is also relevant in other places, it occurs particularly often with type parameters and comes as a surprise in this context. Additionally, it is very easy to trigger variance errors:
 
 \haxe{assets/Variance.hx}
 
@@ -210,7 +210,7 @@ We can safely assign with \expr{b} being typed as \type{MyArray<Base>} and \type
 
 \todo{Mention toString()/String conversion somewhere in this chapter.}
 
-Unification is the heart of the type system and contributes immensely to the robustness of Haxe programs. It describes the process of checking if a type is compatible to another type.
+Unification is the heart of the type system and contributes immensely to the robustness of Haxe programs. It describes the process of checking if a type is compatible with another type.
 
 \define{Unification}{define-unification}{Unification between two types A and B is a directional process which answers the question if A \emph{can be assigned to} B. It may \emph{mutate} either type if it is or has a \tref{monomorph}{types-monomorph}.}
 
@@ -274,7 +274,7 @@ public static function empty<T>(it : Iterable<T>):Bool {
 \end{lstlisting}
 The \expr{empty}-method checks if an \type{Iterable} has an element. For this purpose, it is not necessary to know anything about the argument type other than the fact that it is considered an iterable. This allows calling the \expr{empty}-method with any type that unifies with \type{Iterable$<$T$>$} which applies to a lot of types in the Haxe Standard Library.
 
-This kind of typing can be very convenient but extensive use may be detrimental to performance on static targets, which  is detailed in \Fullref{types-structure-performance}.
+This kind of typing can be very convenient but extensive use may be detrimental to performance on static targets, which is detailed in \Fullref{types-structure-performance}.
 
 
 \subsection{Monomorphs}
@@ -332,7 +332,7 @@ Whenever a type other than \Fullref{types-dynamic} is unified with a monomorph, 
 Following the rules of unification, type inference can occur in compound types:
 
 \haxe{assets/TypeInference2.hx}
-Variable \expr{x} is first initialized to an empty \type{Array}. At this point we can tell that the type of \expr{x} is an array, but we do not yet know the type of the array elements. Consequentially, the type of \expr{x} is \type{Array<Unknown<0>>}. It is only after pushing a \type{String} onto the array that we know the type to be \type{Array<String>}.
+Variable \expr{x} is first initialized to an empty \type{Array}. At this point, we can tell that the type of \expr{x} is an array, but we do not yet know the type of the array elements. Consequentially, the type of \expr{x} is \type{Array<Unknown<0>>}. It is only after pushing a \type{String} onto the array that we know the type to be \type{Array<String>}.
 
 
 \subsection{Top-down Inference}
@@ -340,9 +340,9 @@ Variable \expr{x} is first initialized to an empty \type{Array}. At this point w
 
 Most of the time, types are inferred on their own and may then be unified with an expected type. In a few places, however, an expected type may be used to influence inference. We then speak of \emph{top-down inference}.
 
-\define{Expected Type}{define-expected-type}{Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is argument to a function call. They can influence typing of that expression through what is called \tref{top-down inference}{type-system-top-down-inference}.}
+\define{Expected Type}{define-expected-type}{Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is an argument to a function call. They can influence typing of that expression through what is called \tref{top-down inference}{type-system-top-down-inference}.}
 
-A good example are arrays of mixed types. As mentioned in \Fullref{types-dynamic}, the compiler refuses \expr{[1, "foo"]} because it cannot determine an element type. Employing top-down inference, this can be overcome:
+A good example is arrays of mixed types. As mentioned in \Fullref{types-dynamic}, the compiler refuses \expr{[1, "foo"]} because it cannot determine an element type. Employing top-down inference, this can be overcome:
 
 \haxe{assets/TopDownInference.hx}
 
@@ -369,7 +369,7 @@ Type inference saves a lot of manual type hints when working with local variable
 
 There are also some cases involving recursion where type inference has limitations. If a function calls itself recursively while its type is not (completely) known yet, type inference may infer a wrong, too specialized type.
 
-A different kind of limitation involves the readability of code. If type inference is overused it might be difficult to understand parts of a program due to the lack of visible types. This is particularly true for method signatures. It is recommended to find a good balance between type inference and explicit type hints.
+A different kind of limitation involves the readability of the code. If type inference is overused it might be difficult to understand parts of a program due to the lack of visible types. This is particularly true for method signatures. It is recommended to find a good balance between type inference and explicit type hints.
 
 
 \section{Modules and Paths}
@@ -479,7 +479,7 @@ Special care has to be taken with field names or local variable names that confl
 
 \paragraph{Wildcard import}
 
-Haxe allows using \expr{.*} to allow import of all modules in a package, all types in a module or all static fields in a type. It is important to understand that this kind of import only crosses a single level as we can see in the following example:
+Haxe allows using \expr{.*} to allow the import of all modules in a package, all types in a module or all static fields in a type. It is important to understand that this kind of import only crosses a single level as we can see in the following example:
 
 \haxe{assets/ImportWildcard.hx}
 
@@ -503,7 +503,7 @@ Haxe also allows the more natural \expr{as} in place of \expr{in}.
 \label{type-system-import-defaults}
 \since{3.3.0}
 
-This feature allows us to define default imports and usings that will be applied for all modules inside a directory, which is particularly handy for large code bases with a lot of helpers and static extensions because it reduces the amount of imports.
+This feature allows us to define default imports and using that will be applied for all modules inside a directory, which is particularly handy for large code bases with a lot of helpers and static extensions because it reduces the number of imports.
 
 The special named \ic{import.hx} file (note the lowercase name) can be placed in the directory where your code lies. The file can contain import and using statements only. The statements will be applied to all Haxe modules in this directory and its subdirectories.
 
@@ -571,10 +571,10 @@ For step \ref{resolution:import} of this algorithm as well as steps \ref{resolut
 
 \begin{itemize}
 	\item Imported modules and static extensions are checked from bottom to top with the first match being picked.
-	\item Imports that come from \tref{import.hx}{type-system-import-defaults} files are considered to be at the top of affected modules, which means they have lowest priority. If multiple \ic{import.hx} files affect a module, the ones in child directories have priority over the ones in parent directories.
+	\item Imports that come from \tref{import.hx}{type-system-import-defaults} files are considered to be at the top of affected modules, which means they have the lowest priority. If multiple \ic{import.hx} files affect a module, the ones in child directories have priority over the ones in parent directories.
 	\item Within a given module, types are checked from top to bottom.
 	\item For imports, a match is made if the name equals.
-	\item For \tref{static extensions}{lf-static-extension}, a match is made if the name equals and the first argument \tref{unifies}{type-system-unification}. Within a given type being used as static extension, the fields are checked from top to bottom.
+	\item For \tref{static extensions}{lf-static-extension}, a match is made if the name equals and the first argument \tref{unifies}{type-system-unification}. Within a given type being used as a static extension, the fields are checked from top to bottom.
 \end{itemize}
 
 
