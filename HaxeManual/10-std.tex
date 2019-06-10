@@ -196,7 +196,7 @@ Alternatively, we can create regular expression with regular syntax:
 var r = new EReg("haxe", "i");
 \end{lstlisting}
 
-The first argument is a string with regular expression pattern, the second one is a string with \emph{flags} (see below).
+The first argument is a string with a regular expression pattern, the second one is a string with \emph{flags} (see below).
 
 We can use standard regular expression patterns such as:
 \begin{itemize}
@@ -278,7 +278,7 @@ A regular expression can also be used to split a string into several substrings:
 \subsection{Map}
 \label{std-regex-map}
 
-The \expr{map} method of a regular expression object can be used to replace matched substrings using a custom function. This function takes a regular expression object as its first argument so we may use it to get additional information about the match being done and do the conditional replacement. For example:
+The \expr{map} method of a regular expression object can be used to replace matched substrings using a custom function. This function takes a regular expression object as its first argument so we may use it to get additional information about the match being done and do conditional replacement. For example:
 
 \haxe{assets/ERegMap.hx}
 
@@ -348,7 +348,7 @@ It is common to see \Fullref{lf-static-extension} used with the math library.  T
 \section{Lambda}
 \label{std-Lambda}
 
-\define{Lambda}{define-lambda}{Lambda is a functional language concept within Haxe that allows you to apply a function to a list or \tref{iterators}{lf-iterators}. The Lambda-class is a collection of functional methods in order to use functional-style programming with Haxe.}
+\define{Lambda}{define-lambda}{Lambda is a functional language concept within Haxe that allows you to apply a function to a list or \tref{iterators}{lf-iterators}. The Lambda class is a collection of functional methods in order to use functional-style programming with Haxe.}
 
 It is ideally used with \expr{using Lambda} (see \tref{Static Extension}{lf-static-extension}) and then acts as an extension to \type{Iterable} types. 
 
@@ -400,7 +400,7 @@ class Main {
 }
 \end{lstlisting} 
 
-This example demonstrates the Lambda count, has, for each and fold function on a set of ints.
+This example demonstrates the Lambda count, has, foreach and fold function on a set of ints.
 
 \begin{lstlisting}
 using Lambda;
@@ -522,7 +522,7 @@ To separate the content from the code, consider using the \tref{resource embeddi
 Place the template-content in a new file called \ic{sample.mtt}, add \ic{--resource sample.mtt@my_sample} to the compiler arguments and retrieve the content using \expr{haxe.Resource.getString}.
 \haxe{assets/TemplateResource.hx}
 
-When running the template system on the server side, you can simply use \expr{neko.Lib.print} or \expr{php.Lib.print} instead of a trace to display the HTML template to the user.
+When running the template system on the server side, you can simply use \expr{neko.Lib.print} or \expr{php.Lib.print} instead of trace to display the HTML template to the user.
 
 \paragraph{Related content}
 \begin{itemize}
@@ -890,7 +890,7 @@ The majority of Haxe targets are so-called ``sys'' targets. This means the targe
 
 \since{4.0.0}
 
-A \href{https://api.haxe.org/sys/thread/Thread.html}{unified threading API} is available on some sys targets. The compile-time define \expr{target.threaded} is set when the API is available. The API allows a very simple creation of threads from functions:
+A \href{https://api.haxe.org/sys/thread/Thread.html}{unified threading API} is available on some sys targets. The compile-time define \expr{target.threaded} is set when the API is available. The API allows very simple creation of threads from functions:
 
 \haxe{assets/Threads.hx}
 
