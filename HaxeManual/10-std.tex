@@ -108,13 +108,13 @@ A \type{Vector} is an optimized fixed-length \emph{collection} of elements. Much
 A \type{List} is a \emph{collection} for storing elements.  On the surface, a list is similar to an \Fullref{std-Array}.  However, the underlying implementation is very different.  This results in several functional differences:
 
 \begin{enumerate}
-	\item A list can not be indexed using square brackets, i.e. \expr{[0]}.
-	\item A list can not be initialized.
+	\item A list cannot be indexed using square brackets, i.e. \expr{[0]}.
+	\item A list cannot be initialized.
 	\item There are no list comprehensions.
 	\item A list can freely modify/add/remove elements while iterating over them.
 \end{enumerate}
 
-A simple example for working with lists:
+A simple example of working with lists:
 \haxe{assets/ListExample.hx}
 
 \paragraph{Related content}
@@ -174,7 +174,7 @@ enum Option<T> {
 }
 \end{lstlisting}
 
-It can be used in various situations, such as communicating whether or not a method had a valid return and if so, what value it returned:
+It can be used in various situations, such as communicating whether or not a method had a valid return and if so, what value is returned:
 
 \haxe{assets/OptionUsage.hx}
 
@@ -196,7 +196,7 @@ Alternatively, we can create regular expression with regular syntax:
 var r = new EReg("haxe", "i");
 \end{lstlisting}
 
-First argument is a string with regular expression pattern, second one is a string with \emph{flags} (see below).
+The first argument is a string with a regular expression pattern, the second one is a string with \emph{flags} (see below).
 
 We can use standard regular expression patterns such as:
 \begin{itemize}
@@ -336,7 +336,7 @@ If you are targeting a platform that can utilize integer operations, e.g. intege
 	var intDivision = Std.int(6.2/4.7);
 \end{lstlisting}
 
-\todo{I think C++ can use integer operatins, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?}
+\todo{I think C++ can use integer operations, but I don't know about any other targets. Only saw this mentioned in an old discussion thread, still true?}
 
 \subsection{Extensions}
 \label{std-math-extensions}
@@ -356,7 +356,7 @@ On static platforms, working with the \type{Iterable} structure might be slower 
 
 \paragraph{Lambda Functions}
 The Lambda class allows us to operate on an entire \type{Iterable} at once.
-This is often preferable to looping routines since it is less error prone and easier to read. 
+This is often preferable to looping routines since it is less error-prone and easier to read. 
 For convenience, the \type{Array} and \type{List} class contains some of the frequently used methods from the Lambda class.
 
 It is helpful to look at an example. The exists function is specified as:
@@ -532,7 +532,7 @@ When running the template system on the server side, you can simply use \expr{ne
 \section{Reflection}
 \label{std-reflection}
 
-Haxe supports runtime reflection of types and fields. Special care has to be taken here because runtime representation generally varies between targets. In order to use reflection correctly it is necessary to understand what kind of operations are supported and what is not. Given the dynamic nature of reflection, this can not always be determined at compile-time.
+Haxe supports runtime reflection of types and fields. Special care has to be taken here because runtime representation generally varies between targets. In order to use reflection correctly, it is necessary to understand what kind of operations are supported and what is not. Given the dynamic nature of reflection, this can not always be determined at compile-time.
 
 The reflection API consists of two classes:
 
@@ -602,8 +602,8 @@ The result of the serialization (here stored in local variable \expr{s}) is a \t
 Serialization can be configured in two ways. For both a static variable can be set to influence all \href{https://api.haxe.org/haxe/Serializer.html}{haxe.Serializer} instances, and a member variable can be set to only influence a specific instance:
 
 \begin{description}
-	\item[\expr{USE_CACHE}, \expr{useCache}:] If true, repeated structures or class\slash enum instances are serialized by reference. This can avoid infinite loops for recursive data at the expense of longer serialization time. By default, object caching is disabled; strings however are always cached.
-	\item[\expr{USE_ENUM_INDEX}, \expr{useEnumIndex}:] If true, enum constructors are serialized by their index instead of their name. This can make the resulting string shorter, but breaks if enum constructors are inserted into the type before deserialization. This behavior is disabled by default.
+	\item[\expr{USE_CACHE}, \expr{useCache}:] If true, repeated structures or class\slash enum instances are serialized by reference. This can avoid infinite loops for recursive data at the expense of longer serialization time. By default, object caching is disabled; strings, however, are always cached.
+	\item[\expr{USE_ENUM_INDEX}, \expr{useEnumIndex}:] If true, enum constructors are serialized by their index instead of their name. This can make the resulting string shorter but breaks if enum constructors are inserted into the type before deserialization. This behavior is disabled by default.
 \end{description}
 
 \paragraph{Deserialization behavior}
@@ -623,7 +623,7 @@ If a class defines the member method \expr{hxSerialize}, that method is called b
 
 \haxe{assets/SerializationCustom.hx}
 
-In this example we decide that we want to ignore the value of member variable \expr{y} and do not serialize it. Instead we default it to \expr{-1} in \expr{hxUnserialize}. Both methods are annotated with the \expr{@:keep} metadata to prevent \tref{dead code elimination}{cr-dce} from removing them as they are never properly referenced in the code.
+In this example, we decide that we want to ignore the value of member variable \expr{y} and do not serialize it. Instead we default it to \expr{-1} in \expr{hxUnserialize}. Both methods are annotated with the \expr{@:keep} metadata to prevent \tref{dead code elimination}{cr-dce} from removing them as they are never properly referenced in the code.
 
 See \href{https://api.haxe.org/haxe/Serializer.html}{Serializer} and \href{https://api.haxe.org/haxe/Unserializer.html}{Unserializer} API documentation for details.
 
@@ -853,7 +853,7 @@ Haxe provides built-in support for (de-)serializing \emph{JSON}\footnote{http://
 Use the \href{https://api.haxe.org/haxe/Json.html#parse}{haxe.Json.parse} static method to parse \emph{JSON} data and obtain a Haxe value from it:
 \haxe{assets/JsonParse.hx}
 
-Note that the type of the object returned by \expr{haxe.Json.parse} is \expr{Dynamic}, so if the structure of our data is well-known, we may want to specify a type using \tref{anonymous structures}{types-anonymous-structure}. This way we provide compile-time checks for accessing our data and most likely more optimal code generation, because compiler knows about types in a structure:
+Note that the type of the object returned by \expr{haxe.Json.parse} is \expr{Dynamic}, so if the structure of our data is well-known, we may want to specify a type using \tref{anonymous structures}{types-anonymous-structure}. This way we provide compile-time checks for accessing our data and most likely more optimal code generation because the compiler knows about types in a structure:
 \haxe{assets/JsonParseTyped.hx}
 
 \subsection{Encoding JSON}
@@ -870,7 +870,7 @@ The \href{https://api.haxe.org/haxe/Json.html}{haxe.Json} API automatically uses
 
 Usage of Haxe own implementation can be forced with \expr{-D haxeJSON} compiler argument. This will also provide serialization of \tref{enums}{types-enum-instance} by their index, \tref{maps}{std-Map} with string keys and class instances.
 
-Older browsers (Internet Explorer 7, for instance) may not have native \emph{JSON} implementation. In case it's required to support them, we can include one of the JSON implementations available on the internet in the HTML page.
+Older browsers (Internet Explorer 7, for instance) may not have a native \emph{JSON} implementation. In case it's required to support them, we can include one of the JSON implementations available on the internet in the HTML page.
 
 \section{Input/Output}
 \label{std-input-output}
@@ -1000,12 +1000,12 @@ class Client {
 }
 \end{lstlisting}
 
-To make this work for the Neko target, setup a Neko Web Server, point the url in the Client to \ic{"http://localhost2000/remoting.n"} and compile the Server using \ic{--main Server --neko remoting.n}.
+To make this work for the Neko target, set up a Neko Web Server, point the url in the Client to \ic{"http://localhost2000/remoting.n"} and compile the Server using \ic{--main Server --neko remoting.n}.
 
 \paragraph{Error handling}
 
 \begin{itemize}
-	\item When an error occurs in a asynchronous call, the error handler is called as seen in the example above.
+	\item When an error occurs in an asynchronous call, the error handler is called as seen in the example above.
 	\item When an error occurs in a synchronous call, an exception is raised on the caller-side as if we were calling a local method.
 \end{itemize}
 
@@ -1037,7 +1037,7 @@ Header set Access-Control-Allow-Headers: X-Haxe-Remoting
 
 See \href{http://en.wikipedia.org/wiki/Same-origin_policy}{same-origin policy} for more information on this topic.
 
-Also note that this means that the page can't be served directly from the file system \ic{"file:///C:/example/path/index.html"}.
+Also, note that this means that the page can't be served directly from the file system \ic{"file:///C:/example/path/index.html"}.
 
 \paragraph{Flash security specifics}
 
@@ -1052,7 +1052,7 @@ When Flash accesses a server from a different domain, set up a \ic{crossdomain.x
 
 \paragraph{Arguments types are not ensured}
 
-There is no guarantee of any kind that the arguments types will be respected when a method is called using remoting. 
+There is no guarantee of any kind that the types of arguments will be respected when a method is called using remoting. 
 That means even if the arguments of function \expr{foo} are typed to \type{Int}, the client will still be able to use strings while calling the method. 
 This can lead to security issues in some cases. When in doubt, check the argument type when the function is called by using the \expr{Std.is} method.
 
@@ -1105,7 +1105,7 @@ To run code before or after the test, override the functions \expr{setup} and \e
 
 \paragraph{Comparing Complex Objects}
 
-With complex objects it can be difficult to generate expected values to compare to the actual ones. It can also be a problem that \expr{assertEquals} doesn't do a deep comparison. One way around these issues is to use a string as the expected value and compare it to the actual value converted to a string using \expr{Std.string}. Below is a trivial example using an array.
+With complex objects, it can be difficult to generate expected values to compare to the actual ones. It can also be a problem that \expr{assertEquals} doesn't do a deep comparison. One way around these issues is to use a string as the expected value and compare it to the actual value converted to a string using \expr{Std.string}. Below is a trivial example using an array.
 
 \begin{lstlisting} 
 public function testArray() {
@@ -1154,10 +1154,9 @@ The full list of APIs in hx3compat is:
 	\item (JavaScript target only) jQuery and SWFObject externs
 \end{itemize}
 
-Note that some of these APIs were removed form the standard library in favour of solutions in external libraries:
+Note that some of these APIs were removed from the standard library in favour of solutions in external libraries:
 
 \begin{itemize}
 	\item \href{https://github.com/haxe-utest/utest}{utest} is a Haxe unit testing library.
 	\item \href{https://github.com/HaxeFoundation/hxnodejs}{hxnodejs} can be used to produce Node.js web servers in Haxe.
 \end{itemize}
-
