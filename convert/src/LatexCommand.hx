@@ -44,6 +44,7 @@ enum LatexCommand {
 	CTextless;
 	CTextgreater;
 	CTextbackslash;
+	CTextbar;
 	CLdots;
 	CTextsuperscript;
 	CTextit;
