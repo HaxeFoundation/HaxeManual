@@ -170,7 +170,7 @@ Furthermore, the internal syntax structure treats \tref{identifiers}{define-iden
 
 
 \section{Operators}
-\label{epxression-operators}
+\label{expression-operators}
 
 \subsection{Unary Operators}
 \label{expression-operators-unops}
@@ -248,6 +248,16 @@ In Haxe, the result of a modulo operation always keeps the sign of the dividend 
 	\expr{||} & logical or & \type{Bool} & \type{Bool} & \type{Bool}
 \end{tabular}
 \end{center}
+
+\emph{Short-circuiting:}
+
+Haxe guarantees that compound boolean expressions with the same operator are evaluated from left to right and only as far as necessary at run-time. For instance, an expression like \expr{A \&\& B} will evaluate \expr{A} first and evaluate \expr{B} only if the evaluation of \expr{A} yielded \expr{true}. Likewise, the expressions \expr{A || B} will not evaluate \expr{B} if the evaluation of \expr{A} yielded \expr{true}, because the value of \expr{B} is irrelevant in that case. This is important in cases such as this:
+
+\begin{lstlisting}
+if (object != null && object.field == 1) { }
+\end{lstlisting}
+
+Accessing \expr{object.field} if \expr{object} is \expr{null} would lead to a run-time error, but the check for \expr{object != null} guards against it.
 
 \paragraph{Compound assignment operators}
 
