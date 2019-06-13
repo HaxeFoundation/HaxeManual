@@ -172,8 +172,40 @@ Furthermore, the internal syntax structure treats \tref{identifiers}{define-iden
 \section{Binary Operators}
 \label{expression-binops}
 
+
+
+
 \section{Unary Operators}
 \label{expression-unops}
+
+\begin{center}
+\begin{tabular}{| l | l | l | l | l |}
+	\hline
+	Operator & Operation & Operand type & Position & Return \\ \hline
+	\expr{\textasciitilde} & bitwise negation & \type{Int} & prefix & \type{Int} \\
+	\expr{!} & logical negation & \type{Bool} & prefix & \type{Bool} \\
+	\expr{-} & arithmetic negation & \type{Float/Int} & prefix & same as operand \\
+	\expr{++} & increment & \type{Float/Int} & prefix and postfix & same as operand \\
+	\expr{--} & decrement & \type{Float/Int} & prefix and postfix & same as operand
+\end{tabular}
+\end{center}
+
+The increment and decrement operators change the value of a variable, so they cannot be used on a constant. They also produce different results based on whether they are used as a prefix operator (change value then return it) or as a postfix operator (return value then change it).
+
+\begin{lstlisting}
+var a = 10;
+trace(a++); // 10
+trace(a); // 11
+
+a = 10;
+trace(++a); // 11
+trace(a); // 11
+\end{lstlisting}
+
+The operators specified in the table above specify the types and meanings for operations on basic types. Additional functionality can be implemented using \tref{abstract operator overloading}{types-abstract-operator-overloading} or \tref{macro processing}{macro}.
+
+For macro processing in particular, there is an additional operator available: the postfix \expr{!} operator.
+
 
 \section{Array Declaration}
 \label{expression-array-declaration}
