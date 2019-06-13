@@ -238,6 +238,17 @@ In Haxe, the result of a modulo operation always keeps the sign of the dividend 
 \end{tabular}
 \end{center}
 
+\paragraph{Logical operators}
+
+\begin{center}
+\begin{tabular}{| l | l | l | l | l |}
+	\hline
+	Operator & Operation & Operand 1 & Operand 2 & Result type \\ \hline
+	\expr{\&\&} & logical and & \type{Bool} & \type{Bool} & \type{Bool} \\
+	\expr{||} & logical or & \type{Bool} & \type{Bool} & \type{Bool}
+\end{tabular}
+\end{center}
+
 \paragraph{Compound assignment operators}
 
 \begin{center}
@@ -345,22 +356,33 @@ In order of descending precedence (i.e. operators higher in the table are evalua
 \begin{center}
 \begin{tabular}{| l | l |}
 	\hline
-	Operators & Note \\ \hline
-	\expr{!}, \expr{++}, \expr{--} & postfix unary operators \\
-	\expr{\textasciitilde}, \expr{!}, \expr{-}, \expr{++}, \expr{--} & prefix unary operators \\
-	\expr{\%} & modulo \\
-	\expr{*}, \expr{/} & multiplication, division \\
-	\expr{+}, \expr{-} & addition, subtraction \\
-	\expr{<<}, \expr{>>}, \expr{>>>} & bitwise shifts \\
-	\expr{\&}, \expr{|}, \expr{\^} & bitwise operations \\
-	\expr{==}, \expr{!=}, \expr{<}, \expr{<=}, \expr{>}, \expr{>=} & comparison \\
-	\expr{...} & interval \\
-	\expr{\%=}, \expr{*=}, \expr{/=}, \expr{+=}, \expr{-=}, \expr{<<=}, \expr{>>=}, \expr{>>>=}, \expr{\&=}, \expr{|=}, \expr{\^=} & compound assignment \\
-	\expr{=>} & arrow
+	Operators & Note & Associativity \\ \hline
+	\expr{!}, \expr{++}, \expr{--} & postfix unary operators & right \\
+	\expr{\textasciitilde}, \expr{!}, \expr{-}, \expr{++}, \expr{--} & prefix unary operators & right \\
+	\expr{\%} & modulo & left \\
+	\expr{*}, \expr{/} & multiplication, division & left \\
+	\expr{+}, \expr{-} & addition, subtraction & left \\
+	\expr{<<}, \expr{>>}, \expr{>>>} & bitwise shifts & left \\
+	\expr{\&}, \expr{|}, \expr{\^} & bitwise operators & left \\
+	\expr{==}, \expr{!=}, \expr{<}, \expr{<=}, \expr{>}, \expr{>=} & comparison & left \\
+	\expr{...} & interval & left \\
+	\expr{\&\&} & logical and & left \\
+	\expr{||} & logical or & left \\
+	\expr{?:} & ternary & right \\
+	\expr{\%=}, \expr{*=}, \expr{/=}, \expr{+=}, \expr{-=}, \expr{<<=}, \expr{>>=}, \expr{>>>=}, \expr{\&=}, \expr{|=}, \expr{\^=} & compound assignment & right \\
+	\expr{=>} & arrow & right \\
 \end{tabular}
 \end{center}
 
-Operators in the same line are evaluated left to right.
+\paragraph{Differences from C-like precedence}
+
+Many languages (C++, Java, PHP, JavaScript, etc) use the same operator precedence rules as C. In Haxe, there are a couple of differences from these rules:
+
+\begin{itemize}
+	\item \expr{\%} (modulo) has a higher precedence than \expr{*} and \expr{/}; in C they have the same precedence
+	\item \expr{|}, \expr{\&}, \expr{\^} (bitwise operators) have the same precedence; in C the three operators all have a different precedence
+	\item \expr{|}, \expr{\&}, \expr{\^} (bitwise operators) also have a lower precedence than \expr{==}, \expr{!=}, etc (comparison operators)
+\end{itemize}
 
 
 \subsection{Overloading and macros}
