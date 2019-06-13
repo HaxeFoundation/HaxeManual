@@ -178,7 +178,7 @@ Furthermore, the internal syntax structure treats \tref{identifiers}{define-iden
 \begin{center}
 \begin{tabular}{| l | l | l | l | l |}
 	\hline
-	Operator & Operation & Operand type & Position & Return \\ \hline
+	Operator & Operation & Operand type & Position & Result type \\ \hline
 	\expr{\textasciitilde} & bitwise negation & \type{Int} & prefix & \type{Int} \\
 	\expr{!} & logical negation & \type{Bool} & prefix & \type{Bool} \\
 	\expr{-} & arithmetic negation & \type{Float/Int} & prefix & same as operand \\
@@ -186,18 +186,6 @@ Furthermore, the internal syntax structure treats \tref{identifiers}{define-iden
 	\expr{--} & decrement & \type{Float/Int} & prefix and postfix & same as operand
 \end{tabular}
 \end{center}
-
-
-\subsection{Ternary Operator}
-\label{expression-operators-ternary}
-
-Haxe supports the ternary conditional operator \expr{cond ? whenTrue : whenFalse}:
-
-\begin{lstlisting}
-trace(true ? "Haxe" : "Neko"); // Haxe
-trace(1 == 2 ? 3 : 4); // 4
-\end{lstlisting}
-
 
 \paragraph{Increment and decrement}
 
@@ -213,15 +201,174 @@ trace(++a); // 11
 trace(a); // 11
 \end{lstlisting}
 
+
+\subsection{Binary Operators}
+\label{expression-operators-binops}
+
+\paragraph{Arithmetic operators}
+
+\begin{center}
+\begin{tabular}{| l | l | l | l | l |}
+	\hline
+	Operator & Operation & Operand 1 & Operand 2 & Result type \\ \hline
+	\expr{\%} & modulo & \type{Float/Int} & \type{Float/Int} & \type{Float/Int} \\
+	\expr{*} & multiplication & \type{Float/Int} & \type{Float/Int} & \type{Float/Int} \\
+	\expr{/} & division & \type{Float/Int} & \type{Float/Int} & \type{Float} \\
+	\expr{+} & addition & \type{Float/Int} & \type{Float/Int} & \type{Float/Int} \\
+	\expr{-} & subtraction & \type{Float/Int} & \type{Float/Int} & \type{Float/Int}
+\end{tabular}
+\end{center}
+
+About the \type{Float/Int} return type: If one of the operands is of type \type{Float}, the resulting expression will also be of type \type{Float}, otherwise the type will be \type{Int}. The result of a division is always a \type{Float}; use \expr{Std.int(a / b)} for integer division (discarding any fractional part).
+
+In Haxe, the result of a modulo operation always keeps the sign of the dividend (the left operand) if the divisor is non-negative. The result is target-specific with a negative divisor.
+
+\paragraph{Bitwise operators}
+
+\begin{center}
+\begin{tabular}{| l | l | l | l | l |}
+	\hline
+	Operator & Operation & Operand 1 & Operand 2 & Result type \\ \hline
+	\expr{<<} & shift left & \type{Int} & \type{Int} & \type{Int} \\
+	\expr{>>} & shift right & \type{Int} & \type{Int} & \type{Int} \\
+	\expr{>>>} & unsigned shift right & \type{Int} & \type{Int} & \type{Int} \\
+	\expr{\&} & bitwise and & \type{Int} & \type{Int} & \type{Int} \\
+	\expr{|} & bitwise or & \type{Int} & \type{Int} & \type{Int} \\
+	\expr{\^} & bitwise xor & \type{Int} & \type{Int} & \type{Int}
+\end{tabular}
+\end{center}
+
+\paragraph{Compound assignment operators}
+
+\begin{center}
+\begin{tabular}{| l | l | l | l | l |}
+	\hline
+	Operator & Operation & Operand 1 & Operand 2 & Result type \\ \hline
+	\expr{\%=} & modulo & \type{Float/Int} & \type{Float/Int} & \type{Float/Int} \\
+	\expr{*=} & multiplication & \type{Float/Int} & \type{Float/Int} & \type{Float/Int} \\
+	\expr{/=} & division & \type{Float} & \type{Float/Int} & \type{Float} \\
+	\expr{+=} & addition & \type{Float/Int} & \type{Float/Int} & \type{Float/Int} \\
+	\expr{-=} & subtraction & \type{Float/Int} & \type{Float/Int} & \type{Float/Int} \\
+	\expr{<<=} & shift left & \type{Int} & \type{Int} & \type{Int} \\
+	\expr{>>=} & shift right & \type{Int} & \type{Int} & \type{Int} \\
+	\expr{>>>=} & unsigned shift right & \type{Int} & \type{Int} & \type{Int} \\
+	\expr{\&=} & bitwise and & \type{Int} & \type{Int} & \type{Int} \\
+	\expr{|=} & bitwise or & \type{Int} & \type{Int} & \type{Int} \\
+	\expr{\^=} & bitwise xor & \type{Int} & \type{Int} & \type{Int}
+\end{tabular}
+\end{center}
+
+In all cases, a compound assignment modifies the value of a variable, then returns the new value.
+
+\paragraph{Numeric comparison operators}
+
+\begin{center}
+\begin{tabular}{| l | l | l | l | l |}
+	\hline
+	Operator & Operation & Operand 1 & Operand 2 & Result type \\ \hline
+	\expr{==} & equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
+	\expr{!=} & not equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
+	\expr{<} & less than & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
+	\expr{<=} & less than or equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
+	\expr{>} & greater than & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
+	\expr{>=} & greater than or equal & \type{Float/Int} & \type{Float/Int} & \type{Bool}
+\end{tabular}
+\end{center}
+
+\paragraph{String comparison operators}
+
+\begin{center}
+\begin{tabular}{| l | l | l | l | l |}
+	\hline
+	Operator & Operation & Operand 1 & Operand 2 & Result type \\ \hline
+	\expr{==} & equal & \type{String} & \type{String} & \type{Bool} \\
+	\expr{!=} & not equal & \type{String} & \type{String} & \type{Bool} \\
+	\expr{<} & lexicographically before & \type{String} & \type{String} & \type{Bool} \\
+	\expr{<=} & lexicographically before or equal & \type{String} & \type{String} & \type{Bool} \\
+	\expr{>} & lexicographically after & \type{String} & \type{String} & \type{Bool} \\
+	\expr{>=} & lexicographically after or equal & \type{String} & \type{String} & \type{Bool}
+\end{tabular}
+\end{center}
+
+\type{String} is an immutable type in Haxe, so two separate instances of the same string are considered equal.
+
+\paragraph{Equality operators}
+
+\begin{center}
+\begin{tabular}{| l | l | l | l | l |}
+	\hline
+	Operator & Operation & Operand 1 & Operand 2 & Result type \\ \hline
+	\expr{==} & equal & any & same as operand 1 & \type{Bool} \\
+	\expr{!=} & not equal & any & same as operand 1 & \type{Bool}
+\end{tabular}
+\end{center}
+
+\emph{For enums:}
+
+\begin{description}
+	\item[Enums without parameters] always represent the same value, so \expr{MyEnum.A == MyEnum.A}. 
+	\item[Enums with parameters] can be compared with \expr{a.equals(b)} (which is short for \expr{Type.enumEquals()}).
+\end{description}
+
+\emph{Dynamic:}
+
+Comparison involving at least one \type{Dynamic} value is unspecified and platform-specific.
+
+\paragraph{Miscellaneous operators}
+
+\begin{center}
+\begin{tabular}{| l | l | l | l | l |}
+	\hline
+	Operator & Operation & Operand 1 & Operand 2 & Result type \\ \hline
+	\expr{...} & interval (see \tref{range iteration}{expression-for}) & \type{Int} & \type{Int} & \type{IntIterator} \\
+	\expr{=>} & arrow (see \tref{map}{expression-map-declaration}, \tref{key-value iteration}{expression-for}, \tref{map comprehension}{lf-map-comprehension}) & any & any & -
+\end{tabular}
+\end{center}
+
+
+\subsection{Ternary Operator}
+\label{expression-operators-ternary}
+
+Haxe supports the ternary conditional operator \expr{cond ? whenTrue : whenFalse}:
+
+\begin{lstlisting}
+trace(true ? "Haxe" : "Neko"); // Haxe
+trace(1 == 2 ? 3 : 4); // 4
+\end{lstlisting}
+
+
 \subsection{Precedence}
 \label{expression-operators-precedence}
 
-All \tref{unary operators}{expression-operators-unops} have a higher precedence than the \tref{binary operators}{expression-operators-binops}.
+In order of descending precedence (i.e. operators higher in the table are evaluated first):
+
+\begin{center}
+\begin{tabular}{| l | l |}
+	\hline
+	Operators & Note \\ \hline
+	\expr{!}, \expr{++}, \expr{--} & postfix unary operators \\
+	\expr{\textasciitilde}, \expr{!}, \expr{-}, \expr{++}, \expr{--} & prefix unary operators \\
+	\expr{\%} & modulo \\
+	\expr{*}, \expr{/} & multiplication, division \\
+	\expr{+}, \expr{-} & addition, subtraction \\
+	\expr{<<}, \expr{>>}, \expr{>>>} & bitwise shifts \\
+	\expr{\&}, \expr{|}, \expr{\^} & bitwise operations \\
+	\expr{==}, \expr{!=}, \expr{<}, \expr{<=}, \expr{>}, \expr{>=} & comparison \\
+	\expr{...} & interval \\
+	\expr{\%=}, \expr{*=}, \expr{/=}, \expr{+=}, \expr{-=}, \expr{<<=}, \expr{>>=}, \expr{>>>=}, \expr{\&=}, \expr{|=}, \expr{\^=} & compound assignment \\
+	\expr{=>} & arrow
+\end{tabular}
+\end{center}
+
+Operators in the same line are evaluated left to right.
+
 
 \subsection{Overloading and macros}
 \label{expression-operators-overloading}
 
 The operators specified in the previous sections specify the types and meanings for operations on basic types. Additional functionality can be implemented using \tref{abstract operator overloading}{types-abstract-operator-overloading} or \tref{macro processing}{macro}.
+
+Operator precedence cannot be changed with abstract operator overloading.
 
 For macro processing in particular, there is an additional operator available: the postfix \expr{!} operator.
 
