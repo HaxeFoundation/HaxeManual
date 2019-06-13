@@ -36,7 +36,6 @@ class Generate {
 
 	static function get(url:String):String {
 		Sys.println('GET $url ...');
-		return sys.io.File.getContent("/DevProjects/Repos/haxe" + url.substr(GITHUB_RAW_URL.length));
 		var proc = new Process("curl", [url]);
 		var data = proc.stdout.readAll().toString();
 		proc.close();

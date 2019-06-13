@@ -315,8 +315,8 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 				exprMode = true;
 				var s = switch stream {
 					case [TBrOpen, s = text(), TBrClose]:
-						if (tableMode) {
-							s = s.htmlEscape().replace("|", "&#124;");
+						if (tableMode || s.indexOf("|") != -1) {
+							s = s.htmlEscape().replace("|", "&#124;").replace("_", "&#95;");
 							'<code>$s</code>';
 						} else {
 							'`$s`';
