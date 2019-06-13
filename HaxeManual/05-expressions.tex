@@ -169,14 +169,11 @@ The Haxe syntax supports the following constants:
 Furthermore, the internal syntax structure treats \tref{identifiers}{define-identifier} as constants, which may be relevant when working with \tref{macros}{macro}.
 
 
-\section{Binary Operators}
-\label{expression-binops}
+\section{Operators}
+\label{epxression-operators}
 
-
-
-
-\section{Unary Operators}
-\label{expression-unops}
+\subsection{Unary Operators}
+\label{expression-operators-unops}
 
 \begin{center}
 \begin{tabular}{| l | l | l | l | l |}
@@ -190,6 +187,20 @@ Furthermore, the internal syntax structure treats \tref{identifiers}{define-iden
 \end{tabular}
 \end{center}
 
+
+\subsection{Ternary Operator}
+\label{expression-operators-ternary}
+
+Haxe supports the ternary conditional operator \expr{cond ? whenTrue : whenFalse}:
+
+\begin{lstlisting}
+trace(true ? "Haxe" : "Neko"); // Haxe
+trace(1 == 2 ? 3 : 4); // 4
+\end{lstlisting}
+
+
+\paragraph{Increment and decrement}
+
 The increment and decrement operators change the value of a variable, so they cannot be used on a constant. They also produce different results based on whether they are used as a prefix operator (change value then return it) or as a postfix operator (return value then change it).
 
 \begin{lstlisting}
@@ -202,7 +213,15 @@ trace(++a); // 11
 trace(a); // 11
 \end{lstlisting}
 
-The operators specified in the table above specify the types and meanings for operations on basic types. Additional functionality can be implemented using \tref{abstract operator overloading}{types-abstract-operator-overloading} or \tref{macro processing}{macro}.
+\subsection{Precedence}
+\label{expression-operators-precedence}
+
+All \tref{unary operators}{expression-operators-unops} have a higher precedence than the \tref{binary operators}{expression-operators-binops}.
+
+\subsection{Overloading and macros}
+\label{expression-operators-overloading}
+
+The operators specified in the previous sections specify the types and meanings for operations on basic types. Additional functionality can be implemented using \tref{abstract operator overloading}{types-abstract-operator-overloading} or \tref{macro processing}{macro}.
 
 For macro processing in particular, there is an additional operator available: the postfix \expr{!} operator.
 
