@@ -3,7 +3,7 @@
 
 \define{Class Field}{define-class-field}{A class field is a variable, property or method of a class which can either be static or non-static. Non-static fields are referred to as \emph{member} fields, so we speak of e.g. a \emph{static method} or a \emph{member variable}.}
 
-So far we have seen how types and Haxe programs in general are structured. This section about class fields concludes the structural part and at the same time bridges to the behavioral part of Haxe. This is because class fields are the place where \tref{expressions}{expression} are at home.
+So far we have seen how types and Haxe programs, in general, are structured. This section about class fields concludes the structural part and at the same time bridges to the behavioral part of Haxe. This is because class fields are the place where \tref{expressions}{expression} are at home.
 
 There are three kinds of class fields:
 
@@ -12,7 +12,7 @@ There are three kinds of class fields:
 	\item[Property:] A \tref{property}{class-field-property} class field defines a custom access behavior for something that, outside the class, looks like a variable field.
 	\item[Method:] A \tref{method}{class-field-method} is a function which can be called to execute code.
 \end{description}
-Strictly speaking, a variable could be considered to be a property with certain access modifiers. Indeed, the Haxe Compiler does not distinguish variables and properties during its typing phase, but they remain separated at syntax level.
+Strictly speaking, a variable could be considered to be a property with certain access modifiers. Indeed, the Haxe Compiler does not distinguish variables and properties during its typing phase, but they remain separated at the syntax level.
 
 Regarding terminology, a method is a (static or non-static) function belonging to a class. Other functions, such as a \tref{local functions}{expression-function} in expressions, are not considered methods.
 
@@ -42,10 +42,10 @@ It should be noted that the explicit type is not required if there is an initial
 \section{Property}
 \label{class-field-property}
 
-Next to \tref{variables}{class-field-variable}, properties are the second option for dealing with data on a class. Unlike variables however, they offer more control of which kind of field access should be allowed and how it should be generated. Common use cases include:
+Next to \tref{variables}{class-field-variable}, properties are the second option for dealing with data on a class. Unlike variables, however, they offer more control of which kind of field access should be allowed and how it should be generated. Common use cases include:
 
 \begin{itemize}
-	\item Have a field which can be read from anywhere, but only be written from within the defining class.
+	\item Have a field which can be read from anywhere but only be written from within the defining class.
 	\item Have a field which invokes a \emph{getter}-method upon read-access.
 	\item Have a field which invokes a \emph{setter}-method upon write-access.
 \end{itemize}
@@ -140,7 +140,7 @@ The \expr{dynamic} access modifier works exactly like \expr{get} or \expr{set}, 
 
 Visibility of accessor methods has no effect on the accessibility of its property. That is, if a property is \expr{public} and defined to have a getter, that getter may be defined as \expr{private} regardless.
 
-Both getter and setter may access their physical field for data storage. The compiler ensures that this kind of field access does not go through the accessor method if made from within the accessor method itself, thus avoiding infinite recursion:
+Both getter and setter may access their physical field for data storage. The compiler ensures that this kind of field access does not go through the accessor method is made from within the accessor method itself, thus avoiding infinite recursion:
 
 \haxe{assets/GetterSetter.hx}
 
@@ -195,7 +195,7 @@ The example demonstrates how \tref{type inference}{type-system-type-inference} c
 \subsection{Overriding Methods}
 \label{class-field-overriding}
 
-Overriding fields is instrumental for creating class hierarchies. Many design patterns utilize it, but here we will explore only the basic functionality. In order to use overrides in a class, it is required that this class has a \tref{parent class}{types-class-inheritance}. Let us consider the following example:
+Overriding fields are instrumental for creating class hierarchies. Many design patterns utilize it, but here we will explore only the basic functionality. In order to use overrides in a class, it is required that this class has a \tref{parent class}{types-class-inheritance}. Let us consider the following example:
 
 \haxe{assets/Override.hx}
 
@@ -264,7 +264,7 @@ Omitting the visibility modifier usually defaults the visibility to \expr{privat
 \subsection{Inline}
 \label{class-field-inline}
 
-The \expr{inline} keyword allows function bodies to be directly inserted in place of calls to them. This can be a powerful optimization tool, but should be used judiciously as not all functions are good candidates for inline behavior. The following example demonstrates the basic usage:
+The \expr{inline} keyword allows function bodies to be directly inserted in the place of calls to them. This can be a powerful optimization tool but should be used judiciously as not all functions are good candidates for inline behavior. The following example demonstrates the basic usage:
 
 \haxe{assets/Inline.hx}
 
@@ -284,7 +284,7 @@ Main.main();
 
 As evident, the function body \expr{(s1 + s2) / 2} of field \expr{mid} was generated in place of the call to \expr{mid(a, b)}, with \expr{s1} being replaced by \expr{a} and \expr{s2} being replaced by \expr{b}. This avoids a function call which, depending on the target and frequency of occurrences, may yield noticeable performance improvements.
 
-It is not always easy to judge if a function qualifies for being inline. Short functions that have no writing expressions (such as a \expr{=} assignment) are usually a good choice, but even more complex functions can be candidates. However, in some cases inlining can actually be detrimental to performance, e.g. because the compiler has to create temporary variables for complex expressions.
+It is not always easy to judge if a function qualifies for being inline. Short functions that have no writing expressions (such as a \expr{=} assignment) are usually a good choice, but even more complex functions can be candidates. However, in some cases, inlining can actually be detrimental to performance, e.g. because the compiler has to create temporary variables for complex expressions.
 
 Inline is not guaranteed to be done. The compiler might cancel inlining for various reasons or a user could supply the \ic{--no-inline} command line argument to disable inlining. The only exception is if the class is \tref{extern}{lf-externs} or if the class field has the \tref{\expr{extern}}{class-field-extern} access modifier, in which case inline is forced. If it cannot be done, the compiler emits an error.
 
@@ -311,7 +311,7 @@ Dynamic fields cannot be \expr{inline} for obvious reasons: While inlining is do
 \subsection{Override}
 \label{class-field-override}
 
-The access modifier \expr{override} is required when a field is declared which also exists on a \tref{parent class}{types-class-inheritance}. Its purpose is to ensure that the author of a class is aware of the override as this may not always be obvious in large class hierarchies. Likewise, having \expr{override} on a field which does not actually override anything (e.g. due to a misspelled field name) triggers an error.
+The access modifier \expr{override} is required when a field is declared which also exists on a \tref{parent class}{types-class-inheritance}. Its purpose is to ensure that the author of a class is aware of the override as this may not always be obvious in large class hierarchies. Likewise, having \expr{override} on a field which does not actually override anything (e.g. due to a misspelt field name) triggers an error.
 
 The effects of overriding fields are detailed in \Fullref{class-field-overriding}. This modifier is only allowed on \tref{method}{class-field-method} fields.
 
@@ -349,4 +349,3 @@ The \expr{final} keyword can be used on class fields with the following effects:
 \end{itemize}
 
 \expr{static final} fields must be initialized immediately by providing an expression. If a class has non-static \expr{final} variables which are not initialized immediately, it requires a constructor which has to assign values to all such fields. \expr{final} does not affect \tref{visibility}{class-field-visibility} and it is not supported on \tref{properties}{class-field-property}.
-
