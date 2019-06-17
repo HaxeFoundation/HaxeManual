@@ -291,6 +291,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 				codeMode ? "\t" : "";
 			case [TDollarLiteral]: "$";
 			case [TDollar]: codeMode ? "$" : "";
+			case [TTilde]: codeMode ? "~" : "&nbsp;";
 			case [TAmp]:
 				if (tableMode && !exprMode) {
 					if (hlineCount == 1) tableFieldCount++;

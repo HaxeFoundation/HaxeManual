@@ -189,7 +189,7 @@ Furthermore, the internal syntax structure treats \tref{identifiers}{define-iden
 
 \paragraph{Increment and decrement}
 
-The increment and decrement operators change the value of a variable, so they cannot be used on a constant. They also produce different results based on whether they are used as a prefix operator (change value then return it) or as a postfix operator (return value then change it).
+The increment and decrement operators change the given value, so they cannot be applied to a read-only value. They also produce different results based on whether they are used as a prefix operator, which evaluates to the modified value, or as a postfix operator, which evaluates to the original value:
 
 \begin{lstlisting}
 var a = 10;
@@ -279,7 +279,15 @@ Accessing \expr{object.field} if \expr{object} is \expr{null} would lead to a ru
 \end{tabular}
 \end{center}
 
-In all cases, a compound assignment modifies the value of a variable, then returns the new value.
+In all cases, a compound assignment modifies the given variable, field, structure member, etc., so it will not work on a read-only value. The compound assignment evaluates to the modified value when used as a sub-expression:
+
+\begin{lstlisting}
+var a = 3;
+trace(a += 3); // 6
+trace(a); // 6
+\end{lstlisting}
+
+Note that the first operand of \expr{/=} must always be a \type{Float}, since the result of a division is always a \type{Float} in Haxe. Similarly, \expr{+=} and \expr{-=} cannot accept \type{Int} as the first operand if \type{Float} is given as the second operand, since the result would be a \type{Float}.
 
 \paragraph{Numeric comparison operators}
 
@@ -311,7 +319,16 @@ In all cases, a compound assignment modifies the value of a variable, then retur
 \end{tabular}
 \end{center}
 
-\type{String} is an immutable type in Haxe, so two separate instances of the same string are considered equal.
+Two values of type \type{String} are considered equal in Haxe when they have the same length and the same contents:
+
+\begin{lstlisting}
+var a = "foo";
+var b = "bar";
+var c = "foo";
+trace(a == b); // false
+trace(a == c); // true
+trace(a == "foo"); // true
+\end{lstlisting}
 
 \paragraph{Equality operators}
 
@@ -319,12 +336,14 @@ In all cases, a compound assignment modifies the value of a variable, then retur
 \begin{tabular}{| l | l | l | l | l |}
 	\hline
 	Operator & Operation & Operand 1 & Operand 2 & Result type \\ \hline
-	\expr{==} & equal & any & same as operand 1 & \type{Bool} \\
-	\expr{!=} & not equal & any & same as operand 1 & \type{Bool}
+	\expr{==} & equal & any & any & \type{Bool} \\
+	\expr{!=} & not equal & any & any & \type{Bool}
 \end{tabular}
 \end{center}
 
-\emph{For enums:}
+The types of operand 1 and operand 2 must \tref{unify}{type-system-unification}.
+
+\emph{Enums:}
 
 \begin{description}
 	\item[Enums without parameters] always represent the same value, so \expr{MyEnum.A == MyEnum.A}. 
@@ -333,14 +352,14 @@ In all cases, a compound assignment modifies the value of a variable, then retur
 
 \emph{Dynamic:}
 
-Comparison involving at least one \type{Dynamic} value is unspecified and platform-specific.
+Comparison involving at least one operand of type \type{Dynamic} is unspecified and platform-specific.
 
 \paragraph{Miscellaneous operators}
 
 \begin{center}
 \begin{tabular}{| l | l | l | l | l |}
 	\hline
-	Operator & Operation & Operand 1 & Operand 2 & Result type \\ \hline
+	Operator & Operation & Operand~1 & Operand~2 & Result~type \\ \hline
 	\expr{...} & interval (see \tref{range iteration}{expression-for}) & \type{Int} & \type{Int} & \type{IntIterator} \\
 	\expr{=>} & arrow (see \tref{map}{expression-map-declaration}, \tref{key-value iteration}{expression-for}, \tref{map comprehension}{lf-map-comprehension}) & any & any & -
 \end{tabular}
@@ -350,11 +369,26 @@ Comparison involving at least one \type{Dynamic} value is unspecified and platfo
 \subsection{Ternary Operator}
 \label{expression-operators-ternary}
 
-Haxe supports the ternary conditional operator \expr{cond ? whenTrue : whenFalse}:
+\begin{center}
+\begin{tabular}{| l | l | l | l | l |}
+	\hline
+	Operator & Operation & Operand 1 & Operand 2 & Operand 3 & Result type \\ \hline
+	\expr{?:} & condition & \type{Bool} & any & any & any
+\end{tabular}
+\end{center}
+
+The type of operand 1 and operand 2 must \tref{unify}{type-system-unification}. The unified type is used as the result type of the expression.
+
+The ternary conditional operator is a shorter form of \tref{\expr{if}}{expression-if}:
 
 \begin{lstlisting}
 trace(true ? "Haxe" : "Neko"); // Haxe
 trace(1 == 2 ? 3 : 4); // 4
+
+// equivalent to:
+
+trace(if (true) "Haxe" else "Neko"); // Haxe
+trace(if (1 == 2) 3 else 4); // 4
 \end{lstlisting}
 
 
