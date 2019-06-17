@@ -317,6 +317,8 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					case [TBrOpen, s = text(), TBrClose]:
 						if (tableMode || s.indexOf("|") != -1) {
 							s = s.htmlEscape().replace("|", "&#124;").replace("_", "&#95;");
+							// https://github.com/dpeek/haxe-markdown/issues/31 :(
+							s = s.replace("\\\\", "\\\\\\\\\\\\\\\\");
 							'<code>$s</code>';
 						} else {
 							'`$s`';
