@@ -60,13 +60,14 @@ class LatexLexer extends hxparse.Lexer implements hxparse.RuleBuilder {
 		"%" => lexer.token(comment),
 		"\\\\%" => TText("%"),
 		"\\\\\\\\" => TDoubleBackslash,
+		"~" => TTilde,
 		"``" => TText('"'),
 		"''" => TText('"'),
 		"'" => TText("'"),
 		"`" => TText("`"),
 		"\\\\[^\\\\]" => TText(lexer.current.substr(1)),
 		"\\\\^{e}" => TText("ê"),
-		"[^\\\\{}\\[\\]\n\r\t$%&\\`']+" => TText(lexer.current),
+		"[^\\\\{}\\[\\]\n\r\t$%&\\~`']+" => TText(lexer.current),
 		"" => TEof,
 	];
 

@@ -68,105 +68,12 @@ For performance reasons, the Haxe Compiler does not enforce any overflow behavio
 
 Alternatively, the \emph{haxe.Int32} and \emph{haxe.Int64} classes can be used to ensure correct overflow behavior regardless of the platform at the cost of additional computations depending on the platform.
 
-\subsection{Numeric Operators}
-\label{types-numeric-operators}
-
-\todo{make sure the types are right for inc, dec, negate, and bitwise negate}
-\todo{While introducing the different operations, we should include that information as well, including how they differ with the "C" standard, see http://haxe.org/manual/operators}
-This the list of numeric operators in Haxe, grouped by descending priority.
-
-\begin{center}
-\begin{tabular}{| l | l | l | l | l |}
-	\hline
-	\multicolumn{5}{|c|}{Unary} \\ \hline
-	Operator & Operation & Operand 1 & Operand 2 & Return \\ \hline
-	\expr{\textasciitilde}& bitwise negation & \type{Int} & N/A & \type{Int} \\
-	\expr{+}& plus & \type{Float/Int} & N/A & \type{Float/Int} \\
-	\expr{-}& minus & \type{Float/Int} & N/A & \type{Float/Int} \\
-	\expr{++}& increment & \type{Float/Int} & N/A & \type{Float/Int} \\
-	\expr{--} & decrement & \type{Float/Int} & N/A & \type{Float/Int} \\ \hline
-
-	\multicolumn{5}{|c|}{Arithmetic} \\ \hline
-	Operator & Operation & Operand 1 & Operand 2 & Return \\ \hline
-	\expr{\%} & modulo & \type{Float/Int} & \type{Float/Int} & \type{Float/Int} \\ \hline
-
-	\multicolumn{5}{|c|}{ } \\ \hline
-	Operator & Operation & Operand 1 & Operand 2 & Return \\ \hline
-	\expr{*} & multiplication & \type{Float/Int} & \type{Float/Int} & \type{Float/Int} \\
-	\expr{/} & division & \type{Float/Int} & \type{Float/Int} & \type{Float} \\ \hline
-
-	\multicolumn{5}{|c|}{ } \\ \hline
-	Operator & Operation & Operand 1 & Operand 2 & Return \\ \hline
-	\expr{+} & addition & \type{Float/Int} & \type{Float/Int} & \type{Float/Int} \\
-	\expr{-} & subtraction & \type{Float/Int} & \type{Float/Int} & \type{Float/Int} \\ \hline
-	About \type{Float/Int} return type: If one of the operands is of type \type{Float}, the resulting expression will also be of type \type{Float}, otherwise the type will be \type{Int}.
-
-	\multicolumn{5}{|c|}{Bitwise} \\ \hline
-	Operator & Operation & Operand 1 & Operand 2 & Return \\ \hline
-	\expr{<<} & shift left & \type{Int} & \type{Int} & \type{Int} \\
-	\expr{>>} & shift right & \type{Int} & \type{Int} & \type{Int} \\
-	\expr{>>>} & unsigned shift right & \type{Int} & \type{Int} & \type{Int} \\ \hline
-
-	\multicolumn{5}{|c|}{ } \\ \hline
-	Operator & Operation & Operand 1 & Operand 2 & Return \\ \hline
-	\expr{\&} & bitwise and & \type{Int} & \type{Int} & \type{Int} \\
-	\expr{|} & bitwise or & \type{Int} & \type{Int} & \type{Int} \\
-	\expr{\^} & bitwise xor & \type{Int} & \type{Int} & \type{Int} \\ \hline
-
-	\multicolumn{5}{|c|}{Comparison} \\ \hline
-	Operator & Operation & Operand 1 & Operand 2 & Return \\ \hline
-	\expr{==} & equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
-	\expr{!=} & not equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
-	\expr{<} & less than & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
-	\expr{<=} & less than or equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
-	\expr{>} & greater than & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\
-	\expr{>=} & great than or equal & \type{Float/Int} & \type{Float/Int} & \type{Bool} \\ \hline
-\end{tabular}
-\end{center}
-
-\paragraph{Equality}
-
-\emph{For enums:}
-\begin{description}
-	\item[Enum without parameters] Are always represent the same value, so \expr{MyEnum.A == MyEnum.A}. 
-	\item[Enum with parameters] Can be compared with \expr{a.equals(b)} (which is a short for \expr{Type.enumEquals()}).
-\end{description}
-
-\emph{Dynamic:}
-Comparison involving at least one Dynamic value is unspecified and platform-specific.
-
-\paragraph{Differences with other languages}
-
-Haxe precedence differs from other languages for the following cases:
-\begin{itemize}
-	\item \expr{\%} have lower precedence than \expr{*} and \expr{/} whereas in C these three have the same
-	\item \expr{|}, \expr{\&} and \expr{\^} have the same precedence in Haxe, so they will be always grouped from left-to-right, whereas in C \expr{\&} have lower precedence than \expr{\^} which itself have lower precedence than \expr{|}
-	\item \expr{|}, \expr{\&} and \expr{\^} also have lower precedence than \expr{==} and \expr{!=} in Haxe
-\end{itemize}
-
 \subsection{Bool}
 \label{types-bool}
 
 \define[Type]{Bool}{define-bool}{Represents a value which can be either \emph{true} or \emph{false}.}
 
-Values of type \type{Bool} are a common occurrence in \emph{conditions} such as \tref{\expr{if}}{expression-if} and \tref{\expr{while}}{expression-while}. The following \emph{operators} accept and return \type{Bool} values:
-
-\begin{itemize}
-	\item \expr{\&\&} (and)
-	\item \expr{||} (or)
-	\item \expr{!} (not)
-\end{itemize}
-
-Haxe guarantees that compound boolean expressions are evaluated from left to right and only as far as necessary at run-time. For instance, an expression like \expr{A \&\& B} will evaluate \expr{A} first and evaluate \expr{B} only if the evaluation of \expr{A} yielded \expr{true}. Likewise, the expressions \expr{A || B} will not evaluate \expr{B} if the evaluation of \expr{A} yielded \expr{true}, because the value of \expr{B} is irrelevant in that case. This is important in cases such as this:
-
-\begin{lstlisting}
-if (object != null && object.field == 1) { }
-\end{lstlisting}
-
-Accessing \expr{object.field} if \expr{object} is \expr{null} would lead to a run-time error, but the check for \expr{object != null} guards against it.
-
-
-
+Values of type \type{Bool} are a common occurrence in \emph{conditions} such as \tref{\expr{if}}{expression-if} and \tref{\expr{while}}{expression-while}.
 
 \subsection{Void}
 \label{types-void}
