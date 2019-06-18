@@ -5,8 +5,6 @@ using Lambda;
 
 typedef SectionInfo = {
 	all: Array<Section>,
-	unreviewed: Array<String>,
-	modified: Array<String>,
 	noContent: Array<Section>
 }
 
@@ -72,8 +70,6 @@ class Main {
 			} else {
 				sec.content = process(sec.content);
 			}
-
-			sec.content = sec.content.replace("~subtoc~", subToc);
 		}
 
 		function generateTitleString(sec:Section, prefix = "##") {
@@ -83,16 +79,6 @@ class Main {
 					'<a id="${url(sec)}"></a>\n' + s;
 				case Markdown:
 					s;
-			}
-		}
-
-		for (sec in sectionInfo.all) {
-			if (sec.flags["fold"] == "true") {
-				for (sub in sec.sub) {
-					sec.content += "\n\n" + generateTitleString(sub, "###") + sub.content;
-					sectionInfo.all.remove(sub);
-					Reflect.deleteField(sub, "content");
-				}
 			}
 		}
 
@@ -114,7 +100,6 @@ class Main {
 			}
 		}
 		generateDictionary();
-		generateTodo();
 
 		function prepare(sec:Section) {
 			Reflect.deleteField(sec, "content");
@@ -154,8 +139,6 @@ class Main {
 
 	function collectSectionInfo(sections:Array<Section>):SectionInfo {
 		var allSections = [];
-		var unreviewed = [];
-		var modified = [];
 		var noContent = [];
 
 		function add(sec:Section) {
@@ -163,22 +146,12 @@ class Main {
 				throw 'Missing label: ${sec.title}';
 			}
 			if(sec.content.length == 0) {
-				if (sec.state != NoContent) {
-					noContent.push(sec);
-				}
 				if (sec.sub.length == 0) {
 					return;
 				}
-			} else switch(sec.state) {
-				case New: unreviewed.push('${sec.id} - ${sec.title}');
-				case Modified: modified.push('${sec.id} - ${sec.title}');
-				case Reviewed | NoContent:
 			}
 			allSections.push(sec);
 			for (sub in sec.sub) {
-				if (sec.flags.exists("fold")) {
-					sub.flags["folded"] = "true";
-				}
 				add(sub);
 			}
 		}
@@ -187,9 +160,7 @@ class Main {
 		}
 		return {
 			all: allSections,
-			unreviewed: unreviewed,
-			noContent: noContent,
-			modified: modified
+			noContent: noContent
 		}
 	}
 
@@ -205,15 +176,6 @@ class Main {
 			definitions.push('<a id="$anchorName" class="anch"></a>\n\n##### ${entry.title}\n${process(entry.content)}');
 		}
 		sys.io.File.saveContent('$out/dictionary.md', definitions.join("\n\n"));
-	}
-
-	function generateTodo() {
-		var todo = "This file is generated, do not edit!\n\n"
-			+ "Todo:\n" + parser.todos.join("\n") + "\n\n"
-			+ "Missing Content:\n" + sectionInfo.noContent.map(function(sec) return '${sec.id} - ${sec.title}').join("\n") + "\n\n"
-			+ "Unreviewed:\n" + sectionInfo.unreviewed.join("\n") + "\n\n"
-			+ "Modified:\n" + sectionInfo.modified.join("\n");
-		sys.io.File.saveContent('todo.txt', todo);
 	}
 
 	function generateEPub(filePath:String) {
@@ -276,10 +238,6 @@ class Main {
 	}
 
 	function url(sec:Section) {
-		if (sec.flags["folded"] == "true") {
-			// TODO: nested folding?
-			return url(sec.parent) + "#" + escapeAnchor((sec.id.length > 0 ? sec.id + " " : "") + sec.title);
-		}
 		return switch (config.outputMode) {
 			case EPub | Mobi: sec.label;
 			case Markdown: sec.label + ".md";

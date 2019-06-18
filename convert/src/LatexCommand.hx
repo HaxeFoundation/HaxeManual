@@ -1,12 +1,4 @@
 enum LatexCommand {
-	CDocumentclass;
-	CUsepackage;
-	CDefinecolor;
-	CNewcommand;
-	CDef;
-	CNewenvironment;
-	CBegin;
-	CEnd;
 	CTitle;
 	CAuthor;
 	CDate;
@@ -28,7 +20,6 @@ enum LatexCommand {
 	CHline;
 	CRef;
 	CTextasciitilde;
-	CMulticolumn;
 	CLeft;
 	CRight;
 	CTexttt;

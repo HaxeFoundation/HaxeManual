@@ -4,25 +4,6 @@ import LatexToken;
 
 using StringTools;
 
-enum State {
-	/**
-		Section is not meant to have any content (for aggregating chapters/sections).
-	**/
-	NoContent;
-	/**
-		Section is new and was not edited yet (default)
-	**/
-	New;
-	/**
-		Section was edited in the past but got modified afterwards.
-	**/
-	Modified;
-	/**
-		Section was reviewed.
-	**/
-	Reviewed;
-}
-
 typedef Section = {
 	title: String,
 	label: String,
@@ -31,8 +12,6 @@ typedef Section = {
 	parent: Null<Section>,
 	index: Int,
 	id: String,
-	state: State,
-	flags: Map<String, String>,
 	source: {
 		file: String,
 		lineMin: Int,
@@ -90,7 +69,6 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 		this.input = input;
 		this.config = config;
 		buffer = new StringBuf();
-		todos = [];
 		sections = [];
 		labelMap = new Map();
 		definitions = [];
@@ -138,8 +116,6 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 				case [TCommand(CMaketitle)]:
 				case [TCommand(CNoindent)]:
 				case [TCommand(CMbox), s = inBraces(text)]:
-				case [TCustomCommand("todototoc")]:
-				case [TCustomCommand("listoftodos")]:
 
 				// format
 				case [TBegin("center")]:
@@ -224,31 +200,11 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					buffer.add('>\n');
 					s2 = s2.replace("\r", "").split("\n").join("\n> ");
 					buffer.add('> $s2');
-				case [TCustomCommand("todo"), options = popt(bracketArg), s = inBraces(text)]:
-					todos.push('${lastSection.id} - ${lastSection.title}: $s');
-					//buffer.add('\n>TODO: $s\n\n');
-				case [TCustomCommand("missingfigure"), s = inBraces(text)]: buffer.add('> $s');
 				case [TCustomCommand("since"), s = inBraces(text)]: buffer.add('##### since Haxe $s\n\n');
-				case [TCustomCommand("state"), s = inBraces(text)]:
-					var state = switch(s) {
-						case "Modified": Modified;
-						case "Reviewed": Reviewed;
-						case "NoContent": NoContent;
-						case _: throw 'Invalid state string: $s';
-					}
-					lastSection.state = state;
-				case [TCustomCommand("flag"), key = inBraces(text), value = inBraces(text)]:
-					lastSection.flags[key] = value;
-				case [TCustomCommand("maintainer"), s = inBraces(text)]:
-					buffer.add('Written and maintained by $s');
-				case [TCustomCommand("subtoc")]:
-					buffer.add("~subtoc~");
 				// section
 				case [TCommand(CPart), s = inBraces(text)]:
 					// TODO: handle this
 				case [TCommand(CChapter), s = inBraces(text)]:
-					sections.push(mkSection(s, null, sections.length + 1));
-				case [TCustomCommand("article"), s = inBraces(text)]:
 					sections.push(mkSection(s, null, sections.length + 1));
 				case [TCommand(CSection), _ = popt(star), s = inBraces(text)]:
 					var sec = sections[sections.length - 1];
@@ -261,9 +217,6 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 					lastLabelTarget = Paragraph(lastSection, s);
 					buffer.add('##### $s');
 				// misc
-				case [TCommand(CMulticolumn), TBrOpen, _ = text(), TBrClose, TBrOpen, _ = text(), TBrClose, TBrOpen, s = text(), TBrClose]:
-					buffer.add('\n##### $s\n');
-					hlineCount = 0;
 				case [TCommand(CTextless)]:
 					buffer.add("&lt;"); // escaped so MD doesn't parse it as HTML
 				case [TCommand(CTextgreater)]:
@@ -482,9 +435,7 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 			parent: parent,
 			index: index,
 			id: id,
-			state: New,
-			source: source,
-			flags: new Map()
+			source: source
 		};
 		lastLabelTarget = Section(lastSection);
 		return lastSection;
