@@ -1,6 +1,5 @@
 \chapter{Target Details}
 \label{target-details}
-\state{NoContent}
 
 \section{Accessing Target-specific Syntax}
 \label{target-syntax}
@@ -360,8 +359,7 @@ This is the list of JavaScript specific metadata. For more information, see also
 \begin{center}
 \begin{tabular}{| l | l |}
 	\hline
-	\multicolumn{2}{|c|}{JavaScript metadata} \\ \hline
-	Metadata &  Description \\ \hline
+	Metadata & Description \\ \hline
 	@:expose \_(?Name=Class path)\_  &  Makes the class available on the \expr{window} object or \expr{exports} for node.js  \\
 	@:jsRequire  &  Generate javascript module require expression for given extern \\
 	@:selfCall  &  Translates method calls into calling object directly \\
@@ -451,7 +449,6 @@ If we need to load custom JavaScript objects in runtime, a \expr{js.Lib.require}
 
 \section{Flash}
 \label{target-flash}
-\state{NoContent}
 
 \subsection{Getting started with Haxe/Flash}
 \label{target-flash-getting-started}
@@ -566,8 +563,7 @@ This is the list of Flash specific metadata. For a complete list see \tref{Haxe 
 \begin{center}
 \begin{tabular}{| l | l |}
 	\hline
-	\multicolumn{2}{|c|}{Flash metadata} \\ \hline
-	Metadata &  Description  \\ \hline
+	Metadata & Description \\ \hline
 	@:bind  &  Override Swf class declaration \\
 	@:bitmap \_(Bitmap file path)\_  &  \_Embeds given bitmap data into the class (must extend \expr{flash.display.BitmapData}) \\
 	@:debug  &  Forces debug information to be generated into the Swf even without \expr{--debug} \\
@@ -586,7 +582,6 @@ This is the list of Flash specific metadata. For a complete list see \tref{Haxe 
 
 \section{PHP}
 \label{target-php}
-\state{NoContent}
 
 \subsection{Getting started with Haxe/PHP}
 \label{target-php-getting-started}
@@ -638,7 +633,6 @@ The generated PHP code is compatible with PHP 7.0.0 or later. Prior to Haxe 4, t
 
 \section{C++}
 \label{target-cpp}
-\state{NoContent}
 
 \subsection{Getting started with Haxe/C++}
 \label{target-cpp-getting-started}
@@ -868,7 +862,6 @@ The xml attribute values can be substituted with variable values using dollars-b
 
 \section{Cppia}
 \label{target-cppia}
-\state{NoContent}
 
 
 \subsection{Getting started with Haxe/Cppia}
@@ -884,7 +877,6 @@ Cppia is a scriptable cpp subtarget for Haxe. A cppia script is an instructions 
 
 \section{Java}
 \label{target-java}
-\state{NoContent}
 
 \subsection{Getting started with Haxe/Java}
 \label{target-java-getting-started}
@@ -931,7 +923,6 @@ java -jar bin/Main.jar
 
 \section{C\#}
 \label{target-cs}
-\state{NoContent}
 
 \subsection{Getting started with Haxe/C\#}
 \label{target-cs-getting-started}
@@ -1027,7 +1018,6 @@ This is the list of C\# specific metadata. For more information, see also the co
 \begin{center}
 \begin{tabular}{| l | l | l |}
 	\hline
-	\multicolumn{3}{|c|}{JavaScript metadata} \\ \hline
 	Metadata & Usage & Description \\ \hline
 	@:nativeGen  &  on classes & don't generate reflection, generate proper type parameters. This is useful for some sort of interop, but slows down reflection and structural typing \\
 	@:nativeGen  &  on "flat" enums & generate C\# enum, but note that C\# enums are not-nullable unlike haxe enums, so using null will be generated as a default enum value (0-indexed constructor). \\
@@ -1072,7 +1062,6 @@ public virtual bool isInt(object v) {
 
 \section{Lua}
 \label{target-lua}
-\state{NoContent}
 
 \subsection{Getting started with Haxe/Lua}
 \label{target-lua-getting-started}

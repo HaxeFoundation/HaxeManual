@@ -82,13 +82,11 @@ Values of type \type{Bool} are a common occurrence in \emph{conditions} such as 
 
 \type{Void} is a special case in the type system because it is not actually a type. It is used to express the absence of a type, which applies mostly to function arguments and return types.
 We have already ``seen'' \type{Void} in the initial ``Hello World'' example:
-\todo{please review, doubled content}
 
 \haxe{assets/HelloWorld.hx}
 
 The function type will be explored in detail in the section \Fullref{types-function} but a quick preview helps here: The type of the function \expr{main} in the example above is \type{Void->Void}, which reads as ``it has no arguments and returns nothing''.
 Haxe does not allow fields and variables of type \type{Void} and will complain if an attempt at declaring such is made:
-\todo{review please, sounds weird}
 
 \begin{lstlisting}
 // Arguments and variables of type Void are not allowed
@@ -109,7 +107,6 @@ It is common for programming languages to have a single, clean definition for nu
 \define{Dynamic target}{define-dynamic-target}{Dynamic targets are more lenient with their types and allow \expr{null} values for basic types. This applies to the \target{JavaScript}, \target{PHP}, \target{Neko} and \target{Flash 6-8} targets.}
 
 There is nothing to worry about when working with \expr{null} on dynamic targets; however, static ones may require some thought. For starters, basic types are initialized to their default values.
-\todo{for starters...please review}
 
 \define{Default values}{define-default-value}{
 	Basic types have the following default values on static targets:
@@ -167,7 +164,6 @@ function bar( ?y : Int) {}
 // z is also Null<Int>
 function opt( ?z : Int = -1) {}
 \end{lstlisting}
-\todo{Is there a difference between \type{?y : Int} and \type{y : Null$<$Int$>$} or can you even do the latter? Some more explanation and examples with native optional and Haxe optional arguments and how they relate to nullability would be nice.}
 
 \trivia{Argument vs. Parameter}{In some other programming languages, \emph{argument} and \emph{parameter} are used interchangeably.  In Haxe, \emph{argument} is used when referring to methods and \emph{parameter} refers to \Fullref{type-system-type-parameters}.}
 
@@ -175,7 +171,6 @@ function opt( ?z : Int = -1) {}
 \label{types-class-instance}
 
 Similar to many object-oriented languages, classes are the primary data structure for the majority of programs in Haxe. Each Haxe class has an explicit name, an implied path and zero or more class fields. Here we will focus on the general structure of classes and their relations while leaving the details of class fields for \Fullref{class-field}.
-\todo{please review future tense}
 
 The following code example serves as the basis for the remainder of this section:
 
@@ -298,7 +293,6 @@ Semantically, this enum describes a color which is either red, green, blue or a 
 The Haxe type system provides a type which unifies with all enum types:
 
 \define[Type]{\expr{Enum$<$T$>$}}{define-enum-t}{This type is compatible with all enum types. At compile-time, \type{Enum<T>} can be seen as the common base type of all enum types. However, this relation is not reflected in generated code.} 
-\todo{Same as in 2.2, what is \type{Enum$<$T$>$} syntax?}
 
 \subsection{Enum Constructor}
 \label{types-enum-constructor}
@@ -311,7 +305,6 @@ var b = Green;
 var c = Rgb(255, 255, 0);
 \end{lstlisting}
 In this code the type of variables \expr{a}, \expr{b} and \expr{c} is \type{Color}. Variable \expr{c} is initialized using the \expr{Rgb} constructor with arguments.
-\todo{list arguments}
 
 All enum instances can be assigned to a special type named \type{EnumValue}.
 
@@ -357,7 +350,6 @@ The general syntactic rules follow:
 \end{enumerate}
 Rule \ref{valueanytype} implies that structures can be nested and complex, e.g.:
 
-\todo{please reformat}
 
 \begin{lstlisting}
 var user = {
@@ -513,7 +505,6 @@ Haxe 4 introduces an alternative notation for extension, separating each extende
 \section{Function Type}
 \label{types-function}
 
-\todo{It seems a bit convoluted explanations. Should we maybe start by "decoding" the meaning of  Void -> Void, then Int -> Bool -> Float, then maybe have samples using \$type}
 
 The function type, along with the \tref{monomorph}{types-monomorph}, is a type which is usually well-hidden from Haxe users, yet present everywhere. We can make it surface by using \expr{\$type}, a special Haxe identifier which outputs the type its expression has during compilation:
 
@@ -728,7 +719,6 @@ var a = _ImplicitCastField.MyAbstract_Impl_.fromString("3");
 var b = _ImplicitCastField.MyAbstract_Impl_.toArray(a);
 \end{lstlisting}
 This can be further optimized by \tref{inlining}{class-field-inline} both cast functions, turning the output into the following:
-\todo{please review your use of ``this'' and try to vary somewhat to avoid too much word repetition}
 
 \begin{lstlisting}
 var a = Std.parseInt("3");
@@ -796,14 +786,12 @@ It is also possible to omit the method body of a \expr{@:op} function, but only 
 
 \haxe{assets/AbstractExposeTypeOperations.hx}
 
-\todo{please review for correctness}
 
 
 \subsection{Array Access}
 \label{types-abstract-array-access}
 
 Array access describes the particular syntax traditionally used to access the value in an array at a certain offset. This is usually only allowed with arguments of type \type{Int}. Nevertheless, with abstracts, it is possible to define custom array access methods. The \tref{Haxe Standard Library}{std} uses this in its \type{Map} type, where the following two methods can be found:
-\todo{You have marked ``Map'' for some reason}
 
 \begin{lstlisting}
 @:arrayAccess

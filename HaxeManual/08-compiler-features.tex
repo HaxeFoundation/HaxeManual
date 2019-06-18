@@ -1,6 +1,5 @@
 \chapter{Compiler Features}
 \label{cr-features}
-\state{NoContent}
 
 \section{Built-in Compiler Metadata}
 \label{cr-metadata}
@@ -10,7 +9,7 @@ Starting from Haxe 3.0, you can get the list of defined compiler metadata by run
 \begin{center}
 \begin{tabular}{| l | l | l | l |}
 	\hline
-	\multicolumn{4}{|c|}{Global metadata} \\ \hline
+	Metadata & Arguments & Description & Platforms \\ \hline
 	\input{generated/metas.tex}
 \end{tabular}
 \end{center}
@@ -48,7 +47,6 @@ The compiler automatically defines the flag \expr{dce} with a value of either \e
 
 \section{Compiler Services}
 \label{cr-completion}
-\state{NoContent}
 
 \subsection{Overview}
 \label{cr-completion-overview}
@@ -440,7 +438,6 @@ The compilation server can have some side effects on \tref{macro execution}{macr
 
 \section{Resources}
 \label{cr-resources}
-\flag{fold}{true}
 
 Haxe provides a simple resource embedding system that can be used for embedding files directly into the compiled application.
 

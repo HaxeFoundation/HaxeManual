@@ -208,7 +208,6 @@ We can safely assign with \expr{b} being typed as \type{MyArray<Base>} and \type
 \section{Unification}
 \label{type-system-unification}
 
-\todo{Mention toString()/String conversion somewhere in this chapter.}
 
 Unification is the heart of the type system and contributes immensely to the robustness of Haxe programs. It describes the process of checking if a type is compatible to another type.
 
@@ -251,7 +250,6 @@ The following assignments are allowed:
 	\item interface to base interface
 \end{itemize}
 These rules are transitive, meaning that a child class can also be assigned to the base class of its base class, an interface its base class implements, the base interface of an implementing interface and so on.
-\todo{''parent class'' should probably be used here, but I have no idea what it means, so I will refrain from changing it myself.}
 
 \subsection{Structural Subtyping}
 \label{type-system-structural-subtyping}
@@ -535,7 +533,6 @@ We describe the resolution order algorithm here, which depends on the following 
 	\item the expression being \expr{untyped} or not
 \end{itemize}
 
-\todo{proper label and caption + code/identifier styling for diagram}
 
 \input{assets/tikz/resolution-order.tex}
 

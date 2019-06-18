@@ -370,7 +370,7 @@ Comparison involving at least one operand of type \type{Dynamic} is unspecified 
 \label{expression-operators-ternary}
 
 \begin{center}
-\begin{tabular}{| l | l | l | l | l |}
+\begin{tabular}{| l | l | l | l | l | l |}
 	\hline
 	Operator & Operation & Operand 1 & Operand 2 & Operand 3 & Result type \\ \hline
 	\expr{?:} & condition & \type{Bool} & any & any & any
@@ -398,7 +398,7 @@ trace(if (1 == 2) 3 else 4); // 4
 In order of descending precedence (i.e. operators higher in the table are evaluated first):
 
 \begin{center}
-\begin{tabular}{| l | l |}
+\begin{tabular}{| l | l | l |}
 	\hline
 	Operators & Note & Associativity \\ \hline
 	\expr{!}, \expr{++}, \expr{--} & postfix unary operators & right \\
