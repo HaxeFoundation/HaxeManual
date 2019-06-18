@@ -93,13 +93,13 @@ When constraining to a single type, the parentheses can be omitted:
 
 \since{4.0.0}
 
-One of the breaking changes between versions 3 and 4 is the multiple types of constraint syntax. Like the first example above shows, in Haxe 4 the constraints are separated by a \expr{\&} symbol instead of a comma. This is similar to the new \tref{structure extension}{types-structure-extensions} syntax.
+One of the breaking changes between versions 3 and 4 is the multiple type constraint syntax. As the first example above shows, in Haxe 4 the constraints are separated by a \expr{\&} symbol instead of a comma. This is similar to the new \tref{structure extension}{types-structure-extensions} syntax.
 
 
 \section{Generic}
 \label{type-system-generic}
 
-Usually, the Haxe Compiler generates only a single class or function even if it has type parameters. This results in a natural abstraction where the code generator for the target language has to assume that a type parameter could be of any type. The generated code that might have to perform some type of checks which can be detrimental to performance.
+Usually, the Haxe Compiler generates only a single class or function even if it has type parameters. This results in a natural abstraction where the code generator for the target language has to assume that a type parameter could be of any type. The generated code then might have to perform some type checks which can be detrimental to performance.
 
 A class or function can be made \emph{generic} by attributing it with the \expr{:generic} \tref{metadata}{lf-metadata}. This causes the compiler to emit a distinct class/function per type parameter combination with mangled names. A specification like this can yield a boost in performance-critical code portions on \tref{static targets}{define-static-target} at the cost of a larger output size:
 
@@ -182,7 +182,7 @@ Main.main = function() {
 \section{Variance}
 \label{type-system-variance}
 
-While the variance is also relevant in other places, it occurs particularly often with type parameters and comes as a surprise in this context. Additionally, it is very easy to trigger variance errors:
+While variance is also relevant in other places, it occurs particularly often with type parameters and comes as a surprise in this context. Additionally, it is very easy to trigger variance errors:
 
 \haxe{assets/Variance.hx}
 
@@ -369,7 +369,7 @@ Type inference saves a lot of manual type hints when working with local variable
 
 There are also some cases involving recursion where type inference has limitations. If a function calls itself recursively while its type is not (completely) known yet, type inference may infer a wrong, too specialized type.
 
-A different kind of limitation involves the readability of the code. If type inference is overused it might be difficult to understand parts of a program due to the lack of visible types. This is particularly true for method signatures. It is recommended to find a good balance between type inference and explicit type hints.
+A different kind of limitation involves the readability of code. If type inference is overused it might be difficult to understand parts of a program due to the lack of visible types. This is particularly true for method signatures. It is recommended to find a good balance between type inference and explicit type hints.
 
 
 \section{Modules and Paths}
@@ -479,7 +479,7 @@ Special care has to be taken with field names or local variable names that confl
 
 \paragraph{Wildcard import}
 
-Haxe allows using \expr{.*} to allow the import of all modules in a package, all types in a module or all static fields in a type. It is important to understand that this kind of import only crosses a single level as we can see in the following example:
+Haxe allows using \expr{.*} to allow import of all modules in a package, all types in a module or all static fields in a type. It is important to understand that this kind of import only crosses a single level as we can see in the following example:
 
 \haxe{assets/ImportWildcard.hx}
 
@@ -503,7 +503,7 @@ Haxe also allows the more natural \expr{as} in place of \expr{in}.
 \label{type-system-import-defaults}
 \since{3.3.0}
 
-This feature allows us to define default imports and using that will be applied for all modules inside a directory, which is particularly handy for large code bases with a lot of helpers and static extensions because it reduces the number of imports.
+This feature allows us to define default imports and usings that will be applied for all modules inside a directory, which is particularly handy for large code bases with a lot of helpers and static extensions because it reduces the number of imports.
 
 The special named \ic{import.hx} file (note the lowercase name) can be placed in the directory where your code lies. The file can contain import and using statements only. The statements will be applied to all Haxe modules in this directory and its subdirectories.
 
