@@ -11,6 +11,7 @@
 *.fls
 *.xdv
 convert/convert.n
+markdownify/convert.n
 
 latextemp/
 HaxeDoc.synctex.gz
