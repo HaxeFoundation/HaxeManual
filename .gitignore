@@ -19,6 +19,6 @@ toc.sv
 output/HaxeManual/ebook/content.md
 output/HaxeManual/ebook/dictionary.md
 output/HaxeManual/ebook/sections.txt
-HaxeManual/assets/bin/
+assets/bin/
 tests/RunTravis.n
 .vscode
