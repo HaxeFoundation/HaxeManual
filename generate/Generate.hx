@@ -31,7 +31,7 @@ class Generate {
 	static final GITHUB_RAW_URL = "https://raw.githubusercontent.com/Aurel300/haxe/feature/manual-references";
 	//static final GITHUB_RAW_URL = "https://raw.githubusercontent.com/HaxeFoundation/haxe/development";
 	static final MANUAL_URL = "https://haxe.org/manual/";
-	static final OUTPUT_DIR = "../output-md/generated";
+	static final OUTPUT_DIR = "../content/generated";
 
 	static function get(url:String):String {
 		Sys.println('GET $url ...');
@@ -55,7 +55,7 @@ class Generate {
 			// Parameters
 			w(" | ");
 			if (entry.params != null && entry.params.length > 0)
-				w("&lt;" + entry.params.join(">, &lt;") + ">");
+				w("&lt;" + entry.params.map(p -> p.replace("|", "&#x7C;")).join(">, &lt;") + ">");
 			// Description
 			w(' | ${entry.doc}');
 			var manualLinks = entry.links != null ? entry.links.filter(link -> link.startsWith(MANUAL_URL)) : [];
