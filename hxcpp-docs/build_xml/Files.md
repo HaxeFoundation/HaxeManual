@@ -20,7 +20,7 @@ The files node defines a group of files that all share the same attributes, incl
   <config name="outfile.h" />
   ```
 
-- *tag* - Add a default compiler flags tag too all files in group.  See [Tags.md](Tags.md).
+- *tag* - Add a default compiler flags tag too all files in group.  See [Tags](target-cpp-build_xml-Tags).
   ```xml
   <tag value="tag" />
   ```
@@ -30,7 +30,7 @@ The files node defines a group of files that all share the same attributes, incl
   <addTwice value="tue" />
   ```
 
-- *cache* - Use compiler cache for files in group.  See [compile cache](../CompileCache.md) for more details.
+- *cache* - Use compiler cache for files in group.  See [compile cache](target-cpp-CompileCache) for more details.
   ```xml
   <cache value="true" project="name" asLibrary="true" />
   ```
@@ -86,7 +86,7 @@ The files node defines a group of files that all share the same attributes, incl
   </file>
   ```
      + name = name of file - may be absolute or relative to files.dir
-     + tags = optional override of group tags.  See [Tags.md](Tags.md).
+     + tags = optional override of group tags.  See [Tags](target-cpp-build_xml-Tags).
      + filterout = allows files to be skipped at compile-time if the named define exists.
        This is useful when the define is set sometime after the file list is parsed.
      +  depend name = filename of additional dependency

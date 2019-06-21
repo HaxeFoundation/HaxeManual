@@ -17,7 +17,7 @@ The hxcpp build tool is configured using key-value pairs, or just using keys, kn
   - From the the .hxcpp_config.xml file in the users home(profile) directory.  This is a good place to set values the apply to the whole machine, like the location of SDKs etc.
   - The defines can be manipulated logically from within the build files themselves.
 
-See [Defines.md](Defines.md) for a list of standard defines.
+See [Defines](target-cpp-defines) for a list of standard defines.
 
 
 ### Format
@@ -43,7 +43,8 @@ Substitution is supported via the dollars-brace syntax, and does simple text sub
 
 
 ### Example
-The following code is saved in [example.xml](example.xml) in this directory
+The following code is saved as `example.xml`:
+
 ```xml
  <xml>
    <echo value="Hello ${WHO}" if="WHO" unless="SILENT" />
@@ -65,15 +66,7 @@ and some example uses:
 ```
 
 ### Details
-The build.xml file contains configuration, targets, compilers, linkers and files. The details can be found in this directory.
- - [Top Level](TopLevel.md)
- - [Files](Files.md)
- - [Targets](Targets.md)
- - [Compiler](Compiler.md)
- - [Linker](Linker.md)
- - [Stripper](Stripper.md)
 
-When building from haxe, the "haxe" target is built.  You can see the details in [HaxeTarget](HaxeTarget.md).
+The build.xml file contains configuration, targets, compilers, linkers and files. The details can be found in the subsections:
 
-You can extend the generated Build.xml from haxe code using [Xml injection](XmlInjection.md).
-
+<!--subtoc-->
