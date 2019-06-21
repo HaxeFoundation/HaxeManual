@@ -338,10 +338,10 @@ class LatexParser extends Parser<LexerTokenSource<LatexToken>, LatexToken> imple
 						listMode[listMode.length - 1] = Enumerate(c + 1);
 						lastLabelTarget = Item(c + 1);
 						'$c.';
-					case Description:
+					case (Description | Itemize) if (subject != null):
 						'* $subject';
-					case Itemize:
-						"*";
+					case Description | Itemize:
+						'*';
 				}
 				var indent = "".lpad("    ", (listMode.length - 1) * 2);
 				'$indent$bullet$s\n';

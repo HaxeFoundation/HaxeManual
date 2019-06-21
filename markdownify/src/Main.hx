@@ -14,7 +14,7 @@ class Main {
 		var config:Config = {
 			sourceDirectory: ".",
 			sourceFile: null,
-			output: new haxe.io.Path("../output-md/")
+			output: new haxe.io.Path("../content/")
 		}
 
 		var handler = hxargs.Args.generate([
@@ -54,20 +54,24 @@ class Main {
 		}
 
 		for (sec in sectionInfo.all) {
-			var subToc = makeSubToc(sec);
 			if (sec.parent == null) {
-				sec.content = generateTitleString(sec) + process(sec.content) + subToc;
+				if (sec.content.length == 0) {
+					sec.content = generateTitleString(sec) + "<!--subtoc-->";
+				} else {
+					sec.content = generateTitleString(sec) + process(sec.content);
+				}
 				sec.sub.map((function addSub(sub, depth) {
-					sec.content += "\n\n" + generateTitleString(sub, "".rpad("#", depth + 3)) + process(sub.content);
-					sub.sub.map(addSub.bind(_, depth + 1));
-
-					// patch hxcpp docs in
-					sec.content += "\n\n";
 					if (sub.label == "target-cpp-defines") {
+						var raw = sys.io.File.getContent('../hxcpp-docs/build_xml/Defines.md');
+						var lines = raw.replace("\r", "").replace("\n###", "\n#####").split("\n");
+						sec.content += '<!--label:target-cpp-defines-->\n#### ${lines[0]}\n\n' + lines.slice(2).join("\n");
+						return;
+					}
+					if (sub.label == "target-cpp-file-format") {
+						var raw = sys.io.File.getContent('../hxcpp-docs/build_xml/README.md');
+						var lines = raw.replace("\r", "").replace("\n###", "\n#####").split("\n");
+						sec.content += '<!--label:target-cpp-file-format-->\n#### ${lines[0]}\n\n' + lines.slice(2).join("\n");
 						for (f in [
-							"CompileCache",
-							"ThreadsAndStacks",
-							"build_xml/README",
 							"build_xml/TopLevel",
 							"build_xml/Files",
 							"build_xml/Tags",
@@ -76,19 +80,41 @@ class Main {
 							"build_xml/Linker",
 							"build_xml/Stripper",
 							"build_xml/HaxeTarget",
-							"build_xml/XmlInjection"
+							"build_xml/XmlInjection",
 						]) {
 							var raw = sys.io.File.getContent('../hxcpp-docs/$f.md');
 							var lines = raw.replace("\r", "").replace("\n###", "\n#####").split("\n");
-							sec.content += '<!--label:target-cpp-${f.replace("/", "-")}-->\n#### ${lines[0]}\n\n' + lines.slice(2).join("\n");
+							sec.content += '<!--label:target-cpp-${f.replace("/", "-")}-->\n##### ${lines[0]}\n\n' + lines.slice(2).join("\n");
+						}
+						return;
+					}
+
+					sec.content += "\n\n" + generateTitleString(sub, "".rpad("#", depth + 3));
+					if (sub.content.length == 0) {
+						sec.content += "<!--subtoc-->";
+					} else {
+						sec.content += process(sub.content);
+					}
+					sub.sub.map(addSub.bind(_, depth + 1));
+
+					// patch hxcpp docs in
+					sec.content += "\n\n";
+					if (sub.label == "target-cpp-pointers") {
+						for (f in [
+							"CompileCache",
+							"ThreadsAndStacks",
+						]) {
+							var raw = sys.io.File.getContent('../hxcpp-docs/$f.md');
+							var lines = raw.replace("\r", "").replace("\n###", "\n#####").split("\n");
+							sec.content += '<!--label:target-cpp-${f.replace("/", "-")}-->\n####${f.startsWith("build_xml") ? "#" : ""} ${lines[0]}\n\n' + lines.slice(2).join("\n");
 						}
 					}
 				}).bind(_, 0));
 			}
 		}
 
-		unlink(out);
-		sys.FileSystem.createDirectory(out);
+		//unlink(out);
+		//sys.FileSystem.createDirectory(out);
 
 		var topLevelIndex = 1;
 		for (i in 0...sectionInfo.all.length) {
@@ -96,7 +122,6 @@ class Main {
 			if (sec.parent != null) continue;
 			sys.io.File.saveContent('$out/${StringTools.lpad('${topLevelIndex++}', "0", 2)}-${url(sec)}.md', sec.content + "\n");
 		}
-		generateDictionary();
 	}
 
 	function parse(source:String) {
@@ -105,10 +130,6 @@ class Main {
 		parser = new LatexParser(input, source, config);
 		var sections = hxparse.Utils.catchErrors(input, parser.parse);
 		return sections;
-	}
-
-	function makeSubToc(sec:Section) {
-		return sec.sub.map(function(sec) return (sec.id.length > 0 ? sec.id + ": " : "") +link(sec)).join("\n\n");
 	}
 
 	function collectSectionInfo(sections:Array<Section>):SectionInfo {
@@ -138,17 +159,6 @@ class Main {
 		}
 	}
 
-	function generateDictionary() {
-		var entries = parser.definitions;
-		entries.sort(function(v1, v2) return Reflect.compare(v1.title.toLowerCase(), v2.title.toLowerCase()));
-		var definitions = [];
-		for (entry in entries) {
-			var anchorName = entry.label;
-			definitions.push('<a id="$anchorName" class="anch"></a>\n\n##### ${entry.title}\n${process(entry.content)}');
-		}
-		sys.io.File.saveContent('$out/dictionary.md', definitions.join("\n\n"));
-	}
-
 	function isLinkable(sec:Section) {
 		return !sectionInfo.noContent.has(sec);
 	}
@@ -170,7 +180,7 @@ class Main {
 						'#';
 					}
 				case Definition:
-					'dictionary.md#${escapeAnchor(label.name)}';
+					escapeAnchor(label.name);
 				case Item(i): "" + i;
 				case Paragraph(sec, name): '${url(sec)}#${escapeAnchor(name)}';
 			}
