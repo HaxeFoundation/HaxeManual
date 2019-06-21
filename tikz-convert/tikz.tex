@@ -1,0 +1,98 @@
+\usepackage{tikz}
+\usepackage{tkz-euclide}
+\usetikzlibrary{shapes.geometric, arrows}
+\usepackage{tikz-qtree}
+
+\tikzstyle{flowchartitem} = [
+	minimum width = 2cm,
+	minimum height = 1cm,
+	text centered,
+	draw = black!50,
+]
+
+\tikzstyle{startstop} = [
+	flowchartitem,
+	rectangle,
+	rounded corners,
+	fill = red!20
+]
+ 
+\tikzstyle{io} = [
+	flowchartitem,
+	trapezium,
+	trapezium left angle = 70,
+	trapezium right angle = 110,
+	fill = blue!20
+]
+
+\tikzstyle{process} = [
+	flowchartitem,
+	rectangle,
+	fill = orange!20
+]
+\tikzstyle{decision} = [
+	flowchartitem,
+	diamond,
+	fill = green!20
+]
+
+% Compact decision shape (cut off rectangle corners if you know how)
+\tikzstyle{decisionc} = [
+	decision,
+	minimum height = 0.8cm,
+	rectangle
+]
+
+\tikzstyle{valueNone} = [ fill = red!50 ]
+\tikzstyle{valueSome} = [ fill = yellow!50 ]
+\tikzstyle{valueAll} = [ fill = green!50 ]
+
+\newenvironment*{tikzfigure}[1][]{
+	\begin{figure}[h!]
+	\begin{tikzfigureinternal}[#1]
+}{
+	\end{tikzfigureinternal}
+	\end{figure}
+}
+
+\newenvironment*{tikzsubfigure}[1][]{
+	\begin{subfigure}[b]{0.45\textwidth}
+	\begin{tikzfigureinternal}[#1]
+}{
+	\end{tikzfigureinternal}
+	\end{subfigure}
+}
+
+\newenvironment*{tikzfigureinternal}[1][]{
+	\centering
+	\gdef\tcapt{#1}
+	\begin{tikzpicture}[scale=1]
+}{
+	\end{tikzpicture}
+	\caption{\tcapt}
+}
+
+\tikzstyle{flowchartArrow} = [
+	thick,
+	->,
+	>=stealth,
+	decoration = {
+		markings,
+		mark = at position 1 with {
+			\arrow[scale=2]{>}
+		}
+	},
+	postaction = {decorate}
+]
+
+\newenvironment*{flowchart}[2]{
+	\label{#1}
+	\begin{tikzfigure}[#2]
+	\tikzset {
+		level distance = 3cm,
+		grow = down,
+		edge from parent/.append style = { flowchartArrow }
+	}
+}{
+	\end{tikzfigure}
+}

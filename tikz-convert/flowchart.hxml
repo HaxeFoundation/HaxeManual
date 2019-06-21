@@ -1,0 +1,7 @@
+--main Flowchart
+--neko flowchart.n
+
+--cmd neko flowchart.n ../assets/tikz/abstract-selection.tex ../assets/graphics/generated/types-abstract-implicit-casts-selection-algorithm.png
+--cmd neko flowchart.n ../assets/tikz/macro-compilation-role.tex ../assets/graphics/generated/macro-compilation-role.png
+--cmd neko flowchart.n ../assets/tikz/resolution-order.tex ../assets/graphics/generated/type-system-resolution-order-diagram.png
+--cmd neko flowchart.n ../assets/tikz/variable-initialization.tex ../assets/graphics/generated/class-field-variable-init-values.png
