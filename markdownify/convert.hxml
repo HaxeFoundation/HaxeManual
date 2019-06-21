@@ -1,3 +1,0 @@
-display.hxml
--resource envTemplate.tex@tikzTemplate
--cmd neko convert.n -i ../HaxeManual -o ../content/ HaxeManual.tex
