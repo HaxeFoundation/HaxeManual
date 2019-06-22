@@ -2,123 +2,156 @@
 
 [![Build Status](https://travis-ci.org/HaxeFoundation/HaxeManual.svg?branch=master)](https://travis-ci.org/HaxeFoundation/HaxeManual)
 
-Contributions / Information for authors
--------------
+## Contributions / Information for authors
 
-**For contributions please edit the _.tex_ files in in [HaxeManual/](HaxeManual/).  The _.md_ files are generated from it.**
+**For contributions please edit the `.md` files in [`content/`](content/).**
 
-The manual is structured using these commands:  
-`\chapter{name}`, `\section{name}`, `\subsection{name}`, `\paragraph{name}`
-> Chapter, section and subsection require a `\label{id}` so a URL can be determined. It should not contain any spaces.
+The manual is separated into chapters. Each chapter resides in its own `.md` file. The syntax is Markdown for the most part, with some special comments mixed in.
 
-Formatting:  
-* Bold text: `\emph{Emphasized text}`
-* Code: `\expr{haxe code}`, `\type{MyClass}`, `\ic{other code}`
-* Since: `\since{3.1.0}`
-* Definition blockquote: `\define{Definition name}{define-definition}{Definition description}`
-* Trivia blockquote: `\trivia{About Trivia}{This is trivia}`
-* Internal Links: `\tref{Link name}{chapter-section-id}` or `\Fullref{chapter-section-id}`
-* External Links: `\href{https://haxe.org}{Haxe Website}`
+## Markdown syntax
 
-Block of [external code](HaxeManual/assets) (preferred since those are tested):  
-```tex
-\haxe{assets/Color.hx}
-```
-Block of code, if haxe code:  
-```tex
-\begin{lstlisting}
-trace("Haxe is great!");
-\end{lstlisting}
-```
-Block of code, if not haxe code:
-```tex
-\lang{xml}\begin{lstlisting}
-<do>
-	<until x="4" />
-</do>
-\end{lstlisting}
-```
-Do not put a new line between `\lang{}` and `\begin{lstlisting}`, use `\lang{none}` if the block shouldn't be highlighted.
-Unordered list:
-```tex
-\begin{itemize}
-	\item What is your name?
-	\item How old are you?
-\end{itemize}
-```
-Definition list:
-```tex
-\begin{description}
-	\item[Coffee] Black hot drink
-	\item[Milk] White cold drink
-\end{description}
+Standard syntax can be used freely (and in moderation).
+
+### Sections and labels
+
+On https://haxe.org/manual, the manual is separated into individual pages. Each page has its own URL and represents a **section**. Every section has a title and a label. For backward compatibility and flexibility in titles, the label of a section is not directly based on its title.
+
+As an example, the ["Property" section](https://haxe.org/manual/class-field-property.html) has a label `class-field-property` (which you can see in its URL).
+
+**To give a section a label:**
+
+```markdown
+<!--label:here-is-the-label-->
+## Here is the title
 ```
 
-Finally, if you want to contribute to the Haxe Manual but cannot be arsed to use _.tex_, just write it in any other format and we'll port it.
+The nesting level of a section depends on the heading level (number of `#` characters in the title):
 
----
+ - `##` denotes a chapter, only one per `.md` file
+ - `###` denotes a section
+ - `####` denotes a subsection
+ - `#####` denotes a paragraph (when used without the label tag) or a subsubsection (when used with a label tag)
 
-Metadata and defines lists
---------------------------
+### Links to sections
 
-The [metadata](https://haxe.org/manual/cr-metadata.html) and [define](https://haxe.org/manual/compiler-usage-flags.html) tables are generated automatically from [JSON definitions](https://github.com/HaxeFoundation/haxe/tree/development/src-json). To update the generated files from the current `development` branch, simply run `make generate` (requires `curl` to be installed and in `PATH`).
+To reference another section, use the regular Markdown link syntax with the label in place of the URL.
 
+**To reference a section:**
 
-Generating Markdown
------------------
+```markdown
+Please see the [hello world](introduction-hello-world) section.
+```
 
-Go to `convert/` and run [convert.hxml](convert/convert.hxml) to generate the markdown which will be exported to the [output-folder](output/). For quick testing disable the .mobi generation.
+### Haxe code assets (CI-tested)
 
-You can use the following defines when using `convert` for additional features.
+The Haxe files in the [`assets/`](assets/) directory form the majority of the Haxe code samples that are included in the manual. All of these files are automatically tested with Travis CI for all Haxe targets. For the testing procedures and rules, see `tests/RunTravis.hx`.
 
-- `-D compileEnv`
-Generates images from custom LaTeX environments too complex for Markdown (specifically the `flowchart` environment at the time of writing). Skips already existing images.
-- `-D recompileEnv`
-Generates images even if they already exist at their destination (most useful for `convert` development).
-- `-D keepEnvPDF`
-Keeps the LaTeX generated PDF files. They're placed next to generated images with the same name.
-- `-D keepEnvTemp`
-Keeps the generated temporary directory for LaTeX compilation. Useful for debugging / development purposes.
+On haxe.org, the code samples can be seen included in the sections for a comfortable reading experience. In the `.md` sources, however, the Haxe files are only referenced with a link to avoid code duplication.
 
+**To include a Haxe code asset:**
 
-PDF generation
---------------
+```markdown
+[code asset](assets/HelloWorld.hx)
+```
 
-To rebuild the .pdf from the command line, go to `HaxeManual/` and run `latexmk -xelatex HaxeManual.tex`.
-A recent version of [TeX Live] should provide latexmk and all needed packages
-and their dependencies:
+The above needs to be on its own line. The `code asset` text cannot be changed (it is not displayed to the reader anyway).
 
- - xelatex
- - cleveref
- - courier
- - framed
- - fullpage
- - geometry
- - graphicx
- - hyperref
- - listings
- - palatino
- - tikz, tkz-euclide, tkz-qtree
- - todonotes
- - underscore
- - xcolor
+**To include a smaller part of a Haxe code asset:**
 
+```markdown
+[code asset](assets/HelloWorld.hx#L2-L4)
+```
 
-Requirements for `compileEnv`
------------------------------
+The above would only show lines 2 through 4 (inclusive).
 
-At the time of writing, `compileEnv` depends on the following.
+### Code assets (direct)
 
-- `xelatex` being in path. [TeX Live] 2013 version should be sufficient. Used to compile custom LaTeX environment snippets to PDF.
-- `mudraw` being in path. This is a part of [MuPDF]. Used for rendering PDF to a PNG image.
-- `pandoc` being in path. Used for generating *.epub* file.
-- `ebook-convert` being in path. This is a part of [calibre]. Used for converting *.epub* to *.mobi*.
-- [Source Sans Pro] and [Source Code Pro] fonts being installed.
+Code can also be included in the Markdown content directly. This is convenient for very short snippets, snippets in other languages, or code that is not correct. Where possible, however, please use the CI-tested variant described above.
 
+**To include a snippet of Haxe code:**
 
-[TeX Live]:http://www.tug.org/texlive/
-[MuPDF]:http://www.mupdf.com/
-[calibre]:http://calibre-ebook.com/
-[Source Sans Pro]:http://sourceforge.net/projects/sourcesans.adobe/
-[Source Code Pro]:http://sourceforge.net/projects/sourcecodepro.adobe/
+```markdown
+\`\`\`haxe
+trace("Hello, world!");
+\`\`\`
+```
 
+**To include a snippet of another language:**
+
+```markdown
+\`\`\`js
+console.log("Hello, world!");
+\`\`\`
+```
+
+### Code (inline)
+
+Finally, short expressions can be included directly in the text by surrounding the code with backticks.
+
+### Flowcharts
+
+Flowcharts are included as regular images:
+
+```markdown
+![](assets/graphics/generated/type-system-resolution-order-diagram.png)
+```
+
+The flowcharts are generated from LaTeX / Tikz sources, see [flowchart  generation](#flowchart-generation) below for more information.
+
+### Version information
+
+**To indicate that the following information is only true starting from a given Haxe version:**
+
+```markdown
+##### since Haxe 4.0.0
+```
+
+### Definition
+
+**To give a concise definition of a term:**
+
+```
+> ##### Define: Some Term
+>
+> This is the definition of the term.
+>
+> It can span multiple lines and use other Markdown syntax, too.
+```
+
+Definitions can be referenced from other parts of the manual. Their label is based on the term they describe, e.g. `define-some-term` for the example above.
+
+### Trivia
+
+**To give additional, not crucial information:**
+
+```
+> ##### Trivia: Some Factoid
+>
+> This is something that is not very important.
+```
+
+## Metadata and defines lists
+
+The [metadata](https://haxe.org/manual/cr-metadata.html) and [define](https://haxe.org/manual/compiler-usage-flags.html) tables are generated automatically from [JSON definitions](https://github.com/HaxeFoundation/haxe/tree/development/src-json). To update the generated files from the current `development` branch, simply run `haxe generate.hxml` in the `generate` directory (requires `curl` to be installed and in `PATH`).
+
+## Manual preview
+
+When working on the manual, any Markdown preview (including GitHub renderer) should suffice to show if the text looks correct. To make sure the special Haxe Manual-specific syntax works as expected, please use a local instance of [haxe.org](https://github.com/HaxeFoundation/haxe.org). The workflow consists of:
+
+ 1. Clone the `haxe.org` and `HaxeManual` repositories
+ 2. Replace the `manual` directory in `haxe.org` with a symlink to your local copy of `HaxeManual`
+ 3. Start the haxe.org server (`haxe start-server.hxml &` in the `haxe.org` repository)
+ 4. Make changes to the `.md` files
+ 5. Run `haxe generate.hxml` in the `haxe.org` repository
+ 6. Check results on `localhost:2000`, repeat from step 4
+
+You can disable all `haxe.org` generators except the manual generator in `Main.hx` to hasten the generation process. A significant speed-up can also be gained by turning off the syntax highlighting.
+
+## Flowchart generation
+
+The flowcharts are generated from LaTeX / Tikz files in `assets/tikz` using the Haxe script in `tikz-convert`. The script depends on the following:
+
+- `xelatex` being in PATH. [TeX Live](http://www.tug.org/texlive/) 2013 version should be sufficient. Used to compile custom LaTeX environment snippets to PDF.
+- `mudraw` being in path. This is a part of [MuPDF](http://www.mupdf.com/). Used for rendering PDF to a PNG image.
+  - `convert` (from ImageMagick) can be used as a substitute; see `tikz-convert/Flowchart.hx`.
+- [Source Sans Pro](http://sourceforge.net/projects/sourcesans.adobe/) and [Source Code Pro](http://sourceforge.net/projects/sourcecodepro.adobe/) fonts being installed.
