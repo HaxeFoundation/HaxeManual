@@ -24,11 +24,11 @@ The Haxe type system knows seven type groups:
 * **Enum instance**: a value of a Haxe enumeration 
 * **Structure**: an anonymous structure, i.e. a collection of named fields 
 * **Function**: a compound type of several arguments and one return 
-* **Dynamic**: a wildcard type which is compatible with any type 
+* **Dynamic**: a wildcard type which is compatible with any other type 
 * **Abstract**: a compile-time type which is represented by a different type at runtime 
 * **Monomorph**: an unknown type which may later become a different type
 
-We will describe each of these type groups and how they relate to each other in the next chapters.
+We will describe each of these type groups and how they relate to each other in the following chapters.
 
 > ##### Define: Compound Type
 >
@@ -43,7 +43,7 @@ We will describe each of these type groups and how they relate to each other in 
 * `1`, `0`, `-1` and `0xFF0000` for `Int` and
 * `1.0`, `0.0`, `-1.0`, `1e10` for `Float`.
 
-Basic types are not [classes](types-class-instance) in Haxe. They are implemented as [abstract types](types-abstract) and are tied to the compiler's internal operator-handling as described in the following sections.
+Basic types are not [classes](types-class-instance) in Haxe. Instead, they are implemented as [abstract types](types-abstract) and are tied to the compiler's internal operator-handling as described in the following sections.
 
 <!--label:types-numeric-types-->
 #### Numeric types
@@ -56,7 +56,7 @@ Basic types are not [classes](types-class-instance) in Haxe. They are implemente
 >
 > Represents an integral number.
 
-While every `Int` can be used where a `Float` is expected (that is, `Int` **is assignable to** or **unifies with** `Float`), the reverse is not true: Assigning a `Float` to an `Int` might lose precision and is not allowed implicitly.
+While every `Int` can be used where a `Float` is expected (that is, `Int` **is assignable to** or **unifies with** `Float`), the reverse is not true: Assigning a `Float` to an `Int` might cause loss of precision and is therefore not allowed implicitly.
 
 
 
@@ -66,9 +66,9 @@ While every `Int` can be used where a `Float` is expected (that is, `Int` **is a
 For performance reasons, the Haxe Compiler does not enforce any overflow behavior. The burden of checking for overflows falls to the target platform. Here are some platform-specific notes on overflow behavior:
 
  * C++, Java, C#, Neko, Flash: 32-bit signed integers with usual overflow practices  
-* PHP, JS, Flash 8: No native **Int** type, loss of precision will occur if they reach their float limit (2<sup>52</sup>)
+* PHP, JS, Flash 8: No native **Int** type, loss of precision will occur if a number reaches the float limit (2<sup>52</sup>)
 
-Alternatively, the **haxe.Int32** and **haxe.Int64** classes can be used to ensure correct overflow behavior regardless of the platform at the cost of additional computations depending on the platform.
+Alternatively, the **haxe.Int32** and **haxe.Int64** classes can be used to ensure correct overflow behavior at the cost of additional computations on certain platforms.
 
 
 

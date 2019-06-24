@@ -237,7 +237,7 @@ Operator | Operation | Operand 1 | Operand 2 | Result type
 
 **Short-circuiting:**
 
-Haxe guarantees that compound boolean expressions with the same operator are evaluated from left to right and only as far as necessary at run-time. For instance, an expression like `A && B` will evaluate `A` first and evaluate `B` only if the evaluation of `A` yielded `true`. Likewise, the expressions <code>A &#124;&#124; B</code> will not evaluate `B` if the evaluation of `A` yielded `true`, because the value of `B` is irrelevant in that case. This is important in cases such as this:
+Haxe guarantees that compound boolean expressions with the same operator are evaluated from left to right but only as far as necessary at run-time. For instance, an expression like `A && B` will evaluate `A` first and evaluate `B` only if the evaluation of `A` yielded `true`. Likewise, the expression <code>A &#124;&#124; B</code> will not evaluate `B` if the evaluation of `A` yielded `true`, because the value of `B` is irrelevant in that case. This is important in cases such as this:
 
 ```haxe
 if (object != null && object.field == 1) { }
