@@ -16,7 +16,7 @@ A basic macro is a **syntax-transformation**. It receives zero or more [expressi
 We can identify different kinds of macros, which are run at specific compilation stages:
 
 * Initialization Macros: These are provided by command line using the `--macro` compiler parameter. They are executed after the compiler arguments were processed and the **typer context** has been created, but before any typing was done (see [Initialization Macros](macro-initialization)).
-* Build Macros: These are defined for classes, enums and abstracts through the `@:build` or `@:autoBuild` [metadata](lf-metadata). They are executed per-type, after the type has been set up (including its relation to other types, such as inheritance for classes) but before its fields are typed (see [Type Building](macro-type-building)).
+* Build Macros: These are defined for classes, enums and abstracts through the `@:build` or `@:autoBuild` [metadata](lf-metadata). They are executed per type, after the type has been set up (including its relation to other types, such as inheritance for classes) but before its fields are typed (see [Type Building](macro-type-building)).
 * Expression Macros: These are normal functions which are executed as soon as they are typed.
 
 ##### Related content
@@ -77,7 +77,7 @@ A macro can be declared to expect [constant](expression-constants) arguments:
 
 [code asset](assets/MacroArgumentsConst.hx)
 
-With these it is not necessary to detour over expressions as the compiler can use the provided constants directly.
+With these, it is not necessary to detour over expressions as the compiler can use the provided constants directly.
 
 
 
@@ -206,7 +206,7 @@ This macro is argument to the `@:build` metadata on the `Main` class. As soon as
 3. It executes the type-building macro according to the `@:build` metadata.
 4. It continues typing the class normally with the fields returned by the type-building macro.
 
-This allows adding and modifying class fields at will in a type-building macro. In our example, the macro is called with a `"myFunc"` argument, making `Main.myFunc` a valid field access.
+This allows adding and modifying class fields at will in a type-building macro. In our example, the macro is called with a `"myFunc"` argument, making `Main.myFunc` valid field access.
 
 If a type-building macro should not modify anything, the macro can return `null`. This indicates to the compiler that no changes are intended and is preferable to returning `Context.getBuildFields()`.
 
@@ -268,7 +268,7 @@ It is important to keep in mind that the order of these macro executions is unde
 
 ##### since Haxe 3.1.0
 
-Normal [build-macros](macro-type-building) are run per-type and are already very powerful. In some cases it is useful to run a build macro per type **usage** instead, i.e. whenever it actually appears in the code. Among other things this allows accessing the concrete type parameters in the macro.
+Normal [build-macros](macro-type-building) are run per-type and are already very powerful. In some cases it is useful to run a build macro per type **usage** instead, i.e. whenever it actually appears in the code. Among other things, this allows accessing the concrete type parameters in the macro.
 
 `@:genericBuild` is used just like `@:build` by adding it to a type with the argument being a macro call:
 
@@ -334,7 +334,7 @@ The combination of static extensions and macros was reworked for the 3.1.0 relea
 <!--label:macro-limitations-build-order-->
 #### Build Order
 
-The build order of types is unspecified and this extends to the execution order of [build-macros](macro-type-building). While certain rules can be determined, we strongly recommend to not rely on the execution order of build-macros. If type building requires multiple passes, this should be reflected directly in the macro code. In order to avoid multiple build-macro execution on the same type, state can be stored in static variables or added as [metadata](lf-metadata) to the type in question:
+The build order of types is unspecified and this extends to the execution order of [build-macros](macro-type-building). While certain rules can be determined, we strongly recommend to not rely on the execution order of build-macros. If type building requires multiple passes, this should be reflected directly in the macro code. In order to avoid multiple build-macro executions on the same type, the state can be stored in [persistent variables](macro-persistent-variables) or added as [metadata](lf-metadata) to the type in question:
 
 [code asset](assets/MacroBuildOrder.hx)
 
@@ -390,11 +390,11 @@ After starting the completion server with `haxe --wait 6000`, we perform a build
 <!--label:macro-initialization-->
 ### Initialization Macros
 
-Initialization macros are invoked from command line by using the `--macro callExpr(args)` command. This registers a callback which the compiler invokes after creating its context, but before typing what was argument to `--main`. This then allows configuring the compiler in some ways.
+Initialization macros are invoked from the command line by using the `--macro callExpr(args)` command. This registers a callback which the compiler invokes after creating its context, but before typing the argument to `--main`. This then allows configuring the compiler in some ways.
 
 If the argument to `--macro` is a call to a plain identifier, that identifier is looked up in the class `haxe.macro.Compiler` which is part of the Haxe Standard Library. It comes with several useful initialization macros which are detailed in its [API](http://api.haxe.org//haxe/macro/Compiler.html).
 
-As an example, the `include` macro allows inclusion of an entire package for compilation, recursively if necessary. The command line argument for this would then be `--macro include('some.pack', true)`.
+As an example, the `include` macro allows the inclusion of an entire package for compilation, recursively if necessary. The command line argument for this would then be `--macro include('some.pack', true)`.
 
 Of course it is also possible to define custom initialization macros to perform various tasks before the real compilation. A macro like this would then be invoked via `--macro some.Class.theMacro(args)`. For instance, as all macros share the same [context](macro-context), an initialization macro could set the value of a static field which other macros use as configuration.
 
