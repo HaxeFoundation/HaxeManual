@@ -10,7 +10,7 @@
 >
 > A String is a sequence of characters.
 
-String is a special class in Haxe. It is not considered a [basic type](types-basic-types), but it can be constructed as a [literal](std-String-literals). The [binary comparison operators](expression-operator-binops#string-comparison-operators) also behave differently when applied to strings. Haxe also supports special [string interpolation](lf-string-interpolation) syntax.
+String is a special class in Haxe. It is not considered a [basic type](types-basic-types), but it can be constructed as a [literal](std-String-literals). The [binary comparison operators](expression-operators-binops#string-comparison-operators) also behave differently when applied to strings. Haxe also supports special [string interpolation](lf-string-interpolation) syntax.
 
 ##### Character code
 Use the `.code` property on a constant single-char string in order to compile its Unicode character point:
