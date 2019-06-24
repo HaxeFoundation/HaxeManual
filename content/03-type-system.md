@@ -71,7 +71,7 @@ Both arguments `expected` and `actual` of the `equals` function have type `T`. T
 
 > ##### Trivia: Type parameters in expression syntax
 >
-> We often get the question why a method with type parameters cannot be called as `method<String>(x)`. The error messages the compiler gives are not very helpful. However, there is a simple reason for that: The above code is parsed as if both `<` and `>` were binary operators, yielding `(method < String) > (x)`.
+> We often get the question of why a method with type parameters cannot be called as `method<String>(x)`. The error messages the compiler gives are not very helpful. However, there is a simple reason for that: The above code is parsed as if both `<` and `>` were binary operators, yielding `(method < String) > (x)`.
 
 <!--label:type-system-type-parameter-constraints-->
 #### Constraints
@@ -217,7 +217,7 @@ We can safely assign with `b` being typed as `MyArray<Base>` and `MyArray` only 
 <!--label:type-system-unification-->
 ### Unification
 
-Unification is the heart of the type system and contributes immensely to the robustness of Haxe programs. It describes the process of checking if a type is compatible to another type.
+Unification is the heart of the type system and contributes immensely to the robustness of Haxe programs. It describes the process of checking if a type is compatible with another type.
 
 > ##### Define: Unification
 >
@@ -280,7 +280,7 @@ public static function empty<T>(it : Iterable<T>):Bool {
 ```
 The `empty`-method checks if an `Iterable` has an element. For this purpose, it is not necessary to know anything about the argument type other than the fact that it is considered an iterable. This allows calling the `empty`-method with any type that unifies with `Iterable<T>` which applies to a lot of types in the Haxe Standard Library.
 
-This kind of typing can be very convenient but extensive use may be detrimental to performance on static targets, which  is detailed in [Impact on Performance](types-structure-performance).
+This kind of typing can be very convenient but extensive use may be detrimental to performance on static targets, which is detailed in [Impact on Performance](types-structure-performance).
 
 
 
@@ -344,7 +344,7 @@ Following the rules of unification, type inference can occur in compound types:
 
 [code asset](assets/TypeInference2.hx)
 
-Variable `x` is first initialized to an empty `Array`. At this point we can tell that the type of `x` is an array, but we do not yet know the type of the array elements. Consequentially, the type of `x` is `Array<Unknown<0>>`. It is only after pushing a `String` onto the array that we know the type to be `Array<String>`.
+Variable `x` is first initialized to an empty `Array`. At this point, we can tell that the type of `x` is an array, but we do not yet know the type of the array elements. Consequentially, the type of `x` is `Array<Unknown<0>>`. It is only after pushing a `String` onto the array that we know the type to be `Array<String>`.
 
 <!--label:type-system-top-down-inference-->
 #### Top-down Inference
@@ -353,9 +353,9 @@ Most of the time, types are inferred on their own and may then be unified with a
 
 > ##### Define: Expected Type
 >
-> Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is argument to a function call. They can influence typing of that expression through what is called [top-down inference](type-system-top-down-inference).
+> Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is an argument to a function call. They can influence typing of that expression through what is called [top-down inference](type-system-top-down-inference).
 
-A good example are arrays of mixed types. As mentioned in [Dynamic](types-dynamic), the compiler refuses `[1, "foo"]` because it cannot determine an element type. Employing top-down inference, this can be overcome:
+A good example is arrays of mixed types. As mentioned in [Dynamic](types-dynamic), the compiler refuses `[1, "foo"]` because it cannot determine an element type. Employing top-down inference, this can be overcome:
 
 [code asset](assets/TopDownInference.hx)
 
@@ -518,7 +518,7 @@ Haxe also allows the more natural `as` in place of `in`.
 
 ##### since Haxe 3.3.0
 
-This feature allows us to define default imports and usings that will be applied for all modules inside a directory, which is particularly handy for large code bases with a lot of helpers and static extensions because it reduces the amount of imports.
+This feature allows us to define default imports and usings that will be applied for all modules inside a directory, which is particularly handy for large code bases with a lot of helpers and static extensions because it reduces the number of imports.
 
 The special named `import.hx` file (note the lowercase name) can be placed in the directory where your code lies. The file can contain import and using statements only. The statements will be applied to all Haxe modules in this directory and its subdirectories.
 
@@ -577,10 +577,10 @@ For step 10, it is also necessary to define the resolution order of types:
 For step 1 of this algorithm as well as steps 5 and 7 of the previous one, the order of import resolution is important:
 
 * Imported modules and static extensions are checked from bottom to top with the first match being picked.
-* Imports that come from [import.hx](type-system-import-defaults) files are considered to be at the top of affected modules, which means they have lowest priority. If multiple `import.hx` files affect a module, the ones in child directories have priority over the ones in parent directories.
+* Imports that come from [import.hx](type-system-import-defaults) files are considered to be at the top of affected modules, which means they have the lowest priority. If multiple `import.hx` files affect a module, the ones in child directories have priority over the ones in parent directories.
 * Within a given module, types are checked from top to bottom.
 * For imports, a match is made if the name equals.
-* For [static extensions](lf-static-extension), a match is made if the name equals and the first argument [unifies](type-system-unification). Within a given type being used as static extension, the fields are checked from top to bottom.
+* For [static extensions](lf-static-extension), a match is made if the name equals and the first argument [unifies](type-system-unification). Within a given type being used as a static extension, the fields are checked from top to bottom.
 
 
 
