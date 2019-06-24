@@ -4,7 +4,7 @@
 
 ## Contributions / Information for authors
 
-**For contributions please edit the `.md` files in [`content/`](content/).**
+##### For contributions please edit the `.md` files in [`content/`](content/).
 
 The manual is separated into chapters. Each chapter resides in its own `.md` file. The syntax is Markdown for the most part, with some special comments mixed in.
 
@@ -16,9 +16,9 @@ Standard syntax can be used freely (and in moderation).
 
 On https://haxe.org/manual, the manual is separated into individual pages. Each page has its own URL and represents a **section**. Every section has a title and a label. For backward compatibility and flexibility in titles, the label of a section is not directly based on its title.
 
-As an example, the ["Property" section](https://haxe.org/manual/class-field-property.html) has a label `class-field-property` (which you can see in its URL).
+As an example, the ["Property" section](https://haxe.org/manual/class-field-property.html) has the label `class-field-property` (which you can see in its URL).
 
-**To give a section a label:**
+##### To give a section a label:
 
 ```markdown
 <!--label:here-is-the-label-->
@@ -36,7 +36,7 @@ The nesting level of a section depends on the heading level (number of `#` chara
 
 To reference another section, use the regular Markdown link syntax with the label in place of the URL.
 
-**To reference a section:**
+##### To reference a section:
 
 ```markdown
 Please see the [hello world](introduction-hello-world) section.
@@ -48,7 +48,7 @@ The Haxe files in the [`assets/`](assets/) directory form the majority of the Ha
 
 On haxe.org, the code samples can be seen included in the sections for a comfortable reading experience. In the `.md` sources, however, the Haxe files are only referenced with a link to avoid code duplication.
 
-**To include a Haxe code asset:**
+##### To include a Haxe code asset:
 
 ```markdown
 [code asset](assets/HelloWorld.hx)
@@ -56,7 +56,7 @@ On haxe.org, the code samples can be seen included in the sections for a comfort
 
 The above needs to be on its own line. The `code asset` text cannot be changed (it is not displayed to the reader anyway).
 
-**To include a smaller part of a Haxe code asset:**
+##### To include a smaller part of a Haxe code asset:
 
 ```markdown
 [code asset](assets/HelloWorld.hx#L2-L4)
@@ -68,7 +68,7 @@ The above would only show lines 2 through 4 (inclusive).
 
 Code can also be included in the Markdown content directly. This is convenient for very short snippets, snippets in other languages, or code that is not correct. Where possible, however, please use the CI-tested variant described above.
 
-**To include a snippet of Haxe code:**
+##### To include a snippet of Haxe code:
 
 ```markdown
 \`\`\`haxe
@@ -76,13 +76,17 @@ trace("Hello, world!");
 \`\`\`
 ```
 
-**To include a snippet of another language:**
+(Remove the backslashes on the first and last line.)
+
+##### To include a snippet of another language:
 
 ```markdown
 \`\`\`js
 console.log("Hello, world!");
 \`\`\`
 ```
+
+(Remove the backslashes on the first and last line.)
 
 ### Code (inline)
 
@@ -100,7 +104,7 @@ The flowcharts are generated from LaTeX / Tikz sources, see [flowchart  generati
 
 ### Version information
 
-**To indicate that the following information is only true starting from a given Haxe version:**
+##### To indicate that the following information is only true starting from a given Haxe version:
 
 ```markdown
 ##### since Haxe 4.0.0
@@ -108,7 +112,7 @@ The flowcharts are generated from LaTeX / Tikz sources, see [flowchart  generati
 
 ### Definition
 
-**To give a concise definition of a term:**
+##### To give a concise definition of a term:
 
 ```
 > ##### Define: Some Term
@@ -122,7 +126,7 @@ Definitions can be referenced from other parts of the manual. Their label is bas
 
 ### Trivia
 
-**To give additional, not crucial information:**
+##### To give additional information, not crucial to understanding Haxe:
 
 ```
 > ##### Trivia: Some Factoid
