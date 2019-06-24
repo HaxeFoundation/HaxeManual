@@ -10,6 +10,8 @@
 >
 > A String is a sequence of characters.
 
+String is a special class in Haxe. It is not considered a [basic type](types-basic-types), but it can be constructed as a [literal](std-String-literals). The [binary comparison operators](expression-operator-binops#string-comparison-operators) also behave differently when applied to strings. Haxe also supports special [string interpolation](lf-string-interpolation) syntax.
+
 ##### Character code
 Use the `.code` property on a constant single-char string in order to compile its Unicode character point:
 
@@ -17,19 +19,78 @@ Use the `.code` property on a constant single-char string in order to compile it
 "#".code // will compile as 35
 ```
 
-##### since Haxe 4.0.0
-
-##### Unicode support
-All Haxe targets except Neko support Unicode in strings by default.
-
-A string in Haxe code represents a valid sequence of Unicode codepoints. Due to differing internal representations of strings across targets, only the basic multilingual plane (BMP) is supported consistently: every BMP Unicode codepoint corresponds to exactly one string character.
-
-On some targets, the internal representation is UTF-16, which means that non-BMP Unicode codepoints are represented using surrogate pairs. It is still possible to work with strings on these targets without having to manually decode surrogate pairs by using the [Unicode iterators API](https://api.haxe.org/v/development/haxe/iterators/StringIteratorUnicode.html) provided in the standard library.
-
 ##### Related content
 
 * See the [String API](https://api.haxe.org/String.html) for details about its methods.
 
+<!--label:std-String-literals-->
+#### String literals
+
+A string literal is a sequence of characters inside a pair of double quotes or single quotes:
+
+```haxe
+var a = "foo";
+var b = 'foo';
+trace(a == b); // true
+```
+
+The only difference between the two forms is that single-quoted literals allow [string interpolation](lf-string-interpolation).
+
+##### Escape sequences
+
+Sequence | Meaning | Unicode codepoint (decimal) | Unicode codepoint (hexadecimal)
+ --- | --- | --- | ---
+`\t` | horizontal tab (TAB) | 9 | 0x09
+`\n` | new line (LF) | 10 | 0x0A
+`\r` | new line (CR) | 13 | 0x0D
+`\"` | double quote | 34 | 0x22
+`\'` | single quote | 39 | 0x27
+`\\\\\\\\` | backslash | 92 | 0x5C
+`\NNN` | ASCII escape where `NNN` is 3 octal digits | 0 - 127 | 0x00 - 0x7F
+`\xNN` | ASCII escape where `NN` is a pair of hexadecimal digits | 0 - 127 | 0x00 - 0x7F
+`\uNNNN` | Unicode escape where `NNNN` is 4 hexadecimal digits | 0 - 65535 | 0x0000 - 0xFFFF
+`\u{N...}` | Unicode escape where `N...` is 1-6 hexadecimal digits | 0 - 1114111 | 0x000000 - 0x10FFFF
+
+<!--label:std-String-unicode-->
+#### Unicode
+
+##### since Haxe 4.0.0
+
+All Haxe targets except Neko support Unicode in strings by default. The [compile-time define](lf-condition-compilation) `target.unicode` is set on targets where Unicode is supported.
+
+A string in Haxe code represents a valid sequence of Unicode codepoints. Due to differing internal representations of strings across targets, only the basic multilingual plane (BMP) is supported consistently: every BMP Unicode codepoint corresponds to exactly one string character.
+
+It is still possible to work with strings including non-BMP characters on all targets without having to manually decode surrogate pairs by using the [Unicode iterators API](https://api.haxe.org/v/development/haxe/iterators/StringIteratorUnicode.html) provided in the standard library.
+
+<--label:std-String-encoding-->
+#### Encoding
+
+On some targets, the internal representation is UTF-16, which means that non-BMP Unicode codepoints are represented using surrogate pairs. The [compile-time define](lf-condition-compilation) `target.utf16` is set when the target uses UTF-16 internally.
+
+##### Null-bytes in strings
+
+<!-- Might need to be changed depending on the outcome of -->
+<!-- https://github.com/HaxeFoundation/haxe/issues/8201 -->
+
+Some Haxe targets disallow null-bytes (Unicode codepoint 0) in strings. Additionally, some Haxe core APIs assume a null-byte terminates strings. To consistently deal with binary data, including null-bytes, use the [`haxe.io.Bytes`](https://api.haxe.org/haxe/io/Bytes.html) API.
+
+##### Target details
+
+Target | `target.unicode` | `target.utf16` | Internal encoding | Null-byte allowed
+ --- | --- | --- | --- | ---
+Flash | yes | yes | UTF-16 | no
+JavaScript | yes | yes | UTF-16 | yes (except in some old browsers)
+ActionScript 3 | yes | yes | UTF-16 | no
+C++ | yes | yes | ASCII or UTF-16 (if needed) | yes
+Java | yes | yes | UTF-16 | yes
+JVM | yes | yes | UTF-16 | yes
+C\# | yes | yes | UTF-16 | yes
+Python | yes | no | Latin-1, UCS-2, or UCS-4 (see [PEP 393](https://www.python.org/dev/peps/pep-0393/)) | yes
+Lua | yes | no | UTF-8 | yes
+PHP | yes | no | binary | yes
+Eval | yes | no | UTF-8 | yes
+Neko | no | no | binary | yes
+HashLink | yes | yes | UTF-16 | no
 
 
 <!--label:std-ds-->
