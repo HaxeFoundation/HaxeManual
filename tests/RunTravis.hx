@@ -223,7 +223,7 @@ class RunTravis
 
 	static function buildExamples(target:Target, ?included:Array<String>):ExitCode {
 		Sys.println("\nBuilding Haxe Manual examples...\n");
-		Sys.setCwd("../HaxeManual/assets");
+		Sys.setCwd("../assets");
 
 		var examples = FileSystem.readDirectory(".").filter(function(f) {
 			return f.endsWith(".hx") && excludedExamples.indexOf(f) == -1;

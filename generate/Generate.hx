@@ -27,12 +27,11 @@ typedef Meta = EntryCommon & {
 	};
 
 class Generate {
-	static final GITHUB_RAW_URL = "https://raw.githubusercontent.com/HaxeFoundation/haxe/development";
+	// TODO: change back to the haxe repo once #8350 is merged
+	static final GITHUB_RAW_URL = "https://raw.githubusercontent.com/Aurel300/haxe/feature/manual-references";
+	//static final GITHUB_RAW_URL = "https://raw.githubusercontent.com/HaxeFoundation/haxe/development";
 	static final MANUAL_URL = "https://haxe.org/manual/";
-	static final OUTPUT_DIR = "../HaxeManual/generated";
-	static final OUTPUT_HEADER = "% This file was automatically generated using Generate.hx\n"
-		+ '% at ${Date.now().toString()}\n'
-		+ "% Do not edit manually\n\n";
+	static final OUTPUT_DIR = "../content/generated";
 
 	static function get(url:String):String {
 		Sys.println('GET $url ...');
@@ -42,47 +41,39 @@ class Generate {
 		return data;
 	}
 
-	static function latexify(doc:String):String {
-		doc = doc.replace("\\", "\\textbackslash{}");
-		doc = doc.replace("C#", "C\\#");
-		// hacky because no \b support
-		doc = ~/([ \t\n\(])`([^`]*)`([ \t\n\)\.,;])/g.map(doc, e -> '${e.matched(1)}\\ic{${e.matched(2)}}${e.matched(3)}');
-		doc = ~/([ \t\n\(])'([^']*)'([ \t\n\)\.,;])/g.map(doc, e -> '${e.matched(1)}`${e.matched(2)}\'${e.matched(3)}');
-		doc = ~/([ \t\n\(])"([^"]*)"([ \t\n\)\.,;])/g.map(doc, e -> '${e.matched(1)}``${e.matched(2)}\'\'${e.matched(3)}');
-		return doc;
-	}
-
 	static function generateFile<T:EntryCommon>(
 		filename:String,
 		source:Array<T>,
 		formatName:(entry:T)->String
 	):Void {
 		Sys.println('generating ${filename} ...');
-		var outputFile = File.write('${OUTPUT_DIR}/${filename}.tex');
+		var outputFile = File.write('${OUTPUT_DIR}/${filename}.md');
 		var w = outputFile.writeString;
-		w(OUTPUT_HEADER);
 		for (entry in source) {
 			// Name
-			w('\t${formatName(entry)}');
+			w(formatName(entry));
 			// Parameters
-			w(" & ");
+			w(" | ");
 			if (entry.params != null && entry.params.length > 0)
-				w("\\textless{}" + entry.params.map(param -> param.replace("|", "\\textbar{}")).join("\\textgreater{}, \\textless{}") + "\\textgreater{}");
+				w("&lt;" + entry.params.map(p -> p.replace("|", "&#x7C;")).join(">, &lt;") + ">");
 			// Description
-			w(' & ${latexify(entry.doc)}');
+			w(' | ${entry.doc}');
 			var manualLinks = entry.links != null ? entry.links.filter(link -> link.startsWith(MANUAL_URL)) : [];
 			if (manualLinks.length > 0) {
 				w(' See ');
-				w([ for (ref in manualLinks) '\\Fullref{${ref.split("/").pop().split(".").shift()}}' ].join(", "));
+				w([ for (ref in manualLinks) {
+					var id = ref.split("/").pop().split(".")[0];
+					'[$id]($id)';
+				} ].join(", "));
 				w('.');
 			}
 			// Platforms
-			w(' & ');
+			w(' | ');
 			if (entry.platforms != null && entry.platforms.length > 0)
 				w(entry.platforms.join(", "));
 			else
 				w("all");
-			w(" \\\\\n");
+			w("\n");
 		}
 		outputFile.close();
 	}
@@ -99,14 +90,14 @@ class Generate {
 		generateFile(
 				"defines",
 				defines,
-				define -> '\\expr{${define.define}}'
+				define -> '`${define.define}`'
 			);
 
 		// generate metas.tex
 		generateFile(
 				"metas",
 				metas.filter(meta -> !meta.internal),
-				meta -> '\\expr{@${meta.metadata}}'
+				meta -> '`@${meta.metadata}`'
 			);
 	}
 }

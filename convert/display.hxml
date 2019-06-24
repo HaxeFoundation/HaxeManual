@@ -1,5 +1,0 @@
--cp src
--main Main
--lib hxparse
--lib hxargs
--neko convert.n

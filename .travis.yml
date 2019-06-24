@@ -39,8 +39,8 @@ matrix:
         # - nvm install 6.4
         # - npm install -g markdown-spellcheck
       script:
-        - pushd convert
-        -   haxe convert.hxml -D recompileEnv
+        - pushd tikz-convert
+        -   haxe flowchart.hxml
         - popd
         # - mdspell *.md "output/*/website/**/*.md" --ignore-numbers --ignore-acronyms --report
 
