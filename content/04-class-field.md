@@ -279,6 +279,8 @@ Omitting the visibility modifier usually defaults the visibility to `private`, b
 <!--label:class-field-inline-->
 #### Inline
 
+##### Inline functions
+
 The `inline` keyword allows function bodies to be directly inserted in place of calls to them. This can be a powerful optimization tool but should be used judiciously as not all functions are good candidates for inline behavior. The following example demonstrates the basic usage:
 
 [code asset](assets/Inline.hx)
@@ -308,6 +310,10 @@ It is important to remember this when relying on inline:
 [code asset](assets/InlineRelying.hx)
 
 If the call to `error` is inlined the program compiles correctly because the control flow checker is satisfied due to the inlined [throw](expression-throw) expression. If inline is not done, the compiler only sees a function call to `error` and emits the error `A return is missing here`.
+
+##### Inline variables
+
+The `inline` keyword can also be applied to variables, but only when used together with `static`. An inline variable must be initialized to a [constant](expression-constants), otherwise the compiler emits an error. The value of the variable is used everywhere in place of the variable itself.
 
 
 

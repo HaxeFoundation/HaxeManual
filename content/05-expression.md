@@ -176,7 +176,7 @@ Example | Type | Note
 <!--label:expression-constants-->
 ### Constants
 
-Constants are values which are immutable. These values can be used as `static inline` variables and default values for function arguments. All constants are [literals](expression-literals), except for argument-less enum constructors:
+Constants are values which are immutable. These values can be used as [inline variables](class-field-inline#inline-variables) and [default values for function arguments](types-function-default-values). All constants are [literals](expression-literals), except for argument-less enum constructors:
 
 Example | Type  | Note
  --- | --- | --- | ---
