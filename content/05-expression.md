@@ -152,17 +152,42 @@ It is possible that variable shadowing in code is unintentional. The compiler ca
 
 
 
+<!--label:expression-literals-->
+### Literals
+
+Literals are ways to construct values for many Haxe core types using reserved syntax. The following table summarizes the literals available in Haxe:
+
+Example | Type | Note
+ --- | --- | ---
+`42`, `0xFF42` | `Int` | [integer](define-int) constant
+`0.32`, `3.`, `2.1e5` | `Float` | [floating-point](define-float) decimal constant
+`true`, `false` | `Bool` | [boolean](define-bool) constant
+`~/haxe/gi` | `EReg` | [regular expression](std-regex)
+`null` | `T` | null value for any [nullable](types-nullability) type
+`"XXX"`, `'XXX'` | `String` | [string literal](std-String-literals)
+`"X".code`, `'X'.code` | `Int` | [Unicode character codepoint](std-String#character-code)
+`[1, 2, 3]`, `[]` | `Array<T>` | [array](std-Array) literal
+`["a" => 1]`, `[]` | `Map<T, U>` | [map](std-Map) literal
+`{foo: true}`, `{}` | `T` | [anonymous structure](types-anonymous-structure)
+`1...3` | `IntIterator` | [range](expression-for)
+
+
+
 <!--label:expression-constants-->
 ### Constants
 
-The Haxe syntax supports the following constants:
+Constants are values which are immutable. These values can be used as `static inline` variables and default values for function arguments. All constants are [literals](expression-literals), except for argument-less enum constructors:
 
-* Int: An [integer](define-int), such as `0`, `1`, `97121`, `-12`, `0xFF0000`.
-* Float: A [floating point number](define-float), such as `0.0`, `1.`, `.3`, `-93.2`.
-* String: A [string of characters](define-string), such as `""`, `"foo"`, `''`, `'bar'`.
-* true,false: A [boolean](define-bool) value.
-* &nbsp;/haxe/i: A [regular expression](std-regex) literal.
-* null: The null value.
+Example | Type  | Note
+ --- | --- | --- | ---
+`42`, `0xFF42` | `Int` | [integer](define-int) constant
+`0.32`, `3.`, `2.1e5` | `Float` | [floating-point](define-float) decimal constant
+`true`, `false` | `Bool` | [boolean](define-bool) constant
+`~/haxe/gi` | `EReg` | [regular expression](std-regex)
+`null` | `T` | null value for any [nullable](types-nullability) type
+`"XXX"`, `'XXX'` | `String` | [string literal](std-String-literals)
+`"X".code`, `'X'.code` | `Int` | [Unicode character codepoint](std-String#character-code)
+`MyEnum.Haxe` | `T` | [enum constructor](types-enum-constructor) with no arguments
 
 Furthermore, the internal syntax structure treats [identifiers](define-identifier) as constants, which may be relevant when working with [macros](macro).
 
