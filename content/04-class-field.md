@@ -311,9 +311,27 @@ It is important to remember this when relying on inline:
 
 If the call to `error` is inlined the program compiles correctly because the control flow checker is satisfied due to the inlined [throw](expression-throw) expression. If inline is not done, the compiler only sees a function call to `error` and emits the error `A return is missing here`.
 
+Since Haxe 4 it is also possible to inline specific calls to a function or constructor, see [`inline` expression](expression-inline).
+
 ##### Inline variables
 
 The `inline` keyword can also be applied to variables, but only when used together with `static`. An inline variable must be initialized to a [constant](expression-constants), otherwise the compiler emits an error. The value of the variable is used everywhere in place of the variable itself.
+
+The following code demonstrates the usage of an inline variable:
+
+[code asset](assets/InlineVariable.hx)
+
+The generated JavaScript shows that the `language` variable is not present anymore:
+
+```js
+(function ($global) { "use strict";
+var Main = function() { };
+Main.main = function() {
+	console.log("root/program/Main.hx:5:","Haxe");
+};
+Main.main();
+})({});
+```
 
 
 
