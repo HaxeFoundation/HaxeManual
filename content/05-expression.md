@@ -152,17 +152,86 @@ It is possible that variable shadowing in code is unintentional. The compiler ca
 
 
 
+<!--label:expression-literals-->
+### Literals
+
+Literals are ways to construct values for many Haxe core types using reserved syntax. The following table summarizes the literals available in Haxe:
+
+Example | Type | Note
+ --- | --- | ---
+`42`, `0xFF42` | `Int` | [integer](define-int) constant
+`0.32`, `3.`, `2.1e5` | `Float` | [floating-point](define-float) decimal constant
+`true`, `false` | `Bool` | [boolean](define-bool) constant
+`~/haxe/gi` | `EReg` | [regular expression](std-regex)
+`null` | `T` | null value for any [nullable](types-nullability) type
+`"XXX"`, `'XXX'` | `String` | [string literal](std-String-literals)
+`"X".code`, `'X'.code` | `Int` | [Unicode character codepoint](std-String#character-code)
+`[1, 2, 3]`, `[]` | `Array<T>` | [array literal](expression-array-declaration)
+`["a" => 1]`, `[]` | `Map<T, U>` | [map literal](expression-map-declaration)
+`{foo: true}`, `{}` | `T` | [anonymous structure literal](expression-object-declaration)
+`1...3` | `IntIterator` | [range](expression-for)
+
+
+<!--label:expression-array-declaration-->
+#### Array Declaration
+
+[Arrays](std-Array) are initialized by enclosing comma `,` separated values in brackets `[]`. A plain `[]` represents the empty array, whereas `[1, 2, 3]` initializes an array with three elements `1`, `2` and `3`.
+
+The generated code may be less concise on platforms that do not support array initialization. Essentially, such initialization code then looks like this:
+
+```haxe
+var a = new Array();
+a.push(1);
+a.push(2);
+a.push(3);
+```
+This should be considered when deciding if a function should be [inlined](class-field-inline) as it may inline more code than visible in the syntax.
+
+Advanced initialization techniques are described in [Array Comprehension](lf-array-comprehension).
+
+
+<!--label:expression-map-declaration-->
+#### Map Declaration
+
+[Maps](std-Map) are initialized similarly to arrays, but include both keys and their corresponding values. `["example" => 1, "data" => 2]` initializes a map (`Map<String, Int>` specifically) where the key `"example"` stores the value `1` and `"data"` stores the value 2.
+
+##### since Haxe 4.0.0
+
+Where a map type is expected (based on [top-down inference](type-system-top-down-inference)), `[]` refers to an empty map.
+
+
+<!--label:expression-object-declaration-->
+#### Object Declaration
+
+Object declaration begins with an opening curly brace `{` after which `key:value`-pairs separated by comma `,` follow, and which ends in a closing curly brace `}`.
+
+```haxe
+{
+	key1:value1,
+	key2:value2,
+	...
+	keyN:valueN
+}
+```
+Further details of object declaration are described in the section about [anonymous structures](types-anonymous-structure).
+
+
+
 <!--label:expression-constants-->
 ### Constants
 
-The Haxe syntax supports the following constants:
+Constants are values which are immutable. These values can be used as [inline variables](class-field-inline#inline-variables) and [default values for function arguments](types-function-default-values). All constants are [literals](expression-literals), except for argument-less enum constructors:
 
-* Int: An [integer](define-int), such as `0`, `1`, `97121`, `-12`, `0xFF0000`.
-* Float: A [floating point number](define-float), such as `0.0`, `1.`, `.3`, `-93.2`.
-* String: A [string of characters](define-string), such as `""`, `"foo"`, `''`, `'bar'`.
-* true,false: A [boolean](define-bool) value.
-* &nbsp;/haxe/i: A [regular expression](std-regex) literal.
-* null: The null value.
+Example | Type  | Note
+ --- | --- | --- | ---
+`42`, `0xFF42` | `Int` | [integer](define-int) constant
+`0.32`, `3.`, `2.1e5` | `Float` | [floating-point](define-float) decimal constant
+`true`, `false` | `Bool` | [boolean](define-bool) constant
+`~/haxe/gi` | `EReg` | [regular expression](std-regex)
+`null` | `T` | null value for any [nullable](types-nullability) type
+`"XXX"`, `'XXX'` | `String` | [string literal](std-String-literals)
+`"X".code`, `'X'.code` | `Int` | [Unicode character codepoint](std-String#character-code)
+`MyEnum.Haxe` | `T` | [enum constructor](types-enum-constructor) with no arguments
 
 Furthermore, the internal syntax structure treats [identifiers](define-identifier) as constants, which may be relevant when working with [macros](macro).
 
@@ -395,55 +464,6 @@ The operators specified in the previous sections specify the types and meanings 
 Operator precedence cannot be changed with abstract operator overloading.
 
 For macro processing in particular, there is an additional operator available: the postfix `!` operator.
-
-
-
-
-
-<!--label:expression-array-declaration-->
-### Array Declaration
-
-Arrays are initialized by enclosing comma `,` separated values in brackets `[]`. A plain `[]` represents the empty array, whereas `[1, 2, 3]` initializes an array with three elements `1`, `2` and `3`.
-
-The generated code may be less concise on platforms that do not support array initialization. Essentially, such initialization code then looks like this:
-
-```haxe
-var a = new Array();
-a.push(1);
-a.push(2);
-a.push(3);
-```
-This should be considered when deciding if a function should be [inlined](class-field-inline) as it may inline more code than visible in the syntax.
-
-Advanced initialization techniques are described in [Array Comprehension](lf-array-comprehension).
-
-
-
-<!--label:expression-map-declaration-->
-### Map Declaration
-
-Maps are initialized similarly to arrays, but include both keys and their corresponding values. `["example" => 1, "data" => 2]` initializes a map (`Map<String, Int>` specifically) where the key `"example"` stores the value `1` and `"data"` stores the value 2.
-
-##### since Haxe 4.0.0
-
-Where a map type is expected (based on [top-down inference](type-system-top-down-inference)), `[]` refers to an empty map.
-
-
-
-<!--label:expression-object-declaration-->
-### Object Declaration
-
-Object declaration begins with an opening curly brace `{` after which `key:value`-pairs separated by comma `,` follow, and which ends in a closing curly brace `}`.
-
-```haxe
-{
-	key1:value1,
-	key2:value2,
-	...
-	keyN:valueN
-}
-```
-Further details of object declaration are described in the section about [anonymous structures](types-anonymous-structure).
 
 
 
