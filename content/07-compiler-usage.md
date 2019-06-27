@@ -114,7 +114,7 @@ It is possible to supply more arguments after the hxml file, e.g. `haxe build.hx
 This example has a configuration which compiles the class file `website.HomePage.hx` to JavaScript into a file called `bin/homepage.js`, which is located in the `src` class path. And uses full dead code elimination.
 
 ```hxml
---cp src
+--class-path src
 --dce full
 --js bin/homepage.js
 --main website.HomePage
@@ -132,7 +132,7 @@ Hxml configurations allow multiple compilation using these arguments:
 This example has a configuration which compiles three different classes into their own JavaScript files. Each build uses `src` as class path and uses full dead code elimination.
 
 ```hxml
---cp src
+--class-path src
 --dce full
 
 --each
