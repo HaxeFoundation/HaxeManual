@@ -56,7 +56,7 @@ Source code looks like this:
 ```haxe
 Haxe code here
 ```
-Occasionally, we demonstrate how Haxe code is generated, for which we usually show the JavaScript target.
+Occasionally, we demonstrate how target code is generated, for which we usually show the JavaScript target.
 
 Furthermore, we define a set of terms in this document. Predominantly, this is done when introducing a new type or when a term is specific to Haxe. To avoid clutter, we do not define every new aspect we introduce, e.g. what a class is. A definition looks like this:
 
