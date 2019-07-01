@@ -70,16 +70,14 @@ Code can also be included in the Markdown content directly. This is convenient f
 
 ##### To include a snippet of Haxe code:
 
-<pre><code>
-```haxe
+<pre><code>```haxe
 trace("Hello, world!");
 ```
 </pre></code>
 
 ##### To include a snippet of another language:
 
-<pre><code>
-```js
+<pre><code>```js
 console.log("Hello, world!");
 ```
 </pre></code>
