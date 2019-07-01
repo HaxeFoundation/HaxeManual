@@ -70,23 +70,19 @@ Code can also be included in the Markdown content directly. This is convenient f
 
 ##### To include a snippet of Haxe code:
 
-```markdown
-\`\`\`haxe
+<pre><code>
+```haxe
 trace("Hello, world!");
-\`\`\`
 ```
-
-(Remove the backslashes on the first and last line.)
+</pre></code>
 
 ##### To include a snippet of another language:
 
-```markdown
-\`\`\`js
+<pre><code>
+```js
 console.log("Hello, world!");
-\`\`\`
 ```
-
-(Remove the backslashes on the first and last line.)
+</pre></code>
 
 ### Code (inline)
 
