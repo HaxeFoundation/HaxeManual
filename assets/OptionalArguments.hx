@@ -9,6 +9,6 @@ class Main {
   }
 
   static function test(?i:Int, ?s:String) {
-    return "i: " +i + ", s: " +s;
+    return "i: " + i + ", s: " + s;
   }
 }
