@@ -106,7 +106,7 @@ Blocks can contain local variables declared by [`var` expression](expression-var
 	{
 		a; // ok, a is available in sub-blocks
 	}
-  // ok, a is still available after
+	// ok, a is still available after
 	// sub-blocks	
 	a;
 }
