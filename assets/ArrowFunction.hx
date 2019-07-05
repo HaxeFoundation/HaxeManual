@@ -9,9 +9,9 @@ class Main {
     var oneArgument = number -> number + 1;
     var noArguments = () -> "foobar";
     var myContains = (a : String, needle : String) -> {
-        if (a.indexOf(needle) == -1) return false;
-        trace(a, needle);
-        true;
-      };
+      if (a.indexOf(needle) == -1) return false;
+      trace(a, needle);
+      true;
+    };
   }
 }
