@@ -7,7 +7,7 @@ Macros are without a doubt the most advanced feature in Haxe. They are often per
 >
 > The AST is the result of **parsing** Haxe code into a typed structure. This structure is exposed to macros through the types defined in the file `haxe/macro/Expr.hx` of the Haxe Standard Library.
 
-![](assets/graphics/generated/macro-compilation-role.png)
+![](assets/figures/macro-compilation-role.svg)
 
 _Figure: The role of macros during compilation._
 

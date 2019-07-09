@@ -35,7 +35,7 @@ The example first prints the initialization value of `member`, then sets it to `
 
 It should be noted that the explicit type is not required if there is an initialization value. The compiler will [infer](type-system-type-inference) it in this case.
 
-![](assets/graphics/generated/class-field-variable-init-values.png)
+![](assets/figures/class-field-variable-init-values.svg)
 
 _Figure: Initialization values of a variable field._
 

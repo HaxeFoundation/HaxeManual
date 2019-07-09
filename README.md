@@ -88,13 +88,11 @@ Finally, short expressions can be included directly in the text by surrounding t
 
 ### Flowcharts
 
-Flowcharts are included as regular images:
+Flowcharts are included as svg images:
 
 ```markdown
-![](assets/graphics/generated/type-system-resolution-order-diagram.png)
+![](assets/figures/type-system-resolution-order-diagram.svg)
 ```
-
-The flowcharts are generated from LaTeX / Tikz sources, see [flowchart  generation](#flowchart-generation) below for more information.
 
 ### Version information
 
@@ -144,12 +142,3 @@ When working on the manual, any Markdown preview (including GitHub renderer) sho
  6. Check results on `localhost:2000`, repeat from step 4
 
 You can disable all `haxe.org` generators except the manual generator in `Main.hx` to hasten the generation process. A significant speed-up can also be gained by turning off the syntax highlighting.
-
-## Flowchart generation
-
-The flowcharts are generated from LaTeX / Tikz files in `assets/tikz` using the Haxe script in `tikz-convert`. The script depends on the following:
-
-- `xelatex` being in PATH. [TeX Live](http://www.tug.org/texlive/) 2013 version should be sufficient. Used to compile custom LaTeX environment snippets to PDF.
-- `mudraw` being in path. This is a part of [MuPDF](http://www.mupdf.com/). Used for rendering PDF to a PNG image.
-  - `convert` (from ImageMagick) can be used as a substitute; see `tikz-convert/Flowchart.hx`.
-- [Source Sans Pro](http://sourceforge.net/projects/sourcesans.adobe/) and [Source Code Pro](http://sourceforge.net/projects/sourcecodepro.adobe/) fonts being installed.

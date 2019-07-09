@@ -546,7 +546,7 @@ We describe the resolution order algorithm here, which depends on the following 
 * the [expected type](define-expected-type)
 * the expression being `untyped` or not
 
-![](assets/graphics/generated/type-system-resolution-order-diagram.png)
+![](assets/figures/type-system-resolution-order-diagram.svg)
 
 _Figure: Resolution order of identifier `i'_
 
