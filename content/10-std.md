@@ -62,7 +62,7 @@ A string in Haxe code represents a valid sequence of Unicode codepoints. Due to 
 
 It is still possible to work with strings including non-BMP characters on all targets without having to manually decode surrogate pairs by using the [Unicode iterators API](https://api.haxe.org/v/development/haxe/iterators/StringIteratorUnicode.html) provided in the standard library.
 
-<--label:std-String-encoding-->
+<!--label:std-String-encoding-->
 #### Encoding
 
 On some targets, the internal representation is UTF-16, which means that non-BMP Unicode codepoints are represented using surrogate pairs. The [compile-time define](lf-condition-compilation) `target.utf16` is set when the target uses UTF-16 internally.
