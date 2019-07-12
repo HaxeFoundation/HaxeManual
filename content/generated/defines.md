@@ -6,6 +6,7 @@
 `core_api` |  | Defined in the core API context. | all
 `core_api_serialize` |  | Mark some generated core API classes with the `Serializable` attribute on C#. | cs
 `cppia` |  | Generate cpp instruction assembly. | all
+`cs_ver` |  | The C# version to target. | cs
 `nocppiaast` |  | Use legacy cppia generation. | all
 `dce` | &lt;mode: std &#x7C; full &#x7C; no> | Set the dead code elimination mode. (default: std) See [cr-dce](cr-dce). | all
 `dce_debug` |  | Show DCE log. See [cr-dce](cr-dce). | all
@@ -59,7 +60,8 @@
 `macro` |  | Defined when code is compiled in the macro context. See [macro](macro). | all
 `macro_times` |  | Display per-macro timing when used with `--times`. | all
 `net_ver` | &lt;version: 20-45> | Sets the .NET version to be targeted. | cs
-`net_target` | &lt;name> | Sets the .NET target. `xbox`, `micro` (Micro Framework), `compact` (Compact Framework) are some valid values. (default: `net`) | cs
+`netcore_ver` | &lt;version: x.x.x> | Sets the .NET core version to be targeted | cs
+`net_target` | &lt;name> | Sets the .NET target. `netcore` (.NET core), `xbox`, `micro` (Micro Framework), `compact` (Compact Framework) are some valid values. (default: `net`) | cs
 `neko_source` |  | Output neko source instead of bytecode. | neko
 `neko_v1` |  | Keep Neko 1.x compatibility. | neko
 `network-sandbox` |  | Use local network sandbox instead of local file access one. | flash

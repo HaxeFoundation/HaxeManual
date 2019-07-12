@@ -27,9 +27,7 @@ typedef Meta = EntryCommon & {
 	};
 
 class Generate {
-	// TODO: change back to the haxe repo once #8350 is merged
-	static final GITHUB_RAW_URL = "https://raw.githubusercontent.com/Aurel300/haxe/feature/manual-references";
-	//static final GITHUB_RAW_URL = "https://raw.githubusercontent.com/HaxeFoundation/haxe/development";
+	static final GITHUB_RAW_URL = "https://raw.githubusercontent.com/HaxeFoundation/haxe/development";
 	static final MANUAL_URL = "https://haxe.org/manual/";
 	static final OUTPUT_DIR = "../content/generated";
 

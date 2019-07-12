@@ -37,7 +37,7 @@
 `@:file` | &lt;File path> | Includes a given binary file into the target SWF and associates it with the class (must extend `flash.utils.ByteArray`). See [target-flash-resources](target-flash-resources). | flash
 `@:fileXml` |  | Include a given XML attribute snippet in the `Build.xml` entry for the file. | cpp
 `@:final` |  | Prevents a class or interface from being extended or a method from being overridden. Deprecated by the keyword `final`. See [class-field-final](class-field-final). | all
-`@:fixed` |  | Delcares an anonymous object to have fixed fields. | all
+`@:fixed` |  | Declares an anonymous object to have fixed fields. | all
 `@:flash.property` |  |  | flash
 `@:font` | &lt;TTF path>, &lt;Range String> | Embeds the given TrueType font into the class (must extend `flash.text.Font`). See [target-flash-resources](target-flash-resources). | all
 `@:forward` | &lt;List of field names> | Forwards field access to underlying type. See [types-abstract-forward](types-abstract-forward). | all
@@ -93,6 +93,7 @@
 `@:op` | &lt;The operation> | Declares an abstract field as being an operator overload. See [types-abstract-operator-overloading](types-abstract-operator-overloading). | all
 `@:optional` |  | Marks the field of a structure as optional. See [types-nullability-optional-arguments](types-nullability-optional-arguments). | all
 `@:overload` | &lt;Function specification (no expression)> | Allows the field to be called with different argument types. See [target-javascript-external-libraries](target-javascript-external-libraries). | all
+`@:persistent` |  | Keeps the value of static variables in macro context across compilations. | eval
 `@:phpGlobal` |  | Indicates that static fields of an extern class actually are located in the global PHP namespace. | php
 `@:phpClassConst` |  | Indicates that a static var of an extern class is a PHP class constant. | php
 `@:phpMagic` |  | Treat annotated field as special PHP magic field - this meta makes compiler avoid renaming such fields on generating PHP code. | php
