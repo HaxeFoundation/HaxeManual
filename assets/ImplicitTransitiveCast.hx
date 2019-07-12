@@ -1,15 +1,20 @@
 abstract A(Int) {
-  public function new() this = 0;
+  public function new()
+    this = 0;
+
   @:to public function toB() return new B();
 }
 
 abstract B(Int) {
-  public function new() this = 0;
+  public function new()
+    this = 0;
+
   @:to public function toC() return new C();
 }
 
 abstract C(Int) {
-  public function new() this = 0;
+  public function new()
+    this = 0;
 }
 
 class Main {

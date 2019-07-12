@@ -11,7 +11,7 @@ class Main {
   }
 
   static function printStatus(status:HttpStatus) {
-    return switch(status) {
+    return switch (status) {
       case NotFound:
         "Not found";
       case MethodNotAllowed:

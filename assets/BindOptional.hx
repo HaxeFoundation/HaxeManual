@@ -4,10 +4,10 @@ class Main {
   static public function main() {
     var fn = test.bind(1);
     $type(fn); // Void->Void
-    fn('foo'); //Compiler error: Too many arguments
+    fn('foo'); // Compiler error: Too many arguments
 
     var fn = test.bind(1, _);
     $type(fn); // ?String->Void
-    fn('foo'); //works
+    fn('foo'); // works
   }
 }

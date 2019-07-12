@@ -1,5 +1,5 @@
 class Base {
-  public function new() { }
+  public function new() {}
 }
 
 class Child extends Base {
@@ -15,5 +15,5 @@ class ChildChild extends Child {
 }
 
 class Main {
-  static public function main() { }
+  static public function main() {}
 }

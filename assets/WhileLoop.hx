@@ -1,14 +1,13 @@
-// while counter
+// while loop
 var i = 0;
-while( i < 10){
+while (i < 10) {
   trace(i);
-  i ++;
+  i++;
 }
 
-// same counter as a do-while
+// same loop as a do-while
 var j = 0;
 do {
   trace(j);
-  j ++;
-} while( j < 10 );
-
+  j++;
+} while (j < 10);

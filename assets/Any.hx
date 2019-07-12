@@ -11,7 +11,7 @@ class Main {
     // value of any type works
     setAnyValue("someValue");
     setAnyValue(42);
-  
+
     var value = getAnyValue();
     $type(value); // Any, not Unknown<0>
 

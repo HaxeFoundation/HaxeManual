@@ -3,10 +3,9 @@ abstract MyAbstract(String) {
     this = s;
   }
 
-  @:op(++A) public function pre()
-    return "pre" + this;
-  @:op(A++) public function post()
-    return this + "post";
+  @:op(++A) public function pre() return "pre" + this;
+
+  @:op(A++) public function post() return this + "post";
 }
 
 class Main {

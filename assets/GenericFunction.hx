@@ -4,5 +4,5 @@ class Main {
     method(1);
   }
 
-  @:generic static function method<T>(t:T) { }
+  @:generic static function method<T>(t:T) {}
 }

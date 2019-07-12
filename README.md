@@ -48,6 +48,8 @@ The Haxe files in the [`assets/`](assets/) directory form the majority of the Ha
 
 On haxe.org, the code samples can be seen included in the sections for a comfortable reading experience. In the `.md` sources, however, the Haxe files are only referenced with a link to avoid code duplication.
 
+When creating new code assets, please make sure to use [`haxe-formatter`](https://github.com/HaxeCheckstyle/haxe-formatter/) on the file before committing it. The configuration file `hxformat.json` is provided in the repository.
+
 ##### To include a Haxe code asset:
 
 ```markdown

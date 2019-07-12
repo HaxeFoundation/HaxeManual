@@ -6,5 +6,6 @@ interface Placeable {
 class Main implements Placeable {
   public var x:Float;
   public var y:Float;
-  static public function main() { }
+
+  static public function main() {}
 }

@@ -7,7 +7,7 @@ class Main {
       case None:
         trace("Got None");
       case Some(s):
-        trace("Got a value: " +s);
+        trace("Got a value: " + s);
     }
   }
 

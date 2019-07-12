@@ -1,5 +1,5 @@
 @:genericBuild(GenericBuildMacro1.build())
-class MyType<T> { }
+class MyType<T> {}
 
 class Main {
   static function main() {

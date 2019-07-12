@@ -1,9 +1,8 @@
 class Base {
-  public function new() { }
+  public function new() {}
 }
 
 class Child1 extends Base {}
-
 class Child2 extends Base {}
 
 class Main {

@@ -7,7 +7,7 @@ class Main {
     trace(test([]));
     trace(test(["bar", "foo"]));
     // String should be Iterable<String>
-    //test("foo");
+    // test("foo");
   }
 
   #if (haxe_ver >= 4)
@@ -15,7 +15,8 @@ class Main {
   #else
   static function test<T:(Iterable<String>, Measurable)>(a:T) {
   #end
-    if (a.length == 0) return "empty";
+    if (a.length == 0)
+      return "empty";
     return a.iterator().next();
   }
 }

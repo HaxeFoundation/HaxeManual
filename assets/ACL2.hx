@@ -1,6 +1,6 @@
 class MyClass {
   @:allow(Main.main)
-  static private var foo: Int;
+  static private var foo:Int;
 }
 
 class Main {

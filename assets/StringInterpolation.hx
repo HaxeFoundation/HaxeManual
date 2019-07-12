@@ -1,7 +1,7 @@
 var x = 12;
-// Concatenating approach
-trace('The value of x is ' + x);
 
-// With String Interpolation;
-// The value of x is 12
-trace('The value of x is $x');
+// With concatenation:
+trace('The value of x is ' + x); // The value of x is 12
+
+// With String Interpolation:
+trace('The value of x is $x'); // The value of x is 12

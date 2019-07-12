@@ -1,5 +1,6 @@
 class MyArrayWrap<T> {
   var a:Array<T>;
+
   public function new(a:Array<T>) {
     this.a = a;
   }

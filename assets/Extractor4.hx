@@ -1,6 +1,6 @@
 class Main {
   static public function main() {
-    switch(3) {
+    switch (3) {
       case add(_, 1) => mul(_, 3) => a:
         trace(a);
     }

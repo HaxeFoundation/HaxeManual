@@ -1,5 +1,6 @@
 class Base {
-  public function new() { }
+  public function new() {}
+
   public function myMethod() {
     return "Base";
   }

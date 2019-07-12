@@ -1,5 +1,6 @@
 class Base {
-  public function new() { }
+  public function new() {}
+
   public function myMethod() {
     return "Base";
   }
@@ -13,7 +14,6 @@ class Child extends Base {
   public function callHome() {
     return super.myMethod();
   }
-
 }
 
 class Main {

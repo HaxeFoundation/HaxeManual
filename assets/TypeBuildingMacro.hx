@@ -9,7 +9,7 @@ class TypeBuildingMacro {
       doc: null,
       meta: [],
       access: [AStatic, APublic],
-      kind: FVar(macro : String, macro "my default"),
+      kind: FVar(macro:String, macro "my default"),
       pos: Context.currentPos()
     };
     fields.push(newField);

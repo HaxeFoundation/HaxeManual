@@ -1,5 +1,5 @@
 class Main {
-  public static function main () { }
+  public static function main() {}
 
   static function test() {
     if (Math.random() > 0.5) {

@@ -4,25 +4,20 @@ class Main {
     // use the map literal syntax with the
     // '=>' operator. Maps can have their
     // key value types defined explicity
-    var map1:Map<Int, String> =
-      [1 => "one", 2=>"two"];
+    var map1:Map<Int, String> = [1 => "one", 2 => "two"];
 
     // Or they can infer their key value types
-    var map2 = [
-      "one"=>1,
-      "two"=>2,
-      "three"=>3
-    ];
+    var map2 = ["one" => 1, "two" => 2, "three" => 3];
     $type(map2); // Map<String, Int>
 
     // Keys must be unique
     // Error: Duplicate Key
-    //var map3 = [1=>"dog", 1=>"cat"];
+    // var map3 = [1=>"dog", 1=>"cat"];
 
     // Maps values can be accessed using array
     // accessors "[]"
-    var map4 = ["M"=>"Monday", "T"=>"Tuesday"];
-    trace(map4["M"]); //Monday
+    var map4 = ["M" => "Monday", "T" => "Tuesday"];
+    trace(map4["M"]); // Monday
 
     // Maps iterate over their values by
     // default
@@ -34,7 +29,7 @@ class Main {
     // Can iterate over keys by using the
     // keys() method
     for (key in map4.keys()) {
-      trace(key); // M \n T
+      trace(key); // traces M, then T
     }
 
     // Like arrays, a new Map can be made using
@@ -47,4 +42,3 @@ class Main {
     trace(map5);
   }
 }
-

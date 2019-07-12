@@ -5,7 +5,7 @@ class Main {
     trace(a, b); // hello, world
     b = "Haxe";
     trace(a, b); // hello, Haxe
-    
+
     // the following line would cause a compilation error:
     // a = "bye";
   }

@@ -1,4 +1,5 @@
 class Main {
   public var x(default, null):Int;
-  static public function main() { }
+
+  static public function main() {}
 }

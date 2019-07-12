@@ -2,7 +2,7 @@ class Main {
   static public function main() {
     var a = [
       for (x in 0...5)
-        for(y in 0...5)
+        for (y in 0...5)
           if (x != y)
             x => y
     ];

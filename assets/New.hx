@@ -3,5 +3,5 @@ class Main<T> {
     new Main<Int>(12, "foo");
   }
 
-  function new(t:T, s:String) { }
+  function new(t:T, s:String) {}
 }

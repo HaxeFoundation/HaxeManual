@@ -1,6 +1,6 @@
 typedef MyStructure = {
-  name: String,
-  score: Int
+  name:String,
+  score:Int
 }
 
 class Main {

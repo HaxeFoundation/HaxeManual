@@ -1,11 +1,11 @@
 @:autoBuild(AutoBuildingMacro.fromInterface())
-interface I { }
+interface I {}
 
-interface I2 extends I { }
+interface I2 extends I {}
 
 @:autoBuild(AutoBuildingMacro.fromBaseClass())
-class Base { }
+class Base {}
 
 class Main extends Base implements I2 {
-  static public function main() { }
+  static public function main() {}
 }

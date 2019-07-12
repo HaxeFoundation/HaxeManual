@@ -1,5 +1,5 @@
 class MyClass {
-  static private var foo: Int;
+  static private var foo:Int;
 }
 
 class Main {

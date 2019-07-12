@@ -7,7 +7,7 @@ class MyClass {
   var value:Int;
 
   @broken
-  static function method() { }
+  static function method() {}
 }
 
 class Main {

@@ -1,5 +1,5 @@
 @:genericBuild(GenericBuildMacro2.build())
-class MyType<Const> { }
+class MyType<Const> {}
 
 class Main {
   static function main() {

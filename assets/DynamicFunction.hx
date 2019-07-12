@@ -5,7 +5,9 @@ class Main {
 
   static public function main() {
     trace(test()); // original
-    test = function() { return "new"; }
+    test = function() {
+      return "new";
+    }
     trace(test()); // new
   }
 }

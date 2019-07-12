@@ -2,7 +2,6 @@ import haxe.Serializer;
 import haxe.Unserializer;
 
 class Main {
-
   var x:Int;
   var y:Int;
 

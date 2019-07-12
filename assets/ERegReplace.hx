@@ -4,6 +4,6 @@ class Main {
     // g : replace all instances
     var r = ~/b[^c]/g;
     // "aaabcbcbcxx"
-    trace(r.replace(str,"xx"));
+    trace(r.replace(str, "xx"));
   }
 }

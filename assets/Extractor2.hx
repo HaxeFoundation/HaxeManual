@@ -6,13 +6,14 @@ enum Test {
 class Main {
   static public function main() {
     var e = TString("fOo");
-    switch(e) {
+    switch (e) {
       case TString(temp):
-        switch(temp.toLowerCase()) {
+        switch (temp.toLowerCase()) {
           case "foo": true;
           case _: false;
         }
-      case _: false;
+      case _:
+        false;
     }
   }
 }

@@ -9,6 +9,6 @@ class Main {
   }
 
   static function test(?i = 12, s = "bar") {
-    return "i: " +i + ", s: " +s;
+    return "i: " + i + ", s: " + s;
   }
 }

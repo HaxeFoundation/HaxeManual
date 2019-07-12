@@ -6,12 +6,14 @@ enum Color {
 
 class Main {
   static function main() {
-    var myColor : Color = Blue;
+    var myColor:Color = Blue;
 
     // compiler error: Unmatched patterns: Blue
-    switch( myColor ){
-      case Red: 0xFF0000;
-      case Green: 0x00ff00;
+    switch (myColor) {
+      case Red:
+        0xFF0000;
+      case Green:
+        0x00ff00;
     }
   }
 }

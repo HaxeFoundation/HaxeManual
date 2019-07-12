@@ -10,6 +10,6 @@ class Main {
     var ec:EnumValue = Red; // valid
     var en:Enum<Color> = Color; // valid
     // Error: Color should be Enum<Color>
-    //var x:Enum<Color> = Red;
+    // var x:Enum<Color> = Red;
   }
 }

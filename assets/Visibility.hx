@@ -2,7 +2,8 @@ class MyClass {
   static public function available() {
     unavailable();
   }
-  static private function unavailable() { }
+
+  static private function unavailable() {}
 }
 
 class Main {

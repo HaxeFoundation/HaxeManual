@@ -1,10 +1,11 @@
 class Base {
-  public function new() { }
-  private function baseField() { }
+  public function new() {}
+
+  private function baseField() {}
 }
 
 class Child1 extends Base {
-  private function child1Field() { }
+  private function child1Field() {}
 }
 
 class Child2 extends Base {
@@ -17,5 +18,5 @@ class Child2 extends Base {
 }
 
 class Main {
-  static public function main() { }
+  static public function main() {}
 }

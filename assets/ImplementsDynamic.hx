@@ -11,6 +11,6 @@ class Main {
     // valid, assigned value is a String
     c.stringField = "foo";
     // error, Int should be String
-    //c.intField = 1;
+    // c.intField = 1;
   }
 }

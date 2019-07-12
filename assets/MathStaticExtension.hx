@@ -4,4 +4,3 @@ class MathStaticExtension {
     return radians * 180 / Math.PI;
   }
 }
-

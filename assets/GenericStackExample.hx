@@ -5,8 +5,7 @@ class Main {
     var myStack = new GenericStack<Int>();
     for (ii in 0...5)
       myStack.add(ii);
-    trace(myStack); //{4, 3, 2, 1, 0}
-    trace(myStack.pop()); //4
+    trace(myStack); // {4, 3, 2, 1, 0}
+    trace(myStack.pop()); // 4
   }
 }
-

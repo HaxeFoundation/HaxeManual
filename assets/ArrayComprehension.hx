@@ -4,7 +4,7 @@ class Main {
     trace(a); // [0,1,2,3,4,5,6,7,8,9]
 
     var i = 0;
-    var b = [while(i < 10) i++];
+    var b = [while (i < 10) i++];
     trace(b); // [0,1,2,3,4,5,6,7,8,9]
   }
 }

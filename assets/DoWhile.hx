@@ -4,6 +4,6 @@ class Main {
     do {
       trace(f);
       f = Math.random();
-    } while(f < 0.5);
+    } while (f < 0.5);
   }
 }

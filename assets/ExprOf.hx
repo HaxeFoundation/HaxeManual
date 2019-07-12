@@ -1,4 +1,5 @@
 import haxe.macro.Expr;
+
 using Main;
 
 class Main {
@@ -7,7 +8,7 @@ class Main {
     identity(1);
     "foo".identity();
     // Int has no field identity
-    //1.identity();
+    // 1.identity();
   }
 
   macro static function identity(e:ExprOf<String>) {

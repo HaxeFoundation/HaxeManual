@@ -1,0 +1,8 @@
+{
+  "indentation": {
+    "character": "  "
+  },
+  "wrapping": {
+    "maxLineLength": 80
+  }
+}

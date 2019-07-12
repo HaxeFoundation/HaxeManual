@@ -1,5 +1,5 @@
-typedef Point = { x : Int, y : Int };
+typedef Point = {x:Int, y:Int};
 
 class Path {
-  var point : Point;
+  var point:Point;
 }

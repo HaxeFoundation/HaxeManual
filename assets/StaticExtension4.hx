@@ -7,9 +7,9 @@ enum Tree {
 class TreeTools {
   public static function sum(tree:Tree):Int {
     return (switch (tree) {
-        case Node(l, r): sum(l) + sum(r);
-        case Leaf(value): value;
-      });
+      case Node(l, r): sum(l) + sum(r);
+      case Leaf(value): value;
+    });
   }
 }
 

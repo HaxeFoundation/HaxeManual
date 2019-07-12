@@ -1,8 +1,11 @@
 abstract AString(String) {
-  public function new(s) this = s;
+  public function new(s)
+    this = s;
+
   @:arrayAccess function getInt1(k:Int) {
     return this.charAt(k);
   }
+
   @:arrayAccess function getInt2(k:Int) {
     return this.charAt(k).toUpperCase();
   }
