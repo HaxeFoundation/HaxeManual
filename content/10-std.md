@@ -578,7 +578,7 @@ Iterate on a structure by using `::foreach::`. End the loop with `::end::`.
 
 ##### Sub-templates
 To include templates in other templates, pass the sub-template result string as a parameter.
-```haxe 
+```haxe
 var users = [{name:"Mark", age:30}, {name:"John", age:45}];
 
 var userTemplate = new haxe.Template("::foreach users:: ::name::(::age::) ::end::");
@@ -1182,7 +1182,7 @@ To run code before or after the test, override the functions `setup` and `tearDo
 
 With complex objects, it can be difficult to generate expected values to compare to the actual ones. It can also be a problem that `assertEquals` doesn't do a deep comparison. One way around these issues is to use a string as the expected value and compare it to the actual value converted to a string using `Std.string`. Below is a trivial example using an array.
 
-```haxe 
+```haxe
 public function testArray() {
   var actual = [1,2,3];
   assertEquals("[1, 2, 3]", Std.string(actual));

@@ -685,18 +685,113 @@ For the package-level case, null safety strictness can be configured using the o
 * Using nullables with unary and binary operators (except `==` and `!=`) is not allowed.
 * If a field is declared without `Null<>` then it should have an initial value or it should be initialized in the constructor (for instance fields).
 * Passing an instance of a parametrized type with nullable type parameters where the same type with non-nullable type parameters is expected is not allowed:
-```haxevar nullables:Array<Null<String>> = ['hello', null, 'world'];// Array<Null<String>> cannot be assigned to Array<String>://var a:Array<String> = nullables;```* Local variables checked against `null` are considered safe inside of a scope covered with that null-check:
-```haxevar nullable:Null<String> = getSomeStr();//var s:String = nullable; // Compilation errorif (nullable != null) {  s = nullable; //OK}//s = nullable; // Compilation errors = (nullable == null ? 'hello' : nullable); // OKswitch (nullable) {  case null:  case _: s = nullable; // OK}```* Control flow is also taken into account:
-```haxefunction doStuff(a:Null<String>) {  if(a == null) {    return;  }  // From here `a` is safe, because function execution will continue only if `a` is not null:  var s:String = a; // OK}```
+```haxe
+var nullables:Array<Null<String>> = ['hello', null, 'world'];
+// Array<Null<String>> cannot be assigned to Array<String>:
+//var a:Array<String> = nullables;
+```
+* Local variables checked against `null` are considered safe inside of a scope covered with that null-check:
+```haxe
+var nullable:Null<String> = getSomeStr();
+//var s:String = nullable; // Compilation error
+if (nullable != null) {
+  s = nullable; //OK
+}
+//s = nullable; // Compilation error
+s = (nullable == null ? 'hello' : nullable); // OK
+switch (nullable) {
+  case null:
+  case _: s = nullable; // OK
+}
+```
+* Control flow is also taken into account:
+```haxe
+function doStuff(a:Null<String>) {
+  if(a == null) {
+    return;
+  }
+  // From here `a` is safe, because function execution
+  // will continue only if `a` is not null:
+  var s:String = a; // OK
+}
+```
 
 ##### Limitations
 
 * Out-of-bounds array reads return `null`, but Haxe types them without `Null<>`.
-```haxevar a:Array<String> = ["hello"];$type(a[100]); // Stringtrace(a[100]); // nullvar s:String = a[100]; // Safety does not complain here, because `a[100]` is not `Null<String>`, but just `String````* Out-of-bounds array writes fill all positions between the last defined index and the newly-written one with `null` values. Null safety cannot protect against this.
-```haxevar a:Array<String> = ["hello"];a[2] = "world";trace(a); // ["hello", null, "world"]var s:String = a[1]; // Cannot check thistrace(s); //null```* Haxe was not designed with null safety in mind, so it's always possible `null` values will come into your code from third-party code or even from the standard library.
+```haxe
+var a:Array<String> = ["hello"];
+$type(a[100]); // String
+trace(a[100]); // null
+var s:String = a[100]; // Safety does not complain here, because `a[100]` is not `Null<String>`, but just `String`
+```
+* Out-of-bounds array writes fill all positions between the last defined index and the newly-written one with `null` values. Null safety cannot protect against this.
+```haxe
+var a:Array<String> = ["hello"];
+a[2] = "world";
+trace(a); // ["hello", null, "world"]
+var s:String = a[1]; // Cannot check this
+trace(s); //null
+```
+* Haxe was not designed with null safety in mind, so it's always possible `null` values will come into your code from third-party code or even from the standard library.
 * Nullable fields and properties are not considered null-safe even after checking against `null`. You can use helper methods instead:
-```haxeusing Main.NullTools;class NullTools {  public static function sure<T>(value:Null<T>):T {    if (value == null) {      throw "null pointer in .sure() call";    }    return @:nullSafety(Off) (value:T);  }  public static function or<T>(value:Null<T>, defaultValue:T):T {    if (value == null) {      return defaultValue;    }    return @:nullSafety(Off) (value:T);  }}class Main {  static var nullable:Null<String>;  public static function main() {    var str:String;    if (nullable != null) {      str = nullable; // Compilation error    }    str = nullable.sure();    str = nullable.or('hello');  }}```* If a local variable is captured in a closure, it cannot be safe inside that closure:
-```haxevar a:Null<String> = getSomeStr();var fn = function () {  if (a != null) {    var s:String = a; // Compilation error  }}```Unless the closure is executed immediately:```haxevar a:Null<String> = getSomeStr();[1, 2, 3].map(function (i) {  if (a != null) {    return i * a.length; // OK  } else {    return i;  }});```* If a local variable is captured and modified in a closure with a nullable value, that variable cannot be safe anymore:
-```haxevar nullable:Null<String> = getSomeNullableStr();var str:String;if (nullable != null) {  str = nullable; // OK  doStuff(function () nullable = getSomeNullableStr());  if (nullable != null) {    str = nullable; // Compilation error  }}```
-
-
+```haxe
+using Main.NullTools;
+class NullTools {
+  public static function sure<T>(value:Null<T>):T {
+    if (value == null) {
+      throw "null pointer in .sure() call";
+    }
+    return @:nullSafety(Off) (value:T);
+  }
+  public static function or<T>(value:Null<T>, defaultValue:T):T {
+    if (value == null) {
+      return defaultValue;
+    }
+    return @:nullSafety(Off) (value:T);
+  }
+}
+class Main {
+  static var nullable:Null<String>;
+  public static function main() {
+    var str:String;
+    if (nullable != null) {
+      str = nullable; // Compilation error
+    }
+    str = nullable.sure();
+    str = nullable.or('hello');
+  }
+}
+```
+* If a local variable is captured in a closure, it cannot be safe inside that closure:
+```haxe
+var a:Null<String> = getSomeStr();
+var fn = function () {
+  if (a != null) {
+    var s:String = a; // Compilation error
+  }
+}
+```
+Unless the closure is executed immediately:
+```haxe
+var a:Null<String> = getSomeStr();
+[1, 2, 3].map(function (i) {
+  if (a != null) {
+    return i * a.length; // OK
+  } else {
+    return i;
+  }
+});
+```
+* If a local variable is captured and modified in a closure with a nullable value, that variable cannot be safe anymore:
+```haxe
+var nullable:Null<String> = getSomeNullableStr();
+var str:String;
+if (nullable != null) {
+  str = nullable; // OK
+  doStuff(function () nullable = getSomeNullableStr());
+  if (nullable != null) {
+    str = nullable; // Compilation error
+  }
+}
+```
