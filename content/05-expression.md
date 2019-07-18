@@ -88,10 +88,10 @@ A block in Haxe starts with an opening curly brace `{` and ends with a closing c
 
 ```haxe
 {
-	expr1;
-	expr2;
-	...
-	exprN;
+  expr1;
+  expr2;
+  // ...
+  exprN;
 }
 ```
 The value and by extension the type of a block-expression is equal to the value and the type of the last sub-expression.
@@ -100,18 +100,19 @@ Blocks can contain local variables declared by [`var` expression](expression-var
 
 ```haxe
 {
-	a; // error, a is not declared yet
-	var a = 1; // declare a
-	a; // ok, a was declared
-	{
-		a; // ok, a is available in sub-blocks
-	}
-	// ok, a is still available after
-	// sub-blocks	
-	a;
+  a; // error, `a` is not declared yet
+  var a = 1; // declare `a`
+  a; // ok, `a` was declared
+  {
+    a; // ok, `a` is available in sub-blocks
+  }
+  // ok, `a` is still available after
+  // sub-blocks	
+  a;
 }
-a; // error, a is not available outside
+a; // error, `a` is not available outside
 ```
+
 At runtime, blocks are evaluated from top to bottom. Control flow (e.g. [exceptions](expression-try-catch) or [return expressions](expression-return)) may leave a block before all expressions
 are evaluated.
 
@@ -122,10 +123,10 @@ a `var`, `final`, or `function` can be declared with the same name that was prev
 
 ```haxe
 {
-	var v = 42; // declare v
-	$type(v); // Int
-	var v = "hi"; // declare a new v
-	$type(v); // String, previous declaration is not available
+  var v = 42; // declare `v`
+  $type(v); // Int
+  var v = "hi"; // declare a new `v`
+  $type(v); // String, previous declaration is not available
 }
 ```
 
@@ -137,12 +138,12 @@ original declaration:
 
 ```haxe
 {
-	var a = 1;
-	function f() {
-	    trace(a);
-	}
-	var a = 2;
-	f(); // traces 1
+  var a = 1;
+  function f() {
+    trace(a);
+  }
+  var a = 2;
+  f(); // traces 1
 }
 ```
 
@@ -203,14 +204,14 @@ Where a map type is expected (based on [top-down inference](type-system-top-down
 <!--label:expression-object-declaration-->
 #### Object Declaration
 
-Object declaration begins with an opening curly brace `{` after which `key:value`-pairs separated by comma `,` follow, and which ends in a closing curly brace `}`.
+Object declaration begins with an opening curly brace `{` after which `key: value`-pairs separated by comma `,` follow, and which ends in a closing curly brace `}`.
 
 ```haxe
 {
-	key1:value1,
-	key2:value2,
-	...
-	keyN:valueN
+  key1: value1,
+  key2: value2,
+  // ...
+  keyN: valueN
 }
 ```
 Further details of object declaration are described in the section about [anonymous structures](types-anonymous-structure).
@@ -508,7 +509,7 @@ subject(); // call with no arguments
 subject(e1); // call with one argument
 subject(e1, e2); // call with two arguments
 // call with multiple arguments
-subject(e1, ..., eN);
+subject(e1, e2, /*...*/ eN);
 ```
 
 ##### Related content
@@ -524,12 +525,12 @@ subject(e1, ..., eN);
 The `var` keyword allows declaring multiple variables, separated by comma `,`. Each variable has a valid [identifier](define-identifier) and optionally a value assignment following the assignment operator `=`. Variables can also have an explicit type-hint.
 
 ```haxe
-var a; // declare local a
-var b:Int; // declare variable b of type Int
-// declare variable c, initialized to value 1
+var a; // declare local `a`
+var b:Int; // declare variable `b` of type Int
+// declare variable `c`, initialized to value 1
 var c = 1;
-// declare an uninitialized variable d
-// and variable e initialized to value 2
+// declare an uninitialized variable `d`
+// and variable `e` initialized to value 2
 var d,e = 2;
 ```
 
@@ -676,7 +677,7 @@ for (key => value in map) {
 A normal while loop starts with the `while` keyword, followed by an opening parenthesis `(`, the condition expression and a closing parenthesis `)`. After that follows the loop body expression:
 
 ```haxe
-while(condition) expression;
+while (condition) expression;
 ```
 
 The condition expression has to be of type `Bool`.
@@ -695,7 +696,7 @@ This kind of while-loop is not guaranteed to evaluate the loop body expression a
 A do-while loop starts with the `do` keyword followed by the loop body expression. After that follows the `while` keyword, an opening parenthesis `(`, the condition expression and a closing parenthesis `)`:
 
 ```haxe
-do expression while(condition);
+do expression while (condition);
 ```
 
 The condition expression has to be of type `Bool`.
@@ -725,7 +726,7 @@ Here, `expression2` may consist of another `if` expression:
 
 ```haxe
 if (condition1) expression1
-else if(condition2) expression2
+else if (condition2) expression2
 else expression3
 ```
 
@@ -740,9 +741,9 @@ A basic switch expression starts with the `switch` keyword and the switch subjec
 
 ```haxe
 switch subject {
-	case pattern1: case-body-expression-1;
-	case pattern2: case-body-expression-2;
-	default: default-expression;
+  case pattern1: case-body-expression-1;
+  case pattern2: case-body-expression-2;
+  default: default-expression;
 }
 ```
 
@@ -764,8 +765,8 @@ Haxe allows catching values using its `try/catch` syntax:
 
 ```haxe
 try try-expr
-catch(varName1:Type1) catch-expr-1
-catch(varName2:Type2) catch-expr-2
+catch (varName1:Type1) catch-expr-1
+catch (varName2:Type2) catch-expr-2
 ```
 
 If during runtime the evaluation of `try-expression` causes a [`throw`](expression-throw), it can be caught by any subsequent `catch` block. These blocks consist of
@@ -797,11 +798,11 @@ It leaves the control-flow of the innermost function it is declared in, which ha
 
 ```haxe
 function f1() {
-	function f2() {
-		return;
-	}
-	f2();
-	expression;
+  function f2() {
+    return;
+  }
+  f2();
+  expression;
 }
 ```
 
@@ -817,10 +818,10 @@ If `return` is used without a value expression, the typer ensures that the retur
 The `break` keyword leaves the control flow of the innermost loop (`for` or `while`) it is declared in, stopping further iterations:
 
 ```haxe
-while(true) {
-	expression1;
-	if (condition) break;
-	expression2;
+while (true) {
+  expression1;
+  if (condition) break;
+  expression2;
 }
 ```
 
@@ -836,10 +837,10 @@ The typer ensures that it appears only within a loop. The `break` keyword in [`s
 The `continue` keyword ends the current iteration of the innermost loop (`for` or `while`) it is declared in, causing the loop condition to be checked for the next iteration:
 
 ```haxe
-while(true) {
-	expression1;
-	if(condition) continue;
-	expression2;
+while (true) {
+  expression1;
+  if (condition) continue;
+  expression2;
 }
 ```
 
@@ -956,5 +957,3 @@ Test.main();
 Note that `c` produces a call to the function, whereas `d` does not. The usual warnings about what makes a good candidate for inlining still hold (see [Inline](class-field-inline)).
 
 An `inline new` call can be used to avoid creating a local class instance. See [Inline Constructors](lf-inline-constructor) for more details.
-
-
