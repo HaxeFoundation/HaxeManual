@@ -751,6 +751,19 @@ Case body expressions never "fall through", so the [`break`](expression-break) k
 
 Switch expressions can be used as value; in that case the types of all case body expressions and the default expression must [unify](type-system-unification).
 
+Each case (including the default one) is also a variable scope, which affects [variable shadowing](expression-block#variable-shadowing).
+
+```haxe
+switch (0) {
+  case 0:
+    var a = "foo";
+  case _:
+    // This would cause a compilation error, since `a` from the previous
+    // case is not accessible in this case:
+    // trace(a);
+}
+```
+
 ##### Related content
 
 * Further details on syntax of pattern expressions are detailed in [Pattern Matching](lf-pattern-matching).
