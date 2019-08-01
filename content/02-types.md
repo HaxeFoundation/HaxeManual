@@ -571,7 +571,7 @@ As shown in the above example, the type of a function which takes no arguments u
 
 ##### Old function type notation
 
-Before Haxe 4, the function type notation was more similar to other functional programming languages, using `->` in place of all the commas separating the argument types. The `test` function above would be typed as `Int -> String -> Bool` in this notation. `test2` would be typed as `Void -> Bool`.
+Before Haxe 4, the function type notation was more similar to other functional programming languages, using `->` in place of all the commas separating the argument types. The `test` function above would be typed as `var test:Int->String->Bool` in this notation. `test2` would be typed as `var test2:Void->Bool`.
 
 The older notation is still supported, although newer code should use the new notation described above since it more clearly differentiates argument types from the return type.
 
