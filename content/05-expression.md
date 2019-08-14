@@ -323,6 +323,7 @@ Operator | Operation | Operand 1 | Operand 2 | Result type
 <code>*=</code> | multiplication | `Float/Int` | `Float/Int` | `Float/Int` 
 <code>/=</code> | division | `Float` | `Float/Int` | `Float` 
 <code>+=</code> | addition | `Float/Int` | `Float/Int` | `Float/Int` 
+<code>+=</code> | concatenation | `String` | `Any type` | `String` 
 <code>-=</code> | subtraction | `Float/Int` | `Float/Int` | `Float/Int` 
 <code>&lt;&lt;=</code> | shift left | `Int` | `Int` | `Int` 
 <code>&gt;&gt;=</code> | shift right | `Int` | `Int` | `Int` 
