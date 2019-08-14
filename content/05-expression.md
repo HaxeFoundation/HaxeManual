@@ -287,6 +287,16 @@ About the `Float/Int` return type: If one of the operands is of type `Float`, th
 
 In Haxe, the result of a modulo operation always keeps the sign of the dividend (the left operand) if the divisor is non-negative. The result is target-specific with a negative divisor.
 
+##### String concatenation operator
+
+Operator | Operation | Operand 1 | Operand 2 | Result type 
+ --- | --- | --- | --- | ---
+<code>+</code> | concatenation | any | `String` | `String` 
+<code>+</code> | concatenation | `String` | any | `String` 
+<code>+=</code> | concatenation | `String` | any | `String`
+
+Note that the "any" operand will be stringified. For classes and abstracts stringification can be controlled with user-defined `toString` function.
+
 ##### Bitwise operators
 
 Operator | Operation | Operand 1 | Operand 2 | Result type 
@@ -323,7 +333,6 @@ Operator | Operation | Operand 1 | Operand 2 | Result type
 <code>*=</code> | multiplication | `Float/Int` | `Float/Int` | `Float/Int` 
 <code>/=</code> | division | `Float` | `Float/Int` | `Float` 
 <code>+=</code> | addition | `Float/Int` | `Float/Int` | `Float/Int` 
-<code>+=</code> | concatenation | `String` | any | `String` 
 <code>-=</code> | subtraction | `Float/Int` | `Float/Int` | `Float/Int` 
 <code>&lt;&lt;=</code> | shift left | `Int` | `Int` | `Int` 
 <code>&gt;&gt;=</code> | shift right | `Int` | `Int` | `Int` 
