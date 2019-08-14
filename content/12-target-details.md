@@ -72,7 +72,7 @@ Libraries like [OpenFL](http://www.openfl.org/), [Heaps](http://heaps.io/) and [
 **Creating Haxe code that targets server-side JavaScript**
 Working with server-side technology. Haxe can be used to create server-side JavaScript like Node.js.
 
-[Getting started with Haxe/JavaScript](target-javascript-getting-started)
+<!--subtoc-->
 
 <!--label:target-javascript-getting-started-->
 #### Getting started with Haxe/JavaScript
@@ -588,7 +588,31 @@ Metadata | Description
 <!--label:target-neko-->
 ### Neko
 
+Haxe supports compilation to Neko bytecode. [Neko](https://nekovm.org/) is a virtual machine that was originally designed for Haxe. Neko is superseded by [HashLink](target-hl), introduced with Haxe 3.4.
+
 <!--subtoc-->
+
+<!--label:target-neko-getting-started-->
+#### Getting started with Haxe/Neko
+
+To get started with Haxe/Neko, create a new folder and save this class as `Main.hx`.
+
+[code asset](assets/HelloWorld.hx)
+
+To compile, either run the following from the command line:
+
+```hxml
+haxe --neko hello.n --main Main
+```
+
+Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml file should be in the same directory as the example class.
+
+```hxml
+--neko hello.n
+--main Main
+```
+
+The compiler outputs a binary file called `hello.n` in the current folder, which can be executed with `neko hello.n` from the command line.
 
 
 
@@ -630,8 +654,8 @@ The generated PHP code is compatible with PHP 7.0.0 or later. Prior to Haxe 4, t
 
 Define | Description 
  --- | ---
-<code>php-prefix=&lt;namespace&gt;</code> | Root namespace for generated PHP classes. E.g. if compiled with <code>-D php-prefix=some.sub</code>, then all classes will be generated in the <code>\ some\ sub</code> namespace. 
-<code>php-lib=&lt;name&gt;</code> | Select the name for the PHP lib directory. 
+<code>php-prefix=&lt;namespace&gt;</code> | Root namespace for generated PHP classes. E.g. if compiled with <code>-D php-prefix=some.sub</code>, then all classes will be generated in the <code>\some\sub</code> namespace.
+<code>php-lib=&lt;name&gt;</code> | Select the name for the PHP lib directory.
 <code>php-front=&lt;name&gt;</code> | Select the name for the PHP front file (default: <code>index.php</code>).
 
 ##### More information
@@ -652,52 +676,83 @@ Define | Description
 <!--label:target-cpp-getting-started-->
 #### Getting started with Haxe/C++
 
-The c++ target uses various c++ compilers, which are assumed to be already installed on the system, to create native executables or libraries.  The compilation happens in two phases.  Firstly, the Haxe compiler generates source, header and build files in an output directory.  Secondly, the "hxcpp" [Haxelib library](haxelib) is invoked to run the system compilers and linkers required to generate the ultimate result.
+The C++ target uses various C++ compilers, which are assumed to be already installed on the system, to create native executables or libraries. The compilation happens in two phases. Firstly, the Haxe compiler generates source, header and build files in an output directory. Secondly, the `hxcpp` [Haxelib library](haxelib) is invoked to run the system compilers and linkers required to generate the ultimate result.
 
 ##### Prerequisites
-Before you can use the C++ target, you need in install
 
-* hxcpp, e.g. `haxelib install hxcpp`.
-* A system or cross-compiler
+Before you can use the C++ target, you need to install:
+
+- `hxcpp` - install with `haxelib install hxcpp`.
+- A C++ compiler, such as `g++`, `clang++`, or MSVC++.
 
 ##### System Compilers
-System compilers are supported on the three primary operating systems - Mac, Linux, and Windows.  On Mac, it is recommended that you install the latest Xcode from the Mac App Store.  On Linux, it is recommended that you use the system package manager to install the compilers and on Windows, Microsoft Visual Studio is recommended.  On Windows, you can also use gcc-based compilers.  A minimal distribution is included in a [Haxelib library](haxelib), and can be installed with `haxelib install minimingw`.
+
+System compilers are supported on the three primary operating systems - Mac, Linux, and Windows.
+
+On Mac, it is recommended that you install the latest Xcode from the Mac App Store.
+
+On Linux, it is recommended that you use the system package manager to install the compilers.
+
+On Windows, Microsoft Visual Studio is recommended. On Windows, you can also use `gcc`-based compilers. A minimal distribution is included in a Haxelib library, and can be installed with `haxelib install minimingw`.
 
 ##### Cross Compilers
-Hxcpp can be used to compile for non-host architectures if you have a suitable cross-compiler installed.  The compilers are usually supplied in the form of a Software Development Kits (SDK), or in the case of iOS devices, come with the system compiler (Xcode).  Selecting which compiler to use is achieved by defining particular variables in the hxcpp build environment.  Note that the hxcpp build tool is only responsible for producing a native executable or a native library (static or dynamic), not the complete bundling and packaging of assets and meta-data that is typically required for mobile devices.  Additional Haxe libraries can be used for this task.
 
-* [Haxe/C++ API docs](https://api.haxe.org/cpp/)
+`hxcpp` can be used to compile for non-host architectures if you have a suitable cross-compiler installed. The compilers are usually supplied in the form of a Software Development Kits (SDK), or in the case of iOS devices, come with the system compiler (Xcode). Selecting which compiler to use is achieved by defining particular variables in the `hxcpp` build environment. Note that the `hxcpp` build tool is only responsible for producing a native executable or a native library (static or dynamic), not the complete bundling and packaging of assets and meta-data that is typically required for mobile devices. Additional Haxe libraries can be used for this task.
 
+##### More information
+
+- [Haxe/C++ API documentation](https://api.haxe.org/cpp/)
 
 
 <!--label:target-cpp-build-environment-->
 #### The Hxcpp Build Environment
 
-The hxcpp build environment can be controlled by setting, or defining, variables in key-value pairs. Defining a key without a particular value is usually enough to trigger the desired behaviour, and these keys are often referred to as "defines".
+The `hxcpp` build environment can be controlled by setting or defining variables in key-value pairs. Defining a key without a particular value is usually enough to trigger the desired behavior, and these keys are often referred to as "defines".
 
-##### Defining From the Command Line
-The easiest way to change the hxcpp build environment is to pass the defines though the Haxe command line using `-D`.  Key-value pairs can also be passed this way, e.g.:
+See [Defines](target-cpp-defines) for a list of standard defines.
 
-` haxe --main Main --cpp cpp -D android -D static_link -D PLATFORM=android-9 `
+##### Defining from the Command Line
 
-Here, `android` is defined - this causes hxcpp to cross-compile to android, `static_link` is defined, which causes a static (rather than dynamic) library to be created and the android target platform is set to a particular value.  This platform information is passed on to the SDK so it can generate the appropriate code.
+The easiest way to change the `hxcpp` build environment is to pass the defines though the Haxe command line using `-D`. Key-value pairs can also be passed this way, e.g.:
 
-Advanced users can add additional defines to the system at compile time using macros.  These definitions will also be passed on to the hxcpp build tool.
+```
+haxe --main Main --cpp cpp -D android -D static_link -D PLATFORM=android-9
+````
 
-##### Defining From the System Environment Variables
-The hxcpp build tool will import all the system environment variables, so you can configure the processes using the system like:
+Here:
 
-` setenv HXCPP_VERBOSE `
+ - `android` is defined - causes `hxcpp` to cross-compile to Android.
+ - `static_link` is defined - causes a static (rather than dynamic) library to be created.
+ - the android target platform (`PLATFORM`) is set to a particular value (`android-9`). This platform information is passed on to the SDK so it can generate the appropriate code.
+
+Advanced users can add additional defines to the system at compile time using macros. These definitions will also be passed on to the `hxcpp` build tool.
+
+##### Defining from System Environment Variables
+
+The `hxcpp` build tool will import all the system environment variables, so you can configure the processes using the system like:
+
+```
+export HXCPP_VERBOSE=
+```
+
+Or, on Windows:
+
+```
+setenv HXCPP_VERBOSE
+```
 
 If you are running Haxe though an IDE, some care must be taken with environment variables since the variables may be read once from the environment in which the IDE was started, rather than changing when the variables are changed on the system.
 
-##### Defining From .hxcpp_config.xml
-The hxcpp build tool parses several "build files".  These files are in a basic xml file format, and can be used to set, or conditionally set, configuration variables.  As part of the build process, the `.hxcpp_config.xml` file, known as the configuration file, will be read (twice).  This file is located in the user's home directory (or user's profile directory on windows) and is the best place to configure variables that are specific to the system that rarely change, such as the location of the cross-compiler SDKs.  A placeholder file will be generated the first time hxcpp is run by a user on the machine.  You can see the exact location of this file in the build log if you compile with the `HXCPP_VERBOSE` define.
+##### Defining from `.hxcpp_config.xml`
 
-The configuration file is read twice.  The first time the `"vars"` section is read early in the configuration process, and is used to set up and configure the location of the compilers.  The second time, the `"exes"` section is read near the end of the processes and allows modification of the compiler or build process based on all the available information.  See [build.xml File Format](target-cpp-file-format) for details on the file format.
+The `hxcpp` build tool parses several "build files". These files are in a basic XML file format and can be used to set, or conditionally set, configuration variables. As part of the build process, the `.hxcpp_config.xml` file, known as the configuration file, will be read (twice). This file is located in the user's home directory (or user's profile directory on Windows) and is the best place to configure variables that are specific to the system that rarely change, such as the location of cross-compiler SDKs. A placeholder file will be generated the first time `hxcpp` is run by a user on the machine. You can see the exact location of this file in the build log if you compile with the `HXCPP_VERBOSE` define.
 
-##### Defining Via @:buildXml Metadata
-Configuration data can be injected into the "build.xml" file that is created by Haxe.  This is done attaching metadata to a Haxe class that is directly or indirectly included in the build.  For example:
+The configuration file is read twice. The first time the `vars` section is read early in the configuration process, and is used to set up and configure the location of compilers. The second time, the `exes` section is read near the end of the process and allows modification of the compiler or build process based on all the available information. See [`build.xml` file format](target-cpp-file-format) for details on the file format.
+
+##### Defining via `@:buildXml` Metadata
+
+Configuration data can be injected into the `build.xml` file that is created by Haxe. This is done attaching metadata to a Haxe class that is directly or indirectly included in the build. For example:
+
 ```haxe
 @:buildXml("
 <target id='haxe'>
@@ -705,66 +760,62 @@ Configuration data can be injected into the "build.xml" file that is created by 
 </target>
 <include name='${haxelib:nme}/lib/NmeLink.xml'/>
 ")
-@:keep class StaticNme
-{
-  ...
+@:keep class StaticNme { ... }
 ```
 
 This metadata is best for adding libraries or include paths to the build.
 Some notes:
 
-* The @:keep metadata is added to prevent dead-code-elimination from removing this class
-* Quoting can be a bit tricky - here the double-quotes are used for Haxe, and the single quotes are added to the build.xml.
-* Injecting a single "include" command is a good way to manage the quoting issue.
-* Knowledge of the build system is required to get this right. See [build.xml File Format](target-cpp-file-format) for details on the file format.
-* The build.xml file is read after the choice of compiler has been made, so it is generally not suitable for configuring the compiler.
+ - The `@:keep` metadata is added to prevent [dead code elimination](cr-dce) from removing this class.
+ - Quoting can be a bit tricky - here the double-quotes are used for Haxe, and the single quotes are added to the `build.xml`.
+ - Injecting a single "include" command is a good way to manage the quoting issue.
+ - Knowledge of the build system is required to get this right. See [`build.xml` file format](target-cpp-file-format) for details on the file format.
+ - The `build.xml` file is read after the choice of compiler has been made, so it is generally not suitable for configuring the compiler.
 
 <!--label:target-cpp-file-format-->
 #### Build.xml
 
-
-The hxcpp build.xml build system is designed to make compiling, cross-compiling and linking easy on a large variety of operating systems and devices.  It was originally designed to build the haxe-generated c++ code but has evolved to replace the need for configuration tools in many open source libaries.
+The `hxcpp` `build.xml` build system is designed to make compiling, cross-compiling and linking easy on a large variety of operating systems and devices. It was originally designed to build the Haxe-generated C++ code but has evolved to replace the need for configuration tools in many open source libraries.
 
 ##### Running
-The source code for the tool lives in "tools/hxcpp" in this repo.  When compiled, it can be run with the haxe 'haxelib' library tool.  This is usually done automatically by the haxe compiler after the cpp code has been generated.  It can be done maunually like:
+
+The source code for the tool lives in `tools/hxcpp` in the `hxcpp` repo. When compiled, it can be run with the Haxelib tool. This is usually done automatically by the Haxe compiler after the C++ code has been generated. It can be done manually like:
+
 ```
-haxelib run hxcpp build.xml key=value .... [target]
+haxelib run hxcpp build.xml key=value ... [target]
 ```
 
 ##### Configuration
-The hxcpp build tool is configured using key-value pairs, or just using keys, known internally as 'defines'.  These can be set in severaly ways:
-  - From system environment variables
-  - From the command-line, with key=value
-  - From haxe.  Keys defined in haxe with '-D key[=value]' are passed to the build too, where they can influence the build.  Certain defines need to be set on the haxe command line so that they can influence the generated code.
-  - From the the .hxcpp_config.xml file in the users home(profile) directory.  This is a good place to set values the apply to the whole machine, like the location of SDKs etc.
-  - The defines can be manipulated logically from within the build files themselves.
 
-See [Defines](target-cpp-defines) for a list of standard defines.
-
+See [the `hxcpp` build environment](target-cpp-build-environment).
 
 ##### Format
+
 The compiler specification and target lists all use the same format.
-  - uses xml parser
-  - mostly declarative list of files and flags
-  - order is important
-    + overriding values is a valid technique
-    + "commands" are run as they are parsed (eg, 'echo')
-  - conditions via "if" and "unless" node attributes
-  - substitution via '${VAR}' sysntax
-  - need to define 'default' target
+
+ - Uses XML.
+ - Mostly declarative list of files and flags.
+ - Order is important:
+   - Overriding values is a valid technique.
+   - "commands" are run as they are parsed (e.g., `echo`).
+ - Conditions are possible with `if` and `unless` node attributes.
+ - Substitution is possible with `${VAR}` syntax.
+ - The `default` target must be defined.
 
 ##### Conditions/Substitution
-Most of the xml nodes support 'if' and 'unless' attributes.  These will enable or disable the whole node according the existance or non-existance of a define.  These can be combined with a space for "and" or two pipes for "or".
 
-Substitution is supported via the dollars-brace syntax, and does simple text substitution.  In addition, there are a few dynamic variables that can be used:
- - "${VAR}" - normal replacement
- - "${removeQuotes:VAR}" - strips surrounding quotes from VAR, it any
- - "${dospath:VAR}" - converts VAR to backwards-slash path
- - "${dir:PathWithFilename}" - just the directory part of filename
- - "${this_dir}" - the location of the containing build.xml file
+Most of the XML nodes support `if` and `unless` attributes. These will enable or disable the whole node according the existence or non-existence of a define. These can be combined with a space for "and" or two pipes for "or".
 
+Substitution is supported via the dollars-brace syntax, and does simple text substitution. In addition, there is some special syntax that can be used:
+
+ - `${VAR}` - normal replacement.
+ - `${removeQuotes:VAR}` - strips surrounding quotes from `VAR`, if any.
+ - `${dospath:VAR}` - converts `VAR` to path with backward slashes (as used on Windows).
+ - `${dir:PathWithFilename}` - just the directory part of a filename.
+ - `${this_dir}` - location of the directory containing the `build.xml` file.
 
 ##### Example
+
 The following code is saved as `example.xml`:
 
 ```xml
@@ -776,573 +827,660 @@ The following code is saved as `example.xml`:
  </xml>
 ```
 
-and some example uses:
+Some example usage:
 
 ```
- unsetenv SILENT
- haxelib run hxcpp example.xml
- haxelib run hxcpp example.xml WHO=world default
- setenv SILENT 1
- haxelib run hxcpp example.xml
- haxelib run hxcpp example.xml WHO=world
+unset SILENT
+haxelib run hxcpp example.xml
+haxelib run hxcpp example.xml WHO=world default
+export SILENT=1
+haxelib run hxcpp example.xml
+haxelib run hxcpp example.xml WHO=world
+```
+
+Or, on Windows:
+
+```
+unsetenv SILENT
+haxelib run hxcpp example.xml
+haxelib run hxcpp example.xml WHO=world default
+setenv SILENT 1
+haxelib run hxcpp example.xml
+haxelib run hxcpp example.xml WHO=world
 ```
 
 ##### Details
 
-The build.xml file contains configuration, targets, compilers, linkers and files. The details can be found in the subsections:
+The `build.xml` file contains configuration, targets, compilers, linkers, and files. The details can be found in the subsections:
 
 <!--subtoc-->
+
 <!--label:target-cpp-build_xml-TopLevel-->
 ##### Structure of the top-level
 
-The top-level nodes live inside an "xml" node, and can be:
+The top-level nodes live inside an `<xml>` node, and can be:
 
-- *set* - Set a "define", define being a general varaible.
-  ```xml
-  <set name="name" value="1" />
-  ```
+- `set` - Sets a "define", define being a general variable.
 
-- *setenv* - Sets an hxcpp define and an envorinment variable for child processes.
-   ```xml
-   <setenv name="name" value="1" />
-   ```
-- *unset* - Unset a define.  if="name" will no longer be true
-  ```xml
-  <unset name="name" />
-  ```
+```xml
+<set name="name" value="1" />
+```
 
-- *setup* - Used internally to call custom setup code to find SDKs etc.
-  ```xml
-  <setup name="androidNdk|blackberry|msvc|pdbserver|mingw|emscripten|nvcc" />
-  ```
+- `setenv` - Sets an `hxcpp` define and an environment variable for child processes.
 
-- *echo* - Print value to console.  Good for debugging.
-  ```xml
-  <echo value="text" />
-  ```
+```xml
+<setenv name="name" value="1" />
+```
 
-- *error* - Print value to console and force error.  Good for checking prerequisites.
-  ```xml
-  <errot value="error message" />
-  ```
+- `unset` - Unsets a define. `if="name"` will no longer be true.
 
-- *pleaseUpdateHxcppTool* - Used to tell people updating git version that they need to recompile the build tool.
-  ```xml
-  <pleaseUpdateHxcppTool version="1" />
-  ```
+```xml
+<unset name="name" />
+```
 
-- *path* - Add an directory to the exe search path.
-  ```xml
-  <path name="directory_to_add" />
-  ```
+- `setup` - Used internally to call custom setup code to find SDKs etc.
 
-- *mkdir* - Create a directory.
-  ```xml
-  <mkdir name="directory" />
-  ```
+```xml
+<setup name="androidNdk|blackberry|msvc|pdbserver|mingw|emscripten|nvcc" />
+```
 
-- *section* - Groups block of elements - usually ones that all respect the same if/unless condition.
-  ```xml
-  <section name="id" />  </section>
-  ```
+- `echo` - Prints a value to console. Good for debugging.
 
-- *copy* - Copy file when node is parsed.
-  ```xml
-  <copy to="destination" from="src" />
-  ```
+```xml
+<echo value="text" />
+```
 
-- *import*/*include* - Read xml from another file. 'import' resets the relative base to the new file, include does not.
-  ```xml
-  <import name="filename" section="filter" noerror="true" />
-  <include name="filename" section="filter" noerror="true" />
-  ```
-    + noerror - setting the optional noerror allows the file to be missing
-    + section - setting the optional section will only reand the named section from the xml file.  Used by hxcpp_config.xml.
+- `error` - Prints a value to console and forces an error. Good for checking prerequisites.
 
-- *pragma* - Only include build file once, even with multiple include statements.
-  ```xml
-  <pragma once="true" />
-  ```
+```xml
+<error value="error message" />
+```
 
-- *nvccflag* - Add flag to all nvcc compiles.
-  ```xml
-  <nvccflag name="?name" value="-IincludePath" />
-  ```
+- `pleaseUpdateHxcppTool` - Used to tell people updating git version that they need to recompile the build tool.
 
-- *nvcclinkflag* - Add flag when linking with nvcc code.
-  ```xml
-  <nvcclinkflag name="?name" value="-arch=sm_30" />
-  ```
+```xml
+<pleaseUpdateHxcppTool version="1" />
+```
 
-- *files* - Define a file group, and set default tags.
-  ```xml
-  <files dir="dir" name="name" tags="tag1,tag2,tag3" >
-   ...
-  </files>
-  ```
-    + dir = directory to which the filenames in the group are relative
-    + tags = comma separated list of flags tags
+- `path` - Adds a directory to the exe search path.
 
-- *target* - Define a target, and set its toolid(link mode) and output name.
-  ```xml
-  <target name="name" overwrite="true" append="true" tool="linker" toolid="${haxelink}" output="filename" >
-   ...
-  </target>
-  ```
+```xml
+<path name="directory_to_add" />
+```
 
-- *copyFile* - Copy a file after given toolId is run into target output directory
-  ```xml
-  <copyFile name="destination" from="src" allowMissing="true" overwrite="true" toolId="filter" >
-  ```
+- `mkdir` - Creates a directory.
 
-- *magiclib* - Internal for replacing dlls with object files
-  ```xml
-  <magiclib name="libname" replace="old dll" />
-  ```
+```xml
+<mkdir name="directory" />
+```
 
-- *compiler* - Define a compiler.
-  ```xml
-  <compiler id="id" exe="command" replace="true" >
-   ...
-  </compiler>
-  ```
-    + Use optional 'replace' to overwrite, otherwise append
-    + It is assumed only 1 compiler is active
-    + exe can be overridden in the body of the definition
+- `section` - Groups blocks of elements - usually ones that all respect the same `if`/`unless` condition.
 
-- *stripper* - Define a stripper, to remove debug information for release from gcc executables
-  ```xml
-  <stripper exe="command" replace="true" > </stripper>
-  ```
-    + Use optional 'replace' to overwrite, otherwise append
+```xml
+<section name="id" />...</section>
+```
 
-- *linker* - Define a linker.
-  ```xml
-  <linker id="id" exe="command" replace="true" > </linker>
-  ```
-    + Use optional 'replace' to overwrite, otherwise append
-    + id could be 'static_link', 'dll' or 'exe'.  Usually all 3 linkers are defined.
-    + exe can be overridden in the body of the definition
+- `copy` - Copies a file when the node is parsed.
 
-- *prelinker* - Define a prelinker.
-  ```xml
-  <prelinker name="id" replace="true" />
-   ...
-  </prelinker>
-  ```
+```xml
+<copy to="destination" from="src" />
+```
 
+- `import`/`include` - Reads XML from another file. `import` resets the relative base to the new file, `include` does not.
+
+    - `noerror` - when `true`, allows the file to be missing. (optional)
+    - `section` - only read the named section from the XML file. Used by `hxcpp_config.xml`. (optional)
+
+```xml
+<import name="filename" section="filter" noerror="true" />
+<include name="filename" section="filter" noerror="true" />
+```
+
+- `pragma` - Only include build file once, even with multiple include statements.
+
+```xml
+<pragma once="true" />
+```
+
+- `nvccflag` - Adds flag to all `nvcc` compiles.
+
+```xml
+<nvccflag name="?name" value="-IincludePath" />
+```
+
+- `nvcclinkflag` - Adds flag when linking with `nvcc` code.
+
+```xml
+<nvcclinkflag name="?name" value="-arch=sm_30" />
+```
+
+- `files` - Defines a file group, and sets default tags.
+
+    - `dir` - directory to which the filenames in the group are relative.
+    - `tags` - comma-separated list of tags.
+
+```xml
+<files dir="dir" name="name" tags="tag1,tag2,tag3" >...</files>
+```
+
+- `target` - Defines a target, and sets its `toolid` (link mode) and output name.
+
+```xml
+<target name="name" overwrite="true" append="true" tool="linker" toolid="${haxelink}" output="filename">...</target>
+```
+
+- `copyFile` - Copies a file after the given `toolId` is run into target output directory.
+
+```xml
+<copyFile name="destination" from="src" allowMissing="true" overwrite="true" toolId="filter" />
+```
+
+- `magiclib` - Internally used for replacing DLLs with object files.
+
+```xml
+<magiclib name="libname" replace="old dll" />
+```
+
+- `compiler` - Defines a compiler. It is assumed only 1 compiler is active.
+
+    - `replace` - when `true` the compiler is overridden, otherwise the contents of this node are appended to an existing compiler with the same `id`. (optional)
+    - `exe` - can be overridden in the body of the definition.
+
+```xml
+<compiler id="id" exe="command" replace="true">...</compiler>
+```
+
+- `stripper` - Defines a stripper, used to remove debug information for release from gcc executables.
+
+    - `replace` - when `true` overwrites, otherwise appends. (optional)
+
+```xml
+<stripper exe="command" replace="true">...</stripper>
+```
+
+- `linker` - Defines a linker.
+
+    - `replace` - when `true` overwrites, otherwise appends. (optional)
+    - `id` - can be `static_link`, `dll`, or `exe`. Usually all 3 linkers are defined.
+    - `exe` - can be overridden in the body of the definition.
+
+```xml
+<linker id="id" exe="command" replace="true">...</linker>
+```
+
+- `prelinker` - Defines a prelinker.
+
+    - `replace` - when `true` overwrites, otherwise appends.
+
+```xml
+<prelinker name="id" replace="true" />...</prelinker>
+```
 
 <!--label:target-cpp-build_xml-Files-->
 ##### Files
 
-The files node defines a group of files that all share the same attributes, including relative directory, default compiler flags and dependencies.  The node can be used to define a set of header files on which other files can depend, or a set of source files to be compiled and included in a terget.
+The files node defines a group of files that all share the same attributes, including relative directory, default compiler flags and dependencies.  The node can be used to define a set of header files on which other files can depend, or a set of source files to be compiled and included in a target.
 
-- *depend* - Declare that all files in the group depend on another file or another file group.
-  ```xml
-  <depend name="filename" />
-  <depend files="filesId" />
-  ```
-    + name = If the named file changes then then all the files in the group need recompiling.
-    + files = If any of the files in the named group changes then then all the files in the group need recompiling.
+- `depend` - Declares that all files in the group depend on another file or another file group.
 
-- *options* - Name of file containing compiler flags.  When the cache is not used, Options.txt helps detect when the options have changed, and therefore whether files need recompiling.
-  ```xml
-  <options name="Options.txt" />
-  ```
+    - `name` - if the named file changes then all the files in the group need recompiling.
+    - `files` - if any of the files in the named group changes then then all the files in the group need recompiling.
 
-- *config* - Name of file to generate that contains the #defines that were active when code was compiled.
-  ```xml
-  <config name="outfile.h" />
-  ```
+```xml
+<depend name="filename" />
+<depend files="filesId" />
+```
 
-- *tag* - Add a default compiler flags tag too all files in group.  See [Tags](target-cpp-build_xml-Tags).
-  ```xml
-  <tag value="tag" />
-  ```
+- `options` - Sets the name of the file containing compiler flags. When the cache is not used, `Options.txt` helps detect when the options have changed, and therefore whether files need recompiling.
 
-- *addTwice* - When compiled to a library, add the library twice to the link line - once at the beginning and once at then end to satisfy linux selective linking.
-  ```xml
-  <addTwice value="tue" />
-  ```
+```xml
+<options name="Options.txt" />
+```
 
-- *cache* - Use compiler cache for files in group.  See [compile cache](target-cpp-CompileCache) for more details.
-  ```xml
-  <cache value="true" project="name" asLibrary="true" />
-  ```
-    + project = name of project used to manage and group object files in the cache
-    + asLibrary = link the objs into a .lib file, which can skip unneeded objs, but
-     will also skip things that rely on static initializers to register handlers, so be careful.
+- `config` - Sets the name of the file to generate that contains the C++ preprocessor defines that were active when code was compiled.
 
-- *include* - Include an external file list
-  ```xml
-  <include name="filename.xml" />
-  ```
+```xml
+<config name="outfile.h" />
+```
 
-- *section* - Groups block of elements - usually ones that all respect the same if/unless condition.
-  ```xml
-  <section name="id" />  </section>
-  ```
+- `tag` - Adds a default compiler tag for all files in the group. See [Tags](target-cpp-build_xml-Tags).
 
+```xml
+<tag value="tag" />
+```
 
-- *compilerflag* - Add a compilerflag when compiling files in group.
-  ```xml
-  <compilerflag name="name" value="value" />
-  <compilerflag value="value" />
-  ```
-    + name, value = add 2 flags when compiling
-    + value = add 1 flag when compiling
+- `addTwice` - When compiled to a library, adds the library twice to the link line - once at the beginning and once at the end to satisfy Linux selective linking.
 
-- *nvcc* - This group is compiled with nvcc.
-  ```xml
-  <nvcc />
-  ```
+```xml
+<addTwice value="true" />
+```
 
-- *objprefix* - An id prepended to generated obj name to allow alphabetical grouping of similar objs.
-  ```xml
-  <objprefix value="prefix" />
-  ```
+- `cache` - Enables compiler cache for files in the group. See [compile cache](target-cpp-CompileCache) for more details.
 
-- *precompiledheader* - Use a precompiledheader of given name when compiling group
-  ```xml
-  <precompiledheader name="name" dir="directory" />
-  ```
-    + name = the include used when precompiling these files (without the .h)
-    + directory = the location of this file
+    - `project` - name of project used to manage and group object files in the cache.
+    - `asLibrary` - link the objects (`.obj`) into a `.lib` file, which can skip unneeded objects, but will also skip things that rely on static initializers to register handlers, so be careful.
 
-  eg, for `#include <lib/Header.h>`
-    + name = "lib/Header"
-    + directory = "${haxelib:somelib}/include"
+```xml
+<cache value="true" project="name" asLibrary="true" />
+```
 
-- *file* - Add file to group, with optional attributes
-  ```xml
-  <file name="filename" tags="tag,tag1" filterout="define" embedName="embed" >
-     <depend name="filename1" />
-     <depend name="filename2" />
-  </file>
-  ```
-     + name = name of file - may be absolute or relative to files.dir
-     + tags = optional override of group tags.  See [Tags](target-cpp-build_xml-Tags).
-     + filterout = allows files to be skipped at compile-time if the named define exists.
-       This is useful when the define is set sometime after the file list is parsed.
-     +  depend name = filename of additional dependency
-     + embed = causes the file to be embedded as a enxtern c++ 'const char *' string constant of the specified name
+- `include` - Includes an external file list.
+
+```xml
+<include name="filename.xml" />
+```
+
+- `section` - Groups blocks of elements - usually ones that all respect the same `if`/`unless` condition.
+
+```xml
+<section name="id" />...</section>
+```
+
+- `compilerflag` - Adds a compiler flag when compiling files in the group.
+
+    - `name` and `value` - adds 2 command-line arguments when compiling.
+    - `value` - adds 1 command-line argument when compiling.
+
+```xml
+<compilerflag name="name" value="value" />
+<compilerflag value="value" />
+```
+
+- `nvcc` - This group is compiled with nvcc.
+
+```xml
+<nvcc />
+```
+
+- `objprefix` - Sets the id prepended to generated object (`.obj`) name to allow alphabetical grouping of similar objects.
+
+```xml
+<objprefix value="prefix" />
+```
+
+- `precompiledheader` - Use a precompiled header of given name when compiling the group.
+
+    - `name` - the include used when precompiling these files (without the .h).
+    - `directory` - the location of this file.
+    - e.g. for `#include <lib/Header.h>`:
+
+        - `name="lib/Header"`
+        - `directory="${haxelib:somelib}/include"`
+
+```xml
+<precompiledheader name="name" dir="directory" />
+```
+
+- `file` - Adds a file to the group, with optional attributes.
+
+    - `name` - name of the file - may be absolute or relative to `dir`.
+    - `tags` - overrides group tags. See [Tags](target-cpp-build_xml-Tags). (optional)
+    - `filterout` - allows files to be skipped at compile-time if the named define exists. This is useful when the define is set sometime after the file list is parsed.
+    - `embed` - causes the file to be embedded as an extern C++ `const char *` string constant of the specified name.
+    - `<depend name="..." />` (child node) - filename of additional dependency.
+
+```xml
+<file name="filename" tags="tag,tag1" filterout="define" embedName="embed" >
+   <depend name="filename1" />
+   <depend name="filename2" />
+</file>
+```
 
 <!--label:target-cpp-build_xml-Tags-->
 ##### Tags
 
+Tags are identifiers that link compiler flags with specific files.  Usually, they are defined in a `files` group with the `tags` attribute as a comma-separated list, and with the `tag` attribute on a compiler `flag` node.  Files are then compiled with all the flags that have matching tags.
 
-Tags are identifiers that link compiler flags with spefific files.  Usually, they are defined in a files group with the 'tags' attribute as a comma separated list, and with the 'tag' attribute on a compiler 'flag' node.  Files are then compiled with all the flags that have matching tags.
+By restricting tags to certain files, only a sub-set of files needs to be recompiled when conditions change, and files without the relevant tags can reuse their object files. This can save a lot of compilation time, since some flags only apply to a few files.
 
-By restricting tags to certain files, only a sub-set of files needs to be recompiled when conditions change, and files without the relevant tags can reuse their object files.  This can save a lot of time, since come flags only apply to a few files.
+Files can override the group tags by specifying their own `tags` attribute.  Groups can add tags with the `tag` node.
 
-Files can override the group tags by specifying their own 'tags' attribute.  Groups can add tags with the 'tag' node.
+Some tags have standard meanings when compiling Haxe code:
 
-Some tags have standard meanings when compiling haxe code:
- - *haxe* - The haxe tag adds all the required compiler flags to get haxe-generated code to compile correctly, and should be added to files that depend directly or indirectly on hxcpp.h.
- - *static* - This will add the STATIC_LINK define when approtriate, which is used for generating cffi glue.  It should be added to cffi code that might generate static libraries.
- - *gc* - These flags only affect the garbage-collection files
- - *hxstring* - These flags only affect String.cpp
- - *optimization tags* - each file is assumed to have exactly 1 optimization tags.  If none is explicitly specified, then the default is used depending on whether it is a debug or release build.  They are:
-    + optim-std = alias for 'debug' or 'release' depending on build
-    + debug
-    + release
-    + optim-none
-    + optim-size
+  - `haxe` - adds all the required compiler flags to get Haxe-generated code to compile correctly, and should be added to all files that depend directly or indirectly on `hxcpp.h`.
+  - `static` - will add the `STATIC_LINK` define when appropriate, which is used for generating CFFI glue code. It should be added to CFFI code that might generate static libraries.
+  - `gc` - These flags only affect the garbage-collection files.
+  - `hxstring` - These flags only affect `String.cpp`.
+  - optimization tags - each file is assumed to have exactly 1 optimization tag. If none is explicitly specified, then the default is used depending on whether it is a debug or release build. They are:
 
-  Setting one of these tags is useful for compiling your library in release mode, even if haxe has -debug.  Some very big files are slow to compile in release mode, so using a less optimized mode can be faster.
+    - `optim-std` - alias for `debug` or `release` depending on build.
+    - `debug`
+    - `release`
+    - `optim-none`
+    - `optim-size` - optimize for size.
 
+Setting one of these tags is useful for compiling your library in release mode, even if haxe has `-debug`. Some very big files are slow to compile in release mode, so using a less optimized mode can be faster.
 
-The tags attrubute can be added to a haxe-generated file using the `@:fileXml` meta, eg:
+The tags attribute can be added to a Haxe-generated file using the `@:fileXml` meta, e.g.:
+
 ```haxe
 @:fileXml("tags='haxe,optim-none'")
-class MyClass { ...
+class MyClass { ... }
 ```
 
-Here, the class is compiled with the normal haxe flags, but has the optimizations disabled, which can lead to much faster compiler times in some circumstances.
+Here, the class is compiled with the normal Haxe flags, but has optimizations disabled, which can lead to much faster compilation times in some circumstances.
+
 <!--label:target-cpp-build_xml-Targets-->
 ##### Targets
 
+Targets are used to produce binaries, or to group other targets. When compiling executables or dynamic libraries, they provide the additional link libraries.
 
-Targets are used to produce binaries, or to group other targets.  When compiling exes or dynamic libraries, they provide the additional link libraries.
+By default, `hxcpp` will try to compile the `default` target, so it is easiest to define this one - perhaps by simply adding a dependence on your other target(s).
 
-By default, hxcpp will try to compile the 'default' target, so it is easiest to define this one - perhaps by simply adding a dependence on your other targets(s).
-
-The target is defined with a 'toolid' attribute; exe, static_link or dll.  This defines which linker is run, but many of the target entries will be the same even if the linker is changed.
+The target is defined with a `toolid` attribute: `exe`, `static_link`, or `dll`. This defines which linker is used, but many of the target entries will be the same even if the linker is changed.
 
 Targets can contain the following nodes:
 
-- *subTargetName* - Build another target before building this one.
-   ```xml
-   <target id="subTargetName" />
-   ```
+- `subTargetName` - Builds another target before building this one.
 
-- *merge* - Combine fields from another target.  This is usful if you want a target to function as static library or dll when compiled in its own, but also allow it to be used as a list of object files if another target wants to link in the object files directly.
-   ```xml
-   <merge id="otherTargetName" />
-   ```
+```xml
+<target id="subTargetName" />
+```
 
-- *files* - Add a named group of compiled files to target.
-   ```xml
-   <files id="filesId"/>
-   ```
+- `merge` - Combines fields from another target. This is useful if you want a target to function as a static or dynamic library when compiled on its own, but also allow it to be used as a list of object files if another target wants to link in the object files directly.
 
-- *section* - Group items - usually sharing common condition
-   ```xml
-   <section > </section>
-   ```
+```xml
+<merge id="otherTargetName" />
+```
 
-- *lib* - Add a library to the link line.
-   ```xml
-   <lib (name|hxbase|base)="libName" />
-   ```
-     + name = the complete name is specified
-     + base = the name without compiler-specific extension (.a/.lib) is specified
-     + hxbase = the name without extension and achitecture (-v7/.iphoinesim) is specified
+- `files` - Adds a named group of compiled files to the target.
 
-- *flag* - Add a single link flag.
-   ```xml
-   <flag value="flag"/>
-   ```
+```xml
+<files id="filesId"/>
+```
 
-- *vflag* - Add a pair of link flags.
-   ```xml
-   <vflag name="flag1" value="flag2"/>
-   ```
+- `section` - Groups blocks of elements - usually ones that all respect the same `if`/`unless` condition.
 
-- *depend* - Target depends on given filename.
-   ```xml
-   <depend name="filename"/>
-   ```
+```xml
+<section>...</section>
+```
 
-- *dir* - Add a directory to the targets directory list.  These directories will get removed then the target is cleaned.
-   ```xml
-   <dir name="tempPath"/>
-   ```
+- `lib` - Adds a library to the link line.
 
-- *outdir* - Directory for build results - including "copyFile" targets
-   ```xml
-   <outdir name="path"/>
-   ```
+    - `name` - the complete name is specified.
+    - `base` - the name without a compiler-specific extension (.a/.lib) is specified.
+    - `hxbase` - the name without an extension and architecture (`-v7`/`.iphonesim`) is specified.
 
-- *ext* - Extension for generated files.
-   ```xml
-   <ext name=".ext"/>
-   ```
-     + ext = extension - should contain "."
+```xml
+<lib (name|hxbase|base)="libName" />
+```
 
-- *builddir* - The directory from which the targets build commands are run, and therefore the 
-       relative base for some filenames, and destination for some compiler generated temps.
-   ```xml
-   <builddir name="path"/>
-   ```
+- `flag` - Adds a single link flag.
 
-- *libpath* Add library search path to build command
-   ```xml
-   <libpath name="directory"/>
-   ```
-     + name = directory.  The particular linker will add the required flags
+```xml
+<flag value="flag"/>
+```
+
+- `vflag` - Adds a name-value pair of link arguments.
+
+```xml
+<vflag name="flag1" value="flag2"/>
+```
+
+- `depend` - Declares that the target depends on the given filename.
+
+```xml
+<depend name="filename" />
+```
+
+- `dir` - Adds a directory to the target's directory list. These directories will get removed when the target is cleaned.
+
+```xml
+<dir name="tempPath" />
+```
+
+- `outdir` - Sets the directory for build results - including "copyFile" targets.
+
+```xml
+<outdir name="path"/>
+```
+
+- `ext` - Sets the extension for the generated files.
+
+    - `ext` - the extension, should contain ".".
+
+```xml
+<ext name=".ext"/>
+```
+
+- `builddir` - Sets the directory from which the target's build commands are run, and therefore the relative base for some filenames, and destination for some compiler-generated temporary files.
+
+```xml
+<builddir name="path"/>
+```
+
+- `libpath` - Add a library search path to the build command.
+
+    - `name` - directory. The linker will add the required flags.
+
+```xml
+<libpath name="directory"/>
+```
 
 <!--label:target-cpp-build_xml-Compiler-->
 ##### Compiler
 
-Compilers are run over each of the changed files in each of the filegroups in a target to create object files, which are then linked into the target.  Modification dates or hashes are used to tell if files need recompiling, of if the object file can be reused.
+Compilers are run over each of the changed files in each of the file groups in a target to create object files, which are then linked into the target.  Modification dates or hashes are used to tell if files need recompiling, or if the object file can be reused.
 
+- `flag` - Adds a single argument to the compiler command line.
 
+    - `value` - flag added to the command line.
+    - `tag` - optional filter to restrict flag to files with a matching tag. See [Tags](target-cpp-build_xml-Tags).
 
-- *flag* - Add single arg to command-line.
-  ```xml
-  <flag value="value" tag="tag" />
-  ```
-    + value = text for flag added to command line
-    + tag = optional filter to restrict flag to files with matching tag. See [Tags](target-cpp-build_xml-Tags).
+```xml
+<flag value="value" tag="tag" />
+```
 
-- *cflag/cppflag/objcflag/mmflag* - Add flag when compiling specific file types.
-  ```xml
-  <cflag value="value" />
-  <cppflag value="value" />
-  <objcflag value="value" />
-  <mmflag value="value" />
-  ```
-    + cflag = only added to .c files
-    + cppflag = only added to .cpp files
-    + objcflag = only added to .objc files
-    + mmflag = only added to .mm objc++ files
+- `cflag`/`cppflag`/`objcflag`/`mmflag` - Adds a flag when compiling specific file types.
 
-- *pchflag* - Add flag when compiling precompiled header .h files.
-  ```xml
-  <pchflag value="value" />
-  ```
-    + pchflag = Usually `["-x", "c++-header"]` for apple to specify the "identity" of the header
+    - `cflag` - only added to `.c` (C) files.
+    - `cppflag` - only added to `.cpp` (C++) files.
+    - `objcflag` - only added to `.objc` (Objective-C) files.
+    - `mmflag` - only added to `.mm` (Objective-C++) files.
 
+```xml
+<cflag value="value" />
+<cppflag value="value" />
+<objcflag value="value" />
+<mmflag value="value" />
+```
 
-- *pch* - Set the precompiled header style - "gcc" or "msvc".
-  ```xml
-  <pch value="gcc|msvc" />
-  ```
+- `pchflag` - Adds a flag when compiling precompiled header `.h` files.
 
-- *objdir* - set name of directory used to store object files.  Should be unique for given set of compiler flags to avoid linking against wrong architecture.
-  ```xml
-  <objdir value="obj/somewhere" />
-  ```
-    + value = usually built progtamatically, like `obj/msvc${MSVC_VER}-rt${OBJEXT}${OBJCACHE}${XPOBJ}`
+    - `pchflag` - usually `["-x", "c++-header"]` for apple to specify the "identity" of the header.
 
-- *output* - Flag used to specifying compiler output name.
-  ```xml
-  <outflag value="-flag" />
-  ```
-    + value = flag value.  Note that it should contain a space character
-      if the actual name should be a separate argument, like "-o ", or "-o"/"-out:" if it does not.
+```xml
+<pchflag value="value" />
+```
 
-- *exe* = Override the executable command specified in the compiler attribute.
-  ```xml
-  <exe name="command" />
-  ```
-    + name = command.  Usually you would use 'path' to add the directory, then this is just the filename part.
+- `pch` - Sets the precompiled header style - `gcc` or `msvc`.
 
-- *ext* - Specify the object file extension
-  ```xml
-  <ext name=".obj" />
-  ```
-    + name = extension, including ".". Usually ".o" or ".obj".
+```xml
+<pch value="gcc|msvc" />
+```
 
-- *getversion* - The command-line used to create text describing the version of the compiler.
-   This is used for working out if the compiler has changed, and therefore the objs need recompiling.
-  ```xml
-  <getversion value="command" />
-  ```
-    + value = command to run.  It defaults to `compiler --version` which is usual for gcc based compilers.
-       Setting it empty will disable caching.
+- `objdir` - Sets the name of the directory used to store object files. Should be unique for a given set of compiler flags to avoid linking against the wrong architecture.
 
-- *section* - Group entries - usually sharing common condition
-  ```xml
-  <section > </section>
-  ```
+    - `value` - usually built programmatically, e.g. `obj/msvc${MSVC_VER}-rt${OBJEXT}${OBJCACHE}${XPOBJ}`.
 
-- *include* - include compiler options from another file.  Most compilers should include `<include name="toolchain/common-defines.xml" />` to add defines used by hxcpp.
-  ```xml
-  <include name="filename" />
-  ```
+```xml
+<objdir value="obj/somewhere" />
+```
 
+- `output` - Sets the flag used to specify the compiler's output.
 
+    - `value` - flag value. Note that it should contain a space character if the actual name should be a separate argument, like `-o<space>`, or `-o`/`-out:` if the name should be appended directly.
+
+```xml
+<outflag value="-flag" />
+```
+
+- `exe` - Overrides the executable command specified in the compiler attribute.
+
+    - `name` - command. Usually you would use `path` to add the directory containing the executable, then specify the filename part only in this attribute.
+
+```xml
+<exe name="command" />
+```
+
+- `ext` - Sets the object file extension.
+
+    - `name` - extension, including ".". `.o` on Linux and Mac, `.obj` on Windows.
+
+```xml
+<ext name=".obj" />
+```
+
+- `getversion` - Sets the command used to obtain the version of the compiler.  This is used for checking if the compiler has changed, and therefore whether the objects need recompiling.
+
+    - `value` - command to run. It defaults to `(compiler) --version` which works for `gcc`-based compilers. Setting it to an empty value will disable caching.
+
+```xml
+<getversion value="command" />
+```
+
+- `section` - Groups blocks of elements - usually ones that all respect the same `if`/`unless` condition.
+
+```xml
+<section>...</section>
+```
+
+- `include` - Includes compiler options from another file. Most compilers should include `<include name="toolchain/common-defines.xml" />` to add the defines used by `hxcpp`.
+
+```xml
+<include name="filename" />
+```
 
 <!--label:target-cpp-build_xml-Linker-->
 ##### Linker
 
-Generally one linker is run per target to build a static library, dynamic library or exe.  The 'id' attribute of the linker specifies whch type of linking is performed.
+Generally only one linker is run per target to build a static library, dynamic library, or executable. The `id` attribute of the linker specifies which type of linking is performed.
 
+- `exe` - Overwrites the command for this linker.
 
-- *exe* - Overwrite the exe command for this linker.
-   ```xml
-   <exe name="command" />
-   ```
+```xml
+<exe name="command" />
+```
 
-- *flag* - Add a single link flag.
-   ```xml
-   <flag value="flag"/>
-   ```
+- `flag` - Adds a single link flag.
 
-- *ext* - Default extension for generated files - if not overridden by target.
-   ```xml
-   <ext value=".ext"/>
-   ```
-     + value = extension, including "."
+```xml
+<flag value="flag"/>
+```
 
-- *outflag* - Flag for specifying lnker output name.
-   ```xml
-   <outflag value="-o"/>
-   ```
-     + value = linker flag.  Note that it should contain a space character
-      if the actual name should be a separate argument, like "-o ", or "-o"/"-out:" if it does not.
+- `ext` - Default extension for generated files - if not overridden by target.
 
-- *section* - Group items - usually sharing common condition
-   ```xml
-   <section > </section>
-   ```
+     - value - extension, including `.`.
 
-- *libdir* - A temp directory name to build into.  This will capture the extra files the compiler
-       generates, and then the desired file will be copied to the correct location.
-   ```xml
-   <libdir name="name"/>
-   ```
+```xml
+<ext value=".ext"/>
+```
 
-- *lib* - Add a library to the link line.
-   ```xml
-   <lib (name|hxbase|base)="libName" />
-   ```
-     + name = the complete name is specified
-     + base = the name without compiler-specific extension (.a/.lib) is specified
-     + hxbase = the name without extension and achitecture (-v7/.iphoinesim) is specified
+- `outflag` - Sets the flag for specifying linker output name.
 
-- *prefix* - Prefix for generated files.
-   ```xml
-   <prefix value="lib"/>
-   ```
-     + value = prefix.  This will usually be "lib" or nothing.
+    - `value` - flag value. Note that it should contain a space character if the actual name should be a separate argument, like `-o<space>`, or `-o`/`-out:` if the name should be appended directly.
 
-- *ranlib* - Whether ranlib needs to be run, and what command to use.  Usually only for unix-style static libraries
-   ```xml
-   <ranlib name="ranlib command"/>
-   ```
+```xml
+<outflag value="-o"/>
+```
 
-- *libpathflag* - Flag used for adding library paths to command line.  It will be combined with *lib* entries.
-   ```xml
-   <libpathflag value="-L"/>
-   ```
+- `section` - Groups blocks of elements - usually ones that all respect the same `if`/`unless` condition.
 
-- *recreate* - Whether to delete the target file before re-running link command.
-      The archive "ar" command likes to add obj files to existing archives, so deleting first can help.
-   ```xml
-   <recreate value="true"/>
-   ```
+```xml
+<section>...</section>
+```
 
-- *expandAr* - Whether to extract the individual obj files from an archive and add these, rather than
-       add the archive as a single library.  Can solve some link-order and static-initialization issues,
-       but may make final exe bigger.
-   ```xml
-   <expandAr value="true"/>
-   ```
+- `libdir` - Sets the temporary directory name to build into. This will capture the extra files the compiler generates, then the desired file will be copied to the correct location.
 
-- *fromfile* - If the linker supports taking a list of objs in a file, then this is flag for specifying the file.
-   ```xml
-   <fromfile value="flag" needsQuotes="true" />
-   ```
-     + value = flag for specifying file. 
-     If the filename should be a separate argument, then the flag should end with a space.
-     Usually `@` or `-filelist `.  Use empty to disable.
-     + needsQuotes = is whether to quote the obj names in the file
+```xml
+<libdir name="name"/>
+```
 
+- `lib` - Adds a library to the link line.
+
+    - `name` - the complete name is specified.
+    - `base` - the name without a compiler-specific extension (.a/.lib) is specified.
+    - `hxbase` - the name without an extension and architecture (`-v7`/`.iphonesim`) is specified.
+
+```xml
+<lib (name|hxbase|base)="libName" />
+```
+
+- `prefix` - Sets the prefix for generated files.
+
+    - `value` - prefix. This will usually be `lib` or nothing.
+
+```xml
+<prefix value="lib"/>
+```
+
+- `ranlib` - Specifies whether `ranlib` needs to be run, and what command to use.  Usually used only for Unix-style static libraries.
+
+```xml
+<ranlib name="ranlib command"/>
+```
+
+- `libpathflag` - Sets the flag used for adding library paths to command line.  It will be combined with `lib` entries.
+
+```xml
+<libpathflag value="-L"/>
+```
+
+- `recreate` - Specifies whether to delete the target file before re-running the link command. The archive `ar` command sometimes adds object files to existing archives, so deleting first can help.
+
+```xml
+<recreate value="true"/>
+```
+
+- `expandAr` - Specifies whether to extract the individual object files from an archive and add these, rather than add the archive as a single library. Can solve some link-order and static-initialization issues, but may make the final executable bigger.
+
+```xml
+<expandAr value="true"/>
+```
+
+- `fromfile` - If the linker supports taking a list of objects in a single file, then this is flag for specifying the file.
+
+    - `value` - flag for specifying the file. If the filename should be a separate argument, then the flag should end with a space. Usually `@` or `-filelist `. Set to empty to disable.
+    - `needsQuotes` - whether to quote object names in the file.
+
+```xml
+<fromfile value="flag" needsQuotes="true" />
+```
 
 <!--label:target-cpp-build_xml-Stripper-->
 ##### Stripper
 
+A stripper is used to remove debug information in release builds on `gcc`-like systems.
 
-A stripper is used to remove debug information in release builds on gcc-like systems.  It may contain entries:
+- `exe` - Overrides the stripper command.
 
-- *exe* - Override stripper command
-  ```xml
-  <exe name="command"/>
-  ```
+```xml
+<exe name="command"/>
+```
 
-- *flag* - Add flag to stripper command
-   ```xml
-   <flag value="flag"/>
-   ```
+- `flag` - Adds a flag to the stripper command.
+
+```xml
+<flag value="flag"/>
+```
 
 <!--label:target-cpp-build_xml-HaxeTarget-->
 ##### The Haxe Target
 
-
-When compiling from haxe, via hxcpp, a "Build.xml" file is generated in the output directory.  The file lists the generated files and dependencies and ultimately includes the "toolchain/haxe-target.xml" file, which describes how to combine these files.
+When compiling from Haxe via `hxcpp`, a `Build.xml` file is generated in the output directory. The file lists the generated files and dependencies and ultimately includes the `toolchain/haxe-target.xml` file, which describes how to combine these files.
 
 ##### Include Order
-There are a few compilcations when setting the order in which things are configured, since a particular build might want to:
+
+There are a few complications when setting the order in which things are configured, since a particular build might want to:
+
   - set the compiler
   - override some compiler settings
   - make decisions based on the compiler or settings
   - set or use standard file prefixes/suffixes 
 
 ##### Example Sequence
-You can see which files are included by setting the HXCPP_VERBOSE define when compiling.  One example is for a hypothetical user 'Hugh' on a windows platform:
+
+You can see which files are included by setting the `HXCPP_VERBOSE` define when compiling. One example is for a hypothetical user 'Hugh' on a Windows platform:
 
 ```
 Using makefile: Build.xml
@@ -1359,42 +1497,44 @@ Using Windows compiler: MSVC
  - Parsing include: C:\Users\Hugh\.hxcpp_config.xml (section "exes")
 ```
 
-- setup.xml is read because no custom toolchain is specified, and this just include hxcpp_config
-- the 'vars' section of hxcpp_config is read - mainly to setup SDK locations
-- the hxcpp build tool then uses internal logic based on host and defines to work out which compiler/toolchain to use
-- finish-setup then sets a bunch of standard defines for file-extensions and linking flags based on
-   the type of toolchain being used.
-- The provided buildfile (Build.xml) is then processed. It can use the standard defines from finish-setup.
-- Build.xml imports the standard haxe-target buildfile, which adds standard runtime files
-- The toolchain file is then parsed - making use of any settings from the main Build.xml and finish-setup.
-  - This file includes the "common-defines.xml" from the compiler to inject standard haxe compiler flags
-- hxcpp_config "exe" is parsed.  Historically to add libraries or build-paths to targets.
-
+1. `setup.xml` is read because no custom toolchain is specified, and this just includes `.hxcpp_config.xml`.
+2. The `vars` section of `.hxcpp_config.xml` is read - mainly to setup SDK locations.
+3. The `hxcpp` build tool then uses internal logic based on the host and defines to work out which compiler/toolchain to use. In this case, `MSVC` (Microsoft Visual Studio C++) is selected.
+4. `finish-setup.xml` then sets some standard defines for file extensions and linking flags based on the type of toolchain being used.
+5. The provided build file (`Build.xml`) is then processed. It can use the standard defines from `finish-setup.xml`.
+6. `Build.xml` imports the standard Haxe target build files (`haxe-target.xml`), which adds the files required for the Haxe runtime.
+7. The toolchain file (`msvc-toolchain.xml`) is then parsed - making use of any settings from the main `Build.xml` and `finish-setup.xml`. This file includes `common-defines.xml` inject standard Haxe compiler flags.
+8. The `exes` section of `.hxcpp_config.xml` is read. Historically to add libraries or build-paths to targets.
 
 ##### Standard Environment
-finish-setup.xml is where the conventions are set. These variables include:
-  - haxelink = dll|static_link|exe
-  - LIBPREFIX = lib|""
-  - LIBEXTRA =
-     +  .iphonesim-64
-     +  .iphonesim
-     +  .iphoneos
-     +  .iphoneos-v7
-     +  .iphoneos-v7s
-     +  .iphoneos-64
-     +  .appletvsim-64
-     +  .appletvsim
-     +  .watchos
-     +  .watchsimulator
-     +  -x86
-     +  -v7
-     +  -64
-  - HX_LINK_SUFFIX = LIBEXTRA | -19 (msvc 19)
-  - LIBEXT = .a|.lib
-  - DBG = ""|"-debug"
-  - OBJEXT = "-list-of-config-ids" depending on available options
 
-These variables are used by haxe-target - you can use them too.  Haxe then builds the "haxe" target, which uses some code like:
+`finish-setup.xml` is where the conventions are set. These variables include:
+
+- `haxelink` - `dll`, `static_link`, or `exe`
+- `LIBPREFIX` - `lib` or empty
+- `LIBEXTRA`:
+
+    - `.iphonesim-64`
+    - `.iphonesim`
+    - `.iphoneos`
+    - `.iphoneos-v7`
+    - `.iphoneos-v7s`
+    - `.iphoneos-64`
+    - `.appletvsim-64`
+    - `.appletvsim`
+    - `.watchos`
+    - `.watchsimulator`
+    - `-x86`
+    - `-v7`
+    - `-64`
+
+- `HX_LINK_SUFFIX` - `LIBEXTRA`, `-19` (MSVC 19)
+- `LIBEXT` - `.a`, `.lib`
+- `DBG` - `-debug` or empty
+- `OBJEXT` - `-list-of-config-ids` depending on available options
+
+These variables are used by `haxe-target.xml` - you can use them too. Haxe then builds the `haxe` target, which uses some code like:
+
 ```xml
   <set name="HAXE_OUTPUT_FILE" value="${LIBPREFIX}${HAXE_OUTPUT_PART}${DBG}" />
 
@@ -1412,25 +1552,24 @@ These variables are used by haxe-target - you can use them too.  Haxe then build
   </target>
 ```
 
-Here you can see the vaious file groups, which are enabled or not depending on the compiler mode, and some standard libraries that are needed for Linux.
+Here you can see the various file groups, which are enabled or disabled depending on the compiler mode, and some standard libraries that are needed for Linux.
 
-##### Experimenting With Hxcpp Generated Code/Build.xml
-If you are using external cpp code, or using meta-data to inject xml into the build process, and you are getting a compile or link error, then it can be useful to run the hxcpp build tool without re-running haxe.  This lets you hand-edit the build file or generated c++ code until you get things to work.  Once you have solved the issues using this technique, then you can move the changes back into the injected/external code.
+##### Experimenting with `hxcpp`-generated code/`Build.xml`
 
-First, compile haxe with '-v' flag.  This gives quite a bit of debug, but will include a like like this:
+If you are using external C++ code or using metadata to inject XML into the build process, and you are getting a compiler or linker error, then it can be useful to run the `hxcpp` build tool without re-running Haxe. This lets you manually edit the build file or generated C++ code until you get things to work. Once you have solved the issues using this technique, then you can move the changes back into the injected/external code.
+
+First, invoke the Haxe compiler with the `-v` flag. This gives quite a bit of debug info, but will include a line like this:
+
 ```
 haxelib run hxcpp Build.xml haxe -Dhaxe3="1" -Dhaxe_ver="4.000" -Dhxcpp_api_level="332" -Dsource-header="Generated by Haxe 4.0.0" -I"" -I"C:/Users/Hugh/dev/haxe/std/cpp/_std/" -I"C:/Users/Hugh/dev/haxe/std/"
 ```
 
-To use this, first change directories to your output directory.  This will be the one you specified with the "-cpp" haxe compiler option.  Then, cut and paste this command into a shell, cmd or batch file.
-
-
+To use this, first change directories to your output directory. This is the directory specified in the `--cpp` Haxe compiler option. Then copy and paste the `haxelib run ...` command into a shell, command or batch file.
 
 <!--label:target-cpp-build_xml-XmlInjection-->
 ##### Xml Injection
 
-
-When using external code in hxcpp, it is often useful to add libraries, include paths or compiler flags to the build process.  This can be done with the `@:buildXml` class meta-data. eg,
+When using external code in `hxcpp`, it is often useful to add libraries, include paths or compiler flags to the build process. This can be done with the `@:buildXml` class metadata. E.g.:
 
 ```haxe
 @:buildXml("
@@ -1439,213 +1578,202 @@ When using external code in hxcpp, it is often useful to add libraries, include 
 </target>
 ")
 @:keep
-class StaticNme
-{
-  ...
+class StaticNme { ... }
 ```
 
-So, by referencing a given class (you just 'import' the class, no need to use it because it has the @:keep meta-data), the xml fragment is also included.
+By referencing the given class (by simply `import`-ing it, no need to use it properly because it has the `@:keep` metadata), the XML fragment is also included.
 
-Here, the xml fragment is copied verbatim into the generated Build.xml immediately after the standard file lists.  This example adds a library to the haxe target, but you could also add flags to files nodes, or files to another files node or target.  Another possibility is to add an include command to pull in a whole external xml file.  This can help avoid some syntax awkwardness needed when quoting strings in meta-data, and allows a normal xml editor to be used.
+Here, the XML fragment is copied verbatim into the generated `Build.xml` immediately after the standard file lists. This example adds a library to the haxe target, but you could also add flags to `files` nodes, or files to another `files` node or target. Another possibility is to add an `include` command to pull in a whole external XML file. This can help avoid some syntax awkwardness needed when quoting strings in metadata, and allows a normal XML editor to be used.
 
 It is also possible to replace the `__main__` file group to skip the standard initialization code and use a custom bootstrap procedure.
 
 <!--label:target-cpp-defines-->
 #### Defines
 
+There are a number of standard defines you can use to control the `hxcpp` build. Some of these are used by the Haxe compiler, and affect the generated code. Others apply to the build tool and affect how the code is compiled.
 
-There are a number of standard defines you can use to control the hxcpp build.  Some of these are used by the haxe compiler, and affect then generated code.  Others apply to the build tool and affect how the code is compiled.
+##### Code generation
 
-Defines affecting how the code is generated.  These need to be in the command line when calling haxe.
-
-| Define                  | Meaning            |
-|-------------------------|--------------------|
-| *HXCPP_DEBUGGER*        | Add extra macros required by debugger.  Usually added automatically be debugger haxelib |
-| *HXCPP_GC_GENERATIONAL* | Enable experimental generational garbage collector |
-| *annotate_source*       | Add additional annotations to source code - useful for developing hxcpp |
-| *dll_export*            | Export hxcpp runtime symbols |
-| *file_extension*        | Set the extension (without the dot) of generated files.  eg "-D file_extension=mm" for objc++ code  |
-| *force_native_property* | Make dynamic access of fields call property getters/setters where appropriate |
-| *include_prefix*        | Place all generated include files in a sub-directory, eg "-D include_prefix=hxinc".  Useful for avoiding name clashes |
-| *no-compilation*        | Generate the code, but do not compile it |
-| *no-debug*              | Do not generate debug macros in code |
-| *nocppiaast*            | Use legacy cppia generation instead of new more recent changes |
-| *objc*                  | Generate objective-c++ classes |
-| *scriptable*            | Enable extra runtime information required for scripting |
-
-
-
-Defines affecting how the code is compiled.  These can be on the command line when calling haxe, or added via the hxcpp build environment.
+Defines affecting how the code is generated. These need to be in the command line when calling haxe.
 
 | Define                  | Meaning            |
 |-------------------------|--------------------|
-| *HXCPP_GC_MOVING*       | Allow garbage collector to move memory to reduce fragmentation |
-| *HXCPP_GC_SUMMARY*      | Print small profiling summary at end of program |
-| *HXCPP_GC_DYNAMIC_SIZE* | Monitor GC times and expand memory working space if required |
-| *HXCPP_GC_BIG_BLOCKS*   | Allow working memory greater than 1 Gig |
-| *HXCPP_GC_DEBUG_LEVEL*  | Number 1-4 indicating additional debugging in GC |
-| *HXCPP_DEBUG_LINK*      | Add symbols to final binary, even in release mode. |
-| *HXCPP_STACK_TRACE*     | Have valid function-level stack traces, even in release mode. |
-| *HXCPP_STACK_LINE*      | Include line information in stack traces, even in release mode. |
-| *HXCPP_CHECK_POINTER*   | Add null-pointer checks,even in release mode. |
-| *HXCPP_PROFILER*        | Add profiler support |
-| *HXCPP_TELEMETRY*       | Add telementry support |
-| *HXCPP_CPP11*           | Use c++11 features and link libraries |
-| *exe_link*              | Generate executable file (rathen than dynamic library on android) |
-| *static_link*           | Generate static library |
-| *dll_link*              | Generate dynamic library |
+| `HXCPP_DEBUGGER`        | Add extra macros required by debugger. Usually added automatically by the debugger haxelib. |
+| `HXCPP_GC_GENERATIONAL` | Enable experimental generational garbage collector. |
+| `annotate_source`       | Add additional annotations to the generated source code - useful for developing `hxcpp`. |
+| `dll_export`            | Export `hxcpp` runtime symbols. |
+| `file_extension`        | Set the extension (without the dot) of generated files. E.g. `-D file_extension=mm` for Objective-C++ code. |
+| `force_native_property` | Make dynamic access to fields call property getters/setters where appropriate. |
+| `include_prefix`        | Place all generated include files in a sub-directory, e.g. `-D include_prefix=hxinc`. Useful for avoiding name clashes. |
+| `no-compilation`        | Generate code, but do not compile it. |
+| `no-debug`              | Do not generate debug macros in code |
+| `nocppiaast`            | Use legacy `cppia` generation instead of new, more recent changes. |
+| `objc`                  | Generate Objective-C++ classes. |
+| `scriptable`            | Enable extra runtime information required for scripting. |
 
-Other defines:
+##### Compilation
 
-| Define                  | Meaning            |
-|-------------------------|--------------------|
-| *HXCPP_VERBOSE*         | Print extra output from build tool. |
-| *HXCPP_TIMES*           | Show some basic profiling information |
-| *HXCPP_NEKO_BUILDTOOL*  | Force use of hxcpp.n, rather than compiled BuildTool.exe
-| *HXCPP_NO_COLOR*        | Do not add colour-codes to tool output |
-| *HXCPP_KEEP_TEMP*       | Does not delete the files created for file 'embedName' option |
-
-
-Defines affecting target architecture.
+Defines affecting how the code is compiled. These can be on the command line when calling haxe, or added via the `hxcpp` build environment.
 
 | Define                  | Meaning            |
 |-------------------------|--------------------|
-| *HXCPP_M32*             | Force 32-bit compile for current desktop |
-| *HXCPP_M64*             | Force 64-bit compile for current desktop |
-| *HXCPP_ARMV6*           | Compile arm-based devices for armv6 |
-| *HXCPP_ARM64*           | Compile arm-based devices for 64 bits |
-| *HXCPP_ARMV7*           | Compile arm-based devices for armv7 |
-| *HXCPP_ARMV7S*          | Compile arm-based devices for armv7s |
-| *HXCPP_LINUX_ARMV7*     | Run on a linux ARMv7 device |
-| *HXCPP_LINUX_ARM64*     | Run on a linux ARM64 device |
-| *winrt*                 | Compile for windowsRt/windows UWP |
-| *android*               | Compile for android |
-| *PLATFORM*              | Specify the android platform for NDK compilation |
-| *ANDROID_NDK_ROOT*      | Specify the location of the android NDK toolchain |
-| *ANDROID_NDK_DIR*       | Specify the search location for finding the android NDK toolchain |
-| *HXCPP_X86*             | Compile android for x86 architecture |
-| *iphoneos*              | Compile for iphone iOS |
-| *iphonesim*             | Compile for iphone simulator |
-| *appletvos*             | Compile for apple tvOS |
-| *appletvsim*            | Compile for apple tvOS simulator |
-| *watchos*               | Compile for apple watchOS |
-| *watchsimulator*        | Compile for apple watchOS simulator |
-| *webos*                 | Compile for webOS |
-| *tizen*                 | Compile for Tizen |
-| *blackberry*            | Compile for Blackberry |
-| *emscripten*            | Compile for Emscripten |
-| *cygwin*                | Compile for windows using cygwin |
-| *linux*                 | (Cross) Compile for linux |
-| *rpi*                   | (Cross) Compile for raspberry pi |
-| *mingw*                 | Compile for windows using mingw |
-| *HXCPP_MINGW*           | Compile for windows using mingw |
-| *NO_AUTO_MSVC*          | Do not detect msvc location, use the one already in the executable path |
+| `HXCPP_GC_MOVING`       | Allow garbage collector to move memory to reduce fragmentation. |
+| `HXCPP_GC_SUMMARY`      | Print small profiling summary when the program exits. |
+| `HXCPP_GC_DYNAMIC_SIZE` | Monitor GC times and expand memory working space if required. |
+| `HXCPP_GC_BIG_BLOCKS`   | Allow working memory greater than 1 gigabyte. |
+| `HXCPP_GC_DEBUG_LEVEL`  | Specify a level (`1-4`) indicating additional debugging in GC. |
+| `HXCPP_DEBUG_LINK`      | Add symbols to final binary, even in release mode. |
+| `HXCPP_STACK_TRACE`     | Have valid function-level stack traces, even in release mode. |
+| `HXCPP_STACK_LINE`      | Include line information in stack traces, even in release mode. |
+| `HXCPP_CHECK_POINTER`   | Add null-pointer checks, even in release mode. |
+| `HXCPP_PROFILER`        | Add profiler support. |
+| `HXCPP_TELEMETRY`       | Add telemetry support. |
+| `HXCPP_CPP11`           | Use C++11 features and link libraries. |
+| `exe_link`              | Generate executable file (rather than dynamic library on Android). |
+| `static_link`           | Generate static library. |
+| `dll_link`              | Generate dynamic library. |
 
+##### Other
 
+| Define                  | Meaning            |
+|-------------------------|--------------------|
+| `HXCPP_VERBOSE`         | Print extra output from build tool. |
+| `HXCPP_TIMES`           | Show some basic profiling information. |
+| `HXCPP_NEKO_BUILDTOOL`  | Force use of `hxcpp.n`, rather than the compiled `BuildTool.exe`. |
+| `HXCPP_NO_COLOR`        | Do not add color-codes to build tool output. |
+| `HXCPP_KEEP_TEMP`       | Do not delete the files created for file `embedName` option. |
 
-<!--label:target-cpp-pointers-->
-#### Using C++ Pointers
+##### Target architecture
 
-<!--subtoc-->
+| Define              | Meaning            |
+|---------------------|--------------------|
+| `HXCPP_M32`         | Force 32-bit compile for current desktop. |
+| `HXCPP_M64`         | Force 64-bit compile for current desktop. |
+| `HXCPP_ARMV6`       | Compile ARM-based devices for `armv6`. |
+| `HXCPP_ARM64`       | Compile ARM-based devices for 64 bits. |
+| `HXCPP_ARMV7`       | Compile ARM-based devices for `armv7`. |
+| `HXCPP_ARMV7S`      | Compile ARM-based devices for `armv7s`. |
+| `HXCPP_LINUX_ARMV7` | Compile for a Linux ARMv7 device. |
+| `HXCPP_LINUX_ARM64` | Compile for a Linux ARM64 device. |
+| `winrt`             | Compile for windowsRt/windows UWP. |
+| `android`           | Compile for Android. |
+| `PLATFORM`          | Specify the Android platform for NDK compilation. |
+| `ANDROID_NDK_ROOT`  | Specify the location of the Android NDK toolchain. |
+| `ANDROID_NDK_DIR`   | Specify the search location for finding the android NDK toolchain. |
+| `HXCPP_X86`         | Compile android for x86 architecture. |
+| `iphoneos`          | Compile for iPhone iOS. |
+| `iphonesim`         | Compile for iPhone simulator. |
+| `appletvos`         | Compile for Apple tvOS. |
+| `appletvsim`        | Compile for Apple tvOS simulator. |
+| `watchos`           | Compile for Apple watchOS. |
+| `watchsimulator`    | Compile for Apple watchOS simulator. |
+| `webos`             | Compile for webOS. |
+| `tizen`             | Compile for Tizen. |
+| `blackberry`        | Compile for Blackberry- |
+| `emscripten`        | Compile for Emscripten. |
+| `cygwin`            | Compile for Windows using Cygwin. |
+| `linux`             | (Cross) Compile for Linux. |
+| `rpi`               | (Cross) Compile for Raspberry Pi. |
+| `mingw`             | Compile for Windows using MinGW. |
+| `HXCPP_MINGW`       | Compile for Windows using MinGW. |
+| `NO_AUTO_MSVC`      | Do not detect MSVC location, use the one already in the executable path. |
 
 <!--label:target-cpp-CompileCache-->
 #### The Hxcpp Cache
 
-The hxcpp compile cache is used to share object files between projects. This can alleviate the need to ship static libraries with external projects, since developers who use the library can compile the library just once, and then reuse it between projects.
+The `hxcpp` compile cache is used to share object files between projects. This can alleviate the need to ship static libraries with external projects, since developers who use the library can compile the library just once, and then reuse it between projects.
 
-The cache uses a hashing mechanism to tell if the contents of a file or its dependencies has changed, and combines this with the compiler version and flags to make specific object files for each change and each compiler congiguration.  This also allows some common haxe runtime and haxe generated files to share their object files between projects, even if in different directories.
+The cache uses a hashing mechanism to tell if the contents of a file or its dependencies have changed, and combines this with the compiler version and flags to make specific object files for each change and each compiler configuration. This also allows some common Haxe runtime and Haxe-generated files to share their object files between projects, even if in different directories.
 
-Additional benefits include keeping some files outside the source tree, and being able to remove these temp files easily.
+Additional benefits include keeping some files outside the source tree, and being able to remove these temporary files easily.
 
 ##### Setup
-A directory needs to be set aside to enable the cache.  If possible, this should be on fast storage, such as a SSD.  This is most easily done with an entry in the .hxcpp_config.xml file:
+
+A directory needs to be set aside to enable the cache. If possible, this should be on fast storage, such as an SSD. This is most easily done with an entry in the `.hxcpp_config.xml` file:
+
 ```xml
- <set name="HXCPP_COMPILE_CACHE" value="c:/hxcpp/cache" />
- <set name="HXCPP_CACHE_MB" value="4000" />
+<set name="HXCPP_COMPILE_CACHE" value="c:/hxcpp/cache" />
+<set name="HXCPP_CACHE_MB" value="4000" />
 ```
+
 Keeping the path short can help in some border-line cases with some compilers where command-line length can become an issue.
 
-The cache size defaults to 1 Gig.  For many cases, this is big enough.  However, on large projects, with several architectures and lots of debug information, this default can lead to "cache churn" where some files are evicted from the cache, even though they are likely to be used again.  Increasing the number of mega-bytes allocated to the cache can help here.
+The cache size defaults to 1 gigabyte. For many cases, this is big enough. However, on large projects, with several architectures and a lot of debug information, this default can lead to "cache churn" where some files are evicted from the cache, even though they are likely to be used again.  Increasing the number of space allocated to the cache can help.
 
 ##### Using The Cache
-To use the cashe with your own libraries, the files group should have 'cache' entry to tell hxcpp that you have considered dependency issues when designing the group.
 
-  ```xml
-  <cache value="true" project="name" asLibrary="true" />
-  ```
+To use the cache with your own libraries, the files group should have a `cache` entry to tell `hxcpp` that you have considered dependency issues when designing the group.
 
-  - project = name of project used to manage and group object files in the cache
-  - asLibrary = link the objs into a .lib file.
+```xml
+<cache value="true" project="name" asLibrary="true" />
+```
 
-When linking a file group 'asLibrary', the object files are compiled and then the library tool is used to make a library from these object files.  This library is then added to the linker.  This has a few implications:
-   - Object files that to not resolve any symbols directly are not added to the final executable
-     + Can make final exe size smaller
-     + If the object file only contains a handler that is self-registering via static constructor,
-        then the constructor may not get called, leading to bugs.
-   - Can help on some systems where the linker command-line length is an issue.
-
+See [Files - `cache`](target-cpp-build_xml-Files) for more details.
 
 ##### Management
-When compiling normally, hxcpp will check the cache size and evict the least used files to maintain the specified cache size.
-Object files in the cache are grouped into "projects" to make management easier, and the hxcpp build tool can be used to explicitly manage the object files.
+
+When compiling normally, `hxcpp` will check the cache size and evict the least used files to maintain the specified cache size. Object files in the cache are grouped into "projects" to make management easier, and the `hxcpp` build tool can be used to explicitly manage the object files.
+
 ```
- haxelib run hxcpp cache [command] [project]
-   Perform command on cache, either on specific project or all. commands:
-    clear -- remove all files from cache
-    days #days -- remove files older than "days"
-    resize #megabytes -- Only keep #megabytes MB
-    list -- list cache usage
-    details -- list cache usage, per file
+haxelib run hxcpp cache [command] [project]
+  Perform command on cache, either on specific project or all. commands:
+   clear -- remove all files from cache
+   days #days -- remove files older than "days"
+   resize #megabytes -- Only keep #megabytes MB
+   list -- list cache usage
+   details -- list cache usage, per file
 ```
-Start with
+
+Start with:
+
 ```
 haxelib run hxcpp cache list
 ```
+
 To get an idea of cache usage.
 
 
 <!--label:target-cpp-ThreadsAndStacks-->
 #### Threads And Stacks
 
-
-
 ##### Conservative, co-operation
-Hxcpp uses conservative stop-the-world GC, where the threads need to co-operate.
- - Threads must not change GC pointers in the collection phase
- - The thread stacks/registers must be scanned for GC pointers
- - Threads must not block without letting the GC system know not to wait for them, otherwise GC blocks until end of block 
-   + call hx::GCEnterBlocking() / gc_enter_blocking() / (cpp.vm.Gc.enterGCFreeZone() from Haxe) before potentially blocking system call (fs,network, etc)
-   + call hx::GCExitBlocking() / gc_exit_blocking() / (cpp.vm.Gc.exitGCFreeZone() from Haxe) before making more GC calls
-   + Might need to pre-allocate buffers
-   + Don't forget the exit blocking on error condition
+
+`hxcpp` uses a conservative stop-the-world GC, where the threads need to co-operate.
+
+ - Threads must not change GC pointers in the collection phase.
+ - The thread stacks/registers must be scanned for GC pointers.
+ - Threads must not block without letting the GC system know not to wait for them, otherwise GC blocks until the end of block.
+   - Call `hx::GCEnterBlocking()` / `gc_enter_blocking()` / `cpp.vm.Gc.enterGCFreeZone()` from Haxe before a potentially blocking system call (filesystem, network, etc).
+   - Call `hx::GCExitBlocking()` / `gc_exit_blocking()` / `cpp.vm.Gc.exitGCFreeZone()` from Haxe before making more GC calls.
+   - Might need to pre-allocate buffers.
+   - Don't forget to exit blocking on error conditions.
 
 ##### Foreign Threads
-When you create a thread from haxe, it starts attached.  Before a non-haxe created thread can interact with hxcpp, some care must be taken, since GC allocations are done using a GC context per thread, and all threads must respect the stopped world.
+
+When you create a thread from Haxe, it starts attached. Before a non-Haxe created thread can interact with `hxcpp`, some care must be taken, since GC allocations are done using a GC context per thread, and all threads must respect the stopped world.
+
   - Foreign threads must be attached-detached
-     - SetTopOfStack(int * inTop,bool inPush)
-     - *inTop* = pointer to top of stack to attach, or '0' to remove stack
-     - *inPush* = usually true.  recursive attachment/detachment
-  - Must not change things when the world is stopped
-  - Must define their stack range for scanning
-  - If you are attached, you may need to enter/exit gc free zone
-  - Must release context when done, if no more calls are going to be made
-  - Make sure local variables are covered in stack
-    - compiler may reorder, so be careful
-  - Read documentation because some things, eg audio callbacks, happen on other threads
-  - You can use other techniques, eg
-     - create a haxe thread, which blocks waiting for signal
-     - foreign thread generates request and signals haxe thread
-     - haxe thread performs job and generates data then signals foreign thread
-     - foreign picks up data and carries on
-
-
-
+     - `SetTopOfStack(int * inTop,bool inPush)`
+     - `inTop` - pointer to top of stack to attach, or `0` to remove stack.
+     - `inPush` - usually `true`. Recursive attachment/detachment.
+  - Must not change things when the world is stopped.
+  - Must define their stack range for scanning.
+  - If you are attached, you may need to enter/exit GC-free zone.
+  - Must release context when done, if no more calls are going to be made.
+  - Make sure local variables are covered in the stack.
+    - Compiler may reorder, so be careful.
+  - Read documentation because some things, e.g. audio callbacks, happen on other threads.
+  - You can use other techniques, e.g.:
+     - Create a Haxe thread, which blocks waiting for a signal.
+     - Foreign thread generates request and signals Haxe thread.
+     - Haxe thread performs job and generates data then signals foreign thread.
+     - Foreign thread picks up data and carries on.
 
 ##### Top of Stack
 
- - To understand how to handle threads, you need a mental picture of the c++ stack
- - The stack usually goes "down".  That is, if the first stack location is 10000, the next one will be 9999 etc.
- - Historical, but consistent.  Except for emscripten which goes up - but still use same terminology/picture, just change the less-thans to greater-thans in code.
+ - To understand how to handle threads, you need a mental picture of the C++ stack.
+ - The stack usually grows "down". That is, if the first stack location is 10000, the next one will be 9999 etc.
+ - Historical, but consistent. Except for `emscripten` which goes up - but still use same terminology/picture, just change the less-thans to greater-thans in code.
 
 Say the system starts each program stack at 10000, the stack might look like this, with local variables and arguments pushed on the stack:
 
@@ -1660,7 +1788,8 @@ Say the system starts each program stack at 10000, the stack might look like thi
  9980  int     argc
 ```
 
-Hxcpp then runs it main code, which starts with the macro HX_TOP_OF_STACK, which expands to something like:
+`hxcpp` then runs the main code, which starts with the macro `HX_TOP_OF_STACK`, which expands to something like:
+
 ```
    int t0 = 99;
    hx::SetTopOfStack(&t0,false);
@@ -1678,8 +1807,7 @@ Hxcpp then runs it main code, which starts with the macro HX_TOP_OF_STACK, which
     records '9976' as top of stack for this thread
 ```
 
-Later, many generated functions deep, `__hxcpp_main` generates an allocation call which
-triggers a collection
+Later, many generated functions deep, `__hxcpp_main` generates an allocation call which triggers a collection.
 
 ```
  ...
@@ -1694,7 +1822,8 @@ triggers a collection
 
 ```
 
-Enter/exit use similar technique, where the registers are captured and the bottomOfStack is 'locked-in' when the "enter gc free zone" call is made.
+Enter/exit use a similar technique, where the registers are captured and the `bottomOfStack` is 'locked-in' when the "enter GC-free zone" call is made.
+
 ```
  8100  Array<Bullet>   bullets
        -- EnterGCFreeZone --
@@ -1705,13 +1834,11 @@ Enter/exit use similar technique, where the registers are captured and the botto
       * any changes here will not affect GC
 ```
 
-Now, when another thread does a collection, the gc-free thread can be scanned from 8088 to 9976, regardless of any stuff happening lower dowsn the stack.
-
+Now, when another thread performs a collection, the GC-free thread can be scanned from 8088 to 9976, regardless of any stuff happening lower down the stack.
 
 ##### Not Called From Main 
 
-Top of stack can be tricky to get right when a gui framework does not really have a "main".
-
+Top of stack can be tricky to get right when a GUI framework does not really have a "main".
 
 ```
  10000 
@@ -1730,34 +1857,29 @@ Top of stack can be tricky to get right when a gui framework does not really hav
           return;
 ```
 
-Later, the haxeOnFrame callback is trigger, but not "below" `__hxcpp_main`
+Later, the `haxeOnFrame` callback is triggered, but not "below" `__hxcpp_main`
 
 ```
  9800  -- haxeOnFrame ---
      // Top of stack will be below bottom of stack.
-
 ```
 
 Solutions:
+
   - Make sure you get in at top of main
-    + may scan too much?
-  - Ratchet up top-of-stack in callbacks, inForce = false
-    + gc_set_top_of_stack(void * inTopOfStack,bool inForce);
-  - Detach main thread after hxcpp_main and reattach each callback
-    + android solution because render callbacks happen on different threads
-    + gc_set_top_of_stack(&base,true); // attach
-    + gc_set_top_of_stack(0,true); // detach
-
-
+    - may scan too much?
+  - Ratchet up top-of-stack in callbacks, `inForce = false`
+    - `gc_set_top_of_stack(void * inTopOfStack,bool inForce);`
+  - Detach main thread after `hxcpp_main` and reattach each callback
+    - Android solution because render callbacks happen on different threads
+    - `gc_set_top_of_stack(&base,true);` - attach
+    - `gc_set_top_of_stack(0,true);` - detach
 
 ##### Debugging.
-  - in debug mode, hxcpp will check for calls from unattached threads
-  - hxcpp can log conservative ranges.  With a native debugger you can check the address of
-     your local variables and ensure they are included.
-  - hxcpp will scan native objects on the stack, but will not follow non-haxe pointers to other objects, so additional GC roots may be required.
 
-
-
+  - In debug mode, `hxcpp` will check for calls from unattached threads.
+  - `hxcpp` can log conservative ranges. With a native debugger you can check the address of your local variables and ensure they are included.
+  - `hxcpp` will scan native objects on the stack, but will not follow non-Haxe pointers to other objects, so additional GC roots may be required.
 
 
 
@@ -1955,14 +2077,34 @@ public virtual bool isInt(object v) {
 
 
 
-
-
 <!--label:target-python-->
 ### Python
 
+Haxe supports compilation to Python 3.3+ code.
+
 <!--subtoc-->
 
+<!--label:target-python-getting-started-->
+#### Getting started with Haxe/Python
 
+To get started with Haxe/Python, create a new folder and save this class as `Main.hx`.
+
+[code asset](assets/HelloWorld.hx)
+
+To compile, either run the following from the command line:
+
+```hxml
+haxe --python hello.py --main Main
+```
+
+Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml file should be in the same directory as the example class.
+
+```hxml
+--python hello.py
+--main Main
+```
+
+The compiler outputs a file called `hello.py` in the current folder, which can be executed with `python hello.py` (or `python3 hello.py` in case Python 2 is the default on the system) from the command line.
 
 <!--label:target-lua-->
 ### Lua
@@ -2092,11 +2234,76 @@ that multireturn variable handling only carries as much overhead as needed.
 
 
 
-
-
 <!--label:target-hl-->
 ### HashLink
 
+##### since Haxe 3.4.0
+
+Haxe supports compilation to HashLink bytecode or HashLink/C code. [HashLink](https://hashlink.haxe.org/) is a virtual machine designed for Haxe.
+
 <!--subtoc-->
 
+<!--label:target-hl-getting-started-->
+#### Getting started with Haxe/HashLink
+
+To get started with Haxe/HashLink, create a new folder and save this class as `Main.hx`.
+
+[code asset](assets/HelloWorld.hx)
+
+To compile, either run the following from the command line:
+
+```hxml
+haxe --hl hello.hl --main Main
+```
+
+Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml file should be in the same directory as the example class.
+
+```hxml
+--hl hello.hl
+--main Main
+```
+
+The compiler outputs a file called `hello.hl` in the current folder, which can be executed with `hl hello.hl` from the command line.
+
+##### More information
+
+- [Haxe/HashLink API documentation](https://api.haxe.org/hl/)
+
+<!--label:target-hl-c-compilation-->
+#### HashLink/C Compilation
+
+Haxe supports two modes of compilation for HashLink:
+
+ - Compilation to HashLink bytecode. This mode has a very fast compilation time, so it is suitable for daily development.
+ - Compilation to HashLink/C code, compiled with a native compiler to a regular executable. This mode results in the best performance, so it is suitable for final releases.
+
+##### HashLink bytecode
+
+Compiling to HashLink bytecode is achieved by specifying a `.hl` output in the `--hl` argument:
+
+```
+haxe --main Main --hl output.hl
+```
+
+This produces a single `output.hl` bytecode file, which can be executed with the HashLink JIT virtual machine with:
+
+```
+hl output.hl
+```
+
+##### HashLink/C code
+
+Haxe code can also be compiled to HashLink/C code by specifying `.c` output in the `--hl` argument:
+
+```
+haxe --main Main --hl out/main.c
+```
+
+This produces files in the `out` directory, which can be compiled to a native executable with a C compiler such as `gcc`.
+
+```
+gcc -O3 -o hello -std=c++ -I out out/main.c -lhl [-L/path/to/required/hdll]
+```
+
+Note that during native compilation, the HL library must be linked. This library is available in binary distributions of HashLink, or can be obtained during compilation of [HashLink from source](https://github.com/HaxeFoundation/hashlink).
 
