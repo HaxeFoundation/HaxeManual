@@ -105,8 +105,8 @@ haxe --js main-javascript.js --main Main
 Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml file should be in the same directory as the example class.
 
 ```hxml
---js main-javascript.js
---main Main
+-js main-javascript.js
+-main Main
 ```
 
 The output will be a main-javascript.js, which creates and adds a clickable button to the document body.
