@@ -731,7 +731,7 @@ Furthermore, abstracts can be instantiated and used just like classes:
 
 [code asset](assets/MyAbstract.hx#L7-L12)
 
-As mentioned before, abstracts are a compile-time feature, so it is interesting to see what the above actually generates. A suitable target for this is JavaScript, which tends to generate concise and clean code. Compiling the above (using `haxe --main MyAbstract --js myabstract.js`) shows this JavaScript code:
+As mentioned before, abstracts are a compile-time feature, so it is interesting to see what the above actually generates. A suitable target for this is JavaScript, which tends to generate concise and clean code. Compiling the above (using `haxe -main MyAbstract -js myabstract.js`) shows this JavaScript code:
 
 ```js
 var a = 12;

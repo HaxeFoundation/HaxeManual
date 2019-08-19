@@ -99,14 +99,14 @@ class Main {
 To compile, either run the following from the command line:
 
 ```hxml
-haxe --js main-javascript.js --main Main
+haxe -js main-javascript.js -main Main
 ```
 
 Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml file should be in the same directory as the example class.
 
 ```hxml
---js main-javascript.js
---main Main
+-js main-javascript.js
+-main Main
 ```
 
 The output will be a main-javascript.js, which creates and adds a clickable button to the document body.
@@ -488,16 +488,16 @@ class Main {
 To compile this, either run the following from the command line:
 
 ```hxml
-haxe --swf main-flash.swf --main Main --swf-version 15 --swf-header 960:640:60:f68712
+haxe -swf main-flash.swf -main Main -swf-version 15 -swf-header 960:640:60:f68712
 ```
 
 Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml file should be in the same directory as the example class.
 
 ```hxml
---swf main-flash.swf
---main Main
---swf-version 15
---swf-header 960:640:60:f68712
+-swf main-flash.swf
+-main Main
+-swf-version 15
+-swf-header 960:640:60:f68712
 ```
 
 The output will be a main-flash.swf with size 960x640 pixels at 60 FPS with an orange background color and a gray square in the center.
@@ -552,8 +552,8 @@ class MyBitmapData extends BitmapData { }
 
 To embed external `.swf` or `.swc` libraries, use the following [compilation options](https://haxe.org/documentation/introduction/compiler-usage.html):
 
-* `--swf-lib <file>` Embeds the SWF library in the compiled SWF.
-* `--swf-lib-extern <file>` Adds the SWF library for type checking but doesn't include it in the compiled SWF.
+* `-swf-lib <file>` Embeds the SWF library in the compiled SWF.
+* `-swf-lib-extern <file>` Adds the SWF library for type checking but doesn't include it in the compiled SWF.
 
 The standard compilation options also provide more Haxe sources to be added to the project:
 
@@ -572,11 +572,11 @@ Metadata | Description
  --- | ---
 @:bind  |  Override Swf class declaration 
 @:bitmap _(Bitmap file path)_  |  _Embeds given bitmap data into the class (must extend <code>flash.display.BitmapData</code>) 
-@:debug  |  Forces debug information to be generated into the Swf even without <code>--debug</code> 
+@:debug  |  Forces debug information to be generated into the Swf even without <code>-debug</code> 
 @:file(File path)  |  Includes a given binary file into the target Swf and associates it with the class (must extend <code>flash.utils.ByteArray</code>) 
 @:font _(TTF path Range String)_  |  Embeds the given TrueType font into the class (must extend <code>flash.text.Font</code>) 
 @:getter _(Class field name)_  |  Generates a native getter function on the given field  
-@:noDebug |  Does not generate debug information into the Swf even if <code>--debug</code> is set 
+@:noDebug |  Does not generate debug information into the Swf even if <code>-debug</code> is set 
 @:ns  |  Internally used by the Swf generator to handle namespaces 
 @:setter _(Class field name)_  |  Generates a native setter function on the given field 
 @:sound _(File path)_  |  Includes a given _.wav_ or _.mp3_ file into the target Swf and associates it with the class (must extend <code>flash.media.Sound</code>)
@@ -602,14 +602,14 @@ To get started with Haxe/Neko, create a new folder and save this class as `Main.
 To compile, either run the following from the command line:
 
 ```hxml
-haxe --neko hello.n --main Main
+haxe -neko hello.n -main Main
 ```
 
 Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml file should be in the same directory as the example class.
 
 ```hxml
---neko hello.n
---main Main
+-neko hello.n
+-main Main
 ```
 
 The compiler outputs a binary file called `hello.n` in the current folder, which can be executed with `neko hello.n` from the command line.
@@ -631,14 +631,14 @@ To get started with Haxe/PHP, create a new folder and save this class as `Main.h
 To compile, either run the following from the command line:
 
 ```hxml
-haxe --php bin --main Main
+haxe -php bin -main Main
 ```
 
 Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml file should be in the same directory as the example class.
 
 ```hxml
---php bin
---main Main
+-php bin
+-main Main
 ```
 
 The compiler outputs in the given **bin**-folder, which contains the generated PHP classes that prints the traced message when you run it.
@@ -716,7 +716,7 @@ See [Defines](target-cpp-defines) for a list of standard defines.
 The easiest way to change the `hxcpp` build environment is to pass the defines though the Haxe command line using `-D`. Key-value pairs can also be passed this way, e.g.:
 
 ```
-haxe --main Main --cpp cpp -D android -D static_link -D PLATFORM=android-9
+haxe -main Main -cpp cpp -D android -D static_link -D PLATFORM=android-9
 ````
 
 Here:
@@ -1333,7 +1333,7 @@ Compilers are run over each of the changed files in each of the file groups in a
 
 - `getversion` - Sets the command used to obtain the version of the compiler.  This is used for checking if the compiler has changed, and therefore whether the objects need recompiling.
 
-    - `value` - command to run. It defaults to `(compiler) --version` which works for `gcc`-based compilers. Setting it to an empty value will disable caching.
+    - `value` - command to run. It defaults to `(compiler) -version` which works for `gcc`-based compilers. Setting it to an empty value will disable caching.
 
 ```xml
 <getversion value="command" />
@@ -1564,7 +1564,7 @@ First, invoke the Haxe compiler with the `-v` flag. This gives quite a bit of de
 haxelib run hxcpp Build.xml haxe -Dhaxe3="1" -Dhaxe_ver="4.000" -Dhxcpp_api_level="332" -Dsource-header="Generated by Haxe 4.0.0" -I"" -I"C:/Users/Hugh/dev/haxe/std/cpp/_std/" -I"C:/Users/Hugh/dev/haxe/std/"
 ```
 
-To use this, first change directories to your output directory. This is the directory specified in the `--cpp` Haxe compiler option. Then copy and paste the `haxelib run ...` command into a shell, command or batch file.
+To use this, first change directories to your output directory. This is the directory specified in the `-cpp` Haxe compiler option. Then copy and paste the `haxelib run ...` command into a shell, command or batch file.
 
 <!--label:target-cpp-build_xml-XmlInjection-->
 ##### Xml Injection
@@ -1922,14 +1922,14 @@ To compile Haxe to Java we need two obvious prerequisites installed:
 Run the following from the command line:
 
 ```hxml
-haxe --java bin --main Main
+haxe -java bin -main Main
 ```
 
 Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml-file should be in the same directory as the example class.
 
 ```hxml
---java bin
---main Main
+-java bin
+-main Main
 ```
 
 The compiler outputs in the given **bin**-folder, which contains the generated sources / .jar files which prints the traced message when you execute it. 
@@ -1966,10 +1966,10 @@ To compile Haxe to C# we need two obvious prerequisites installed:
 * [hxcs haxelib](http://lib.haxe.org/p/hxcs). This is the support library for the C# backend of the Haxe compiler.
 * [.NET development framework (either Microsoft.NET or Mono)](https://www.microsoft.com/net)
 
-After that we can compile to C# using the `--cs` option from either the command line or an hxml-file:
+After that we can compile to C# using the `-cs` option from either the command line or an hxml-file:
 
 ```hxml
-haxe --cs out --main Main
+haxe -cs out -main Main
 ```
 
 The compiler will output C# sources into  **out/src** folder, then call C# compiler to build  **Main.exe** file into  **out/bin** folder.
@@ -1992,7 +1992,7 @@ We can make Haxe use a custom set of DLL files as standard .NET framework. To do
 
 * .NET version (set by `-D net-ver=xx`, defaults to `20` as described above)
 * .NET target (by default set to `net`, but could be changed using `-D net-target=xxx`, where `xxx` could be `micro`, `compact` or some other).
-* .NET std path (set by `--net-std` option, by default points to netlib directory inside hxcs library)
+* .NET std path (set by `-net-std` option, by default points to netlib directory inside hxcs library)
 
 The resulting search path will be `<net_std_path>/<net_target>-<net_ver>/`, taking in the consideration default values described above, without any specific configuration haxe will load all .NET DLL files found in `<hxcs_install_path>/netlib/net-20/`.
 
@@ -2006,7 +2006,7 @@ Haxe will load all .NET DLL files found in `/dotnet/micro-35/`.
 
 ##### Using external libraries
 
-Haxe can directly load .NET assembly files (.DLL) and convert its type definitions for use as Haxe types. To load a .NET assembly, use `--net-lib library.dll` compiler option. Haxe will then automatically parse types defined in that assembly file and make them available for import as Haxe types.
+Haxe can directly load .NET assembly files (.DLL) and convert its type definitions for use as Haxe types. To load a .NET assembly, use `-net-lib library.dll` compiler option. Haxe will then automatically parse types defined in that assembly file and make them available for import as Haxe types.
 
 Some changes are performed to type naming of C# classes to make them fit into Haxe type system, namely:
 
@@ -2021,7 +2021,7 @@ Some changes are performed to type naming of C# classes to make them fit into Ha
 
 Besides `-D net-ver` and `-D net-target`:
 
-* `-D dll` compile to a .NET assembly instead of an executable file. Added automatically when no `--main` is specified.
+* `-D dll` compile to a .NET assembly instead of an executable file. Added automatically when no `-main` is specified.
 * `-D real-position` don't generate #line directives that map C# expression positions to original .hx files. Useful for tracking down issues related to code generation.
 * `-D no-root` generate package-less haxe types in the haxe.root namespace to avoid conflicts with other types in the root namespace
 * `-D erase-generics` fully erase type parameters from generated C# files and generate non-generic classes. This is useful in some cases, like working with .NET Micro Framework or preventing generics-related issues with Unity3D AOT compiler.
@@ -2094,14 +2094,14 @@ To get started with Haxe/Python, create a new folder and save this class as `Mai
 To compile, either run the following from the command line:
 
 ```hxml
-haxe --python hello.py --main Main
+haxe -python hello.py -main Main
 ```
 
 Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml file should be in the same directory as the example class.
 
 ```hxml
---python hello.py
---main Main
+-python hello.py
+-main Main
 ```
 
 The compiler outputs a file called `hello.py` in the current folder, which can be executed with `python hello.py` (or `python3 hello.py` in case Python 2 is the default on the system) from the command line.
@@ -2164,7 +2164,7 @@ class Main {
 
 To compile, run the following:
 ```hxml
-haxe --lua out.lua --main Main
+haxe -lua out.lua -main Main
 ```
 
 ##### More information
@@ -2253,14 +2253,14 @@ To get started with Haxe/HashLink, create a new folder and save this class as `M
 To compile, either run the following from the command line:
 
 ```hxml
-haxe --hl hello.hl --main Main
+haxe -hl hello.hl -main Main
 ```
 
 Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml file should be in the same directory as the example class.
 
 ```hxml
---hl hello.hl
---main Main
+-hl hello.hl
+-main Main
 ```
 
 The compiler outputs a file called `hello.hl` in the current folder, which can be executed with `hl hello.hl` from the command line.
@@ -2279,10 +2279,10 @@ Haxe supports two modes of compilation for HashLink:
 
 ##### HashLink bytecode
 
-Compiling to HashLink bytecode is achieved by specifying a `.hl` output in the `--hl` argument:
+Compiling to HashLink bytecode is achieved by specifying a `.hl` output in the `-hl` argument:
 
 ```
-haxe --main Main --hl output.hl
+haxe -main Main -hl output.hl
 ```
 
 This produces a single `output.hl` bytecode file, which can be executed with the HashLink JIT virtual machine with:
@@ -2293,10 +2293,10 @@ hl output.hl
 
 ##### HashLink/C code
 
-Haxe code can also be compiled to HashLink/C code by specifying `.c` output in the `--hl` argument:
+Haxe code can also be compiled to HashLink/C code by specifying `.c` output in the `-hl` argument:
 
 ```
-haxe --main Main --hl out/main.c
+haxe -main Main -hl out/main.c
 ```
 
 This produces files in the `out` directory, which can be compiled to a native executable with a C compiler such as `gcc`.

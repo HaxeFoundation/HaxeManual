@@ -3,7 +3,7 @@
 `@:access` | &lt;Target path> | Forces private access to package, type or field. See [lf-access-control](lf-access-control). | all
 `@:allow` | &lt;Target path> | Allows private access from package, type or field. See [lf-access-control](lf-access-control). | all
 `@:analyzer` |  | Used to configure the static analyzer. | all
-`@:annotation` |  | Annotation (`@interface`) definitions on `--java-lib` imports will be annotated with this metadata. Has no effect on types compiled by Haxe. | java
+`@:annotation` |  | Annotation (`@interface`) definitions on `-java-lib` imports will be annotated with this metadata. Has no effect on types compiled by Haxe. | java
 `@:arrayAccess` |  | Allows array access on an abstract. See [types-abstract-array-access](types-abstract-array-access). | all
 `@:astSource` |  | Filled by the compiler with the parsed expression of the field. | all
 `@:autoBuild` | &lt;Build macro call> | Extends `@:build` metadata to all extending and implementing classes. See [macro-auto-build](macro-auto-build). | all
@@ -23,15 +23,15 @@
 `@:cppFileCode` |  | Code to be injected into generated cpp file. | cpp
 `@:cppInclude` |  | File to be included in generated cpp file. | cpp
 `@:cppNamespaceCode` |  |  | cpp
-`@:dce` |  | Forces dead code elimination even when `--dce full` is not specified. See [cr-dce](cr-dce). | all
-`@:debug` |  | Forces debug information to be generated into the SWF even without `--debug`. | flash
+`@:dce` |  | Forces dead code elimination even when `-dce full` is not specified. See [cr-dce](cr-dce). | all
+`@:debug` |  | Forces debug information to be generated into the SWF even without `-debug`. | flash
 `@:decl` |  |  | cpp
-`@:delegate` |  | Automatically added by `--net-lib` on delegates. | cs
+`@:delegate` |  | Automatically added by `-net-lib` on delegates. | cs
 `@:depend` |  |  | cpp
 `@:deprecated` |  | Mark a type or field as deprecated. | all
 `@:eager` |  | Forces typedefs to be followed early. | all
 `@:enum` |  | Defines finite value sets to abstract definitions. See [types-abstract-enum](types-abstract-enum). | all
-`@:event` |  | Automatically added by `--net-lib` on events. Has no effect on types compiled by Haxe. | cs
+`@:event` |  | Automatically added by `-net-lib` on events. Has no effect on types compiled by Haxe. | cs
 `@:expose` | &lt;name> | Includes the class or field in Haxe exports (default name is the classpath). See [target-javascript-expose](target-javascript-expose). | js, lua
 `@:extern` |  | Marks the field as extern so it is not generated. | all
 `@:file` | &lt;File path> | Includes a given binary file into the target SWF and associates it with the class (must extend `flash.utils.ByteArray`). See [target-flash-resources](target-flash-resources). | flash
@@ -79,7 +79,7 @@
 `@:nativeProperty` |  | Use native properties which will execute even with dynamic usage. | cpp
 `@:nativeStaticExtension` |  | Converts static function syntax into member call. | cpp
 `@:noCompletion` |  | Prevents the compiler from suggesting completion on this field or type. See [cr-completion](cr-completion). | all
-`@:noDebug` |  | Does not generate debug information even if `--debug` is set. | flash, cpp
+`@:noDebug` |  | Does not generate debug information even if `-debug` is set. | flash, cpp
 `@:noDoc` |  | Prevents a type from being included in documentation generation. | all
 `@:noImportGlobal` |  | Prevents a static field from being imported with `import Class.*`. | all
 `@:nonVirtual` |  | Declares function to be non-virtual in cpp. | cpp
