@@ -16,10 +16,10 @@ The second question usually comes down to providing an argument specifying the d
 
 **Input:**
 
-* `-p <path>` (or `--class-path <path>`) Add a class path where `.hx` source files or packages (sub-directories) can be found.
-* `-L <library_name>` (or `--library <library_name>`) Add a [Haxelib](haxelib) library. By default the most recent version in the local Haxelib repository is used. To require a specific library version use `-L library_name:version`. To require a version from git use `-L library_name:git:https://github.com/user/project.git#commit` where the optional #commit can be a branch, tag or commit hash.
-* `-m <dot_path>` (or `-main <dot_path>`) Set the main class.
-* `-D <var[=value]>` (or `--define <var[=value]>`) Define a [conditional compilation flag](lf-condition-compilation).
+* `-cp <path>` Add a class path where `.hx` source files or packages (sub-directories) can be found.
+* `-lib <library_name>` Add a [Haxelib](haxelib) library. By default the most recent version in the local Haxelib repository is used. To require a specific library version use `-lib library_name:version`. To require a version from git use `-lib library_name:git:https://github.com/user/project.git#commit` where the optional #commit can be a branch, tag or commit hash.
+* `-main <dot_path>` Set the main class.
+* `-D <var[=value]>` Define a [conditional compilation flag](lf-condition-compilation).
 
 **Output:**
 
@@ -42,10 +42,10 @@ The second question usually comes down to providing an argument specifying the d
 ##### Other global arguments
 
 * `-xml <file>` Generate XML types description. Useful for API documentation generation tools like [Dox](https://github.com/HaxeFoundation/dox).
-* `-v` (or `--verbose`) Turn on verbose mode.
+* `-v` Turn on verbose mode.
 * <code>-dce &lt;std&#124;full&#124;no&gt;</code> Set the [Dead Code Elimination](cr-dce) mode (default `std`).
 * `-debug` Add debug information to the compiled code.
-* `-r <file>[@name]` (or `-resource <file>[@name]`) Add a named resource file.
+* `-resource <file>[@name]` Add a named resource file.
 * `-prompt` Prompt on error.
 * `-cmd <command>` Run the specified shell command after a successful compilation.
 * `--no-traces` Don't compile trace calls in the program.
@@ -58,7 +58,7 @@ The second question usually comes down to providing an argument specifying the d
 * `--macro` Call the given [initialization macro](macro-initialization) before typing anything else.
 * `--wait <host:port>` Wait on the given port for commands to run (see [Completion server](cr-completion-server)).
 * `--connect <host:port>` Connect on the given port and run commands there (see [Completion server](cr-completion-server)).
-* `-C <dir>` (or `--cwd <dir>`) Set current working directory.
+* `--cwd <dir>` Set current working directory.
 
 ##### Target specific arguments
 
@@ -114,7 +114,7 @@ It is possible to supply more arguments after the hxml file, e.g. `haxe build.hx
 This example has a configuration which compiles the class file `website.HomePage.hx` to JavaScript into a file called `bin/homepage.js`, which is located in the `src` class path. And uses full dead code elimination.
 
 ```hxml
---class-path src
+-cp src
 -dce full
 -js bin/homepage.js
 -main website.HomePage
@@ -132,7 +132,7 @@ Hxml configurations allow multiple compilation using these arguments:
 This example has a configuration which compiles three different classes into their own JavaScript files. Each build uses `src` as class path and uses full dead code elimination.
 
 ```hxml
---class-path src
+-cp src
 -dce full
 
 --each
