@@ -60,7 +60,7 @@ When choosing the JavaScript target, only the used Haxe code of the project (and
 You may want to compile Haxe to JavaScript in the following scenarios:
 
 **Client-side JavaScript**
-Interacting with DOM elements. Haxe provides up to date typed interfaces to interact with the Document Object Model, allowing creation and update of DOM elements. 
+Interacting with DOM elements. Haxe provides up-to-date typed interfaces to interact with the Document Object Model, allowing creation and update of DOM elements. 
 
 Haxe can be used together with existing third-party libraries and frameworks, such as jQuery, React or Vue. To access third-party frameworks with a strongly-typed API, there are extern libraries available on [Haxelib](http://lib.haxe.org/t/js/). Alternatively, it is possible to create own externs (see [Using external JavaScript libraries](target-javascript-external-libraries)) or use the dynamic type to access any framework, see [Accessing Target-specific Syntax](target-syntax).
 
