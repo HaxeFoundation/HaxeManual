@@ -12,8 +12,6 @@ matrix:
 
     - env: TARGET=as3
       haxe: 3.4.7
-    - env: TARGET=as3
-      haxe: development
 
     - env: TARGET=js
       haxe: 3.4.7
@@ -49,6 +47,9 @@ matrix:
     - env: TARGET=java
       haxe: 3.4.7
     - env: TARGET=java
+      haxe: development
+
+    - env: TARGET=jvm
       haxe: development
 
     - env: TARGET=python
