@@ -254,9 +254,6 @@ class Child extends Base {
 <!--label:target-javascript-external-libraries-->
 #### Using external JavaScript libraries
 
-##### since Haxe 4.0.0
-
-**Deprecated:** The jQuery and SWFObject externs have been removed from the standard library in Haxe 4. For compatibility purposes they are available in the [hx3compat](https://github.com/HaxeFoundation/hx3compat/) library. See [Haxe 3 Compatibility](std-hx3compat).
 
 The [externs mechanism](lf-externs) provides access to the native APIs in a type-safe manner. It assumes that the defined types exist at run-time but assumes nothing about how and where those types are defined. 
 
@@ -336,7 +333,7 @@ class Test {
 
 Beside externs, [Typedefs](type-system-typedef) can be another great way to name (or alias) a JavaScript type. The major difference between typedefs and externs is that, typedefs are duck-typed but externs are not. Typedefs are suitable for common data structures, e.g. point (`{x:Float, y:Float}`). Use of a point structure typedef for function arguments allows external JavaScript functions to accept point class instances from Haxe or from another JavaScript library. It is also useful for typing JSON objects.
 
-The Haxe Standard Library comes with externs of [jQuery](https://jquery.com/) and [SWFObject](http://blog.deconcept.com/swfobject/). Their version compatibility is summarized as follows:
+**Deprecated:** Since Haxe 4.0.0: The jQuery and SWFObject externs have been removed from the standard library. For compatibility purposes they are available in the [hx3compat](https://github.com/HaxeFoundation/hx3compat/) library. See [Haxe 3 Compatibility](std-hx3compat).
 
 Haxe version | Library               | Externs location 
  --- | --- | ---
