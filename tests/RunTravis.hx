@@ -18,6 +18,7 @@ abstract Target(String) from String to String
 	var Python = "python";
 	var Hl = "hl";
 	var Lua = "lua";
+	var Jvm = "jvm";
 }
 
 @:enum
@@ -285,7 +286,8 @@ class RunTravis
 	}
 
 	static function getCompileArgs(file:String, target:Target):Array<String> {
-		var compileArgs = ["-main", "Main", '-$target', target];
+		var compileArgs = ["-main", "Main", '-$target', target]; 
+		if (target == Jvm) compileArgs = ["-main", "Main", '-java', target, '-D', 'jvm']; 
 		var haxelibs = haxelibs[file];
 		if (haxelibs != null) {
 			for (haxelib in haxelibs) {
