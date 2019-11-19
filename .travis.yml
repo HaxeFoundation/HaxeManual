@@ -13,6 +13,9 @@ matrix:
     - env: TARGET=as3
       haxe: 3.4.7
 
+    - env: TARGET=interp
+      haxe: development
+
     - env: TARGET=js
       haxe: 3.4.7
     - env: TARGET=js
