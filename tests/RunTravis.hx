@@ -19,6 +19,7 @@ abstract Target(String) from String to String
 	var Hl = "hl";
 	var Lua = "lua";
 	var Jvm = "jvm";
+	var Interp = "interp";
 }
 
 @:enum
@@ -286,8 +287,11 @@ class RunTravis
 	}
 
 	static function getCompileArgs(file:String, target:Target):Array<String> {
-		var compileArgs = ["-main", "Main", '-$target', target]; 
-		if (target == Jvm) compileArgs = ["-main", "Main", '-java', target, '-D', 'jvm']; 
+		var compileArgs = switch target {
+			case Jvm: ["-main", "Main", '-java', target, "-D", "jvm"]; 
+			case Interp: ["-main", "Main", "--interp"];
+			case other: ["-main", "Main", '-$target', target]; 
+		}
 		var haxelibs = haxelibs[file];
 		if (haxelibs != null) {
 			for (haxelib in haxelibs) {
