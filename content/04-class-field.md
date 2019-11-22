@@ -336,7 +336,7 @@ Main.main();
 Note that even though we call such kind of fields "variables", inline variables can never
 be reassigned as the value must be known at compile-time to be inlined at the place of usage.
 This makes inline variables a subset of [`final` fields](class-field-final), hence the usage
-of the `final` keyword in the code exampleabove.
+of the `final` keyword in the code example above.
 
 > ##### Trivia: `inline var`
 >
