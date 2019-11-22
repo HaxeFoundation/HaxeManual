@@ -1,5 +1,5 @@
 class Main {
-  static inline var language = "Haxe";
+  static inline final language = "Haxe";
 
   static public function main() {
     trace(language);
