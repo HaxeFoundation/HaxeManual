@@ -333,16 +333,11 @@ Main.main();
 })({});
 ```
 
-Note that even though we call such kind of fields "variables", inline variables can never
-be reassigned as the value must be known at compile-time to be inlined at the place of usage.
-This makes inline variables a subset of [`final` fields](class-field-final), hence the usage
-of the `final` keyword in the code example above.
+Note that even though we call such kind of fields "variables", inline variables can never be reassigned as the value must be known at compile-time to be inlined at the place of usage. This makes inline variables a subset of [`final` fields](class-field-final), hence the usage of the `final` keyword in the code example above.
 
 > ##### Trivia: `inline var`
 >
-> Prior to Haxe 4, there was no `final` keyword, but inline variables feature was present
-> for a long time, just using `var` keyword instead of `final`. Using `inline var` still
-> works in Haxe 4 but might be deprecated in future, because `final` is more appropriate.
+> Prior to Haxe 4, there was no `final` keyword. The inline variables feature however was present for a long time, using `var` keyword instead of `final`. Using `inline var` still works in Haxe 4 but might be deprecated in the future, because `final` is more appropriate.
 
 <!--label:class-field-dynamic-->
 #### Dynamic
