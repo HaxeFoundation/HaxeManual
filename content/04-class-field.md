@@ -337,7 +337,7 @@ Note that even though we call such kind of fields "variables", inline variables 
 
 > ##### Trivia: `inline var`
 >
-> Prior to Haxe 4, there was no `final` keyword. The inline variables feature however was present for a long time, using `var` keyword instead of `final`. Using `inline var` still works in Haxe 4 but might be deprecated in the future, because `final` is more appropriate.
+> Prior to Haxe 4, there was no `final` keyword. The inline variables feature however was present for a long time, using the `var` keyword instead of `final`. Using `inline var` still works in Haxe 4 but might be deprecated in the future, because `final` is more appropriate.
 
 <!--label:class-field-dynamic-->
 #### Dynamic
