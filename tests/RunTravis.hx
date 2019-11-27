@@ -1,5 +1,6 @@
 package;
 
+import sys.io.Process;
 import sys.FileSystem;
 import sys.io.File;
 using StringTools;
@@ -55,25 +56,32 @@ enum InsertIn
 
 class RunTravis
 {
-	/** Examples that are expected to fail / *should* produce a compiler error. */
-	static var requiredFailures = [
-		"AbstractExposeTypeOperations.hx",
-		"DynamicInferenceIssue.hx",
-		"ExprOf.hx",
-		"Extractor5.hx",
-		"FunctionTypeParameter.hx",
-		"GetterSetter2.hx",
-		"ImplicitTransitiveCast.hx",
-		"Property4.hx",
-		"SelectiveFunction.hx",
-		"SwitchEnum.hx",
-		"Test.hx",
-		"Variance.hx",
-		"Visibility.hx",
-		"Visibility2.hx",
-		"BindOptional.hx",
+	/**
+	 * Examples that are expected to fail / *should* produce a compiler error.
+	 * `null` means fail on all targets,
+	 * Target list means fail only on specified targets with error messages containing specified strings.
+	 */
+	static var requiredFailures:Map<String,Null<Map<Target,String>>> = [
+		"AbstractExposeTypeOperations.hx" => null,
+		"DynamicInferenceIssue.hx" => null,
+		"ExprOf.hx" => null,
+		"Extractor5.hx" => null,
+		"FunctionTypeParameter.hx" => null,
+		"GetterSetter2.hx" => null,
+		"ImplicitTransitiveCast.hx" => null,
+		"Property4.hx" => null,
+		"SelectiveFunction.hx" => null,
+		"SwitchEnum.hx" => null,
+		"Test.hx" => null,
+		"Variance.hx" => null,
+		"Visibility.hx" => null,
+		"Visibility2.hx" => null,
+		"BindOptional.hx" => null,
+		"SafeCast.hx" => [Interp => 'Uncaught exception Class cast error'],
+		"ExternNative.hx" => [Interp => 'Instance constructor not found: A'],
+		"ImplementsDynamic.hx" => [Interp => 'Instance constructor not found: ImplementsDynamic'],
 		#if (haxe_ver >= 4)
-		"DynamicResolve.hx", // this fails on Haxe4
+		"DynamicResolve.hx" => null, // this fails on Haxe4
 		#end
 	];
 
@@ -177,6 +185,11 @@ class RunTravis
 		"HaxelibRandom.hx" => ["random"]
 	];
 
+	static var resources = [
+		"TemplateResource.hx" => ["sample.mtt" => "my_sample"],
+		"ResourceGetBytes.hx" => ["welcome.txt" => "welcome"]
+	];
+
 	static var helperFile:String;
 
 	public static function main():Void {
@@ -212,7 +225,6 @@ class RunTravis
 			Sys.command("haxelib", ["git", "hxcpp", "https://github.com/HaxeFoundation/hxcpp"]),
 			runCommandInDir(hxcppDir + "tools/run", "haxe", ["compile.hxml"]),
 			runCommandInDir(hxcppDir + "tools/hxcpp", "haxe", ["compile.hxml"]),
-			runCommandInDir(hxcppDir + "project", "neko", ["build.n"])
 		]);
 		#else
 		return Sys.command("haxelib", ["install", "hxcpp"]);
@@ -270,27 +282,62 @@ class RunTravis
 		if (additional != null)
 			File.copy(additional, '$dir/$additional');
 
+		switch resources.get(file) {
+			case null:
+			case resources:
+				for(file in resources.keys())
+					File.copy('resources/$file', '$dir/$file');
+		}
+
 		return runInDir(dir, function() {
 			return hasExpectedResult(file, target);
 		});
 	}
 
 	static function hasExpectedResult(file:String, target:Target):ExitCode {
-		var expectedResult:ExitCode = requiredFailures.indexOf(file) == -1;
-		var compileResult = Sys.command("haxe", getCompileArgs(file, target));
+		var failure = requiredFailures[file];
+		var expectedToFail = (failure == null && requiredFailures.exists(file)) || (failure != null && failure.exists(target));
+		var expectedResult:ExitCode = !expectedToFail;
+		var p = new Process("haxe", getCompileArgs(file, target));
+		var compileResult = p.exitCode();
 
-		var result = compileResult == expectedResult;
-		if (!result)
+		var stderr = p.stderr.readAll().toString();
+		var stdout = p.stdout.readAll().toString();
+
+		inline function printFail(?expectedMsg:String) {
+			expectedMsg = expectedMsg == null ? '' : expectedMsg = ' with message "$expectedMsg"';
 			printWithColor('Unexpected result for $file:' +
-				'$compileResult, expected $expectedResult', Color.Red);
-		return result;
+					'$compileResult, expected $expectedResult$expectedMsg', Color.Red);
+		}
+
+		switch [expectedResult, compileResult] {
+			case [_, null]:
+				throw 'Unexpected compilation process behavior';
+			case [Success, 1]:
+				Sys.stderr().writeString(stderr);
+				printFail();
+				return false;
+			case [Failure, 0]:
+				printFail();
+				return false;
+			case [Failure, 1] if(failure != null && failure.exists(target)):
+				var expectedMsg = failure[target];
+				var success = stderr.indexOf(expectedMsg) >= 0;
+				if(!success) {
+					Sys.stderr().writeString(stderr);
+					printFail(expectedMsg);
+				}
+				return success;
+			case _:
+				return true;
+		}
 	}
 
 	static function getCompileArgs(file:String, target:Target):Array<String> {
 		var compileArgs = switch target {
-			case Jvm: ["-main", "Main", '-java', target, "-D", "jvm"]; 
+			case Jvm: ["-main", "Main", '-java', target, "-D", "jvm"];
 			case Interp: ["-main", "Main", "--interp"];
-			case other: ["-main", "Main", '-$target', target]; 
+			case other: ["-main", "Main", '-$target', target];
 		}
 		var haxelibs = haxelibs[file];
 		if (haxelibs != null) {
@@ -299,6 +346,16 @@ class RunTravis
 				compileArgs.push(haxelib);
 			}
 		}
+
+		switch resources.get(file) {
+			case null:
+			case resources:
+				for(file => name in resources) {
+					compileArgs.push("--resource");
+					compileArgs.push('$file@$name');
+				}
+		}
+
 		return compileArgs;
 	}
 
