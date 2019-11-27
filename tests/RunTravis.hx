@@ -225,7 +225,6 @@ class RunTravis
 			Sys.command("haxelib", ["git", "hxcpp", "https://github.com/HaxeFoundation/hxcpp"]),
 			runCommandInDir(hxcppDir + "tools/run", "haxe", ["compile.hxml"]),
 			runCommandInDir(hxcppDir + "tools/hxcpp", "haxe", ["compile.hxml"]),
-			runCommandInDir(hxcppDir + "project", "neko", ["build.n"])
 		]);
 		#else
 		return Sys.command("haxelib", ["install", "hxcpp"]);
