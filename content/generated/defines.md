@@ -31,7 +31,7 @@
 `file_extension` |  | Output filename extension for cpp source code. | cpp
 `flash_strict` |  | More strict typing for flash target. | flash
 `flash_use_stage` |  | Keep the SWF library initial stage. | flash
-`force_lib_check` |  | Force the compiler to check `-net-lib` and `–-java-lib` added classes (internal). | cs, java
+`force_lib_check` |  | Force the compiler to check `--net-lib` and `–-java-lib` added classes (internal). | cs, java
 `force_native_property` |  | Tag all properties with `:nativeProperty` metadata for 3.1 compatibility. | cpp
 `gencommon_debug` |  | GenCommon internal. | cs, java
 `haxe3compat` |  | Gives warnings about transition from Haxe 3.x to Haxe 4.0. | all

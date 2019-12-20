@@ -604,7 +604,7 @@ Use the [Template.globals](https://api.haxe.org/haxe/Template.html#globals) obje
 ##### Using resources
 
 To separate the content from the code, consider using the [resource embedding system](cr-resources). 
-Place the template-content in a new file called `sample.mtt`, add `-resource sample.mtt@my_sample` to the compiler arguments and retrieve the content using `haxe.Resource.getString`.
+Place the template-content in a new file called `sample.mtt`, add `--resource sample.mtt@my_sample` to the compiler arguments and retrieve the content using `haxe.Resource.getString`.
 [code asset](assets/TemplateResource.hx)
 
 When running the template system on the server side, you can simply use `neko.Lib.print` or `php.Lib.print` instead of trace to display the HTML template to the user.
@@ -1077,7 +1077,7 @@ class Client {
 }
 ```
 
-To make this work for the Neko target, set up a Neko Web Server, point the url in the Client to `"http://localhost2000/remoting.n"` and compile the Server using `-main Server -neko remoting.n`.
+To make this work for the Neko target, set up a Neko Web Server, point the url in the Client to `"http://localhost2000/remoting.n"` and compile the Server using `--main Server --neko remoting.n`.
 
 ##### Error handling
 
@@ -1196,15 +1196,15 @@ This is an example showing how to run your unit tests (on Neko and Node.js) afte
 ```hxml 
 -p source/main/haxe
 -p source/test/haxe
--main your.package.TestRunnerMain
+--main your.package.TestRunnerMain
 --each
 
--neko output/neko/test.n
--cmd neko ./output/neko/test.n
+--neko output/neko/test.n
+--cmd neko ./output/neko/test.n
 --next
 
--js output/javascript/test.js
--cmd node ./output/javascript/test.js
+--js output/javascript/test.js
+--cmd node ./output/javascript/test.js
 ``` 
 
 ##### Related content

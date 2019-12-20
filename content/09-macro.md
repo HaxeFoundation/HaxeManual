@@ -383,14 +383,14 @@ class Main {
 }
 ```
 
-After starting the completion server with `haxe --wait 6000`, we perform a build with `haxe --connect 6000 -main Main --no-output`. The first time the congratulatory message is printed during compilation. If we execute the same command again, however, it is not - the `firstBuild` variable retains the value `false` from the previous build.
+After starting the completion server with `haxe --wait 6000`, we perform a build with `haxe --connect 6000 --main Main --no-output`. The first time the congratulatory message is printed during compilation. If we execute the same command again, however, it is not - the `firstBuild` variable retains the value `false` from the previous build.
 
 
 
 <!--label:macro-initialization-->
 ### Initialization Macros
 
-Initialization macros are invoked from the command line by using the `--macro callExpr(args)` command. This registers a callback which the compiler invokes after creating its context, but before typing the argument to `-main`. This then allows configuring the compiler in some ways.
+Initialization macros are invoked from the command line by using the `--macro callExpr(args)` command. This registers a callback which the compiler invokes after creating its context, but before typing the argument to `--main`. This then allows configuring the compiler in some ways.
 
 If the argument to `--macro` is a call to a plain identifier, that identifier is looked up in the class `haxe.macro.Compiler` which is part of the Haxe Standard Library. It comes with several useful initialization macros which are detailed in its [API](http://api.haxe.org//haxe/macro/Compiler.html).
 

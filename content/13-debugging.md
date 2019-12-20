@@ -159,10 +159,10 @@ class Main {
 Building it with flags:
 
 ```hxml
--main Main
+--main Main
 -D php7
--php build
--debug
+--php build
+--debug
 ```
 
 Running this build will trace the uncaught exception:
@@ -181,10 +181,10 @@ Install JStack using `haxelib install jstack`. JStack automatically adds `-D sou
 Now if JStack is installed, add it to the compilation:
 
 ```hxml
--main Main
+--main Main
 -D php7
--php build
--debug
+--php build
+--debug
 -L jstack
 ```
 

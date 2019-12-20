@@ -343,7 +343,7 @@ If this file is saved to Main.hx, the completion can be invoked using the comman
 
 > ##### Trivia: Effects of omitting a target specifier
 >
-> In this example the compiler reports the standard String.hx definition which does not actually have an implementation. This happens because we did not specify any target, which is allowed in completion-mode. If the command line arguments included, say, `-neko neko.n`, the reported position would instead be `std/neko/_std/string.hx:84: lines 84-98`.
+> In this example the compiler reports the standard String.hx definition which does not actually have an implementation. This happens because we did not specify any target, which is allowed in completion-mode. If the command line arguments included, say, `--neko neko.n`, the reported position would instead be `std/neko/_std/string.hx:84: lines 84-98`.
 
 
 
@@ -453,7 +453,7 @@ While it may be not optimal to embed large assets such as images or music in the
 External files are embedded using the **--resource** compiler argument:
 
 ```hxml
--resource hello_message.txt@welcome
+--resource hello_message.txt@welcome
 ```
 
 The string after the **@** symbol is the **resource identifier** which is used in the code for retrieving the resource. If it is omitted (together with the **@** symbol) then the file name will become the resource identifier.
