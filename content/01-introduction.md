@@ -8,7 +8,7 @@
 
 Haxe consists of a high-level, open source programming language and a compiler. It allows compilation of programs, written using an ECMAScript-oriented syntax, to multiple target languages. Employing proper abstraction, it is possible to maintain a single code-base which compiles to multiple targets.
 
-Haxe is strongly typed but the typing system can be subverted where required. Utilizing type information, the Haxe type system can detect errors at compile-time which would only be noticeable at run-time in the target language. Furthermore, type information can be used by the compiler to generate optimized and robust code.
+Haxe is strongly typed, but the typing system can be subverted where required. Utilizing type information, the Haxe type system can detect errors at compile-time which would only be noticeable at run-time in the target language. Furthermore, type information can be used by the compiler to generate optimized and robust code.
 
 Currently, there are nine supported target languages which allow for different use-cases:
 
@@ -37,7 +37,7 @@ In [Expressions](expression) we see how to actually get programs to do something
 
 [Language Features](lf) concludes the Haxe language reference by describing some features in detail such as **pattern matching**, **string interpolation** and **dead code elimination**.
 
-We continue with the Haxe compiler reference, which first handles the basics in [Compiler Usage](compiler-usage) before getting into the advanced features in [Compiler Features](cr-features). Finally, we will venture into the exciting land of **haxe macros** in [Macros](macro) to see how some common tasks can be greatly simplified.
+We continue with the Haxe compiler reference, which first handles the basics in [Compiler Usage](compiler-usage) before getting into the advanced features in [Compiler Features](cr-features). Finally, we will venture into the exciting land of **Haxe macros** in [Macros](macro) to see how some common tasks can be greatly simplified.
 
 In the following chapter, [Standard Library](std), we explore important types and concepts from the Haxe Standard Library. We then learn about Haxe's package manager in [Haxelib](haxelib).
 
