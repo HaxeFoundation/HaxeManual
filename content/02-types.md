@@ -222,12 +222,12 @@ There is a special type in Haxe which is compatible with all classes:
 <!--label:types-class-constructor-->
 #### Class constructor
 
-Instances of classes are created by calling the class constructor - a process commonly referred to as **instantiation**. Another name for class instances is **object**. Nevertheless, we prefer the term class instance to emphasize the analogy between classes/class instances and [enums/enum instances](types-enum-instance). 
+Instances of classes are created by calling the class constructor - a process commonly referred to as **instantiation**. Another name for a class instance is **object**. Nevertheless, we prefer the term class instance to emphasize the analogy between classes/class instances and [enums/enum instances](types-enum-instance). 
 
 ```haxe
 var p = new Point(-1, 65);
 ```
-This will yield an instance of class `Point`, which is assigned to a variable named `p`. The constructor of `Point` receives the two arguments `-1` and `65` and assigns them to the instance variables `x` and `y` respectively (compare its definition in [Class Instance](types-class-instance)). We will revisit the exact meaning of the `new` expression later in the section [new](expression-new). For now, we just think of it as calling the class constructor and returning the appropriate object.
+The above code will yield an instance of class `Point`, which is assigned to a variable named `p`. The constructor of `Point` receives the two arguments `-1` and `65` and assigns them to the instance variables `x` and `y` respectively (compare its definition in [Class Instance](types-class-instance)). We will revisit the exact meaning of the `new` expression later in the section [new](expression-new). For now, think of it as calling the class constructor and returning the appropriate object.
 
 
 
