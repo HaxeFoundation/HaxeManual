@@ -142,7 +142,7 @@ Make sure to enable 'JS source maps' in the browser developer tool settings.
 Haxe source code positions in call stack and exception stack.
 
 Since 3.4.1, Haxe can generate source maps for the PHP target when compiling with the `-D php7` and `-D source_map` flags.
-The source maps can be utilized by the [JStack](https://lib.haxe.org/p/jstack/) library to automatically transform `haxe.CallStack.callStack()`, `haxe.CallStack.exceptionStack()` and uncaught exceptions to make them point at Haxe sources instead of generated PHP files.
+Generated source maps can be utilized by the [JStack](https://lib.haxe.org/p/jstack/) library to automatically transform `haxe.CallStack.callStack()`, `haxe.CallStack.exceptionStack()` and uncaught exceptions to make them point at Haxe sources instead of generated PHP files.
 
 ```haxe
 class Main {
