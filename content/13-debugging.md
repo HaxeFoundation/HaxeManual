@@ -26,7 +26,7 @@ The trace can have a custom output by changing the `Log.trace` method where all 
 
 [code asset](assets/CustomTrace.hx)
 
-The `v` argument is the first parameter of the trace call. It can be a `String` or any other value. The optional `infos` argument contains extra position parameter, see below.
+The `v` argument is the first parameter of the trace call. It can be a `String` or any other value. The optional `infos` argument contains the extra position parameter, see below.
 
 The `infos.customParams` array contains all extra arguments that were given to the original trace. If no extra parameters are passed, it will be `null`. 
 
@@ -44,7 +44,7 @@ haxe.Log.trace("hello", {
 
 ##### Removing traces
 
-You can simply remove all trace informations by compiling your project with `--no-traces` argument. This will remove all trace calls as if they were not present in the program.
+You can simply remove all trace information by compiling your project with the `--no-traces` argument. This will remove all trace calls as if they were not present in the program.
 
 
 
@@ -52,9 +52,9 @@ You can simply remove all trace informations by compiling your project with `--n
 ### Position Information Parameter
 
 [`haxe.PosInfos`](http://api.haxe.org/haxe/PosInfos.html) is a magic type which can be used to generate position information into the output for debugging use.
-If a function has a final optional argument of this type, i.e. `(..., ?pos:haxe.PosInfos)`, each call to that function which does not assign a value to that argument has its position added as call argument. 
+If a function has a final optional argument of this type, i.e. `(..., ?pos:haxe.PosInfos)`, each call to that function which does not assign a value to that argument has its position added as a call argument. 
 
-It is sometimes useful to define a custom method that does some traces in some case. The following usage is possible since in Haxe when the `haxe.PosInfos` optional parameter is not set, its default value will always be replaced by the compiler:
+It is sometimes useful to define a custom method that does traces in some case. The following usage is possible in Haxe since when the `haxe.PosInfos` optional parameter is not set, its default value will always be replaced by the compiler:
 
 [code asset](assets/AssertTrace.hx)
 
@@ -63,7 +63,7 @@ It is sometimes useful to define a custom method that does some traces in some c
 <!--label:debugging-type-function-->
 ### Tracing Types
 
-`$type` is a **compile-time** mechanism being called like a function, with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.
+`$type` is a **compile-time** mechanism that is called similarly to a function with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.
 
 This is useful to evaluate if an expression has a certain type, mostly when dealing with [Type inference](type-system-type-inference), which leaves the definition of the type up to the compiler.
 
@@ -86,7 +86,7 @@ Haxe is supported in a [number of editors and IDEs](https://haxe.org/documentati
 
 ##### Console
 
-Besides [trace](debugging-trace-log) Haxe exposes most of the browser's console functions, which can be accessed using [`js.Browser.console`](http://api.haxe.org/v/dev/js/html/Console.html):
+Besides [trace](debugging-trace-log), Haxe exposes most of a web browser's console functions, which can be accessed using [`js.Browser.console`](http://api.haxe.org/v/dev/js/html/Console.html):
 
 ```haxe
 js.Browser.console.log("Hello world"); 
@@ -95,25 +95,25 @@ js.Browser.console.warn("Something could be wrong");
 js.Browser.console.error("Something went wrong"); 
 ```
 
-* More info about the [browser console functions](https://developer.mozilla.org/en-US/docs/Web/API/Console).
+* Read more about [browser console functions](https://developer.mozilla.org/en-US/docs/Web/API/Console).
 
 ##### Breakpoints
 
-In most browser developer tools breakpoints can be set to pause the code execution and start debugging. This mostly can be done by clicking near the line numbers. At each breakpoint JavaScript will stop executing and let the current values be inspected. After examining the values, the execution of code can be resumed (typically with a play button).
+In most browser developer tools, breakpoints can be set to pause code execution and start debugging. This is typically done by clicking near the line numbers. At each breakpoint JavaScript will stop executing and let the current values be inspected. After examining the values, the execution of code can be resumed, typically with a play button.
 
 In JavaScript a developer can use the `debugger` statement functionality to do the same from code.
-In Haxe the same can be done with [`js.Lib.debug()`](https://api.haxe.org/js/Lib.html#debug) function; this inserts a `debugger` statement that will make a breakpoint if a debugger is available. If no debugging functionality is available, this statement has no effect. 
+In Haxe the same can be done with the [`js.Lib.debug()`](https://api.haxe.org/js/Lib.html#debug) function; this inserts a `debugger` statement that will make a breakpoint if a debugger is available. If no debugging functionality is available, this statement has no effect. 
 
-* Read more on the [debugger statement](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/debugger).
+* Read more about the [debugger statement](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Statements/debugger).
 
 
 
 <!--label:debugging-source-map-->
 ### Source Maps
 
-Haxe is able to generate source maps, allowing debuggers to map from generated source back to the original Haxe source. This makes reading error stack traces, debugging with breakpoints, and profiling much easier.
+Haxe is able to generate source maps, allowing debuggers to map from a generated source back to the original Haxe source. This makes reading error stack traces, debugging with breakpoints, and profiling much easier.
 
-When an error occurs, the developer is helped out by showing them where the error occurred in the original Haxe source file. This saves the developer time every single time they hit an error. The web console log messages also include links to the line that generated the log message, so these messages could link back to the original source lines as well. 
+When an error occurs, the location in which it occurred is displayed in the original Haxe source file. The web console log messages include links to the line that generated the log message, connecting them back to the lines in the original source file.
 
 Compiling with the `-debug` flag will create a source map (.map) alongside the .js file. Source maps can also be generated for release builds with `-D js-source-map`.
 
@@ -126,7 +126,7 @@ In the generated JavaScript the last line will have a reference to the source ma
 //# sourceMappingURL=Main.js.map
 ```
 
-To include the hx sources as part of the JS source map, compile with `-D source-map-content`.
+To include the hx sources as part of the JS source map, compile with the `-D source-map-content` flag.
 
 Make sure to enable 'JS source maps' in the browser developer tool settings. 
 
@@ -137,12 +137,12 @@ Make sure to enable 'JS source maps' in the browser developer tool settings.
 
 
 <!--label:debugging-sourcemap-php7-->
-#### Source Maps in Php7
+#### Source Maps in PHP7
 
 Haxe source code positions in call stack and exception stack.
 
-Since 3.4.1 Haxe can generate source maps for PHP target when compiling with `-D php7` and `-D source_map` flags.
-Those source maps can be utilized by [JStack](https://lib.haxe.org/p/jstack/) library to automatically transform `haxe.CallStack.callStack()`, `haxe.CallStack.exceptionStack()` and uncaught exceptions to make them point at Haxe sources instead of generated PHP files.
+Since 3.4.1, Haxe can generate source maps for the PHP target when compiling with the `-D php7` and `-D source_map` flags.
+The source maps can be utilized by the [JStack](https://lib.haxe.org/p/jstack/) library to automatically transform `haxe.CallStack.callStack()`, `haxe.CallStack.exceptionStack()` and uncaught exceptions to make them point at Haxe sources instead of generated PHP files.
 
 ```haxe
 class Main {
@@ -177,8 +177,9 @@ Stack trace:
   thrown in build/lib/Main.php on line 25
 ```
 
-Install JStack using `haxelib install jstack`. JStack automatically adds `-D source_map` there is no need to add it manually.
-Now if JStack is installed, add it to the compilation:
+Install JStack using `haxelib install jstack`. JStack automatically adds the `-D source_map` flag, so there is no need to add it manually.
+
+If JStack is installed, it can be added to the compilation process like so:
 
 ```hxml
 --main Main
@@ -188,7 +189,7 @@ Now if JStack is installed, add it to the compilation:
 -L jstack
 ```
 
-The output will have more informative stack trace for exceptions:
+The output will have a more informative stack trace for exceptions:
 
 ```
 $ php build/index.php
