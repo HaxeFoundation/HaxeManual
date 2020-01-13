@@ -86,7 +86,7 @@ Haxe is supported in a [number of editors and IDEs](https://haxe.org/documentati
 
 ##### Console
 
-Beside [trace](debugging-trace-log) Haxe exposes most of the browsers console functions, which can be accessed using [`js.Browser.console`](http://api.haxe.org/v/dev/js/html/Console.html):
+Besides [trace](debugging-trace-log) Haxe exposes most of the browser's console functions, which can be accessed using [`js.Browser.console`](http://api.haxe.org/v/dev/js/html/Console.html):
 
 ```haxe
 js.Browser.console.log("Hello world"); 
