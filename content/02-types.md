@@ -1,7 +1,7 @@
 <!--label:types-->
 ## Types
 
-The Haxe Compiler employs a rich type system which helps to detect type-related errors in a program at compile-time. A type error is an invalid operation on a given type such as dividing by a String, trying to access a field of an Integer or calling a function with not enough (or too many) arguments.
+The Haxe Compiler employs a rich type system which helps detect type-related errors in a program at compile-time. A type error is an invalid operation on a given type such as dividing by a String, trying to access a field of an Integer or calling a function with too few (or too many) arguments.
 
 In some languages this additional safety comes at a price because programmers are forced to explicitly assign types to syntactic constructs:
 
@@ -11,7 +11,7 @@ var myButton:MySpecialButton = new MySpecialButton(); // As3
 ```cpp
 MySpecialButton* myButton = new MySpecialButton(); // C++ 
 ```
-The explicit type annotations are not required in Haxe, because the compiler can **infer** the type:
+Explicit type annotations are not required in Haxe, because the compiler can **infer** the type:
 
 ```haxe
 var myButton = new MySpecialButton(); // Haxe
@@ -114,7 +114,7 @@ var x:Void;
 >
 > A type in Haxe is considered **nullable** if `null` is a valid value for it.
 
-It is common for programming languages to have a single, clean definition for nullability. However, Haxe has to find a compromise in this regard due to the nature of Haxe's target languages: While some of them allow and; in fact, default to `null` for anything, others do not even allow `null` for certain types. This necessitates the distinction between two types of target languages:
+It is common for programming languages to have a single, clean definition for nullability. However, Haxe has to find a compromise in this regard due to the nature of Haxe's target languages. While some of them allow and, in fact, default to `null` for anything, others do not even allow `null` for certain types. This necessitates the distinction between two types of target languages:
 
 > ##### Define: Static target
 >
@@ -207,7 +207,7 @@ Semantically, this class represents a point in discrete 2-dimensional space - bu
 * The keyword `class` denotes that we are declaring a class.
 * `Point` is the name of the class and could be anything conforming to the [rules for type identifiers](define-identifier).
 * Enclosed in curly braces `{}` are the class fields,
-* Which consist of two **variable** fields `x` and `y` of type `Int`,
+* which consist of two **variable** fields `x` and `y` of type `Int`,
 * followed by a special **function** field named `new`, which is the **constructor** of the class,
 * as well as a normal function `toString`.
 
