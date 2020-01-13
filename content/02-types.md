@@ -114,7 +114,7 @@ var x:Void;
 >
 > A type in Haxe is considered **nullable** if `null` is a valid value for it.
 
-It is common for programming languages to have a single, clean definition for nullability. However, Haxe has to find a compromise in this regard due to the nature of Haxe's target languages. While some of them allow and, in fact, default to `null` for anything, others do not even allow `null` for certain types. This necessitates the distinction between two types of target languages:
+It is common for programming languages to have a single, clean definition for nullability. However, Haxe has to find a compromise in this regard due to the nature of Haxe's target languages; while some of them allow and, in fact, default to `null` for anything, others do not even allow `null` for certain types. This necessitates the distinction between two types of target languages:
 
 > ##### Define: Static target
 >
