@@ -1,7 +1,7 @@
 <!--label:haxelib-->
 ## Haxelib
 
-Haxelib is a way to find and share Haxe code libraries. Haxelib is the package manager for the Haxe Toolkit.
+Haxelib is the package manager for the Haxe Toolkit, and is one way to find and share Haxe code libraries.
 
 More information and many free libraries can be found at [lib.haxe.org](https://lib.haxe.org/)
 
