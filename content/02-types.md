@@ -850,7 +850,7 @@ The method body of an `@:op` function can be omitted, but only if the underlying
 <!--label:types-abstract-array-access-->
 #### Array Access
 
-Array access describes the particular syntax traditionally used to access a value in an array at a certain offset. This is usually only allowed with arguments of type `Int`. Using abstracts, however, it is possible to define custom array access methods. The [Haxe Standard Library](std) uses this in its `Map` type, where the following two methods can be found:
+Array access describes the particular syntax traditionally used to access a value in an array at a certain offset. This is usually only allowed with arguments of type `Int`. Using abstracts, however, makes it possible to define custom array access methods. The [Haxe Standard Library](std) uses this in its `Map` type, where the following two methods can be found:
 
 ```haxe
 @:arrayAccess
