@@ -113,7 +113,7 @@ In Haxe the same can be done with the [`js.Lib.debug()`](https://api.haxe.org/js
 
 Haxe is able to generate source maps, allowing debuggers to map from a generated source back to the original Haxe source. This makes reading error stack traces, debugging with breakpoints, and profiling much easier.
 
-When an error occurs, the location in which it occurred is displayed in the original Haxe source file. The web console log messages include links to the line that generated the log message, connecting them back to the lines in the original source file.
+When an error occurs, the location in which it occurred in the original Haxe source file is displayed. The web console log messages include links to the line that generated the log message, connecting them back to the lines in the original source file.
 
 Compiling with the `-debug` flag will create a source map (.map) alongside the .js file. Source maps can also be generated for release builds with `-D js-source-map`.
 
