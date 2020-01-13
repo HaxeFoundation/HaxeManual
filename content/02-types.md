@@ -95,7 +95,7 @@ We have already "seen" `Void` in the initial "Hello World" example:
 
 [code asset](assets/HelloWorld.hx)
 
-The function type will be explored in detail in the section [Function Type](types-function), but a quick preview helps here: the type of the function `main` in the example above is `Void->Void`, which reads as "it has no arguments and returns nothing
+The function type will be explored in detail in the section [Function Type](types-function), but a quick preview helps here: the type of the function `main` in the example above is `Void->Void`, which reads as "it has no arguments and returns nothing."
 Haxe does not allow fields and variables of type `Void` and will complain if such a declaration is made:
 
 ```haxe
