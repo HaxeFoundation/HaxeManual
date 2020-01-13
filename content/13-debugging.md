@@ -115,7 +115,7 @@ Haxe is able to generate source maps, allowing debuggers to map from a generated
 
 When an error occurs, the location in which it occurred in the original Haxe source file is displayed. The web console log messages include links to the line that generated the log message, connecting them back to the lines in the original source file.
 
-Compiling with the `-debug` flag will create a source map (.map) alongside the .js file. Source maps can also be generated for release builds with `-D js-source-map`.
+Compiling with the `-debug` flag will create a source map (.map) file alongside the .js file. Source maps can also be generated for release builds with `-D js-source-map`.
 
 <!--label:debugging-source-map-javascript-->
 #### Source Maps in JavaScript
