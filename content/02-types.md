@@ -234,7 +234,7 @@ The above code will yield an instance of class `Point`, which is assigned to a v
 <!--label:types-class-inheritance-->
 #### Inheritance
 
-Classes may inherit from other classes, and is denoted by the `extends` keyword:
+Classes may inherit from other classes; this is denoted by the `extends` keyword:
 
 [code asset](assets/Point3.hx)
 
@@ -334,7 +334,7 @@ The Haxe type system provides a type which unifies with all enum types:
 <!--label:types-enum-constructor-->
 #### Enum Constructor
 
-Similar to classes and their constructors, enums can be instantiated using their constructors. However, unlike classes, enums provide multiple constructors which can accessed by through their name:
+Similar to classes and their constructors, enums can be instantiated using their constructors. However, unlike classes, enums provide multiple constructors which can accessed through their name:
 
 ```haxe
 var a = Red;
@@ -521,7 +521,7 @@ typedef User = {
 <!--label:types-structure-performance-->
 #### Impact on Performance
 
-Using structures, and by extension, [structural subtyping](type-system-structural-subtyping), has no impact on performance when compiling to [dynamic targets](define-dynamic-target). However, on [static targets](define-static-target) a dynamic lookup has to be performed which is typically slower than a static field access.
+Using structures and, by extension, [structural subtyping](type-system-structural-subtyping), has no impact on performance when compiling to [dynamic targets](define-dynamic-target). However, on [static targets](define-static-target) a dynamic lookup has to be performed which is typically slower than a static field access.
 
 
 
@@ -679,7 +679,7 @@ att.income = 0;
 <!--label:types-dynamic-access-->
 #### Dynamic access
 
-`DynamicAccess` is an [abstract type](types-abstract) for working with [anonymous structures](types-anonymous-structure) that are intended to hold collections of objects by the string key. Basically, `DynamicAccess` wraps `Reflect`std-reflection calls in a Map-like interface.
+`DynamicAccess` is an [abstract type](types-abstract) for working with [anonymous structures](types-anonymous-structure) that are intended to hold collections of objects by the string key. Basically, `DynamicAccess` wraps [`Reflect`](std-reflection) calls in a Map-like interface.
 
 [code asset](assets/DynamicAccess.hx)
 
@@ -718,7 +718,7 @@ We can derive the following from this example:
 
 * The keyword `abstract` denotes that we are declaring an abstract type.
 * `AbstractInt` is the name of the abstract type and could be anything conforming to the rules for type identifiers.
-* The **underlying type** `Int` is enclosed in parenthesis `()`.
+* The **underlying type** `Int` is enclosed in parentheses `()`.
 * The fields are enclosed in curly braces `{}`,
 * which are a constructor function `new` accepting one argument `i` of type `Int`.
 
