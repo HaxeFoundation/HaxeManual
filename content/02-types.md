@@ -322,7 +322,7 @@ Semantically, this enum describes a color which is either red, green, blue or a 
 * The keyword `enum` denotes that we are declaring an enum.
 * `Color` is the name of the enum and could be anything conforming to the rules for [type identifiers](define-identifier).
 * Enclosed in curly braces `{}` are the **enum constructors**,
-* which are `Red`, `Green` and `Blue` taking no arguments,
+* which are `Red`, `Green`, and `Blue` taking no arguments,
 * as well as `Rgb` taking three `Int` arguments named `r`, `g` and `b`.
 
 The Haxe type system provides a type which unifies with all enum types:
@@ -370,7 +370,7 @@ Enums are a good choice if only a finite set of values should be allowed. The in
 
 [code asset](assets/Color2.hx)
 
-After retrieving the value of `color` by assigning the return value of `getColor()` to it, a [`switch` expression](expression-switch) is used to branch depending on the value. The first three cases, `Red`, `Green` and `Blue`, are trivial and correspond to the constructors of `Color` that have no arguments. The final case, `Rgb(r, g, b)`, shows how the argument values of a constructor can be extracted; they are available as local variables within the case body expression, just as if a [`var` expression](expression-var) had been used.
+After retrieving the value of `color` by assigning the return value of `getColor()` to it, a [`switch` expression](expression-switch) is used to branch depending on the value. The first three cases, `Red`, `Green`, and `Blue`, are trivial and correspond to the constructors of `Color` that have no arguments. The final case, `Rgb(r, g, b)`, shows how the argument values of a constructor can be extracted; they are available as local variables within the case body expression, just as if a [`var` expression](expression-var) had been used.
 
 Advanced information on using the `switch` expression will be explored later in the section on [pattern matching](lf-pattern-matching).
 
@@ -597,7 +597,7 @@ This example program calls `test` four times and prints its return value.
 
 The output shows that optional arguments which are omitted from the call have a value of `null`. This implies that the type of these arguments must admit `null` as value, which raises the question of its [nullability](types-nullability). The Haxe Compiler ensures that optional basic type arguments are nullable by inferring their type as `Null<T>` when compiling to a [static target](define-static-target).
 
-While the first three calls are intuitive, the fourth one might come as a surprise; optional arguments are allowed to be skipped if the supplied value is assignable to a later argument.
+While the first three calls are intuitive, the fourth one might come as a surprise; optional arguments can be skipped if the supplied value is assignable to a later argument.
 
 
 
