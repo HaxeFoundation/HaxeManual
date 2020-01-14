@@ -102,13 +102,13 @@ One of the breaking changes between versions 3 and 4 is the multiple type constr
 <!--label:type-system-generic-->
 ### Generic
 
-Usually, the Haxe Compiler generates only a single class or function even if it has type parameters. This results in a natural abstraction where the code generator for the target language has to assume that a type parameter could be of any type. The generated code then might have to perform some type checks which can be detrimental to performance.
+Usually, the Haxe Compiler generates only a single class or function even if it has type parameters. This results in a natural abstraction where the code generator for the target language must assume that a type parameter could be of any type. The generated code might then have to perform type checks which can be detrimental for performance.
 
-A class or function can be made **generic** by attributing it with the `:generic` [metadata](lf-metadata). This causes the compiler to emit a distinct class/function per type parameter combination with mangled names. A specification like this can yield a boost in performance-critical code portions on [static targets](define-static-target) at the cost of a larger output size:
+A class or function can be made **generic** by attributing it with the `@:generic` [metadata](lf-metadata). This causes the compiler to emit a distinct class or function per type parameter combination with mangled names. A specification like this can yield a boost in sections of performance-critical code on [static targets](define-static-target) at the cost of a larger output size:
 
 [code asset](assets/GenericClass.hx)
 
-It seems unusual to see the explicit type `MyValue<String>` here as we usually let [type inference](type-system-type-inference) deal with this. Nonetheless, it is indeed required in this case. The compiler has to know the exact type of a generic class upon construction. The JavaScript output shows the result:
+It may seem unusual to see the explicit type `MyValue<String>` here as [type inference](type-system-type-inference) often handles similar situations. Nonetheless, it is required in this case as the compiler must know the exact type of a generic class upon construction. The JavaScript output shows the result:
 
 ```js
 (function () { "use strict";
@@ -127,7 +127,7 @@ Test.main();
 })();
 ```
 
-We can identify that `MyValue<String>` and `MyValue<Int>` have become `MyValue_String` and `MyValue_Int` respectively. This is similar for generic functions:
+We can identify that `MyValue<String>` and `MyValue<Int>` have become `MyValue_String` and `MyValue_Int` respectively. The situation is similar for generic functions:
 
 [code asset](assets/GenericFunction.hx)
 
@@ -155,16 +155,16 @@ Main.main();
 >
 > A type parameter is said to be generic if its containing class or method is generic.
 
-It is not possible to construct normal type parameters, e.g. `new T()` is a compiler error. The reason for this is that Haxe generates only a single function and the construct makes no sense in that case. This is different when the type parameter is generic: Since we know that the compiler will generate a distinct function for each type parameter combination, it is possible to replace the `T` `new T()` with the real type.
+It is not possible to construct normal type parameters; for example, `new T()` would register as a compiler error. The reason for this is that Haxe generates only a single function and the construct would make no sense in that case. This is different when the type parameter is generic: since we know that the compiler will generate a distinct function for each type parameter combination, it is possible to replace the `T` `new T()` with the real type.
 
 [code asset](assets/GenericTypeParameter.hx)
 
-It should be noted that [top-down inference](type-system-top-down-inference) is used here to determine the actual type of `T`. There are two requirements for this kind of type parameter construction to work: The constructed type parameter must be
+It should be noted that [top-down inference](type-system-top-down-inference) is used here to determine the actual type of `T`. There are two requirements for this kind of type parameter construction to work: The constructed type parameter must be:
 
 1. generic and
-2. be explicitly [constrained](type-system-type-parameter-constraints) to having a [constructor](types-class-constructor).
+2. explicitly [constrained](type-system-type-parameter-constraints) to have a [constructor](types-class-constructor).
 
-Here, 1. is given by `make` having the `@:generic` metadata, and 2. by `T` being constrained to `Constructible`. The constraint holds for both `String` and `haxe.Template` as both have a constructor accepting a singular `String` argument. Sure enough, the relevant JavaScript output looks as expected:
+Here, the first requirement is met by `make` having the `@:generic` metadata, and the second by `T` being constrained to `Constructible`. The constraint holds for both `String` and `haxe.Template` as both have a constructor accepting a singular `String` argument. Sure enough, the relevant JavaScript output looks as expected:
 
 ```js
 var Main = function() { }
@@ -188,21 +188,21 @@ Main.main = function() {
 <!--label:type-system-variance-->
 ### Variance
 
-While variance is also relevant in other places, it occurs particularly often with type parameters and comes as a surprise in this context. Additionally, it is very easy to trigger variance errors:
+While variance is relevant in other places, it occurs particularly often with type parameters and may come as a surprise in this context. It is very easy to trigger variance errors:
 
 [code asset](assets/Variance.hx)
 
-Apparently, an `Array<Child>` cannot be assigned to an `Array<Base>`, even though `Child` can be assigned to `Base`. The reason for this might be somewhat unexpected: It is not allowed because arrays can be written to, e.g. via their `push()` method. It is easy to generate problems by ignoring variance errors:
+Apparently, an `Array<Child>` cannot be assigned to an `Array<Base>`, even though `Child` can be assigned to `Base`. The reason for this might be somewhat unexpected: the assignment is not allowed because arrays can be written to, for example, through their `push()` method. It is easy to generate problems by ignoring variance errors:
 
 [code asset](assets/Variance2.hx)
 
-Here we subvert the type checker by using a [cast](expression-cast), thus allowing the assignment after the commented line. With that we hold a reference `bases` to the original array, typed as `Array<Base>`. This allows pushing another type compatible with `Base` (`OtherChild`) onto that array. However, our original reference `children` is still of type `Array<Child>` and things go bad when we encounter the `OtherChild` instance in one of its elements while iterating.
+Here, we subvert the type checker by using a [cast](expression-cast), thus allowing the assignment after the commented line. With that we hold a reference `bases` to the original array, typed as `Array<Base>`. This allows pushing another type compatible with `Base`, in this instance `OtherChild`, onto that array. However, our original reference `children` is still of type `Array<Child>`, and things go bad when we encounter the `OtherChild` instance in one of its elements while iterating.
 
-If `Array` had no `push()` method and no other means of modification, the assignment would be safe because no incompatible type could be added to it. In Haxe, we can achieve this by restricting the type accordingly using [structural subtyping](type-system-structural-subtyping):
+If `Array` had no `push()` method and no other means of modification, the assignment would be safe as no incompatible type could be added to it. This can be achieved by restricting the type accordingly using [structural subtyping](type-system-structural-subtyping):
 
 [code asset](assets/Variance3.hx)
 
-We can safely assign with `b` being typed as `MyArray<Base>` and `MyArray` only having a `pop()` method. There is no method defined on `MyArray` which could be used to add incompatible types, it is thus said to be **covariant**.
+We can safely assign with `b` being typed as `MyArray<Base>` and `MyArray` only having a `pop()` method. There is no method defined on `MyArray` which could be used to add incompatible types. It is thus said to be **covariant**.
 
 > ##### Define: Covariance
 >
