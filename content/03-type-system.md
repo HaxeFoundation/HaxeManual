@@ -1,23 +1,23 @@
 <!--label:type-system-->
 ## Type System
 
-We learned about the different kinds of types in [Types](types) and it is now time to see how they interact with each other. We start off easy by introducing [typedef](type-system-typedef), a mechanism to give a name (or alias) to a more complex type. Among other things, this will come in handy when working with types having [type parameters](type-system-type-parameters).
+We learned about the different kinds of types in [Types](types) and it is now time to see how they interact with each other. We start off easy by introducing [typedef](type-system-typedef), a mechanism to give a name (or alias) to a more complex type. Among other use cases, typedefs will come in handy when working with types that have [type parameters](type-system-type-parameters).
 
-A lot of type-safety is achieved by checking if two given types of the type groups above are compatible. Meaning, the compiler tries to perform **unification** between them as detailed in [Unification](type-system-unification).
+ !!!-REVIEW ME: What is this sentence even referring to? "Type groups" is also unclear in the sense that this phrase has not been used before and may have special meaning of some sort-!!! A lot of type-safety is achieved by checking if two given types of the type groups above are compatible. Meaning, the compiler tries to perform **unification** between them as detailed in [Unification](type-system-unification).
 
 All types are organized in **modules** and can be addressed through **paths**. [Modules and Paths](type-system-modules-and-paths) will give a detailed explanation of the related mechanics.
 
 <!--label:type-system-typedef-->
 ### Typedef
 
-We briefly looked at typedefs while talking about [anonymous structures](types-anonymous-structure) and saw how we could shorten a complex [structure type](types-anonymous-structure) by giving it a name. This is precisely what typedefs are good for. Giving names to structure types might even be considered their primary use. In fact, it is so common that the distinction appears somewhat blurry and many Haxe users consider typedefs to actually **be** the structure.
+We briefly looked at typedefs while talking about [anonymous structures](types-anonymous-structure) and saw how we could shorten a complex [structure type](types-anonymous-structure) by giving it a name. This is precisely why typedefs are useful. Giving names to structure types might even be considered their primary function, and is so common that the distinction between the two appears somewhat blurry. Many Haxe users consider typedefs to actually **be** the structure.
 
 A typedef can give a name to any other type:
 
 ```haxe
 typedef IA = Array<Int>;
 ```
-This enables us to use `IA` in places where we would normally use `Array<Int>`. While this saves only a few keystrokes in this particular case, it can make a much bigger difference for more complex, compound types. Again, this is why typedef and structures seem so connected:
+This enables us to use `IA` in places where we would normally use `Array<Int>`. While this saves only a few keystrokes in this particular case, it can make a larger difference for more complex, compound types. Again, this is why typedef and structures seem so connected:
 
 ```haxe
 typedef User = {
@@ -25,7 +25,7 @@ typedef User = {
   var name : String;
 }
 ```
-A typedef is not a textual replacement but actually a real type. It can even have [type parameters](type-system-type-parameters) as the `Iterable` type from the Haxe Standard Library demonstrates:
+A typedef is not a textual replacement, but actually a real type. They can even have [type parameters](type-system-type-parameters) as the `Iterable` type from the Haxe Standard Library demonstrates:
 
 ```haxe
 typedef Iterable<T> = {
@@ -45,12 +45,12 @@ class Array<T> {
   function push(x : T) : Int;
 }
 ```
-Whenever an instance of `Array` is created, its type parameter `T` becomes a [monomorph](types-monomorph). That is, it can be bound to any type, but only one at a time. This binding can happen
+Whenever an instance of `Array` is created, its type parameter `T` becomes a [monomorph](types-monomorph). That is, it can be bound to any type, but only one at a time. This binding can happen either:
 
-* explicitly by invoking the constructor with explicit types (`new Array<String>()`) or
-* implicitly by [type inference](type-system-type-inference), e.g. when invoking `arrayInstance.push("foo")`.
+* explicitly, by invoking the constructor with explicit types (`new Array<String>()`) or
+* implicitly, by [type inference](type-system-type-inference), e.g. when invoking `arrayInstance.push("foo")`.
 
-Inside the definition of a class with type parameters, these type parameters are an unspecific type. Unless [constraints](type-system-type-parameter-constraints) are added, the compiler has to assume that the type parameters could be used with any type. As a consequence, it is not possible to access fields of type parameters or [cast](expression-cast) to a type parameter type. It is also not possible to create a new instance of a type parameter type, unless the type parameter is [generic](type-system-generic) and constrained accordingly. 
+Inside the definition of a class with type parameters, the type parameters are an unspecific type. Unless [constraints](type-system-type-parameter-constraints) are added, the compiler has to assume that the type parameters could be used with any type. As a consequence, it is not possible to access the fields of type parameters or [cast](expression-cast) to a type parameter type. It is also not possible to create a new instance of a type parameter type unless the type parameter is [generic](type-system-generic) and constrained accordingly. 
 
 The following table shows where type parameters are allowed:
 
@@ -63,15 +63,15 @@ Function | invocation | Allowed for methods and named local lvalue functions.
 Structure | instantiation | 
  
 
-With function type parameters being bound upon invocation, such a type parameter (if unconstrained) accepts any type. However, only one type per invocation is accepted. This can be utilized if a function has multiple arguments:
+As function type parameters are bound upon invocation, they accept any type if left unconstrained. However, only one type per invocation is accepted. This can be utilized if a function has multiple arguments:
 
 [code asset](assets/FunctionTypeParameter.hx)
 
-Both arguments `expected` and `actual` of the `equals` function have type `T`. This implies that for each invocation of `equals` the two arguments must be of the same type. The compiler admits the first call (both arguments being of `Int`) and the second call (both arguments being of `String`) but the third attempt causes a compiler error.
+Both of the `equals` function's arguments, `expected` and `actual`, have type `T`. This implies that for each invocation of `equals`, the two arguments must be of the same type. The compiler permits the first call (both arguments being of `Int`) and the second call (both arguments being of `String`) but the third attempt causes a compiler error due to a type mismatch.
 
 > ##### Trivia: Type parameters in expression syntax
 >
-> We often get the question of why a method with type parameters cannot be called as `method<String>(x)`. The error messages the compiler gives are not very helpful. However, there is a simple reason for that: The above code is parsed as if both `<` and `>` were binary operators, yielding `(method < String) > (x)`.
+> We often get the question of why a method with type parameters cannot be called as `method<String>(x)`. The error messages the compiler gives are not very helpful. However, there is a simple reason for that: the above code is parsed as if both `<` and `>` were binary operators, yielding `(method < String) > (x)`.
 
 <!--label:type-system-type-parameter-constraints-->
 #### Constraints
@@ -80,12 +80,12 @@ Type parameters can be constrained to multiple types:
 
 [code asset](assets/Constraints.hx)
 
-Type parameter `T` of method `test` is constrained to the types `Iterable<String>` and `Measurable`. The latter is defined using a [typedef](type-system-typedef) for convenience and requires compatible types to have a read-only [property](class-field-property) named `length` of type `Int`. The constraints then say that a type is compatible if
+The `test` method contains a type parameter `T` that is constrained to the types `Iterable<String>` and `Measurable`.  The latter is defined using a [typedef](type-system-typedef) for convenience and requires compatible types to have a read-only [property](class-field-property) named `length` of type `Int`. The constraints then indicate that a type is compatible if:
 
 * it is compatible with `Iterable<String>` and
-* has a `length`-property of type `Int`.
+* has a `length` property of type `Int`.
 
-We can see that invoking `test` with an empty array in line 7 and an `Array<String>` in line 8 works fine. This is because `Array` has both a `length`-property and an `iterator`-method. However, passing a `String` as argument in line 9 fails the constraint check because `String` is not compatible with `Iterable<T>`. 
+In the above example, we can see that invoking `test` with an empty array on line 7 and an `Array<String>` on line 8 works fine. This is because `Array` has both a `length` property and an `iterator` method. However, passing a `String` as argument on line 9 fails the constraint check because `String` is not compatible with `Iterable<T>`. 
 
 When constraining to a single type, the parentheses can be omitted:
 
@@ -93,7 +93,7 @@ When constraining to a single type, the parentheses can be omitted:
 
 ##### since Haxe 4.0.0
 
-One of the breaking changes between versions 3 and 4 is the multiple type constraint syntax. As the first example above shows, in Haxe 4 the constraints are separated by a `&` symbol instead of a comma. This is similar to the new [structure extension](types-structure-extensions) syntax.
+One of the breaking changes between versions 3 and 4 is the multiple type constraint syntax. As the first example above shows, in Haxe 4 the constraints are separated by an `&` symbol instead of a comma. This is similar to the new [structure extension](types-structure-extensions) syntax.
 
 
 
