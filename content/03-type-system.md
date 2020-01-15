@@ -217,11 +217,11 @@ We can safely assign with `b` being typed as `MyArray<Base>` and `MyArray` only 
 <!--label:type-system-unification-->
 ### Unification
 
-Unification is the heart of the type system and contributes immensely to the robustness of Haxe programs. It describes the process of checking if a type is compatible with another type.
+Unification is the heart of the type system and contributes immensely to the robustness of Haxe programs. It describes the process of checking  a type is compatible with another type.
 
 > ##### Define: Unification
 >
-> Unification between two types A and B is a directional process which answers the question if A **can be assigned to** B. It may **mutate** either type if it is or has a [monomorph](types-monomorph).
+> Unification between two types A and B is a directional process which answers one question: if A **can be assigned to** B. It may **mutate** either type if it either is or has a [monomorph](types-monomorph).
 
 Unification errors are very easy to trigger:
 
@@ -238,7 +238,7 @@ We try to assign a value of type `Int` to a variable of type `String`, which cau
 In this particular case, the unification is triggered by an **assignment**, a context in which the "is assignable to" definition is intuitive. It is one of several cases where unification is performed:
 
 * Assignment: If `a` is assigned to `b`, the type of `a` is unified with the type of `b`.
-* Function call: We have briefly seen this one while introducing the [function](types-function) type. In general, the compiler tries to unify the first given argument type with the first expected argument type, the second given argument type with the second expected argument type and so on until all argument types are handled.
+* Function call: We have briefly seen an example of this while introducing the [function](types-function) type. In general, the compiler tries to unify the first given argument type with the first expected argument type, the second given argument type with the second expected argument type, and so on until all argument types are handled.
 * Function return: Whenever a function has a `return e` expression, the type of `e` is unified with the function return type. If the function has no explicit return type, it is inferred to the type of `e` and subsequent `return` expressions are inferred against it.
 * Array declaration: The compiler tries to find a minimal type between all given types in an array declaration. Refer to [Common Base Type](type-system-unification-common-base-type) for details.
 * Object declaration: If an object is declared "against" a given type, the compiler unifies each given field type with each expected field type.
@@ -251,11 +251,11 @@ When defining unification behavior between classes, it is important to remember 
 
 The following assignments are allowed:
 
-* child class to parent class
-* class to implementing interface
-* interface to base interface
+* Child class to parent class.
+* Class to implementing interface.
+* Interface to base interface.
 
-These rules are transitive, meaning that a child class can also be assigned to the base class of its base class, an interface its base class implements, the base interface of an implementing interface and so on.
+These rules are transitive, meaning that a child class can also be assigned to the base class of its base class, an interface its base class implements, the base interface of an implementing interface, and so on.
 
 
 
@@ -264,23 +264,23 @@ These rules are transitive, meaning that a child class can also be assigned to t
 
 > ##### Define: Structural Subtyping
 >
-> Structural subtyping defines an implicit relation between types that have the same structure.
+> Structural subtyping defines an implicit relationship between types that have the same structure.
 
-Structural sub-typing in Haxe is allowed when unifying
+Structural sub-typing in Haxe is allowed when unifying:
 
 * a [class](types-class-instance) with a [structure](types-anonymous-structure) and
 * a structure with another structure.
 
-The following example is part of the `Lambda` class of the [Haxe Standard Library](std):
+The following example is part of the `Lambda` class in the [Haxe Standard Library](std):
 
 ```haxe
 public static function empty<T>(it : Iterable<T>):Bool {
   return !it.iterator().hasNext();
 }
 ```
-The `empty`-method checks if an `Iterable` has an element. For this purpose, it is not necessary to know anything about the argument type other than the fact that it is considered an iterable. This allows calling the `empty`-method with any type that unifies with `Iterable<T>` which applies to a lot of types in the Haxe Standard Library.
+The `empty`-method checks if an `Iterable` has an element. For this purpose, it is not necessary to know anything about the argument type other than the fact that it is considered an iterable. This allows calling the `empty`-method with any type that unifies with `Iterable<T>`, which applies to many types in the Haxe Standard Library.
 
-This kind of typing can be very convenient but extensive use may be detrimental to performance on static targets, which is detailed in [Impact on Performance](types-structure-performance).
+This kind of typing can be very convenient, but extensive use may be detrimental to performance on static targets, which is detailed in [Impact on Performance](types-structure-performance).
 
 
 
@@ -294,15 +294,15 @@ Unification of types having or being a [monomorph](types-monomorph) is detailed 
 <!--label:type-system-unification-function-return-->
 #### Function Return
 
-Unification of function return types may involve the [`Void`-type](types-void) and requires a clear definition of what unifies with `Void`. With `Void` describing the absence of a type, it is not assignable to any other type, not even `Dynamic`. This means that if a function is explicitly declared as returning `Dynamic`, it cannot return `Void`.
+Unification of function return types may involve the [`Void`](types-void) type and requires a clear definition of what unifies with `Void`. With `Void` describing the absence of a type, it is not assignable to any other type, not even `Dynamic`. This means that if a function is explicitly declared as returning `Dynamic`, it cannot return `Void`.
 
-The opposite applies as well: If a function declares a return type of `Void`, it cannot return `Dynamic` or any other type. However, this direction of unification is allowed when assigning function types:
+The opposite applies as well: if a function declares a return type of `Void`, it cannot return `Dynamic` or any other type. However, this direction of unification is allowed when assigning function types:
 
 ```haxe
 var func:Void->Void = function() return "foo";
 ```
 
-The right-hand function clearly is of type `Void->String`, yet we can assign it to the variable `func` of type `Void->Void`. This is because the compiler can safely assume that the return type is irrelevant, given that it could not be assigned to any non-`Void` type.
+The right-hand function is clearly of type `Void->String`, yet we can assign it to the variable `func` of type `Void->Void`. This is because the compiler can safely assume that the return type is irrelevant, given that it could not be assigned to any non-`Void` type.
 
 
 
@@ -315,9 +315,9 @@ Given a set of multiple types, a **common base type** is a type which all types 
 
 Although `Base` is not mentioned, the Haxe Compiler manages to infer it as the common type of `Child1` and `Child2`. The Haxe Compiler employs this kind of unification in the following situations:
 
-* array declarations
-* `if`/`else`
-* cases of a `switch`
+* Array declarations.
+* `if`/`else`.
+* Cases of a `switch`.
 
 
 
