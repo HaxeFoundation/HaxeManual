@@ -458,14 +458,14 @@ private abstract A { ... }
 > 
 > Private types, unlike public types, do not become a member of their containing package.
 
-The accessibility of types can more precisely be manipulated with [access control](lf-access-control).
+The accessibility of types can be manipulated more precisely by using [access control](lf-access-control).
 
 
 
 <!--label:type-system-import-->
 #### Import
 
-If a type path is used multiple times in a .hx file, it might make sense to use an `import` to shorten it. This allows omitting the package when using the type:
+If a type path is used multiple times in a .hx file, it might make sense to use an `import` to shorten it. The package can then be omitted when using the type:
 
 [code asset](assets/Import.hx)
 
@@ -475,41 +475,41 @@ In this example, we are actually importing a **module**, not just a specific typ
 
 [code asset](assets/Import2.hx)
 
-The type `Binop` is an [enum](types-enum-instance) declared in the module `haxe.macro.Expr`, and thus available after the import of said module. If we were to import only a specific type of that module, e.g. `import haxe.macro.Expr.ExprDef`, the program would fail to compile with `Class not found : Binop`.
+The type `Binop` is an [enum](types-enum-instance) declared in the module `haxe.macro.Expr`, and thus available after the import of said module. If we were to import only a specific type of that module, for example, `import haxe.macro.Expr.ExprDef`, the program would fail to compile with `Class not found : Binop`.
 
 There are several aspects worth knowing about importing:
 
 * The bottommost import takes priority (detailed in [Resolution Order](type-system-resolution-order)).
 * The [static extension](lf-static-extension) keyword `using` implies the effect of `import`.
-* If an enum is imported (directly or as part of a module import), all its [enum constructors](types-enum-constructor) are also imported (this is what allows the `OpAdd` usage in the above example).
+* If an enum is imported (directly or as part of a module import), all of its [enum constructors](types-enum-constructor) are also imported (this is what allows the `OpAdd` usage in the above example).
 
 Furthermore, it is also possible to import [static fields](class-field) of a class and use them unqualified:
 
 [code asset](assets/Import3.hx)
 
-Special care has to be taken with field names or local variable names that conflict with a package name: Since they take priority over packages, a local variable named `haxe` blocks off usage of the entire `haxe` package.
+Special care has to be taken with field names or local variable names that conflict with a package name. Since fields and local variables take priority over packages, a local variable named `haxe` blocks off usage of the entire `haxe` package.
 
 ##### Wildcard import
 
-Haxe allows using `.*` to allow import of all modules in a package, all types in a module or all static fields in a type. It is important to understand that this kind of import only crosses a single level as we can see in the following example:
+Haxe allows using a wildcard symbol `.*` to allow import of all modules in a package, all types in a module, or all static fields in a type. It is important to understand that this kind of import only crosses a single level as we can see in the following example:
 
 [code asset](assets/ImportWildcard.hx)
 
-Using the wildcard import on `haxe.macro` allows accessing `Expr` which is a module in this package, but it does not allow accessing `ExprDef` which is a sub-type of the `Expr` module. This rule extends to static fields when a module is imported.
+Using the wildcard import on `haxe.macro` allows accessing `Expr`, which is a module in this package, but it does not allow accessing `ExprDef` which is a sub-type of the `Expr` module. This rule extends to static fields when a module is imported.
 
-When using wildcard imports on a package the compiler does not eagerly process all modules in that package. This means that these modules are never actually seen by the compiler unless used explicitly and are then not part of the generated output.
+When using wildcard imports on a package, the compiler does not eagerly process all modules in that package; modules that have not been used explicitly are not part of the generated output. 
 
 ##### Import with alias
 
-If a type or static field is used a lot in an importing module it might help to alias it to a shorter name. This can also be used to disambiguate conflicting names by giving them a unique identifier.
+If a type or static field is used frequently in an imported module it might help to alias it to a shorter name. This can also be used to disambiguate conflicting names by giving them a unique identifier.
 
 [code asset](assets/ImportAlias.hx)
 
-Here we import `String.fromCharCode` as `f` which allows us to use `f(65)` and `f(66)`. While the same could be achieved with a local variable, this method is compile-time exclusive and guaranteed to have no run-time overhead.
+Here, we import `String.fromCharCode` as `f` which allows us to use `f(65)` and `f(66)`. While the same could be achieved with a local variable, this method is compile-time exclusive and guaranteed to have no run-time overhead.
 
 ##### since Haxe 3.2.0
 
-Haxe also allows the more natural `as` in place of `in`.
+The more natural `as` can be used in place of `in` when importing modules.
 
 
 
@@ -518,11 +518,11 @@ Haxe also allows the more natural `as` in place of `in`.
 
 ##### since Haxe 3.3.0
 
-This feature allows us to define default imports and usings that will be applied for all modules inside a directory, which is particularly handy for large code bases with a lot of helpers and static extensions because it reduces the number of imports.
+Using the specially named `import.hx` file (note the lowercase name), default imports and usings can be defined that will be applied for all modules inside a directory, which reduces the number of imports for large code bases with many helpers and static extensions.
 
-The special named `import.hx` file (note the lowercase name) can be placed in the directory where your code lies. The file can contain import and using statements only. The statements will be applied to all Haxe modules in this directory and its subdirectories.
+The `import.hx` file should be placed in the directory where your code resides. This file can contain import and using statements only. The statements will be applied to all Haxe modules in the directory and its subdirectories.
 
-Default imports of `import.hx` acts as if its contents is placed at the top of each module. 
+Default imports of `import.hx` act as if its contents are placed at the top of each module. 
 
 ##### Related content
 
@@ -537,14 +537,14 @@ Resolution order comes into play as soon as unqualified identifiers are involved
 
 We describe the resolution order algorithm here, which depends on the following state:
 
-* the declared [local variables](expression-var) (including function arguments)
-* the [imported](type-system-import) modules, types and statics
-* the available [static extensions](lf-static-extension)
-* the kind (static or member) of the current field
-* the declared member fields on the current class and its parent classes
-* the declared static fields on the current class
-* the [expected type](define-expected-type)
-* the expression being `untyped` or not
+* The declared [local variables](expression-var) (including function arguments).
+* The [imported](type-system-import) modules, types and statics.
+* The available [static extensions](lf-static-extension).
+* The kind (static or member) of the current field.
+* The declared member fields on the current class and its parent classes.
+* The declared static fields on the current class.
+* The [expected type](define-expected-type).
+* The expression being `untyped` or not.
 
 ![](assets/figures/type-system-resolution-order-diagram.svg)
 
@@ -562,19 +562,19 @@ Given an identifier `i`, the algorithm is as follows:
 8. If a static named `i` is explicitly imported, resolve to it and halt.
 9. If `i` starts with a lower-case character, go to 11.
 10. If a type named `i` is available, resolve to it and halt.
-11. If the expression is not in untyped mode, go to 14
+11. If the expression is not in untyped mode, go to 14.
 12. If `i` equals `__this__`, resolve to the `this` constant and halt.
 13. Generate a local variable named `i`, resolve to it and halt.
-14. Fail
+14. Fail.
 
 For step 10, it is also necessary to define the resolution order of types:
 
 1. If a type named `i` is imported (directly or as part of a module), resolve to it and halt.
 2. If the current package contains a module named `i` with a type named `i`, resolve to it and halt.
 3. If a type named `i` is available at top-level, resolve to it and halt.
-4. Fail
+4. Fail.
 
-For step 1 of this algorithm as well as steps 5 and 7 of the previous one, the order of import resolution is important:
+For step 1 of this algorithm, as well as steps 5 and 7 of the previous one, the order of import resolution is important:
 
 * Imported modules and static extensions are checked from bottom to top with the first match being picked.
 * Imports that come from [import.hx](type-system-import-defaults) files are considered to be at the top of affected modules, which means they have the lowest priority. If multiple `import.hx` files affect a module, the ones in child directories have priority over the ones in parent directories.
