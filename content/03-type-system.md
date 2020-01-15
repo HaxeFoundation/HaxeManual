@@ -217,7 +217,7 @@ We can safely assign with `b` being typed as `MyArray<Base>` and `MyArray` only 
 <!--label:type-system-unification-->
 ### Unification
 
-Unification is the heart of the type system and contributes immensely to the robustness of Haxe programs. It describes the process of checking  a type is compatible with another type.
+Unification is the heart of the type system and contributes immensely to the robustness of Haxe programs. It describes the process of checking if a type is compatible with another type.
 
 > ##### Define: Unification
 >
@@ -355,7 +355,7 @@ Most of the time, types are inferred on their own and may then be unified with a
 >
 > Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is an argument to a function call. They can influence typing of that expression through [top-down inference](type-system-top-down-inference).
 
-A good example are arrays of mixed types. As mentioned in [Dynamic](types-dynamic), the compiler refuses `[1, "foo"]` because it cannot determine an element type. Employing top-down inference, this can be overcome:
+A good example is an array of mixed types. As mentioned in [Dynamic](types-dynamic), the compiler refuses `[1, "foo"]` because it cannot determine an element type. Employing top-down inference, this can be overcome:
 
 [code asset](assets/TopDownInference.hx)
 
@@ -458,7 +458,7 @@ private abstract A { ... }
 > 
 > Private types, unlike public types, do not become a member of their containing package.
 
-The accessibility of types can be manipulated more precisely by using [access control](lf-access-control).
+The accessibility of types can be controlled more precisely by using [access control](lf-access-control).
 
 
 
