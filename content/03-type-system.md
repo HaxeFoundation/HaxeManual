@@ -334,17 +334,17 @@ The special construct `$type` was previously mentioned in order to simplify the 
 
 > ##### Define: `$type`
 >
-> `$type` is a compile-time mechanism being called like a function, with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.
+> `$type` is a compile-time mechanism that is called similarly to a function with a single argument. The compiler evaluates the argument expression and then outputs the type of that expression.
 
-In the example above, the first `$type` prints `Unknown<0>`. This is a [monomorph](types-monomorph), a type that is not yet known. The next line `x = "foo"` assigns a `String` literal to `x`, which causes the [unification](type-system-unification) of the monomorph with `String`. We then see that the type of `x` indeed has changed to `String`.
+In the example above, the first `$type` prints `Unknown<0>`. This is a [monomorph](types-monomorph), a type that is not yet known. The next line `x = "foo"` assigns a `String` literal to `x`, which causes the [unification](type-system-unification) of the monomorph with `String`. We then see that the type of `x` has changed to `String`.
 
-Whenever a type other than [Dynamic](types-dynamic) is unified with a monomorph, that monomorph **becomes** that type: it **morphs** into that type. Therefore it cannot morph into a different type afterwards, a property expressed in the **mono** part of its name.
+Whenever a type other than [Dynamic](types-dynamic) is unified with a monomorph, that monomorph **morphs** into that type, or in simpler terms, **becomes** that type. Therefore, it cannot morph into a different type afterwards, a property expressed in the **mono** part of its name.
 
 Following the rules of unification, type inference can occur in compound types:
 
 [code asset](assets/TypeInference2.hx)
 
-Variable `x` is first initialized to an empty `Array`. At this point, we can tell that the type of `x` is an array, but we do not yet know the type of the array elements. Consequentially, the type of `x` is `Array<Unknown<0>>`. It is only after pushing a `String` onto the array that we know the type to be `Array<String>`.
+Variable `x` is first initialized to an empty `Array`. At this point, we can tell that the type of `x` is an array, but we do not yet know the type of the array elements. Consequently, the type of `x` is `Array<Unknown<0>>`. It is only after pushing a `String` onto the array that we know the type to be `Array<String>`.
 
 <!--label:type-system-top-down-inference-->
 #### Top-down Inference
@@ -353,15 +353,15 @@ Most of the time, types are inferred on their own and may then be unified with a
 
 > ##### Define: Expected Type
 >
-> Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is an argument to a function call. They can influence typing of that expression through what is called [top-down inference](type-system-top-down-inference).
+> Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is an argument to a function call. They can influence typing of that expression through [top-down inference](type-system-top-down-inference).
 
-A good example is arrays of mixed types. As mentioned in [Dynamic](types-dynamic), the compiler refuses `[1, "foo"]` because it cannot determine an element type. Employing top-down inference, this can be overcome:
+A good example are arrays of mixed types. As mentioned in [Dynamic](types-dynamic), the compiler refuses `[1, "foo"]` because it cannot determine an element type. Employing top-down inference, this can be overcome:
 
 [code asset](assets/TopDownInference.hx)
 
 Here, the compiler knows while typing `[1, "foo"]` that the expected type is `Array<Dynamic>`, so the element type is `Dynamic`. Instead of the usual unification behavior where the compiler would attempt (and fail) to determine a [common base type](type-system-unification-common-base-type), the individual elements are typed against and unified with `Dynamic`.
 
-We have seen another interesting use of top-down inference when [construction of generic type parameters](type-system-generic-type-parameter-construction) was introduced:
+We have seen another interesting use of top-down inference when the [construction of generic type parameters](type-system-generic-type-parameter-construction) was introduced:
 
 [code asset](assets/GenericTypeParameter.hx)
 
@@ -372,11 +372,11 @@ The explicit types `String` and `haxe.Template` are used here to determine the r
 <!--label:type-system-inference-limitations-->
 #### Limitations
 
-Type inference saves a lot of manual type hints when working with local variables, but sometimes the type system still needs some help. In fact, it does not even try to infer the type of a [variable](class-field-variable) or [property](class-field-property) field unless it has a direct initialization.
+Type inference reduces manual type hinting when working with local variables, but sometimes the type system still needs guidance. It will not try to infer the type of a [variable](class-field-variable) or [property](class-field-property) field unless it has a direct initialization.
 
-There are also some cases involving recursion where type inference has limitations. If a function calls itself recursively while its type is not (completely) known yet, type inference may infer a wrong, too specialized type.
+There are also cases involving recursion where type inference has limitations. If a function calls itself recursively while its type is not completely known yet, type inference may infer an incorrect and overly specialized type.
 
-A different kind of limitation involves the readability of code. If type inference is overused it might be difficult to understand parts of a program due to the lack of visible types. This is particularly true for method signatures. It is recommended to find a good balance between type inference and explicit type hints.
+Another concern to consider is code legibility. If type inference is overused, parts of a program may become difficult to understand due to the lack of visible types. This is particularly true for method signatures. It is recommended to find a good balance between type inference and explicit type hints.
 
 
 
@@ -389,16 +389,16 @@ A different kind of limitation involves the readability of code. If type inferen
 >
 > All Haxe code is organized in modules, which are addressed using paths. In essence, each .hx file represents a module which may contain several types. A type may be `private`, in which case only its containing module can access it.
 
-The distinction of a module and its containing type of the same name is blurry by design. In fact, addressing `haxe.ds.StringMap<Int>` can be considered shorthand for `haxe.ds.StringMap.StringMap<Int>`. The latter version consists of four parts:
+The distinction between a module and its containing type of the same name is blurry by design. In fact, addressing `haxe.ds.StringMap<Int>` can be considered shorthand for `haxe.ds.StringMap.StringMap<Int>`. The latter version consists of four parts:
 
-1. the package `haxe.ds`
-2. the module name `StringMap`
-3. the type name `StringMap`
-4. the type parameter `Int`
+1. The package `haxe.ds`.
+2. The module name `StringMap`.
+3. The type name `StringMap`.
+4. The type parameter `Int`.
 
 If the module and type name are equal, the duplicate can be removed, leading to the `haxe.ds.StringMap<Int>` short version. However, knowing about the extended version helps with understanding how [module sub-types](type-system-module-sub-types) are addressed.
 
-Paths can be shortened further by using an [import](type-system-import), which typically allows omitting the package part of a path. This may lead to usage of unqualified identifiers, for which understanding the [resolution order](type-system-resolution-order) is required.
+Paths can be shortened further by using an [import](type-system-import), which typically allows omitting the package part of a path. This may lead to usage of unqualified identifiers, which requires understanding the [resolution order](type-system-resolution-order).
 
 > ##### Define: Type path
 >
@@ -441,7 +441,7 @@ class Main {
 }
 ```
 
-The sub-type relation is not reflected at run-time. That is, public sub-types become a member of their containing package, which could lead to conflicts if two modules within the same package tried to define the same sub-type. Naturally, the Haxe compiler detects these cases and reports them accordingly. In the example above `ExprDef` is generated as `haxe.macro.ExprDef`.
+The sub-type relation is not reflected at run-time; public sub-types become a member of their containing package, which could lead to conflicts if two modules within the same package tried to define the same sub-type. Naturally, the Haxe compiler detects these cases and reports them accordingly. In the example above `ExprDef` is generated as `haxe.macro.ExprDef`.
 
 Sub-types can also be made private:
 
@@ -454,11 +454,11 @@ private abstract A { ... }
 
 > ##### Define: Private type
 >
-> A type can be made private by using the `private` modifier. As a result, the type can only be directly accessed from within the [module](define-module) it is defined in.
+> A type can be made private by using the `private` modifier. Afterwards, the type can only be directly accessed from within the [module](define-module) it is defined in.
 > 
-> Private types, unlike public ones, do not become a member of their containing package.
+> Private types, unlike public types, do not become a member of their containing package.
 
-The accessibility of types can be controlled more fine-grained by using [access control](lf-access-control).
+The accessibility of types can more precisely be manipulated with [access control](lf-access-control).
 
 
 
