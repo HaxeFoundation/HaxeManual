@@ -3,7 +3,7 @@
 
 We learned about the different kinds of types in [Types](types) and it is now time to see how they interact with each other. We start off easy by introducing [typedef](type-system-typedef), a mechanism to give a name (or alias) to a more complex type. Among other use cases, typedefs will come in handy when working with types that have [type parameters](type-system-type-parameters).
 
- !!!-REVIEW ME: What is this sentence even referring to? "Type groups" is also unclear in the sense that this phrase has not been used before and may have special meaning of some sort-!!! A lot of type-safety is achieved by checking if two given types of the type groups above are compatible. Meaning, the compiler tries to perform **unification** between them as detailed in [Unification](type-system-unification).
+A significant amount of type-safety is achieved by checking if two given types are compatible. Meaning, the compiler tries to perform **unification** between them as detailed in [Unification](type-system-unification).
 
 All types are organized in **modules** and can be addressed through **paths**. [Modules and Paths](type-system-modules-and-paths) will give a detailed explanation of the related mechanics.
 
@@ -25,7 +25,7 @@ typedef User = {
   var name : String;
 }
 ```
-A typedef is not a textual replacement, but actually a real type. They can even have [type parameters](type-system-type-parameters) as the `Iterable` type from the Haxe Standard Library demonstrates:
+Typedefs are not textual replacements, but are actually real types. They can even have [type parameters](type-system-type-parameters) as the `Iterable` type from the Haxe Standard Library demonstrates:
 
 ```haxe
 typedef Iterable<T> = {
@@ -48,7 +48,7 @@ class Array<T> {
 Whenever an instance of `Array` is created, its type parameter `T` becomes a [monomorph](types-monomorph). That is, it can be bound to any type, but only one at a time. This binding can happen either:
 
 * explicitly, by invoking the constructor with explicit types (`new Array<String>()`) or
-* implicitly, by [type inference](type-system-type-inference), e.g. when invoking `arrayInstance.push("foo")`.
+* implicitly, by [type inference](type-system-type-inference) for instance, when invoking `arrayInstance.push("foo")`.
 
 Inside the definition of a class with type parameters, the type parameters are an unspecific type. Unless [constraints](type-system-type-parameter-constraints) are added, the compiler has to assume that the type parameters could be used with any type. As a consequence, it is not possible to access the fields of type parameters or [cast](expression-cast) to a type parameter type. It is also not possible to create a new instance of a type parameter type unless the type parameter is [generic](type-system-generic) and constrained accordingly. 
 
@@ -159,10 +159,10 @@ It is not possible to construct normal type parameters; for example, `new T()` w
 
 [code asset](assets/GenericTypeParameter.hx)
 
-It should be noted that [top-down inference](type-system-top-down-inference) is used here to determine the actual type of `T`. There are two requirements for this kind of type parameter construction to work: The constructed type parameter must be:
+It should be noted that [top-down inference](type-system-top-down-inference) is used here to determine the actual type of `T`. For this kind of type parameter construction to work, the constructed type parameter must meet two requirements:
 
-1. generic and
-2. explicitly [constrained](type-system-type-parameter-constraints) to have a [constructor](types-class-constructor).
+1. It must be generic.
+2. It must be explicitly [constrained](type-system-type-parameter-constraints) to have a [constructor](types-class-constructor).
 
 Here, the first requirement is met by `make` having the `@:generic` metadata, and the second by `T` being constrained to `Constructible`. The constraint holds for both `String` and `haxe.Template` as both have a constructor accepting a singular `String` argument. Sure enough, the relevant JavaScript output looks as expected:
 
@@ -221,7 +221,7 @@ Unification is the heart of the type system and contributes immensely to the rob
 
 > ##### Define: Unification
 >
-> Unification between two types A and B is a directional process which answers one question: if A **can be assigned to** B. It may **mutate** either type if it either is or has a [monomorph](types-monomorph).
+> Unification between two types A and B is a directional process which answers one question: whether A **can be assigned to** B. It may **mutate** either type if it either is or has a [monomorph](types-monomorph).
 
 Unification errors are very easy to trigger:
 
@@ -247,7 +247,7 @@ In this particular case, the unification is triggered by an **assignment**, a co
 <!--label:type-system-unification-between-classes-and-interfaces-->
 #### Between Class/Interface
 
-When defining unification behavior between classes, it is important to remember that unification is directional: We can assign a more specialized class (e.g. a child class) to a generic class (e.g. a parent class) but the reverse is not valid.
+When defining unification behavior between classes, it is important to remember that unification is directional: we can assign a more specialized class to a generic class, but the reverse is not valid.
 
 The following assignments are allowed:
 
@@ -318,6 +318,7 @@ Although `Base` is not mentioned, the Haxe Compiler manages to infer it as the c
 * Array declarations.
 * `if`/`else`.
 * Cases of a `switch`.
+* The ternary operator `?:`.
 
 
 
@@ -353,7 +354,7 @@ Most of the time, types are inferred on their own and may then be unified with a
 
 > ##### Define: Expected Type
 >
-> Expected types occur when the type of an expression is known before that expression has been typed, e.g. because the expression is an argument to a function call. They can influence typing of that expression through [top-down inference](type-system-top-down-inference).
+> Expected types occur when the type of an expression is known before that expression has been typed, such as when the expression is an argument to a function call. They can influence typing of that expression through [top-down inference](type-system-top-down-inference).
 
 A good example is an array of mixed types. As mentioned in [Dynamic](types-dynamic), the compiler refuses `[1, "foo"]` because it cannot determine an element type. Employing top-down inference, this can be overcome:
 
@@ -456,7 +457,7 @@ private abstract A { ... }
 >
 > A type can be made private by using the `private` modifier. Afterwards, the type can only be directly accessed from within the [module](define-module) it is defined in.
 > 
-> Private types, unlike public types, do not become a member of their containing package.
+> Private types, unlike public ones, do not become a member of their containing package.
 
 The accessibility of types can be controlled more precisely by using [access control](lf-access-control).
 
@@ -497,11 +498,11 @@ Haxe allows using a wildcard symbol `.*` to allow import of all modules in a pac
 
 Using the wildcard import on `haxe.macro` allows accessing `Expr`, which is a module in this package, but it does not allow accessing `ExprDef` which is a sub-type of the `Expr` module. This rule extends to static fields when a module is imported.
 
-When using wildcard imports on a package, the compiler does not eagerly process all modules in that package; modules that have not been used explicitly are not part of the generated output. 
+When using wildcard imports on a package, the compiler does not eagerly process all modules in that package; modules that have not been used explicitly are not part of the generated output.
 
 ##### Import with alias
 
-If a type or static field is used frequently in an imported module it might help to alias it to a shorter name. This can also be used to disambiguate conflicting names by giving them a unique identifier.
+If an imported type or static field is used frequently in a module, it might help to alias it to a shorter name. This can also be used to disambiguate conflicting names by giving them a unique identifier.
 
 [code asset](assets/ImportAlias.hx)
 
@@ -520,7 +521,7 @@ The more natural `as` can be used in place of `in` when importing modules.
 
 Using the specially named `import.hx` file (note the lowercase name), default imports and usings can be defined that will be applied for all modules inside a directory, which reduces the number of imports for large code bases with many helpers and static extensions.
 
-The `import.hx` file should be placed in the directory where your code resides. This file can contain import and using statements only. The statements will be applied to all Haxe modules in the directory and its subdirectories.
+The `import.hx` file must be placed in the same directory as your code. It can only contain import and using statements, which will be applied to all Haxe modules in the directory and its subdirectories.
 
 Default imports of `import.hx` act as if its contents are placed at the top of each module. 
 
