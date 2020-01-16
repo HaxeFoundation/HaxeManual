@@ -318,7 +318,6 @@ Although `Base` is not mentioned, the Haxe Compiler manages to infer it as the c
 * Array declarations.
 * `if`/`else`.
 * Cases of a `switch`.
-* The ternary operator `?:`.
 
 
 
