@@ -714,7 +714,7 @@ The easiest way to change the `hxcpp` build environment is to pass the defines t
 
 ```
 haxe --main Main --cpp cpp -D android -D static_link -D PLATFORM=android-9
-````
+```
 
 Here:
 
