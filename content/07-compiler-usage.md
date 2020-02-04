@@ -40,7 +40,7 @@ The second question usually comes down to providing an argument specifying the d
 * `--interp` Interpret the program using internal macro system.
 
 ##### Other global arguments
-
+* `--run <module> [args...]` Compile and execute a Haxe module with command line arguments.
 * `--xml <file>` Generate XML types description. Useful for API documentation generation tools like [Dox](https://github.com/HaxeFoundation/dox).
 * `-v` (or `--verbose`) Turn on verbose mode.
 * <code>--dce &lt;std&#124;full&#124;no&gt;</code> Set the [Dead Code Elimination](cr-dce) mode (default `std`).
