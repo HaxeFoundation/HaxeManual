@@ -9,7 +9,6 @@ using StringTools;
 abstract Target(String) from String to String
 {
 	var Swf = "swf";
-	var As3 = "as3";
 	var Js = "js";
 	var Neko = "neko";
 	var Cpp = "cpp";

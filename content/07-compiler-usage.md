@@ -10,7 +10,7 @@ The Haxe Compiler is typically invoked from command line with several arguments 
 
 To answer the first question, it is usually sufficient to provide a class path via the `-p <path>` argument, along with the main class to be compiled via the `-m <dot_path>` argument. The Haxe Compiler then resolves the main class file and begins compilation.
 
-The second question usually comes down to providing an argument specifying the desired target. Each Haxe target has a dedicated command line switch, such as `--js <file_name>` for JavaScript and `--php <directory>` for PHP. Depending on the nature of the target, the argument value is either a directory path (for `--as3`, `--php`, `--cpp`, `--cs`, and `--java`) or a file name.
+The second question usually comes down to providing an argument specifying the desired target. Each Haxe target has a dedicated command line switch, such as `--js <file_name>` for JavaScript and `--php <directory>` for PHP. Depending on the nature of the target, the argument value is either a directory path (for `--php`, `--cpp`, `--cs`, and `--java`) or a file name.
 
 ##### Common arguments
 
@@ -24,13 +24,12 @@ The second question usually comes down to providing an argument specifying the d
 **Output:**
 
 * `--js <file_name.js>` Generate [JavaScript](target-javascript) source code in specified file.
-* `--as3 directory` Generate ActionScript 3 source code in specified directory.
 * `--swf <file_name.swf>` Generate the specified file as [Flash](target-flash) `.swf`.
 * `--neko <file_name.n>` Generate [Neko](target-neko) binary as specified file.
 * `--php <directory>` Generate [PHP](target-php) source code in specified directory. Use `-D php7` for PHP7 source code.
 * `--cpp <directory>` Generate [C++](target-cpp) source code in specified directory and compiles it using native C++ compiler.
 * `--cs <directory>` Generate [C#](target-cs) source code in specified directory.
-* `--java <directory>` Generate [Java](target-java) source code in specified directory and compiles it using the Java Compiler.
+* `--java <directory>` Generate [Java](target-java) source code in specified directory and compiles it using the Java Compiler. Add `-D jvm` to generate JVM byte code directly bypassing Java compilation step.
 * `--python <file_name.py>` Generate [Python](target-python) source code in the specified file.
 * `--lua <file_name.lua>` Generate [Lua](target-python) source code in the specified file.
 * `--hl <file_name.hl>` Generate [HashLink](target-hl) byte code in specified file.
@@ -50,7 +49,7 @@ The second question usually comes down to providing an argument specifying the d
 * `--cmd <command>` Run the specified shell command after a successful compilation.
 * `--no-traces` Don't compile trace calls in the program.
 * `--gen-hx-classes` Generate hx headers for all input classes.
-* `--display` Display code tips to provide [completion information for IDEs and editors](cr-completion-overview). 
+* `--display` Display code tips to provide [completion information for IDEs and editors](cr-completion-overview).
 * `--times` Measure compilation times.
 * `--no-inline` Disable [inlining](class-field-inline).
 * `--no-opt` Disable code optimizations.
@@ -79,7 +78,7 @@ The second question usually comes down to providing an argument specifying the d
 >
 > Use `--cmd` to run the specified command after a successful compilation. It can be used to run (testing) tools or to directly run the build, e.g. `--cmd java -jar bin/Main.jar` (for Java), `--cmd node main.js` (for Node.js) or `--cmd neko Main.n` (for Neko) etc.
 
-##### Global compiler configuration macros: 
+##### Global compiler configuration macros:
 
 In order to include single modules, their paths can be listed directly on command line or in hxml: `haxe ... ModuleName pack.ModuleName`. For more specific includes or excludes, use these [initialization macros](macro-initialization):
 
@@ -140,12 +139,12 @@ This example has a configuration which compiles three different classes into the
 --js bin/homepage.js
 --main website.HomePage
 
---next  
+--next
 
 --js bin/gallery.js
 --main website.GalleryPage
 
---next  
+--next
 
 --js bin/contact.js
 --main website.ContactPage
@@ -153,17 +152,17 @@ This example has a configuration which compiles three different classes into the
 
 ##### Comments inside hxml
 
-Inside .hxml files use a hash (i.e. `#`) to comment out the rest of the line. 
+Inside .hxml files use a hash (i.e. `#`) to comment out the rest of the line.
 
 **Calling build configurations inside HXML:**
 
 It is possible to create a configuration that looks like this:
 
 ```hxml
-build-server.hxml  
---next  
-build-website.hxml  
---next  
+build-server.hxml
+--next
+build-website.hxml
+--next
 build-game.hxml
 ```
 
@@ -174,7 +173,7 @@ build-game.hxml
 
 Starting from Haxe 3.0, you can get the list of supported [compiler flags](lf-condition-compilation) by running `haxe --help-defines`
 
-Flag | Argument | Description | Platforms 
+Flag | Argument | Description | Platforms
  --- | --- | --- | ---
 <!--include:generated/defines.md-->
 

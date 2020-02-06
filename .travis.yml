@@ -10,9 +10,6 @@ matrix:
     - env: TARGET=swf
       haxe: development
 
-    - env: TARGET=as3
-      haxe: 4.0.2
-
     - env: TARGET=interp
       haxe: development
 
