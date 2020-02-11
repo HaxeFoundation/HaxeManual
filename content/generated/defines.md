@@ -1,7 +1,6 @@
 `absolute_path` |  | Print absolute file path in trace output. | all
 `advanced-telemetry` |  | Allow the SWF to be measured with Monocle tool. | flash
 `annotate_source` |  | Add additional comments to generated source code. | cpp
-`as3` |  | Defined when outputting flash9 as3 source code. | all
 `check_xml_proxy` |  | Check the used fields of the XML proxy. | all
 `core_api` |  | Defined in the core API context. | all
 `core_api_serialize` |  | Mark some generated core API classes with the `Serializable` attribute on C#. | cs
