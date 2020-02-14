@@ -80,6 +80,7 @@ Target | `target.unicode` | `target.utf16` | Internal encoding | Null-byte allow
  --- | --- | --- | --- | ---
 Flash | yes | yes | UTF-16 | no
 JavaScript | yes | yes | UTF-16 | yes (except in some old browsers)
+ActionScript 3 | yes | yes | UTF-16 | no
 C++ | yes | yes | ASCII or UTF-16 (if needed) | yes
 Java | yes | yes | UTF-16 | yes
 JVM | yes | yes | UTF-16 | yes
@@ -146,7 +147,7 @@ Haxe does not allow arrays of mixed types unless the parameter type is forced to
 
 ##### Related content
 
-* See the [Array API](https://api.haxe.org/Array.html) for details about its methods.
+* See the [Array API](https://api.haxe.org/Array.html) for details about its methods. 
 * [Data structures tutorials and examples](http://code.haxe.org/category/data-structures/) in the Haxe Code Cookbook.
 
 
@@ -162,7 +163,7 @@ A `Vector` is an optimized fixed-length **collection** of elements. Much like [A
 
 ##### Related content
 
-* See the [Vector API](https://api.haxe.org/haxe/ds/Vector.html) for details about the vector methods.
+* See the [Vector API](https://api.haxe.org/haxe/ds/Vector.html) for details about the vector methods. 
 * [Data structures tutorials and examples](http://code.haxe.org/category/data-structures/) in the Haxe Code Cookbook.
 
 
@@ -182,7 +183,7 @@ A simple example of working with lists:
 
 ##### Related content
 
-* See the [List API](https://api.haxe.org/List.html) for details about the list methods.
+* See the [List API](https://api.haxe.org/List.html) for details about the list methods. 
 * [Data structures tutorials and examples](http://code.haxe.org/category/data-structures/) in the Haxe Code Cookbook.
 
 
@@ -200,7 +201,7 @@ The **Generic** in `GenericStack` is literal.  It is attributed with the `:gener
 
 ##### Related content
 
-* See the [GenericStack API](https://api.haxe.org/haxe/ds/GenericStack.html) for details about its methods.
+* See the [GenericStack API](https://api.haxe.org/haxe/ds/GenericStack.html) for details about its methods. 
 * [Data structures tutorials and examples](http://code.haxe.org/category/data-structures/) in the Haxe Code Cookbook.
 
 
@@ -219,7 +220,7 @@ Under the hood, a `Map` is an [abstract](types-abstract) type. At compile time, 
 * `EnumValue`: `haxe.ds.EnumValueMap`
 * `{}`: `haxe.ds.ObjectMap`
 
-The `Map` type does not exist at runtime and has been replaced with one of the above objects.
+The `Map` type does not exist at runtime and has been replaced with one of the above objects. 
 
 Map defines [array access](types-abstract-array-access) using its key type.
 
@@ -299,7 +300,7 @@ The possible flags are the following:
 
 ##### Related content
 
-* See the [EReg API](https://api.haxe.org/EReg.html) for details about its methods.
+* See the [EReg API](https://api.haxe.org/EReg.html) for details about its methods. 
 * [Haxe snippets and tutorials about regular expressions](http://code.haxe.org/tag/ereg.html) in the Haxe Code Cookbook.
 
 <!--label:std-regex-match-->
@@ -379,7 +380,7 @@ Regular Expressions are implemented:
 
 Haxe includes a floating point math library for some common mathematical operations. Most of the functions operate on and return `floats`. However, an `Int` can be used where a `Float` is expected, and Haxe also converts `Int` to `Float` during most numeric operations (see [Binary Operators](expression-operators-binops) for more details).
 
-Here are some example uses of the math library:
+Here are some example uses of the math library:  
 
 [code asset](assets/MathExample.hx)
 
@@ -421,7 +422,7 @@ If you are targeting a platform that can utilize integer operations, e.g. intege
 <!--label:std-math-extensions-->
 #### Extensions
 
-It is common to see [Static Extension](lf-static-extension) used with the math library.  This code shows a simple example:
+It is common to see [Static Extension](lf-static-extension) used with the math library.  This code shows a simple example:  
 [code asset](assets/MathStaticExtension.hx)
 
 [code asset](assets/MathExtensionUsage.hx)
@@ -437,13 +438,13 @@ It is common to see [Static Extension](lf-static-extension) used with the math l
 >
 > Lambda is a functional language concept within Haxe that allows you to apply a function to a list or [iterators](lf-iterators). The Lambda class is a collection of functional methods in order to use functional-style programming with Haxe.
 
-It is ideally used with `using Lambda` (see [Static Extension](lf-static-extension)) and then acts as an extension to `Iterable` types.
+It is ideally used with `using Lambda` (see [Static Extension](lf-static-extension)) and then acts as an extension to `Iterable` types. 
 
 On static platforms, working with the `Iterable` structure might be slower than performing the operations directly on known types, such as `Array` and `List`.
 
 ##### Lambda Functions
 The Lambda class allows us to operate on an entire `Iterable` at once.
-This is often preferable to looping routines since it is less error-prone and easier to read.
+This is often preferable to looping routines since it is less error-prone and easier to read. 
 For convenience, the `Array` and `List` class contains some of the frequently used methods from the Lambda class.
 
 It is helpful to look at an example. The exists function is specified as:
@@ -479,11 +480,11 @@ class Main {
         var isThreeLetters = function(word) return word.length == 3;
         var capitalize = function(word) return word.toUpperCase();
 
-        // Three letter words and capitalized.
+        // Three letter words and capitalized. 
         trace(words.filter(isThreeLetters).map(capitalize)); // [CAR,CAT]
     }
 }
-```
+``` 
 
 This example demonstrates the Lambda count, has, foreach and fold function on a set of ints.
 
@@ -510,7 +511,7 @@ class Main {
         trace(numbers.fold(Math.min, numbers[0])); // 1
     }
 }
-```
+``` 
 
 ##### Related content
 
@@ -543,20 +544,20 @@ It is possible to test conditions using `::if flag1::`. Optionally, the conditio
 
 ```
 ::if isValid:: valid ::else:: invalid ::end::
-```
+``` 
 
 Operators can be used but they don't deal with operator precedence. Therefore it is required to enclose each operation in parentheses `()`. Currently, the following operators are allowed: `+`, `-`, `*`, `/`, `>`, `<`,  `>=`, `<=`, `==`, `!=`, `&&` and <code>&#124;&#124;</code>.
 
-For example `::((1 + 3) == (2 + 2))::` will display true.
+For example `::((1 + 3) == (2 + 2))::` will display true. 
 
-```
+``` 
 ::if (points == 10):: Great! ::end::
-```
+``` 
 
 To compare to a string, use double quotes `"` in the template.
 ```
 ::if (name == "Mark"):: Hi Mark ::end::
-```
+``` 
 
 ##### Iterating
 Iterate on a structure by using `::foreach::`. End the loop with `::end::`.
@@ -573,7 +574,7 @@ Iterate on a structure by using `::foreach::`. End the loop with `::end::`.
 		</tr>
 	::end::
 </table>
-```
+``` 
 
 ##### Sub-templates
 To include templates in other templates, pass the sub-template result string as a parameter.
@@ -586,7 +587,7 @@ var userOutput = userTemplate.execute({users: users});
 var template = new haxe.Template("The users are ::users::");
 var output = template.execute({users: userOutput});
 trace(output);
-```
+``` 
 The console will trace `The users are Mark(30) John(45)`.
 
 ##### Template macros
@@ -602,7 +603,7 @@ Use the [Template.globals](https://api.haxe.org/haxe/Template.html#globals) obje
 
 ##### Using resources
 
-To separate the content from the code, consider using the [resource embedding system](cr-resources).
+To separate the content from the code, consider using the [resource embedding system](cr-resources). 
 Place the template-content in a new file called `sample.mtt`, add `--resource sample.mtt@my_sample` to the compiler arguments and retrieve the content using `haxe.Resource.getString`.
 [code asset](assets/TemplateResource.hx)
 
@@ -621,7 +622,7 @@ Haxe supports runtime reflection of types and fields. Special care has to be tak
 
 The reflection API consists of two classes:
 
-* Reflect: A lightweight API which work best on [anonymous structures](types-anonymous-structure), with limited support for [classes](types-class-instance).
+* Reflect: A lightweight API which work best on [anonymous structures](types-anonymous-structure), with limited support for [classes](types-class-instance). 
 * Type: A more robust API for working with classes and [enums](types-enum-instance).
 
 The available methods are detailed in the API for [Reflect](https://api.haxe.org/Reflect.html) and [Type](https://api.haxe.org/Type.html).
@@ -636,7 +637,7 @@ However, even if there are no typing errors it is easy to come across unexpected
 
 The problem here is that the compiler never actually "sees" the type `haxe.Template`, so it does not compile it into the output. Furthermore, even if it were to see the type there could be issues arising from [dead code elimination](cr-dce) eliminating types or fields which are only used via reflection.
 
-Another set of problems comes from the fact that, by design, several reflection functions expect arguments of type [Dynamic](types-dynamic), meaning the compiler cannot check if the passed in arguments are correct.
+Another set of problems comes from the fact that, by design, several reflection functions expect arguments of type [Dynamic](types-dynamic), meaning the compiler cannot check if the passed in arguments are correct. 
 
 The following example demonstrates a common mistake when working with `callMethod`:
 
@@ -712,7 +713,7 @@ Each supported value is translated to a distinct prefix character, followed by t
 
 * `null`: `n`
 * `Int`: `z` for zero, or `i` followed by the integer display (e.g. `i456`)
-* `Float`:
+* `Float`: 
 
     * `NaN`: `k`
     * negative infinity: `m`
@@ -730,10 +731,10 @@ Each supported value is translated to a distinct prefix character, followed by t
 * `haxe.ds.ObjectMap`: `M` followed by serialized value pairs representing the key and value, followed by `h`
 * `haxe.io.Bytes`: `s` followed by the length of the base64 encoded bytes, then `:` and the byte representation using the codes `A-Za-z0-9%` (e.g. `s3:AAA` for 2 bytes equal to `0`, and `s10:SGVsbG8gIQ` for `haxe.io.Bytes.ofString("Hello !")`)
 * exception: `x` followed by the exception value
-* class instance: `c` followed by the serialized class name, followed by the name-value pairs of the fields, followed by `g` (e.g. `cy5:Pointy1:xzy1:yzg` for `new Point(0, 0)` (having two integer fields `x` and `y`)
+* class instance: `c` followed by the serialized class name, followed by the name-value pairs of the fields, followed by `g` (e.g. `cy5:Pointy1:xzy1:yzg` for `new Point(0, 0)` (having two integer fields `x` and `y`)        
 * enum instance (by name): `w` followed by the serialized enum name, followed by the serialized constructor name, followed by `:`, followed by the number of arguments, followed by the argument values (e.g. `wy3:Fooy1:A:0` for `Foo.A` (with no arguments), `wy3:Fooy1:B:2i4n` for `Foo.B(4,null)`)
 * enum instance (by index): `j` followed by the serialized enum name, followed by `:`, followed by the constructor index (starting from 0), followed by `:`, followed by the number of arguments, followed by the argument values (e.g. `jy3:Foo:0:0` for `Foo.A` (with no arguments), `jy3:Foo:1:2i4n` for `Foo.B(4,null)`)
-* cache references:
+* cache references: 
 
     * `String`: `R` followed by the corresponding index in the string cache (e.g. `R456`)
     * class, enum or structure `r` followed by the corresponding index in the object cache (e.g. `r42`)
@@ -771,7 +772,7 @@ trace(root); // <root />
 
 Adding child elements to the root can be done using the `addChild` method.
 ```haxe
-var child:Xml = Xml.createElement('child');
+var child:Xml = Xml.createElement('child'); 
 root.addChild(child);
 trace(root); // <root><child/></root>
 ```
@@ -794,7 +795,7 @@ trace(xml.get('name')); // world!
 trace(xml.firstChild().nodeValue); // Haxe is great!
 ```
 
-The difference between `firstChild` and `firstElement` is that the second function will return the first child with the type `Xml.Element`.
+The difference between `firstChild` and `firstElement` is that the second function will return the first child with the type `Xml.Element`. 
 
 ##### Iterate on Xml elements
 We can as well use other methods to iterate either over children or elements.
@@ -893,7 +894,7 @@ There are different accessors that can be used with the Access API:
 * `.innerHTML` returns the XML string built with all the sub nodes, excluding the current one.
 
 ##### Self-closed nodes
-Please note that we cannot access self-closed nodes as "regular" ones.
+Please note that we cannot access self-closed nodes as "regular" ones. 
 For example, provided this XML:
 
 ```haxe
@@ -904,17 +905,17 @@ var xml = Xml.parse("<xml>
 
 var access = new haxe.xml.Access(xml.firstElement());
 
-var myNode1Value = access.node.myNode1.innerData;
+var myNode1Value = access.node.myNode1.innerData; 
 // no problem
 
-var myNode2Value = access.node.myNode2.innerData;
+var myNode2Value = access.node.myNode2.innerData; 
 // ERROR, an exception is thrown!
 ```
 
 If the XML might contain self-closed nodes, check `hasNode.innerData` before and default to an alternative value.
 
 ```haxe
-var myNode2Value = access.node.myNode2.hasNode.innerData ? access.node.myNode2.innerData : null;
+var myNode2Value = access.node.myNode2.hasNode.innerData ? access.node.myNode2.innerData : null; 
 ```
 
 
@@ -973,7 +974,7 @@ Older browsers (Internet Explorer 7, for instance) may not have a native **JSON*
 <!--label:std-sys-->
 ### Sys
 
-The majority of Haxe targets are so-called "sys" targets. This means the targets have access to system APIs such as the filesystem, networking, threads, and more. The only non-sys targets supported by Haxe are Flash and JavaScript, although JavaScript can support sys APIs when running under Node.js runtime.
+The majority of Haxe targets are so-called "sys" targets. This means the targets have access to system APIs such as the filesystem, networking, threads, and more. The only non-sys targets supported by Haxe are Flash, JavaScript, and ActionScript 3, although JavaScript can support sys APIs when running under Node.js runtime.
 
 ##### Related content
 
@@ -1012,9 +1013,9 @@ Haxe remoting is a way to communicate between different platforms. With Haxe rem
 <!--label:std-remoting-connection-->
 #### Remoting Connection
 
-In order to use remoting, there must be a connection established. There are two kinds of Haxe Remoting connections:
+In order to use remoting, there must be a connection established. There are two kinds of Haxe Remoting connections: 
 
-* [haxe.remoting.Connection](https://api.haxe.org/haxe/remoting/Connection.html) is used for **synchronous connections**, where the results can be directly obtained when calling a method.
+* [haxe.remoting.Connection](https://api.haxe.org/haxe/remoting/Connection.html) is used for **synchronous connections**, where the results can be directly obtained when calling a method. 
 * [haxe.remoting.AsyncConnection](https://api.haxe.org/haxe/remoting/AsyncConnection.html) is used for **asynchronous connections**, where the results are events that will happen later in the execution process.
 
 ##### Start a connection
@@ -1022,7 +1023,7 @@ There are some target-specific constructors with different purposes that can be 
 
 * All targets:
 
-    * `HttpAsyncConnection.urlConnect(url:String)`  Returns an asynchronous connection to the given URL which should link to a Haxe server application.
+    * `HttpAsyncConnection.urlConnect(url:String)`  Returns an asynchronous connection to the given URL which should link to a Haxe server application. 
 * Flash:
 
     * `ExternalConnection.jsConnect(name:String, ctx:Context)`  Allows a connection to the local JavaScript Haxe code. The JS Haxe code must be compiled with the class ExternalConnection included. This only works with Flash Player 8 and higher.
@@ -1031,7 +1032,7 @@ There are some target-specific constructors with different purposes that can be 
     * `LocalConnection.connect(name:String)`  Allows remoting communications over a [Flash LocalConnection](https://api.haxe.org/haxe/remoting/LocalConnection.html)
 * JavaScript:
 
-    * `ExternalConnection.flashConnect(name:String, obj:String, ctx:Context)`  Allows a connection to a given Flash Object. The Haxe Flash content must be loaded and it must include the `haxe.remoting.Connection` class. This only works with Flash 8 and higher.
+    * `ExternalConnection.flashConnect(name:String, obj:String, ctx:Context)`  Allows a connection to a given Flash Object. The Haxe Flash content must be loaded and it must include the `haxe.remoting.Connection` class. This only works with Flash 8 and higher. 
 * Neko:
 
     * `HttpConnection.urlConnect(url:String)`  Will work like the asynchronous version but in synchronous mode.
@@ -1058,7 +1059,7 @@ class Server {
 
 		// handle normal request
 		trace("This is a remoting server !");
-	}
+	} 
 }
 ```
 
@@ -1109,7 +1110,7 @@ To use the remoting across domain boundaries, CORS (cross-origin resource sharin
 Header set Access-Control-Allow-Origin "*"
 Header set Access-Control-Allow-Methods: "GET,POST,OPTIONS,DELETE,PUT"
 Header set Access-Control-Allow-Headers: X-Haxe-Remoting
-```
+``` 
 
 See [same-origin policy](http://en.wikipedia.org/wiki/Same-origin_policy) for more information on this topic.
 
@@ -1124,12 +1125,12 @@ When Flash accesses a server from a different domain, set up a `crossdomain.xml`
 	<allow-access-from domain="*"/> <!-- or the appropriate domains -->
 	<allow-http-request-headers-from domain="*" headers="X-Haxe*"/>
 </cross-domain-policy>
-```
+``` 
 
 ##### Arguments types are not ensured
 
-There is no guarantee of any kind that the types of arguments will be respected when a method is called using remoting.
-That means even if the arguments of function `foo` are typed to `Int`, the client will still be able to use strings while calling the method.
+There is no guarantee of any kind that the types of arguments will be respected when a method is called using remoting. 
+That means even if the arguments of function `foo` are typed to `Int`, the client will still be able to use strings while calling the method. 
 This can lead to security issues in some cases. When in doubt, check the argument type when the function is called by using the `Std.is` method.
 
 
@@ -1143,7 +1144,7 @@ This can lead to security issues in some cases. When in doubt, check the argumen
 
 **Deprecated:** The unit testing API has been removed from the standard library in Haxe 4. For compatibility purposes it is still available in the [hx3compat](https://github.com/HaxeFoundation/hx3compat/) library. See [Haxe 3 Compatibility](std-hx3compat).
 
-The Haxe Standard Library provides basic unit testing classes from the [haxe.unit](https://api.haxe.org/haxe/unit/) package.
+The Haxe Standard Library provides basic unit testing classes from the [haxe.unit](https://api.haxe.org/haxe/unit/) package. 
 
 ##### Creating new test cases
 
@@ -1161,7 +1162,7 @@ The result of the test looks like this:
 Class: MyTestCase
 .
 OK 1 tests, 0 failed, 1 success
-```
+``` 
 
 ##### Test functions
 The `haxe.unit.TestCase` class comes with three test functions.
@@ -1172,7 +1173,7 @@ The `haxe.unit.TestCase` class comes with three test functions.
 
 ##### Setup and tear down
 
-To run code before or after the test, override the functions `setup` and `tearDown` in the `TestCase`.
+To run code before or after the test, override the functions `setup` and `tearDown` in the `TestCase`. 
 
 * `setup` is called before each test runs.
 * `tearDown` is called once after all tests are run.
@@ -1188,13 +1189,13 @@ public function testArray() {
   var actual = [1,2,3];
   assertEquals("[1, 2, 3]", Std.string(actual));
 }
-```
+``` 
 
 ##### Run unit test
 
 This is an example showing how to run your unit tests (on Neko and Node.js) after compilation using a [HXML](compiler-usage-hxml).
 
-```hxml
+```hxml 
 -p source/main/haxe
 -p source/test/haxe
 --main your.package.TestRunnerMain
@@ -1206,7 +1207,7 @@ This is an example showing how to run your unit tests (on Neko and Node.js) afte
 
 --js output/javascript/test.js
 --cmd node ./output/javascript/test.js
-```
+``` 
 
 ##### Related content
 
