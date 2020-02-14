@@ -973,7 +973,7 @@ Older browsers (Internet Explorer 7, for instance) may not have a native **JSON*
 <!--label:std-sys-->
 ### Sys
 
-The majority of Haxe targets are so-called "sys" targets. This means the targets have access to system APIs such as the filesystem, networking, threads, and more. The only non-sys targets supported by Haxe are Flash and JavaScript, although JavaScript can support sys APIs when running under Node.js runtime.
+The majority of Haxe targets are so-called "sys" targets. This means the targets have access to system APIs such as the filesystem, networking, threads, and more. The only non-sys targets supported by Haxe are Flash, and JavaScript, although JavaScript can support sys APIs when running under Node.js runtime.
 
 ##### Related content
 
