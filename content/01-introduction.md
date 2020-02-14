@@ -21,9 +21,9 @@ PHP | Sourcecode | Server
 Python | Sourcecode | Desktop, Server 
 Lua | Sourcecode | Desktop, Scripting 
 C++ | Sourcecode | Desktop, Mobile, Server, Game consoles 
-ActionScript 3 | Sourcecode | Desktop, Mobile 
 Flash | Bytecode | Desktop, Mobile 
- Java | Sourcecode | Desktop, Mobile, Server 
+Java | Sourcecode | Desktop, Mobile, Server 
+JVM | Bytecode | Desktop, Mobile, Server 
 C# | Sourcecode | Desktop, Mobile, Server 
  
 
