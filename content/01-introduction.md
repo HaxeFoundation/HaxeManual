@@ -12,20 +12,20 @@ Haxe is strongly typed, but the typing system can be subverted where required. U
 
 Currently, there are nine supported target languages which allow for different use-cases:
 
-Name | Output type | Main usages 
+Name | Output type | Main usages
  --- | --- | ---
-JavaScript | Sourcecode | Browser, Desktop, Mobile, Server 
-Neko | Bytecode | Desktop, Server, CLI 
-HashLink | Bytecode | Desktop, Mobile, Game consoles 
-PHP | Sourcecode | Server 
-Python | Sourcecode | Desktop, Server 
-Lua | Sourcecode | Desktop, Scripting 
-C++ | Sourcecode | Desktop, Mobile, Server, Game consoles 
-ActionScript 3 | Sourcecode | Desktop, Mobile 
-Flash | Bytecode | Desktop, Mobile 
- Java | Sourcecode | Desktop, Mobile, Server 
-C# | Sourcecode | Desktop, Mobile, Server 
- 
+JavaScript | Sourcecode | Browser, Desktop, Mobile, Server
+Neko | Bytecode | Desktop, Server, CLI
+HashLink | Bytecode | Desktop, Mobile, Game consoles
+PHP | Sourcecode | Server
+Python | Sourcecode | Desktop, Server
+Lua | Sourcecode | Desktop, Scripting
+C++ | Sourcecode | Desktop, Mobile, Server, Game consoles
+Flash | Bytecode | Desktop, Mobile
+Java | Sourcecode | Desktop, Mobile, Server
+JVM | Bytecode | Desktop, Mobile, Server
+C# | Sourcecode | Desktop, Mobile, Server
+
 
 The remainder of this section gives a brief overview of what a Haxe program looks like and how Haxe has evolved since its inception in 2005.
 
@@ -105,8 +105,8 @@ This can be tested by saving the above code to a file named `Main.hx` and invoki
 
 * Haxe programs are saved in files with an extension of `.hx`.
 * The Haxe Compiler is a command-line tool which can be invoked with parameters such as `--main Main` and `--interp`.
-* Haxe programs have classes (`Main`, upper-case), which have functions (`main`, lower-case). 
-* The name of the file containing a Haxe class is the same as the name of the class itself (in this case `Main.hx`). 
+* Haxe programs have classes (`Main`, upper-case), which have functions (`main`, lower-case).
+* The name of the file containing a Haxe class is the same as the name of the class itself (in this case `Main.hx`).
 
 ##### Related content
 
