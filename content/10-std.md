@@ -80,7 +80,6 @@ Target | `target.unicode` | `target.utf16` | Internal encoding | Null-byte allow
  --- | --- | --- | --- | ---
 Flash | yes | yes | UTF-16 | no
 JavaScript | yes | yes | UTF-16 | yes (except in some old browsers)
-ActionScript 3 | yes | yes | UTF-16 | no
 C++ | yes | yes | ASCII or UTF-16 (if needed) | yes
 Java | yes | yes | UTF-16 | yes
 JVM | yes | yes | UTF-16 | yes
@@ -974,7 +973,7 @@ Older browsers (Internet Explorer 7, for instance) may not have a native **JSON*
 <!--label:std-sys-->
 ### Sys
 
-The majority of Haxe targets are so-called "sys" targets. This means the targets have access to system APIs such as the filesystem, networking, threads, and more. The only non-sys targets supported by Haxe are Flash, JavaScript, and ActionScript 3, although JavaScript can support sys APIs when running under Node.js runtime.
+The majority of Haxe targets are so-called "sys" targets. This means the targets have access to system APIs such as the filesystem, networking, threads, and more. The only non-sys targets supported by Haxe are Flash, and JavaScript, although JavaScript can support sys APIs when running under Node.js runtime.
 
 ##### Related content
 
