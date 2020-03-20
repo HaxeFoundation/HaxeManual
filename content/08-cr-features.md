@@ -30,6 +30,8 @@ The DCE-algorithm works well with typed code, but may fail when [dynamic](types-
 * `@:keep`: If used on a class, the class along with all fields is unaffected by DCE. If used on a field, that field is unaffected by DCE.
 * `@:keepSub`: If used on a class, it works like `@:keep` on the annotated class as well as all subclasses.
 * `@:keepInit`: Usually, a class which had all fields removed by DCE (or is empty to begin with) is removed from the output. By using this metadata, empty classes are kept.
+* `@:ifFeature("pack.SomeType.field")`: When used on a field, causes the field to be kept if `pack.SomeType.field` is not removed by DCE.
+* `@:ifFeature("pack.SomeType.*")`: When used on a field, causes the field to be kept if `pack.SomeType` is not removed by DCE.
 
 If a class needs to be marked with `@:keep` from the command line instead of editing its source code, there is a compiler macro available for doing so: `--macro keep('type dot path')` See the [haxe.macro.Compiler.keep API](http://api.haxe.org/haxe/macro/Compiler.html#keep) for details of this macro. It will mark package, module or sub-type to be kept by DCE and includes them for compilation.
  
