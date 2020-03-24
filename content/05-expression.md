@@ -977,7 +977,7 @@ try {
 }
 ```
 
-Another use-case is creating a library, which does not expose internal exceptions to public API, but still provides information about exceptions reasons:
+Another use-case is creating a library, which does not expose internal exceptions as public API, but still provides information about exceptions reasons:
 ```haxe
 import haxe.Exception;
 
@@ -995,7 +995,7 @@ class MyLib {
   static function heavyCalculation() {}
 }
 ```
-Now library users don't have to bother about specific arithmetic exceptions. All they need to do is handle `MyLibException`
+Now library users don't have to worry about specific arithmetic exceptions. All they need to do is handle `MyLibException`.
 
 <!--label:expression-return-->
 ### return
