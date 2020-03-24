@@ -781,6 +781,26 @@ switch (0) {
 
 
 
+<!--label:expression-throw-->
+### throw
+
+Haxe allows throwing any kind of value using its `throw` syntax:
+
+```haxe
+throw expr
+```
+
+A value which is thrown like this can be caught by [`catch` blocks](expression-try-catch). If no such block catches it, the behavior is target-dependent.
+
+##### since Haxe 4.1.0
+
+It's highly recommended to not throw arbitrary values and instead throw instances of `haxe.Exception`.
+In fact if `value` is not an instance of `haxe.Exception`, then `throw value` is compiled as `throw haxe.Exception.thrown(value)`, which wraps `value` into an instance of `haxe.Exception`.
+
+However native target exceptions are thrown as-is. For example an instance of `cs.system.Exception` or `php.Exception` won't get automatically wrapped upon throwing.
+
+
+
 <!--label:expression-try-catch-->
 ### try/catch
 
@@ -1041,25 +1061,6 @@ Here, `expression1` is evaluated for each iteration, but if `condition` holds, `
 
 The typer ensures that it appears only within a loop.
 
-
-
-<!--label:expression-throw-->
-### throw
-
-Haxe allows throwing any kind of value using its `throw` syntax:
-
-```haxe
-throw expr
-```
-
-A value which is thrown like this can be caught by [`catch` blocks](expression-try-catch). If no such block catches it, the behavior is target-dependent.
-
-##### since Haxe 4.1.0
-
-It's highly recommended to not throw arbitrary values and instead throw instances of `haxe.Exception`.
-In fact if `value` is not an instance of `haxe.Exception`, then `throw value` is compiled as `throw haxe.Exception.thrown(value)`, which wraps `value` into an instance of `haxe.Exception`.
-
-However native target exceptions are thrown as-is. For example an instance of `cs.system.Exception` or `php.Exception` won't get automatically wrapped upon throwing.
 
 
 <!--label:expression-cast-->
