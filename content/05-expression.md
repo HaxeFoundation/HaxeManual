@@ -962,7 +962,7 @@ Main.hx:5: characters 5-18 : Called from here
 ```
 One use-case is to make error logs more readable.
 
-Chained exceptions are available throuw `previous` property of `haxe.Exception` instances:
+Chained exceptions are available through `previous` property of `haxe.Exception` instances:
 ```haxe
 try {
   try {
