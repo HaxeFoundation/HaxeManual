@@ -795,7 +795,7 @@ A value which is thrown like this can be caught by [`catch` blocks](expression-t
 ##### since Haxe 4.1.0
 
 It's highly recommended to not throw arbitrary values and instead throw instances of `haxe.Exception`.
-In fact if `value` is not an instance of `haxe.Exception`, then `throw value` is compiled as `throw haxe.Exception.thrown(value)`, which wraps `value` into an instance of `haxe.Exception`.
+In fact, if `value` is not an instance of `haxe.Exception`, then `throw value` is compiled as `throw haxe.Exception.thrown(value)`, which wraps `value` into an instance of `haxe.Exception`.
 
 However native target exceptions are thrown as-is. For example an instance of `cs.system.Exception` or `php.Exception` won't get automatically wrapped upon throwing.
 
@@ -831,13 +831,13 @@ This process has many similarities to the compile-time [unification](type-system
 
 ##### Haxe 3.* and Haxe 4.0
 
-Prior to Haxe 4.1.0 to catch an exception of any type it is required to use `Dynamic` catch type.
+Prior to Haxe 4.1.0 the only way to catch all exceptions is by using `Dynamic` as the catch type.
 To get a string representation of the exception `Std.string(e)` could be used. 
 ```haxe
 try {
   doSomething();
 } catch(e:Dynamic) {
-  //All exceptions will be caught here
+  // All exceptions will be caught here
   trace(Std.string(e));
 }
 ```
@@ -858,7 +858,7 @@ try {
 
 ##### Haxe 3.* and Haxe 4.0
 
-Exception call stack is available via `haxe.CallStack.exceptionStack()` inside of a `catch` block:
+The exception call stack is available via `haxe.CallStack.exceptionStack()` inside of a `catch` block:
 ```haxe
 try {
   doSomething();
@@ -870,7 +870,7 @@ try {
 
 ##### Since Haxe 4.1
 
-If catch type is `haxe.Exception` or one of its descendants, then exception stack is available in `stack` property of the exception instance.
+If the catch type is `haxe.Exception` or one of its descendants, then the exception stack is available in the `stack` property of the exception instance.
 ```haxe
 try {
   doSomething();
@@ -883,7 +883,7 @@ try {
 
 ##### Since Haxe 4.1
 
-Even if an instance of `haxe.Exception` is thrown again, it still preserves all the original information including the stack.
+Even if an instance of `haxe.Exception` is thrown again, it still preserves all the original information, including the stack.
 ```haxe
 import haxe.Exception;
 
@@ -916,7 +916,7 @@ Called from Main.doSomething (Main.hx line 11 column 15)
 Called from Main.main (Main.hx line 5 column 5)
 ```
 
-If `catch(e:haxe.Exception)` is happen to catch a native exception, then rethrowing `e` would throw that native exception instead of `haxe.Exception` instance.
+If `catch(e:haxe.Exception)` catches a native exception, then rethrowing `e` throws that native exception instead of a `haxe.Exception` instance.
 Here's an example of Haxe code, which being compiled to PHP target catches and rethrows all exceptions in the inner `try/catch`. And rethrown exceptions are still catchable using their target native types:
 ```haxe
 try {
