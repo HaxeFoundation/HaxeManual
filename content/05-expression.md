@@ -916,8 +916,9 @@ Called from Main.doSomething (Main.hx line 11 column 15)
 Called from Main.main (Main.hx line 5 column 5)
 ```
 
-If `catch(e:haxe.Exception)` catches a native exception, then rethrowing `e` throws that native exception instead of a `haxe.Exception` instance.
-Here's an example of Haxe code, which being compiled to PHP target catches and rethrows all exceptions in the inner `try/catch`. And rethrown exceptions are still catchable using their target native types:
+The compiler may avoid unnecessary wrapping when throwing native exceptions and handle this at the catch-site instead. This ensures that any exception (native or otherwise) can be caught with `catch (e:haxe.Exception)`. This also applies for rethrowing exceptions.
+
+For example here's a Haxe code, which being compiled to PHP target catches and rethrows all exceptions in the inner `try/catch`. And rethrown exceptions are still catchable using their target native types:
 ```haxe
 try {
   try {
