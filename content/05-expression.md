@@ -831,12 +831,12 @@ This process has many similarities to the compile-time [unification](type-system
 
 ##### Haxe 3.* and Haxe 4.0
 
-Prior to Haxe 4.1.0 the only way to catch all exceptions is by using `Dynamic` as the catch type.
+Prior to Haxe 4.1.0 the only way to catch all exceptions is by using `Dynamic` or `Any` as the catch type.
 To get a string representation of the exception `Std.string(e)` could be used. 
 ```haxe
 try {
   doSomething();
-} catch(e:Dynamic) {
+} catch(e:Any) {
   // All exceptions will be caught here
   trace(Std.string(e));
 }
@@ -844,7 +844,7 @@ try {
 
 #### Since Haxe 4.1
 
-Instead of `Dynamic` it's possible (and recommended) to use `haxe.Exception` type for wildcard catches:
+Instead of `Dynamic` and `Any` it's possible (and recommended) to use `haxe.Exception` type for wildcard catches:
 ```haxe
 try {
   doSomething();
