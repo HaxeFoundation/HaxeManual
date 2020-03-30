@@ -781,6 +781,26 @@ switch (0) {
 
 
 
+<!--label:expression-throw-->
+### throw
+
+Haxe allows throwing any kind of value using its `throw` syntax:
+
+```haxe
+throw expr
+```
+
+A value which is thrown like this can be caught by [`catch` blocks](expression-try-catch). If no such block catches it, the behavior is target-dependent.
+
+##### since Haxe 4.1.0
+
+It's highly recommended to not throw arbitrary values and instead throw instances of `haxe.Exception`.
+In fact, if `value` is not an instance of `haxe.Exception`, then `throw value` is compiled as `throw haxe.Exception.thrown(value)`, which wraps `value` into an instance of `haxe.Exception`.
+
+However native target exceptions are thrown as-is. For example an instance of `cs.system.Exception` or `php.Exception` won't get automatically wrapped upon throwing.
+
+
+
 <!--label:expression-try-catch-->
 ### try/catch
 
@@ -798,14 +818,185 @@ If during runtime the evaluation of `try-expression` causes a [`throw`](expressi
 * an explicit type annotation which determines which types of values to catch, and
 * the expression to execute in that case.
 
-Haxe allows throwing and catching any kind of value, it is not limited to types inheriting from a specific exception or error class. Catch blocks are checked from top to bottom with the first one whose type is compatible with the thrown value being picked.
+Haxe allows throwing and catching any kind of value, it is not limited to types inheriting from a specific exception or error class. However since Haxe 4.1.0 it's highly recommended to throw and catch only instances of `haxe.Exception` and its descendants.
+
+Catch blocks are checked from top to bottom with the first one whose type is compatible with the thrown value being picked.
 
 This process has many similarities to the compile-time [unification](type-system-unification) behavior. However, since the check has to be done at runtime there are several restrictions:
 
 * The type must exist at runtime: [Class instances](types-class-instance), [enum instances](types-enum-instance), [abstract core types](types-abstract-core-type) and [Dynamic](types-dynamic).
 * Type parameters can only be [Dynamic](types-dynamic).
 
+#### Wildcard catch
 
+##### Haxe 3.* and Haxe 4.0
+
+Prior to Haxe 4.1.0 the only way to catch all exceptions is by using `Dynamic` or `Any` as the catch type.
+To get a string representation of the exception `Std.string(e)` could be used. 
+```haxe
+try {
+  doSomething();
+} catch(e:Any) {
+  // All exceptions will be caught here
+  trace(Std.string(e));
+}
+```
+
+#### Since Haxe 4.1
+
+Instead of `Dynamic` and `Any` it's possible (and recommended) to use `haxe.Exception` type for wildcard catches:
+```haxe
+try {
+  doSomething();
+} catch(e:haxe.Exception) {
+  //All exceptions will be caught here
+  trace(e.message);
+}
+```
+
+#### Exception stack 
+
+##### Haxe 3.* and Haxe 4.0
+
+The exception call stack is available via `haxe.CallStack.exceptionStack()` inside of a `catch` block:
+```haxe
+try {
+  doSomething();
+} catch(e:Dynamic) {
+  var stack = haxe.CallStack.exceptionStack();
+  trace(haxe.CallStack.toString(stack));
+}
+```
+
+##### Since Haxe 4.1
+
+If the catch type is `haxe.Exception` or one of its descendants, then the exception stack is available in the `stack` property of the exception instance.
+```haxe
+try {
+  doSomething();
+} catch(e:haxe.Exception) {
+  trace(e.stack);
+}
+```
+
+#### Rethrowing exceptions
+
+##### Since Haxe 4.1
+
+Even if an instance of `haxe.Exception` is thrown again, it still preserves all the original information, including the stack.
+```haxe
+import haxe.Exception;
+
+class Main {
+  static function main() {
+    try {
+      try {
+        doSomething();
+      } catch(e:Exception) {
+        trace(e.stack);
+        throw e; //rethrow
+      }
+    } catch(e:Exception) {
+      trace(e.stack);
+    }
+  }
+
+  static function doSomething() {
+    throw new Exception('Terrible error');
+  }
+}
+```
+This example being executed with `haxe --main Main --interp` would print something like this:
+```
+Main.hx:13: 
+Called from Main.doSomething (Main.hx line 11 column 15)
+Called from Main.main (Main.hx line 5 column 5)
+Main.hx:17: 
+Called from Main.doSomething (Main.hx line 11 column 15)
+Called from Main.main (Main.hx line 5 column 5)
+```
+
+The compiler may avoid unnecessary wrapping when throwing native exceptions and handle this at the catch-site instead. This ensures that any exception (native or otherwise) can be caught with `catch (e:haxe.Exception)`. This also applies for rethrowing exceptions.
+
+For example here's a Haxe code, which being compiled to PHP target catches and rethrows all exceptions in the inner `try/catch`. And rethrown exceptions are still catchable using their target native types:
+```haxe
+try {
+  try {
+    (null:Dynamic).callNonExistentMethod();
+  } catch(e:Exception) {
+    trace('Haxe exception: ' + e.message);
+    throw e; //rethrow
+  }
+} catch(e:php.ErrorException) {
+  trace('Rethrown native exception: ' + e.getMessage());
+}
+```
+This sample being compiled to PHP target would print:
+```
+Main.hx:9: Haxe exception: Trying to get property 'callNonExistentMethod' of non-object
+Main.hx:13: Rethrown native exception: Trying to get property 'callNonExistentMethod' of non-object
+```
+
+#### Chaining exceptions
+
+##### Since Haxe 4.1
+
+Sometimes it's convenient to chain exceptions instead of throwing the same exception instance again.
+To do so just pass an exception to a new exception instance:
+```haxe
+try {
+  doSomething();
+} catch(e:haxe.Exception) {
+  cleanup();
+  throw new haxe.Exception('Failed to do something', e);
+}
+```
+Being executed with `--interp` this sample would print a message like this:
+```
+Main.hx:12: characters 7-12 : Uncaught exception Exception: Terrible error
+Called from Main.doSomething (Main.hx line 10 column 13)
+
+Next Exception: Failed to do something
+Called from Main.doSomething (Main.hx line 12 column 13)
+Called from Main.main (Main.hx line 5 column 5)
+Main.hx:5: characters 5-18 : Called from here
+```
+One use-case is to make error logs more readable.
+
+Chained exceptions are available through `previous` property of `haxe.Exception` instances:
+```haxe
+try {
+  try {
+    doSomething();
+  } catch(e:haxe.Exception) {
+    cleanup();
+    throw new haxe.Exception('Failed to do something', e);
+  }
+} catch(e:haxe.Exception) {
+  trace(e.message); // "Failed to do something"
+  trace(e.previous.message); // "Terrible error"
+}
+```
+
+Another use-case is creating a library, which does not expose internal exceptions as public API, but still provides information about exceptions reasons:
+```haxe
+import haxe.Exception;
+
+class MyLibException extends Exception {}
+
+class MyLib {
+  static public function calculateSomething() {
+    try {
+      heavyCalculation();
+    } catch(e:Exception) {
+      throw new MyLibException(e.message, e);
+    }
+  }
+
+  static function heavyCalculation() {}
+}
+```
+Now library users don't have to worry about specific arithmetic exceptions. All they need to do is handle `MyLibException`.
 
 <!--label:expression-return-->
 ### return
@@ -870,19 +1061,6 @@ while (true) {
 Here, `expression1` is evaluated for each iteration, but if `condition` holds, `expression2` is not evaluated for the current iteration. Unlike `break`, iterations continue.
 
 The typer ensures that it appears only within a loop.
-
-
-
-<!--label:expression-throw-->
-### throw
-
-Haxe allows throwing any kind of value using its `throw` syntax:
-
-```haxe
-throw expr
-```
-
-A value which is thrown like this can be caught by [`catch` blocks](expression-try-catch). If no such block catches it, the behavior is target-dependent.
 
 
 
