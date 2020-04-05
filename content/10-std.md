@@ -294,7 +294,7 @@ The possible flags are the following:
 * `i` case insensitive matching
 * `g` global replace or split, see below
 * `m` multiline matching, `^` and `$` represent the beginning and end of a line
-* `s` the dot `.` will also match newlines **(not supported by C# and JavaScript targets)**
+* `s` the dot `.` will also match newlines **(not supported by C# and JavaScript versions before ES2018)**
 * `u` use UTF-8 matching **(Neko and C++ targets only)**
 
 ##### Related content
