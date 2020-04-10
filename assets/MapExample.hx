@@ -21,7 +21,6 @@ class Main {
 
     // Maps iterate over their values by
     // default
-    var valueSum;
     for (value in map4) {
       trace(value); // Monday \n Tuesday
     }
