@@ -503,72 +503,13 @@ Haxe uses the target platform's native resource embedding if there is one, other
 <!--label:cr-rtti-->
 ### Runtime Type Information
 
-The Haxe compiler generates runtime type information (RTTI) for classes that are annotated or extend classes that are annotated with the `:rtti` metadata. This information is stored as a XML string in a static field `__rtti` and can be processed through `haxe.rtti.XmlParser`. The resulting structure is described in [RTTI structure](cr-rtti-structure).
+The Haxe compiler generates runtime type information (RTTI) for classes that are annotated or extend classes that are annotated with the `:rtti` metadata. This information is stored as a XML string in a static field `__rtti` and can be processed through `haxe.rtti.XmlParser.process()`. The resulting structure is [`haxe.rtti.TypeTree`](https://api.haxe.org/haxe/rtti/TypeTree.html).
 
 ##### since Haxe 3.2.0
 
 The type `haxe.rtti.Rtti` has been introduced in order to simplify working with RTTI. Retrieving this information is now very easy:
 
 [code asset](assets/RttiUsage.hx)
-
-<!--label:cr-rtti-structure-->
-#### RTTI structure
-
-##### General type information
-
-* path: The [type path](define-type-path) of the type.
-* module: The type path of the [module](define-module) containing the type.
-* file: The full slash path of the .hx file containing the type. This might be `null` in case there is no such file, e.g. if the type is defined through a [macro](macro).
-* params: An array of strings representing the names of the [type parameters](type-system-type-parameters) the type has. As of Haxe 3.2.0, this does not include the [constraints](type-system-type-parameter-constraints).
-* doc: The documentation of the type. This information is only available if the [compiler flag](define-compiler-flag) `-D use_rtti_doc` was in place. Otherwise, or if the type has no documentation, the value is `null`.
-* isPrivate: Whether or not the type is [private](define-private-type).
-* platforms: A list of strings representing the targets where the type is available.
-* meta: The meta data the type was annotated with.
-
-##### Class type information
-
-* isExtern: Whether or not the class is [extern](lf-externs).
-* isInterface: Whether or not the class is actually an [interface](types-interfaces).
-* superClass: The class' parent class defined by its type path and list of type parameters.
-* interfaces: The list of interfaces defined by their type path and list of type parameters.
-* fields: The list of member [class fields](class-field), described in [Class field information](cr-rtti-structure#class-field-information).
-* statics: The list of static class fields, described in [Class field information](cr-rtti-structure#class-field-information).
-* tdynamic: The type which is [dynamically implemented](types-dynamic-implemented) by the class or `null` if no such type exists.
-
-##### Enum type information
-
-* isExtern: Whether or not the enum is [extern](lf-externs).
-* constructors: The list of enum constructors.
-
-##### Abstract type information
-
-* to: An array containing the defined [implicit to casts](types-abstract-implicit-casts).
-* from: An array containing the defined [implicit from casts](types-abstract-implicit-casts).
-* impl: The [class type information](cr-rtti-structure#class-type-information) of the implementing class.
-* athis: The [underlying type](define-underlying-type) of the abstract.
-
-##### Class field information
-
-* name: The name of the field.
-* type: The type of the field.
-* isPublic: Whether or not the field is [public](class-field-visibility).
-* isOverride: Whether or not the field [overrides](class-field-override) another field.
-* doc: The documentation of the field. This information is only available if the [compiler flag](define-compiler-flag) `-D use_rtti_doc` was in place. Otherwise, or if the field has no documentation, the value is `null`.
-* get: The [read access behavior](define-read-access) of the field.
-* set: The [write access behavior](define-write-access) of the field.
-* params: An array of strings representing the names of the [type parameters](type-system-type-parameters) the field has. As of Haxe 3.2.0, this does not include the [constraints](type-system-type-parameter-constraints).
-* platforms: A list of strings representing the targets where the field is available.
-* meta: The meta data the field was annotated with.
-* line: The line number where the field is defined. This information is only available if the field has an expression. Otherwise the value is `null`.
-* overloads: The list of available overloads for the fields or `null` if no overloads exists.
-
-##### Enum constructor information
-
-* name: The name of the constructor.
-* args: The list of arguments the constructor has or `null` if no arguments are available.
-* doc: The documentation of the constructor. This information is only available if the [compiler flag](define-compiler-flag) `-D use_rtti_doc` was in place. Otherwise, or if the constructor has no documentation, the value is `null`.
-* platforms: A list of strings representing the targets where the constructor is available.
-* meta: The metadata the constructor was annotated with.
 
 
 
