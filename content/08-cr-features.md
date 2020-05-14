@@ -585,6 +585,54 @@ Whether a loop is unrolled or not depends on the loop unrolling cost, which is d
 
 
 
+<!--label:cr-tail-recursion-elimination-->
+### Tail Recursion Elimination (TRE)
+
+##### since Haxe 4.1.0
+
+Recursion is a natural way to solve some tasks like calculating fibonacci numbers or traversing trees. It's easy to write,
+read and understand. But it takes more computational resources at run time than solving the same tasks with loops instead of recursion.
+
+For example a loop-based function to find the root of a tree of nodes:
+```haxe
+  static function getRoot(node:Node):Node {
+    var root = node;
+    while(root.parent != null) {
+      root = root.parent;
+    }
+    return root;
+  }
+```
+Its recursive counterpart may look cleaner, but might have worse performance because of additional function calls:
+```haxe
+  static function getRoot(node:Node):Node {
+    if(node.parent == null) {
+      return node;
+    }
+    return getRoot(node.parent);
+  }
+```
+
+The Haxe compiler since version 4.1.0 can perform automatic recursion-to-loop transformation for functions which end with a recursive call.
+This optimization is automatically enabled with the [static analyzer](/manual/cr-static-analyzer.html) (by adding `-D analyzer-optimize` to compilation arguments).
+Here's how the aforementioned recursive `getRoot` function looks in the compiled syntax tree with tail recursion elimination (TRE) enabled:
+```haxe
+static function getRoot(node:Node) {
+  while (true) {
+    if (node.parent == null) return node;
+    node = node.parent;
+  }
+}
+```
+The recursive call is automatically replaced with a loop on compilation.
+
+A function must satisfy a number of requirements to be eligible for TRE optimization:
+1. The last operation of the function is a recursive call. Even if that call is inside of an `if` or `else` expressions.
+2. The function does not have a [`dynamic` accessor](/manual/class-field-dynamic.html).
+3. It's a static method or a [final method](/manual/class-field-final.html) or a [local named function](/manual/expression-arrow-function.html).
+
+
+
 <!--label:cr-null-safety-->
 ### Null Safety
 
