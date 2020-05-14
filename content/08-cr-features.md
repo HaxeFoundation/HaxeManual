@@ -615,7 +615,7 @@ Enabling null safety by default uses the loose strictness level. This can be con
 ```
 
 `Strict` and `StrictThreaded` differ in handling of sequential field access.
-In a multi-threaded application sequential access to the same object field may not yeld the same result. That means a null check for a field does not provide any guaranties:
+In a multi-threaded application sequential access to the same object field may not yeld the same result. That means a null check for a field does not provide any guarantees:
 ```haxe
 @:nullSafety(StrictThreaded)
 function demo1(o:{field:Null<String>}) {
