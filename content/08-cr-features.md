@@ -627,6 +627,7 @@ static function getRoot(node:Node) {
 The recursive call is automatically replaced with a loop on compilation.
 
 A function must satisfy a number of requirements to be eligible for TRE optimization:
+
 1. The last operation of the function is a recursive call. Even if that call is inside of an `if` or `else` expressions.
 2. The function does not have a [`dynamic` accessor](/manual/class-field-dynamic.html).
 3. It's a static method or a [final method](/manual/class-field-final.html) or a [local named function](/manual/expression-arrow-function.html).
