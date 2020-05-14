@@ -600,9 +600,10 @@ To enable the checker for a particular class, field, or expression, annotate it 
 
 There are three levels of null safety strictness:
 
-* Off Turn off null safety checks. Useful to selectively disable null safety for particular fields or expression.
-* Loose (Default.) Within an `if (<expr> != null)` condition, `<expr>` is considered safe even if it could be modified after the check.
-* Strict Full-scale null safety checking.
+* `Off`: Turn off null safety checks. Useful to selectively disable null safety for particular fields or expression.
+* `Loose` (Default): Within an `if (<expr> != null)` condition, `<expr>` is considered safe even if it could be modified after the check.
+* `Strict`: Full-scale null safety checking for a single-threaded environment.
+* `StrictThreaded`: Full-scale null safety checking for a multi-threaded environment.
 
 Enabling null safety by default uses the loose strictness level. This can be configured by providing an argument in the metadata:
 
@@ -610,6 +611,27 @@ Enabling null safety by default uses the loose strictness level. This can be con
 @:nullSafety(Off)
 @:nullSafety(Loose)
 @:nullSafety(Strict)
+@:nullSafety(StrictThreaded)
+```
+
+`Strict` and `StrictThreaded` differ in handling of sequential field access.
+In a multi-threaded application sequential access to the same object field may not yeld the same result. That means a null check for a field does not provide any guarantees:
+```haxe
+@:nullSafety(StrictThreaded)
+function demo1(o:{field:Null<String>}) {
+  if (o.field != null) {
+    // Error: o.field could have been changed to `null` 
+    // by another thread after the check
+    trace(o.field.length); 
+  }
+}
+
+@:nullSafety(Strict)
+function demo1(o:{field:Null<String>}) {
+  if (o.field != null) {
+    trace(o.field.length); // Ok
+  }
+}
 ```
 
 For the package-level case, null safety strictness can be configured using the optional second argument:
@@ -618,6 +640,7 @@ For the package-level case, null safety strictness can be configured using the o
 --macro nullSafety("some.package", Off)
 --macro nullSafety("some.package", Loose)
 --macro nullSafety("some.package", Strict)
+--macro nullSafety("some.package", StrictThreaded)
 ```
 
 ##### Detailed Usage
