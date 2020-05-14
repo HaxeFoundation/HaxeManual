@@ -600,10 +600,10 @@ To enable the checker for a particular class, field, or expression, annotate it 
 
 There are three levels of null safety strictness:
 
-* Off Turn off null safety checks. Useful to selectively disable null safety for particular fields or expression.
-* Loose (Default.) Within an `if (<expr> != null)` condition, `<expr>` is considered safe even if it could be modified after the check.
-* Strict Full-scale null safety checking for a single-threaded environment.
-* StrictThreaded Full-scale null safety checking for a multi-threaded environment.
+* `Off`: Turn off null safety checks. Useful to selectively disable null safety for particular fields or expression.
+* `Loose` (Default): Within an `if (<expr> != null)` condition, `<expr>` is considered safe even if it could be modified after the check.
+* `Strict`: Full-scale null safety checking for a single-threaded environment.
+* `StrictThreaded`: Full-scale null safety checking for a multi-threaded environment.
 
 Enabling null safety by default uses the loose strictness level. This can be configured by providing an argument in the metadata:
 
