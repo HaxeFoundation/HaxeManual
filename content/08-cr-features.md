@@ -616,7 +616,7 @@ Its recursive counterpart may look cleaner, but might have worse performance bec
 The Haxe compiler since version 4.1.0 can perform automatic recursion-to-loop transformation for functions which end with a recursive call.
 This optimization is automatically enabled with the [static analyzer](/manual/cr-static-analyzer.html) (by adding `-D analyzer-optimize` to compilation arguments).
 Here's how the aforementioned recursive `getRoot` function looks in the compiled syntax tree with tail recursion elimination (TRE) enabled:
-```js
+```haxe
 static function getRoot(node:Node) {
   while (true) {
     if (node.parent == null) return node;
