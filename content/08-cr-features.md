@@ -603,7 +603,7 @@ For example a loop-based function to find the root of a tree of nodes:
     return root;
   }
 ```
-Its recursive counterpart may look cleaner, but has worse performance because of additional function calls:
+Its recursive counterpart may look cleaner, but might have worse performance because of additional function calls:
 ```haxe
   static function getRoot(node:Node):Node {
     if(node.parent == null) {
