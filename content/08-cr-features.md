@@ -628,7 +628,7 @@ function demo1(o:{field:Null<String>}) {
 
 @:nullSafety(Strict)
 function demo1(o:{field:Null<String>}) {
-  if(o.field != null) {
+  if (o.field != null) {
     trace(o.field.length); // Ok
   }
 }
