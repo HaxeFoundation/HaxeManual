@@ -619,7 +619,7 @@ In a multi-threaded application sequential access to the same object field may n
 ```haxe
 @:nullSafety(StrictThreaded)
 function demo1(o:{field:Null<String>}) {
-  if(o.field != null) {
+  if (o.field != null) {
     // Error: o.field could have been changed to `null` 
     // by another thread after the check
     trace(o.field.length); 
