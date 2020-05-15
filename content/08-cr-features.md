@@ -647,7 +647,7 @@ To enable the checker for a particular class, field, or expression, annotate it 
 
 ##### Strictness
 
-There are three levels of null safety strictness:
+There are four levels of null safety strictness:
 
 * `Off`: Turn off null safety checks. Useful to selectively disable null safety for particular fields or expression.
 * `Loose` (Default): Within an `if (<expr> != null)` condition, `<expr>` is considered safe even if it could be modified after the check.
