@@ -831,15 +831,17 @@ This process has many similarities to the compile-time [unification](type-system
 
 #### Since Haxe 4.1
 
-Instead of `Dynamic` and `Any` it's possible (and recommended) to use `haxe.Exception` type for wildcard catches:
+Instead of `Dynamic` and `Any` it's possible (and recommended) to omit the type hint for wildcard catches:
 ```haxe
 try {
   doSomething();
-} catch(e:haxe.Exception) {
+} catch(e) {
   //All exceptions will be caught here
   trace(e.message);
 }
 ```
+
+This is equivalent to `catch(e:haxe.Exception)`.
 
 ##### Haxe 3.* and Haxe 4.0
 
