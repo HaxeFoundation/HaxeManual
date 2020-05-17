@@ -829,6 +829,18 @@ This process has many similarities to the compile-time [unification](type-system
 
 #### Wildcard catch
 
+#### Since Haxe 4.1
+
+Instead of `Dynamic` and `Any` it's possible (and recommended) to use `haxe.Exception` type for wildcard catches:
+```haxe
+try {
+  doSomething();
+} catch(e:haxe.Exception) {
+  //All exceptions will be caught here
+  trace(e.message);
+}
+```
+
 ##### Haxe 3.* and Haxe 4.0
 
 Prior to Haxe 4.1.0 the only way to catch all exceptions is by using `Dynamic` or `Any` as the catch type.
@@ -842,19 +854,18 @@ try {
 }
 ```
 
-#### Since Haxe 4.1
+#### Exception stack 
 
-Instead of `Dynamic` and `Any` it's possible (and recommended) to use `haxe.Exception` type for wildcard catches:
+##### Since Haxe 4.1
+
+If the catch type is `haxe.Exception` or one of its descendants, then the exception stack is available in the `stack` property of the exception instance.
 ```haxe
 try {
   doSomething();
 } catch(e:haxe.Exception) {
-  //All exceptions will be caught here
-  trace(e.message);
+  trace(e.stack);
 }
 ```
-
-#### Exception stack 
 
 ##### Haxe 3.* and Haxe 4.0
 
@@ -865,17 +876,6 @@ try {
 } catch(e:Dynamic) {
   var stack = haxe.CallStack.exceptionStack();
   trace(haxe.CallStack.toString(stack));
-}
-```
-
-##### Since Haxe 4.1
-
-If the catch type is `haxe.Exception` or one of its descendants, then the exception stack is available in the `stack` property of the exception instance.
-```haxe
-try {
-  doSomething();
-} catch(e:haxe.Exception) {
-  trace(e.stack);
 }
 ```
 
