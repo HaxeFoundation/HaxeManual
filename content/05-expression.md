@@ -418,7 +418,7 @@ Operator | Operation | Operand 1 | Operand 2 | Operand 3 | Result type
  --- | --- | --- | --- | --- | ---
 <code>?:</code> | condition | `Bool` | any | any | any
 
-The type of operand 1 and operand 2 must [unify](type-system-unification). The unified type is used as the result type of the expression.
+The type of operand 2 and operand 3 must [unify](type-system-unification). The unified type is used as the result type of the expression.
 
 The ternary conditional operator is a shorter form of [`if`](expression-if):
 
