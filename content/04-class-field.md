@@ -393,6 +393,7 @@ The `extern` keyword causes the compiler to not generate the field in the output
 The `final` keyword can be used on class fields with the following effects:
 
 * `final function ...` to make a function non-overridable in subclasses.
+* `final class ...` to make a class non-extendable.
 * `final x = ...` to declare a constant that must be initialized immediately or in the constructor and cannot be written to.
 * `inline final x = ...` is the same but [inlines](class-field-inline) the value wherever it is used. Only constant values can be assigned.
 
