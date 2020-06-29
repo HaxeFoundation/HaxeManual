@@ -521,9 +521,7 @@ typedef User = {
 <!--label:types-structure-performance-->
 #### Impact on Performance
 
-Using structures and, by extension, [structural subtyping](type-system-structural-subtyping), has no impact on performance when compiling to [dynamic targets](define-dynamic-target). However, on [static targets](define-static-target) a dynamic lookup has to be performed which is typically slower than a static field access.
-
-
+Using structures and, by extension, [structural subtyping](type-system-structural-subtyping), has no impact on performance when compiling to [dynamic targets](define-dynamic-target). However, on [static targets](define-static-target) access is typically slower. While some of them (JVM, HL) optimize common cases, the worst case requires a dynamic lookup which can be orders of magnitude slower than class field access.
 
 <!--label:types-structure-extensions-->
 #### Extensions
