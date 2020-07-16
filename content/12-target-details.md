@@ -1945,6 +1945,52 @@ java -jar bin/Main.jar
 
 
 
+<!--label:target-jvm-->
+### JVM
+
+<!--subtoc-->
+
+<!--label:target-jvm-getting-started-->
+#### Getting started with Haxe/JVM
+
+To get started with Haxe/JVM, create a new folder and save this class as `Main.hx`.
+
+[code asset](assets/HelloWorld.hx)
+
+To compile Haxe to JVM bytecode we need two obvious prerequisites installed:
+
+* [hxjava haxelib](http://lib.haxe.org/p/hxjava). This is the support library for the Java backend of the Haxe compiler.
+* [JRE - Java Runtime Environment](https://java.com/download/).
+
+Run the following from the command line:
+
+```hxml
+haxe --jvm bin/Main.jar --main Main
+```
+
+Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml-file should be in the same directory as the example class.
+
+```hxml
+--jvm bin/Main.jar
+--main Main
+```
+
+The compiler outputs in the given **bin**-folder, which contains the generated .jar file which prints the traced message when you execute it. 
+
+To execute, run the following command:
+
+```sh
+java -jar bin/Main.jar
+```
+
+##### More information
+
+* [Haxe/Java API docs](https://api.haxe.org/java/)
+* [Java Platform Documentation](https://docs.oracle.com/javase/)
+
+
+
+
 
 <!--label:target-cs-->
 ### C#
