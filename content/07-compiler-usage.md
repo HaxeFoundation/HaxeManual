@@ -30,6 +30,7 @@ The second question usually comes down to providing an argument specifying the d
 * `--cpp <directory>` Generate [C++](target-cpp) source code in specified directory and compiles it using native C++ compiler.
 * `--cs <directory>` Generate [C#](target-cs) source code in specified directory.
 * `--java <directory>` Generate [Java](target-java) source code in specified directory and compiles it using the Java Compiler. Add `-D jvm` to generate JVM byte code directly bypassing Java compilation step.
+* `--jvm <file_name.jar>` Generate [JVM bytecode](target-jvm) as a jar file.
 * `--python <file_name.py>` Generate [Python](target-python) source code in the specified file.
 * `--lua <file_name.lua>` Generate [Lua](target-lua) source code in the specified file.
 * `--hl <file_name.hl>` Generate [HashLink](target-hl) byte code in specified file.
