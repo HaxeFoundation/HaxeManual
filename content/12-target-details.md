@@ -1984,8 +1984,6 @@ To execute the jar file, you'll need to have a JRE (Java Runtime Environment) in
 java -jar bin/Main.jar
 ```
 
-Note that some operating systems may allow you to double-click a jar file to run it.
-
 
 ##### More information
 
