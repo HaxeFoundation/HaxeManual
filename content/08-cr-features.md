@@ -495,7 +495,7 @@ Haxe uses the target platform's native resource embedding if there is one, other
 * **C++** resources are stored in global byte array constants.
 * **JavaScript** resources are serialized in Haxe serialization format and stored in a static field of `haxe.Resource` class.
 * **Neko** resources are stored as strings in a static field of `haxe.Resource` class.
-
+* **PHP** resources are stored as files in the `res` directory within the output directory.
 
 
 
