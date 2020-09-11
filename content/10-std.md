@@ -45,7 +45,7 @@ Sequence | Meaning | Unicode codepoint (decimal) | Unicode codepoint (hexadecima
 `\r` | new line (CR) | 13 | 0x0D
 `\"` | double quote | 34 | 0x22
 `\'` | single quote | 39 | 0x27
-`\\\\\\\\` | backslash | 92 | 0x5C
+`\\` | backslash | 92 | 0x5C
 `\NNN` | ASCII escape where `NNN` is 3 octal digits | 0 - 127 | 0x00 - 0x7F
 `\xNN` | ASCII escape where `NN` is a pair of hexadecimal digits | 0 - 127 | 0x00 - 0x7F
 `\uNNNN` | Unicode escape where `NNNN` is 4 hexadecimal digits | 0 - 65535 | 0x0000 - 0xFFFF
