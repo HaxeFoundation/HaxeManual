@@ -735,7 +735,7 @@ export HXCPP_VERBOSE=
 Or, on Windows:
 
 ```
-setenv HXCPP_VERBOSE
+set HXCPP_VERBOSE=1
 ```
 
 If you are running Haxe though an IDE, some care must be taken with environment variables since the variables may be read once from the environment in which the IDE was started, rather than changing when the variables are changed on the system.
