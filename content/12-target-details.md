@@ -2180,6 +2180,7 @@ luarocks install lrexlib-pcre
 luarocks install environ
 luarocks install luasocket
 luarocks install luv
+luarocks install luautf8
 ```
 
 On Lua 5.1, install the bitops library:
