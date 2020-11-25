@@ -2306,6 +2306,7 @@ Another possibility is to create and run (double-click) a file called `compile.h
 
 ```hxml
 --hl hello.hl
+--lib hlsdl # SDL support (Linux, Windows, MacOS), use '--lib hldx' for DirectX support (only Windows)
 --main Main
 ```
 
