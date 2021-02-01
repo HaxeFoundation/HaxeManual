@@ -28,7 +28,7 @@ The second question usually comes down to providing an argument specifying the d
 * `--neko <file_name.n>` Generate [Neko](target-neko) binary as specified file.
 * `--php <directory>` Generate [PHP](target-php) source code in specified directory. Use `-D php7` for PHP7 source code.
 * `--cpp <directory>` Generate [C++](target-cpp) source code in specified directory and compiles it using native C++ compiler.
-* `--cs <directory>` Generate [C#](target-cs) source code in specified directory.
+* `--cs <directory>` Generate [C#](target-cs) source code in specified directory and compiles it using native C# compiler.
 * `--java <directory>` Generate [Java](target-java) source code in specified directory and compiles it using the Java Compiler. Add `-D jvm` to generate JVM byte code directly bypassing Java compilation step.
 * `--jvm <file_name.jar>` Generate [JVM bytecode](target-jvm) as a jar file.
 * `--python <file_name.py>` Generate [Python](target-python) source code in the specified file.
