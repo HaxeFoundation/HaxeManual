@@ -23,7 +23,7 @@ An example of `js.Syntax.code`:
 
 ```haxe
 var myMessage = "Is Haxe great?";
-var output:Bool = Syntax.code("confirm({0})", myMessage);
+var output:Bool = js.Syntax.code("confirm({0})", myMessage);
 ```
 
 The generated JavaScript output is:
@@ -62,12 +62,12 @@ You may want to compile Haxe to JavaScript in the following scenarios:
 **Client-side JavaScript**
 Interacting with DOM elements. Haxe provides up-to-date typed interfaces to interact with the Document Object Model, allowing creation and update of DOM elements. 
 
-Haxe can be used together with existing third-party libraries and frameworks, such as jQuery, React or Vue. To access third-party frameworks with a strongly-typed API, there are extern libraries available on [Haxelib](http://lib.haxe.org/t/js/). Alternatively, it is possible to create own externs (see [Using external JavaScript libraries](target-javascript-external-libraries)) or use the dynamic type to access any framework, see [Accessing Target-specific Syntax](target-syntax).
+Haxe can be used together with existing third-party libraries and frameworks, such as jQuery, React or Vue. To access third-party frameworks with a strongly-typed API, there are extern libraries available on [Haxelib](https://lib.haxe.org/t/js/). Alternatively, it is possible to create own externs (see [Using external JavaScript libraries](target-javascript-external-libraries)) or use the dynamic type to access any framework, see [Accessing Target-specific Syntax](target-syntax).
 
 **Creating graphics using Canvas and WebGL**
 Use Haxe to create graphical elements on a web page using WebGL. 
 
-Libraries like [OpenFL](http://www.openfl.org/), [Heaps](http://heaps.io/) and [Kha](http://kha.tech/) make use of WebGL as one of their backends.
+Libraries like [OpenFL](https://www.openfl.org/), [Heaps](https://heaps.io/) and [Kha](https://kha.tech/) make use of WebGL as one of their backends.
 
 **Creating Haxe code that targets server-side JavaScript**
 Working with server-side technology. Haxe can be used to create server-side JavaScript like Node.js.
@@ -78,7 +78,7 @@ Working with server-side technology. Haxe can be used to create server-side Java
 #### Getting started with Haxe/JavaScript
 
 Haxe can be a powerful tool for developing JavaScript applications. Let's look at our first sample.
-This is a very simple example showing the toolchain. 
+This is a very basic example showing the toolchain. 
 
 Create a new folder and save this class as `Main.hx`.
 
@@ -88,9 +88,7 @@ class Main {
     static function main() {
         var button = Browser.document.createButtonElement();
         button.textContent = "Click me!";
-        button.onclick = function(event) {
-            Browser.alert("Haxe is great");
-        }
+        button.onclick = (event) -> Browser.alert("Haxe is great");
         Browser.document.body.appendChild(button);
     }
 }
@@ -99,28 +97,33 @@ class Main {
 To compile, either run the following from the command line:
 
 ```hxml
-haxe --js main-javascript.js --main Main
+haxe --js js/app.js --main Main
 ```
 
 Another possibility is to create and run (double-click) a file called `compile.hxml`. In this example the hxml file should be in the same directory as the example class.
 
 ```hxml
---js main-javascript.js
+--js js/app.js
 --main Main
 ```
 
-The output will be a main-javascript.js, which creates and adds a clickable button to the document body.
+The output will be _js/app.js_, which creates and adds a clickable button to the document body.
 
 ##### Run the JavaScript
 
 To display the output in a browser, create an HTML-document called `index.html` and open it.
 
 ```xml
-<!DOCTYPE html>
-<html>
-	<body>
-		<script src="main-javascript.js"></script>
-	</body>
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Haxe Application</title>
+</head>
+<body>
+	<script src="js/app.js"></script>
+</body>
 </html>
 ```
 
@@ -345,7 +348,7 @@ Haxe version | Library               | Externs location
 3.2-         | SWFObject 1.5         | `js.SWFObject` 
  
 
-There are many externs for other popular native libraries available on [Haxelib library](haxelib). To view a list of them, check out the [extern tag](http://lib.haxe.org/t/extern/).
+There are many externs for other popular native libraries available on [Haxelib library](haxelib). To view a list of them, check out the [extern tag](https://lib.haxe.org/t/extern/).
 
 
 
@@ -517,7 +520,7 @@ To display the output in a browser using the Flash plugin, create an HTML-docume
 ##### More information
 
 * [Haxe/Flash API docs](https://api.haxe.org/flash/)
-* [Adobe Livedocs](http://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/)
+* [Adobe Livedocs](https://help.adobe.com/en_US/FlashPlatform/reference/actionscript/3/)
 
 
 
@@ -658,7 +661,7 @@ Define | Description
 ##### More information
 
 * [Haxe/PHP API docs](https://api.haxe.org/php/)
-* [PHP.net Documentation](http://php.net/docs.php)
+* [PHP.net Documentation](https://php.net/docs.php)
 * [PHP to Haxe tool](http://phptohaxe.haqteam.com/code.php)
 
 
@@ -803,7 +806,7 @@ The compiler specification and target lists all use the same format.
 
 Most of the XML nodes support `if` and `unless` attributes. These will enable or disable the whole node according the existence or non-existence of a define. These can be combined with a space for "and" or two pipes for "or".
 
-Substitution is supported via the dollars-brace syntax, and does simple text substitution. In addition, there is some special syntax that can be used:
+Substitution is supported via the dollars-brace syntax, and does basoc text substitution. In addition, there is some special syntax that can be used:
 
  - `${VAR}` - normal replacement.
  - `${removeQuotes:VAR}` - strips surrounding quotes from `VAR`, if any.
@@ -1913,7 +1916,7 @@ To get started with Haxe/Java, create a new folder and save this class as `Main.
 
 To compile Haxe to Java we need two obvious prerequisites installed:
 
-* [hxjava haxelib](http://lib.haxe.org/p/hxjava). This is the support library for the Java backend of the Haxe compiler.
+* [hxjava haxelib](https://lib.haxe.org/p/hxjava). This is the support library for the Java backend of the Haxe compiler.
 * [JRE - Java Runtime Environment](https://java.com/download/).
 
 Run the following from the command line:
@@ -1957,7 +1960,7 @@ To get started with Haxe/JVM, create a new folder and save this class as `Main.h
 
 [code asset](assets/HelloWorld.hx)
 
-To compile Haxe to JVM bytecode, you'll first need to install the [hxjava haxelib](http://lib.haxe.org/p/hxjava). This is the Haxe Java support library, including build scripts and support code. Then run the following from the command line:
+To compile Haxe to JVM bytecode, you'll first need to install the [hxjava haxelib](https://lib.haxe.org/p/hxjava). This is the Haxe Java support library, including build scripts and support code. Then run the following from the command line:
 
 ```sh
 haxe --jvm bin/Main.jar --main Main
@@ -2002,13 +2005,13 @@ java -jar bin/Main.jar
 <!--label:target-cs-getting-started-->
 #### Getting started with Haxe/C#
 
-Haxe can be used as a language for .NET platform through its C# target. Let's make a simple program using .NET Console class:
+Haxe can be used as a language for .NET platform through its C# target. Let's make a basic program using .NET Console class:
 
 [code asset](assets/HelloWorld.hx)
 
 To compile Haxe to C# we need two obvious prerequisites installed:
 
-* [hxcs haxelib](http://lib.haxe.org/p/hxcs). This is the support library for the C# backend of the Haxe compiler.
+* [hxcs haxelib](https://lib.haxe.org/p/hxcs). This is the support library for the C# backend of the Haxe compiler.
 * [.NET development framework (either Microsoft.NET or Mono)](https://www.microsoft.com/net)
 
 After that we can compile to C# using the `--cs` option from either the command line or an hxml-file:
@@ -2216,7 +2219,7 @@ haxe --lua out.lua --main Main
 ##### More information
 
 * [Lua Homepage](https://www.lua.org/)
-* [LuaJIT Homepage](http://luajit.org/)
+* [LuaJIT Homepage](https://luajit.org/)
 
 
 
@@ -2270,7 +2273,7 @@ This example has three parts:
 
 * The extern class `NativeString` which is an extern for the base `string` library in Lua.
 * The `StringFind` class which is marked as `@:multiReturn` that describes the return values.
-* The Main class that invokes the string method as a simple example.
+* The Main class that invokes the string method as a basic example.
 
 The multireturn behavior in Haxe is optimized based on usage.  If fields are
 only accessed directly, the Haxe compiler will allocate the multireturn to
