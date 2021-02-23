@@ -49,7 +49,6 @@ The second question usually comes down to providing an argument specifying the d
 * `--prompt` Prompt on error.
 * `--cmd <command>` Run the specified shell command after a successful compilation.
 * `--no-traces` Don't compile trace calls in the program.
-* `--gen-hx-classes` Generate hx headers for all input classes.
 * `--display` Display code tips to provide [completion information for IDEs and editors](cr-completion-overview).
 * `--times` Measure compilation times.
 * `--no-inline` Disable [inlining](class-field-inline).
