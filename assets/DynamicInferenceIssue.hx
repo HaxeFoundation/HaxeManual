@@ -6,7 +6,7 @@ class Main {
     for (i in 0...json.length) {
       // Array access is not allowed on
       // {+ length : Int }
-      trace(json[0]);
+      trace(json[i]);
     }
   }
 }
