@@ -948,7 +948,11 @@ Note that the type of the object returned by `haxe.Json.parse` is `Dynamic`, so 
 Use the [haxe.Json.stringify](https://api.haxe.org/haxe/Json.html#stringify) static method to encode a Haxe value into a **JSON** string:
 [code asset](assets/JsonStringify.hx)
 
+#### Pretty print JSON
 
+If the parameter `space` is given, the result will be pretty-printed. Successive levels will be indented by this string.
+
+[code asset](assets/JsonStringifyPretty.hx)
 
 <!--label:std-Json-implementation-details-->
 #### Implementation details
