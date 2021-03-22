@@ -1,9 +1,9 @@
 class Main {
-  static var member:String = "bar";
+  static var example:String = "bar";
 
   public static function main() {
-    trace(member);
-    member = "foo";
-    trace(member);
+    trace(example);
+    example = "foo";
+    trace(example);
   }
 }
