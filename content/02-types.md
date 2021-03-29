@@ -830,8 +830,8 @@ Both binary and unary operator overloads can return any type.
 
 The `@:op` syntax can be used to overload field access and array access on abstracts:
 
-* `@:op([])` on a function with one argument overloads array read accces.
-* `@:op([])` on a function with two arguments overloads array write accces, with the first argument being the index and the second one being the written value.
+* `@:op([])` on a function with one argument overloads array read access.
+* `@:op([])` on a function with two arguments overloads array write access, with the first argument being the index and the second one being the written value.
 * `@:op(a.b)` on a function with one argument overloads field read access.
 * `@:op(a.b)` on a function with two arguments overloads field write access.
 
