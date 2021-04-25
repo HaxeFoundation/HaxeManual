@@ -91,6 +91,7 @@ class RunTravis
 		"HelloPHP.hx", // PHP only
 		"JSRequireModule.hx",
 		"JSRequireObject.hx",
+		"Process.hx", // requires git
 		"RestAndEitherType.hx", // requires an extern
 		"SwitchStatement.hx", // pseudo-code
 		"UnitTestCase.hx",
