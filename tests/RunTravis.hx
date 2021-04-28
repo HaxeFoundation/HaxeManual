@@ -62,7 +62,10 @@ class RunTravis
 	 */
 	static var requiredFailures:Map<String,Null<Map<Target,String>>> = [
 		"AbstractExposeTypeOperations.hx" => null,
+		//TODO: invent a better example as current one passes compilation since Haxe 4.2
+		#if (haxe_ver < 4.2)
 		"DynamicInferenceIssue.hx" => null,
+		#end
 		"ExprOf.hx" => null,
 		"Extractor5.hx" => null,
 		"FunctionTypeParameter.hx" => null,
