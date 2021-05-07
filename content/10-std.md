@@ -970,7 +970,10 @@ Older browsers (Internet Explorer 7, for instance) may not have a native **JSON*
 <!--label:std-input-output-->
 ### Input/Output
 
-<!--subtoc-->
+Haxe has two packages that group Input/Output utilities:
+
+- [haxe.io](https://api.haxe.org/haxe/io/) which is available for all targets.
+- [sys.io](https://api.haxe.org/sys/io/) which is available for [sys targets](https://haxe.org/documentation/introduction/compiler-targets.html).
 
 
 
@@ -996,8 +999,28 @@ All spawned threads are treated as daemon threads, meaning that the main thread 
 
 Due to threads having access to a shared memory space with all the Haxe variables and objects, it is possible to run into issues due to deadlocks and race conditions. The standard library provides some core synchronization constructs in the [`sys.thread`](https://api.haxe.org/sys/thread/) package.
 
+<!--label:std-sys-standard-io-streams-->
+#### Standard IO Streams
 
+Using the `Sys` module you have access to the three standard streams `stdin`, `stdout` and `stderr`.
 
+```haxe
+// Printing without using trace, useful to print without a newline character
+Sys.stdout().writeString('Please type your name: ');
+// Flush characters to terminal
+Sys.stdout().flush();
+
+// Reading user input through terminal
+final input = Sys.stdin().readLine();
+trace('Hello ${input}}!');
+```
+
+<!--label:std-input-output-process-->
+#### Process
+
+Haxe supports the spawning and management of new processes using the [Process](https://api.haxe.org/sys/io/Process.html) class, here's an example of running a git command and reading its output:
+
+[code asset](assets/Process.hx)
 
 
 <!--label:std-remoting-->
