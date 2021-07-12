@@ -16,8 +16,8 @@ class Main {
   static public function main() {
     var s:MyAbstract = "example string";
     trace(s[1]); // "x"
-    trace(s[2] = "e"); // "exemple string"
+    trace(s[2] = "e"); // "example string"
     trace(s.string); // 8
-    trace(s.string = "code"); // "exemple code"
+    trace(s.string = "code"); // "example code"
   }
 }
