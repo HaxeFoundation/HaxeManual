@@ -1,6 +1,6 @@
 abstract MyAbstract(String) from String {
   @:op([]) public function arrayRead(n:Int)
-    return this.charCodeAt(n);
+    return this.charAt(n);
 
   @:op([]) public function arrayWrite(n:Int, char:String)
     return this.substr(0, n) + char + this.substr(n + 1);
@@ -16,7 +16,7 @@ class Main {
   static public function main() {
     var s:MyAbstract = "example string";
     trace(s[1]); // "x"
-    trace(s[2] = "e"); // "example string"
+    trace(s[2] = "*"); // "ex*mple string"
     trace(s.string); // 8
     trace(s.string = "code"); // "example code"
   }
