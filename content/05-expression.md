@@ -396,7 +396,7 @@ The types of operand 1 and operand 2 must [unify](type-system-unification).
 **Enums:**
 
 * Enums without parameters always represent the same value, so `MyEnum.A == MyEnum.A`. 
-* Enums with parameters can be compared with `a.equals(b)` (which is short for `Type.enumEquals()`).
+* Enums with parameters can be compared with `a.equals(b)` (which is short for `Type.enumEq()`).
 
 **Dynamic:**
 
