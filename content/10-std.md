@@ -284,7 +284,7 @@ We can use standard regular expression patterns such as:
 
 For example, the following regular expression matches valid email addresses:
 ```haxe
-~/[A-Z0-9._%-]+@[A-Z0-9.-]+.[A-Z][A-Z][A-Z]?/i;
+~/[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z][A-Z][A-Z]*/i;
 ```
 
 Please notice that the `i` at the end of the regular expression is a **flag** that enables case-insensitive matching.
