@@ -162,12 +162,12 @@ This kind of reification can also be useful to obtain instances of `haxe.macro.E
 
 The Haxe Standard Library comes with a set of tool-classes to simplify working with macros. These classes work best as [static extensions](lf-static-extension) and can be brought into context either individually or as a whole through `using haxe.macro.Tools`. These classes are:
 
-* `ComplexTypeTools`: Allows printing `ComplexType` instances in a human-readable way. Also allows determining the `Type` corresponding to a `ComplexType`.
-* `ExprTools`: Allows printing `Expr` instances in a human-readable way. Also allows iterating and mapping expressions.
-* `MacroStringTools`: Offers useful operations on strings and string expressions in macro context.
-* `TypeTools`: Allows printing `Type` instances in a human-readable way. Also offers several useful operations on types, such as [unifying](type-system-unification) them or getting their corresponding `ComplexType`.
+* [ComplexTypeTools](https://api.haxe.org/haxe/macro/ComplexTypeTools.html): Allows printing `ComplexType` instances in a human-readable way. Also allows determining the `Type` corresponding to a `ComplexType`.
+* [ExprTools](https://api.haxe.org/haxe/macro/ExprTools.html): Allows printing `Expr` instances in a human-readable way. Also allows iterating and mapping expressions.
+* [MacroStringTool](https://api.haxe.org/haxe/macro/MacroStringTools.html): Offers useful operations on strings and string expressions in macro context.
+* [TypeTools](https://api.haxe.org/haxe/macro/TypeTools.html): Allows printing `Type` instances in a human-readable way. Also offers several useful operations on types, such as [unifying](type-system-unification) them or getting their corresponding `ComplexType`.
 
-Furthermore the `haxe.macro.Printer` class has public methods for printing various types as a human-readable format. This can be helpful when debugging macros.
+Furthermore the [haxe.macro.Printer](https://api.haxe.org/haxe/macro/Printer.html) class has public methods for printing various types as a human-readable format. This can be helpful when debugging macros.
 
 > ##### Trivia: The tinkerbell library and why Tools.hx works
 >
