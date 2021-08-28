@@ -272,7 +272,7 @@ Omitting the visibility modifier usually defaults the visibility to `private`, b
 
 > ##### Trivia: Protected
 >
-> Haxe does not support the `protected` behavior known from many other object-oriented programming languages like Java and C++. However, Haxe's `private` behaves similarly to `protected` in other languages, but does not allow access from non-inheriting classes in the same package.
+> Haxe does not support the `protected` keyword known from many other object-oriented programming languages like Java and C++. However, Haxe's `private` behaves similarly to `protected` in other languages, but does not allow access from non-inheriting classes in the same package.
 
 
 
