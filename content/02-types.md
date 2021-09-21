@@ -411,13 +411,13 @@ class Rocket extends Spaceship {}
 
 class Main {
   public static function main() {
-    // var spaceship = new Spaceship();  // Fail
+    // var spaceship = new Spaceship();  // Error: Spaceship is abstract and cannot be constructed
     var rocket = new Rocket(); // Succeed
   }
 }
 ```
 
-Even though they can't be instantiated, abstract classes can still have a constructor that the child class can call with `super()`. Definition of this constructor is optional.
+Even though they can't be instantiated, abstract classes can still have a constructor that the child class can call with `super()`.
 
 ```haxe
 abstract class Parent {
