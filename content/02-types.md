@@ -313,11 +313,11 @@ Like classes, interfaces can be marked with the `final` keyword, preventing them
 
 ##### since Haxe 4.2.0
 
-Abstract classes (not to be confused with [Abstract](type-system-type-inference)) are classes with partial implementation. As such, an abstract class cannot be instantiated but must first be extended, with the child class providing implementation of any abstract methods. Abstract classes support all language features that concrete classes support, thus any class can be declared abstract.
+Abstract classes (not to be confused with [Abstract](type-system-type-inference)) are classes with partial implementation. As such, an abstract class cannot be instantiated but must first be extended, with the child class either providing implementation of all abstract methods or being declared abstract itself.
 
-Concrete classes inheriting from abstract classes must be declared without the `abstract` keyword, and all abstract methods in the parent classes must be implemented.
+In constrast to abstract classes, a class that implements all its methods is known as a concrete class. Concrete classes inheriting from abstract classes must be declared without the `abstract` keyword, and all abstract methods in the parent classes must be implemented.
 
-Abstract class methods behave similarly to interfaces; implementations of the methods do not use the `override` keyword.
+Abstract classes support all language features that concrete classes support, thus any class can be declared abstract. Furthermore, abstract class methods behave similarly to interfaces; implementations of the methods do not use the `override` keyword.
 
 ```haxe
 abstract class Vehicle {
@@ -419,11 +419,22 @@ class Main {
 
 ```
 
-> ##### Trivia: Constructor
->
-> Even though they can't be instantiated, abstract classes can still have a constuctor. 
+Even though they can't be instantiated, abstract classes can still have a constructor that the child class can call with `super()`. Definition of this constructor is optional.
 
+```haxe
+abstract class Parent {
+  public function new() {
+    trace("Parent created!");
+  }
+}
 
+class Child extends Parent {
+  public function new() {
+    super();
+    trace("Child created!");
+  }
+}
+```
 
 
 
