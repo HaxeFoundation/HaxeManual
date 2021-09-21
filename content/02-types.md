@@ -308,6 +308,123 @@ Like classes, interfaces can be marked with the `final` keyword, preventing them
 
 
 
+<!--label:types-abstract-class-->
+#### Abstract Class
+
+##### since Haxe 4.2.0
+
+Abstract classes (not to be confused with [Abstract](type-system-type-inference)) are classes with partial implementation. As such, an abstract class cannot be instantiated but must first be extended, with the child class providing implementation of any abstract methods. Abstract classes support all language features that concrete classes support, thus any class can be declared abstract.
+
+Concrete classes inheriting from abstract classes must be declared without the `abstract` keyword, and all abstract methods in the parent classes must be implemented.
+
+Abstract class methods behave similarly to interfaces; implementations of the methods do not use the `override` keyword.
+
+```haxe
+abstract class Vehicle {
+	var speed:Float = 0;
+
+	abstract public function getWheels():Int;
+
+	public function new() {}
+}
+
+class Car extends Vehicle {
+	public function getWheels() {
+		return 4;
+	}
+
+	public function accelerate() {
+		speed += 1;
+	}
+}
+
+class Bike extends Vehicle {
+	public function getWheels() {
+		return 2;
+	}
+
+	public function accelerate() {
+		speed += 2;
+	}
+}
+```
+
+An abstract class can be used to provide a partial implementation of an interface, leaving the implementation of other methods up to the child classes.
+
+```haxe
+interface Vehicle {
+	public function getFuelType():String;
+	public function getWheels():Int;
+}
+
+abstract class Bike implements Vehicle {
+	public function getWheels():Int {
+		return 2;
+	}
+
+	public function new() {}
+}
+
+class EBike extends Bike {
+	public function getFuelType():String {
+		return "electric";
+	}
+}
+```
+
+
+As with other inheritance relationships, child classes can be assigned to a type of their abstract parent class.
+
+```haxe
+abstract class Base {
+	public abstract function say():String;
+
+	public function new() {}
+}
+
+class Derived extends Base {
+	public function say():String {
+		return "Hello";
+	}
+}
+
+class Main {
+	public static function main() {
+		var instance:Base = new Derived();
+	}
+}
+
+```
+
+
+A class can be declared abstract even if it has no abstract methods. Even in this case it cannot be instantiated, but non-abstract child classes can be.
+
+```haxe
+abstract class Spaceship {
+	public function whatAmI():Void {
+		trace("Spaceship");
+	}
+
+	public function new() {}
+}
+
+class Rocket extends Spaceship {}
+
+class Main {
+	public static function main() {
+		// var spaceship = new Spaceship();  // Fail
+		var rocket = new Rocket(); // Succeed
+	}
+}
+
+```
+
+> ##### Trivia: Constructor
+>
+> Even though they can't be instantiated, abstract classes can still have a constuctor. 
+
+
+
 
 
 <!--label:types-enum-instance-->
