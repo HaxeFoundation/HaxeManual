@@ -2295,6 +2295,25 @@ Haxe supports compilation to HashLink bytecode or HashLink/C code. [HashLink](ht
 <!--label:target-hl-getting-started-->
 #### Getting started with Haxe/HashLink
 
+##### Prerequisites
+
+In order to run Hashlink bytecode and compile Hashlink/C, the Hashlink binaries must be installed. These binaries can be obtained either by downloading a [release version](https://github.com/HaxeFoundation/hashlink/releases) or by [building them from source](https://github.com/HaxeFoundation/hashlink).
+
+Additionally, for compiling Haxe to Hashlink/C, the `hashlink` [haxelib package](https://lib.haxe.org/p/hashlink) must also be installed. This can be done via the command:
+
+```
+haxelib install hashlink
+```
+
+However, as the version on the haxelib repository is out of date, it is recommended to install it directly from source, via the command:
+
+```
+haxelib git hashlink https://github.com/HaxeFoundation/hashlink.git master other/haxelib/
+```
+
+
+##### Sample
+
 To get started with Haxe/HashLink, create a new folder and save this class as `Main.hx`.
 
 [code asset](assets/HelloWorld.hx)
@@ -2342,7 +2361,9 @@ hl output.hl
 
 ##### HashLink/C code
 
-Haxe code can also be compiled to HashLink/C code by specifying `.c` output in the `--hl` argument:
+Before compiling to Hashlink/C, the `hashlink` haxelib library must be installed. [See here](target-hl-getting-started#prerequisites) for details.
+
+Haxe code can then be compiled to HashLink/C code by specifying `.c` output in the `--hl` argument:
 
 ```
 haxe --main Main --hl out/main.c
@@ -2354,5 +2375,14 @@ This produces files in the `out` directory, which can be compiled to a native ex
 gcc -O3 -o hello -std=c++ -I out out/main.c -lhl [-L/path/to/required/hdll]
 ```
 
-Note that during native compilation, the HL library must be linked. This library is available in binary distributions of HashLink, or can be obtained during compilation of [HashLink from source](https://github.com/HaxeFoundation/hashlink).
+Note that during native compilation, the HL library must be linked. [See here](target-hl-getting-started#prerequisites) for information on obtaining Hashlink binaries.
 
+##### Hashlink/C with Visual Studio
+
+On Windows, to make compilation easier, it is also possible to generate Visual Studio project files. This is done by adding the `-D hlgen.makefile` define to the compilation command:
+
+```
+haxe --main Main --hl out/main.c -D hlgen.makefile=vs2019
+```
+
+This produces a `main.sln` file in the  `out` directory, which can simply be opened in Visual Studio and built without any extra setup.
