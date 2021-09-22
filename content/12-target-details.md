@@ -60,12 +60,12 @@ When choosing the JavaScript target, only the used Haxe code of the project (and
 You may want to compile Haxe to JavaScript in the following scenarios:
 
 **Client-side JavaScript**
-Interacting with DOM elements. Haxe provides up-to-date typed interfaces to interact with the Document Object Model, allowing creation and update of DOM elements. 
+Interacting with DOM elements. Haxe provides up-to-date typed interfaces to interact with the Document Object Model, allowing creation and update of DOM elements.
 
 Haxe can be used together with existing third-party libraries and frameworks, such as jQuery, React or Vue. To access third-party frameworks with a strongly-typed API, there are extern libraries available on [Haxelib](https://lib.haxe.org/t/js/). Alternatively, it is possible to create own externs (see [Using external JavaScript libraries](target-javascript-external-libraries)) or use the dynamic type to access any framework, see [Accessing Target-specific Syntax](target-syntax).
 
 **Creating graphics using Canvas and WebGL**
-Use Haxe to create graphical elements on a web page using WebGL. 
+Use Haxe to create graphical elements on a web page using WebGL.
 
 Libraries like [OpenFL](https://www.openfl.org/), [Heaps](https://heaps.io/) and [Kha](https://kha.tech/) make use of WebGL as one of their backends.
 
@@ -78,7 +78,7 @@ Working with server-side technology. Haxe can be used to create server-side Java
 #### Getting started with Haxe/JavaScript
 
 Haxe can be a powerful tool for developing JavaScript applications. Let's look at our first sample.
-This is a very basic example showing the toolchain. 
+This is a very basic example showing the toolchain.
 
 Create a new folder and save this class as `Main.hx`.
 
@@ -258,9 +258,9 @@ class Child extends Base {
 #### Using external JavaScript libraries
 
 
-The [externs mechanism](lf-externs) provides access to the native APIs in a type-safe manner. It assumes that the defined types exist at run-time but assumes nothing about how and where those types are defined. 
+The [externs mechanism](lf-externs) provides access to the native APIs in a type-safe manner. It assumes that the defined types exist at run-time but assumes nothing about how and where those types are defined.
 
-An example of an extern class is the [jQuery class](https://github.com/HaxeFoundation/haxe/blob/development/std/js/jquery/JQuery.hx) of the Haxe Standard Library. 
+An example of an extern class is the [jQuery class](https://github.com/HaxeFoundation/haxe/blob/development/std/js/jquery/JQuery.hx) of the Haxe Standard Library.
 To illustrate, here is a simplified version of this extern class:
 
 ```haxe
@@ -338,15 +338,15 @@ Beside externs, [Typedefs](type-system-typedef) can be another great way to name
 
 **Deprecated:** Since Haxe 4.0.0: The jQuery and SWFObject externs have been removed from the standard library. For compatibility purposes they are available in the [hx3compat](https://github.com/HaxeFoundation/hx3compat/) library. See [Haxe 3 Compatibility](std-hx3compat).
 
-Haxe version | Library               | Externs location 
+Haxe version | Library               | Externs location
  --- | --- | ---
-4.0          | jQuery 1.12.1 / 2.2.1 | with [hx3compat](https://github.com/HaxeFoundation/hx3compat/): `js.jquery.*` 
-4.0          | SFWObject 2.3         | with [hx3compat](https://github.com/HaxeFoundation/hx3compat/): `js.swfobject.*` 
-3.3          | jQuery 1.12.1 / 2.2.1 | `js.jquery.*` 
-3.3          | SWFObject 2.3         | `js.swfobject.*` 
-3.2-         | jQuery 1.6.4          | `js.JQuery` 
-3.2-         | SWFObject 1.5         | `js.SWFObject` 
- 
+4.0          | jQuery 1.12.1 / 2.2.1 | with [hx3compat](https://github.com/HaxeFoundation/hx3compat/): `js.jquery.*`
+4.0          | SFWObject 2.3         | with [hx3compat](https://github.com/HaxeFoundation/hx3compat/): `js.swfobject.*`
+3.3          | jQuery 1.12.1 / 2.2.1 | `js.jquery.*`
+3.3          | SWFObject 2.3         | `js.swfobject.*`
+3.2-         | jQuery 1.6.4          | `js.JQuery`
+3.2-         | SWFObject 1.5         | `js.SWFObject`
+
 
 There are many externs for other popular native libraries available on [Haxelib library](haxelib). To view a list of them, check out the [extern tag](https://lib.haxe.org/t/extern/).
 
@@ -357,10 +357,10 @@ There are many externs for other popular native libraries available on [Haxelib 
 
 This is the list of JavaScript specific metadata. For more information, see also the complete list of all [Haxe built-in metadata](cr-metadata).
 
-Metadata | Description 
+Metadata | Description
  --- | ---
-@:expose _(?Name=Class path)_  |  Makes the class available on the <code>window</code> object or <code>exports</code> for node.js  
-@:jsRequire  |  Generate javascript module require expression for given extern 
+@:expose _(?Name=Class path)_  |  Makes the class available on the <code>window</code> object or <code>exports</code> for node.js
+@:jsRequire  |  Generate javascript module require expression for given extern
 @:selfCall  |  Translates method calls into calling object directly
 
 
@@ -368,7 +368,7 @@ Metadata | Description
 <!--label:target-javascript-expose-->
 #### Exposing Haxe classes for JavaScript
 
-It is possible to make Haxe classes or static fields available for usage in plain JavaScript. 
+It is possible to make Haxe classes or static fields available for usage in plain JavaScript.
 To expose, add the `@:expose` metadata to the desired class or static fields.
 
 This example exposes the Haxe class `MyClass`.
@@ -462,7 +462,7 @@ If we need to load custom JavaScript objects in runtime, a `js.Lib.require` func
 #### Getting started with Haxe/Flash
 
 Developing Flash applications is really easy with Haxe. Let's look at our first code sample.
-This is a basic example showing most of the toolchain. 
+This is a basic example showing most of the toolchain.
 
 Create a new folder and save this class as `Main.hx`.
 
@@ -472,7 +472,7 @@ import flash.display.Shape;
 class Main {
     static function main() {
         var stage = Lib.current.stage;
-        
+
         // create a center aligned rounded gray square
         var shape = new Shape();
         shape.graphics.beginFill(0x333333);
@@ -481,7 +481,7 @@ class Main {
 		shape.y = (stage.stageHeight - 100) / 2;
 
 		stage.addChild(shape);
-    }    
+    }
 }
 ```
 
@@ -504,7 +504,7 @@ The output will be a main-flash.swf with size 960x640 pixels at 60 FPS with an o
 
 ##### Display the Flash
 
-Run the SWF standalone using the [Standalone Debugger FlashPlayer](https://www.adobe.com/support/flashplayer/downloads.html). 
+Run the SWF standalone using the [Standalone Debugger FlashPlayer](https://www.adobe.com/support/flashplayer/downloads.html).
 
 To display the output in a browser using the Flash plugin, create an HTML-document called `index.html` and open it.
 
@@ -541,7 +541,7 @@ class Main {
   }
 }
 
-@:bitmap("relative/path/to/myfile.png") 
+@:bitmap("relative/path/to/myfile.png")
 class MyBitmapData extends BitmapData { }
 ```
 
@@ -568,17 +568,17 @@ The standard compilation options also provide more Haxe sources to be added to t
 
 This is the list of Flash specific metadata. For a complete list see [Haxe built-in metadata](cr-metadata).
 
-Metadata | Description 
+Metadata | Description
  --- | ---
-@:bind  |  Override Swf class declaration 
-@:bitmap _(Bitmap file path)_  |  _Embeds given bitmap data into the class (must extend <code>flash.display.BitmapData</code>) 
-@:debug  |  Forces debug information to be generated into the Swf even without <code>--debug</code> 
-@:file(File path)  |  Includes a given binary file into the target Swf and associates it with the class (must extend <code>flash.utils.ByteArray</code>) 
-@:font _(TTF path Range String)_  |  Embeds the given TrueType font into the class (must extend <code>flash.text.Font</code>) 
-@:getter _(Class field name)_  |  Generates a native getter function on the given field  
-@:noDebug |  Does not generate debug information into the Swf even if <code>--debug</code> is set 
-@:ns  |  Internally used by the Swf generator to handle namespaces 
-@:setter _(Class field name)_  |  Generates a native setter function on the given field 
+@:bind  |  Override Swf class declaration
+@:bitmap _(Bitmap file path)_  |  _Embeds given bitmap data into the class (must extend <code>flash.display.BitmapData</code>)
+@:debug  |  Forces debug information to be generated into the Swf even without <code>--debug</code>
+@:file(File path)  |  Includes a given binary file into the target Swf and associates it with the class (must extend <code>flash.utils.ByteArray</code>)
+@:font _(TTF path Range String)_  |  Embeds the given TrueType font into the class (must extend <code>flash.text.Font</code>)
+@:getter _(Class field name)_  |  Generates a native getter function on the given field
+@:noDebug |  Does not generate debug information into the Swf even if <code>--debug</code> is set
+@:ns  |  Internally used by the Swf generator to handle namespaces
+@:setter _(Class field name)_  |  Generates a native setter function on the given field
 @:sound _(File path)_  |  Includes a given _.wav_ or _.mp3_ file into the target Swf and associates it with the class (must extend <code>flash.media.Sound</code>)
 
 
@@ -652,7 +652,7 @@ The generated PHP code is compatible with PHP 7.0.0 or later. Prior to Haxe 4, t
 <!--label:target-php-defines-->
 #### Defines
 
-Define | Description 
+Define | Description
  --- | ---
 <code>php-prefix=&lt;namespace&gt;</code> | Root namespace for generated PHP classes. E.g. if compiled with <code>-D php-prefix=some.sub</code>, then all classes will be generated in the <code>\some\sub</code> namespace.
 <code>php-lib=&lt;name&gt;</code> | Select the name for the PHP lib directory.
@@ -1476,7 +1476,7 @@ There are a few complications when setting the order in which things are configu
   - set the compiler
   - override some compiler settings
   - make decisions based on the compiler or settings
-  - set or use standard file prefixes/suffixes 
+  - set or use standard file prefixes/suffixes
 
 ##### Example Sequence
 
@@ -1539,7 +1539,7 @@ These variables are used by `haxe-target.xml` - you can use them too. Haxe then 
   <set name="HAXE_OUTPUT_FILE" value="${LIBPREFIX}${HAXE_OUTPUT_PART}${DBG}" />
 
   <target id="haxe" tool="linker" toolid="${haxelink}" output="${HAXE_OUTPUT_FILE}">
-    <ext value="${LIBEXTRA}.a" if="static_link" /> 
+    <ext value="${LIBEXTRA}.a" if="static_link" />
     <!-- ... -->
     <files id="__main__" unless="static_link" />
     <files id="__lib__" if="static_link"/>
@@ -1778,7 +1778,7 @@ When you create a thread from Haxe, it starts attached. Before a non-Haxe create
 Say the system starts each program stack at 10000, the stack might look like this, with local variables and arguments pushed on the stack:
 
 ```
- 10000 
+ 10000
  -----------------------------------------------
  9996  startup temp variable
  9992  startup temp variable
@@ -1836,19 +1836,19 @@ Enter/exit use a similar technique, where the registers are captured and the `bo
 
 Now, when another thread performs a collection, the GC-free thread can be scanned from 8088 to 9976, regardless of any stuff happening lower down the stack.
 
-##### Not Called From Main 
+##### Not Called From Main
 
 Top of stack can be tricky to get right when a GUI framework does not really have a "main".
 
 ```
- 10000 
+ 10000
  -----------------------------------------------
  9996  startup temp variable
  9992  startup temp variable
        -- main function --
        setupWindows(onReadyCallback)......
           ...
- 8000  
+ 8000
        -- onReadyCallback --
  7976  int     t0
        SetTopOfStack(&t0,false) -> 7966
@@ -1932,7 +1932,7 @@ Another possibility is to create and run (double-click) a file called `compile.h
 --main Main
 ```
 
-The compiler outputs in the given **bin**-folder, which contains the generated sources / .jar files which prints the traced message when you execute it. 
+The compiler outputs in the given **bin**-folder, which contains the generated sources / .jar files which prints the traced message when you execute it.
 
 To execute, run the following command:
 
@@ -2086,13 +2086,13 @@ Haxe automatically adds `NET_xx` defines where xx is major and minor version num
 
 This is the list of C# specific metadata. For more information, see also the complete list of all [Haxe built-in metadata](cr-metadata).
 
-Metadata | Usage | Description 
+Metadata | Usage | Description
  --- | --- | ---
-@:nativeGen  |  on classes | don't generate reflection, generate proper type parameters. This is useful for some sort of interop, but slows down reflection and structural typing 
-@:nativeGen  |  on "flat" enums | generate C# enum, but note that C# enums are not-nullable unlike haxe enums, so using null will be generated as a default enum value (0-indexed constructor). 
-@:property  |  on non-physical fields (those with get/set/never accessors) | generate native C# properties. useful for implementing extern interfaces or providing API for use from C# 
-@:event  |  on variables | generate an event delegate (this also requires pairing add_EventName, remove_EventName methods with relevant signatures 
-@:protected  |  on a field | mark field as protected instead of public (could affect reflection, but useful for hiding fields when providing API for use from outside Haxe) 
+@:nativeGen  |  on classes | don't generate reflection, generate proper type parameters. This is useful for some sort of interop, but slows down reflection and structural typing
+@:nativeGen  |  on "flat" enums | generate C# enum, but note that C# enums are not-nullable unlike haxe enums, so using null will be generated as a default enum value (0-indexed constructor).
+@:property  |  on non-physical fields (those with get/set/never accessors) | generate native C# properties. useful for implementing extern interfaces or providing API for use from C#
+@:event  |  on variables | generate an event delegate (this also requires pairing add_EventName, remove_EventName methods with relevant signatures
+@:protected  |  on a field | mark field as protected instead of public (could affect reflection, but useful for hiding fields when providing API for use from outside Haxe)
 @:struct  |  on classes  |  generate struct instead of class
 
 
