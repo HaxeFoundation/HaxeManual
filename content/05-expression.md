@@ -179,7 +179,7 @@ Example | Type | Note
 [Arrays](std-Array) are initialized by enclosing comma `,` separated values in brackets `[]`. A plain `[]` represents the empty array, whereas `[1, 2, 3]` initializes an array with three elements `1`, `2` and `3`.
 
 ```haxe
-var b : Array = [];
+var b = [];
 var a = [1, 2, 3];
 ```
 
