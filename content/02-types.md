@@ -780,6 +780,8 @@ Test.hx:9:,Float!
 Test.hx:4:,150.5
 ```
 
+Function overloading by using the extern keyword were introduced in Haxe 4.2.0;
+
 <!--label:types-function-rest-arguments-->
 #### Rest Arguments
 
@@ -808,6 +810,8 @@ Test.hx:10:,world
 Test.hx:10:,rest
 Test.hx:10:,arguments
 ```
+
+Rest arguments were introduced in Haxe 4.2.0.
 
 <!--label:types-dynamic-->
 ### Dynamic
