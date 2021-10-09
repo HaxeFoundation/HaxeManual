@@ -811,7 +811,11 @@ Test.hx:10:,rest
 Test.hx:10:,arguments
 ```
 
+Notice that it is also possible to use spread syntax: `logAll(...["hello", "world"]);`
+
 Rest arguments were introduced in Haxe 4.2.0.
+
+For further information on Rest arguments and Rest operator, check the [documentation](https://api.haxe.org/haxe/Rest.html)
 
 <!--label:types-dynamic-->
 ### Dynamic
