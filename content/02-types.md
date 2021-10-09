@@ -748,7 +748,7 @@ This should be considered in performance-critical code where a solution without 
 <!--label:types-function-overloads-->
 #### Overloads
 
-Functions can be overloaded by attaching `extern inline overload` to its siganture. Extern functions don't generate a body, while inline makes extern
+Functions can be overloaded by attaching `extern inline overload` to its signature. Extern functions don't generate a body, while inline makes extern
 able to define the function body, so they're really necessary.
 
 ```haxe
