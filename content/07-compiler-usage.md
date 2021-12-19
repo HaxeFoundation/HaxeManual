@@ -61,9 +61,9 @@ The second question usually comes down to providing an argument specifying the d
 
 ##### Target specific arguments
 
-* `--php-front <filename>` Select the name for the php front file.
-* `--php-lib <filename>` Select the name for the php lib folder.
-* `--php-prefix <name>` Prefix all classes with given name.
+* `-D php-front=<filename>` Select the name for the php front file.
+* `-D php-lib=<filename>` Select the name for the php lib folder.
+* `-D php-prefix=<name>` Prefix all classes with given name.
 * `--swf-version <version>` Change the SWF version.
 * `--swf-header <header>` Define SWF header (width:height:fps:color).
 * `--swf-lib <file>` Add the SWF library to the compiled SWF.
