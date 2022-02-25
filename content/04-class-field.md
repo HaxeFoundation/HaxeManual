@@ -137,7 +137,7 @@ The method `get_x` is missing, but it need not be declared on the class defining
 
 [code asset](assets/Property5.hx)
 
-The `dynamic` access modifier works exactly like `get` or `set`, but does not check for the existence
+The `dynamic` access modifier works exactly like `get` or `set`, but does not check for the existence.
 
 
 
