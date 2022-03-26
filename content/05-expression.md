@@ -107,14 +107,13 @@ Blocks can contain local variables declared by [`var` expression](expression-var
     a; // ok, `a` is available in sub-blocks
   }
   // ok, `a` is still available after
-  // sub-blocks	
+  // sub-blocks
   a;
 }
 a; // error, `a` is not available outside
 ```
 
-At runtime, blocks are evaluated from top to bottom. Control flow (e.g. [exceptions](expression-try-catch) or [return expressions](expression-return)) may leave a block before all expressions
-are evaluated.
+At runtime, blocks are evaluated from top to bottom. Control flow (e.g. [exceptions](expression-try-catch) or [return expressions](expression-return)) may leave a block before all expressions are evaluated.
 
 ##### Variable Shadowing
 
