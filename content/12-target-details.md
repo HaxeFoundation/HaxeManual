@@ -2299,13 +2299,7 @@ Haxe supports compilation to HashLink bytecode or HashLink/C code. [HashLink](ht
 
 In order to run Hashlink bytecode and compile Hashlink/C, the Hashlink binaries must be installed. These binaries can be obtained either by downloading a [release version](https://github.com/HaxeFoundation/hashlink/releases) or by [building them from source](https://github.com/HaxeFoundation/hashlink).
 
-Additionally, for compiling Haxe to Hashlink/C, the `hashlink` [haxelib package](https://lib.haxe.org/p/hashlink) must also be installed. This can be done via the command:
-
-```
-haxelib install hashlink
-```
-
-However, as the version on the haxelib repository is out of date, it is recommended to install it directly from source, via the command:
+Additionally, for compiling Haxe to Hashlink/C, the `hashlink` haxelib package must also be installed. As [the version on the haxelib repository](https://lib.haxe.org/p/hashlink) is out of date, it is recommended to install it directly from source, via the command:
 
 ```
 haxelib git hashlink https://github.com/HaxeFoundation/hashlink.git master other/haxelib/
