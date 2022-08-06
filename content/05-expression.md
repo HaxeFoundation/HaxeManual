@@ -1146,7 +1146,7 @@ The `inline` keyword can be used before a [function call](expression-function-ca
 
 The generated JavaScript output is:
 
-```haxe
+```js
 (function ($global) { "use strict";
 var Test = function() { };
 Test.mid = function(s1,s2) {
