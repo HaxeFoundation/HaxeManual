@@ -36,6 +36,15 @@ trace(a == b); // true
 
 The only difference between the two forms is that single-quoted literals allow [string interpolation](lf-string-interpolation).
 
+String literals may occupy multiple lines; In which case, each line of the string will be punctuated with a '\n' newline character (See the escape sequences chart below).
+
+```haxe
+var str = "Line one
+	Line two
+	Line three"; //Lines two and three have \t in them
+trace(str);
+```
+
 ##### Escape sequences
 
 Sequence | Meaning | Unicode codepoint (decimal) | Unicode codepoint (hexadecimal)
