@@ -40,10 +40,24 @@ String literals may occupy multiple lines; In which case, each line of the strin
 
 ```haxe
 var str = "Line one
-	Line two
-	Line three"; //Lines two and three have \t in them
+Line two
+Line three";
 trace(str);
 ```
+
+Note that indentation will also be included in the string, such as with the example below.
+
+```haxe
+class X {
+  function foo() {
+    var str = "a
+    b
+    c";
+  }
+}
+```
+
+The `str` variable will have a '\t' tab character before 'b' and 'c'.
 
 ##### Escape sequences
 
