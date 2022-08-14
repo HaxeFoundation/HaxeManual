@@ -57,7 +57,7 @@ class X {
 }
 ```
 
-The `str` variable will have a '\t' tab character before 'b' and 'c'.
+The `str` variable will have four spaces before 'b' and 'c'.
 
 ##### Escape sequences
 
