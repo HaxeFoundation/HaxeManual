@@ -1675,7 +1675,6 @@ Defines affecting how the code is compiled. These can be on the command line whe
 | `linux`             | (Cross) Compile for Linux. |
 | `rpi`               | (Cross) Compile for Raspberry Pi. |
 | `mingw`             | Compile for Windows using MinGW. |
-| `HXCPP_MINGW`       | Compile for Windows using MinGW. |
 | `NO_AUTO_MSVC`      | Do not detect MSVC location, use the one already in the executable path. |
 
 <!--label:target-cpp-CompileCache-->
