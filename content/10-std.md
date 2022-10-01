@@ -615,7 +615,8 @@ The console will trace `The users are Mark(30) John(45)`.
 ##### Template macros
 To call custom functions while parts of the template are being rendered, provide a `macros` object to the argument of [Template.execute](https://api.haxe.org/haxe/Template.html#execute). The key will act as the template variable name, the value refers to a callback function that should return a `String`. The first argument of this macro function is always a `resolve()` method, followed by the given arguments. The resolve function can be called to retrieve values from the template context. If `macros` has no such field, the result is unspecified.
 
-The following example passes itself as macro function context and executes `display` from the template.
+The following example passes itself as macro function context and executes `display` from the template. Because `display` isn't called anywhere else, `@:keep` is used to prevent DCE from removing it.
+
 [code asset](assets/TemplateMacros.hx)
 
 The console will trace `The results: Mark ran 3.5 kilometers in 15 minutes`.

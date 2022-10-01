@@ -11,7 +11,7 @@ class Main {
     trace(output);
   }
 
-  function display(resolve:String->Dynamic, user:User, time:Int) {
+  @:keep function display(resolve:String->Dynamic, user:User, time:Int) {
     return user.name + " ran " + (user.distance / 1000) + " kilometers in " +
       time + " minutes";
   }
