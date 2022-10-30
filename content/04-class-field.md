@@ -396,7 +396,7 @@ The `final` keyword can be used on class fields with the following effects:
 * `final x = ...` to declare a constant that must be initialized immediately or in the constructor and cannot be written to.
 * `inline final x = ...` is the same but [inlines](class-field-inline) the value wherever it is used. Only constant values can be assigned.
 
-`static final` fields must be initialized immediately by providing an expression. If a class has non-static `final` variables which are not initialized immediately, it requires a constructor which has to assign values to all such fields. `final` does not affect [visibility](class-field-visibility) and it is not supported on [properties](class-field-property).
+`static final` fields must be initialized immediately by providing an expression. If a class has non-static `final` variables which are not initialized immediately, it requires a constructor which has to assign values to all such fields. `final` does not affect [visibility](class-field-visibility) and it is not supported on [properties](class-field-property). The `final` keyword can also be added to the class declaration preventing it from being extended.
 
 
 
