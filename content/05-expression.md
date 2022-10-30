@@ -107,19 +107,17 @@ Blocks can contain local variables declared by [`var` expression](expression-var
     a; // ok, `a` is available in sub-blocks
   }
   // ok, `a` is still available after
-  // sub-blocks	
+  // sub-blocks
   a;
 }
 a; // error, `a` is not available outside
 ```
 
-At runtime, blocks are evaluated from top to bottom. Control flow (e.g. [exceptions](expression-try-catch) or [return expressions](expression-return)) may leave a block before all expressions
-are evaluated.
+At runtime, blocks are evaluated from top to bottom. Control flow (e.g. [exceptions](expression-try-catch) or [return expressions](expression-return)) may leave a block before all expressions are evaluated.
 
 ##### Variable Shadowing
 
-Haxe allows local variable shadowing within the same block. This means that
-a `var`, `final`, or `function` can be declared with the same name that was previously available in a block, effectively hiding it from the further code:
+Haxe allows local variable shadowing within the same block. This means that a `var`, `final`, or `function` can be declared with the same name that was previously available in a block, effectively hiding it from the further code:
 
 ```haxe
 {
@@ -132,9 +130,7 @@ a `var`, `final`, or `function` can be declared with the same name that was prev
 
 It might come as a surprise that this is allowed, but it's useful to avoid pollution of local name space and thus prevent accidental usage of a wrong variable.
 
-Note, that the shadowing strictly follows syntax, so if a variable was captured
-in a closure before it was shadowed, that closure would still reference the
-original declaration:
+Note, that the shadowing strictly follows syntax, so if a variable was captured in a closure before it was shadowed, that closure would still reference the original declaration:
 
 ```haxe
 {
