@@ -1181,7 +1181,7 @@ When Flash accesses a server from a different domain, set up a `crossdomain.xml`
 
 There is no guarantee of any kind that the types of arguments will be respected when a method is called using remoting. 
 That means even if the arguments of function `foo` are typed to `Int`, the client will still be able to use strings while calling the method. 
-This can lead to security issues in some cases. When in doubt, check the argument type when the function is called by using the `Std.is` method.
+This can lead to security issues in some cases. When in doubt, check the argument type when the function is called by using the `Std.isOfType` method or the `is` keyword.
 
 
 
