@@ -1194,16 +1194,16 @@ This can lead to security issues in some cases. When in doubt, check the argumen
 
 **Deprecated:** The unit testing API has been removed from the standard library in Haxe 4. For compatibility purposes it is still available in the [hx3compat](https://github.com/HaxeFoundation/hx3compat/) library. See [Haxe 3 Compatibility](std-hx3compat).
 
-The Haxe Standard Library provides basic unit testing classes from the [haxe.unit](https://api.haxe.org/haxe/unit/) package. 
+The Haxe Standard Library provides basic unit testing classes from the [haxe.unit](https://api.haxe.org/v/3.4.7/haxe/unit/) package. 
 
 ##### Creating new test cases
 
-First, create a new class extending [haxe.unit.TestCase](https://api.haxe.org/haxe/unit/TestCase.html) and add own test methods. Every test method name must start with "`test`".
+First, create a new class extending [haxe.unit.TestCase](https://api.haxe.org/v/3.4.7/haxe/unit/TestCase.html) and add own test methods. Every test method name must start with "`test`".
 
 [code asset](assets/UnitTestCase.hx)
 
 ##### Running unit tests
-To run the test, an instance of [haxe.unit.TestRunner](https://api.haxe.org/haxe/unit/TestRunner.html) has to be created. Add the [TestCase](https://api.haxe.org/haxe/unit/TestCase.html) using the `add` method and call `run` to start the test.
+To run the test, an instance of [haxe.unit.TestRunner](https://api.haxe.org/v/3.4.7/haxe/unit/TestRunner.html) has to be created. Add the [TestCase](https://api.haxe.org/v/3.4.7/haxe/unit/TestCase.html) using the `add` method and call `run` to start the test.
 
 [code asset](assets/UnitTestRunner.hx)
 
@@ -1261,7 +1261,7 @@ This is an example showing how to run your unit tests (on Neko and Node.js) afte
 
 ##### Related content
 
-* See the [haxe.unit](https://api.haxe.org/haxe/unit/) package on the API documentation for more details.
+* See the [haxe.unit](https://api.haxe.org/v/3.4.7/haxe/unit/) package on the API documentation for more details.
 
 
 
