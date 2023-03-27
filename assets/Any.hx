@@ -18,7 +18,7 @@ class Main {
     // won't compile: no dynamic field access
     // value.charCodeAt(0);
 
-    if (Std.is(value, String)) {
+    if (value is String) {
       // explicit promotion, type-safe
       trace((value : String).charCodeAt(0));
     }
