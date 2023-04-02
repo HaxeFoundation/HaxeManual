@@ -388,8 +388,7 @@ The `map` method of a regular expression object can be used to replace matched s
 
 Regular Expressions are implemented:
 
-* in JavaScript, the runtime is providing the implementation with the object RegExp.
-* in Flash, PHP, C#, Java/JVM, and Python, native implementations are used
+* in JavaScript, Flash, PHP, C#, Java/JVM, and Python, native implementations are used
 * in Neko, C++/Cppia, Hashlink, and Eval, the PCRE2 library is used
 * in Lua, the lrexlib-pcre2 library is used
 
