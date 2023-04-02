@@ -2182,6 +2182,7 @@ With LuaRocks, install the following packages:
 luarocks install lrexlib-pcre2
 luarocks install environ
 luarocks install luasocket
+luarocks install luasec
 luarocks install luv
 luarocks install luautf8
 ```
