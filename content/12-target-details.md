@@ -2180,18 +2180,14 @@ With LuaRocks, install the following packages:
 
 ```sh
 luarocks install lrexlib-pcre2
-luarocks install environ
 luarocks install luasocket
+luarocks install luasec
 luarocks install luv
 luarocks install luautf8
+luarocks install hx-lua-simdjson
 ```
 
-On Lua 5.1, install the bitops library:
-```sh
-luarocks install luabitop
-```
-
-On Lua 5.3, install the bit32 library instead:
+On Lua 5.1 or Lua 5.4+, install the bit32 library:
 ```sh
 luarocks install bit32
 ```
