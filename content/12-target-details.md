@@ -2179,7 +2179,7 @@ install any packages for basic language functionality.
 With LuaRocks, install the following packages:
 
 ```sh
-luarocks install lrexlib-pcre
+luarocks install lrexlib-pcre2
 luarocks install environ
 luarocks install luasocket
 luarocks install luv
