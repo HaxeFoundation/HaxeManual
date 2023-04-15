@@ -492,6 +492,45 @@ This syntax is also used to access types within packages in the form of `pack.Ty
 
 The typer ensures that an accessed field actually exist and may apply transformations depending on the nature of the field. If a field access is ambiguous, understanding the [resolution order](type-system-resolution-order) may help.
 
+##### since Haxe 4.3.0
+
+Null-safe field access is expressed using the `?.` operator. Such access checks if the object is not `null` first, and only then accesses the given field. If the object *is* `null`, then the entire expression has the value `null`.
+
+```haxe
+object?.fieldName
+```
+
+This is roughly the same as:
+
+```haxe
+(object != null ? object.fieldName : null)
+```
+
+However, `object` is not evaluated twice.
+
+The null-safe field access can be chained, allowing a much cleaner access to deeply nested data where each step may be `null`, which may be the case when dealing with externs in a dynamically typed language, for example.
+
+
+
+<!--label:expression-null-coalesce-->
+### Null coalescing
+
+##### since Haxe 4.3.0
+
+Complementing [null-safe field access](expression-field-access), the null coalescing operator `??` allows specifying a default/fallback value if a given expression is `null`.
+
+```haxe
+value ?? "fallback"
+```
+
+This roughly the same as:
+
+```haxe
+value != null ? value : "fallback"
+```
+
+However, `value` is not evaluated twice.
+
 
 
 <!--label:expression-array-access-->
@@ -556,6 +595,21 @@ In Haxe 4, the alternative keyword `final` was introduced at the expression leve
 It is important to note that `final` may not have the intended effect with types that are not immutable, such as arrays or objects. Even though the variable cannot have a different object assigned to it, the object itself can still be modified using its methods:
 
 [code asset](assets/FinalMutable.hx)
+
+
+
+<!--label:expression-local-static-->
+### Local static variables
+
+##### since Haxe 4.3.0
+
+`static var` and `static final` declarations within a function create variables that are scoped to the function (they cannot be referred to from outside the function), but are only initialized once.
+
+This can be used to implement a cache or memoization pattern for functions without creating too many class fields.
+
+[code asset](assets/LocalStatic.hx)
+
+Similarly to [static class variables](class-field-static), the initial value assigned to a local static variable (if any) must not refer to instance variables or arguments of the current function.
 
 
 

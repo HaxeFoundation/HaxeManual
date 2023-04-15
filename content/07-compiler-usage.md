@@ -178,3 +178,41 @@ Flag | Argument | Description | Platforms
 <!--include:generated/defines.md-->
 
 
+
+<!--label:compiler-usage-reporting-->
+### Error Reporting
+
+##### since Haxe 4.3.1
+
+The compiler can be configured to report errors and warnings in a format more readable on the command line. The define for this is `-D message.reporting=(mode)`, and the available modes are:
+
+* `classic` - the default, plain text format.
+* `indent` - similar to `classic`, but sub-messages (related errors or explanations of errors) are indented.
+* `pretty` - adds more contextual information to errors. For example, the expression or code fragment related to the error is displayed and highlighted with the error message.
+
+By default, the `pretty` mode uses ANSI escape codes to color the output to make it more navigable. The coloring can be turned off with `-D message.no-color`.
+
+Examples of each mode for the same error:
+
+```
+$ haxe --run Example
+Example.hx:3: characters 9-13 : Bool should be Int
+Example.hx:3: characters 9-13 : ... For function argument 'x'
+```
+
+```
+$ haxe -D message.reporting=indent --run Example
+Example.hx:3: characters 9-13 : Bool should be Int
+  Example.hx:3: characters 9-13 : For function argument 'x'
+```
+
+```
+$ haxe -D message.reporting=pretty --run Example
+ ERROR  Example.hx:3: characters 9-13
+
+ 3 |     foo(true);
+   |         ^^^^
+   | Bool should be Int
+   | For function argument 'x'
+
+```

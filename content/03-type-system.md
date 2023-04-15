@@ -95,6 +95,14 @@ When constraining to a single type, the parentheses can be omitted:
 
 One of the breaking changes between versions 3 and 4 is the multiple type constraint syntax. As the first example above shows, in Haxe 4 the constraints are separated by an `&` symbol instead of a comma. This is similar to the new [structure extension](types-structure-extensions) syntax.
 
+<!--label:type-system-type-parameter-defaults-->
+#### Defaults
+
+Since Haxe 4.3 it is possible to specify a default type for each type parameter of a type. When using such a type in type annotations, type parameters with a default can be omitted:
+
+[code asset](assets/TypeParameterDefault.hx)
+
+
 
 
 

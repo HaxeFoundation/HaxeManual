@@ -370,6 +370,10 @@ All fields are member fields unless the modifier `static` is used. Static fields
 
 Static [variable](class-field-variable) and [property](class-field-property) fields can have arbitrary initialization [expressions](expression).
 
+##### since Haxe 4.3.0
+
+Static fields should not be confused with [local static variables](expression-local-static).
+
 
 
 <!--label:class-field-extern-->

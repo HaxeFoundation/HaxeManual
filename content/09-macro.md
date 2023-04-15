@@ -124,6 +124,10 @@ This kind of reification only works in places where the internal structure expec
 
 Furthermore, a `new` expression can be reified by providing [haxe.macro.TypePath](http://api.haxe.org/haxe/macro/TypePath.html) argument: `new $typePath()`
 
+##### since Haxe 4.3.0
+
+Using the `$` escape modifiers described above is no longer allowed outside of a `macro` expression. This does not limit any applications though: in cases where this was previously allowed, the `$` escape modifier was not necessary. For example: `var x = $v{MacroTools.example()}` should simply become `var x = MacroTools.example()`.
+
 
 
 <!--label:macro-reification-type-->
