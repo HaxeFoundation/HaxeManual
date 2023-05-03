@@ -870,6 +870,12 @@ One problem may be apparent - what happens if a member function is not declared 
 >
 > Before the advent of abstract types, all basic types were implemented as extern classes or enums. While this nicely took care of some aspects such as `Int` being a "child class" of `Float`, it caused issues elsewhere. For instance, with `Float` being an extern class, it would unify with the empty structure `{}`, making it impossible to constrain a type to accept only real objects.
 
+##### since Haxe 4.3.0
+
+As `this` refers to the underlying object, `abstract` keyword can be used to reference the abstract itself:
+
+[code asset](assets/AbstractSelfReference.hx)
+
 <!--label:types-abstract-implicit-casts-->
 #### Implicit Casts
 
