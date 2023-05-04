@@ -20,7 +20,7 @@ We will explore type inference in detail later in [Type Inference](type-system-t
 
 The Haxe type system knows seven type groups:
 
- * **Class instance**: an object of a given class or interface 
+* **Class instance**: an object of a given class or interface 
 * **Enum instance**: a value of a Haxe enumeration 
 * **Structure**: an anonymous structure, i.e. a collection of named fields 
 * **Function**: a compound type of several arguments and one return 
@@ -870,6 +870,27 @@ One problem may be apparent - what happens if a member function is not declared 
 >
 > Before the advent of abstract types, all basic types were implemented as extern classes or enums. While this nicely took care of some aspects such as `Int` being a "child class" of `Float`, it caused issues elsewhere. For instance, with `Float` being an extern class, it would unify with the empty structure `{}`, making it impossible to constrain a type to accept only real objects.
 
+<!--label:types-abstract-this-->
+#### Access to Underlying Data
+
+As shown in the example from the previous section, `this` in abstract methods refers to the underlying data. For `AbstractInt` methods, `this` is therefore a variable of type `Int`.
+
+[code asset](assets/MyAbstract.hx#L1-L5)
+
+##### since Haxe 4.3.0
+
+The `abstract` keyword can be used in abstract methods to refer to the current instance *as an abstract type*, rather than referring to the underlying data with the `this` keyword.
+
+This can be useful when an abstract method needs to call other methods which accept an argument of the abstract type. For example, suppose class `Main` defines a method `takeAbstractInt`:
+
+[code asset](assets/MyAbstract2.hx#L11-L13)
+
+To call `takeAbstractInt` from within an `AbstractInt` method, we must use the `abstract` keyword:
+
+[code asset](assets/MyAbstract2.hx#L5-L7)
+
+If we instead wrote `Main.takeAbstractInt(this)`, this would be a type error, because `takeAbstractInt` does not accept an argument of type `Int`.
+
 <!--label:types-abstract-implicit-casts-->
 #### Implicit Casts
 
@@ -969,7 +990,11 @@ The method body of an `@:op` function can be omitted, but only if the underlying
 
 [code asset](assets/AbstractExposeTypeOperations.hx)
 
+##### since Haxe 4.3.0
 
+The `@:op(a())` syntax can be used to overload function calls on abstracts. The metadata is attached to a function, and the signature of that function determines the signature of the call to the abstract. Multiple functions with different signatures can be annotated this way to support overloading:
+
+[code asset](assets/AbstractCallOverload.hx)
 
 <!--label:types-abstract-array-access-->
 #### Array Access
