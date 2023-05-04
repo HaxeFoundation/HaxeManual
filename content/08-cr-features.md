@@ -8,7 +8,7 @@
 
 Starting from Haxe 3.0, you can get the list of defined compiler metadata by running `haxe --help-metas`
 
-Metadata | Arguments | Description | Platforms 
+Metadata | Arguments | Description | Platforms
  --- | --- | --- | ---
 <!--include:generated/metas.md-->
 
@@ -34,7 +34,7 @@ The DCE-algorithm works well with typed code, but may fail when [dynamic](types-
 * `@:ifFeature("pack.SomeType.*")`: When used on a field, causes the field to be kept if `pack.SomeType` is used and not removed by DCE.
 
 If a class needs to be marked with `@:keep` from the command line instead of editing its source code, there is a compiler macro available for doing so: `--macro keep('type dot path')` See the [haxe.macro.Compiler.keep API](http://api.haxe.org/haxe/macro/Compiler.html#keep) for details of this macro. It will mark package, module or sub-type to be kept by DCE and includes them for compilation.
- 
+
 The compiler automatically defines the flag `dce` with a value of either `"std"`, `"no"` or `"full"` depending on the active mode. This can be used in [conditional compilation](lf-condition-compilation).
 
 > ##### Trivia: DCE-rewrite
@@ -669,9 +669,9 @@ In a multi-threaded application sequential access to the same object field may n
 @:nullSafety(StrictThreaded)
 function demo1(o:{field:Null<String>}) {
   if (o.field != null) {
-    // Error: o.field could have been changed to `null` 
+    // Error: o.field could have been changed to `null`
     // by another thread after the check
-    trace(o.field.length); 
+    trace(o.field.length);
   }
 }
 
@@ -810,3 +810,57 @@ if (nullable != null) {
   }
 }
 ```
+
+<!--label:cr-warnings-->
+### Warnings
+
+##### since Haxe 4.3.0
+
+The compiler emits warnings in various circumstances, which can be turned off and on in two ways:
+
+1. Globally with the command line argument `-w options`
+2. For specific types and fields with the metadata `@:haxe.warning("options")`
+
+For both cases, the options syntax is the same:
+
+- Use `-Identifier` to disable warnings.
+- Use `+Identifier` to enable warnings.
+
+Here is a simple example using the `@:deprecated` metadata:
+
+```haxe
+@:deprecated function test() {}
+
+function main() {
+	test();
+}
+```
+
+Compiling this in Haxe 4.3.0 emits a warning `(WDeprecated) Usage of this field is deprecated`. All warning messages are prefixed with their identifier, in this case `WDeprecated`, which can then be used to disable the warning accordingly:
+
+1. `-w -WDeprecated` disables all deprecation warnings for the current compilation.
+2. `@:haxe.warning("-WDeprecated")` disables deprecation warnings for the annotated type or field.
+
+We can confirm this by compiling the simple example with the additional metadata annotation:
+
+```haxe
+@:deprecated function test() {}
+
+@:haxe.warning("-WDeprecated")
+function main() {
+	test();
+}
+```
+
+Compiling this no longer causes a warning.
+
+Enabling warnings is analoguous, using `+` instead of `-`, e.g. `-w +WCustomWarning`. Note that as of Haxe 4.3.0, there are no compiler warnings which are disabled by default, so the option is currently not useful.
+
+Multiple warnings can be disabled and enabled within the same options string, so something like `-w -WDeprecated-WUnusedPattern` would disable both `WDeprecated` and `WUnusedPattern` warnings.
+
+Warnings are organized as a tree, where disabling (or enabling) a parent warning affects all children. The root warning is `WAll`, which can be used to disable all warnings. See [the full list of warnings](TODO) for documentation of the individual warnings.
+
+> ##### Trivia: -D no-deprecation-warnings
+>
+> In Haxe versions before 4.3.0, deprecation warnings could only be disabled globally by using the `-D no-deprecation-warnings` compiler option. This define now implies `-w -WDeprecated`.
+
