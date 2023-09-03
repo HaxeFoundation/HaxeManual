@@ -858,7 +858,7 @@ Enabling warnings is analoguous, using `+` instead of `-`, e.g. `-w +WCustomWarn
 
 Multiple warnings can be disabled and enabled within the same options string, so something like `-w -WDeprecated-WUnusedPattern` would disable both `WDeprecated` and `WUnusedPattern` warnings.
 
-Warnings are organized as a tree, where disabling (or enabling) a parent warning affects all children. The root warning is `WAll`, which can be used to disable all warnings. See [the full list of warnings](TODO) for documentation of the individual warnings.
+Warnings are organized as a tree, where disabling (or enabling) a parent warning affects all children. The root warning is `WAll`, which can be used to disable all warnings.
 
 > ##### Trivia: -D no-deprecation-warnings
 >
