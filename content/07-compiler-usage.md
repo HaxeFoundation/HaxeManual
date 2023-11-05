@@ -150,10 +150,6 @@ This example has a configuration which compiles three different classes into the
 --main website.ContactPage
 ```
 
-##### Comments inside hxml
-
-Inside .hxml files use a hash (i.e. `#`) to comment out the rest of the line.
-
 **Calling build configurations inside HXML:**
 
 It is possible to create a configuration that looks like this:
@@ -166,6 +162,16 @@ build-website.hxml
 build-game.hxml
 ```
 
+##### Comments inside hxml
+
+Inside .hxml files lines starting with a hash (i.e. `#`) are comments.
+
+**Example:**
+
+```hxml
+# This hxml run the program
+--run cli.Main
+```
 
 
 <!--label:compiler-usage-flags-->
