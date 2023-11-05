@@ -44,6 +44,8 @@
 `haxe-ver` |  | The current Haxe version value as decimal number. E.g. 3.407 for 3.4.7. | all
 `haxe` |  | The current Haxe version value in SemVer format. | all
 `haxe-next` |  | Enable experimental features that are meant to be released on next Haxe version. | all
+`HAXE_OUTPUT_FILE` | &lt;name> | Force the full output name of the executable/library without library prefix and debug suffix. | cpp
+`HAXE_OUTPUT_PART` | &lt;name> | Output name of the executable/library. (default: main class name) | cpp
 `hl-ver` | &lt;version> | The HashLink version to target. (default: 1.10.0) | hl
 `hxcpp-api-level` |  | Provided to allow compatibility between hxcpp versions. | cpp
 `HXCPP-GC-GENERATIONAL` |  | Experimental Garbage Collector. | cpp
@@ -121,7 +123,7 @@
 `vcproj` |  | GenCPP internal. | cpp
 `warn-var-shadowing` |  | Warn about shadowing variable declarations. | all
 `no-tre` |  | Disable tail recursion elimination. | all
-`message-reporting` | &lt;mode: classic &#x7C; pretty &#x7C; indent> | Select message reporting mode for compiler output. (default: classic) | all
-`no-color` |  | Disable ANSI color codes when using rich output. | all
-`messages-log-file` |  | Path to a text file to write messages log to, in addition to regular output. | all
-`messages-log-format` | &lt;format: classic &#x7C; pretty &#x7C; indent> | Select message reporting mode for messages log output. (default: indent) | all
+`message.reporting` | &lt;mode: classic &#x7C; pretty &#x7C; indent> | Select message reporting mode for compiler output. (default: classic) | all
+`message.no-color` |  | Disable ANSI color codes in message reporting. | all
+`message.log-file` |  | Path to a text file to write message reporting to, in addition to regular output. | all
+`message.log-format` | &lt;format: classic &#x7C; pretty &#x7C; indent> | Select message reporting mode for message log file. (default: indent) | all
