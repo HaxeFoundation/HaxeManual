@@ -574,6 +574,11 @@ class Path {
 You may also use [Extensions](types-structure-extensions) to "inherit" fields from other structures:
 
 ```haxe
+typedef Point3 = Point & { z : Int }
+```
+Or the older syntax:
+
+```haxe
 typedef Point3 = { > Point, z : Int }
 ```
 
