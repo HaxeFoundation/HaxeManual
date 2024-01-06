@@ -464,7 +464,7 @@ Many languages (C++, Java, PHP, JavaScript, etc) use the same operator precedenc
 
 * `%` (modulo) has a higher precedence than `*` and `/`; in C they have the same precedence
 * <code>&#124;</code>, `&`, `^` (bitwise operators) have the same precedence; in C the three operators all have a different precedence
-* <code>&#124;</code>, `&`, `^` (bitwise operators) also have a lower precedence than `==`, `!=`, etc (comparison operators)
+* <code>&#124;</code>, `&`, `^` (bitwise operators) also have a higher precedence than `==`, `!=`, etc (comparison operators)
 
 
 
