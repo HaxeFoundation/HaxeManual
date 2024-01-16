@@ -1057,15 +1057,15 @@ Haxe remoting is a way to communicate between different platforms. With Haxe rem
 
 ##### Related content
 
-* See the [remoting package](https://api.haxe.org/haxe/remoting/) on the API documentation for more details on its classes.
+* See the [remoting package](https://api.haxe.org/v/3.4.7/haxe/remoting/) on the API documentation for more details on its classes.
 
 <!--label:std-remoting-connection-->
 #### Remoting Connection
 
 In order to use remoting, there must be a connection established. There are two kinds of Haxe Remoting connections: 
 
-* [haxe.remoting.Connection](https://api.haxe.org/haxe/remoting/Connection.html) is used for **synchronous connections**, where the results can be directly obtained when calling a method. 
-* [haxe.remoting.AsyncConnection](https://api.haxe.org/haxe/remoting/AsyncConnection.html) is used for **asynchronous connections**, where the results are events that will happen later in the execution process.
+* [haxe.remoting.Connection](https://api.haxe.org/v/3.4.7/haxe/remoting/Connection.html) is used for **synchronous connections**, where the results can be directly obtained when calling a method. 
+* [haxe.remoting.AsyncConnection](https://api.haxe.org/v/3.4.7/haxe/remoting/AsyncConnection.html) is used for **asynchronous connections**, where the results are events that will happen later in the execution process.
 
 ##### Start a connection
 There are some target-specific constructors with different purposes that can be used to set up a connection:
@@ -1078,7 +1078,7 @@ There are some target-specific constructors with different purposes that can be 
     * `ExternalConnection.jsConnect(name:String, ctx:Context)`  Allows a connection to the local JavaScript Haxe code. The JS Haxe code must be compiled with the class ExternalConnection included. This only works with Flash Player 8 and higher.
     * `AMFConnection.urlConnect(url:String)` and `AMFConnection.connect( cnx : NetConnection )`  Allows a connection to an [AMF Remoting server](http://en.wikipedia.org/wiki/Action_Message_Format) such as [Flash Media Server](http://www.adobe.com/products/adobe-media-server-family.html) or [AMFPHP](http://www.silexlabs.org/amfphp/).
     * `SocketConnection.create(sock:flash.XMLSocket)`  Allows remoting communications over an `XMLSocket`
-    * `LocalConnection.connect(name:String)`  Allows remoting communications over a [Flash LocalConnection](https://api.haxe.org/haxe/remoting/LocalConnection.html)
+    * `LocalConnection.connect(name:String)`  Allows remoting communications over a [Flash LocalConnection](https://api.haxe.org/v/3.4.7/haxe/remoting/LocalConnection.html)
 * JavaScript:
 
     * `ExternalConnection.flashConnect(name:String, obj:String, ctx:Context)`  Allows a connection to a given Flash Object. The Haxe Flash content must be loaded and it must include the `haxe.remoting.Connection` class. This only works with Flash 8 and higher. 
@@ -1141,7 +1141,7 @@ Haxe Remoting can send a lot of different kinds of data. See [Serialization](std
 
 ##### Related content
 
-* See the [remoting package](https://api.haxe.org/haxe/remoting/) on the API documentation for more details on its classes.
+* See the [remoting package](https://api.haxe.org/v/3.4.7/haxe/remoting/) on the API documentation for more details on its classes.
 
 
 
