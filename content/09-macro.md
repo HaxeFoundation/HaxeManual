@@ -396,7 +396,7 @@ After starting the completion server with `haxe --wait 6000`, we perform a build
 
 Initialization macros are invoked from the command line by using the `--macro callExpr(args)` command. This registers a callback which the compiler invokes after creating its context, but before typing the argument to `--main`. This then allows configuring the compiler in some ways.
 
-If the argument to `--macro` is a call to a plain identifier, that identifier is looked up in the class `haxe.macro.Compiler` which is part of the Haxe Standard Library. It comes with several useful initialization macros which are detailed in its [API](http://api.haxe.org//haxe/macro/Compiler.html).
+If the argument to `--macro` is a call to a plain identifier, that identifier is looked up in the class `haxe.macro.Compiler` which is part of the Haxe Standard Library. It comes with several useful initialization macros which are detailed in its [API](http://api.haxe.org/haxe/macro/Compiler.html).
 
 As an example, the `include` macro allows the inclusion of an entire package for compilation, recursively if necessary. The command line argument for this would then be `--macro include('some.pack', true)`.
 
