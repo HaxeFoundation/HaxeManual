@@ -745,8 +745,77 @@ Default values in Haxe are not part of the type and are not replaced at the call
 This should be considered in performance-critical code where a solution without default values may sometimes be more viable.
 
 
+<!--label:types-function-overloads-->
+#### Overloads
 
+Functions can be overloaded by attaching `extern inline overload` to its signature. Extern functions don't generate a body, while inline makes extern
+able to define the function body, so they're really necessary.
 
+```haxe
+class Test {
+	static function main() {
+		trace(add(50, 100));
+    trace(add(50.50, 100));
+	}
+
+	public static extern inline overload function add(a : Float, b : Float) : Float
+  {
+    trace("Float!");
+    return a + b;
+	}
+  public static extern inline overload function add(a : Int, b : Int) : Int
+  {
+    trace("Int!");
+    return a + b;
+	}
+}
+
+```
+
+This will print
+```
+Test.hx:14:,Int!
+Test.hx:3:,150
+Test.hx:9:,Float!
+Test.hx:4:,150.5
+```
+
+Function overloading by using the extern keyword were introduced in Haxe 4.2.0;
+
+<!--label:types-function-rest-arguments-->
+#### Rest Arguments
+
+Functions can receive a list of arguments without specifying the array syntax by using the following syntax: `...varName`:
+
+```haxe
+
+class Test
+{
+	static function main()
+	{
+		logAll("hello", "world", "rest", "arguments");
+	}
+	static function logAll(...arguments : String)
+	{
+		for(arg in arguments)
+			trace(arg);
+	}
+}
+```
+
+Output:
+```
+Test.hx:10:,hello
+Test.hx:10:,world
+Test.hx:10:,rest
+Test.hx:10:,arguments
+```
+
+Notice that it is also possible to use spread syntax: `logAll(...["hello", "world"]);`
+
+Rest arguments were introduced in Haxe 4.2.0.
+
+For further information on Rest arguments and Rest operator, check the [documentation](https://api.haxe.org/haxe/Rest.html)
 
 <!--label:types-dynamic-->
 ### Dynamic
