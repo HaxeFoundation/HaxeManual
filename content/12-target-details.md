@@ -695,6 +695,13 @@ On Linux, it is recommended that you use the system package manager to install t
 
 On Windows, Microsoft Visual Studio is recommended. You can also use `gcc`-based compilers.
 
+To compile with Microsoft Visual Studio, you need to install the Builds Tools and `vswhere`. You can install the 2022 Build Tools and `vswhere` using the following winget commands:
+
+```pwsh
+winget install -e --id Microsoft.VisualStudio.2022.BuildTools
+winget install -e --id Microsoft.VisualStudio.Locator
+```
+
 ##### Cross Compilers
 
 `hxcpp` can be used to compile for non-host architectures if you have a suitable cross-compiler installed. The compilers are usually supplied in the form of a Software Development Kits (SDK), or in the case of iOS devices, come with the system compiler (Xcode). Selecting which compiler to use is achieved by defining particular variables in the `hxcpp` build environment. Note that the `hxcpp` build tool is only responsible for producing a native executable or a native library (static or dynamic), not the complete bundling and packaging of assets and meta-data that is typically required for mobile devices. Additional Haxe libraries can be used for this task.
