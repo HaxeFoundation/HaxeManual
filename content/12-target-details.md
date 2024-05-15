@@ -693,7 +693,7 @@ On Mac, it is recommended that you install the latest Xcode from the Mac App Sto
 
 On Linux, it is recommended that you use the system package manager to install the compilers.
 
-On Windows, Microsoft Visual Studio is recommended. On Windows, you can also use `gcc`-based compilers. A minimal distribution is included in a Haxelib library, and can be installed with `haxelib install minimingw`.
+On Windows, Microsoft Visual Studio is recommended. You can also use `gcc`-based compilers.
 
 ##### Cross Compilers
 
