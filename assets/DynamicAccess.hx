@@ -4,19 +4,19 @@ class Test {
 			John: { surname: "Smith", age: 24 },
 			Patti: { surname: "Mayonaise", age: 16 }
 		};
-
+		
 		// Get user John, throw him a brithday
 		var john = users.get("John");
 		john.age++;
-
-		trace('$name ${john.surname} is ${john.age} years old'); // John Smith is 25 years old
-
+		
+		trace('John ${john.surname} turned ${john.age}');
+		
 		// Add new user
 		users.set("Mark", { surname: "McCartney", age:30 });
-
-	    // Whether the structure contains a specified key
-	    trace(user.exists("Mark")); // true
-
+		
+		// Whether the structure contains a specified key
+		trace(users.exists("Mark")); // true
+		
 		// Output all users
 		for (name => data in users) {
 			trace('$name ${data.surname} is ${data.age} years old');
