@@ -9,7 +9,7 @@ class Test {
 		var john = users.get("John");
 		john.age++;
 		
-		trace('John ${john.surname} turned ${john.age}');
+		trace('John ${john.surname} turned ${john.age}'); // John Smith turned 25
 		
 		// Add new user
 		users.set("Mark", { surname: "McCartney", age:30 });
