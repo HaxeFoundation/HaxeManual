@@ -103,11 +103,11 @@ The Haxe Compiler allows **reification** of expressions, types and classes to si
 Expression reification is used to create instances of `haxe.macro.Expr` in a convenient way. The Haxe Compiler accepts the usual Haxe syntax and translates it to an expression object. It supports several escaping mechanisms, all of which are triggered by the `$` character:
 
 * `${}` and `$e{}`: `Expr -> Expr` This can be used to compose expressions. The expression within the delimiting `{ }` is executed, with its value being used in place.
+* `$v{}`: `Dynamic -> Expr` Generates an expression depending on the type of its argument. This is only guaranteed to work for [basic types](types-basic-types) and [enum instances](types-enum-instance).
 * `$a{}`: `Array<Expr> -> Array<Expr>` or `Array<Expr> -> Expr` If used in a place where an `Array<Expr>` is expected (e.g. call arguments, block elements), `$a{}` treats its value as that array. Otherwise it generates an array declaration.
 * `$b{}`: `Array<Expr> -> Expr` Generates a block expression from the given expression array.
 * `$i{}`: `String -> Expr` Generates an identifier from the given string.
 * `$p{}`: `Array<String> -> Expr` Generates a field expression from the given string array.
-* `$v{}`: `Dynamic -> Expr` Generates an expression depending on the type of its argument. This is only guaranteed to work for [basic types](types-basic-types) and [enum instances](types-enum-instance).
 
 Additionally the [metadata](lf-metadata) `@:pos(p)` can be used to map the position of the annotated expression to `p` instead of the place it is reified at.
 
@@ -115,6 +115,148 @@ This kind of reification only works in places where the internal structure expec
 
 * field access `object.$name`
 * variable name `var $name = 1;`
+
+##### Examples
+* `${}` and `$e{}`:
+  ```haxe
+  macro static function foo() {
+    var expr = macro trace("bar");
+    var expr2 = macro var a;
+    return macro{
+      $e{expr}
+      ${expr}
+      $expr
+      ${expr2} = 5;
+    };
+  }
+  ```
+  yields:
+  ```haxe
+  trace("bar");
+  trace("bar");
+  trace("bar");
+  var a = 5;
+  ```
+* `$v{}`:
+  ```haxe
+  macro static function foo() {
+    var arr = ["sub", "next", "x"];
+    var f = 5.6;
+    var i = 8;
+    var s = "hello";
+    var obj = {
+      w: 8,
+      h: 5,
+    };
+    return macro {
+      var i2 = $v{i};
+      trace(i2);
+      trace($v{arr});
+      trace($v{f});
+      trace($v{i});
+      trace($v{s});
+      trace($v{obj});
+    }
+  }
+  ```
+  yields
+  ```haxe
+  var i2 = 8;
+  trace(i2);
+  trace(["sub", "next", "x"]);
+  trace(5.6);
+  trace(8);
+  trace("hello");
+  trace({h : 5, w : 8});
+  ```
+* `$a{}`:
+  ```haxe
+  macro static function foo() {
+    var arr = [for (i in 0...5) macro $v{i}];
+    return macro {
+      trace($a{arr});
+      var bar2 = [$a{arr}];
+      var bar3 = $a{arr};
+    }
+  }
+  ```
+  yields:
+  ```haxe
+  trace(0, 1, 2, 3, 4);
+  var bar2 = [0, 1, 2, 3, 4];
+  var bar3 = [0, 1, 2, 3, 4];
+  ```
+* `$b{}`:
+  ```haxe
+  macro static function foo() {
+    var exprs = [for (i in 0...3) macro a += $v{i}];
+    return macro {
+      var a = 0;
+      $b{exprs}
+      function bar() $b{exprs}
+    }
+  }
+  ```
+  yields
+  ```haxe
+  var a = 0;
+  {
+    a += 0;
+    a += 1;
+    a += 2;
+  }
+  function bar() {
+    a += 0;
+    a += 1;
+    a += 2;
+  }
+  ```
+* `$i{}`:
+  ```haxe
+  macro static function foo() {
+    var id = "x";
+    return macro {
+      var x = 0;
+      $i{id} += 5;
+      trace($i{id});
+    }
+  }
+  ```
+  yields
+  ```haxe
+  var x = 0;
+  x += 5;
+  trace(x);
+  ```
+* `$p{}`:
+  ```haxe
+  macro static function foo() {
+    var arr = ["obj", "sub", "next", "x"];
+    return macro {
+      var obj = {
+        sub: {
+          next: {
+            x: 2,
+            y: 3,
+          },
+        },
+      };
+      trace($p{arr});
+    }
+  }
+  ```
+  yields
+  ```haxe
+  var obj = {
+    sub: {
+      next: {
+        x: 2,
+        y: 3,
+      },
+    },
+  };
+  trace(obj.sub.next.x);
+  ```
 
 ##### since Haxe 3.1.0
 
