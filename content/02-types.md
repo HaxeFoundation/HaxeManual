@@ -315,7 +315,7 @@ Like classes, interfaces can be marked with the `final` keyword, preventing them
 
 Abstract classes (not to be confused with [Abstract](types-abstract)) are classes with partial implementation. As such, an abstract class cannot be instantiated but must first be extended, with the child class either providing implementation of all abstract methods or being declared abstract itself.
 
-In constrast to abstract classes, a class that implements all its methods is known as a concrete class. Concrete classes inheriting from abstract classes must be declared without the `abstract` keyword, and all abstract methods in the parent classes must be implemented.
+In contrast to abstract classes, a class that implements all its methods is known as a concrete class. Concrete classes inheriting from abstract classes must be declared without the `abstract` keyword, and all abstract methods in the parent classes must be implemented.
 
 Abstract classes support all language features that concrete classes support, thus any class can be declared abstract. Furthermore, abstract class methods behave similarly to interfaces; implementations of the methods do not use the `override` keyword.
 
@@ -792,7 +792,7 @@ Although the return type of `Json.parse` is `Dynamic`, the type of local variabl
 var att : Dynamic<String> = xml.attributes;
 // valid, value is a String
 att.name = "Nicolas";
-// dito (this documentation is quite old)
+// ditto (this documentation is quite old)
 att.age = "26";
 // error, value is not a String
 att.income = 0;

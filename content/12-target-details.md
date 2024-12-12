@@ -806,7 +806,7 @@ The compiler specification and target lists all use the same format.
 
 Most of the XML nodes support `if` and `unless` attributes. These will enable or disable the whole node according the existence or non-existence of a define. These can be combined with a space for "and" or two pipes for "or".
 
-Substitution is supported via the dollars-brace syntax, and does basoc text substitution. In addition, there is some special syntax that can be used:
+Substitution is supported via the dollars-brace syntax, and does basic text substitution. In addition, there is some special syntax that can be used:
 
  - `${VAR}` - normal replacement.
  - `${removeQuotes:VAR}` - strips surrounding quotes from `VAR`, if any.
@@ -1853,7 +1853,7 @@ Top of stack can be tricky to get right when a GUI framework does not really hav
  7976  int     t0
        SetTopOfStack(&t0,false) -> 7966
        __hxcpp_main();
-          setOnFrameCallack(haxeOnFrame)
+          setOnFrameCallback(haxeOnFrame)
           return;
 ```
 
@@ -2091,7 +2091,7 @@ Metadata | Usage | Description
 @:nativeGen  |  on classes | don't generate reflection, generate proper type parameters. This is useful for some sort of interop, but slows down reflection and structural typing
 @:nativeGen  |  on "flat" enums | generate C# enum, but note that C# enums are not-nullable unlike haxe enums, so using null will be generated as a default enum value (0-indexed constructor).
 @:property  |  on non-physical fields (those with get/set/never accessors) | generate native C# properties. useful for implementing extern interfaces or providing API for use from C#
-@:event  |  on variables | generate an event delegate (this also requires pairing add_EventName, remove_EventName methods with relevant signatures
+@:event  |  on variables | generate an event delegate (this also requires pairing add_EventName, remove_EventName methods with relevant signatures)
 @:protected  |  on a field | mark field as protected instead of public (could affect reflection, but useful for hiding fields when providing API for use from outside Haxe)
 @:struct  |  on classes  |  generate struct instead of class
 
@@ -2230,7 +2230,7 @@ for native Lua libraries.
 <!--label:target-lua-flags-->
 #### Version flags
 
-The Lua target enables the following define flags for the Haxe complier:
+The Lua target enables the following define flags for the Haxe compiler:
 
 * `-D lua-ver` Enable special features for a specific Lua version. Currently, this flag will enable extern methods that are specific to certain versions (e.g. table.pack in Lua > 5.2).
 * `-D luajit` Enable special features for LuaJIT.  Currently this flag will enable the `jit` and `ffi` module namespaces.

@@ -3,7 +3,7 @@ class Main {
     // Maps are initialized like arrays, but
     // use the map literal syntax with the
     // '=>' operator. Maps can have their
-    // key value types defined explicity
+    // key value types defined explicitly
     var map1:Map<Int, String> = [1 => "one", 2 => "two"];
 
     // Or they can infer their key value types
