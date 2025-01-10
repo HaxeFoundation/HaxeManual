@@ -42,6 +42,7 @@ The second question usually comes down to providing an argument specifying the d
 ##### Other global arguments
 * `--run <module> [args...]` Compile and execute a Haxe module with command line arguments.
 * `--xml <file>` Generate XML types description. Useful for API documentation generation tools like [Dox](https://github.com/HaxeFoundation/dox).
+* `--json <file>` Generate JSON types description. 
 * `-v` (or `--verbose`) Turn on verbose mode.
 * <code>--dce &lt;std&#124;full&#124;no&gt;</code> Set the [Dead Code Elimination](cr-dce) mode (default `std`).
 * `--debug` Add debug information to the compiled code.
