@@ -854,7 +854,7 @@ function main() {
 
 Compiling this no longer causes a warning.
 
-Enabling warnings is analoguous, using `+` instead of `-`, e.g. `-w +WCustomWarning`. Note that as of Haxe 4.3.0, there are no compiler warnings which are disabled by default, so the option is currently not useful.
+Enabling warnings is analogous, using `+` instead of `-`, e.g. `-w +WCustomWarning`. Note that as of Haxe 4.3.0, there are no compiler warnings which are disabled by default, so the option is currently not useful.
 
 Multiple warnings can be disabled and enabled within the same options string, so something like `-w -WDeprecated-WUnusedPattern` would disable both `WDeprecated` and `WUnusedPattern` warnings.
 

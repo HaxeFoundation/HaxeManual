@@ -10,6 +10,6 @@ class Main {
   static public function main() {
     var s:MyAbstract = 42;
     trace(s()); // uses callNoArgs, outputs 42
-    trace(s(1)); // uses callOneArg, ouputs 43
+    trace(s(1)); // uses callOneArg, outputs 43
   }
 }

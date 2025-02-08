@@ -96,7 +96,7 @@
 `php-lib` | &lt;folder name> | Select the name for the php lib folder. | php
 `php-front` | &lt;filename> | Select the name for the php front file. (default: `index.php`) | php
 `python-version` | &lt;version> | The python version to target. (default: 3.3) | python
-`real-position` |  | Disables Haxe source mapping when targetting C#, removes position comments in Java and Php output. | cs, java, php
+`real-position` |  | Disables Haxe source mapping when targeting C#, removes position comments in Java and Php output. | cs, java, php
 `replace-files` |  | GenCommon internal. | cs, java
 `retain-untyped-meta` |  | Prevents arbitrary expression metadata from being discarded upon typing. | all
 `scriptable` |  | GenCPP internal. | cpp

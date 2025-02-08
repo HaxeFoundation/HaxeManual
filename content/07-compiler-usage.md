@@ -84,7 +84,7 @@ The second question usually comes down to providing an argument specifying the d
 In order to include single modules, their paths can be listed directly on command line or in hxml: `haxe ... ModuleName pack.ModuleName`. For more specific includes or excludes, use these [initialization macros](macro-initialization):
 
 * `--macro include(pack:String, recursive=true, ?ignore:Array<String>, ?classPaths:Array<String>, strict=false)` Includes all modules in package pack in the compilation. If `recursive` is true, the compiler recursively adds all sub-packages.
-* `--macro exclude(pack:String, recursive=true` Exclude a specific class, enum, or all classes and enums in a package from being generated. Excluded types become `extern`. If `recursive` is true, the compiler recursively excludes all sub-packages.
+* `--macro exclude(pack:String, recursive=true)` Exclude a specific class, enum, or all classes and enums in a package from being generated. Excluded types become `extern`. If `recursive` is true, the compiler recursively excludes all sub-packages.
 * `--macro excludeFile(fileName:String)` Exclude classes and enums listed from given external file (one per line) from being generated.
 * `--macro keep(?path:String, ?paths:Array<String>, recursive=true)` Marks a package, module or sub-type dot path to be kept by DCE. This also extends to the sub-types of resolved modules. If `recursive` is true, the compiler recursively keeps all sub-packages for package paths.
 * `--macro includeFile(file:String, position)` Embed a JavaScript file at compile time. `position` can be either "top", "inline" or "closure".

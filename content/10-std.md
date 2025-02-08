@@ -742,7 +742,7 @@ Each supported value is translated to a distinct prefix character, followed by t
     * positive infinity: `p`
     * finite floats: `d` followed by the float display (e.g. `d1.45e-8`)
 * `Bool`: `t` for `true`, `f` for `false`
-* `String`: `y` followed by the url encoded string length, then `:` and the url encoded string (e.g. `y10:hi%20there for "hi there".`
+* `String`: `y` followed by the url encoded string length, then `:` and the url encoded string (e.g. `y10:hi%20there for "hi there".`)
 * name-value pairs: a serialized string representing the name followed by the serialized value
 * structure: `o` followed by the list of name-value pairs and terminated by `g` (e.g. `oy1:xi2y1:kng` for `{x:2, k:null}`)
 * `List`: `l` followed by the list of serialized items, followed by `h` (e.g. `lnnh` for a list of two `null` values)
@@ -753,7 +753,7 @@ Each supported value is translated to a distinct prefix character, followed by t
 * `haxe.ds.ObjectMap`: `M` followed by serialized value pairs representing the key and value, followed by `h`
 * `haxe.io.Bytes`: `s` followed by the length of the base64 encoded bytes, then `:` and the byte representation using the codes `A-Za-z0-9%` (e.g. `s3:AAA` for 2 bytes equal to `0`, and `s10:SGVsbG8gIQ` for `haxe.io.Bytes.ofString("Hello !")`)
 * exception: `x` followed by the exception value
-* class instance: `c` followed by the serialized class name, followed by the name-value pairs of the fields, followed by `g` (e.g. `cy5:Pointy1:xzy1:yzg` for `new Point(0, 0)` (having two integer fields `x` and `y`)        
+* class instance: `c` followed by the serialized class name, followed by the name-value pairs of the fields, followed by `g` (e.g. `cy5:Pointy1:xzy1:yzg` for `new Point(0, 0)` (having two integer fields `x` and `y`))
 * enum instance (by name): `w` followed by the serialized enum name, followed by the serialized constructor name, followed by `:`, followed by the number of arguments, followed by the argument values (e.g. `wy3:Fooy1:A:0` for `Foo.A` (with no arguments), `wy3:Fooy1:B:2i4n` for `Foo.B(4,null)`)
 * enum instance (by index): `j` followed by the serialized enum name, followed by `:`, followed by the constructor index (starting from 0), followed by `:`, followed by the number of arguments, followed by the argument values (e.g. `jy3:Foo:0:0` for `Foo.A` (with no arguments), `jy3:Foo:1:2i4n` for `Foo.B(4,null)`)
 * cache references: 
