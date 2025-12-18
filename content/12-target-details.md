@@ -1881,7 +1881,462 @@ Solutions:
   - `hxcpp` can log conservative ranges. With a native debugger you can check the address of your local variables and ensure they are included.
   - `hxcpp` will scan native objects on the stack, but will not follow non-Haxe pointers to other objects, so additional GC roots may be required.
 
+<!--label:target-cpp-ErrorCodes-->
+#### Error Codes
 
+<!--subtoc-->
+
+<!--label:target-cpp-ErrorCodes-CPP0000-->
+##### CPP0000 - Internal Error
+
+###### Description
+
+This error usually indicates a compiler bug, if you produce this error please open an issue with the code which causes it.
+
+<!--label:target-cpp-ErrorCodes-CPP0001-->
+##### CPP0001 - Missing Value Semantics
+
+###### Description
+
+Native marshalling types must be annotated with value semantics to ensure the generated code is sound. Classes or enums annotated with `:cpp.ValueType` or `:cpp.PointerType` but without `:semantics(value)` will generate this error.
+
+###### Examples
+
+The following examples generate CPP0001.
+
+```haxe
+// CPP0001
+@:cpp.ValueType
+extern class Foo {
+    function new():Void;
+}
+
+function main() {
+    final f = new Foo();
+}
+```
+
+```haxe
+// CPP0001
+@:cpp.ValueType
+extern enum abstract Foo(Int) {
+    var Bar;
+    var Baz;
+}
+
+function main() {
+    final f = Foo.Bar;
+}
+```
+
+```haxe
+// CPP0001
+@:cpp.PointerType
+extern class Foo {}
+
+function main() {
+    final f : Foo = null;
+}
+```
+
+<!--label:target-cpp-ErrorCodes-CPP0002-->
+##### CPP0002 - Native Marshalling Types and Function Closures
+
+###### Description
+
+Member functions of extern classes annotated with `:cpp.ValueType` or `:cpp.PointerType` can only be directly invoked, attempting to create closures from these member functions will generate this error.
+
+###### Examples
+
+The following examples generate CPP0002.
+
+```haxe
+@:semantics(value)
+@:cpp.ValueType
+extern class Foo {
+    function new():Void;
+
+    function bar():Void;
+}
+
+function main() {
+    final f = new Foo();
+    final c = f.bar; // CPP0002
+
+    c();
+}
+```
+
+```haxe
+@:semantics(value)
+@:cpp.PointerType
+extern class Foo {
+    static function allocate():Foo;
+    function bar():Void;
+}
+
+function main() {
+    final f = Foo.allocate();
+    final c = f.bar; // CPP0002
+
+    c();
+}
+```
+
+<!--label:target-cpp-ErrorCodes-CPP0003-->
+##### CPP0003 - Invalid Marshalling Type Parameter
+
+###### Description
+
+Extern types annotated with `:cpp.ValueType` or `:cpp.PointerType` cannot use GC objects as type parameters, attempting to do so will generate this error.
+
+###### Examples
+
+The following example generates CPPP0003.
+
+```haxe
+// CPP0003
+@:semantics(value)
+@:cpp.ValueType
+extern class Foo<T> {
+    function new():Void;
+}
+
+function main() {
+    final f = new Foo<String>();
+}
+```
+
+<!--label:target-cpp-ErrorCodes-CPP0004-->
+##### CPP0004 - Pointer Constructors
+
+###### Description
+
+Extern classes annotated with `cpp.PointerType` cannot have constructors, adding a constructor to these classes will generate this error.
+
+###### Examples
+
+The following example generates CPP0004.
+
+```haxe
+@:semantics(value)
+@:cpp.PointerType
+extern class Foo {
+    function new():Void; // CPP0004
+}
+
+function main() {
+    final f = new Foo();
+}
+```
+
+<!--label:target-cpp-ErrorCodes-CPP0005-->
+##### CPP0005 - Undeclared Marshalling Value Type Variable
+
+###### Description
+
+Extern classes and enums annotated with `cpp.ValueType` can live on the stack and are considered not nullable, to support undeclared local variables this would necessitate the underlying native type to have a default constructor which is might not have. Due to this, undeclared local variables of marshalling value types are not supported, doing so generates this error.
+
+###### Examples
+
+The following example generates CPP0005.
+
+```haxe
+@:semantics(value)
+@:cpp.ValueType
+extern class Foo {
+    function new():Void;
+}
+
+function main() {
+    var f : Foo; // CPP0005
+
+    if (Math.random() > 0.5) {
+        f = new Foo();
+    }
+}
+```
+
+<!--label:target-cpp-ErrorCodes-CPP0006-->
+##### CPP0006 - Invalid Namespace Field
+
+###### Description
+
+The namespace field in the marshalling type annotation must be an array of string literals, providing anything else will result in this error.
+
+###### Examples
+
+The following examples generate CPP0006.
+
+```haxe
+@:semantics(value)
+@:cpp.ValueType({ namespace : 'foo' }) // CPP0006
+extern class Bar {
+    function new():Void;
+}
+
+function main() {
+    final b = new Bar();
+}
+```
+
+```haxe
+@:semantics(value)
+@:cpp.ValueType({ namespace : [ Foo ] }) // CPP0006
+extern class Bar {
+    function new():Void;
+}
+
+function main() {
+    final b = new Bar();
+}
+```
+
+```haxe
+@:semantics(value)
+@:cpp.ValueType({ namespace : [ 'foo', 12 ] }) // CPP0006
+extern class Bar {
+    function new():Void;
+}
+
+function main() {
+    final b = new Bar();
+}
+```
+
+<!--label:target-cpp-ErrorCodes-CPP0007-->
+##### CPP0007 - Invalid Type Field
+
+###### Description
+
+The type field in the marshalling type annotation must be a string literal, providing anything else will result in this error.
+
+###### Examples
+
+The following examples generate CPP0007.
+
+```haxe
+@:semantics(value)
+@:cpp.ValueType({ type : Foo }) // CPP0007
+extern class Bar {
+    function new():Void;
+}
+
+function main() {
+    final b = new Bar();
+}
+```
+
+```haxe
+@:semantics(value)
+@:cpp.ValueType({ type : 12 }) // CPP0007
+extern class Bar {
+    function new():Void;
+}
+
+function main() {
+    final b = new Bar();
+}
+```
+
+<!--label:target-cpp-ErrorCodes-CPP0008-->
+##### CPP0008 - Invalid Flags Field
+
+###### Description
+
+The flags field in the marshalling type annotation must be an array of identifiers, providing anything else will result in this error.
+
+###### Examples
+
+The following examples generate CPP0008.
+
+```haxe
+@:semantics(value)
+@:cpp.ValueType({ flags : StackOnly })
+extern class Foo {
+    function new():Void;
+}
+
+function main() {
+    final f = new Foo();
+}
+```
+
+```haxe
+@:semantics(value)
+@:cpp.ValueType({ flags : [ 'StackOnly' ] })
+extern class Foo {
+    function new():Void;
+}
+
+function main() {
+    final f = new Foo();
+}
+```
+
+<!--label:target-cpp-ErrorCodes-CPP0009-->
+##### CPP0009 - Extending Managed Type
+
+###### Description
+
+Extern classes annotated with `cpp.ManagedType` cannot currently be extended by non extern classes due to differences in how super constructors can be called in Haxe and C++. Attempting to subclass one of these extern classes with a non-extern class will generate this error.
+
+###### Examples
+
+The following example generates CPP0009.
+
+```haxe
+@:semantics(value)
+@:cpp.ManagedType
+extern class Foo {}
+
+class Bar extends Foo {
+    public function new() {}
+}
+
+function main() {
+    final b = new Bar();
+}
+```
+
+<!--label:target-cpp-ErrorCodes-CPP0010-->
+##### CPP0010 - Unable to Resolve Type Parameter
+
+###### Description
+
+Type parameters in normal haxe objects use type erasure, but type parameters in native marshalling types represent C++ template parameters. Due to this difference a type parameter needs to be resolvable to it's concrete type, if Haxe is unable to do this, this error is generated.
+
+To resolve this issue you should explicitly add a type hint or type check which will allow Haxe to resolve the parameter.
+
+###### Examples
+
+The following example generates CPP0010.
+
+```haxe
+@:semantics(value)
+@:cpp.ValueType
+extern class Foo {
+    function new():Void;
+    function bar<T>():T;
+}
+
+function main() {
+    final f = new Foo();
+
+    trace(f.bar()); // CPP0010
+}
+```
+
+Since `trace` accepts `Dynamic` as it's first argument there is nothing for Haxe's type inference to unify `T` against which results in this error. the following two examples are ways you can resolve this error.
+
+```haxe
+@:semantics(value)
+@:cpp.ValueType
+extern class Foo {
+    function new():Void;
+    function bar<T>():T;
+}
+
+function main() {
+    final f = new Foo();
+
+    trace((f.bar() : Int)); // Type check to allow Haxe to resolve T with Int.
+}
+```
+
+```haxe
+@:semantics(value)
+@:cpp.ValueType
+extern class Foo {
+    function new():Void;
+    function bar<T>():T;
+}
+
+function main() {
+    final f = new Foo();
+    final v : Int = f.bar(); // Variable with type hint to allow Haxe to resolve T with Int.
+
+    trace(v);
+}
+```
+
+<!--label:target-cpp-ErrorCodes-CPP0011-->
+##### CPP0011 - Promoted Stack Only Value Type
+
+###### Description
+
+Extern classes or enums annotated with `cpp.ValueType` and which contain the `StackOnly` flag are forbidden from being promoted to the heap. There are many ways a type can be silently promoted to the heap, the following examples show a few such cases.
+
+###### Examples
+
+The following examples generate CPP0011.
+
+```haxe
+@:semantics(value)
+@:cpp.ValueType({ flags : [ StackOnly ] })
+extern class Foo {
+    function new():Void;
+}
+
+function main() {
+    final f : Null<Foo> = new Foo(); // CPP0011, nullable value types are required to go on the heap.
+}
+```
+
+```haxe
+@:semantics(value)
+@:cpp.ValueType({ flags : [ StackOnly ] })
+extern class Foo {
+    function new():Void;
+}
+
+function main() {
+    final f = new Foo(); // CPP0011, variables captured in a closure are required to go on the heap.
+    final c = () -> {
+        trace(f);
+    }
+
+    c();
+}
+```
+
+```haxe
+@:semantics(value)
+@:cpp.ValueType({ flags : [ StackOnly ] })
+extern class Foo {
+    function new():Void;
+}
+
+function bar(o:Dynamic) {
+    trace(o);
+}
+
+function main() {
+    final f = new Foo(); // CPP0011, converting a value type to Dynamic requires boxing it onto the heap.
+    
+    bar(f);
+}
+```
+
+```haxe
+@:semantics(value)
+@:cpp.ValueType({ flags : [ StackOnly ] })
+extern class Foo {
+    function new():Void;
+}
+
+class Bar {
+    var f : Foo; // CPP0011, class fields of value types are required to be on the heap.
+
+    public function new() {
+        f = new Foo();
+    }
+}
+
+function main() {
+    final f = new Bar();
+}
+```
 
 <!--label:target-cppia-->
 ### Cppia
