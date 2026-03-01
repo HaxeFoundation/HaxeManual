@@ -1,16 +1,27 @@
-class Main {
-  static public function main() {
-    var user:haxe.DynamicAccess<Dynamic> = {};
-
-    // Sets values for specified keys.
-    user.set("name", "Mark");
-    user.set("age", 25);
-
-    // Returns values by specified keys.
-    trace(user.get("name")); // "Mark"
-    trace(user.get("age")); // 25
-
-    // Tells if the structure contains a specified key
-    trace(user.exists("name")); // true
-  }
+class Test {
+	static function main() {
+		var users:haxe.DynamicAccess<User> = {
+			John: { surname: "Smith", age: 24 },
+			Patti: { surname: "Mayonaise", age: 16 }
+		};
+		
+		// Get user John, throw him a brithday
+		var john = users.get("John");
+		john.age++;
+		
+		trace('John ${john.surname} turned ${john.age}'); // John Smith turned 25
+		
+		// Add new user
+		users.set("Mark", { surname: "McCartney", age:30 });
+		
+		// Whether the structure contains a specified key
+		trace(users.exists("Mark")); // true
+		
+		// Output all users
+		for (name => data in users) {
+			trace('$name ${data.surname} is ${data.age} years old');
+		}
+	}
 }
+
+typedef User = { surname:String, age:Int };
