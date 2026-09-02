@@ -3347,5 +3347,5 @@ Note: if Hashlink is not installed in a standard path, it is necessary to set th
 For advanced use-cases, it may be preferred to omit the `hlgen.makefile` define and to build the C sources manually. This can be done with any C compiler, such as `gcc`. For example:
 
 ```sh
-gcc -O3 -o hello -std=c++ -I out out/main.c -lhl [-L/path/to/required/hdll]
+gcc -O3 -o hello -std=c11 -I out out/main.c -lhl [/path/to/required.hdll]
 ```
