@@ -693,7 +693,14 @@ On Mac, it is recommended that you install the latest Xcode from the Mac App Sto
 
 On Linux, it is recommended that you use the system package manager to install the compilers.
 
-On Windows, Microsoft Visual Studio is recommended. On Windows, you can also use `gcc`-based compilers. A minimal distribution is included in a Haxelib library, and can be installed with `haxelib install minimingw`.
+On Windows, Microsoft Visual Studio is recommended. You can also use `gcc`-based compilers.
+
+To compile with Microsoft Visual Studio, you need to install the Builds Tools and `vswhere`. You can install the 2022 Build Tools and `vswhere` using the following winget commands:
+
+```pwsh
+winget install -e --id Microsoft.VisualStudio.2022.BuildTools
+winget install -e --id Microsoft.VisualStudio.Locator
+```
 
 ##### Cross Compilers
 
