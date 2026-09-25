@@ -90,6 +90,23 @@ If the final argument of a macro is of type `Array<Expr>`, the macro accepts an 
 
 
 
+<!--label:macro-instance-arg-->
+#### Instance Argument
+
+If the macro is an instance method, the first arg will be the expression used to reference the instance:
+
+[code asset](assets/InstanceExprArgMacro.hx)
+
+Usage:
+
+[code asset](assets/InstanceExprArgUsage.hx)
+
+This outputs at runtime:
+```
+Test.hx:9: Fact: theory1.statement = [Haxe is great!]
+Test.hx:10: Lie: theory2.statement = [7 > 9]
+```
+
 
 
 <!--label:macro-reification-->
